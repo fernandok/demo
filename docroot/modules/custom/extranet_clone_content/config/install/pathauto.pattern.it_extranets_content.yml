@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: it_extranets_content
+label: 'IT Extranets Content'
+type: 'canonical_entities:node'
+pattern: 'it-extranets/[node:title]'
+selection_criteria:
+  46007c18-46bb-4c38-a767-1647eef404c4:
+    id: node_type
+    bundles:
+      it_extranet: it_extranet
+    negate: false
+    context_mapping:
+      node: node
+    uuid: 46007c18-46bb-4c38-a767-1647eef404c4
+selection_logic: and
+weight: -5
+relationships: {  }

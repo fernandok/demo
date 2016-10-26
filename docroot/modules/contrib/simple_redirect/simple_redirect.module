@@ -1,0 +1,61 @@
+<?php
+
+/**
+ * @file
+ * Simple redirect module file.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
+
+/**
+ * Implements hook_help().
+ */
+function simple_redirect_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the custom module.
+    case 'help.page.simple_redirect':
+      $output = '';
+      $output .= '<h3>' . t('Simple Redirect') . '</h3>';
+      $output .= '<p>' . t('Using this admin can redirect their user to new path either after user registration or after user login.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_user_register_form_alter().
+ */
+function simple_redirect_form_user_register_form_alter(&$form, &$form_state) {
+  $form['actions']['submit']['#submit'][] = 'simple_redirect_reg_redirect';
+}
+
+/**
+ * Callback function for handling redirect on registration.
+ */
+function simple_redirect_reg_redirect($form, &$form_state) {
+  simple_redirect(\Drupal::config('simple_redirect.simpleredirectconfig')->get('user_reg'));
+}
+
+/**
+ * Implements hook_user_login().
+ */
+function simple_redirect_user_login($account) {
+  simple_redirect(\Drupal::config('simple_redirect.simpleredirectconfig')->get('user_login'));
+}
+
+/**
+ * Simple redirect handler.
+ */
+function simple_redirect($toUrl) {
+  $url = \Drupal::pathValidator()->getUrlIfValid($toUrl);
+  if ($url == FALSE) {
+    drupal_set_message('You will not be redirected to "' . $toUrl . '" page, you donot have permission to view this page.');
+    throw new AccessDeniedHttpException('Access Denied', NULL, 403);
+  }
+  $url->setAbsolute();
+  $redirect = $url->toString();
+  (new RedirectResponse($redirect))->send();
+}

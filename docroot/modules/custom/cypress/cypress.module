@@ -1,0 +1,86 @@
+<?php
+
+/**
+ * @file
+ * Contains cypress.module.
+ */
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function cypress_form_node_cy_page_form_alter(&$form, $form_state) {
+  _cypress_alter_document_paragraphs($form, $form_state);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function cypress_form_node_cy_page_edit_form_alter(&$form, $form_state) {
+  _cypress_alter_document_paragraphs($form, $form_state);
+}
+
+/**
+ * Method to alter document paragraph fields behaviour states.
+ *
+ * @param array $form
+ *   Form renderable array.
+ * @param array $form_state
+ *   Current form state.
+ */
+function _cypress_alter_document_paragraphs(&$form, $form_state) {
+  foreach($form['field_files']['widget'] as $key => &$widget) {
+    if (!is_int($key)) {
+      continue;
+    }
+    $subform = &$widget['subform'];
+    $file_type_name_attr = "field_files[$key][subform][field_file_type][value]";
+    $subform['field_akamai_uri']['#states'] = [
+      'invisible' => [
+        ':input[name="' . $file_type_name_attr . '"]' => [
+          'checked' => FALSE
+        ],
+      ],
+    ];
+    $subform['field_akamai_description']['#states'] = [
+      'invisible' => [
+        ':input[name="' . $file_type_name_attr . '"]' => [
+          'checked' => FALSE
+        ],
+      ],
+    ];
+    $subform['field_file']['#states'] = [
+      'invisible' => [
+        ':input[name="' . $file_type_name_attr . '"]' => [
+          'checked' => TRUE
+        ],
+      ],
+    ];
+  }
+}
+
+function cypress_theme($existing, $type, $theme, $path) {
+  return [
+    'cypress_download_all_docs' => [
+      'variables' => [
+        'label' => NULL,
+        'link' => NULL,
+      ],
+      'template' => 'cypress-download-all-docs',
+    ],
+    'cypress_akamai_file_download' => [
+      'variables' => [
+        'uri' => NULL,
+        'description' => NULL,
+      ],
+      'template' => 'cypress-akamai-file-download',
+    ],
+    'cypress_ww_cy' => [
+      'variables' => [
+        'ww' => NULL,
+        'cy_price' => NULL,
+        'cy_change' => NULL,
+      ],
+      'template' => 'cypress-ww-cy',
+    ],
+  ];
+}

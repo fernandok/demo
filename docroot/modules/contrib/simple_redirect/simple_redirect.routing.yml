@@ -1,0 +1,11 @@
+
+simple_redirect.simple_redirect_config:
+  path: '/admin/config/simple-redirect'
+  defaults:
+    _form: '\Drupal\simple_redirect\Form\SimpleRedirectConfig'
+    _title: 'Simple Redirect Configuration'
+  requirements:
+    _permission: 'administer simple_redirect'
+  options:
+    _admin_route: TRUE
+

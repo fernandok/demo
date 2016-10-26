@@ -1,0 +1,15 @@
+<div class="container full-width">
+<div class="row">
+  <div class="col-sm-12">
+    <div id="ww_and_cy">
+      <span id="ww">WW: {{ ww }}</span>
+      {% if cy_change < 0 %}
+        {% set cy_change_class = 'flag-red' %}
+      {% else %}
+        {% set cy_change_class = 'flag-green' %}
+      {% endif %}
+      <span id="cy_stock">CY: {{ cy_price }} <span class="{{ cy_change_class }}">{{ cy_change }}</span></span>
+    </div>
+  </div>
+</div>
+</div>

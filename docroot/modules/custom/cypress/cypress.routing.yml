@@ -1,0 +1,6 @@
+cypress.download_all_documents:
+  path: '/download_all_documents/{node_id}/{field_name}'
+  defaults:
+    _controller: '\Drupal\cypress\Controller\DownloadController::downloadAllDocs'
+  requirements:
+    _permission: 'access content'

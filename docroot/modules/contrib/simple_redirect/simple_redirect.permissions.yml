@@ -1,0 +1,4 @@
+administer simple_redirect:
+  description: 'Change settings for the simple redirection.'
+  title: 'Administer Simple redirect'
+  restrict access: TRUE

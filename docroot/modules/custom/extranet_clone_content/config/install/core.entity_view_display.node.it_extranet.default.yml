@@ -1,0 +1,31 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.it_extranet.body
+    - field.field.node.it_extranet.field_it_extranet_pages
+    - node.type.it_extranet
+  module:
+    - text
+    - user
+id: node.it_extranet.default
+targetEntityType: node
+bundle: it_extranet
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  field_it_extranet_pages:
+    weight: 102
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  links:
+    weight: 100
+hidden: {  }

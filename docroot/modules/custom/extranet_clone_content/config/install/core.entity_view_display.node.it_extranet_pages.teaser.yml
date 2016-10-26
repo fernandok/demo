@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.it_extranet_pages.body
+    - field.field.node.it_extranet_pages.field_ep_files
+    - node.type.it_extranet_pages
+  module:
+    - text
+    - user
+id: node.it_extranet_pages.teaser
+targetEntityType: node
+bundle: it_extranet_pages
+mode: teaser
+content:
+  body:
+    label: hidden
+    type: text_summary_or_trimmed
+    weight: 101
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+  links:
+    weight: 100
+hidden:
+  field_ep_files: true

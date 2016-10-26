@@ -1,0 +1,10 @@
+<ul class="default_tag_clouds">
+  <li class="tag_cloud_term">
+    <a href="/file-search">ALL</a>
+  </li>
+  {% for term_id, term in tags %}
+    <li class="tag_clouds_term">
+      <a href="{{ term.url }}">{{ term.name }}</a>
+    </li>
+  {% endfor %}
+</ul>

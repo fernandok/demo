@@ -1,0 +1,256 @@
+/* start global */
+a:hover {
+  color: #3780cb !important;
+}
+/* end global */
+/*Starting the Header-Menu block*/
+body {
+  margin: 0px;
+  font-family: "open_sanssemibold",Arial,sans-serif;
+}
+header.navbar.container, div.main-container.container, footer.footer.container{
+  margin:0px;
+  padding: 0px;
+  max-width: initial;
+  width: 100%;
+}
+.navbar-header{
+  float: none;
+  background-color: white;
+  border-top: 2px solid #09357A;
+}
+.logo-bkgnd {
+  padding-left: 40px;
+}
+a {
+  color: #09357a;
+  text-decoration: none !important;
+}
+.main-nav-menu .menu li a, .account-menu-log .menu li a, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover {
+  color: #252525;
+}
+.main-nav-menu, .account-menu-log {
+  height: 7.25em;
+}
+.main-nav-menu nav#block-extranet-main-menu, .account-menu-log nav#block-extranet-account-menu, #block-userloginmenu {
+  margin-top: 1.5em;
+}
+#block-userloginmenu ul.menu.nav {
+  float: right;
+  margin-top: 0.7em;
+}
+#block-userloginmenu ul li a:hover {
+  background-color: white;
+}
+.navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover {
+  background-color: initial;
+}
+/* Start user account menu */
+.navbar-default .account-menu-log .navbar-nav > .open > a {
+  background-color: white;
+  color: inherit;
+}
+.account-menu-log .menu.dropdown-menu {
+  top: 80%;
+}
+.account-menu-log .dropdown-menu li a:hover {
+  background-color: #e8ebf1;
+}
+.navbar-right {
+  margin: 0;
+}
+/* End user account menu */
+/* Start - Table of documents. */
+.table>thead>tr>th {
+  border: 1px solid #eaeff2 !important;
+  vertical-align: middle;
+  text-align: center;
+  padding: 14px;
+}
+.table>tbody>tr>td {
+  border-top: 0px;
+  padding: 14px;
+  vertical-align: middle;
+}
+.table>tbody>tr>td span.file-size {
+  display: none;
+}
+.full-width {
+  width: 100%;
+}
+/* End - Table of documents. */
+/*Strting Welcome user Block*/
+.region-sidebar-first {
+  background-color: #e8ebf1;
+}
+.my-cypress-title {
+  background-color: #09357a;
+  border-bottom: 2px solid #2966a3;
+  padding-top: 0.01em;
+}
+.my-cyp {
+  color: white;
+  padding-left: 15px;
+}
+.form-group {
+  margin-bottom: 0px
+}
+.row.welcome-user-wrapper {
+  margin: 0;
+}
+.welcome-user-wrapper {
+  padding: 30px 0 15px 0px;
+}
+span.image-user {
+  margin-left: 8%;
+}
+span.image-user img {
+  background-color: white;
+}
+span.welcome-first-last-name {
+  color: #09357a;
+  margin-top: 4%;
+}
+.first-last-name {
+  font-weight: bold;
+}
+/*End Welcome user block*/
+/*Start nav bar primary*/
+#block-mainnavigation .navbar-nav, #block-mainnavigation .navbar-nav li {
+  float:none;
+}
+#block-mainnavigation .navbar-nav li {
+  border-bottom: 1px solid #b3c1d6
+}
+#block-mainnavigation .navbar-nav li a {
+  padding-left: 2.7em;
+  font-size: 14px;
+}
+#block-mainnavigation .navbar-nav li a:hover {
+  background-color: initial;
+}
+#block-workweekandstock row {
+  margin: 0;
+}
+#block-workweekandstock .col-sm-12 {
+  background-color: #09357A;
+  color: white;
+  border-bottom: 1px solid white;
+}
+#ww_and_cy {
+  text-align: center;
+  padding: 0.5% 0;
+}
+#ww_and_cy #ww {
+  border-right: 1px solid white;
+  margin-right: 0.6%;
+  padding-right: 1%;
+}
+#ww_and_cy #cy_stock .flag-red {
+  color: red;
+}
+#ww_and_cy #cy_stock .flag-green {
+  color: green;
+}
+/*End nav bar primary*/
+/* Start banner */
+.view-banner-image-block img {
+  width: 100%;
+  max-height: 265px;
+}
+/* End banner */
+/* Start breadcrumb */
+.breadcrumb {
+  display: none;
+}
+/* End breadcrumb */
+/* Start content */
+.main-container {
+  width: 100%;
+}
+.main-container>.row {
+  margin: 0;
+}
+.main-container>.row>.col-sm-12 {
+  padding: 0;
+}
+.main-container>.row>aside {
+  margin-top: 1em;
+}
+/* End content */
+/* Start download all docs */
+.download-all-files-wrapper {
+  margin-bottom: 6px;
+}
+.download-all-files {
+  color: white;
+  background-color: #09357A;
+  display: inline-block;
+  padding: 0.5% 2%;
+  font-weight: bold;
+  position: relative;
+}
+.download-all-files>div{
+  display: inline-block;
+}
+.download-all-files .download-all-icon {
+  width: 28px;
+  height: 29px;
+  background: url('../images/download-icon.png');
+}
+.download-all-files .download-label {
+  font-size: 0.95em;
+}
+.download-all-files .title {
+  font-size: 0.7em;
+}
+/* End download all docs */
+/*Start footer region*/
+footer.footer.container {
+  background-color: #09357A;
+  color: white;
+  padding: 1.5em 0 0.7em 0;
+  margin-top: 2em;
+}
+.region.region-footer nav {
+  display: inline-block;
+}
+.region.region-footer ul.menu.nav li {
+  display: inline-block;
+}
+.region.region-footer ul.menu.nav li a {
+  color: white;
+  padding: 0 6px 0 0;
+  border-right: 1px solid white;
+}
+.region.region-footer ul.menu.nav li a:hover {
+  background-color: initial;
+}
+span#footer-copyrights {
+  padding-left: 3px;
+}
+/*End footer region*/
+/*Stating home page menu icons*/
+.view-home-page-menu-icons .view-content .views-row{
+  text-align: center;
+  display: inline-block;
+  max-width: 150px;
+  margin: 0 4%;
+}
+.path-frontpage h1.page-header{
+  padding-bottom: 20px;
+  margin: 0;
+  border-bottom: 0;
+}
+/*End homepage menu*/
+/*STCON content type*/
+body.page-node-type-stcon h1.page-header{
+  display: none;
+}
+body.page-node-type-stcon div.content, body.page-node-type-stcon div.field{
+  margin-top: 15px;
+}
+body.page-node-type-stcon div.field .field--label{
+  font-size: 24px;
+}
+/*End STCON*/
