@@ -96,11 +96,13 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
     $url = Url::fromUserInput('/download_all_documents/' . $parent_node_id . '/' . $field_name);
     // $download_all_files_link = Link::fromTextAndUrl('Download All Documents', $url)->toRenderable();
     // $download_all_files_link['#attributes']['class'] = ['download-all-files'];
-    $elements[]['download_all_documents'] = [
-      '#theme' => 'cypress_download_all_docs',
-      '#label' => $node_label,
-      '#link' => $url,
-    ];
+    if (!empty($rows)) {
+      $elements[]['download_all_documents'] = [
+        '#theme' => 'cypress_download_all_docs',
+        '#label' => $node_label,
+        '#link' => $url,
+      ];
+    }
     // Akamai files.
     // foreach ($akamai_elements as $akamai_element) {
     //   $elements[] = [
