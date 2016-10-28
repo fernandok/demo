@@ -1,0 +1,20 @@
+<div class="extranet-pages-menu-block">
+  <div class="e-link">
+    <ul class="nav">
+      {% for e_link in e_links %}
+        <li>
+          <a href="{{ e_link.link }}">{{ e_link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="ep-link">
+    <ul class="nav">
+      {% for ep_link in ep_links %}
+        <li>
+          <a href="{{ ep_link.link }}">{{ ep_link.title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>

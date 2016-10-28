@@ -50,3 +50,38 @@ function extranet_clone_content_update_page_access(array &$form, \Drupal\Core\Fo
 		}
 	}
 }
+
+/**
+ * Implements hook_theme().
+ */
+function extranet_clone_content_theme($existing, $type, $theme, $path) {
+	return [
+		'extranets_pages_menu_block' => [
+			'variables' => [
+				'e_links' => NULL,
+				'ep_links' => NULL,
+				'names' => NULL,
+			],
+			'template' => 'extranets-pages-menu-block',
+		],
+	];
+}
+
+/**
+ * Fetches Extranet Pages from Extranet content id.
+ */
+function extranet_clone_content_fetch_extranet_pages($extranet_content_id) {
+	$db = \Drupal::database();
+	$query = $db->select('node', 'n');
+	$query->condition('n.nid', $extranet_content_id);
+	$query->join('node__field_it_extranet_pages', 'fiep', 'n.nid = fiep.entity_id');
+	$query->addField('fiep', 'field_it_extranet_pages_target_id', 'page_id');
+	$query->join('node_field_data', 'nfd', 'fiep.field_it_extranet_pages_target_id = nfd.nid');
+	$query->addField('nfd', 'title');
+	$pages = $query->execute()->fetchAll();
+
+	foreach ($pages as $page) {
+		$extranet_pages[$page->page_id] = $page->title;
+	}
+	return $extranet_pages;
+}
