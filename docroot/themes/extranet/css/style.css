@@ -254,3 +254,25 @@ body.page-node-type-stcon div.field .field--label{
   font-size: 24px;
 }
 /*End STCON*/
+
+/* Start extranet sidebar menu */
+.extranet-pages-menu-block li {
+  border-bottom: 1px solid #b3c1d6;
+}
+
+.extranet-pages-menu-block li a {
+  padding-left: 2.7em;
+  font-size: 14px;
+  display: block;
+  background-color: #e8ebf1 !important;
+}
+
+@media (min-width: 768px) {
+  .extranet-pages-menu-block li a {
+    padding-top: 19.5px;
+    padding-bottom: 19.5px;
+  }
+}
+
+
+/* End extranet sidebar menu */
