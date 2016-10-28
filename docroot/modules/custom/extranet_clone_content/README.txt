@@ -9,3 +9,7 @@ To Do While Enabling the module
     "Extranet Clone Content".
     Features, Features UI, Inline Entity Form
   * Create Pathauto patterns for the content.
+  * Create a menu item for "My Dashboard Clone" under Administration.
+  * Go to Structure Blocks, Exclude My Cypress block for following pages.
+      it-extranets/*
+      it-extranet-pages/*
