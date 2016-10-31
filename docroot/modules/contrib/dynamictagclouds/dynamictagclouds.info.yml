@@ -3,3 +3,6 @@ type: module
 description: Module provides a Tag Cloud based searching of content.
 core: 8.x
 package: Taxonomy
+
+dependencies:
+  - token

@@ -21,10 +21,12 @@ use Drupal\taxonomy\Entity\Vocabulary;
 class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
   protected $term_storage;
+  protected $token_service;
 
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, TermStorageInterface $term_storage) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, TermStorageInterface $term_storage, $token_service) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
     $this->term_storage = $term_storage;
+    $this->token_service = $token_service;
   }
 
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition){
@@ -32,7 +34,8 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
       $configuration,
       $plugin_id,
       $plugin_definition,
-      $container->get('entity.manager')->getStorage("taxonomy_term")
+      $container->get('entity.manager')->getStorage("taxonomy_term"),
+      $container->get('token')
     );
   }
 
@@ -76,6 +79,13 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
       '#default_value' => isset($config['redirect_url']) ? $config['redirect_url'] : '/taxonomy/term/',
     ];
 
+    $token_options = [
+      'global_types' => FALSE,
+      'recursion_limit' => 1,
+    ];
+
+    $form['token'] = \Drupal::service('token.tree_builder')->buildRenderable(['term'], $token_options);
+
     return $form;
   }
 
@@ -109,9 +119,14 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
     foreach ($vocabularies_selected as $vid) {
       $vocabulary_terms = $this->term_storage->loadTree($vid);
       foreach ($vocabulary_terms as $term) {
-        $terms[$term->tid] = [
-          'name' => $term->name,
-          'url' => $config['redirect_url'] . $term->tid,
+        $term = $this->term_storage->load($term->tid);
+        $url = $this->token_service->replace(
+          $config['redirect_url'],
+          ['term' => $term]
+        );
+        $terms[$term->id()] = [
+          'name' => $term->getName(),
+          'url' => $url,
         ];
       }
     }
