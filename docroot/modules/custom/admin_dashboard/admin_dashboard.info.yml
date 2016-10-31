@@ -1,0 +1,5 @@
+name: Admin Dashboard
+type: module
+description: Cypress Admin Dashboard
+core: 8.x
+package: Custom

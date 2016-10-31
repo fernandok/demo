@@ -1,0 +1,15 @@
+admin_dashboard.cypress_dashboard_config.*:
+  type: config_entity
+  label: 'Cypress dashboard config config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    label:
+      type: label
+      label: 'Label'
+    url_path:
+      type: string
+      label: 'Url'
+    uuid:
+      type: string

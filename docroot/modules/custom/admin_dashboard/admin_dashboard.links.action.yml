@@ -1,0 +1,6 @@
+entity.cypress_dashboard_config.add_form:
+  route_name: 'entity.cypress_dashboard_config.add_form'
+  title: 'Add Cypress dashboard config'
+  appears_on:
+    - entity.cypress_dashboard_config.collection
+

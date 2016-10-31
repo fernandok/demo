@@ -1,0 +1,8 @@
+# Cypress dashboard config menu items definition
+entity.cypress_dashboard_config.collection:
+  title: 'Cypress dashboard config'
+  route_name: entity.cypress_dashboard_config.collection
+  description: 'List Cypress dashboard config (bundles)'
+  parent: system.admin_structure
+  weight: 99
+
