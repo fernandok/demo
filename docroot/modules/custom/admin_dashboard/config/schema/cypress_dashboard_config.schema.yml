@@ -11,5 +11,8 @@ admin_dashboard.cypress_dashboard_config.*:
     url_path:
       type: string
       label: 'Url'
+    weight:
+      type: string
+      label: 'Weight'
     uuid:
       type: string

@@ -273,6 +273,14 @@ body.page-node-type-stcon div.field .field--label{
     padding-bottom: 19.5px;
   }
 }
-
-
 /* End extranet sidebar menu */
+/* Strting the Admin Dashboard*/
+body.path-cypress-admin-dashboard section#content-main {
+  background-color: #565656;
+  margin-top: 15px;
+  color: white;
+}
+body.path-cypress-admin-dashboard section#content-main h1.page-header {
+  font-size: 25px;
+}
+/* End Admin Dashboard*/

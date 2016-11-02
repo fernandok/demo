@@ -9,5 +9,6 @@ use Drupal\Core\Config\Entity\ConfigEntityInterface;
  */
 interface CypressDashboardConfigInterface extends ConfigEntityInterface {
   public function getUrlPath();
+  public function getWeight();
   // Add get/set methods for your configuration properties here.
 }

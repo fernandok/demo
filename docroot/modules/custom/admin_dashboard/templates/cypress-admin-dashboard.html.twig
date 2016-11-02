@@ -1,5 +1,5 @@
+<div class="admin-dashboard-row"><ul>
 {% for config in configuration %}
-  <div class="admin-dashboard-row">
-    <a href="{{ config.url_path }}">{{ config.label }}</a>
-  </div>
+    <li><a href="{{ config.url_path }}">{{ config.label }}</a></li>
 {% endfor %}
+</ul></div>

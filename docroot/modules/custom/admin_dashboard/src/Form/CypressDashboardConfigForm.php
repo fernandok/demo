@@ -17,7 +17,6 @@ class CypressDashboardConfigForm extends EntityForm {
    */
   public function form(array $form, FormStateInterface $form_state) {
     $form = parent::form($form, $form_state);
-
     $cypress_dashboard_config = $this->entity;
     $form['label'] = [
       '#type' => 'textfield',
@@ -27,7 +26,6 @@ class CypressDashboardConfigForm extends EntityForm {
       '#description' => $this->t("Label for the Cypress dashboard config."),
       '#required' => TRUE,
     ];
-
     $form['url_path'] = [
       '#type' => 'textfield',
       '#title' => $this->t('Url'),
@@ -36,7 +34,15 @@ class CypressDashboardConfigForm extends EntityForm {
       '#description' => $this->t("Enter Relative Path for the Config"),
       '#required' => TRUE,
     ];
-
+    $form['weight'] = [
+      '#type' => 'weight',
+      '#title' => t('Weight'),
+      '#default_value' => $cypress_dashboard_config->getWeight(),
+      '#delta' => 10,
+      '#description' => $this->t('Optional.
+    In the menu, the heavier items will sink and the lighter items will be
+    positioned nearer the top.'),
+    ];
     $form['id'] = [
       '#type' => 'machine_name',
       '#default_value' => $cypress_dashboard_config->id(),
@@ -57,6 +63,7 @@ class CypressDashboardConfigForm extends EntityForm {
   public function save(array $form, FormStateInterface $form_state) {
     $cypress_dashboard_config = $this->entity;
     $cypress_dashboard_config->set('url_path', $form_state->getValue('url_path'));
+    $cypress_dashboard_config->set('weight', $form_state->getValue('weight'));
     $status = $cypress_dashboard_config->save();
 
     switch ($status) {
