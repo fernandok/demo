@@ -151,6 +151,10 @@ class EnityReferenceTabFormatter extends FormatterBase {
       ),
     );
 
+    if (empty($tabs)) {
+      $elements['#label_display'] = 'hidden';
+    }
+
     return $elements;
   }
 
