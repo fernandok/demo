@@ -291,3 +291,16 @@ body.page-node-type-stcon div.field .field--label{
   padding: 0.1em 0.5em;
 }
 /* End subpage menu */
+/* Start Cypress admin dashboard */
+#block-admindashboard .open > .dropdown-menu {
+  display: block;
+  position: relative;
+  float: none;
+  padding-left: 40px;
+  border: none;
+  box-shadow: none;
+}
+#block-admindashboard .open > .dropdown-menu > li:hover {
+  background-color: #ecf0f1;
+}
+/* End Cypress admin dashboard */
