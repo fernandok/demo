@@ -307,11 +307,19 @@ body.page-node-type-stcon div.field .field--label{
   padding-left: 0;
   background-color: #e8ebf1;
 }
+#block-mainnavigation .open > .dropdown-menu > li {
+  border: none;
+}
 #block-mainnavigation .open > .dropdown-menu > li > a {
   white-space: normal;
-  padding-top: 19.5px;
-  padding-bottom: 19.5px;
+  padding-top: 10px;
+  padding-bottom: 9.5px;
   padding-left: 4em;
+  color: #09357a;
+}
+#block-mainnavigation .open > .dropdown-menu > li > a.is-active {
+  background-color: #09357a;
+  color: white;
 }
 #block-admindashboard .open > .dropdown-menu > li > a:hover {
   background-color: #ecf0f1;
