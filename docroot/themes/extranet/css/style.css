@@ -295,7 +295,7 @@ body.page-node-type-stcon div.field .field--label{
 #block-admindashboard {
   background-color: #f5f5f2;
 }
-#block-admindashboard .open > .dropdown-menu {
+#block-admindashboard .open > .dropdown-menu, #block-mainnavigation .open > .dropdown-menu {
   display: block;
   position: relative;
   float: none;
@@ -303,6 +303,15 @@ body.page-node-type-stcon div.field .field--label{
   border: none;
   box-shadow: none;
   background-color: #f5f5f2;
+}#block-mainnavigation .open > .dropdown-menu {
+  padding-left: 0;
+  background-color: #e8ebf1;
+}
+#block-mainnavigation .open > .dropdown-menu > li > a {
+  white-space: normal;
+  padding-top: 19.5px;
+  padding-bottom: 19.5px;
+  padding-left: 4em;
 }
 #block-admindashboard .open > .dropdown-menu > li > a:hover {
   background-color: #ecf0f1;
