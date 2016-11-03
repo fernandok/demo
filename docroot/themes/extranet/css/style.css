@@ -32,7 +32,10 @@ a {
 .main-nav-menu, .account-menu-log {
   height: 7.25em;
 }
-.main-nav-menu nav#block-extranet-main-menu, .account-menu-log nav#block-extranet-account-menu, #block-userloginmenu {
+.main-nav-menu nav#block-cypressmainnavigation {
+  margin-top: 2em;
+}
+.account-menu-log nav#block-extranet-account-menu, #block-userloginmenu {
   margin-top: 1.5em;
 }
 #block-userloginmenu ul.menu.nav {
@@ -44,6 +47,9 @@ a {
 }
 .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover {
   background-color: initial;
+}
+#block-cypressmainnavigation>ul>li {
+  float: left;
 }
 /* Start user account menu */
 .navbar-default .account-menu-log .navbar-nav > .open > a {
