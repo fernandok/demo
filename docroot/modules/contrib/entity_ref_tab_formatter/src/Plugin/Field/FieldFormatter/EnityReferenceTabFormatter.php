@@ -141,18 +141,17 @@ class EnityReferenceTabFormatter extends FormatterBase {
         $library = 'entity_ref_tab_formatter/accordion_formatter';
         break;
     }
-    $elements[$delta] = array(
-      '#theme' => $theme,
-      '#tabs' => $tabs,
-      '#attached' => array(
-        'library' =>  array(
-          $library
-        ),
-      ),
-    );
 
-    if (empty($tabs)) {
-      $elements['#label_display'] = 'hidden';
+    if (!empty($tabs)) {
+      $elements[$delta] = array(
+        '#theme' => $theme,
+        '#tabs' => $tabs,
+        '#attached' => array(
+          'library' =>  array(
+            $library
+          ),
+        ),
+      );
     }
 
     return $elements;
