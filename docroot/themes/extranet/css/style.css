@@ -328,7 +328,7 @@ body.page-node-type-stcon div.field .field--label{
 
 /* Start of IT Extract Dashboard Add IT Exyranet Button */
 body.path-it-extranet-dashboard .view-header {
-  margin: 10px;
+  margin-bottom: 25px;
 }
 body.path-it-extranet-dashboard .view-header .add-it-extranet {
   background-color: #09357a;
@@ -336,8 +336,5 @@ body.path-it-extranet-dashboard .view-header .add-it-extranet {
   padding: 8px 12px 8px 12px;
   width: 150px;
   color: white;
-}
-body.path-it-extranet-dashboard .view-content {
-  margin: 10px;
 }
 /* End IT Extract Dashboard Add IT Exyranet Button */
