@@ -54,7 +54,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           continue;
         }
         if(!empty($paragraph->get('field_category'))
-         && !empty($paragraph->get('field_category')->get(0))) {
+          && !empty($paragraph->get('field_category')->get(0))) {
           $category_tid = $paragraph->get('field_category')->get(0)->getValue()['target_id'];
           $category = \Drupal\taxonomy\Entity\Term::load($category_tid)->get('name')->value;
           $file_obj =$paragraph->get('field_file')->get(0)->getValue();
