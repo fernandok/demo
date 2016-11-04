@@ -9,7 +9,7 @@ dependencies:
 id: itextranetpagesmenublock
 theme: extranet
 region: sidebar_first
-weight: -8
+weight: 0
 provider: null
 plugin: it_extranet_pages_menu_block
 settings:
