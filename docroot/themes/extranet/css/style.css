@@ -338,3 +338,9 @@ body.path-it-extranet-dashboard .view-header .add-it-extranet {
   color: white;
 }
 /* End IT Extract Dashboard Add IT Exyranet Button */
+
+/* Start homepage menu icons */
+body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
+  width:168px;
+}
+/* End of homepae icon
