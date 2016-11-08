@@ -243,6 +243,8 @@ span#footer-copyrights {
   display: inline-block;
   max-width: 150px;
   margin: 0 4%;
+  min-height: 210px;
+  vertical-align: bottom;
 }
 .path-frontpage h1.page-header{
   padding-bottom: 20px;
