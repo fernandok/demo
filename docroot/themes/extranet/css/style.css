@@ -243,6 +243,8 @@ span#footer-copyrights {
   display: inline-block;
   max-width: 150px;
   margin: 0 4%;
+  min-height: 210px;
+  vertical-align: bottom;
 }
 .path-frontpage h1.page-header{
   padding-bottom: 20px;
@@ -343,3 +345,13 @@ ul.default_tag_clouds {
   text-align: center;
 }
 /* End Tag cloud */
+
+/* Start homepage menu icons */
+body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
+  width: 168px;
+}
+
+body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap .img-menu {
+  display: initial;
+}
+/* End of homepae icon
