@@ -343,6 +343,10 @@ body.path-it-extranet-dashboard .view-header .add-it-extranet {
 
 /* Start homepage menu icons */
 body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
-  width:168px;
+  width: 168px;
+}
+
+body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap .img-menu {
+  display: initial;
 }
 /* End of homepae icon
