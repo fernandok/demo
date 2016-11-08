@@ -21,20 +21,9 @@ class CypressroleViews extends ArgumentDefaultPluginBase implements CacheableDep
     /**
      * {@inheritdoc}
      */
-    public function getArgument()
-    {
-        $user_role = \Drupal::currentUser()->getRoles($exclude_locked_roles = true)[0];
-        if ($user_role == 'all_distributors') {
-          return 'all_distributors';
-        }
-        elseif ($user_role == 'sales_rep') {
-          return 'sales_rep';
-        }
-        elseif ($user_role == 'cypress_employees') {
-          return 'cypress_employees';
-        }
-        else
-          return NULL;
+    public function getArgument() {
+        $user_role = \Drupal::currentUser()->getRoles(TRUE)[0];
+        return $user_role;
     }
 
     /**
@@ -42,6 +31,7 @@ class CypressroleViews extends ArgumentDefaultPluginBase implements CacheableDep
      */
     public function buildOptionsForm(&$form, FormStateInterface $form_state) {
     }
+
     /**
      * {@inheritdoc}
      */
