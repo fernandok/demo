@@ -355,3 +355,8 @@ body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap
   display: initial;
 }
 /* End of homepae icon
+/*My Samples page*/
+body.path-my-samples .view-content . table-responsive {
+  margin-top: 1em;
+}
+/*End Mysamples*/
