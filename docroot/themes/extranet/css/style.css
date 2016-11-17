@@ -515,7 +515,7 @@ body.path-my-samples .view-content .table-responsive {
 /*End of Responsive for Laptop 1024px*/
 
 /* Start of Responsive for Larger Desktops 2560px */
-@media only screen and (min-width: 2560px){
+@media only screen and (min-width: 1440px){
     
     aside.col-sm-3 {
       width: 18%;
