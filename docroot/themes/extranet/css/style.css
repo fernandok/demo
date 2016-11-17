@@ -136,6 +136,15 @@ span.welcome-first-last-name {
 #block-mainnavigation .navbar-nav li a:hover {
   background-color: initial;
 }
+
+
+#block-mainnavigation .caret{
+    position: absolute;
+    left: 81%;
+    top: 47%;
+}
+
+
 #block-workweekandstock row {
   margin: 0;
 }
@@ -360,3 +369,163 @@ body.path-my-samples .view-content .table-responsive {
   margin-top: 1em;
 }
 /*End Mysamples*/
+
+
+/* Start of Responsive for Mobile*/
+@media only screen and (min-width: 320px) and (max-width: 767px){
+
+    .main-nav-menu, .account-menu-log {
+      height: 0em;
+    }
+    
+    /* Start of main-container styles  */
+    #navbar .navbar-header{
+      margin: 0px;
+    }
+
+    #ww_and_cy #ww {
+        padding-right: 7px;
+    }
+    /* Start of aside*/
+    .main-container>.row>aside{
+      margin: 0 auto;
+    }
+    .main-container>.row>.col-sm-3{
+        position: relative;
+        min-height: 1px;
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    /* Start of Welcome user block*/
+    .my-cyp{
+        color: #ffffff;
+        text-align: center;
+    }
+    .welcome-user-wrapper {
+        padding: 0px;
+    }
+    span.image-user img{
+        display: block;
+        margin: 0 auto;
+    }
+    .row.welcome-user-wrapper{
+      text-align: center;
+    }
+    .welcome-user-wrapper .col-sm-7{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+    /* End of Welcome User block */
+
+    #block-mainnavigation .navbar-nav{
+      margin: 0 auto;
+    }
+    /* End of aside*/
+
+    .view-home-page-menu-icons .view-content .views-row{
+      /*margin: 0 auto;*/
+    }
+    body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap{
+      width: 100%;
+      min-height: 231px;
+    }
+    .path-frontpage #content-main .view-content{
+      text-align: center;
+    }
+    /* End of main-container*/
+
+    /* Starting of footer*/
+    footer.footer.container{
+        padding: 0.5em 0 0.5em 0;
+        margin-top: 0.5em;
+    }
+    section.clearfix.col-sm-6{
+      width: 100%;
+      text-align: center;
+    }
+    footer.footer .pull-right{
+      text-align: center;
+      float: none !important;
+    }
+    /*End of footer*/
+}
+/* End of Responsive for Mobile*/
+
+/* Start of Responsive for Tablet*/
+@media only screen and (min-width: 768px) and (max-width: 1023px){
+
+    #ww_and_cy #ww {
+        padding-right: 10px;
+    }
+    aside.col-sm-3{
+      width: 35%;
+    }
+
+    #content-main{
+        width: 65%;
+        text-align: center;
+    }
+    .main-nav-menu{
+      height: 0em;
+    }
+    .account-menu-log {
+        height: 4.0em;
+    }
+
+    footer.footer.container{
+        padding: 0.7em 0 0.7em 0;
+        margin-top: 1em;
+    }
+    footer.footer section.clearfix.col-sm-6{
+      width: 100%;
+      text-align: center;
+    }
+    footer.footer div.col-sm-6{
+      width: 100%;
+    }
+    footer.footer .pull-right{
+      text-align: center;
+      float: none !important;
+    }
+
+}
+/* End of Responsive for Tablet */
+
+/* Starting of Responsive for Laptop 1024px*/
+@media only screen and (min-width: 1024px) and (max-width: 1439px){
+
+    footer.footer.container{
+        padding: 0.7em 0 0.7em 0;
+        margin-top: 1em;
+    }
+    footer.footer section.clearfix.col-sm-6{
+      width: 100%;
+      text-align: center;
+    }
+    footer.footer div.col-sm-6{
+      width: 100%;
+    }
+    footer.footer .pull-right{
+      text-align: center;
+      float: none !important;
+    }
+
+}
+/*End of Responsive for Laptop 1024px*/
+
+/* Start of Responsive for Larger Desktops 2560px */
+@media only screen and (min-width: 2560px){
+    
+    aside.col-sm-3 {
+      width: 18%;
+    }
+
+    #content-main .view-content{
+      width: 93%;
+      text-align: center;
+      margin: 0px 100px;
+    }
+
+}
+/* End of Responsive for Larger DeskTops */
