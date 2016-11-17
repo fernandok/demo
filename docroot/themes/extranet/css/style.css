@@ -493,7 +493,7 @@ body.path-my-samples .view-content .table-responsive {
 /* End of Responsive for Tablet */
 
 /* Starting of Responsive for Laptop 1024px*/
-@media only screen and (min-width: 1024px) and (max-width: 1439px){
+@media only screen and (min-width: 1024px) and (max-width: 1130px){
 
     footer.footer.container{
         padding: 0.7em 0 0.7em 0;
