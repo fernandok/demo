@@ -85,6 +85,9 @@ a {
 .full-width {
   width: 100%;
 }
+.tablesort {
+  margin-left: 0.5em;
+}
 /* End - Table of documents. */
 /*Strting Welcome user Block*/
 .region-sidebar-first {
@@ -194,6 +197,11 @@ span.welcome-first-last-name {
   margin-top: 1em;
 }
 /* End content */
+/* Start content menu home icon */
+#content-main .views-row img.img-responsive {
+  margin: 0 auto;
+}
+/* End content menu home icon */
 /* Start download all docs */
 .download-all-files-wrapper {
   margin-bottom: 6px;
