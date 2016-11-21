@@ -143,3 +143,21 @@ function extranet_theme_suggestions_details_alter(array &$suggestions, array $va
 function extranet_preprocess_menu_local_task(array &$variables) {
   //$variables['element']['#link']['url']->setOption('attributes', ['class'=>'rounded']);
 }
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+ function extranet_preprocess_menu__account(&$variables) {
+    $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+    $variables['user_id'] = \Drupal::currentUser()->id();
+    $userImage = $user->get('user_picture')->target_id;
+    $file = \Drupal\file\Entity\File::load($userImage);
+    if(!empty($file)) {
+     $uri = $file->getFileUri();
+     $url = file_create_url($uri);
+    }
+    else {
+     $url = '/themes/extranet/images/default-image.png';
+    }
+    $variables['user_picture'] = $url;
+ }
