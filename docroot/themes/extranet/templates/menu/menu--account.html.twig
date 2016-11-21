@@ -41,7 +41,7 @@
       %}
       {% if menu_level == 0 and item.is_expanded %}
         <li{{ item.attributes.addClass(item_classes) }}>
-        <a href="{{ item.url }}" class="dropdown-toggle" data-target="#" data-toggle="dropdown"><img src="{{ user_picture }}" width="30%" height="30%" alt="{{ 'my pic'|t }}" /><span class="icon glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span></a>
+        <a href="{{ item.url }}" class="dropdown-toggle" data-target="#" data-toggle="dropdown"><img src="{{ user_picture }}" width="30px" height="30px" alt="{{ 'my pic'|t }}" /><span class="icon glyphicon glyphicon-user" aria-hidden="true"></span><span class="caret"></span></a>
             {% else %}
         <li{{ item.attributes.addClass(item_classes) }}>
         {{ link(item.title, item.url) }}
