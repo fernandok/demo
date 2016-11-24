@@ -100,7 +100,7 @@ class SimplesamlphpDrupalAuth {
     if (!$account) {
       $account = $this->externalRegister($authname);
     }
-   // get_saml_user_attributes($account);
+    get_saml_user_attributes($account);
     if ($account) {
       // Determine if roles should be evaluated upon login.
       if ($this->config->get('role.eval_every_time')) {
