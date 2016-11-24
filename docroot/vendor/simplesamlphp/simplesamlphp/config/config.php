@@ -692,7 +692,7 @@ $config = array(
      * See http://www.php.net/manual/en/pdo.drivers.php for the various
      * syntaxes.
      */
-    'store.sql.dsn'                 => 'mysql:host=	staging-10582;dbname=cypressextdev',
+    'store.sql.dsn'                 => 'mysql:host=staging-10582;dbname=cypressextdev',
 
     /*
      * The username and password to use when connecting to the database.
