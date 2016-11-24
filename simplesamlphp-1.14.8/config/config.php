@@ -76,7 +76,7 @@ $config = array(
      * You can also put a hash here; run "bin/pwgen.php" to generate one.
      */
     'auth.adminpassword' => 'secret',
-    'admin.protectindexpage' => true,
+    'admin.protectindexpage' => false,
     'admin.protectmetadata' => false,
 
     /**
@@ -94,8 +94,8 @@ $config = array(
      * The email address will be used as the recipient address for error reports, and
      * also as the technical contact in generated metadata.
      */
-    'technicalcontact_name' => 'Cypress Webmaster',
-    'technicalcontact_email' => 'webmaster@cypress.com',
+    'technicalcontact_name' => 'Administrator',
+    'technicalcontact_email' => 'rajeshwari@valuebound.com',
 
     /*
      * The timezone of the server. This option should be set to the timezone you want
@@ -260,7 +260,7 @@ $config = array(
      * In example when you are setting up a federation bridge.
      */
     'enable.saml20-idp' => true,
-    'enable.shib13-idp' => false,
+    'enable.shib13-idp' => true,
     'enable.adfs-idp' => false,
     'enable.wsfed-sp' => false,
     'enable.authmemcookie' => false,
@@ -668,7 +668,7 @@ $config = array(
      *     ),
      */
     'metadata.sources' => array(
-        array('type' => 'flatfile'),
+        array('type' => 'flatfile', 'directory' => 'metadata'),
     ),
 
 
@@ -692,13 +692,13 @@ $config = array(
      * See http://www.php.net/manual/en/pdo.drivers.php for the various
      * syntaxes.
      */
-    'store.sql.dsn'                 => 'mysql:host=localhost;dbname=simplesaml_cypress',
+    'store.sql.dsn'                 => 'mysql:host=	staging-10582;dbname=cypressextdev',
 
     /*
      * The username and password to use when connecting to the database.
      */
-    'store.sql.username' => 'root',
-    'store.sql.password' => 'root',
+    'store.sql.username' => 's26586',
+    'store.sql.password' => 'VfmuJ5mkMMf4i3Y',
 
     /*
      * The prefix we should use on our tables.
