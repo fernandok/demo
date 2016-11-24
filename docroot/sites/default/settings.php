@@ -86,15 +86,7 @@
  * );
  * @endcode
  */
- $databases['default']['default'] = array(
-     'database' => 'cypress_test',
-     'username' => 'root',
-     'password' => 'root',
-     'host' => 'localhost',
-     'port' => '3306',
-     'driver' => 'mysql',
-     'prefix' => '',
-);
+$databases = array();
 
 /**
  * Customizing database settings.
