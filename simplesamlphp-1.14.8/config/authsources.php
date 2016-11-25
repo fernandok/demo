@@ -22,7 +22,7 @@ $config = array(
 
         // The entity ID of the IdP this should SP should contact.
         // Can be NULL/unset, in which case the user will be shown a list of available IdPs.
-        'idp' => 'http://docroot.dd:8083/simplesaml/saml2/idp/metadata.php',
+        'idp' => 'http://cypresscomdev.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php',
 
         'privatekey'           => 'saml.pem',
         'certificate'          => 'saml.crt',

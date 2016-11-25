@@ -11,8 +11,8 @@
  * Guest IdP. allows users to sign up and register. Great for testing!
  */
 
-$metadata['http://docroot.dd:8083/simplesaml/saml2/idp/metadata.php'] = array (
-		'entityid' => 'http://docroot.dd:8083/simplesaml/saml2/idp/metadata.php',
+$metadata['http://cypresscomdev.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php'] = array (
+		'entityid' => 'http://cypresscomdev.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php',
 		'contacts' =>
 				array (
 						0 =>
@@ -32,7 +32,7 @@ $metadata['http://docroot.dd:8083/simplesaml/saml2/idp/metadata.php'] = array (
 						0 =>
 								array (
 										'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-										'Location' => 'http://docroot.dd:8083/simplesaml/saml2/idp/SSOService.php',
+										'Location' => 'http://cypresscomdev.prod.acquia-sites.com/simplesaml/saml2/idp/SSOService.php',
 								),
 				),
 		'SingleLogoutService' =>
@@ -40,7 +40,7 @@ $metadata['http://docroot.dd:8083/simplesaml/saml2/idp/metadata.php'] = array (
 						0 =>
 								array (
 										'Binding' => 'urn:oasis:names:tc:SAML:2.0:bindings:HTTP-Redirect',
-										'Location' => 'http://docroot.dd:8083/simplesaml/saml2/idp/SingleLogoutService.php',
+										'Location' => 'http://cypresscomdev.prod.acquia-sites.com/simplesaml/saml2/idp/SingleLogoutService.php',
 								),
 				),
 		'ArtifactResolutionService' =>
@@ -48,7 +48,7 @@ $metadata['http://docroot.dd:8083/simplesaml/saml2/idp/metadata.php'] = array (
 				),
 		'NameIDFormats' =>
 				array (
-						0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:unspecified',
+						0 => 'urn:oasis:names:tc:SAML:2.0:nameid-format:transient',
 				),
 		'keys' =>
 				array (
