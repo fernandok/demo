@@ -94,8 +94,8 @@ $config = array(
      * The email address will be used as the recipient address for error reports, and
      * also as the technical contact in generated metadata.
      */
-    'technicalcontact_name' => 'Administrator',
-    'technicalcontact_email' => 'rajeshwari@valuebound.com',
+    'technicalcontact_name' => 'Cypress Webmaster',
+    'technicalcontact_email' => 'webmaster@cypress.com',
 
     /*
      * The timezone of the server. This option should be set to the timezone you want
@@ -260,7 +260,7 @@ $config = array(
      * In example when you are setting up a federation bridge.
      */
     'enable.saml20-idp' => true,
-    'enable.shib13-idp' => true,
+    'enable.shib13-idp' => false,
     'enable.adfs-idp' => false,
     'enable.wsfed-sp' => false,
     'enable.authmemcookie' => false,
