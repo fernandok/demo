@@ -18,11 +18,19 @@ $config = array(
 
         // The entity ID of this SP.
         // Can be NULL/unset, in which case an entity ID is generated based on the metadata URL.
-        'entityID' => null,
+        'entityID' => 'http://cypressextdev.prod.acquia-sites.com/',
 
         // The entity ID of the IdP this should SP should contact.
         // Can be NULL/unset, in which case the user will be shown a list of available IdPs.
-        'idp' => null,
+        'idp' => 'http://cypresscomdev2.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php',
+
+        'privatekey'           => 'saml.pem',
+        'certificate'          => 'saml.crt',
+
+        'NameIDPolicy'         => null,
+        'redirect.sign'        => true,
+        'assertion.encryption' => false,
+        'sign.logout'          => true,
 
         // The URL to the discovery service.
         // Can be NULL/unset, in which case a builtin discovery service will be used.
@@ -46,7 +54,7 @@ $config = array(
          *
          * Please refer to the hosted SP configuration reference for more information.
           */
-        //'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
+        'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
 
         /*
          * The attributes parameter must contain an array of desired attributes by the SP.

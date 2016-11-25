@@ -73,7 +73,7 @@ class sspmod_exampleauth_Auth_Source_External extends SimpleSAML_Auth_Source {
 			'displayName' => array($_SESSION['name']),
 			'mail' => array($_SESSION['mail']),
 		);
-
+	//print_r($attributes);exit;
 		/* Here we generate a multivalued attribute based on the account type. */
 		$attributes['eduPersonAffiliation'] = array(
 			$_SESSION['type'], /* In this example, either 'student' or 'employee'. */

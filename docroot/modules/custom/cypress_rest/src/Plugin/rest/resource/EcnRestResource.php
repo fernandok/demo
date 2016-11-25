@@ -214,12 +214,12 @@ class EcnRestResource extends ResourceBase {
     foreach ($documents as $doc) {
       // Get file paragraph id.
       $doc_paragraph_id = array_search($doc['file_id'], $paragraphs_file_ids);
-      if (empty($doc_paragraph_id)) {
+      if (empty($doc_paragraph_id) && $doc['op'] != 'add') {
         throw new HttpException(400, 'No file found associated with node for the given file id.');
       }
       // Call operation based callback.
       $process_callback = $doc['op'] . 'Paragraph';
-      $processed_files[] = $this->{$process_callback}($page, $doc, $doc_paragraph_id);
+      $processed_files[] = $this->{$process_callback}($page, $doc, $paragraphs, $doc_paragraph_id);
     }
     // Save the page node.
     $page->save();
@@ -235,8 +235,40 @@ class EcnRestResource extends ResourceBase {
    * @param array $doc
    *   Document details.
    */
-  private function addParagraph(&$page, $doc) {
-
+  private function addParagraph(&$page, $doc, &$paragraphs) {
+    // Save file.
+    $file = file_save_data(base64_decode($doc['file_data']), 'public://' . $doc['file_name'], FILE_EXISTS_REPLACE);
+    $tags = $this->getAllTags($doc);
+    // Create new paragraph.
+    $paragraph = Paragraph::create([
+      'type' => 'documents',
+      'field_file' => [
+        "target_id" => $file->id(),
+        "description" => $doc['file_description'],
+      ],
+      'field_application_tags' => $tags['application_tags'],
+      'field_category' => $tags['category'],
+      'field_cyu_training_url' => $doc['cyu_training_url'],
+      'field_doc_type' => $doc['doc_type'][0],
+      'field_downloads' => $doc['downloads'],
+      'field_family' => $tags['family'],
+      'field_language' => $tags['language'],
+      'field_last_updated' => $doc['last_updated'],
+      'field_product' => $tags['product'],
+      'field_product_page_url' => $doc['product_page_url'],
+      'field_product_tags' => $tags['product_tags'],
+      'field_spec_number' => $doc['spec_number'],
+      'field_spec_revision' => $doc['spec_revision']
+    ]);
+    $paragraph->save();
+    // Append new paragraph to node.
+    $paragraphs[] = [
+      'target_id' => $paragraph->id(),
+      'target_revision_id' => $paragraph->getRevisionId(),
+    ];
+    $page->field_files = $paragraphs;
+    // Return new file id.
+    return $file->id();
   }
 
   /**
@@ -247,8 +279,39 @@ class EcnRestResource extends ResourceBase {
    * @param array $doc
    *   Document details.
    */
-  private function updateParagraph(&$page, $doc, $paragraph_id) {
+  private function updateParagraph(&$page, $doc, &$paragraphs, $paragraph_id) {
+    // Load paragraph.
+    $paragraph = Paragraph::load($paragraph_id);
+    // Get old file id.
+    $old_file_id = $doc['file_id'];
+    // Save new file.
+    $file = file_save_data(base64_decode($doc['file_data']), 'public://' . $doc['file_name'], FILE_EXISTS_REPLACE);
+    // Get all tags.
+    $tags = $this->getAllTags($doc);
+    // Update paragraph with new file and details.
+    $paragraph->field_file = [
+      "target_id" => $file->id(),
+      "description" => $doc['file_description'],
+    ];
+    $paragraph->field_application_tags = $tags['application_tags'];
+    $paragraph->field_category = $tags['category'];
+    $paragraph->field_cyu_training_url = $doc['cyu_training_url'];
+    $paragraph->field_doc_type = $doc['doc_type'][0];
+    $paragraph->field_downloads = $doc['downloads'];
+    $paragraph->field_family = $tags['family'];
+    $paragraph->field_language = $tags['language'];
+    $paragraph->field_last_updated = $doc['last_updated'];
+    $paragraph->field_product = $tags['product'];
+    $paragraph->field_product_page_url = $doc['product_page_url'];
+    $paragraph->field_product_tags = $tags['product_tags'];
+    $paragraph->field_spec_number = $doc['spec_number'];
+    $paragraph->field_spec_revision = $doc['spec_revision'];
+    $paragraph->save();
+    // Delete old file.
+    $this->deleteFile($old_file_id);
 
+    // Return new file id.
+    return $file->id();
   }
 
   /**
@@ -259,9 +322,7 @@ class EcnRestResource extends ResourceBase {
    * @param array $doc
    *   Document details.
    */
-  private function deleteParagraph(&$page, $doc, $paragraph_id) {
-    // Get all paragraph list in node.
-    $paragraphs = $page->get('field_files')->getValue();
+  private function deleteParagraph(&$page, $doc, &$paragraphs, $paragraph_id) {
     // Remove the paragraph to be delete from node.
     foreach ($paragraphs as $key => $paragraph) {
       if ($paragraph['target_id'] == $paragraph_id) {
@@ -272,12 +333,65 @@ class EcnRestResource extends ResourceBase {
     $page->field_files = $paragraphs;
     // Delete the paragraph.
     $paragraph = Paragraph::load($paragraph_id);
+    if (empty($paragraphs)) {
+      throw new HttpException(400, 'No file found associated with node for the given file id.');
+    }
     $paragraph->delete();
     // Delete the file.
-    $file = File::load($doc['file_id']);
-    FileUsageBase::delete($file);
+    $this->deleteFile($doc['file_id']);
 
     return NULL;
+  }
+
+  /**
+   * Utility: find term by name and vid.
+   * @param null $name
+   *  Term name
+   * @param null $vid
+   *  Term vid
+   * @return int
+   *  Term id or 0 if none.
+   */
+  private function getTidByName($name = NULL, $vid = NULL) {
+    $properties = [];
+    if (!empty($name)) {
+      $properties['name'] = $name;
+    }
+    if (!empty($vid)) {
+      $properties['vid'] = $vid;
+    }
+    $terms = \Drupal::entityManager()->getStorage('taxonomy_term')->loadByProperties($properties);
+    $term = reset($terms);
+
+    return !empty($term) ? $term->id() : 0;
+  }
+
+  private function getTagIds($tags) {
+    $tag_ids = [];
+    foreach ($tags as $tag_name) {
+      $tag_id = $this->getTidByName($tag_name);
+      if ($tag_id) {
+        $tag_ids[] = ['target_id' => $tag_id];
+      }
+    }
+
+    return $tag_ids;
+  }
+
+  private function deleteFile($fid) {
+    $file = File::load($fid);
+    FileUsageBase::delete($file);
+  }
+
+  private function getAllTags($doc) {
+    $tags['application_tags'] = $this->getTagIds($doc['application_tags']);
+    $tags['category'] = $this->getTagIds($doc['category']);
+    $tags['family'] = $this->getTagIds($doc['family']);
+    $tags['language'] = $this->getTagIds([$doc['language']]);
+    $tags['product'] = $this->getTagIds($doc['product']);
+    $tags['product_tags'] = $this->getTagIds($doc['product_tags']);
+
+    return $tags;
   }
 
 }

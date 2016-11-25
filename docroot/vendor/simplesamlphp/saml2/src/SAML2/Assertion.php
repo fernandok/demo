@@ -521,7 +521,7 @@ class SAML2_Assertion implements SAML2_SignedElement
 
         if ($attributeName === SAML2_Const::EPTI_URN_MACE || $attributeName === SAML2_Const::EPTI_URN_OID) {
             foreach ($values as $index => $eptiAttributeValue) {
-                $eptiNameId = SAML2_Utils::xpQuery($eptiAttributeValue, './saml:NameID');
+                $eptiNameId = SAML2_Utils::xpQuery($eptiAttributeValue, './saml_assertion:NameID');
 
                 if (count($eptiNameId) !== 1) {
                     throw new SAML2_Exception_RuntimeException(sprintf(
@@ -1497,7 +1497,14 @@ class SAML2_Assertion implements SAML2_SignedElement
                 foreach ($values as $eptiValue) {
                     $attributeValue = $document->createElementNS(SAML2_Const::NS_SAML, 'saml:AttributeValue');
                     $attribute->appendChild($attributeValue);
-                    SAML2_Utils::addNameId($attributeValue, $eptiValue);
+                    if (is_array($eptiValue)) {
+                        SAML2_Utils::addNameId($attributeValue, $eptiValue);
+                    } elseif ($eptiValue instanceof DOMNodeList) {
+                        $node = $root->ownerDocument->importNode($eptiValue->item(0), TRUE);
+                        $attributeValue->appendChild($node);
+                    } else {
+                        $attributeValue->textContent = $eptiValue;
+                    }
                 }
 
                 continue;
