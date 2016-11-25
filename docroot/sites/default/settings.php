@@ -86,7 +86,7 @@
  * );
  * @endcode
  */
- $databases = array();
+$databases = array();
 
 /**
  * Customizing database settings.
@@ -285,7 +285,7 @@ $config_directories = array();
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = 'CYPRESS';
 
 /**
  * Deployment identifier.
@@ -761,6 +761,53 @@ $settings['file_scan_ignore_directories'] = [
 if (file_exists('/var/www/site-php')) {
   require('/var/www/site-php/cypressext/cypressext-settings.inc');
 }
+
+// SimpleSAMLphp configuration
+# Provide universal absolute path to the installation.
+if (isset($_ENV['AH_SITE_NAME']) && is_dir('/var/www/html/' . $_ENV['AH_SITE_NAME'] . '/simplesamlphp-1.14.8')) {
+  $settings['simplesamlphp_dir'] = '/var/www/html/' . $_ENV['AH_SITE_NAME'] . '/simplesamlphp-1.14.8';
+}
+else {
+  // Local SAML path.
+  if (is_dir(DRUPAL_ROOT . '/../simplesamlphp-1.14.8')) {
+    $settings['simplesamlphp_dir'] = DRUPAL_ROOT . '/../simplesamlphp-1.14.8';
+  }
+}
+
+$config['simplesamlphp_auth.settings'] = [
+ // Basic settings.
+    'activate'                => TRUE, // Enable or Disable SAML login.
+    'auth_source'             => 'default-sp',
+    'login_link_display_name' => 'Login with your SSO account',
+    'register_users'          => TRUE,
+    'debug'                   => FALSE,
+ // Local authentication.
+    'allow' => array(
+        'default_login'         => TRUE,
+        'set_drupal_pwd'        => TRUE,
+        'default_login_users'   => '',
+        'default_login_roles'   => array(
+            'authenticated' => FALSE,
+            'administrator' => 'administrator',
+            'all_distributors' => 'all_distributors',
+            'sales_rep' => 'sales_rep',
+            'cypress_employees' => 'cypress_employees',
+        ),
+    ),
+    'logout_goto_url'         => '',
+ // User info and syncing.
+ // `unique_id` is specified in Transient format, otherwise this should be `UPN`
+ // Please talk to your SSO adminsitrators about which format you should be using.
+    'unique_id'               => 'mail',
+    'user_name'               => 'username',
+    'mail_attr'               => 'mail',
+    'user__field_first_name'        => 'firstName',
+    'user__field_last_name'         => 'lastName',
+    'sync' => array(
+        'mail'      => TRUE,
+        'user_name' => TRUE,
+    ),
+];
 
 // <DDSETTINGS>
 // Please don't edit anything between <DDSETTINGS> tags.
