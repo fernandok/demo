@@ -36,6 +36,27 @@ class EcnRestResource extends ResourceBase {
   protected $currentUser;
 
   /**
+   * List of paragraphs group by node id.
+   *
+   * @var array
+   */
+  protected $paragraphs;
+
+  /**
+   * File id associated with paragraphs.
+   *
+   * @var array
+   */
+  protected $paragraphs_file_ids;
+
+  /**
+   * Paragraph id for the documents.
+   *
+   * @var array
+   */
+  protected $doc_paragraph_id;
+
+  /**
    * Constructs a Drupal\rest\Plugin\ResourceBase object.
    *
    * @param array $configuration
@@ -93,51 +114,12 @@ class EcnRestResource extends ResourceBase {
     }
 
     // Validate ECN data.
-    $this->validateEcnData($data);
+    if (empty($data)) {
+      return new ResourceResponse(['error' => 'Empty ECN data cannot be processed.']);
+    }
 
     // Process ECN data.
     return $this->processEcnData($data);
-  }
-
-  /**
-   * Method to validate ECN post data.
-   *
-   * @param array $data
-   *   ECN post data.
-   *
-   * @throws HttpException
-   *   Bad request exception.
-   */
-  private function validateEcnData($data) {
-    // Validate node id.
-    if (!isset($data['nid']) || empty($data['nid'])) {
-      throw new HttpException(400, 'Node Id required and cannot be empty.');
-    }
-    // Validate documents.
-    if (!isset($data['documents']) || empty($data['documents'])) {
-      throw new HttpException(400, 'Atleast one document data is required.');
-    }
-    else {
-      $documents = $data['documents'];
-      foreach ($documents as $doc) {
-        // Validate file id for delete operation.
-        if (!empty($doc['delete']) && $doc['delete']) {
-          if (!isset($doc['file_id']) || empty($doc['file_id'])) {
-            throw new HttpException(400, 'File id is required for delete operation.');
-          }
-        }
-        // Validate file attributes if add/update operation.
-        else {
-          // Validate file name.
-          if (!isset($doc['file_name']) || empty($doc['file_name'])) {
-            throw new HttpException(400, 'File name is required for add/update operation.');
-          }
-          if (!isset($doc['file_data']) || empty($doc['file_data'])) {
-            throw new HttpException(400, 'Base64 encode file binary data is required for add/update operation.');
-          }
-        }
-      }
-    }
   }
 
   /**
@@ -150,81 +132,354 @@ class EcnRestResource extends ResourceBase {
    *   Response with list of processed files' id.
    */
   private function processEcnData($data) {
-    $documents = $data['documents'];
-    foreach ($documents as &$doc) {
-      // Get file operation.
-      if (isset($doc['delete']) && $doc['delete']) {
-        $doc['op'] = 'delete';
+    $response = [];
+    foreach ($data as $node) {
+      if (empty($node)) {
+        $response[] = ['error' => 'Empty node data cannot be processed.'];
       }
-      elseif (isset($doc['file_id']) && is_numeric($doc['file_id'])) {
-        $doc['op'] = 'update';
+      elseif (!isset($node['nid']) || empty($node['nid'])) {
+        $response[] = ['error' => 'Node Id required and cannot be empty.'];
       }
-      elseif (!isset($doc['file_id'])
-      || (isset($doc['file_id']) && empty($doc['file_id']))) {
-        $doc['op'] = 'add';
-      }
+      else {
+        $page_storage = \Drupal::entityManager()->getStorage('node');
+        $page = $page_storage->load($node['nid']);
+        if (!($page instanceof \Drupal\node\Entity\Node) || $page->getType() != 'cy_page') {
+          $response[] = ['error' => 'There is no node found for the given node id ' . $node['nid'] . '.'];
+          continue;
+        }
+        $documents = $node['documents'];
+        foreach ($documents as $doc) {
+          if (!isset($doc['spec_number']) || empty($doc['spec_number'])) {
+            $response[] = ['error' => 'Spec number is required to process the file.'];
+            continue;
+          }
+          // Get file operation.
+          if (isset($doc['delete']) && $doc['delete']) {
+            $doc['op'] = 'delete';
+          }
+          elseif (isset($doc['file_id']) && is_numeric($doc['file_id'])) {
+            $doc['op'] = 'update';
+          }
+          elseif (!isset($doc['file_id'])
+          || (isset($doc['file_id']) && empty($doc['file_id']))) {
+            $doc['op'] = 'add';
+          }
 
-      // Validate operation.
-      if (!isset($doc['op'])) {
-        throw new HttpException(400, 'For one of the file, not able to identify the operation.');
+          // Validate operation.
+          if (!isset($doc['op'])) {
+            $response[] = [
+              'spec_number' => $doc['spec_number'],
+              'error' => 'Not able to identify the file operation.',
+            ];
+            continue;
+          }
+          $error = $this->validateNodeDocument($page, $doc);
+          if (empty($error)) {
+            $response[] = $this->processNodeDocument($page, $doc);
+          }
+          else {
+            $response[] = [
+              'spec_number' => $doc['spec_number'],
+              'error' => $error,
+            ];
+          }
+        }
+        $page->save();
       }
     }
 
-    return $this->processNodeDocuments($data['nid'], $documents);
+    return new ResourceResponse($response);
+  }
+
+  /**
+   * Method to validate node documents.
+   *
+   * @param integer $node
+   *   Node id.
+   *
+   * @param array $document
+   *   Document to be validated.
+   *
+   * @return string
+   *   Error string if any.
+   */
+  private function validateNodeDocument($node, $doc) {
+    $error = '';
+    $fields_to_validate = [];
+    switch ($doc['op']) {
+      case 'add':
+        $fields_to_validate = [
+          'file_name',
+          'file_data',
+          'file_description',
+          'business_unit',
+          'doc_type',
+          'family',
+          'language',
+          'spec_revision'
+        ];
+        break;
+
+      case 'update':
+        $fields_to_validate = [
+          'file_id',
+          'file_name',
+          'file_data',
+          'file_description',
+          'business_unit',
+          'doc_type',
+          'family',
+          'language',
+          'spec_revision'
+        ];
+        break;
+
+      case 'delete':
+        $fields_to_validate = [
+          'file_id'
+        ];
+        break;
+    }
+
+    foreach ($fields_to_validate as $field) {
+      $field_value = $doc[$field];
+      $field = str_replace('_', '', ucwords($field, '_'));
+      $field_valid_callback = 'validate' . $field;
+      $error = $this->{$field_valid_callback}($node, $field_value);
+      if (!empty($error)) {
+        break;
+      }
+    }
+
+    return $error;
+  }
+
+  /**
+   * Method to validate file id.
+   *
+   * @param object $node
+   *   Node object.
+   * @param integer $value
+   *   File id.
+   *
+   * @return string
+   *   Error message.
+   */
+  private function validateFileId($node, $value) {
+    $error = '';
+    $nid = $node->id();
+    if (empty($value)) {
+      $error = 'File id is required for update/delete operation.';
+    }
+    elseif (!isset($this->paragraphs_file_ids[$nid])) {
+      $this->paragraphs[$nid] = $node->get('field_files')->getValue();
+      $paragraphs_ids = [];
+      foreach ($this->paragraphs[$nid] as $paragraph) {
+        $paragraphs_ids[] = $paragraph['target_id'];
+      }
+      $paragraphs_ids = implode(',', $paragraphs_ids);
+      // Get file id of each paragraph entity.
+      $query = \Drupal::database()->query('select pi.id, pff.field_file_target_id from paragraphs_item pi
+        join paragraph__field_file pff
+        on pi.id = pff.entity_id and pi.type = pff.bundle and pi.id in (' . $paragraphs_ids . ')');
+      $results = $query->fetchAll();
+      $this->paragraphs_file_ids[$nid] = [];
+      foreach ($results as $result) {
+        $this->paragraphs_file_ids[$nid][$result->id] = $result->field_file_target_id;
+      }
+      $this->doc_paragraph_id[$value] = array_search($value, $this->paragraphs_file_ids[$nid]);
+      if (empty($this->doc_paragraph_id[$value])) {
+        $error = 'No file found associated with node for the given file id ' . $value . '.';
+      }
+    }
+
+    return $error;
+  }
+
+  /**
+   * Method to validate file name.
+   *
+   * @param object $node
+   *   Node object.
+   * @param integer $value
+   *   File id.
+   *
+   * @return string
+   *   Error message.
+   */
+  private function validateFileName($node, $value) {
+    $error = '';
+
+    if (empty($value)) {
+      $error = 'File name is required for add/update operation.';
+    }
+
+    return $error;
+  }
+
+  /**
+   * Method to validate file data.
+   *
+   * @param object $node
+   *   Node object.
+   * @param integer $value
+   *   File id.
+   *
+   * @return string
+   *   Error message.
+   */
+  private function validateFileData($node, $value) {
+    $error = '';
+
+    if (empty($value)) {
+      $error = 'Base64 encode file binary data is required for add/update operation.';
+    }
+
+    return $error;
+  }
+
+  /**
+   * Method to validate file description.
+   *
+   * @param object $node
+   *   Node object.
+   * @param integer $value
+   *   File id.
+   *
+   * @return string
+   *   Error message.
+   */
+  private function validateFileDescription($node, $value) {
+    $error = '';
+
+    if (empty($value)) {
+      $error = 'File description is required for add/update operation.';
+    }
+
+    return $error;
+  }
+
+  /**
+   * Method to validate file business unit.
+   *
+   * @param object $node
+   *   Node object.
+   * @param integer $value
+   *   File id.
+   *
+   * @return string
+   *   Error message.
+   */
+  private function validateBusinessUnit($node, $value) {
+    $error = '';
+
+    if (empty($value)) {
+      $error = 'File business unit is required for add/update operation.';
+    }
+
+    return $error;
+  }
+
+  /**
+   * Method to validate file doc type.
+   *
+   * @param object $node
+   *   Node object.
+   * @param integer $value
+   *   File id.
+   *
+   * @return string
+   *   Error message.
+   */
+  private function validateDocType($node, $value) {
+    $error = '';
+
+    if (empty($value)) {
+      $error = 'File doc type is required for add/update operation.';
+    }
+
+    return $error;
+  }
+
+  /**
+   * Method to validate file family.
+   *
+   * @param object $node
+   *   Node object.
+   * @param integer $value
+   *   File id.
+   *
+   * @return string
+   *   Error message.
+   */
+  private function validateFamily($node, $value) {
+    $error = '';
+
+    if (empty($value)) {
+      $error = 'File family is required for add/update operation.';
+    }
+
+    return $error;
+  }
+
+  /**
+   * Method to validate file language.
+   *
+   * @param object $node
+   *   Node object.
+   * @param integer $value
+   *   File id.
+   *
+   * @return string
+   *   Error message.
+   */
+  private function validateLanguage($node, $value) {
+    $error = '';
+
+    if (empty($value)) {
+      $error = 'File language is required for add/update operation.';
+    }
+
+    return $error;
+  }
+
+  /**
+   * Method to validate file spec revision.
+   *
+   * @param object $node
+   *   Node object.
+   * @param integer $value
+   *   File id.
+   *
+   * @return string
+   *   Error message.
+   */
+  private function validateSpecRevision($node, $value) {
+    $error = '';
+
+    if (empty($value)) {
+      $error = 'File spec revision is required for add/update operation.';
+    }
+
+    return $error;
   }
 
   /**
    * Method to process node documents.
    *
-   * @param integer $nid
+   * @param integer $node
    *   Node id.
-   * @param array $documents
-   *   Array of documents to be processed.
+   * @param array $document
+   *   Document to be processed.
    *
    * @return ResourceResponse
-   *   Response with list of processed files' id.
+   *   Processed file id.
    */
-  private function processNodeDocuments($nid, $documents) {
-    // Load node entity.
-    $page_storage = \Drupal::entityManager()->getStorage('node');
-    $page = $page_storage->load($nid);
-    if (!($page instanceof \Drupal\node\Entity\Node)) {
-      throw new HttpException(400, 'There is no node found for the given node id.');
-    }
+  private function processNodeDocument($page, $doc) {
+    $process_callback = $doc['op'] . 'Paragraph';
+    $response = $this->{$process_callback}($page, $doc);
 
-    // Get paragraph ids of the node.
-    $paragraphs = $page->get('field_files')->getValue();
-    $paragraphs_ids = [];
-    foreach ($paragraphs as $paragraph) {
-      $paragraphs_ids[] = $paragraph['target_id'];
-    }
-    $paragraphs_ids = implode(',', $paragraphs_ids);
-    // Get file id of each paragraph entity.
-    $query = \Drupal::database()->query('select pi.id, pff.field_file_target_id from paragraphs_item pi
-      join paragraph__field_file pff
-      on pi.id = pff.entity_id and pi.type = pff.bundle and pi.id in (' . $paragraphs_ids . ')');
-    $results = $query->fetchAll();
-
-    $paragraphs_file_ids = [];
-    foreach ($results as $result) {
-      $paragraphs_file_ids[$result->id] = $result->field_file_target_id;
-    }
-    // Process the paragraph entity corresponding to the file.
-    $processed_files = [];
-    foreach ($documents as $doc) {
-      // Get file paragraph id.
-      $doc_paragraph_id = array_search($doc['file_id'], $paragraphs_file_ids);
-      if (empty($doc_paragraph_id) && $doc['op'] != 'add') {
-        throw new HttpException(400, 'No file found associated with node for the given file id.');
-      }
-      // Call operation based callback.
-      $process_callback = $doc['op'] . 'Paragraph';
-      $processed_files[] = $this->{$process_callback}($page, $doc, $paragraphs, $doc_paragraph_id);
-    }
-    // Save the page node.
-    $page->save();
-
-    return new ResourceResponse($processed_files);
+    return $response;
   }
 
   /**
@@ -235,7 +490,7 @@ class EcnRestResource extends ResourceBase {
    * @param array $doc
    *   Document details.
    */
-  private function addParagraph(&$page, $doc, &$paragraphs) {
+  private function addParagraph(&$page, $doc) {
     // Save file.
     $file = file_save_data(base64_decode($doc['file_data']), 'public://' . $doc['file_name'], FILE_EXISTS_REPLACE);
     $tags = $this->getAllTags($doc);
@@ -250,10 +505,8 @@ class EcnRestResource extends ResourceBase {
       'field_category' => $tags['category'],
       'field_cyu_training_url' => $doc['cyu_training_url'],
       'field_doc_type' => $doc['doc_type'][0],
-      'field_downloads' => $doc['downloads'],
       'field_family' => $tags['family'],
       'field_language' => $tags['language'],
-      'field_last_updated' => $doc['last_updated'],
       'field_product' => $tags['product'],
       'field_product_page_url' => $doc['product_page_url'],
       'field_product_tags' => $tags['product_tags'],
@@ -262,13 +515,17 @@ class EcnRestResource extends ResourceBase {
     ]);
     $paragraph->save();
     // Append new paragraph to node.
-    $paragraphs[] = [
+    $nid = $page->id();
+    $this->paragraphs[$nid][] = [
       'target_id' => $paragraph->id(),
       'target_revision_id' => $paragraph->getRevisionId(),
     ];
-    $page->field_files = $paragraphs;
+    $page->field_files = $this->paragraphs[$nid];
     // Return new file id.
-    return $file->id();
+    return [
+      'spec_number' => $doc['spec_number'],
+      'file_id' => $file->id()
+    ];
   }
 
   /**
@@ -279,11 +536,11 @@ class EcnRestResource extends ResourceBase {
    * @param array $doc
    *   Document details.
    */
-  private function updateParagraph(&$page, $doc, &$paragraphs, $paragraph_id) {
-    // Load paragraph.
-    $paragraph = Paragraph::load($paragraph_id);
+  private function updateParagraph(&$page, $doc) {
     // Get old file id.
     $old_file_id = $doc['file_id'];
+    // Load paragraph.
+    $paragraph = Paragraph::load($this->doc_paragraph_id[$old_file_id]);
     // Save new file.
     $file = file_save_data(base64_decode($doc['file_data']), 'public://' . $doc['file_name'], FILE_EXISTS_REPLACE);
     // Get all tags.
@@ -297,10 +554,8 @@ class EcnRestResource extends ResourceBase {
     $paragraph->field_category = $tags['category'];
     $paragraph->field_cyu_training_url = $doc['cyu_training_url'];
     $paragraph->field_doc_type = $doc['doc_type'][0];
-    $paragraph->field_downloads = $doc['downloads'];
     $paragraph->field_family = $tags['family'];
     $paragraph->field_language = $tags['language'];
-    $paragraph->field_last_updated = $doc['last_updated'];
     $paragraph->field_product = $tags['product'];
     $paragraph->field_product_page_url = $doc['product_page_url'];
     $paragraph->field_product_tags = $tags['product_tags'];
@@ -311,7 +566,10 @@ class EcnRestResource extends ResourceBase {
     $this->deleteFile($old_file_id);
 
     // Return new file id.
-    return $file->id();
+    return [
+      'spec_number' => $doc['spec_number'],
+      'file_id' => $file->id()
+    ];
   }
 
   /**
@@ -322,25 +580,31 @@ class EcnRestResource extends ResourceBase {
    * @param array $doc
    *   Document details.
    */
-  private function deleteParagraph(&$page, $doc, &$paragraphs, $paragraph_id) {
+  private function deleteParagraph(&$page, $doc) {
+    $nid = $page->id();
+    $fid = $doc['file_id'];
     // Remove the paragraph to be delete from node.
-    foreach ($paragraphs as $key => $paragraph) {
-      if ($paragraph['target_id'] == $paragraph_id) {
-        unset($paragraphs[$key]);
+    foreach ($this->paragraphs[$nid] as $key => $paragraph) {
+      if ($paragraph['target_id'] == $this->doc_paragraph_id[$fid]) {
+        unset($this->paragraphs[$nid][$key]);
       }
     }
     // Update the node paragraph list.
-    $page->field_files = $paragraphs;
+    $page->field_files = $this->paragraphs[$nid];
     // Delete the paragraph.
-    $paragraph = Paragraph::load($paragraph_id);
-    if (empty($paragraphs)) {
+    $paragraph = Paragraph::load($this->doc_paragraph_id[$fid]);
+    if (empty($this->paragraphs[$nid])) {
       throw new HttpException(400, 'No file found associated with node for the given file id.');
     }
     $paragraph->delete();
     // Delete the file.
     $this->deleteFile($doc['file_id']);
 
-    return NULL;
+    // Return new file id.
+    return [
+      'spec_number' => $doc['spec_number'],
+      'file_id' => ''
+    ];
   }
 
   /**
@@ -366,6 +630,15 @@ class EcnRestResource extends ResourceBase {
     return !empty($term) ? $term->id() : 0;
   }
 
+  /**
+   * Method to get tag ids.
+   *
+   * @param array $tags
+   *   Tag names.
+   *
+   * @return array
+   *   Tag ids.
+   */
   private function getTagIds($tags) {
     $tag_ids = [];
     foreach ($tags as $tag_name) {
@@ -378,14 +651,33 @@ class EcnRestResource extends ResourceBase {
     return $tag_ids;
   }
 
+  /**
+   * Method to delete file.
+   *
+   * @param integer $fid
+   *   File id.
+   */
   private function deleteFile($fid) {
     $file = File::load($fid);
     FileUsageBase::delete($file);
   }
 
+  /**
+   * Method to get all tags associated with paragraph.
+   *
+   * @param array $doc
+   *   Document detail.
+   *
+   * @return array
+   *   Paragraph tags.
+   */
   private function getAllTags($doc) {
     $tags['application_tags'] = $this->getTagIds($doc['application_tags']);
-    $tags['category'] = $this->getTagIds($doc['category']);
+    $category = $doc['business_unit'];
+    if (isset($doc['division']) && !empty($doc['division'])) {
+      $category .= ' - ' . $doc['division'];
+    }
+    $tags['category'] = $this->getTagIds($category);
     $tags['family'] = $this->getTagIds($doc['family']);
     $tags['language'] = $this->getTagIds([$doc['language']]);
     $tags['product'] = $this->getTagIds($doc['product']);

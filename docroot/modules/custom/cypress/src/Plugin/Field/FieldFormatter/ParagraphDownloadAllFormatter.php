@@ -61,8 +61,11 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           $file_id = $file_obj['target_id'];
           $file =  \Drupal\file\Entity\File::load($file_id);
           $description = $file_obj['description'];
-          $language_tid = $paragraph->get('field_language')->get(0)->getValue()['target_id'];
-          $language = \Drupal\taxonomy\Entity\Term::load($language_tid)->get('name')->value;
+          $language = '';
+          if (!empty($paragraph->get('field_language')->get(0))) {
+            $language_tid = $paragraph->get('field_language')->get(0)->getValue()['target_id'];
+            $language = \Drupal\taxonomy\Entity\Term::load($language_tid)->get('name')->value;
+          }
           $last_updated = $file->get('changed')->get(0)->getValue()['value'];
           $rows[] = [
             ['data' => $category],
