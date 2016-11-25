@@ -11,17 +11,17 @@ $metadata['__DYNAMIC:1__'] = array(
 	 *
 	 * Can be '__DEFAULT__', to use this entry by default.
 	 */
-	'host' => '__DEFAULT__',
+		'host' => '__DEFAULT__',
 
 	// X.509 key and certificate. Relative to the cert directory.
-	'privatekey' => 'server.pem',
-	'certificate' => 'server.crt',
+		'privatekey' => 'saml.pem',
+		'certificate' => 'saml.crt',
 
 	/*
 	 * Authentication source to use. Must be one that is configured in
 	 * 'config/authsources.php'.
 	 */
-	'auth' => 'example-userpass',
+		'auth' => 'default-sp',
 
 	/*
 	 * WARNING: SHA-1 is disallowed starting January the 1st, 2014.

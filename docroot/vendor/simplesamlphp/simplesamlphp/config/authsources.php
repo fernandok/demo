@@ -10,29 +10,35 @@ $config = array(
         'core:AdminPassword',
     ),
 
-
-    // An authentication source which can authenticate against both SAML 2.0
+// An authentication source which can authenticate against both SAML 2.0
     // and Shibboleth 1.3 IdPs.
     'default-sp' => array(
         'saml:SP',
 
         // The entity ID of this SP.
         // Can be NULL/unset, in which case an entity ID is generated based on the metadata URL.
-        'entityID' => null,
+        'entityID' => 'http://cypress.local',
 
         // The entity ID of the IdP this should SP should contact.
         // Can be NULL/unset, in which case the user will be shown a list of available IdPs.
-        'idp' => null,
+        'idp' => 'http://cypresscomdev2.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php',
 
         // The URL to the discovery service.
         // Can be NULL/unset, in which case a builtin discovery service will be used.
         'discoURL' => null,
 
+        'privatekey'           => 'saml.pem',
+        'certificate'          => 'saml.crt',
+
+        'NameIDPolicy'         => null,
+        'redirect.sign'        => true,
+        'assertion.encryption' => false,
+        'sign.logout'          => true,
         /*
          * WARNING: SHA-1 is disallowed starting January the 1st, 2014.
          *
          * Uncomment the following option to start using SHA-256 for your signatures.
-         * Currently, simpleSAMLphp defaults to SHA-1, which has been deprecated since
+         * Currently, SimpleSAMLphp defaults to SHA-1, which has been deprecated since
          * 2011, and will be disallowed by NIST as of 2014. Please refer to the following
          * document for more information:
          *
@@ -46,7 +52,7 @@ $config = array(
          *
          * Please refer to the hosted SP configuration reference for more information.
           */
-        //'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
+        'signature.algorithm' => 'http://www.w3.org/2001/04/xmldsig-more#rsa-sha256',
 
         /*
          * The attributes parameter must contain an array of desired attributes by the SP.
@@ -62,7 +68,6 @@ $config = array(
             'urn:oid:x.x.x.x',
         ),*/
     ),
-
 
     /*
     'example-sql' => array(
@@ -83,7 +88,7 @@ $config = array(
     ),
     */
 
-    /*
+/*
     'example-userpass' => array(
         'exampleauth:UserPass',
 
@@ -93,7 +98,7 @@ $config = array(
         //'remember.username.checked' => FALSE,
 
         'student:studentpass' => array(
-            'uid' => array('test'),
+            'uid' => array('student'),
             'eduPersonAffiliation' => array('member', 'student'),
         ),
         'employee:employeepass' => array(
@@ -101,8 +106,8 @@ $config = array(
             'eduPersonAffiliation' => array('member', 'employee'),
         ),
     ),
-    */
 
+*/
     /*
     'crypto-hash' => array(
         'authcrypt:Hash',
@@ -125,7 +130,7 @@ $config = array(
     ),
     */
 
-    /*
+/*
     // This authentication source serves as an example of integration with an
     // external authentication engine. Take a look at the comment in the beginning
     // of modules/exampleauth/lib/Auth/Source/External.php for a description of
@@ -133,7 +138,20 @@ $config = array(
     'example-external' => array(
         'exampleauth:External',
     ),
-    */
+*/
+
+/*
+    // This authentication source serves as an example of integration with an
+    // external authentication engine. Take a look at the comment in the beginning
+    // of modules/cypress/lib/Auth/Source/External.php for a description of
+    // how to adjust it to your own site.
+    'cypress-external' => array(
+        'cypress:External',
+
+        'privatekey'           => 'saml.pem',
+        'certificate'          => 'saml.crt',
+    ),
+*/
 
     /*
     'yubikey' => array(
@@ -242,9 +260,9 @@ $config = array(
     */
 
     /*
-    // Windows Live ID Authentication API.
+    // Microsoft Account (Windows Live ID) Authentication API.
     // Register your application to get an API key here:
-    //  https://manage.dev.live.com
+    //  https://apps.dev.microsoft.com/
     'windowslive' => array(
         'authwindowslive:LiveID',
         'key' => 'xxxxxxxxxxxxxxxx',
@@ -276,6 +294,10 @@ $config = array(
         // The default is 0, which means no timeout.
         'timeout' => 0,
 
+        // The port used when accessing the LDAP server.
+        // The default is 389.
+        'port' => 389,
+
         // Set whether to follow referrals. AD Controllers may require FALSE to function.
         'referrals' => TRUE,
 
@@ -305,7 +327,7 @@ $config = array(
         // the array may match the value the username.
         'search.attributes' => array('uid', 'mail'),
 
-        // The username & password the simpleSAMLphp should bind to before searching. If
+        // The username & password the SimpleSAMLphp should bind to before searching. If
         // this is left as NULL, no bind will be performed before searching.
         'search.username' => NULL,
         'search.password' => NULL,
@@ -316,7 +338,7 @@ $config = array(
         // to get them. This is enabled with this option.
         'priv.read' => FALSE,
 
-        // The DN & password the simpleSAMLphp should bind to before
+        // The DN & password the SimpleSAMLphp should bind to before
         // retrieving attributes. These options are required if
         // 'priv.read' is set to TRUE.
         'priv.username' => NULL,
@@ -384,5 +406,9 @@ $config = array(
 
     ),
     */
-
 );
+
+
+
+
+

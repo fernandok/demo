@@ -84,3 +84,46 @@ function cypress_theme($existing, $type, $theme, $path) {
     ],
   ];
 }
+
+// to map the first_name, last_name and roles for simplesamlphp
+function get_saml_user_attributes($account) {
+  $user_act_id =  $account->id();
+  $user_object = \Drupal\user\Entity\User::load($user_act_id);
+  $saml_attribute = \Drupal::service('simplesamlphp_auth.manager')->getAttributes();
+  $saml_role_ids = $saml_attribute['roles'];
+  $user_get_roles = $user_object->get('roles')->getValue();
+  $user_roles = array(
+      '21' => 'cypress_employees',
+      '111' => 'all_distributors',
+      '116' => 'sales_rep',
+  );
+  if(empty($user_get_roles)) {
+    foreach ($saml_role_ids as $saml_role_id) {
+      if ($saml_role_id == 2) {
+        continue;
+      }
+      if (isset($user_roles[$saml_role_id])) {
+        $user_object->addRole($user_roles[$saml_role_id]);
+      }
+    }
+  }
+  elseif(!empty($user_get_roles)) {
+    foreach ($user_get_roles as $user_get_role) {
+      if (!in_array($user_get_role['target_id'], $saml_role_ids)) {
+        $remove_role = $user_get_role['target_id'];
+        $user_object->removeRole($remove_role);
+      }
+      elseif ($key = array_search($user_get_role['target_id'], $saml_role_ids)) {
+        unset($saml_role_ids[$key]);
+      }
+    }
+    foreach ($saml_role_ids as $saml_role_id) {
+      if (isset($user_roles[$saml_role_id])) {
+        $user_object->addRole($user_roles[$saml_role_id]);
+      }
+    }
+  }
+  $user_object->set("field_first_name" ,$saml_attribute['firstName'][0]);
+  $user_object->set("field_last_name" ,$saml_attribute['lastName'][0]);
+  $user_object->save();
+}
