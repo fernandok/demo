@@ -93,6 +93,7 @@ function get_saml_user_attributes($account) {
   $saml_role_ids = $saml_attribute['roles'];
   $user_get_roles = $user_object->get('roles')->getValue();
   $user_roles = array(
+      '11' => 'administrator',
       '21' => 'cypress_employees',
       '111' => 'all_distributors',
       '116' => 'sales_rep',
