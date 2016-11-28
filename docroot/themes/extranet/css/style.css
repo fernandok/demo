@@ -22,6 +22,9 @@ header.navbar.container, div.main-container.container, footer.footer.container{
 .logo-bkgnd {
   padding-left: 40px;
 }
+.logo-bkgnd img {
+  width: 5em;
+}
 a {
   color: #09357a;
   text-decoration: none !important;
@@ -29,14 +32,22 @@ a {
 .main-nav-menu .menu li a, .account-menu-log .menu li a, .navbar-default .navbar-nav > .active > a, .navbar-default .navbar-nav > .active > a:hover {
   color: #252525;
 }
+.main-nav-menu .menu li a {
+  padding-top: 2.5em;
+  padding-bottom: 2.5em;
+}
+.main-nav-menu .menu li a.active {
+  background-color: #ffffff;
+  color: #09357a;
+}
 .main-nav-menu, .account-menu-log {
-  height: 7.25em;
+  /*height: 7.25em;*/
 }
 .main-nav-menu nav#block-cypressmainnavigation {
-  margin-top: 2em;
+  /*margin-top: 2em;*/
 }
 .account-menu-log nav#block-extranet-account-menu, #block-userloginmenu {
-  margin-top: 1.5em;
+  /*margin-top: 1.5em;*/
 }
 #block-userloginmenu ul.menu.nav {
   float: right;
@@ -51,13 +62,42 @@ a {
 #block-cypressmainnavigation>ul>li {
   float: left;
 }
+.region-navigation>.container>.row {
+  background-color: #ecf0f1;
+}
+#subnavbar {
+  margin-top: -0.6em
+}
+#subnavbar ul {
+  clear: both;
+  padding: 1em 0 0 7em;
+  margin-bottom: 0;
+  -webkit-column-count: 4;
+  -moz-column-count: 4;
+  column-count: 4;
+  display: none;
+}
+#subnavbar ul li {
+  list-style: none;
+  margin: 0.4em 0;
+}
+#subnavbar ul li:first-child {
+  margin-top: -0.1em;
+}
+#subnavbar ul li a {
+  display: block;
+}
+/* End Header menu block. */
 /* Start user account menu */
 .navbar-default .account-menu-log .navbar-nav > .open > a {
-  background-color: white;
+  background-color: #ecf0f1;
   color: inherit;
 }
 .account-menu-log .menu.dropdown-menu {
   top: 80%;
+}
+#block-extranet-account-menu>ul>li {
+  margin-top: 1em;
 }
 .account-menu-log .dropdown-menu li a:hover {
   background-color: #e8ebf1;
