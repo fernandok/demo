@@ -147,6 +147,7 @@ class EcnRestResource extends ResourceBase {
           $response[] = ['error' => 'There is no node found for the given node id ' . $node['nid'] . '.'];
           continue;
         }
+        $this->setConditionCheckingProperties($page);
         $documents = $node['documents'];
         foreach ($documents as $doc) {
           if (!isset($doc['spec_number']) || empty($doc['spec_number'])) {
@@ -189,6 +190,31 @@ class EcnRestResource extends ResourceBase {
     }
 
     return new ResourceResponse($response);
+  }
+
+  /**
+   * Method to set basic condition checking properties for ECN.
+   *
+   * @param object $node
+   *   Currently processing node.
+   */
+  private function setConditionCheckingProperties($node) {
+    $nid = $node->id();
+    $this->paragraphs[$nid] = $node->get('field_files')->getValue();
+    $paragraphs_ids = [];
+    foreach ($this->paragraphs[$nid] as $paragraph) {
+      $paragraphs_ids[] = $paragraph['target_id'];
+    }
+    $paragraphs_ids = implode(',', $paragraphs_ids);
+    // Get file id of each paragraph entity.
+    $query = \Drupal::database()->query('select pi.id, pff.field_file_target_id from paragraphs_item pi
+      join paragraph__field_file pff
+      on pi.id = pff.entity_id and pi.type = pff.bundle and pi.id in (' . $paragraphs_ids . ')');
+    $results = $query->fetchAll();
+    $this->paragraphs_file_ids[$nid] = [];
+    foreach ($results as $result) {
+      $this->paragraphs_file_ids[$nid][$result->id] = $result->field_file_target_id;
+    }
   }
 
   /**
@@ -271,22 +297,7 @@ class EcnRestResource extends ResourceBase {
     if (empty($value)) {
       $error = 'File id is required for update/delete operation.';
     }
-    elseif (!isset($this->paragraphs_file_ids[$nid])) {
-      $this->paragraphs[$nid] = $node->get('field_files')->getValue();
-      $paragraphs_ids = [];
-      foreach ($this->paragraphs[$nid] as $paragraph) {
-        $paragraphs_ids[] = $paragraph['target_id'];
-      }
-      $paragraphs_ids = implode(',', $paragraphs_ids);
-      // Get file id of each paragraph entity.
-      $query = \Drupal::database()->query('select pi.id, pff.field_file_target_id from paragraphs_item pi
-        join paragraph__field_file pff
-        on pi.id = pff.entity_id and pi.type = pff.bundle and pi.id in (' . $paragraphs_ids . ')');
-      $results = $query->fetchAll();
-      $this->paragraphs_file_ids[$nid] = [];
-      foreach ($results as $result) {
-        $this->paragraphs_file_ids[$nid][$result->id] = $result->field_file_target_id;
-      }
+    else{
       $this->doc_paragraph_id[$value] = array_search($value, $this->paragraphs_file_ids[$nid]);
       if (empty($this->doc_paragraph_id[$value])) {
         $error = 'No file found associated with node for the given file id ' . $value . '.';
@@ -491,6 +502,10 @@ class EcnRestResource extends ResourceBase {
    *   Document details.
    */
   private function addParagraph(&$page, $doc) {
+    $nid = $page->id();
+    if (!isset($this->paragraphs[$nid])) {
+      $this->paragraphs[$nid] = $node->get('field_files')->getValue();
+    }
     // Save file.
     $file = file_save_data(base64_decode($doc['file_data']), 'public://' . $doc['file_name'], FILE_EXISTS_REPLACE);
     $tags = $this->getAllTags($doc);
@@ -515,7 +530,6 @@ class EcnRestResource extends ResourceBase {
     ]);
     $paragraph->save();
     // Append new paragraph to node.
-    $nid = $page->id();
     $this->paragraphs[$nid][] = [
       'target_id' => $paragraph->id(),
       'target_revision_id' => $paragraph->getRevisionId(),
@@ -583,7 +597,16 @@ class EcnRestResource extends ResourceBase {
   private function deleteParagraph(&$page, $doc) {
     $nid = $page->id();
     $fid = $doc['file_id'];
-    // Remove the paragraph to be delete from node.
+    // Delete the paragraph.
+    $paragraph = Paragraph::load($this->doc_paragraph_id[$fid]);
+    if (empty($this->paragraphs[$nid])) {
+      return [
+        'spec_number' => $doc['spec_number'],
+        'error' => 'No file found associated with node for the given file id ' . $fid . '.'
+      ];
+    }
+    $paragraph->delete();
+    // Remove the deleted paragraph from node.
     foreach ($this->paragraphs[$nid] as $key => $paragraph) {
       if ($paragraph['target_id'] == $this->doc_paragraph_id[$fid]) {
         unset($this->paragraphs[$nid][$key]);
@@ -591,12 +614,6 @@ class EcnRestResource extends ResourceBase {
     }
     // Update the node paragraph list.
     $page->field_files = $this->paragraphs[$nid];
-    // Delete the paragraph.
-    $paragraph = Paragraph::load($this->doc_paragraph_id[$fid]);
-    if (empty($this->paragraphs[$nid])) {
-      throw new HttpException(400, 'No file found associated with node for the given file id.');
-    }
-    $paragraph->delete();
     // Delete the file.
     $this->deleteFile($doc['file_id']);
 
@@ -677,7 +694,7 @@ class EcnRestResource extends ResourceBase {
     if (isset($doc['division']) && !empty($doc['division'])) {
       $category .= ' - ' . $doc['division'];
     }
-    $tags['category'] = $this->getTagIds($category);
+    $tags['category'] = $this->getTagIds([$category]);
     $tags['family'] = $this->getTagIds($doc['family']);
     $tags['language'] = $this->getTagIds([$doc['language']]);
     $tags['product'] = $this->getTagIds($doc['product']);
