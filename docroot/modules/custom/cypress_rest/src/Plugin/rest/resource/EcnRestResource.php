@@ -205,15 +205,17 @@ class EcnRestResource extends ResourceBase {
     foreach ($this->paragraphs[$nid] as $paragraph) {
       $paragraphs_ids[] = $paragraph['target_id'];
     }
-    $paragraphs_ids = implode(',', $paragraphs_ids);
-    // Get file id of each paragraph entity.
-    $query = \Drupal::database()->query('select pi.id, pff.field_file_target_id from paragraphs_item pi
-      join paragraph__field_file pff
-      on pi.id = pff.entity_id and pi.type = pff.bundle and pi.id in (' . $paragraphs_ids . ')');
-    $results = $query->fetchAll();
     $this->paragraphs_file_ids[$nid] = [];
-    foreach ($results as $result) {
-      $this->paragraphs_file_ids[$nid][$result->id] = $result->field_file_target_id;
+    if (!empty($paragraphs_ids)) {
+      $paragraphs_ids = implode(',', $paragraphs_ids);
+      // Get file id of each paragraph entity.
+      $query = \Drupal::database()->query('select pi.id, pff.field_file_target_id from paragraphs_item pi
+        join paragraph__field_file pff
+        on pi.id = pff.entity_id and pi.type = pff.bundle and pi.id in (' . $paragraphs_ids . ')');
+      $results = $query->fetchAll();
+      foreach ($results as $result) {
+        $this->paragraphs_file_ids[$nid][$result->id] = $result->field_file_target_id;
+      }
     }
   }
 

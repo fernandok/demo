@@ -126,25 +126,26 @@ span.welcome-first-last-name {
 }
 /*End Welcome user block*/
 /*Start nav bar primary*/
-#block-mainnavigation .navbar-nav, #block-mainnavigation .navbar-nav li {
+#block-mainnavigation .navbar-nav, #block-mainnavigation .navbar-nav li,
+#block-distributionextranet .navbar-nav, #block-distributionextranet .navbar-nav li{
   float:none;
 }
-#block-mainnavigation .navbar-nav li {
+#block-mainnavigation .navbar-nav li, #block-distributionextranet .navbar-nav li {
   border-bottom: 1px solid #b3c1d6
 }
-#block-mainnavigation .navbar-nav li a {
+#block-mainnavigation .navbar-nav li a, #block-distributionextranet .navbar-nav li a {
   padding-left: 2.7em;
   font-size: 14px;
 }
 
-#block-mainnavigation .navbar-nav li a:hover {
+#block-mainnavigation .navbar-nav li a:hover, #block-distributionextranet .navbar-nav li a:hover {
   background-color: #ecf0f1;
 }
-nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active{
+nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active, nav#block-distributionextranet.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active{
   background: #09357a;
   color: #ffffff;
 }
-nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active a.is-active{
+nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active a.is-active, nav#block-distributionextranet.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active a.is-active{
   color: #ffffff;
 }
 /*
@@ -153,7 +154,7 @@ nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dr
   color: #ffffff;
 }*/
 
-#block-mainnavigation .caret{
+#block-mainnavigation .caret, #block-distributionextranet .caret{
     position: absolute;
     left: 81%;
     top: 47%;
@@ -326,7 +327,7 @@ body.page-node-type-stcon div.field .field--label{
 #block-admindashboard {
   background-color: #f5f5f2;
 }
-#block-admindashboard .open > .dropdown-menu, #block-mainnavigation .open > .dropdown-menu {
+#block-admindashboard .open > .dropdown-menu, #block-mainnavigation .open > .dropdown-menu, #block-distributionextranet .open > .dropdown-menu {
   display: block;
   position: relative;
   float: none;
@@ -334,21 +335,22 @@ body.page-node-type-stcon div.field .field--label{
   border: none;
   box-shadow: none;
   background-color: #f5f5f2;
-}#block-mainnavigation .open > .dropdown-menu {
+}#block-mainnavigation .open > .dropdown-menu, #block-distributionextranet .open > .dropdown-menu {
   padding-left: 0;
   background-color: #e8ebf1;
+  border-radius: 0;
 }
-#block-mainnavigation .open > .dropdown-menu > li {
+#block-mainnavigation .open > .dropdown-menu > li, #block-distributionextranet .open > .dropdown-menu > li {
   border: none;
 }
-#block-mainnavigation .open > .dropdown-menu > li > a {
+#block-mainnavigation .open > .dropdown-menu > li > a, #block-distributionextranet .open > .dropdown-menu > li > a {
   white-space: normal;
   padding-top: 10px;
   padding-bottom: 9.5px;
   padding-left: 4em;
   color: #09357a;
 }
-#block-mainnavigation .open > .dropdown-menu > li > a.is-active {
+#block-mainnavigation .open > .dropdown-menu > li > a.is-active, #block-distributionextranet .open > .dropdown-menu > li > a.is-active {
   background-color: #09357a !important;
   color: white;
 }
@@ -401,7 +403,7 @@ body.path-my-samples .view-content .table-responsive {
     .main-nav-menu, .account-menu-log {
       height: 0em;
     }
-    
+
     /* Start of main-container styles  */
     #navbar .navbar-header{
       margin: 0px;
@@ -415,8 +417,8 @@ body.path-my-samples .view-content .table-responsive {
         font-size: 15px;
     }
     #block-workweekandstock .container.full-width .row{
-     background-color: #09357a; 
-     padding: 0.55em; 
+     background-color: #09357a;
+     padding: 0.55em;
     }
     #block-workweekandstock .container.full-width .row .col-sm-12{
       border: none;
@@ -453,13 +455,13 @@ body.path-my-samples .view-content .table-responsive {
         padding-left: 0px;
         padding-right: 0px;
     }
-    #block-mainnavigation .open > .dropdown-menu > li > a{
+    #block-mainnavigation .open > .dropdown-menu > li > a, #block-distributionextranet .open > .dropdown-menu > li > a{
       padding-bottom: 3px;
       padding-top: 0px;
     }
     /* End of Welcome User block */
 
-    #block-mainnavigation .navbar-nav{
+    #block-mainnavigation .navbar-nav, #block-distributionextranet .navbar-nav{
       margin: 0 auto;
     }
     .expanded.dropdown.open a.dropdown-toggle{
@@ -548,7 +550,7 @@ body.path-my-samples .view-content .table-responsive {
     .welcome-user-wrapper span.col-sm-7.welcome-first-last-name span.first-last-name{
       font-size: 17px;
     }
-    nav#block-mainnavigation ul.menu.nav.navbar-nav li  > a{
+    nav#block-mainnavigation ul.menu.nav.navbar-nav li  > a, nav#block-distributionextranet ul.menu.nav.navbar-nav li  > a{
       padding-top: 10.5px;
       padding-bottom: 5px;
     }
@@ -556,11 +558,11 @@ body.path-my-samples .view-content .table-responsive {
       padding-bottom: 0px;
     }
 
-    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu{
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu{
       padding-top: 0px;
     }
 
-    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a{
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a{
       padding-bottom: 3px;
       padding-top: 0px;
     }
@@ -624,18 +626,17 @@ body.path-my-samples .view-content .table-responsive {
     padding: 0.31em;
     }
 
-    nav#block-mainnavigation ul.menu.nav.navbar-nav li > a {
+    nav#block-mainnavigation ul.menu.nav.navbar-nav li > a, nav#block-distributionextranet ul.menu.nav.navbar-nav li > a {
     padding-top: 10px;
     padding-bottom: 5px;
     }
 
-    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu{
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu{
       padding-top: 0px;
     }
 
-    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
-    padding-bottom: 3px;
-    padding-top: 0px;
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
+      padding-bottom: 3px;
     }
     #content-main{
         width: 70%;
@@ -653,7 +654,7 @@ body.path-my-samples .view-content .table-responsive {
 
     #content-main .region.region-content .views-element-container.contextual-region.form-group .contextual-region.view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content{
       margin: 0 4.5%;
-    }    
+    }
     footer.footer.container{
         padding: 0.7em 0 0.7em 0;
         margin-top: 1em;
@@ -675,7 +676,7 @@ body.path-my-samples .view-content .table-responsive {
 
 /* Start of Responsive for Larger Laptops 1440px */
 @media only screen and (min-width: 1440px) and (max-width: 2559px){
-    
+
     .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
       padding-left: 42px;
       padding-right: 0px;
@@ -694,16 +695,16 @@ body.path-my-samples .view-content .table-responsive {
       width: 22%;
     }
 
-    nav#block-mainnavigation ul.menu.nav.navbar-nav li > a {
+    nav#block-mainnavigation ul.menu.nav.navbar-nav li > a, nav#block-distributionextranet ul.menu.nav.navbar-nav li > a {
     padding-top: 10px;
     padding-bottom: 5px;
     }
 
-    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu{
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu{
       padding-top: 0px;
     }
 
-    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
     padding-bottom: 3px;
     padding-top: 0px;
     }
@@ -729,7 +730,7 @@ body.path-my-samples .view-content .table-responsive {
 
 /* Start of Responsive for Larger Desktops 2560px */
 @media only screen and (min-width: 2560px){
-    
+
     .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
       padding-left: 42px;
       padding-right: 0px;
@@ -744,16 +745,16 @@ body.path-my-samples .view-content .table-responsive {
       width: 17%;
     }
 
-    nav#block-mainnavigation ul.menu.nav.navbar-nav li > a {
+    nav#block-mainnavigation ul.menu.nav.navbar-nav li > a, nav#block-distributionextranet ul.menu.nav.navbar-nav li > a {
     padding-top: 10px;
     padding-bottom: 5px;
     }
 
-    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu{
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu{
       padding-top: 0px;
     }
 
-    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
     padding-bottom: 3px;
     padding-top: 0px;
     }
