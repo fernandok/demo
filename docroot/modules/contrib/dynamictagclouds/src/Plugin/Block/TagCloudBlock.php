@@ -84,7 +84,7 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
       'recursion_limit' => 1,
     ];
 
-    $form['token'] = \Drupal::service('token.tree_builder')->buildRenderable(['term'], $token_options);
+    $form['token'] = \Drupal::service('token.tree_builder')->buildAllRenderable(['term'], $token_options);
 
     return $form;
   }

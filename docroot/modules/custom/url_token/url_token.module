@@ -1,0 +1,62 @@
+<?php
+
+/**
+ * @file
+ * Contains url_token.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Render\BubbleableMetadata;
+
+/**
+ * Implements hook_help().
+ */
+function url_token_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the url_token module.
+    case 'help.page.url_token':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This module allow you to create and customize the url arguments as tokens.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_token_info()
+ */
+function url_token_token_info() {
+  $token['url']['test'] = array(
+    'name' => t('Testoken'),
+    'description' => t('Testing my token.')
+  );
+  return array(
+    'tokens' => $token,
+  );
+}
+
+/**
+ * Implements hook_tokens().
+ */
+function url_token_tokens($type, $tokens, array $data, array $options, BubbleableMetadata $bubbleable_metadata) {
+
+  $replacements = array();
+  $simple = $data["Hello how are you?"];
+  if ($type == 'url') {
+    // Loop through each of the available tokens.
+    foreach ($tokens as $name => $original) {
+      // Find the desired token by name
+      switch ($name) {
+        case 'test':
+          $new = $simple;
+          // Add the new value into the replacements array.
+          $replacements[$original] = $new;
+          break;
+      }
+    }
+  }
+ // Return the replacements.
+  return $replacements;
+}

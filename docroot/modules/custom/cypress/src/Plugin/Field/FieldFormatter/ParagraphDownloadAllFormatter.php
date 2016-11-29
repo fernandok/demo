@@ -53,37 +53,38 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           ];
           continue;
         }
+        $category = '';
         if(!empty($paragraph->get('field_category'))
           && !empty($paragraph->get('field_category')->get(0))) {
           $category_tid = $paragraph->get('field_category')->get(0)->getValue()['target_id'];
           $category = \Drupal\taxonomy\Entity\Term::load($category_tid)->get('name')->value;
-          $file_obj =$paragraph->get('field_file')->get(0)->getValue();
-          $file_id = $file_obj['target_id'];
-          $file =  \Drupal\file\Entity\File::load($file_id);
-          $description = $file_obj['description'];
-          $language = '';
-          if (!empty($paragraph->get('field_language')->get(0))) {
-            $language_tid = $paragraph->get('field_language')->get(0)->getValue()['target_id'];
-            $language = \Drupal\taxonomy\Entity\Term::load($language_tid)->get('name')->value;
-          }
-          $last_updated = $file->get('changed')->get(0)->getValue()['value'];
-          $rows[] = [
-            ['data' => $category],
-            [
-              'data' => [
-                '#theme' => 'file_link',
-                '#file' => $file,
-                '#description' => $description,
-                '#cache' => [
-                  'tags' => $file->getCacheTags(),
-                ],
+        }
+        $file_obj =$paragraph->get('field_file')->get(0)->getValue();
+        $file_id = $file_obj['target_id'];
+        $file =  \Drupal\file\Entity\File::load($file_id);
+        $description = $file_obj['description'];
+        $language = '';
+        if (!empty($paragraph->get('field_language')->get(0))) {
+          $language_tid = $paragraph->get('field_language')->get(0)->getValue()['target_id'];
+          $language = \Drupal\taxonomy\Entity\Term::load($language_tid)->get('name')->value;
+        }
+        $last_updated = $file->get('changed')->get(0)->getValue()['value'];
+        $rows[] = [
+          ['data' => $category],
+          [
+            'data' => [
+              '#theme' => 'file_link',
+              '#file' => $file,
+              '#description' => $description,
+              '#cache' => [
+                'tags' => $file->getCacheTags(),
               ],
             ],
-            ['data' => $language],
-            ['data' => format_size($file->getSize())],
-            ['data' => date('Y/m/d', $last_updated)]
-          ];
-        }
+          ],
+          ['data' => $language],
+          ['data' => format_size($file->getSize())],
+          ['data' => date('Y/m/d', $last_updated)]
+        ];
       }
 
       $elements[0] = [];
