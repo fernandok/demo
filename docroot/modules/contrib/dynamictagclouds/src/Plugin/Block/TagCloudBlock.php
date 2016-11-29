@@ -118,15 +118,14 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
     $terms = [];
     foreach ($vocabularies_selected as $vid) {
       $vocabulary_terms = $this->term_storage->loadTree($vid);
+      $url = \Drupal::request()->getPathInfo();
+      $url .= '?category=';
       foreach ($vocabulary_terms as $term) {
         $term = $this->term_storage->load($term->tid);
-        $url = $this->token_service->replace(
-          $config['redirect_url'],
-          ['term' => $term]
-        );
+        $term_url = $url . urlencode($term->getName());
         $terms[$term->id()] = [
           'name' => $term->getName(),
-          'url' => $url,
+          'url' => $term_url,
         ];
       }
     }
