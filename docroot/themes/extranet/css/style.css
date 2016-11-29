@@ -72,9 +72,9 @@ a {
   clear: both;
   padding: 1em 0 0 7em;
   margin-bottom: 0;
-  -webkit-column-count: 1;
+  /*-webkit-column-count: 1;
   -moz-column-count: 1;
-  column-count: 1;
+  column-count: 1;*/
   display: none;
 }
 #subnavbar ul li {
