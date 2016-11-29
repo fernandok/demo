@@ -649,8 +649,8 @@ body.path-my-samples .view-content .table-responsive {
 }
 /* End of Responsive for Tablet */
 
-/* Starting of Responsive for Laptop 1024px*/
-@media only screen and (min-width: 1024px) and (max-width: 1439px){
+/* Starting of Responsive for Laptops 1024px*/
+@media only screen and (min-width: 1024px) and (max-width: 1130px){
 
     .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
       width: 30%;
@@ -687,7 +687,7 @@ body.path-my-samples .view-content .table-responsive {
     #content-main{
         width: 70%;
     }
-    body.path-file-search
+  
 
     #content-main  .view-content .table-responsive{
       width: 70%;
@@ -724,6 +724,199 @@ body.path-my-samples .view-content .table-responsive {
 
 }
 /*End of Responsive for Laptop 1024px*/
+
+/* Starting of Responsive for Laptop 1131px*/
+@media only screen and (min-width: 1131px) and (max-width: 1230px){
+
+    .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
+      width: 28%;
+      padding-left: 42px;
+      padding-right: 0px;
+      margin-top: 1.5em;
+    }
+    .main-container.container.js-quickedit-main-content .row aside#sidebar_second.col-sm-3{
+      width: 20%;
+      padding-left: 0px;
+      position: absolute;
+      right: 3px;
+    }
+    #block-mainnavigation .caret, #block-distributionextranet .caret{
+    position: absolute;
+    left: 90%;
+    }
+    #block-workweekandstock .container.full-width .row {
+    font-size: 16px
+    }
+
+    #block-workweekandstock .container.full-width .row .col-sm-12{
+    padding: 0.31em;
+    }
+
+    nav#block-mainnavigation ul.menu.nav.navbar-nav li > a, nav#block-distributionextranet ul.menu.nav.navbar-nav li > a {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    }
+
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu{
+      padding-top: 0px;
+    }
+
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
+      padding-bottom: 3px;
+    }
+    #content-main{
+        width: 72%;
+    }
+  
+
+    #content-main  .view-content .table-responsive{
+      width: 70%;
+    }
+    body.path-frontpage .view-home-page-menu-icons .views-row{
+    margin: 0 1.7%;
+    }
+    body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
+    width: 150px;
+    }
+
+    body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap a .title-menu-link h4{
+      font-size: 16px;
+      font-weight: normal;
+      text-align: center;
+    }
+
+    #content-main .region.region-content .views-element-container.contextual-region.form-group .contextual-region.view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content{
+      margin: 0 4.5%;
+    }
+
+}
+/*End of Responsive for Laptop 1131px*/
+
+/* Starting of Responsive for Laptop 1231px*/
+@media only screen and (min-width: 1231px) and (max-width: 1359px){
+
+    .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
+      width: 26%;
+      padding-left: 42px;
+      padding-right: 0px;
+      margin-top: 1.5em;
+    }
+    .main-container.container.js-quickedit-main-content .row aside#sidebar_second.col-sm-3{
+      width: 20%;
+      padding-left: 0px;
+      position: absolute;
+      right: 3px;
+    }
+    #block-workweekandstock .container.full-width .row {
+    font-size: 16px
+    }
+
+    #block-workweekandstock .container.full-width .row .col-sm-12{
+    padding: 0.31em;
+    }
+
+    nav#block-mainnavigation ul.menu.nav.navbar-nav li > a, nav#block-distributionextranet ul.menu.nav.navbar-nav li > a {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    }
+
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu{
+      padding-top: 0px;
+    }
+
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
+      padding-bottom: 3px;
+    }
+    #content-main{
+        width: 74%;
+    }
+  
+
+    #content-main  .view-content .table-responsive{
+      width: 70%;
+    }
+    body.path-frontpage .view-home-page-menu-icons .views-row{
+    margin: 0 2.7%;
+    }
+    body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
+    width: 150px;
+    }
+
+    body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap a .title-menu-link h4{
+      font-size: 16px;
+      font-weight: normal;
+      text-align: center;
+    }
+
+    #content-main .region.region-content .views-element-container.contextual-region.form-group .contextual-region.view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content{
+      margin: 0 4.5%;
+    }
+
+}
+/*End of Responsive for Laptop 1231px*/
+
+/* Starting of Responsive for Laptop 1360px*/
+@media only screen and (min-width: 1360px) and (max-width: 1439px){
+
+    .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
+      width: 25%;
+      padding-left: 42px;
+      padding-right: 0px;
+      margin-top: 1.5em;
+    }
+    .main-container.container.js-quickedit-main-content .row aside#sidebar_second.col-sm-3{
+      width: 20%;
+      padding-left: 0px;
+      position: absolute;
+      right: 3px;
+    }
+    #block-workweekandstock .container.full-width .row {
+    font-size: 16px
+    }
+
+    #block-workweekandstock .container.full-width .row .col-sm-12{
+    padding: 0.31em;
+    }
+
+    nav#block-mainnavigation ul.menu.nav.navbar-nav li > a, nav#block-distributionextranet ul.menu.nav.navbar-nav li > a {
+    padding-top: 10px;
+    padding-bottom: 5px;
+    }
+
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu{
+      padding-top: 0px;
+    }
+
+    #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
+      padding-bottom: 3px;
+    }
+    #content-main{
+        width: 75%;
+    }
+  
+
+    #content-main  .view-content .table-responsive{
+      width: 70%;
+    }
+
+    body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
+    width: 150px;
+    }
+
+    body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap a .title-menu-link h4{
+      font-size: 16px;
+      font-weight: normal;
+      text-align: center;
+    }
+
+    #content-main .region.region-content .views-element-container.contextual-region.form-group .contextual-region.view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content{
+      margin: 0 4.5%;
+    }
+   
+
+}
+/*End of Responsive for Laptop 1360px*/
+
 
 /* Start of Responsive for Larger Laptops 1440px */
 @media only screen and (min-width: 1440px) and (max-width: 2559px){
@@ -777,7 +970,7 @@ body.path-my-samples .view-content .table-responsive {
       margin: 0 2%;
     }
 }
-/* End of Responsive for Larger Laptops */
+/* End of Responsive for Larger Laptops 1440px */
 
 /* Start of Responsive for Larger Desktops 2560px */
 @media only screen and (min-width: 2560px){
