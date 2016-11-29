@@ -156,7 +156,7 @@ nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dr
 
 #block-mainnavigation .caret, #block-distributionextranet .caret{
     position: absolute;
-    left: 81%;
+    left: 88%;
     top: 47%;
 }
 
@@ -618,6 +618,12 @@ body.path-my-samples .view-content .table-responsive {
       padding-right: 0px;
       margin-top: 1.5em;
     }
+    .main-container.container.js-quickedit-main-content .row aside#sidebar_second.col-sm-3{
+      width: 20%;
+      padding-left: 0px;
+      position: absolute;
+      right: 3px;
+    }
     #block-workweekandstock .container.full-width .row {
     font-size: 16px
     }
@@ -640,6 +646,11 @@ body.path-my-samples .view-content .table-responsive {
     }
     #content-main{
         width: 70%;
+    }
+    body.path-file-search
+
+    #content-main  .view-content .table-responsive{
+      width: 70%;
     }
 
     body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
