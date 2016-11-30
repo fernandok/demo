@@ -454,8 +454,9 @@ body.path-file-search .region-content h1.page-header {
   display: none;
 }
 body.path-file-search .region-content div.view-filters.form-group {
-  /*display: none;*/
+  display: none;
   margin-bottom: 2%;
+  padding: 0 1em;
 }
 body.path-file-search .region-content div.view-filters.form-group div.form-item {
   width: 30%;
@@ -475,6 +476,13 @@ body.path-file-search .region-content div.view-filters.form-group button#edit-su
 }
 body.path-file-search .region-content div.view-filters.form-group .input-group-addon>span.glyphicon-refresh{
   display: block;
+}
+.default_tag_clouds {
+  margin-bottom: 0;
+}
+body.path-file-search .region-content .view-header button.btn-info {
+  padding: 0 1em;
+  margin: 0 1em 1em;
 }
 /* End File search */
 
