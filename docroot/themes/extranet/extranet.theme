@@ -150,8 +150,15 @@ function extranet_preprocess_menu_local_task(array &$variables) {
  function extranet_preprocess_menu__account(&$variables) {
     $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
     $variables['user_id'] = \Drupal::currentUser()->id();
-    $userFirstName = $user->get('field_first_name')->getValue()[0]['value'];
-    $userLastName = $user->get('field_last_name')->getValue()[0]['value'];
+    $saml_attribute = \Drupal::service('simplesamlphp_auth.manager')->getAttributes();
+    if($user) {
+     $userFirstName = $user->get('field_first_name')->getValue()[0]['value'];
+     $userLastName = $user->get('field_last_name')->getValue()[0]['value'];
+    }
+    elseif($saml_attribute) {
+     $userFirstName = $saml_attribute['firstName'][0];
+     $userLastName = $saml_attribute['lastName'][0];
+    }
     $userImage = $user->get('user_picture')->target_id;
     $file = \Drupal\file\Entity\File::load($userImage);
     if(!empty($file)) {

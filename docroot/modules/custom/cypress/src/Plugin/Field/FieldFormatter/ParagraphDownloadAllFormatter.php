@@ -57,7 +57,9 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         if(!empty($paragraph->get('field_category'))
           && !empty($paragraph->get('field_category')->get(0))) {
           $category_tid = $paragraph->get('field_category')->get(0)->getValue()['target_id'];
-          $category = \Drupal\taxonomy\Entity\Term::load($category_tid)->get('name')->value;
+          if(!empty(\Drupal\taxonomy\Entity\Term::load($category_tid))) {
+            $category = \Drupal\taxonomy\Entity\Term::load($category_tid)->get('name')->value;
+          }
         }
         $file_obj =$paragraph->get('field_file')->get(0)->getValue();
         $file_id = $file_obj['target_id'];
@@ -66,7 +68,9 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         $language = '';
         if (!empty($paragraph->get('field_language')->get(0))) {
           $language_tid = $paragraph->get('field_language')->get(0)->getValue()['target_id'];
-          $language = \Drupal\taxonomy\Entity\Term::load($language_tid)->get('name')->value;
+          if(!empty(\Drupal\taxonomy\Entity\Term::load($language_tid))) {
+            $language = \Drupal\taxonomy\Entity\Term::load($language_tid)->get('name')->value;
+          }
         }
         $last_updated = $file->get('changed')->get(0)->getValue()['value'];
         $rows[] = [
