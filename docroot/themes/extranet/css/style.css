@@ -436,7 +436,7 @@ body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap
 }
 
 .glyphicon {
-  display: none;
+  /*display: none;*/
 }
 
 body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap .img-menu {
