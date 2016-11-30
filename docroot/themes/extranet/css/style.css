@@ -436,6 +436,15 @@ body.path-my-samples .view-content .table-responsive {
 }
 /*End Mysamples*/
 
+/* Start file search */
+body.path-file-search .region-content h1.page-header {
+  display: none;
+}
+body.path-file-search .region-content div.view-filters.form-group {
+  display: none;
+}
+/* End File search */
+
 
 /* Start of Responsive for Mobile*/
 @media only screen and (min-width: 320px) and (max-width: 767px){
