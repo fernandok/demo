@@ -322,6 +322,15 @@ span#footer-copyrights {
   border-bottom: 0;
 }
 /*End homepage menu*/
+/* Title-heading styles*/
+.main-container.container.js-quickedit-main-content .row section#content-main.col-sm-9 .region.region-content h1.js-quickedit-page-title.page-header{
+    font-size: 3.125rem;
+    line-height: 1.625rem;
+    margin-bottom: 1.25rem;
+    font-weight: normal;
+    font-family: "open_sanssemibold",Arial,sans-serif;
+}
+/* Title-heading styles*/
 /*STCON content type*/
 body.page-node-type-stcon h1.page-header{
   display: none;
@@ -443,7 +452,22 @@ body.path-my-samples .view-content .table-responsive {
     .main-nav-menu, .account-menu-log {
       height: 0em;
     }
+    /*Start of top-menu styles*/
+    header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
+    nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav{
+      background-color: #e8ebf1;
+    }
+    header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
+    nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav li.expanded.dropdown a:hover{
+      color: #3780cb !important;
+    }
+    header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
+    nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav li.expanded.dropdown a.active{
+      background: #09357a;
+      color: #ffffff;
+    }
 
+    /*End of top-menu styles*/
     /* Start of main-container styles  */
     #navbar .navbar-header{
       margin: 0px;
