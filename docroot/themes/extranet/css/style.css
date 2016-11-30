@@ -465,22 +465,7 @@ body.path-file-search .region-content div.view-filters.form-group {
     .main-nav-menu, .account-menu-log {
       height: 0em;
     }
-    /*Start of top-menu styles*/
-    header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
-    nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav{
-      background-color: #e8ebf1;
-    }
-    header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
-    nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav li.expanded.dropdown a:hover{
-      color: #3780cb !important;
-    }
-    header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
-    nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav li.expanded.dropdown a.active{
-      background: #09357a;
-      color: #ffffff;
-    }
-
-    /*End of top-menu styles*/
+    
     /* Start of main-container styles  */
     #navbar .navbar-header{
       margin: 0px;
