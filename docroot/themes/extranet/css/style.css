@@ -413,7 +413,8 @@ body.path-it-extranet-dashboard .view-header .add-it-extranet {
 /* End IT Extract Dashboard Add IT Exyranet Button */
 /* Start Tag cloud */
 ul.default_tag_clouds {
-  text-align: center;
+  text-align: justify;
+  padding: 1em;
 }
 /* End Tag cloud */
 
