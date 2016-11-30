@@ -196,7 +196,7 @@ nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dr
 
 #block-mainnavigation .caret, #block-distributionextranet .caret{
     position: absolute;
-    left: 81%;
+    left: 87%;
     top: 47%;
 }
 
@@ -255,6 +255,17 @@ nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dr
   margin: 0 auto;
 }
 /* End content menu home icon */
+
+/* Title-heading styles*/
+.main-container.container.js-quickedit-main-content .row section#content-main.col-sm-9 .region.region-content h1.js-quickedit-page-title.page-header{
+    font-size: 3.125rem;
+    line-height: 1.625rem;
+    margin-bottom: 1.25rem;
+    font-weight: normal;
+    font-family: "open_sanssemibold",Arial,sans-serif;
+}
+/* Title-heading styles*/
+
 /* Start download all docs */
 .download-all-files-wrapper {
   margin-bottom: 6px;
@@ -322,6 +333,7 @@ span#footer-copyrights {
   border-bottom: 0;
 }
 /*End homepage menu*/
+
 /*STCON content type*/
 body.page-node-type-stcon h1.page-header{
   display: none;
@@ -473,7 +485,22 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
     .main-nav-menu, .account-menu-log {
       height: 0em;
     }
+    /*Start of top-menu styles*/
+    header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
+    nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav{
+      background-color: #e8ebf1;
+    }
+    header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
+    nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav li.expanded.dropdown a:hover{
+      color: #3780cb !important;
+    }
+    header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
+    nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav li.expanded.dropdown a.active{
+      background: #09357a;
+      color: #ffffff;
+    }
 
+    /*End of top-menu styles*/
     /* Start of main-container styles  */
     #navbar .navbar-header{
       margin: 0px;
@@ -708,17 +735,28 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
     #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
       padding-bottom: 3px;
     }
+
+    #block-mainnavigation .caret, #block-distributionextranet .caret{
+    position: absolute;
+    left: 89%;
+    }
     #content-main{
         width: 70%;
+        text-align: center;
     }
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
 
+>>>>>>> 4a97f8816f35fa2d131fd59432e9c0e55e4d9e93
 
     #content-main  .view-content .table-responsive{
       width: 70%;
     }
-=======
->>>>>>> c5eee69e33d92dface42da1acf417da54e6ed1b3
+
+    body.path-frontpage .view-home-page-menu-icons .views-row{
+    float: left;
+    }
 
     body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
     width: 150px;
@@ -793,6 +831,7 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
     }
     #content-main{
         width: 72%;
+        text-align: center;
     }
 
 
@@ -801,6 +840,7 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
     }
     body.path-frontpage .view-home-page-menu-icons .views-row{
     margin: 0 1.7%;
+    float: left;
     }
     body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
     width: 150px;
@@ -980,6 +1020,10 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
     padding-top: 0px;
     }
 
+    #block-mainnavigation .caret, #block-distributionextranet .caret{
+    position: absolute;
+    left: 88%;
+    }
     body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
     width: 150px;
     }
