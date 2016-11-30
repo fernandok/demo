@@ -682,7 +682,7 @@ body.path-my-samples .view-content .table-responsive {
         width: 70%;
     }
 <<<<<<< HEAD
-  
+
 
     #content-main  .view-content .table-responsive{
       width: 70%;
@@ -764,7 +764,7 @@ body.path-my-samples .view-content .table-responsive {
     #content-main{
         width: 72%;
     }
-  
+
 
     #content-main  .view-content .table-responsive{
       width: 70%;
@@ -827,10 +827,10 @@ body.path-my-samples .view-content .table-responsive {
     #content-main{
         width: 74%;
     }
-  
+
 
     #content-main  .view-content .table-responsive{
-      width: 70%;
+      /*width: 70%;*/
     }
     body.path-frontpage .view-home-page-menu-icons .views-row{
     margin: 0 2.7%;
@@ -890,7 +890,7 @@ body.path-my-samples .view-content .table-responsive {
     #content-main{
         width: 75%;
     }
-  
+
 
     #content-main  .view-content .table-responsive{
       width: 70%;
@@ -909,7 +909,7 @@ body.path-my-samples .view-content .table-responsive {
     #content-main .region.region-content .views-element-container.contextual-region.form-group .contextual-region.view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content{
       margin: 0 4.5%;
     }
-   
+
 
 }
 /*End of Responsive for Laptop 1360px*/
