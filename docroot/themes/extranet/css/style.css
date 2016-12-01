@@ -282,7 +282,7 @@ nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dr
   font-family: "open_sanssemibold",Arial,sans-serif;
 }
 body.path-frontpage h1.js-quickedit-page-title.page-header {
-  display: none;
+  visibility: hidden;
 }
 /* Title-heading styles*/
 
