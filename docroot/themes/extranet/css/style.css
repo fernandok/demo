@@ -185,6 +185,10 @@ nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dr
   background: #09357a;
   color: #ffffff;
 }
+nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active .nav .open > a, nav#block-distributionextranet.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active .nav .open {
+  background: #09357a;
+  color: #ffffff;
+}
 nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active a.is-active, nav#block-distributionextranet.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active a.is-active{
   color: #ffffff;
 }
