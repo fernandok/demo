@@ -448,6 +448,10 @@ ul.default_tag_clouds {
   text-align: justify;
   padding: 1em;
 }
+ul.default_tag_clouds li a.selected, ul.default_tag_clouds li a.selected:hover {
+  background-color: #217dbb;
+  color: white !important;
+}
 /* End Tag cloud */
 
 /* Start homepage menu icons */

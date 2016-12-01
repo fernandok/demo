@@ -114,12 +114,28 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
   public function build() {
     $config = $this->getConfiguration();
 
+    $selected_bu = \Drupal::request()->get('bu');
+    $selected_div = \Drupal::request()->get('division');
+
     $vocabularies_selected = $config['vocabularies'];
     $terms = [];
     foreach ($vocabularies_selected as $vid) {
       $vocabulary_terms = $this->term_storage->loadTree($vid);
-      $url = \Drupal::request()->getPathInfo();
-      $url .= '?category=';
+      $connecting_string = \Drupal::request()->getPathInfo() . '?';
+      switch ($vid) {
+        case 'bu':
+          if (!empty($selected_div) && empty($selected_bu)) {
+            $connecting_string = \Drupal::request()->getUri() . '&';
+          }
+          break;
+
+        case 'division':
+          if (!empty($selected_bu) && empty($selected_div)) {
+            $connecting_string = \Drupal::request()->getUri() . '&';
+          }
+          break;
+      }
+      $url = $connecting_string . $vid . '=';
       foreach ($vocabulary_terms as $term) {
         $term = $this->term_storage->load($term->tid);
         $term_url = $url . urlencode($term->getName());
@@ -133,6 +149,7 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
     $style = explode(',', constant('TAG_CLOUD_STYLES'))[$config['style']];
 
     $build = [];
+    $build['#cache'] = ['max-age' => 0];
     $build['tag_cloud_block'] = [
       '#theme' => 'default_tag_clouds',
       '#tags' => $terms,
