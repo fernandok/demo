@@ -3,6 +3,6 @@ admin_dashboard.cypress_admin_dashboard_showConfig:
   path: '/cypress-admin-dashboard'
   defaults:
     _controller: '\Drupal\admin_dashboard\Controller\CypressAdminDashboard::showConfig'
-    _title: 'Cypress Admin Dashboard'
+    _title: 'Dashboard'
   requirements:
     _permission: 'access content'
