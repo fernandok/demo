@@ -435,8 +435,8 @@ body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap
   width: 168px;
 }
 
-.glyphicon {
-  /*display: none;*/
+#block-extranet-account-menu .glyphicon {
+  display: none;
 }
 
 body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap .img-menu {
@@ -482,7 +482,7 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
 }
 body.path-file-search .region-content .view-header button.btn-info {
   padding: 0 1em;
-  margin: 0 1em 1em;
+  margin: 0 1.2em 1em;
 }
 /* End File search */
 
