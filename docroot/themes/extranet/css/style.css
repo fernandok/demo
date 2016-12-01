@@ -194,6 +194,27 @@ nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dr
   color: #ffffff;
 }*/
 
+/*table-alignment for CY EDI TRANSACTION GUIDELINES/SPECS*/
+section#content-main.col-sm-9 .region.region-content article.contextual-region.cy-page.is-promoted.full.clearfix .content 
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table tbody tr td table tbody 
+tr td p{
+  margin-top: 11px;
+}
+section#content-main.col-sm-9 .region.region-content article.contextual-region.cy-page.is-promoted.full.clearfix .content 
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table tbody tr td table tbody 
+tr td p span strong a{
+  color: #ffffff;
+}
+section#content-main.col-sm-9 .region.region-content article.contextual-region.cy-page.is-promoted.full.clearfix .content 
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table thead tr th p{
+  margin-top: 11px;
+  text-align: center;
+}
+section#content-main.col-sm-9 .region.region-content article.contextual-region.cy-page.is-promoted.full.clearfix .content 
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table tbody tr td p{
+  text-align: center;
+}
+
 #block-mainnavigation .caret, #block-distributionextranet .caret{
     position: absolute;
     left: 87%;
@@ -488,7 +509,8 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
     /*Start of top-menu styles*/
     header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
     nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav{
-      background-color: #e8ebf1;
+      background-color: #d8ecc9;
+      width: 245px;
     }
     header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
     nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav li.expanded.dropdown a:hover{
@@ -500,6 +522,80 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
       color: #ffffff;
     }
 
+    header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
+    nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a{
+      color: #09357a;
+    }
+    /*Top  Sub-menu*/
+    header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
+    nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav li.expanded.dropdown ul.menu.dropdown-menu{
+      position: relative;
+    }
+    /*End top sub-menu*/
+    header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
+    nav#block-cypressmainnavigation-2.contextual-region ul.menu.nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a:hover{
+      color: #3780cb !important;
+      background: #ffffff;
+    }
+    header#navbar.navbar.navbar-default.container .navbar-header{
+      clear: both;
+      border: none;
+    }
+    /*background behind the hamburger*/
+    header#navbar.navbar-default{
+      background-color: #c9cfdc;
+    }
+    header#navbar.navbar.navbar-default.container button.navbar-toggle{
+      float: left;
+      background-color: #000000;
+    }
+    
+    
+    #navbar .navbar-header .region.region-navigation .container.full-width .row .col-md-3.account-menu-log nav#block-extranet-account-menu.contextual-region 
+    ul.menu.nav.navbar-nav.navbar-right li.expanded.dropdown.open ul.menu.dropdown-menu{
+    top: 85%;
+    position: absolute;
+    z-index: 999;
+    left: 30px;
+    }
+    #navbar .navbar-header .region.region-navigation .container.full-width .row .col-md-3.account-menu-log nav#block-extranet-account-menu.contextual-region 
+    ul.menu.nav.navbar-nav.navbar-right li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a{
+      background: #ffffff;
+      color: #000000;
+    }
+
+    /*logo*/
+    header#navbar.navbar.navbar-default.container .navbar-header .region.region-navigation .container.full-width .row .col-md-2.logo-bkgnd{
+      padding-left: 0px;
+    }
+    header#navbar.navbar.navbar-default.container .navbar-header .region.region-navigation .container.full-width .row .col-md-2.logo-bkgnd
+    a.logo.navbar-btn.pull-left{
+      float: none !important;
+    }
+    header#navbar.navbar.navbar-default.container .navbar-header .region.region-navigation .container.full-width .row .col-md-2.logo-bkgnd
+    a.logo.navbar-btn.pull-left img{
+      display: block;
+      margin: 0 auto;
+    }
+    /*logo end*/
+    /*Mainmenu*/
+    /*header#navbar.navbar.navbar-default.container .navbar-collapse.collapse .region.region-navigation-collapsible .visible-xs
+    nav#block-cypressmainnavigation-2.contextual-region{
+    position: absolute;
+    z-index: 999;
+    top: 3px;
+    bottom: 0;
+    width: 70%;
+    }
+    header#navbar.navbar-default{
+      /*background-color: #e8ebf1;*/
+    }
+    /*End Mainmenu*/
+
+    #navbar .navbar-header .region.region-navigation .container.full-width .row .col-md-3.account-menu-log 
+    nav#block-extranet-account-menu.contextual-region ul.menu.nav.navbar-nav.navbar-right{
+      display: none;
+    }  
     /*End of top-menu styles*/
     /* Start of main-container styles  */
     #navbar .navbar-header{
@@ -569,6 +665,15 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
     .view-home-page-menu-icons .view-content .views-row{
       /*margin: 0 auto;*/
     }
+    /*Title page header*/
+    .main-container.container.js-quickedit-main-content .row section#content-main.col-sm-9 .region.region-content h1.js-quickedit-page-title.page-header {
+    font-size: 3.125rem;
+    line-height: 3.325rem;
+    margin-bottom: 1.25rem;
+    font-weight: normal;
+    font-family: "open_sanssemibold",Arial,sans-serif;
+    }
+    /*End of Title page header*/
     body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap{
       width: 100%;
       min-height: 208px;
