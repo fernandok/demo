@@ -86,6 +86,7 @@ a {
 }
 #subnavbar ul li a {
   display: block;
+  color: #464646;
 }
 /* End Header menu block. */
 /* Start user account menu */
@@ -264,12 +265,21 @@ nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dr
 /* End content menu home icon */
 
 /* Title-heading styles*/
-.main-container.container.js-quickedit-main-content .row section#content-main.col-sm-9 .region.region-content h1.js-quickedit-page-title.page-header{
+/*.main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header {
     font-size: 3.125rem;
     line-height: 1.625rem;
     margin-bottom: 1.25rem;
     font-weight: normal;
     font-family: "open_sanssemibold",Arial,sans-serif;
+}*/
+.main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header, body.path-file-search #content-main h2{
+  background-color: #ecf0f1;
+  text-align: center;
+  font-size: 23px;
+  padding: 10px 0;
+  text-transform: uppercase;
+  margin-top: 22px;
+  font-family: "open_sanssemibold",Arial,sans-serif;
 }
 /* Title-heading styles*/
 
