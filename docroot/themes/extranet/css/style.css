@@ -276,10 +276,13 @@ nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dr
   background-color: #ecf0f1;
   text-align: center;
   font-size: 23px;
-  padding: 10px 0;
+  padding: 9px 0;
   text-transform: uppercase;
   margin-top: 22px;
   font-family: "open_sanssemibold",Arial,sans-serif;
+}
+body.path-frontpage h1.js-quickedit-page-title.page-header {
+  display: none;
 }
 /* Title-heading styles*/
 
