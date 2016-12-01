@@ -185,9 +185,12 @@ nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dr
   background: #09357a;
   color: #ffffff;
 }
-nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active .nav .open > a, nav#block-distributionextranet.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active .nav .open {
+nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active>a, nav#block-distributionextranet.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active>a {
   background: #09357a;
   color: #ffffff;
+}
+nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active>ul, nav#block-distributionextranet.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active>ul {
+  z-index: 0;
 }
 nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active a.is-active, nav#block-distributionextranet.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active a.is-active{
   color: #ffffff;
