@@ -214,6 +214,13 @@ section#content-main.col-sm-9 .region.region-content article.contextual-region.c
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table tbody tr td p{
   text-align: center;
 }
+section#content-main.col-sm-9 .region.region-content article.contextual-region.cy-page.is-promoted.full.clearfix .content 
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table tbody tr td span{
+    position: relative;
+    
+    left: 10px;
+}
+
 
 #block-mainnavigation .caret, #block-distributionextranet .caret{
     position: absolute;
@@ -578,19 +585,7 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
       margin: 0 auto;
     }
     /*logo end*/
-    /*Mainmenu*/
-    /*header#navbar.navbar.navbar-default.container .navbar-collapse.collapse .region.region-navigation-collapsible .visible-xs
-    nav#block-cypressmainnavigation-2.contextual-region{
-    position: absolute;
-    z-index: 999;
-    top: 3px;
-    bottom: 0;
-    width: 70%;
-    }
-    header#navbar.navbar-default{
-      /*background-color: #e8ebf1;*/
-    }
-    /*End Mainmenu*/
+    
 
     #navbar .navbar-header .region.region-navigation .container.full-width .row .col-md-3.account-menu-log 
     nav#block-extranet-account-menu.contextual-region ul.menu.nav.navbar-nav.navbar-right{
@@ -849,11 +844,6 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
         width: 70%;
         text-align: center;
     }
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-
->>>>>>> 4a97f8816f35fa2d131fd59432e9c0e55e4d9e93
 
     #content-main  .view-content .table-responsive{
       width: 70%;
