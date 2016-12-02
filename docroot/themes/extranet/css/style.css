@@ -194,7 +194,7 @@ nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dr
   color: #ffffff;
 }*/
 
-/*table-alignment for CY EDI TRANSACTION GUIDELINES/SPECS*/
+/*table-alignment for CY EDI TRANSACTION GUIDELINES/SPECS & SAP to oracle migration*/
 section#content-main.col-sm-9 .region.region-content article.contextual-region.cy-page.is-promoted.full.clearfix .content 
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table tbody tr td table tbody 
 tr td p{
@@ -205,21 +205,30 @@ section#content-main.col-sm-9 .region.region-content article.contextual-region.c
 tr td p span strong a{
   color: #ffffff;
 }
+/*cy-edi-engagment-procedures & */
 section#content-main.col-sm-9 .region.region-content article.contextual-region.cy-page.is-promoted.full.clearfix .content 
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table thead tr th p{
   margin-top: 11px;
   text-align: center;
 }
+/*cy-edi-engagment-procedures */
 section#content-main.col-sm-9 .region.region-content article.contextual-region.cy-page.is-promoted.full.clearfix .content 
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table tbody tr td p{
   text-align: center;
 }
+/*need-help*/
 section#content-main.col-sm-9 .region.region-content article.contextual-region.cy-page.is-promoted.full.clearfix .content 
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table tbody tr td span{
     position: relative;
-    
     left: 10px;
 }
+/*SAP to oracle migration */
+section#content-main.col-sm-9 .region.region-content article.contextual-region.cy-page.is-promoted.full.clearfix .content 
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table tbody tr td table tbody 
+tr td{
+  text-align: center;
+}
+
 
 
 #block-mainnavigation .caret, #block-distributionextranet .caret{
