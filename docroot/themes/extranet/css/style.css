@@ -86,6 +86,7 @@ a {
 }
 #subnavbar ul li a {
   display: block;
+  color: #464646;
 }
 /* End Header menu block. */
 /* Start user account menu */
@@ -184,6 +185,13 @@ span.welcome-first-last-name {
 nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active, nav#block-distributionextranet.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active{
   background: #09357a;
   color: #ffffff;
+}
+nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active>a, nav#block-distributionextranet.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active>a {
+  background: #09357a;
+  color: #ffffff;
+}
+nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active>ul, nav#block-distributionextranet.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active>ul {
+  z-index: 0;
 }
 nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active a.is-active, nav#block-distributionextranet.contextual-region ul.menu.nav.navbar-nav li.expanded.dropdown.active a.is-active{
   color: #ffffff;
@@ -294,12 +302,24 @@ tr td{
 /* End content menu home icon */
 
 /* Title-heading styles*/
-.main-container.container.js-quickedit-main-content .row section#content-main.col-sm-9 .region.region-content h1.js-quickedit-page-title.page-header{
+/*.main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header {
     font-size: 3.125rem;
     line-height: 1.625rem;
     margin-bottom: 1.25rem;
     font-weight: normal;
     font-family: "open_sanssemibold",Arial,sans-serif;
+}*/
+.main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header, body.path-file-search #content-main h2{
+  background-color: #ecf0f1;
+  text-align: center;
+  font-size: 23px;
+  padding: 9px 0;
+  text-transform: uppercase;
+  margin-top: 22px;
+  font-family: "open_sanssemibold",Arial,sans-serif;
+}
+body.path-frontpage h1.js-quickedit-page-title.page-header {
+  visibility: hidden;
 }
 /* Title-heading styles*/
 
@@ -465,6 +485,10 @@ ul.default_tag_clouds {
   text-align: justify;
   padding: 1em;
 }
+ul.default_tag_clouds li a.selected, ul.default_tag_clouds li a.selected:hover {
+  background-color: #217dbb;
+  color: white !important;
+}
 /* End Tag cloud */
 
 /* Start homepage menu icons */
@@ -472,8 +496,8 @@ body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap
   width: 168px;
 }
 
-.glyphicon {
-  /*display: none;*/
+#block-extranet-account-menu .glyphicon {
+  display: none;
 }
 
 body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap .img-menu {
@@ -491,8 +515,9 @@ body.path-file-search .region-content h1.page-header {
   display: none;
 }
 body.path-file-search .region-content div.view-filters.form-group {
-  /*display: none;*/
+  display: none;
   margin-bottom: 2%;
+  padding: 0 1em;
 }
 body.path-file-search .region-content div.view-filters.form-group div.form-item {
   width: 30%;
@@ -512,6 +537,13 @@ body.path-file-search .region-content div.view-filters.form-group button#edit-su
 }
 body.path-file-search .region-content div.view-filters.form-group .input-group-addon>span.glyphicon-refresh{
   display: block;
+}
+.default_tag_clouds {
+  margin-bottom: 0;
+}
+body.path-file-search .region-content .view-header button.btn-info {
+  padding: 0 1em;
+  margin: 0 1.2em 1em;
 }
 /* End File search */
 
