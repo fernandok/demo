@@ -1210,7 +1210,7 @@ body.path-file-search .region-content .view-header button.btn-info {
 body.path-search nav.tabs, body.path-search div.search-advanced, body.path-search a.search-help-link {
   display: none;
 }
-body.path-search #search-form > h3{
+body.path-search .region-content > h3{
   font-size: 16px;
   text-align: center;
 }
@@ -1223,7 +1223,7 @@ body.path-search form.search-page-form {
 body.path-search div.form-item{
   width: 50em;
 }
-body.path-search h1.page-header{
+body.path-search .main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header{
   background-color: none;
   text-transform: none;
 }
