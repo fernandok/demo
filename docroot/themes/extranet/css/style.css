@@ -211,7 +211,7 @@ nav#block-mainnavigation.contextual-region ul.menu.nav.navbar-nav li.expanded.dr
 
 /*edi-engagement*/
 /*EDI-ENAGE image*/
-section#content-main.col-sm-9 .region.region-content article.contextual-region.cy-page.is-promoted.full.clearfix .content 
+section#content-main.col-sm-9 .region.region-content article.contextual-region.cy-page.is-promoted.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field p img.edi-img{
   width: 100%;
 }
@@ -329,7 +329,7 @@ section#content-main.col-sm-9 .region.region-content article.contextual-region.c
     font-weight: normal;
     font-family: "open_sanssemibold",Arial,sans-serif;
 }*/
-.main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header, body.path-file-search #content-main h2{
+.main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header, body.path-file-search #content-main h2, body.path-search .main-container.container.js-quickedit-main-content .row section#content-main .region.region-content > h2 {
   background-color: #ecf0f1;
   text-align: center;
   font-size: 23px;
@@ -337,6 +337,10 @@ section#content-main.col-sm-9 .region.region-content article.contextual-region.c
   text-transform: uppercase;
   margin-top: 22px;
   font-family: "open_sanssemibold",Arial,sans-serif;
+}
+body.path-search .main-container.container.js-quickedit-main-content .row section#content-main .region.region-content > h2 {
+  background-color: white;
+  text-align: left;
 }
 body.path-frontpage h1.js-quickedit-page-title.page-header {
   visibility: hidden;
@@ -617,16 +621,16 @@ body.path-file-search .region-content .view-header button.btn-info {
       float: left;
       background-color: #808080;
     }
-    
-    
-    #navbar .navbar-header .region.region-navigation .container.full-width .row .col-md-3.account-menu-log nav#block-extranet-account-menu.contextual-region 
+
+
+    #navbar .navbar-header .region.region-navigation .container.full-width .row .col-md-3.account-menu-log nav#block-extranet-account-menu.contextual-region
     ul.menu.nav.navbar-nav.navbar-right li.expanded.dropdown.open ul.menu.dropdown-menu{
     top: 85%;
     position: absolute;
     z-index: 999;
     left: 30px;
     }
-    #navbar .navbar-header .region.region-navigation .container.full-width .row .col-md-3.account-menu-log nav#block-extranet-account-menu.contextual-region 
+    #navbar .navbar-header .region.region-navigation .container.full-width .row .col-md-3.account-menu-log nav#block-extranet-account-menu.contextual-region
     ul.menu.nav.navbar-nav.navbar-right li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a{
       background: #ffffff;
       color: #000000;
@@ -646,12 +650,12 @@ body.path-file-search .region-content .view-header button.btn-info {
       margin: 0 auto;
     }
     /*logo end*/
-    
 
-    #navbar .navbar-header .region.region-navigation .container.full-width .row .col-md-3.account-menu-log 
+
+    #navbar .navbar-header .region.region-navigation .container.full-width .row .col-md-3.account-menu-log
     nav#block-extranet-account-menu.contextual-region ul.menu.nav.navbar-nav.navbar-right{
       display: none;
-    }  
+    }
     /*End of top-menu styles*/
 
     /* Start of main-container styles  */
@@ -1249,3 +1253,25 @@ body.path-file-search .region-content .view-header button.btn-info {
 
 }
 /* End of Responsive for Larger Desktops */
+/** Site Search Page **/
+body.path-search nav.tabs, body.path-search div.search-advanced, body.path-search a.search-help-link {
+  display: none;
+}
+body.path-search .region-content > h3{
+  font-size: 16px;
+  text-align: center;
+}
+body.path-search .button{
+  background-color: #09357a;
+}
+body.path-search form.search-page-form {
+  text-align: -webkit-center;
+}
+body.path-search div.form-item{
+  width: 50em;
+}
+body.path-search .main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header{
+  background-color: white;
+  text-transform: none;
+}
+/** End of Site Search **/
