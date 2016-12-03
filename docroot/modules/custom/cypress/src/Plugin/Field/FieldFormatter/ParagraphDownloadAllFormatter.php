@@ -37,7 +37,8 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
 
     if ($paragraphs = $this->getEntitiesToView($items, $langcode)) {
       $header = [
-        t('Category'),
+        t('BU'),
+        t('DIV'),
         t('Title'),
         t('Language'),
         t('File size'),
@@ -53,14 +54,25 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           ];
           continue;
         }
-        $category = '';
-        if(!empty($paragraph->get('field_category'))
-          && !empty($paragraph->get('field_category')->get(0))) {
-          $category_tid = $paragraph->get('field_category')->get(0)->getValue()['target_id'];
-          if(!empty(\Drupal\taxonomy\Entity\Term::load($category_tid))) {
-            $category = \Drupal\taxonomy\Entity\Term::load($category_tid)->get('name')->value;
+
+        $bu = '';
+        $division = '';
+        if(!empty($paragraph->get('field_bu'))
+            && !empty($paragraph->get('field_bu')->get(0))) {
+          $bu_tid = $paragraph->get('field_bu')->get(0)->getValue()['target_id'];
+          if(!empty(\Drupal\taxonomy\Entity\Term::load($bu_tid))) {
+            $bu = \Drupal\taxonomy\Entity\Term::load($bu_tid)->get('name')->value;
           }
         }
+
+        if(!empty($paragraph->get('field_div'))
+            && !empty($paragraph->get('field_div')->get(0))) {
+          $div_tid = $paragraph->get('field_div')->get(0)->getValue()['target_id'];
+          if(!empty(\Drupal\taxonomy\Entity\Term::load($div_tid))) {
+            $division = \Drupal\taxonomy\Entity\Term::load($div_tid)->get('name')->value;
+          }
+        }
+
         $file_obj =$paragraph->get('field_file')->get(0)->getValue();
         $file_id = $file_obj['target_id'];
         $file =  \Drupal\file\Entity\File::load($file_id);
@@ -74,7 +86,8 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         }
         $last_updated = $file->get('changed')->get(0)->getValue()['value'];
         $rows[] = [
-          ['data' => $category],
+          ['data' => $bu],
+          ['data' => $division],
           [
             'data' => [
               '#theme' => 'file_link',
@@ -91,29 +104,31 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         ];
       }
 
-      $elements[0] = [];
+      // Download all paragraph files.
+      $field_name = $items->getName();
+      $parent_node_id = $items->getParent()->get('nid')->getValue()[0]['value'];
+      $node_label = $items->getParent()->get('title')->getValue()[0]['value'];
+      $url = Url::fromUserInput('/download_all_documents/' . $parent_node_id . '/' . $field_name);
       if (!empty($rows)) {
-        $elements[0] = [
+        $elements[0]['download_all_documents'] = [
+            '#theme' => 'cypress_download_all_docs',
+            '#label' => $node_label,
+            '#link' => $url,
+        ];
+      }
+
+      if (!empty($rows)) {
+        $elements[1] = [
           '#theme' => 'table__file_formatter_table',
           '#header' => $header,
           '#rows' => $rows,
         ];
       }
     }
-    // Download all paragraph files.
-    $field_name = $items->getName();
-    $parent_node_id = $items->getParent()->get('nid')->getValue()[0]['value'];
-    $node_label = $items->getParent()->get('title')->getValue()[0]['value'];
-    $url = Url::fromUserInput('/download_all_documents/' . $parent_node_id . '/' . $field_name);
+
     // $download_all_files_link = Link::fromTextAndUrl('Download All Documents', $url)->toRenderable();
     // $download_all_files_link['#attributes']['class'] = ['download-all-files'];
-    if (!empty($rows)) {
-      $elements[]['download_all_documents'] = [
-        '#theme' => 'cypress_download_all_docs',
-        '#label' => $node_label,
-        '#link' => $url,
-      ];
-    }
+
     // Akamai files.
     // foreach ($akamai_elements as $akamai_element) {
     //   $elements[] = [
