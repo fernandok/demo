@@ -184,6 +184,7 @@ span.welcome-first-last-name {
 #block-mainnavigation .navbar-nav li a, #block-distributionextranet .navbar-nav li a {
   padding-left: 2.7em;
   font-size: 14px;
+  background-color: initial;
 }
 
 #block-mainnavigation .navbar-nav li a:hover, #block-distributionextranet .navbar-nav li a:hover {
@@ -429,6 +430,7 @@ body.page-node-type-stcon div.field .field--label{
   padding-left: 0;
   background-color: #e8ebf1;
   border-radius: 0;
+  z-index: 0;
 }
 #block-mainnavigation .open > .dropdown-menu > li, #block-distributionextranet .open > .dropdown-menu > li {
   border: none;

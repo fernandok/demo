@@ -26,5 +26,12 @@
         $('#block-cypressmainnavigation ul.menu.nav li.expanded>a').removeClass('active');
       }
     });
+
+    // Manage active sub menu.
+    $('.region-sidebar-first ul.menu.nav>li.active').each(function(){
+      if ($(this).find('li.active').length > 0) {
+        $(this).removeClass('active');
+      }
+    });
   });
 })(jQuery);
