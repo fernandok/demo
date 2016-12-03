@@ -286,7 +286,7 @@ section#content-main.col-sm-9 .region.region-content article.contextual-region.c
     font-weight: normal;
     font-family: "open_sanssemibold",Arial,sans-serif;
 }*/
-.main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header, body.path-file-search #content-main h2{
+.main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header, body.path-file-search #content-main h2, body.path-search .main-container.container.js-quickedit-main-content .row section#content-main .region.region-content > h2 {
   background-color: #ecf0f1;
   text-align: center;
   font-size: 23px;
@@ -294,6 +294,9 @@ section#content-main.col-sm-9 .region.region-content article.contextual-region.c
   text-transform: uppercase;
   margin-top: 22px;
   font-family: "open_sanssemibold",Arial,sans-serif;
+}
+body.path-search .main-container.container.js-quickedit-main-content .row section#content-main .region.region-content > h2 {
+  text-align: left;
 }
 body.path-frontpage h1.js-quickedit-page-title.page-header {
   visibility: hidden;
@@ -1224,7 +1227,7 @@ body.path-search div.form-item{
   width: 50em;
 }
 body.path-search .main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header{
-  background-color: none;
+  background-color: white;
   text-transform: none;
 }
 /** End of Site Search **/
