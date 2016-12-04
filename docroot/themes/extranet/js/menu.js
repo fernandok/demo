@@ -1,6 +1,6 @@
 (function ($){
   $(document).ready(function () {
-    $('#navbar .region-navigation>.container').append('<div id="subnavbar" class="hidden-xs"></div>');
+    $('#navbar .region-navigation>.container').append('<div id="subnavbar" class="hidden-xs hidden-sm"></div>');
     $('#block-cypressmainnavigation ul.menu.nav li.expanded>ul.dropdown-menu').each(function(index) {
       $(this).siblings('a').removeClass('dropdown-toggle').removeAttr('data-target').removeAttr('data-toggle').attr('data-index', index);
       $(this).removeClass('dropdown-menu').appendTo('#subnavbar');
@@ -32,6 +32,12 @@
       if ($(this).find('li.active').length > 0) {
         $(this).removeClass('active');
       }
+    });
+
+    // Hamburger menu.
+    $('#navbar>button.navbar-toggle').click(function() {
+      $(this).toggleClass('open');
+      $('#navbar>div.navbar-collapse').toggleClass('in');
     });
   });
 })(jQuery);
