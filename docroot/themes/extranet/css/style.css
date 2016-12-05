@@ -876,6 +876,13 @@ body.path-file-search .region-content .view-header button.btn-info {
     .path-frontpage #content-main .view-content{
       text-align: center;
     }
+
+    /*stcon-2016 image*/
+    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    #tabs-68.ui-tabs-panel.ui-widget-content.ui-corner-bottom p a img{
+      width: 100%;
+    }
+    /*stcon-2016 image*/
     /* End of main-container*/
 
     /* Starting of footer*/
@@ -967,6 +974,12 @@ body.path-file-search .region-content .view-header button.btn-info {
       font-weight: normal;
       text-align: center;
     }
+    /*stcon-2016 image*/
+    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    #tabs-68.ui-tabs-panel.ui-widget-content.ui-corner-bottom p a img{
+      width: 100%;
+    }
+    /*stcon-2016 image*/
 
     .view-home-page-menu-icons .view-content .views-row{
       margin: 0 2%;
