@@ -1435,7 +1435,7 @@ body.path-search .region-content > h3{
 }
 body.path-search .button{
   background-color: #217dbb;
-  border: 1px solid #217dbb;
+  border: 2px solid #217dbb;
 }
 body.path-search form.search-page-form {
   text-align: -webkit-center;
