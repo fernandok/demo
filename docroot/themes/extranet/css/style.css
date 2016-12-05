@@ -595,6 +595,9 @@ body.path-file-search .region-content div.view-filters.form-group div.form-item 
   width: 30%;
   margin: 0 0.5%;
 }
+body.path-file-search .region-content div.view-filters.form-group .form-inline {
+  text-align: left;
+}
 body.path-file-search .region-content div.view-filters.form-group .form-inline .form-control {
   display: block;
   width: 100%;
@@ -616,6 +619,19 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
 body.path-file-search .region-content .view-header button.btn-info {
   padding: 0 1em;
   margin: 0 1.2em 1em;
+}
+@media only screen and (min-width: 768px) {
+  body.path-file-search .region-content div.view-filters.form-group div.form-item {
+    width: 45%;
+  }
+}
+@media only screen and (min-width: 425px) {
+  body.path-file-search .region-content div.view-filters.form-group div.form-item {
+    width: 100%;
+  }
+  body.path-file-search .region-content div.view-filters.form-group button#edit-submit-file-search {
+    margin: 1em 0;
+  }
 }
 /* End File search */
 
@@ -1028,10 +1044,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main{
         width: 70%;
         text-align: center;
-    }
-
-    #content-main  .view-content .table-responsive{
-      width: 70%;
     }
 
     body.path-frontpage .view-home-page-menu-icons .views-row{
