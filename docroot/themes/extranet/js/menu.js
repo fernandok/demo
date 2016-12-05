@@ -32,6 +32,9 @@
       if ($(this).find('li.active').length > 0) {
         $(this).removeClass('active');
       }
+      else if ($(this).find('li a.is_active').length > 0) {
+        $(this).removeClass('active');
+      }
     });
 
     // Hamburger menu.
