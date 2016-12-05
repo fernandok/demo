@@ -894,11 +894,23 @@ body.path-file-search .region-content .view-header button.btn-info {
     }
 
     /*stcon-2016 image*/
-    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
     #tabs-68.ui-tabs-panel.ui-widget-content.ui-corner-bottom p a img{
       width: 100%;
     }
     /*stcon-2016 image*/
+    /*edi-procedure-table*/
+    #content-main article .content table.edi-procedure.table-striped tbody tr td{
+      min-height: 60px;
+    }
+     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.edi-procedure {
+      width: 100%;
+    }
+    /*end of edi-procedure-table*/
+
+
+
     /* End of main-container*/
 
     /* Starting of footer*/
@@ -991,11 +1003,22 @@ body.path-file-search .region-content .view-header button.btn-info {
       text-align: center;
     }
     /*stcon-2016 image*/
-    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
     #tabs-68.ui-tabs-panel.ui-widget-content.ui-corner-bottom p a img{
       width: 100%;
     }
     /*stcon-2016 image*/
+    /*edi-procedure-table*/
+    #content-main article .content table.edi-procedure.table-striped tbody tr td{
+      min-height: 60px;
+    }
+     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.edi-procedure {
+      width: 100%;
+    }
+    /*end of edi-procedure-table*/
+
+
 
     .view-home-page-menu-icons .view-content .views-row{
       margin: 0 2%;
@@ -1057,6 +1080,11 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main{
         width: 70%;
         text-align: center;
+    }
+
+
+    #content-main  .view-content .table-responsive{
+      width: 100%;
     }
 
     body.path-frontpage .view-home-page-menu-icons .views-row{
@@ -1141,7 +1169,7 @@ body.path-file-search .region-content .view-header button.btn-info {
 
 
     #content-main  .view-content .table-responsive{
-      width: 70%;
+      width: 100%;
     }
     body.path-frontpage .view-home-page-menu-icons .views-row{
     margin: 0 1.7%;
@@ -1205,7 +1233,7 @@ body.path-file-search .region-content .view-header button.btn-info {
 
 
     #content-main  .view-content .table-responsive{
-      /*width: 70%;*/
+      width: 100%;
     }
     body.path-frontpage .view-home-page-menu-icons .views-row{
     margin: 0 2.7%;
@@ -1268,7 +1296,7 @@ body.path-file-search .region-content .view-header button.btn-info {
 
 
     #content-main  .view-content .table-responsive{
-      width: 70%;
+      width: 100%;
     }
 
     body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
@@ -1406,7 +1434,8 @@ body.path-search .region-content > h3{
   text-align: center;
 }
 body.path-search .button{
-  background-color: #09357a;
+  background-color: #217dbb;
+  border: 2px solid #217dbb;
 }
 body.path-search form.search-page-form {
   text-align: -webkit-center;
@@ -1419,3 +1448,24 @@ body.path-search .main-container.container.js-quickedit-main-content .row sectio
   text-transform: none;
 }
 /** End of Site Search **/
+/** Strting Search form block left side **/
+#block-searchform {
+  padding: 10px;
+  border-bottom: 1px solid #b3c1d6;
+}
+#block-searchform #search-block-form .button{
+  background-color: #217dbb;
+  height: 33px;
+  border: none;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+#block-searchform #search-block-form .button span.glyphicon-search{
+  top: -1px;
+}
+#block-searchform #search-block-form #edit-keys {
+  height: 33px;
+  border: 1px solid #217dbb;
+  background-color: initial;
+}
+/**End Search form block**/
