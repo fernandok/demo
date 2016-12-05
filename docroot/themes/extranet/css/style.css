@@ -894,7 +894,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     }
 
     /*stcon-2016 image*/
-    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
     #tabs-68.ui-tabs-panel.ui-widget-content.ui-corner-bottom p a img{
       width: 100%;
     }
@@ -991,7 +991,7 @@ body.path-file-search .region-content .view-header button.btn-info {
       text-align: center;
     }
     /*stcon-2016 image*/
-    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
     #tabs-68.ui-tabs-panel.ui-widget-content.ui-corner-bottom p a img{
       width: 100%;
     }
@@ -1419,3 +1419,7 @@ body.path-search .main-container.container.js-quickedit-main-content .row sectio
   text-transform: none;
 }
 /** End of Site Search **/
+/** Strting Search form block left side **/
+#block-searchform {
+  padding: 6px;
+}
