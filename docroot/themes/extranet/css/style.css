@@ -1434,7 +1434,7 @@ body.path-search .region-content > h3{
   text-align: center;
 }
 body.path-search .button{
-  background-color: #09357a;
+  background-color: #217dbb;
 }
 body.path-search form.search-page-form {
   text-align: -webkit-center;
@@ -1449,12 +1449,18 @@ body.path-search .main-container.container.js-quickedit-main-content .row sectio
 /** End of Site Search **/
 /** Strting Search form block left side **/
 #block-searchform {
-  padding: 6px;
+  padding: 10px;
+  border-bottom: 1px solid #b3c1d6;
 }
 #block-searchform #search-block-form .button{
   background-color: #217dbb;
   height: 33px;
   border: none;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+#block-searchform #search-block-form .button span.glyphicon-search{
+  top: -1px;
 }
 #block-searchform #search-block-form #edit-keys {
   height: 33px;
