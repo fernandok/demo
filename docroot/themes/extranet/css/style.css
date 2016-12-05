@@ -213,11 +213,11 @@ nav#block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.active.open
 /*edi-engagement*/
 /*EDI-ENAGE image*/
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field p img.edi-img{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item p img.edi-img{
   width: 100%;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field  table.edi-procedure thead tr th{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.edi-procedure thead tr th{
     background-color: #e8ebf1;
     border: 1px solid #eaeff2 !important;
     vertical-align: middle;
@@ -225,12 +225,12 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
     padding: 8px;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field  table.edi-procedure{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.edi-procedure{
   width: 53%;
 }
 /*edi-guidelines-specs*/
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field  table.guide tbody tr:first-child{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.guide tbody tr:first-child{
     background-color: #e8ebf1;
     border: 1px solid #eaeff2 !important;
     vertical-align: middle;
@@ -238,32 +238,32 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
     padding: 8px;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field  table.guide,.table-data{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.guide,.table-data{
   width: 700px;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field  table.table-data td.table-data-1{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.table-data td.table-data-1{
   width: 300px;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field  table.table-data td.table-data-2{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.table-data td.table-data-2{
   width: 200px;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field  table.table-data td.table-data-3{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.table-data td.table-data-3{
   width: 150px;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field  table.guide tbody tr td p{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.guide tbody tr td p{
   margin-top: 10px;
 }
 /*need-help*/
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field  table.need-help{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.need-help{
   width: 60%;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field  table.need-help tr.tr-bcgd{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.need-help tr.tr-bcgd{
   background-color: #e8ebf1;
     border: 1px solid #eaeff2 !important;
     vertical-align: middle;
@@ -271,17 +271,17 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
     padding: 8px;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field  table.need-help .need-td-3{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.need-help .need-td-3{
   width: 26%;
 }
 /*archieve*/
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.archive{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive{
   width: 100%;
   font-size: 12px;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.archive tbody tr.bg-top{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive tbody tr.bg-top{
     background-color: #e8ebf1;
     border: 1px solid #eaeff2 !important;
     vertical-align: middle;
@@ -289,16 +289,16 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
     padding: 8px;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.archive tbody tr td{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive tbody tr td{
   padding-left: 10px;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.archive tbody tr td .col-1{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive tbody tr td .col-1{
   float: left;
   font-weight: bold;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.archive tbody tr td .col-2{
+.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive tbody tr td .col-2{
   float: right;
   padding-right: 5px;
   font-weight: bold;
@@ -369,14 +369,7 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
 /* End content menu home icon */
 
 /* Title-heading styles*/
-/*.main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header {
-    font-size: 3.125rem;
-    line-height: 1.625rem;
-    margin-bottom: 1.25rem;
-    font-weight: normal;
-    font-family: "open_sanssemibold",Arial,sans-serif;
-}*/
-.main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header, body.path-file-search #content-main h2, body.path-search .main-container.container.js-quickedit-main-content .row section#content-main .region.region-content > h2 {
+.main-container.container .row section#content-main .region.region-content h1.page-header, body.path-file-search #content-main h2, body.path-search .main-container.container .row section#content-main .region.region-content > h2 {
   background-color: #ecf0f1;
   text-align: center;
   font-size: 23px;
@@ -385,11 +378,11 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
   margin-top: 22px;
   font-family: "open_sanssemibold",Arial,sans-serif;
 }
-body.path-search .main-container.container.js-quickedit-main-content .row section#content-main .region.region-content > h2 {
+body.path-search .main-container.container .row section#content-main .region.region-content > h2 {
   background-color: white;
   text-align: left;
 }
-body.path-frontpage h1.js-quickedit-page-title.page-header {
+body.path-frontpage h1.page-header {
   visibility: hidden;
 }
 /* Title-heading styles*/
@@ -868,7 +861,7 @@ body.path-file-search .region-content .view-header button.btn-info {
       /*margin: 0 auto;*/
     }
     /*Title page header*/
-    .main-container.container.js-quickedit-main-content .row section#content-main.col-sm-9 .region.region-content h1.js-quickedit-page-title.page-header {
+    .main-container.container .row section#content-main.col-sm-9 .region.region-content h1.page-header {
     font-size: 3.125rem;
     line-height: 3.325rem;
     margin-bottom: 1.25rem;
@@ -904,7 +897,7 @@ body.path-file-search .region-content .view-header button.btn-info {
       min-height: 60px;
     }
      section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.edi-procedure {
+     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.edi-procedure {
       width: 100%;
     }
     /*end of edi-procedure-table*/
@@ -946,7 +939,7 @@ body.path-file-search .region-content .view-header button.btn-info {
       border: none;
     }
 
-    .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
+    .main-container.container .row aside.col-sm-3{
       width: 43%;
       padding-left: 42px;
       margin-top: 1.5em;
@@ -1013,7 +1006,7 @@ body.path-file-search .region-content .view-header button.btn-info {
       min-height: 60px;
     }
      section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.edi-procedure {
+     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.edi-procedure {
       width: 100%;
     }
     /*end of edi-procedure-table*/
@@ -1046,7 +1039,7 @@ body.path-file-search .region-content .view-header button.btn-info {
 /* Starting of Responsive for Laptops 1024px*/
 @media only screen and (min-width: 1024px) and (max-width: 1130px){
 
-    .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
+    .main-container.container .row aside.col-sm-3{
       width: 30%;
       padding-left: 42px;
       padding-right: 0px;
@@ -1126,13 +1119,13 @@ body.path-file-search .region-content .view-header button.btn-info {
 /* Starting of Responsive for Laptop 1131px*/
 @media only screen and (min-width: 1131px) and (max-width: 1230px){
 
-    .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
+    .main-container.container .row aside.col-sm-3{
       width: 28%;
       padding-left: 42px;
       padding-right: 0px;
       margin-top: 1.5em;
     }
-    .main-container.container.js-quickedit-main-content .row aside#sidebar_second.col-sm-3{
+    .main-container.container .row aside#sidebar_second.col-sm-3{
       width: 20%;
       padding-left: 0px;
       position: absolute;
@@ -1195,13 +1188,13 @@ body.path-file-search .region-content .view-header button.btn-info {
 /* Starting of Responsive for Laptop 1231px*/
 @media only screen and (min-width: 1231px) and (max-width: 1359px){
 
-    .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
+    .main-container.container .row aside.col-sm-3{
       width: 26%;
       padding-left: 42px;
       padding-right: 0px;
       margin-top: 1.5em;
     }
-    .main-container.container.js-quickedit-main-content .row aside#sidebar_second.col-sm-3{
+    .main-container.container .row aside#sidebar_second.col-sm-3{
       width: 20%;
       padding-left: 0px;
       position: absolute;
@@ -1258,13 +1251,13 @@ body.path-file-search .region-content .view-header button.btn-info {
 /* Starting of Responsive for Laptop 1360px*/
 @media only screen and (min-width: 1360px) and (max-width: 1439px){
 
-    .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
+    .main-container.container .row aside.col-sm-3{
       width: 25%;
       padding-left: 42px;
       padding-right: 0px;
       margin-top: 1.5em;
     }
-    .main-container.container.js-quickedit-main-content .row aside#sidebar_second.col-sm-3{
+    .main-container.container .row aside#sidebar_second.col-sm-3{
       width: 20%;
       padding-left: 0px;
       position: absolute;
@@ -1321,7 +1314,7 @@ body.path-file-search .region-content .view-header button.btn-info {
 /* Start of Responsive for Larger Laptops 1440px */
 @media only screen and (min-width: 1440px) and (max-width: 2559px){
 
-    .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
+    .main-container.container .row aside.col-sm-3{
       padding-left: 42px;
       padding-right: 0px;
       margin-top: 1.5em;
@@ -1379,7 +1372,7 @@ body.path-file-search .region-content .view-header button.btn-info {
 /* Start of Responsive for Larger Desktops 2560px */
 @media only screen and (min-width: 2560px){
 
-    .main-container.container.js-quickedit-main-content .row aside.col-sm-3{
+    .main-container.container .row aside.col-sm-3{
       padding-left: 42px;
       padding-right: 0px;
       margin-top: 1.5em;
@@ -1443,7 +1436,7 @@ body.path-search form.search-page-form {
 body.path-search div.form-item{
   width: 50em;
 }
-body.path-search .main-container.container.js-quickedit-main-content .row section#content-main .region.region-content h1.js-quickedit-page-title.page-header{
+body.path-search .main-container.container .row section#content-main .region.region-content h1.page-header{
   background-color: white;
   text-transform: none;
 }
