@@ -899,6 +899,18 @@ body.path-file-search .region-content .view-header button.btn-info {
       width: 100%;
     }
     /*stcon-2016 image*/
+    /*edi-procedure-table*/
+    #content-main article .content table.edi-procedure.table-striped tbody tr td{
+      min-height: 60px;
+    }
+     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content 
+     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.edi-procedure {
+      width: 100%;
+    }
+    /*end of edi-procedure-table*/
+
+
+    
     /* End of main-container*/
 
     /* Starting of footer*/
@@ -996,6 +1008,17 @@ body.path-file-search .region-content .view-header button.btn-info {
       width: 100%;
     }
     /*stcon-2016 image*/
+    /*edi-procedure-table*/
+    #content-main article .content table.edi-procedure.table-striped tbody tr td{
+      min-height: 60px;
+    }
+     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content 
+     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.edi-procedure {
+      width: 100%;
+    }
+    /*end of edi-procedure-table*/
+
+
 
     .view-home-page-menu-icons .view-content .views-row{
       margin: 0 2%;
@@ -1059,13 +1082,11 @@ body.path-file-search .region-content .view-header button.btn-info {
         text-align: center;
     }
 
-<<<<<<< HEAD
+
     #content-main  .view-content .table-responsive{
       width: 100%;
     }
 
-=======
->>>>>>> 68a0e861a035d129094968bc8e9e3446b56bfe97
     body.path-frontpage .view-home-page-menu-icons .views-row{
     float: left;
     }
