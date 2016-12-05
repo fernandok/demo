@@ -595,6 +595,9 @@ body.path-file-search .region-content div.view-filters.form-group div.form-item 
   width: 30%;
   margin: 0 0.5%;
 }
+body.path-file-search .region-content div.view-filters.form-group .form-inline {
+  text-align: left;
+}
 body.path-file-search .region-content div.view-filters.form-group .form-inline .form-control {
   display: block;
   width: 100%;
@@ -616,6 +619,19 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
 body.path-file-search .region-content .view-header button.btn-info {
   padding: 0 1em;
   margin: 0 1.2em 1em;
+}
+@media only screen and (min-width: 768px) {
+  body.path-file-search .region-content div.view-filters.form-group div.form-item {
+    width: 45%;
+  }
+}
+@media only screen and (min-width: 425px) {
+  body.path-file-search .region-content div.view-filters.form-group div.form-item {
+    width: 100%;
+  }
+  body.path-file-search .region-content div.view-filters.form-group button#edit-submit-file-search {
+    margin: 1em 0;
+  }
 }
 /* End File search */
 
@@ -878,7 +894,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     }
 
     /*stcon-2016 image*/
-    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
     #tabs-68.ui-tabs-panel.ui-widget-content.ui-corner-bottom p a img{
       width: 100%;
     }
@@ -975,7 +991,7 @@ body.path-file-search .region-content .view-header button.btn-info {
       text-align: center;
     }
     /*stcon-2016 image*/
-    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
     #tabs-68.ui-tabs-panel.ui-widget-content.ui-corner-bottom p a img{
       width: 100%;
     }
@@ -1043,10 +1059,13 @@ body.path-file-search .region-content .view-header button.btn-info {
         text-align: center;
     }
 
+<<<<<<< HEAD
     #content-main  .view-content .table-responsive{
       width: 100%;
     }
 
+=======
+>>>>>>> 68a0e861a035d129094968bc8e9e3446b56bfe97
     body.path-frontpage .view-home-page-menu-icons .views-row{
     float: left;
     }
@@ -1407,3 +1426,7 @@ body.path-search .main-container.container.js-quickedit-main-content .row sectio
   text-transform: none;
 }
 /** End of Site Search **/
+/** Strting Search form block left side **/
+#block-searchform {
+  padding: 6px;
+}
