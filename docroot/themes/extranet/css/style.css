@@ -903,14 +903,14 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main article .content table.edi-procedure.table-striped tbody tr td{
       min-height: 60px;
     }
-     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content 
+     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
      .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.edi-procedure {
       width: 100%;
     }
     /*end of edi-procedure-table*/
 
 
-    
+
     /* End of main-container*/
 
     /* Starting of footer*/
@@ -1012,7 +1012,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main article .content table.edi-procedure.table-striped tbody tr td{
       min-height: 60px;
     }
-     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content 
+     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
      .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.edi-procedure {
       width: 100%;
     }
@@ -1451,3 +1451,14 @@ body.path-search .main-container.container.js-quickedit-main-content .row sectio
 #block-searchform {
   padding: 6px;
 }
+#block-searchform #search-block-form .button{
+  background-color: #217dbb;
+  height: 33px;
+  border: none;
+}
+#block-searchform #search-block-form #edit-keys {
+  height: 33px;
+  border: 1px solid #217dbb;
+  background-color: initial;
+}
+/**End Search form block**/
