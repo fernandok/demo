@@ -1,6 +1,6 @@
 (function ($){
   $(document).ready(function () {
-    $('#navbar .region-navigation>.container').append('<div id="subnavbar" class="hidden-xs hidden-sm"></div>');
+    $('#navbar .region-navigation>.container').append('<div class="col-md-2"></div><div id="subnavbar" class="hidden-xs hidden-sm col-md-7"></div><div class="col-md-3"></div>');
     $('#block-cypressmainnavigation ul.menu.nav li.expanded>ul.dropdown-menu').each(function(index) {
       $(this).siblings('a').removeClass('dropdown-toggle').removeAttr('data-target').removeAttr('data-toggle').attr('data-index', index);
       $(this).removeClass('dropdown-menu').appendTo('#subnavbar');

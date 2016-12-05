@@ -70,7 +70,7 @@ a {
 }
 #subnavbar ul {
   clear: both;
-  padding: 1em 0 0 7em;
+  padding: 1em 0 0 0.5em;
   margin-bottom: 0;
   /*-webkit-column-count: 1;
   -moz-column-count: 1;
