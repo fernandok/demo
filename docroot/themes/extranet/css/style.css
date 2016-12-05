@@ -379,7 +379,6 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
   font-family: "open_sanssemibold",Arial,sans-serif;
 }
 body.path-search .main-container.container .row section#content-main .region.region-content > h2 {
-  background-color: white;
   text-align: left;
 }
 body.path-frontpage h1.page-header {
@@ -1432,6 +1431,9 @@ body.path-search .button{
 }
 body.path-search form.search-page-form {
   text-align: -webkit-center;
+}
+body.path-search form.search-page-form #edit-keys{
+  border: 1px solid #217dbb;
 }
 body.path-search div.form-item{
   width: 50em;
