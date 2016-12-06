@@ -887,23 +887,24 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main article .content table.edi-procedure.table-striped tbody tr td{
       min-height: 60px;
     }
-     section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
-     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.edi-procedure {
+     body.page-node-type-cy-page table.edi-procedure {
       width: 100%;
     }
     /*end of edi-procedure-table*/
     /*need-help table */
-    section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content 
-    .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.need-help {
-    width: 100%;
+    body.page-node-type-cy-page table.need-help {
+      width: 100%;
     }
+
+
+
+
     .field--item p u a{
       display: block;
       word-wrap: break-word;
     }
-     section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content 
-    .field.field--name-body.field--type-text-with-summary.field--label-hidden table.need-help .need-td-3 {
-    width: 100%;
+     body.page-node-type-cy-page table.need-help .need-td-3 {
+    width: 100% !important;
     padding-bottom: 5px;
     }
     table.need-help tbody tr.tr-bcgd{
