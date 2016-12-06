@@ -212,93 +212,76 @@ nav#block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.active.open
 
 /*edi-engagement*/
 /*EDI-ENAGE image*/
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item p img.edi-img{
+body.page-node-type-cy-page p img.edi-img{
   width: 100%;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.edi-procedure thead tr th{
+body.page-node-type-cy-page  table.edi-procedure thead tr th{
     background-color: #e8ebf1;
     border: 1px solid #eaeff2 !important;
     vertical-align: middle;
     text-align: center;
     padding: 8px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.edi-procedure{
+body.page-node-type-cy-page table.edi-procedure{
   width: 53%;
 }
 /*edi-guidelines-specs*/
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.guide tbody tr:first-child{
+body.page-node-type-cy-page  table.guide tbody tr:first-child{
     background-color: #e8ebf1;
     border: 1px solid #eaeff2 !important;
     vertical-align: middle;
     text-align: center;
     padding: 8px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.guide,.table-data{
+body.page-node-type-cy-page table.guide,.table-data{
   width: 700px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.table-data td.table-data-1{
+body.page-node-type-cy-page table.table-data td.table-data-1{
   width: 300px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.table-data td.table-data-2{
+body.page-node-type-cy-page table.table-data td.table-data-2{
   width: 200px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.table-data td.table-data-3{
+body.page-node-type-cy-page table.table-data td.table-data-3{
   width: 150px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.guide tbody tr td p{
+body.page-node-type-cy-page table.guide tbody tr td p{
   margin-top: 10px;
 }
 /*need-help*/
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.need-help{
+table.need-help{
   width: 60%;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.need-help tr.tr-bcgd{
+body.page-node-type-cy-page table.need-help tr.tr-bcgd{
   background-color: #e8ebf1;
-    border: 1px solid #eaeff2 !important;
-    vertical-align: middle;
-    text-align: center;
-    padding: 8px;
+  border: 1px solid #eaeff2 !important;
+  vertical-align: middle;
+  text-align: center;
+  padding: 8px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.need-help .need-td-3{
+body.page-node-type-cy-page table.need-help .need-td-3{
   width: 26%;
 }
-/*archieve*/
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive{
+/*product training archieve-2014*/
+body.page-node-type-cy-pagetable.archive{
   width: 100%;
   font-size: 12px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive tbody tr.bg-top{
+body.page-node-type-cy-page table.archive tbody tr.bg-top{
     background-color: #e8ebf1;
     border: 1px solid #eaeff2 !important;
     vertical-align: middle;
     text-align: center;
     padding: 8px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive tbody tr td{
+body.page-node-type-cy-page table.archive tbody tr td{
   padding-left: 10px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive tbody tr td .col-1{
+body.page-node-type-cy-page table.archive tbody tr td .col-1{
   float: left;
   font-weight: bold;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive tbody tr td .col-2{
+body.page-node-type-cy-page table.archive tbody tr td .col-2{
   float: right;
   padding-right: 5px;
   font-weight: bold;
@@ -896,14 +879,44 @@ body.path-file-search .region-content .view-header button.btn-info {
     }
     /*stcon-2016 image*/
     /*edi-procedure-table*/
-    #content-main article .content table.edi-procedure.table-striped tbody tr td{
+    body.page-node-type-cy-page table.edi-procedure.table-striped tbody tr td{
       min-height: 60px;
     }
-     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.edi-procedure {
+     body.page-node-type-cy-page table.edi-procedure {
       width: 100%;
     }
     /*end of edi-procedure-table*/
+    /*need-help table */
+    body.page-node-type-cy-page table.need-help {
+      width: 100%;
+    }
+    /*end nedd-help*/
+    /*eco-system*/
+    body.page-node-type-cy-page .table-responsive span.file-link a{
+      word-wrap: break-word;
+    }
+
+
+
+
+    .field--item p u a{
+      display: block;
+      word-wrap: break-word;
+    }
+     body.page-node-type-cy-page table.need-help .need-td-3 {
+    width: 100% !important;
+    padding-bottom: 5px;
+    }
+    table.need-help tbody tr.tr-bcgd{
+      display: none;
+    }
+
+    /*end need-help*/
+    /*stcon-14*/
+    #content-main article .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all li.ui-state-default.ui-corner-top{
+          white-space: normal;
+    }
 
 
 
@@ -925,6 +938,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     /*End of footer*/
 }
 /* End of Responsive for Mobile*/
+
 
 /* Start of Responsive for Tablet*/
 @media only screen and (min-width: 768px) and (max-width: 1023px){
@@ -1008,12 +1022,35 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main article .content table.edi-procedure.table-striped tbody tr td{
       min-height: 60px;
     }
-     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+     section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
      .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.edi-procedure {
       width: 100%;
     }
     /*end of edi-procedure-table*/
-
+    /*need-help table */
+    table.need-help {
+    width: 100%;
+    }
+     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item p u a{
+      display: block;
+    }
+    table.need-help .need-td-3 {
+    width: 100%;
+    padding-bottom: 5px;
+    }
+    /*end need-help*/
+    /*stcon-14*/
+    #content-main article .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all li.ui-state-default.ui-corner-top.ui-tabs-active.ui-state-active{
+          white-space: normal;
+    }
+    /*eco-system*/
+    body.page-node-type-cy-page .table-responsive span.file-link a{
+      word-wrap: break-word;
+    }
+    #content-main .quickedit-field{
+      text-align: left;
+    }
 
 
     .view-home-page-menu-icons .view-content .views-row{
@@ -1100,6 +1137,31 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main .region.region-content .views-element-container.form-group .view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content{
       margin: 0 4.5%;
     }
+    /*table edi-procedure*/
+    body.page-node-type-cy-page table.edi-procedure{
+      width: 100%;
+    }
+    /* end edi-procedure*/
+    /*need-help table*/
+    body.page-node-type-cy-page table.need-help {
+    width: 100%;
+    }
+    body.page-node-type-cy-page table.need-help tr{
+      text-align: left;
+    }
+    /*end need-help table*/
+    /*eco-system*/
+    #content-main .quickedit-field{
+      text-align: left;
+    }
+    
+
+  body.page-node-type-cy-page .table-responsive span.file-link a{
+      word-wrap: break-word;
+    }
+    /*end eco-system*/
+
+
     footer.footer.container{
         padding: 0.7em 0 0.7em 0;
         margin-top: 1em;
@@ -1180,6 +1242,11 @@ body.path-file-search .region-content .view-header button.btn-info {
       font-weight: normal;
       text-align: center;
     }
+    /*eco-system*/
+    #content-main .quickedit-field{
+      text-align: left;
+    }
+    /*end eco-system*/
 
     #content-main .region.region-content .views-element-container.form-group .view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content{
       margin: 0 4.5%;
