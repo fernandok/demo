@@ -212,11 +212,11 @@ nav#block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.active.open
 
 /*edi-engagement*/
 /*EDI-ENAGE image*/
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item p img.edi-img{
   width: 100%;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.edi-procedure thead tr th{
     background-color: #e8ebf1;
     border: 1px solid #eaeff2 !important;
@@ -224,12 +224,12 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
     text-align: center;
     padding: 8px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.edi-procedure{
   width: 53%;
 }
 /*edi-guidelines-specs*/
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.guide tbody tr:first-child{
     background-color: #e8ebf1;
     border: 1px solid #eaeff2 !important;
@@ -237,23 +237,23 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
     text-align: center;
     padding: 8px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.guide,.table-data{
   width: 700px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.table-data td.table-data-1{
   width: 300px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.table-data td.table-data-2{
   width: 200px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.table-data td.table-data-3{
   width: 150px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.guide tbody tr td p{
   margin-top: 10px;
 }
@@ -261,7 +261,7 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
 table.need-help{
   width: 60%;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.need-help tr.tr-bcgd{
   background-color: #e8ebf1;
   border: 1px solid #eaeff2 !important;
@@ -269,17 +269,17 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
   text-align: center;
   padding: 8px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.need-help .need-td-3{
   width: 26%;
 }
 /*archieve*/
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive{
   width: 100%;
   font-size: 12px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive tbody tr.bg-top{
     background-color: #e8ebf1;
     border: 1px solid #eaeff2 !important;
@@ -287,16 +287,16 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
     text-align: center;
     padding: 8px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive tbody tr td{
   padding-left: 10px;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive tbody tr td .col-1{
   float: left;
   font-weight: bold;
 }
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.archive tbody tr td .col-2{
   float: right;
   padding-right: 5px;
@@ -887,22 +887,22 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main article .content table.edi-procedure.table-striped tbody tr td{
       min-height: 60px;
     }
-     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+     section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
      .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.edi-procedure {
       width: 100%;
     }
     /*end of edi-procedure-table*/
     /*need-help table */
-    section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content 
-    .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.need-help {
+    section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content 
+    .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.need-help {
     width: 100%;
     }
-    .field--item.quickedit-field p u a{
+    .field--item p u a{
       display: block;
       word-wrap: break-word;
     }
-     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content 
-    .field.field--name-body.field--type-text-with-summary.field--label-hidden.quickedit-field table.need-help .need-td-3 {
+     section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content 
+    .field.field--name-body.field--type-text-with-summary.field--label-hidden table.need-help .need-td-3 {
     width: 100%;
     padding-bottom: 5px;
     }
@@ -1021,7 +1021,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main article .content table.edi-procedure.table-striped tbody tr td{
       min-height: 60px;
     }
-     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
+     section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
      .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.edi-procedure {
       width: 100%;
     }
@@ -1030,7 +1030,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     table.need-help {
     width: 100%;
     }
-     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field p u a{
+     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item p u a{
       display: block;
     }
     table.need-help .need-td-3 {
