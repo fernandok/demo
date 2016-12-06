@@ -1,0 +1,11 @@
+name: Custom Solr Search
+type: module
+description: Custom Solr Search
+# core: 8.x
+package: Custom
+
+# Information added by Drupal.org packaging script on 2016-06-13
+version: '8.x-1.1'
+core: '8.x'
+project: 'custom_solr_search'
+datestamp: 1465822870
