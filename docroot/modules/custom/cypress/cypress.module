@@ -95,6 +95,7 @@ function get_saml_user_attributes($account) {
   $user_roles = array(
       '11' => 'administrator',
       '21' => 'cypress_employees',
+      '106' => 'mysites',
       '111' => 'all_distributors',
       '116' => 'sales_rep',
   );
