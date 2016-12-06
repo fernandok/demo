@@ -601,6 +601,7 @@ body.path-file-search .region-content div.view-filters.form-group div#edit-actio
 }
 body.path-file-search .region-content div.view-filters.form-group button#edit-submit-file-search {
   padding: 0.45em 3em;
+  margin: 0;
 }
 body.path-file-search .region-content div.view-filters.form-group .input-group-addon>span.glyphicon-refresh{
   display: block;
@@ -612,12 +613,12 @@ body.path-file-search .region-content .view-header button.btn-info {
   padding: 0 1em;
   margin: 0 1.2em 1em;
 }
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
   body.path-file-search .region-content div.view-filters.form-group div.form-item {
     width: 45%;
   }
 }
-@media only screen and (min-width: 425px) {
+@media only screen and (max-width: 425px){
   body.path-file-search .region-content div.view-filters.form-group div.form-item {
     width: 100%;
   }
@@ -859,15 +860,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     .view-home-page-menu-icons .view-content .views-row{
       /*margin: 0 auto;*/
     }
-    /*Title page header*/
-    .main-container.container .row section#content-main.col-sm-9 .region.region-content h1.page-header {
-    font-size: 3.125rem;
-    line-height: 3.325rem;
-    margin-bottom: 1.25rem;
-    font-weight: normal;
-    font-family: "open_sanssemibold",Arial,sans-serif;
-    }
-    /*End of Title page header*/
     body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap{
       width: 100%;
       min-height: 208px;
