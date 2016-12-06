@@ -258,17 +258,16 @@ section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted
   margin-top: 10px;
 }
 /*need-help*/
-section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
-.field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.need-help{
+table.need-help{
   width: 60%;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.need-help tr.tr-bcgd{
   background-color: #e8ebf1;
-    border: 1px solid #eaeff2 !important;
-    vertical-align: middle;
-    text-align: center;
-    padding: 8px;
+  border: 1px solid #eaeff2 !important;
+  vertical-align: middle;
+  text-align: center;
+  padding: 8px;
 }
 section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content
 .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item  table.need-help .need-td-3{
@@ -901,6 +900,30 @@ body.path-file-search .region-content .view-header button.btn-info {
       width: 100%;
     }
     /*end of edi-procedure-table*/
+    /*need-help table */
+    section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content 
+    .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field table.need-help {
+    width: 100%;
+    }
+    .field--item.quickedit-field p u a{
+      display: block;
+      word-wrap: break-word;
+    }
+     section#content-main.col-sm-9 .region.region-content article.cy-page.is-promoted.full.clearfix .content 
+    .field.field--name-body.field--type-text-with-summary.field--label-hidden.quickedit-field table.need-help .need-td-3 {
+    width: 100%;
+    padding-bottom: 5px;
+    }
+    table.need-help tbody tr.tr-bcgd{
+      display: none;
+    }
+
+    /*end need-help*/
+    /*stcon-14*/
+    #content-main article .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all li.ui-state-default.ui-corner-top.ui-tabs-active.ui-state-active{
+          white-space: normal;
+    }
 
 
 
@@ -1010,6 +1033,23 @@ body.path-file-search .region-content .view-header button.btn-info {
       width: 100%;
     }
     /*end of edi-procedure-table*/
+    /*need-help table */
+    table.need-help {
+    width: 100%;
+    }
+     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item.quickedit-field p u a{
+      display: block;
+    }
+    table.need-help .need-td-3 {
+    width: 100%;
+    padding-bottom: 5px;
+    }
+    /*end need-help*/
+    /*stcon-14*/
+    #content-main article .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all li.ui-state-default.ui-corner-top.ui-tabs-active.ui-state-active{
+          white-space: normal;
+    }
 
 
 
@@ -1097,6 +1137,14 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main .region.region-content .views-element-container.form-group .view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content{
       margin: 0 4.5%;
     }
+    /*need-help table*/
+    table.need-help {
+    width: 100%;
+    }
+    table.need-help tr{
+      text-align: left;
+    }
+    /*end need-help table*/
     footer.footer.container{
         padding: 0.7em 0 0.7em 0;
         margin-top: 1em;
