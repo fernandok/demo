@@ -73,6 +73,10 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           }
         }
 
+        if(empty($paragraph->get('field_file'))
+            || empty($paragraph->get('field_file')->get(0))) {
+          continue;
+        }
         $file_obj =$paragraph->get('field_file')->get(0)->getValue();
         $file_id = $file_obj['target_id'];
         $file =  \Drupal\file\Entity\File::load($file_id);
