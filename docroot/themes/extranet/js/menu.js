@@ -45,13 +45,15 @@
 
     // Static file download link.
     $(document).scroll(function(){
-      var el = $('.static-download-all-files-wrapper:first'),
-          top = $('.download-all-files-wrapper:first').offset().top - $(document).scrollTop();
-      if (top < 100 && !el.is('.show')){
-          $(el).addClass('show');
-      }
-      if (top > 100 && el.is('.show')){
-          $(el).removeClass('show');
+      if ($('.static-download-all-files-wrapper:first').length != 0) {
+        var el = $('.static-download-all-files-wrapper:first'),
+            top = $('.download-all-files-wrapper:first').offset().top - $(document).scrollTop();
+        if (top < 100 && !el.is('.show')){
+            $(el).addClass('show');
+        }
+        if (top > 100 && el.is('.show')){
+            $(el).removeClass('show');
+        }
       }
     });
   });
