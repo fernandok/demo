@@ -110,19 +110,25 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
       $node_label = $items->getParent()->get('title')->getValue()[0]['value'];
       $url = Url::fromUserInput('/download_all_documents/' . $parent_node_id . '/' . $field_name);
       if (!empty($rows)) {
-        $elements[0]['download_all_documents'] = [
+        $download_all_docs = [
             '#theme' => 'cypress_download_all_docs',
             '#label' => $node_label,
             '#link' => $url,
         ];
-      }
-
-      if (!empty($rows)) {
-        $elements[1] = [
+        $elements[0]['download_all_documents_top'] = $download_all_docs;
+        $elements[1]['static_download_all_documents'] = [
+          '#markup' => '<div class="static-download-all-files-wrapper">
+              <a href="' . $url->toString() . '" title="Download all files">
+                <div class="download-all-icon"></div>
+              </a>
+            </div>',
+        ];
+        $elements[2] = [
           '#theme' => 'table__file_formatter_table',
           '#header' => $header,
           '#rows' => $rows,
         ];
+        $elements[3]['download_all_documents_bottom'] = $download_all_docs;
       }
     }
 

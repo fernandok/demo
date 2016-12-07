@@ -388,10 +388,21 @@ body.path-frontpage h1.page-header {
 .download-all-files>div{
   display: inline-block;
 }
-.download-all-files .download-all-icon {
+.download-all-files .download-all-icon, .static-download-all-files-wrapper .download-all-icon {
   width: 28px;
   height: 29px;
   background: url('../images/download-icon.png');
+}
+.static-download-all-files-wrapper {
+  padding: 0.5em;
+  background-color: #09357A;
+  display: none;
+}
+.static-download-all-files-wrapper.show {
+  position: fixed;
+  top: 6.3em;
+  right: 0;
+  z-index: 100;
 }
 .download-all-files .download-label {
   font-size: 0.95em;
