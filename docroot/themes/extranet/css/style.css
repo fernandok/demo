@@ -274,14 +274,17 @@ body.page-node-type-cy-page table.archive tbody tr.bg-top{
     text-align: center;
     padding: 8px;
 }
-body.page-node-type-cy-page table.archive tbody tr td{
+body.page-node-type-cy-page table.archive  thead tr th,table.archive td{
   padding-left: 10px;
 }
-body.page-node-type-cy-page table.archive tbody tr td .col-1{
+body.page-node-type-cy-page table.archive  thead tr th.date p{
+  text-align: center;
+}
+body.page-node-type-cy-page table.archive  thead tr th .col-1{
   float: left;
   font-weight: bold;
 }
-body.page-node-type-cy-page table.archive tbody tr td .col-2{
+body.page-node-type-cy-page table.archive  thead tr th .col-2{
   float: right;
   padding-right: 5px;
   font-weight: bold;
@@ -1048,10 +1051,11 @@ body.path-file-search .region-content .view-header button.btn-info {
     body.page-node-type-cy-page .table-responsive span.file-link a{
       word-wrap: break-word;
     }
-    #content-main .quickedit-field{
+    #content-main .field--item{
       text-align: left;
     }
 
+  
 
     .view-home-page-menu-icons .view-content .views-row{
       margin: 0 2%;
@@ -1110,11 +1114,19 @@ body.path-file-search .region-content .view-header button.btn-info {
     position: absolute;
     left: 89%;
     }
-    #content-main{
+     body.path-frontpage #content-main {
         width: 70%;
-        text-align: center;
+        /*text-align: center;*/
     }
-
+    body.page-node-type-cy-page #content-main{
+      width: 70%;
+    }
+    body.page-node-type-stcon #content-main{
+      width: 70%;
+    }
+    body.path-file-search #content-main{
+      width: 70%;
+    }
 
     #content-main  .view-content .table-responsive{
       width: 100%;
