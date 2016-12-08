@@ -1092,7 +1092,11 @@ body.path-file-search .region-content .view-header button.btn-info {
     text-align: left !important;
     }
     /*end search label*/
-
+    /*npi-corporate presentations--files alignment*/
+      body.page-node-type-cy-page .field--label{
+        text-align: left;
+      }
+    /* end of npi-corporate presentations*/
 
     .view-home-page-menu-icons .view-content .views-row{
       margin: 0 2%;
