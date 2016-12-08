@@ -226,27 +226,17 @@ body.page-node-type-cy-page table.edi-procedure{
   width: 53%;
 }
 /*edi-guidelines-specs*/
-body.page-node-type-cy-page  table.guide tbody tr:first-child{
-    background-color: #e8ebf1;
-    border: 1px solid #eaeff2 !important;
-    vertical-align: middle;
-    text-align: center;
-    padding: 8px;
-}
-body.page-node-type-cy-page table.guide,.table-data{
+body.page-node-type-cy-page table.guide{
   width: 700px;
 }
-body.page-node-type-cy-page table.table-data td.table-data-1{
-  width: 300px;
-}
-body.page-node-type-cy-page table.table-data td.table-data-2{
+body.page-node-type-cy-page table.guide td.table-data-1{
   width: 200px;
 }
-body.page-node-type-cy-page table.table-data td.table-data-3{
-  width: 150px;
+body.page-node-type-cy-page table.guide td.table-data-2{
+  width: 200px;
 }
-body.page-node-type-cy-page table.guide tbody tr td p{
-  margin-top: 10px;
+body.page-node-type-cy-page table.guide td.table-data-3{
+  width: 150px;
 }
 /*need-help*/
 table.need-help{
@@ -889,6 +879,18 @@ body.path-file-search .region-content .view-header button.btn-info {
       width: 100%;
     }
     /*end of edi-procedure-table*/
+    /*edi guideline-specs*/
+    body.page-node-type-cy-page table.guide td.table-data-1{
+      width: 100%;
+      padding-bottom: 32px;
+    }
+    body.page-node-type-cy-page table.guide td.table-data-2{
+      width: 100%;
+    }
+    body.page-node-type-cy-page table.guide td.table-data-3{
+      width: 100%;
+    }
+    /*end of edi-guideline-specs*/
     /*need-help table */
     body.page-node-type-cy-page table.need-help {
       width: 100%;
@@ -1022,14 +1024,24 @@ body.path-file-search .region-content .view-header button.btn-info {
     }
     /*stcon-2016 image*/
     /*edi-procedure-table*/
-    #content-main article .content table.edi-procedure.table-striped tbody tr td{
+    body.page-node-type-cy-page table.edi-procedure.table-striped tbody tr td{
       min-height: 60px;
     }
-     section#content-main.col-sm-9 .region.region-content article.cy-page.full.clearfix .content
-     .field.field--name-body.field--type-text-with-summary.field--label-hidden.field--item table.edi-procedure {
+     body.page-node-type-cy-page table.edi-procedure {
       width: 100%;
     }
     /*end of edi-procedure-table*/
+    /*edi-guidelines*/
+    body.page-node-type-cy-page table.guide td.table-data-1{
+      width: 100%;
+    }
+    body.page-node-type-cy-page table.guide td.table-data-2{
+      width: 100%;
+    }
+    body.page-node-type-cy-page table.guide td.table-data-3{
+      width: 100%;
+    }
+    /*end of edi-guidelines*/
     /*need-help table */
     table.need-help {
     width: 100%;
