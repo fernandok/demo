@@ -871,6 +871,11 @@ body.path-file-search .region-content .view-header button.btn-info {
       width: 100%;
     }
     /*stcon-2016 image*/
+     /*edi-support-b2b-image*/
+    img.edi-support-b2b-img{
+      width: 100%;
+    }
+    /*edi-support-b2b-image*/
     /*edi-procedure-table*/
     body.page-node-type-cy-page table.edi-procedure.table-striped tbody tr td{
       min-height: 60px;
@@ -1023,6 +1028,11 @@ body.path-file-search .region-content .view-header button.btn-info {
       width: 100%;
     }
     /*stcon-2016 image*/
+    /*edi-support-b2b-image*/
+    img.edi-support-b2b-img{
+      width: 100%;
+    }
+    /*edi-support-b2b-image*/
     /*edi-procedure-table*/
     body.page-node-type-cy-page table.edi-procedure.table-striped tbody tr td{
       min-height: 60px;
@@ -1161,6 +1171,12 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main .region.region-content .views-element-container.form-group .view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content{
       margin: 0 4.5%;
     }
+
+     /*edi-support-b2b-image*/
+    img.edi-support-b2b-img{
+      width: 100%;
+    }
+    /*edi-support-b2b-image*/
     /*table edi-procedure*/
     body.page-node-type-cy-page table.edi-procedure{
       width: 100%;
