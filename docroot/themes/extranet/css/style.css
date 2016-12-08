@@ -647,9 +647,9 @@ body.path-file-search .region-content .view-header button.btn-info {
     }
     .navbar-default .navbar-toggle .icon-bar {
       background-color: #09357a;
-      height: 6px;
+      height: 4px;
       width: 100%;
-      margin: 0.5em 0;
+      margin: 0.4em 0;
       -webkit-transform: rotate(0deg);
       -moz-transform: rotate(0deg);
       -o-transform: rotate(0deg);
@@ -688,7 +688,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
     nav#block-cypressmainnavigation-2 ul.menu.nav{
       background-color: #ffffff;
-      padding: 1em 0 1em 22%;
+      padding: 1em 0 1em 18%;
     }
     header#navbar.navbar.navbar-default.container .navbar-collapse.collapse.in .region.region-navigation-collapsible .visible-xs
     nav#block-cypressmainnavigation-2 ul.menu.nav li.expanded.dropdown a:hover{
@@ -732,7 +732,7 @@ body.path-file-search .region-content .view-header button.btn-info {
       float: left;
       background-color: initial;
       position: absolute;
-      top: 36px;
+      top: 40px;
       left: 6%;
       border: none;
       z-index: 999;
@@ -916,7 +916,7 @@ body.path-file-search .region-content .view-header button.btn-info {
 
     /*end need-help*/
     /*stcon-14*/
-    #content-main article .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    #content-main article .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
     ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all li.ui-state-default.ui-corner-top{
           white-space: normal;
     }
@@ -1043,7 +1043,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     }
     /*end need-help*/
     /*stcon-14*/
-    #content-main article .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all 
+    #content-main article .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
     ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all li.ui-state-default.ui-corner-top.ui-tabs-active.ui-state-active{
           white-space: normal;
     }
@@ -1055,7 +1055,7 @@ body.path-file-search .region-content .view-header button.btn-info {
       text-align: left;
     }
 
-  
+
 
     .view-home-page-menu-icons .view-content .views-row{
       margin: 0 2%;
@@ -1166,7 +1166,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main .quickedit-field{
       text-align: left;
     }
-    
+
 
   body.page-node-type-cy-page .table-responsive span.file-link a{
       word-wrap: break-word;
