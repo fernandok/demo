@@ -1077,6 +1077,11 @@ body.path-file-search .region-content .view-header button.btn-info {
     ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all li.ui-state-default.ui-corner-top.ui-tabs-active.ui-state-active{
           white-space: normal;
     }
+    /*general sessions & fae*/
+    body.page-node-type-stcon div.field .field--label {
+    text-align: left;
+    }
+    /*end stcon-14*/
     /*eco-system*/
     body.page-node-type-cy-page .table-responsive span.file-link a{
       word-wrap: break-word;
