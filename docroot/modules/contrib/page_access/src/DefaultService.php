@@ -21,6 +21,7 @@ class DefaultService {
    *   User object.
    *
    * @return array|null
+   *   Returns array or null value.
    */
   function get_user_node_access(NodeInterface $node, AccountInterface $account) {
     $page_access_settings = page_access_get_node_defaults($node);

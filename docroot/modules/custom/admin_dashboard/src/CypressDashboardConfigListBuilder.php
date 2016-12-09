@@ -30,4 +30,5 @@ class CypressDashboardConfigListBuilder extends ConfigEntityListBuilder {
     // You probably want a few more properties here...
     return $row + parent::buildRow($entity);
   }
+
 }

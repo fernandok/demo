@@ -78,7 +78,7 @@ class CypressDashboardConfigForm extends EntityForm {
           '%label' => $cypress_dashboard_config->label(),
         ]));
     }
-    $form_state->setRedirectUrl($cypress_dashboard_config->urlInfo('collection'));
+    $form_state->setRedirectUrl($cypress_dashboard_config->toUrl('collection'));
   }
 
 }

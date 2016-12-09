@@ -43,4 +43,5 @@ class Zip extends BaseZip {
   public function close() {
     $this->zip->close();
   }
+
 }

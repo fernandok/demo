@@ -9,9 +9,10 @@ use Drupal\Core\Form\FormStateInterface;
 use Drupal\page_access\Entity\PageAccess;
 use Drupal\user\Entity\User;
 use Drupal\Core\Access\AccessResult;
+use Drupal\node\NodeInterface;
 
 /**
- * Implements hook_form_BASE_FORM_ID_alter() for \Drupal\node\NodeForm.
+ * Implements hook_form_BASE_FORM_ID_alter().
  *
  * Adds page access fields to the node form.
  *
@@ -158,7 +159,9 @@ function page_access_form_node_form_alter(&$form, FormStateInterface &$form_stat
  * Add more user submit handler.
  *
  * @param array $form
+ *   Array of forms.
  * @param \Drupal\Core\Form\FormStateInterface $form_state
+ *   To set values in $formstate.
  */
 function page_access_add_user(array $form, FormStateInterface &$form_state) {
   $page_access_users_count = $form_state->get('page_access_users_count');
@@ -186,7 +189,7 @@ function page_access_remove_user(array $form, FormStateInterface &$form_state) {
  * @param array $form
  * @param \Drupal\Core\Form\FormStateInterface $form_state
  *
- * @return mixed
+ * @return int
  */
 function page_access_add_or_remove_user_callback(array $form, FormStateInterface &$form_state) {
   return $form['page_access']['list'];
@@ -201,7 +204,7 @@ function page_access_add_or_remove_user_callback(array $form, FormStateInterface
  * @return array
  *   An array that contains default values for the page access form.
  */
-function page_access_get_node_defaults($node) {
+function page_access_get_node_defaults(NodeInterface $node) {
   $node_id = $node->id();
   $defaults = [];
   if (empty($node_id)) {
@@ -283,9 +286,11 @@ function _page_access_node_save($node_id, $values, $entity_id) {
 /**
  * Method to get use object for user autocomplete field.
  *
- * @param $uid
+ * @param int $uid
+ *   Get user id.
  *
  * @return \Drupal\Core\Entity\EntityInterface|null|string|static
+ *   Return static, null or string value.
  */
 function _get_user_reference_default_value($uid) {
   if (is_numeric($uid)) {
@@ -315,7 +320,7 @@ function _get_user_reference_default_value($uid) {
  *
  * @ingroup node_access
  */
-function page_access_node_access(\Drupal\node\NodeInterface $node, $op, \Drupal\Core\Session\AccountInterface $account) {
+function page_access_node_access(NodeInterface $node, $op, \Drupal\Core\Session\AccountInterface $account) {
 
   switch ($op) {
     case 'view':

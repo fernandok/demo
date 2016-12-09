@@ -4,8 +4,9 @@ namespace Drupal\cypress\Plugin\Field\FieldFormatter;
 
 use Drupal\file\Plugin\Field\FieldFormatter\TableFormatter;
 use Drupal\Core\Field\FieldItemListInterface;
-use Drupal\Core\Link;
 use Drupal\Core\Url;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\file\Entity\File;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 
 /**
@@ -42,7 +43,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         t('Title'),
         t('Language'),
         t('File size'),
-        t('Last updated')
+        t('Last updated'),
       ];
       $rows = [];
       foreach ($paragraphs as $delta => $paragraph) {
@@ -50,42 +51,42 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         if ($is_akamai) {
           $akamai_elements[] = [
             'akamai_uri' => $paragraph->get('field_akamai_uri')->get(0)->getValue()['value'],
-            'akamai_description' =>  $paragraph->get('field_akamai_description')->get(0)->getValue()['value'],
+            'akamai_description' => $paragraph->get('field_akamai_description')->get(0)->getValue()['value'],
           ];
           continue;
         }
 
         $bu = '';
         $division = '';
-        if(!empty($paragraph->get('field_bu'))
+        if (!empty($paragraph->get('field_bu'))
             && !empty($paragraph->get('field_bu')->get(0))) {
           $bu_tid = $paragraph->get('field_bu')->get(0)->getValue()['target_id'];
-          if(!empty(\Drupal\taxonomy\Entity\Term::load($bu_tid))) {
-            $bu = \Drupal\taxonomy\Entity\Term::load($bu_tid)->get('name')->value;
+          if (!empty(Term::load($bu_tid))) {
+            $bu = Term::load($bu_tid)->get('name')->value;
           }
         }
 
-        if(!empty($paragraph->get('field_div'))
+        if (!empty($paragraph->get('field_div'))
             && !empty($paragraph->get('field_div')->get(0))) {
           $div_tid = $paragraph->get('field_div')->get(0)->getValue()['target_id'];
-          if(!empty(\Drupal\taxonomy\Entity\Term::load($div_tid))) {
-            $division = \Drupal\taxonomy\Entity\Term::load($div_tid)->get('name')->value;
+          if (!empty(Term::load($div_tid))) {
+            $division = Term::load($div_tid)->get('name')->value;
           }
         }
 
-        if(empty($paragraph->get('field_file'))
+        if (empty($paragraph->get('field_file'))
             || empty($paragraph->get('field_file')->get(0))) {
           continue;
         }
-        $file_obj =$paragraph->get('field_file')->get(0)->getValue();
+        $file_obj = $paragraph->get('field_file')->get(0)->getValue();
         $file_id = $file_obj['target_id'];
-        $file =  \Drupal\file\Entity\File::load($file_id);
+        $file = File::load($file_id);
         $description = $file_obj['description'];
         $language = '';
         if (!empty($paragraph->get('field_language')->get(0))) {
           $language_tid = $paragraph->get('field_language')->get(0)->getValue()['target_id'];
-          if(!empty(\Drupal\taxonomy\Entity\Term::load($language_tid))) {
-            $language = \Drupal\taxonomy\Entity\Term::load($language_tid)->get('name')->value;
+          if (!empty(Term::load($language_tid))) {
+            $language = Term::load($language_tid)->get('name')->value;
           }
         }
         $last_updated = $file->get('changed')->get(0)->getValue()['value'];
@@ -104,7 +105,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           ],
           ['data' => $language],
           ['data' => format_size($file->getSize())],
-          ['data' => date('Y/m/d', $last_updated)]
+          ['data' => date('Y/m/d', $last_updated)],
         ];
       }
 
@@ -115,9 +116,9 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
       $url = Url::fromUserInput('/download_all_documents/' . $parent_node_id . '/' . $field_name);
       if (!empty($rows)) {
         $download_all_docs = [
-            '#theme' => 'cypress_download_all_docs',
-            '#label' => $node_label,
-            '#link' => $url,
+          '#theme' => 'cypress_download_all_docs',
+          '#label' => $node_label,
+          '#link' => $url,
         ];
         $elements[0]['download_all_documents_top'] = $download_all_docs;
         $elements[1]['static_download_all_documents'] = [
@@ -135,19 +136,19 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         $elements[3]['download_all_documents_bottom'] = $download_all_docs;
       }
     }
+/*
+     $download_all_files_link = Link::fromTextAndUrl('Download All Documents', $url)->toRenderable();
+     $download_all_files_link['#attributes']['class'] = ['download-all-files'];
 
-    // $download_all_files_link = Link::fromTextAndUrl('Download All Documents', $url)->toRenderable();
-    // $download_all_files_link['#attributes']['class'] = ['download-all-files'];
-
-    // Akamai files.
-    // foreach ($akamai_elements as $akamai_element) {
-    //   $elements[] = [
-    //     '#theme' => 'cypress_akamai_file_download',
-    //     '#uri' => $akamai_element['akamai_uri'],
-    //     '#description' => $akamai_element['akamai_description'],
-    //   ];
-    // }
-
+     Akamai files.
+     foreach ($akamai_elements as $akamai_element) {
+       $elements[] = [
+         '#theme' => 'cypress_akamai_file_download',
+         '#uri' => $akamai_element['akamai_uri'],
+         '#description' => $akamai_element['akamai_description'],
+       ];
+     }
+*/
     return $elements;
   }
 

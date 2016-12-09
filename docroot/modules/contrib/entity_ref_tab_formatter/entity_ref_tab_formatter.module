@@ -1,4 +1,10 @@
 <?php
+
+/**
+ * @file
+ * Includes templates.
+ */
+
 /**
  * Implements hook_theme().
  */

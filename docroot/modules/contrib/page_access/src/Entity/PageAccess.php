@@ -76,9 +76,11 @@ class PageAccess extends ContentEntityBase implements PageAccessInterface {
   /**
    * Method to load page access entity using node id.
    *
-   * @param $nid
+   * @param int $nid
+   *   Node id of page.
    *
    * @return \Drupal\Core\Entity\EntityInterface[]
+   *   Returns property of node.
    */
   public function loadByNid($nid) {
     $page_access_storage = \Drupal::entityManager()->getStorage('page_access');
@@ -88,7 +90,8 @@ class PageAccess extends ContentEntityBase implements PageAccessInterface {
   /**
    * Method to get value of page access settings.
    *
-   * @return mixed
+   * @return array
+   *   Returns Array of Values.
    */
   public function value() {
     return $this->get('value')->get(0)->toArray();
