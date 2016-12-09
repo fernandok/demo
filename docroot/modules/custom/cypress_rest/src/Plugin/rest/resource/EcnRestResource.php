@@ -3,6 +3,7 @@
 namespace Drupal\cypress_rest\Plugin\rest\resource;
 
 use Drupal\Core\Entity\Entity;
+use Drupal\node\Entity\Node;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\file\Entity\File;
 use Drupal\file\FileUsage\FileUsageBase;
@@ -11,7 +12,6 @@ use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
-use Symfony\Component\HttpKernel\Exception\HttpException;
 use Psr\Log\LoggerInterface;
 
 /**
@@ -22,7 +22,7 @@ use Psr\Log\LoggerInterface;
  *   label = @Translation("Ecn rest resource"),
  *   uri_paths = {
  *     "canonical" = "/api/ecn",
-*      "https://www.drupal.org/link-relations/create" = "//api/ecn"
+ *      "https://www.drupal.org/link-relations/create" = "//api/ecn"
  *   }
  * )
  */
@@ -143,7 +143,7 @@ class EcnRestResource extends ResourceBase {
       else {
         $page_storage = \Drupal::entityManager()->getStorage('node');
         $page = $page_storage->load($node['nid']);
-        if (!($page instanceof \Drupal\node\Entity\Node) || $page->getType() != 'cy_page') {
+        if (!($page instanceof Node) || $page->getType() != 'cy_page') {
           $response[] = ['error' => 'There is no node found for the given node id ' . $node['nid'] . '.'];
           continue;
         }
@@ -222,10 +222,9 @@ class EcnRestResource extends ResourceBase {
   /**
    * Method to validate node documents.
    *
-   * @param integer $node
+   * @param int $node
    *   Node id.
-   *
-   * @param array $document
+   * @param array $doc
    *   Document to be validated.
    *
    * @return string
@@ -244,7 +243,7 @@ class EcnRestResource extends ResourceBase {
           'doc_type',
           'family',
           'language',
-          'spec_revision'
+          'spec_revision',
         ];
         break;
 
@@ -258,13 +257,13 @@ class EcnRestResource extends ResourceBase {
           'doc_type',
           'family',
           'language',
-          'spec_revision'
+          'spec_revision',
         ];
         break;
 
       case 'delete':
         $fields_to_validate = [
-          'file_id'
+          'file_id',
         ];
         break;
     }
@@ -287,7 +286,7 @@ class EcnRestResource extends ResourceBase {
    *
    * @param object $node
    *   Node object.
-   * @param integer $value
+   * @param int $value
    *   File id.
    *
    * @return string
@@ -299,7 +298,7 @@ class EcnRestResource extends ResourceBase {
     if (empty($value)) {
       $error = 'File id is required for update/delete operation.';
     }
-    else{
+    else {
       $this->doc_paragraph_id[$value] = array_search($value, $this->paragraphs_file_ids[$nid]);
       if (empty($this->doc_paragraph_id[$value])) {
         $error = 'No file found associated with node for the given file id ' . $value . '.';
@@ -314,7 +313,7 @@ class EcnRestResource extends ResourceBase {
    *
    * @param object $node
    *   Node object.
-   * @param integer $value
+   * @param int $value
    *   File id.
    *
    * @return string
@@ -335,7 +334,7 @@ class EcnRestResource extends ResourceBase {
    *
    * @param object $node
    *   Node object.
-   * @param integer $value
+   * @param int $value
    *   File id.
    *
    * @return string
@@ -356,7 +355,7 @@ class EcnRestResource extends ResourceBase {
    *
    * @param object $node
    *   Node object.
-   * @param integer $value
+   * @param int $value
    *   File id.
    *
    * @return string
@@ -377,7 +376,7 @@ class EcnRestResource extends ResourceBase {
    *
    * @param object $node
    *   Node object.
-   * @param integer $value
+   * @param int $value
    *   File id.
    *
    * @return string
@@ -398,7 +397,7 @@ class EcnRestResource extends ResourceBase {
    *
    * @param object $node
    *   Node object.
-   * @param integer $value
+   * @param int $value
    *   File id.
    *
    * @return string
@@ -419,7 +418,7 @@ class EcnRestResource extends ResourceBase {
    *
    * @param object $node
    *   Node object.
-   * @param integer $value
+   * @param int $value
    *   File id.
    *
    * @return string
@@ -440,7 +439,7 @@ class EcnRestResource extends ResourceBase {
    *
    * @param object $node
    *   Node object.
-   * @param integer $value
+   * @param int $value
    *   File id.
    *
    * @return string
@@ -461,7 +460,7 @@ class EcnRestResource extends ResourceBase {
    *
    * @param object $node
    *   Node object.
-   * @param integer $value
+   * @param int $value
    *   File id.
    *
    * @return string
@@ -480,9 +479,9 @@ class EcnRestResource extends ResourceBase {
   /**
    * Method to process node documents.
    *
-   * @param integer $node
+   * @param int $page
    *   Node id.
-   * @param array $document
+   * @param array $doc
    *   Document to be processed.
    *
    * @return ResourceResponse
@@ -528,7 +527,7 @@ class EcnRestResource extends ResourceBase {
       'field_product_page_url' => $doc['product_page_url'],
       'field_product_tags' => $tags['product_tags'],
       'field_spec_number' => $doc['spec_number'],
-      'field_spec_revision' => $doc['spec_revision']
+      'field_spec_revision' => $doc['spec_revision'],
     ]);
     $paragraph->save();
     // Append new paragraph to node.
@@ -540,7 +539,7 @@ class EcnRestResource extends ResourceBase {
     // Return new file id.
     return [
       'spec_number' => $doc['spec_number'],
-      'file_id' => $file->id()
+      'file_id' => $file->id(),
     ];
   }
 
@@ -584,7 +583,7 @@ class EcnRestResource extends ResourceBase {
     // Return new file id.
     return [
       'spec_number' => $doc['spec_number'],
-      'file_id' => $file->id()
+      'file_id' => $file->id(),
     ];
   }
 
@@ -604,7 +603,7 @@ class EcnRestResource extends ResourceBase {
     if (empty($this->paragraphs[$nid])) {
       return [
         'spec_number' => $doc['spec_number'],
-        'error' => 'No file found associated with node for the given file id ' . $fid . '.'
+        'error' => 'No file found associated with node for the given file id ' . $fid . '.',
       ];
     }
     $paragraph->delete();
@@ -622,18 +621,20 @@ class EcnRestResource extends ResourceBase {
     // Return new file id.
     return [
       'spec_number' => $doc['spec_number'],
-      'file_id' => ''
+      'file_id' => '',
     ];
   }
 
   /**
    * Utility: find term by name and vid.
-   * @param null $name
-   *  Term name
-   * @param null $vid
-   *  Term vid
+   *
+   * @param string $name
+   *   Term name.
+   * @param int $vid
+   *   Term vid.
+   *
    * @return int
-   *  Term id or 0 if none.
+   *   Term id or 0 if none.
    */
   private function getTidByName($name = NULL, $vid = NULL) {
     $properties = [];
@@ -673,7 +674,7 @@ class EcnRestResource extends ResourceBase {
   /**
    * Method to delete file.
    *
-   * @param integer $fid
+   * @param int $fid
    *   File id.
    */
   private function deleteFile($fid) {

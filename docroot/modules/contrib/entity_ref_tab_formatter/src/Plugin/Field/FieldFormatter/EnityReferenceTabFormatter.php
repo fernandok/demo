@@ -1,10 +1,5 @@
 <?php
 
-/**
- * @file
- * Contains \Drupal\entity_ref_tab_formatter\Plugin\Field\FieldFormatter\EnityReferenceTabFormatter.
- */
-
 namespace Drupal\entity_ref_tab_formatter\Plugin\Field\FieldFormatter;
 
 use Drupal\Component\Utility\Html;
@@ -27,6 +22,7 @@ use Drupal\Core\Form\FormStateInterface;
  * )
  */
 class EnityReferenceTabFormatter extends FormatterBase {
+
   /**
    * {@inheritdoc}
    */
@@ -47,7 +43,7 @@ class EnityReferenceTabFormatter extends FormatterBase {
     $fieldSettings = $this->getFieldSettings();
     $entity_type_id = $fieldSettings['target_type'];
     $bundles = $fieldSettings['handler_settings']['target_bundles'];
-    foreach($bundles as $bundle) {
+    foreach ($bundles as $bundle) {
       $fields_title = $fields_body = array_keys($this->getEntityFields($entity_type_id, $bundle));
     }
     if (!empty($fields_title)) {
@@ -70,7 +66,7 @@ class EnityReferenceTabFormatter extends FormatterBase {
       '#options' => $fields_body,
       '#title' => $this->t('Selet the tab body field.'),
       '#default_value' => $this->getSetting('tab_body'),
-      //'#required' => TRUE,
+       // '#required' => TRUE,
     );
     $elements['style'] = array(
       '#type' => 'radios',
@@ -87,25 +83,25 @@ class EnityReferenceTabFormatter extends FormatterBase {
   /**
    * Helper function.
    */
-   private function getEntityFields($entity_type_id, $bundle) {
+  private function getEntityFields($entity_type_id, $bundle) {
     $entityManager = \Drupal::service('entity.manager');
     $fields = [];
     if (!empty($entity_type_id)) {
       $fields = array_filter(
         $entityManager->getFieldDefinitions($entity_type_id, $bundle), function ($field_definition) {
-        return $field_definition instanceof FieldConfigInterface;
-      }
+          return $field_definition instanceof FieldConfigInterface;
+        }
       );
     }
     return $fields;
   }
+
   /**
    * {@inheritdoc}
    */
   public function settingsSummary() {
     $summary = [];
     // Implement settings summary.
-
     return $summary;
   }
 
@@ -114,7 +110,7 @@ class EnityReferenceTabFormatter extends FormatterBase {
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
     $elements = [];
-    //dsm($this->getSettings());
+    // dsm($this->getSettings());
     $title_field = $this->getSetting('tab_title');
     $body_field = $this->getSetting('tab_body');
     $style = $this->getSetting('style');
@@ -127,15 +123,16 @@ class EnityReferenceTabFormatter extends FormatterBase {
       $body = $content->get($body_field)->getValue()[0]['value'];
       $tabs[$id] = array(
         'title' => $title,
-        'body' => $body
+        'body' => $body,
       );
-      //$elements[$delta] = ['#markup' => "Hell0"];
+      // $elements[$delta] = ['#markup' => "Hell0"];
     }
     switch ($style) {
       case 'tab':
         $theme = 'entity_ref_tab_formatter';
         $library = 'entity_ref_tab_formatter/tab_formatter';
         break;
+
       case 'accordion':
         $theme = 'entity_ref_accordion_formatter';
         $library = 'entity_ref_tab_formatter/accordion_formatter';
@@ -147,8 +144,8 @@ class EnityReferenceTabFormatter extends FormatterBase {
         '#theme' => $theme,
         '#tabs' => $tabs,
         '#attached' => array(
-          'library' =>  array(
-            $library
+          'library' => array(
+            $library,
           ),
         ),
       );

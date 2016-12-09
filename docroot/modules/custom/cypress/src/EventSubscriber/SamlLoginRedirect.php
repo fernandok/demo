@@ -7,7 +7,6 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 
-
 /**
  * Class SamlLoginRedirect.
  *
@@ -26,7 +25,9 @@ class SamlLoginRedirect implements EventSubscriberInterface {
 
   /**
    * Subscriber Callback for the event.
+   *
    * @param GetResponseEvent $event
+   *   Redirect to saml_login.
    */
   public function redirectToFrontPage(GetResponseEvent $event) {
     $request = $event->getRequest();

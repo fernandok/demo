@@ -23,7 +23,7 @@ class WorkWeekAndStock extends BlockBase {
     $yql_data = json_decode($yql_json_data);
     $price = '0.0';
     $change = '0.0';
-    foreach($yql_data as $data) {
+    foreach ($yql_data as $data) {
       $price = $data->results->row->price;
       $change = $data->results->row->change;
     }
@@ -32,7 +32,7 @@ class WorkWeekAndStock extends BlockBase {
       '#theme' => 'cypress_ww_cy',
       '#ww' => date('y') . date('W'),
       '#cy_price' => $price,
-      '#cy_change'  => $change
+      '#cy_change'  => $change,
     ];
     $build['#cache'] = ['max-age' => 0];
 

@@ -74,16 +74,23 @@ class CypressDashboardConfig extends ConfigEntityBase implements CypressDashboar
   protected $weight;
 
   /**
+   * The cypress dashboard url_path.
+   *
    * @return string
+   *   URL for admin dashboard.
    */
   public function getUrlPath() {
     return $this->url_path;
   }
 
   /**
+   * The cypress dashobard weight.
+   *
    * @return int
+   *   Weight where the dashboard will be placed.
    */
   public function getWeight() {
     return $this->weight;
   }
+
 }

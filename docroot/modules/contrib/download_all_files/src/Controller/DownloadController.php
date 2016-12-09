@@ -11,21 +11,22 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
 
 /**
-* Class DownloadController.
-*
-* @package Drupal\download_all_files\Controller
-*/
+ * Class DownloadController.
+ *
+ * @package Drupal\download_all_files\Controller
+ */
 class DownloadController extends ControllerBase {
 
   /**
    * Method archive all file associated with node and stream it for download.
    *
-   * @param $node_id
+   * @param int $node_id
    *   Node id.
-   * @param $field_name
+   * @param string $field_name
    *   Node file field name.
    *
    * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+   *    Return the error response.
    */
   public function downloadAllFiles($node_id, $field_name) {
     $node = Node::load($node_id);
@@ -74,7 +75,7 @@ class DownloadController extends ControllerBase {
         return new RedirectResponse($redirect_on_error_to);
       }
     }
-    else{
+    else {
       drupal_set_message('Zip file directory not found.', 'error', TRUE);
       return new RedirectResponse($redirect_on_error_to);
     }
@@ -83,10 +84,11 @@ class DownloadController extends ControllerBase {
   /**
    * Method to stream created zip file.
    *
-   * @param $file_path
+   * @param string $file_path
    *   File physical path.
    *
    * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+   *    Return binary file response.
    */
   protected function streamZipFile($file_path) {
     $binary_file_response = new BinaryFileResponse($file_path);

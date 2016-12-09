@@ -20,13 +20,13 @@ use Drupal\taxonomy\Entity\Vocabulary;
  */
 class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface {
 
-  protected $term_storage;
-  protected $token_service;
+  protected $termstorage;
+  protected $tokenservice;
 
   public function __construct(array $configuration, $plugin_id, $plugin_definition, TermStorageInterface $term_storage, $token_service) {
     parent::__construct($configuration, $plugin_id, $plugin_definition);
-    $this->term_storage = $term_storage;
-    $this->token_service = $token_service;
+    $this->termstorage = $term_storage;
+    $this->tokenservice = $token_service;
   }
 
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition){
@@ -120,7 +120,7 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
     $vocabularies_selected = $config['vocabularies'];
     $terms = [];
     foreach ($vocabularies_selected as $vid) {
-      $vocabulary_terms = $this->term_storage->loadTree($vid);
+      $vocabulary_terms = $this->termstorage->loadTree($vid);
       $connecting_string = \Drupal::request()->getPathInfo() . '?';
       switch ($vid) {
         case 'bu':
@@ -137,7 +137,7 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
       }
       $url = $connecting_string . $vid . '=';
       foreach ($vocabulary_terms as $term) {
-        $term = $this->term_storage->load($term->tid);
+        $term = $this->termstorage->load($term->tid);
         $term_url = $url . urlencode($term->getName());
         $terms[$term->id()] = [
           'name' => $term->getName(),

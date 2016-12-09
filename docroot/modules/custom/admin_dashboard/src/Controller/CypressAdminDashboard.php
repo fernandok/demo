@@ -11,10 +11,12 @@ use Drupal\Core\Controller\ControllerBase;
  */
 class CypressAdminDashboard extends ControllerBase {
 
-	/**
-	 * @var
-	 */
-	protected $config;
+  /**
+   * To get data from configuration.
+   *
+   * @var config
+   */
+  protected $config;
 
   /**
    * Showconfig.
@@ -23,17 +25,17 @@ class CypressAdminDashboard extends ControllerBase {
    *   Return Hello string.
    */
   public function showConfig() {
-		$db = \Drupal::database();
-		$query = $db->select('config', 'c')
-			->fields('c', array('data'))
-			->condition('c.name', 'admin_dashboard.cypress_dashboard_config.%', 'LIKE');
-		$results = $query->execute()->fetchAll();
-		$configuration = array();
-		foreach ($results as $result) {
-			$data = unserialize($result->data);
-			$configuration[$data['id']]['label'] = $data['label'];
-			$configuration[$data['id']]['url_path'] = $data['url_path'];
-		}
+    $db = \Drupal::database();
+    $query = $db->select('config', 'c')
+      ->fields('c', array('data'))
+      ->condition('c.name', 'admin_dashboard.cypress_dashboard_config.%', 'LIKE');
+    $results = $query->execute()->fetchAll();
+    $configuration = array();
+    foreach ($results as $result) {
+      $data = unserialize($result->data);
+      $configuration[$data['id']]['label'] = $data['label'];
+      $configuration[$data['id']]['url_path'] = $data['url_path'];
+    }
     return [
       '#theme' => 'cypress_admin_dashboard',
       '#configuration' => $configuration,
