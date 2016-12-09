@@ -142,8 +142,8 @@ function get_saml_user_attributes($account) {
  */
 function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_state) {
   $user_roles = \Drupal::currentUser()->getRoles();
-  if(in_array("administrator", $user_roles)) {
-    $elements_to_hide = ['email_to', 'custom_emails', 'requester', 'approver', 'promocode_status'];
+  if(!in_array("administrator", $user_roles)) {
+    $elements_to_hide = ['approver_mail', 'custom_emails', 'requester', 'approver', 'promocode_status', 'discount_amount', 'promo_code', 'requester_mail'];
     foreach ($elements_to_hide as $element) {
       $form['elements'][$element]['#access'] = FALSE;
     }
@@ -153,28 +153,44 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
   $mpnid = 0;
   // If CAT B check kit or silicon.
   if ($cat == 'cat_b') {
-    $query = \Drupal::database()->query('SELECT
-      fmpnid.field_mpnid_value as mpnid
-      from node n
-      join node__field_mpn fmpn
-      on n.nid = fmpn.entity_id
-      and n.vid = fmpn.revision_id
-      and n.type = \'my_samples\'
-      and fmpn.field_mpn_value = :mpn
-      join node__field_mpnid fmpnid
-      on fmpn.entity_id = fmpnid.entity_id
-      and fmpn.revision_id = fmpnid.revision_id', [':mpn' => $mpn]);
-    $results = $query->fetchAll();
-    foreach ($results as $result) {
-      $mpnid = $result->mpnid;
-    }
+    $mpnid = _get_mpnid($mpn);
     // For kit mpnid won't exist.
     if (!$mpnid) {
       $cat .= '_kit';
     }
   }
   $form['elements']['type']['#value'] = $cat;
+  array_unshift($form['actions']['submit']['#submit'], 'cypress_test_promocode');
   array_unshift($form['actions']['submit']['#submit'], 'cypress_promocode_submit_form');
+}
+
+/**
+ * Custom method to get mpnid.
+ *
+ * @param string $mpn
+ *   Marketing part number.
+ *
+ * @return integer
+ *   Marketing part number id.
+ */
+function _get_mpnid($mpn) {
+  $mpnid = 0;
+  $query = \Drupal::database()->query('SELECT
+    fmpnid.field_mpnid_value as mpnid
+    from node n
+    join node__field_mpn fmpn
+    on n.nid = fmpn.entity_id
+    and n.vid = fmpn.revision_id
+    and n.type = \'my_samples\'
+    and fmpn.field_mpn_value = :mpn
+    join node__field_mpnid fmpnid
+    on fmpn.entity_id = fmpnid.entity_id
+    and fmpn.revision_id = fmpnid.revision_id', [':mpn' => $mpn]);
+  $results = $query->fetchAll();
+  foreach ($results as $result) {
+    $mpnid = $result->mpnid;
+  }
+  return $mpnid;
 }
 
 /**
@@ -188,15 +204,15 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
 function cypress_promocode_submit_form($form, $form_state) {
   $form_values = $form_state->getValues();
   $cat = $form_values['type'];
+  $approvers = [];
+  $discount_amount = 0;
+  $promocode = '';
   if ($cat == 'cat_a') {
-    $query = \Drupal::database()->query('SELECT u.mail
-      FROM users_field_data u
-      join user__field_legacy_uid uli
-      on u.uid = uli.entity_id and uli.field_legacy_uid_value =
-      (SELECT
+    // Query to get approver mail for CAT A
+    $query = \Drupal::database()->query('SELECT
         DISTINCT
         case
-        when palt.field_primaryapproverleaveto_value <= NOW() and palf.field_primaryapproverleavefrom_value >= NOW()
+        when palt.field_primaryapproverleaveto_value >= NOW() and palf.field_primaryapproverleavefrom_value <= NOW()
         then sa.field_shopcodesecondaryapprover_value
         else pa.field_shopcodeprimaryapprover_value
         end as approver
@@ -209,13 +225,12 @@ function cypress_promocode_submit_form($form, $form_state) {
         on pa.entity_id = sa.entity_id and pa.revision_id = sa.revision_id
         JOIN shope_code_approvers__field_country_id ci
         on pa.entity_id = ci.entity_id and pa.revision_id = ci.revision_id
-        WHERE ci.field_country_id_value = :region)', [':region' => $form_values['region']]);
+        WHERE ci.field_country_id_value = :region', [':region' => $form_values['region']]);
     $results = $query->fetchAll();
     foreach ($results as $result) {
-      $approver_mail = $result->mail;
+      $approvers[] = $result->approver;
     }
-    $form_state->setValue('email_to', $approver_mail);
-
+    // Query to get mpn details for CAT A.
     $query = \Drupal::database()->query('select
       mpnid.field_mpnid_value as mpnid,
       mpn.field_mpn_value as mpn,
@@ -250,15 +265,135 @@ function cypress_promocode_submit_form($form, $form_state) {
     foreach ($results as $result) {
       $mpn_details = $result;
     }
-
-  }
-  elseif ($cat == 'cat_b_kit') {
-
-  }
-  elseif ($cat == 'cat_b') {
-
+    // Calculate discount based on quantity.
+    if ($form_values['quantity'] <= 9) {
+      $discount_price_per_unit = round($mpn_details->priceone, 2);
+    }
+    elseif ($form_values['quantity'] >= 10 and $form_values['quantity'] <= 24) {
+      $discount_price_per_unit = round($mpn_details->pricetwo, 2);
+    }
+    elseif ($form_values['quantity'] >= 25 and $form_values['quantity'] <= 99) {
+      $discount_price_per_unit = round($mpn_details->pricethree, 2);
+    }
+    elseif ($form_values['quantity'] >= 100 and $form_values['quantity'] <= 249) {
+      $discount_price_per_unit = round($mpn_details->pricefour, 2);
+    }
+    elseif ($form_values['quantity'] >= 250 and $form_values['quantity'] <= 999) {
+      $discount_price_per_unit = round($mpn_details->pricefive, 2);
+    }
+    else {
+      $discount_price_per_unit = round($mpn_details->pricesix, 2);
+    }
+    $discount_amount = $discount_price_per_unit * $form_values['quantity'];
+    $form_state->setValue('discount_amount', $discount_amount);
   }
   else {
-    // Throw error.
+    // Query to get mpn details for CAT B.
+    $query = \Drupal::database()->query('select
+      mpnid.field_mpnid_value as mpnid,
+      mpn.field_mpn_value as mpn,
+      msrp.field_samplemsrp_value as sampleMSRP,
+      kc.field_kit_cost_value as kit_cost
+      from node n
+      join node__field_mpn mpn
+      on n.nid = mpn.entity_id and n.vid = mpn.revision_id
+      join node__field_mpnid mpnid
+      on n.nid = mpnid.entity_id and n.vid = mpnid.revision_id
+      join node__field_samplemsrp msrp
+      on n.nid = msrp.entity_id and n.vid = msrp.revision_id
+      left join  node__field_kit_cost kc
+      on n.nid = kc.entity_id and n.vid = kc.revision_id
+      left join node__field_active a
+      on n.nid = a.entity_id and n.vid = a.revision_id
+      where mpn.field_mpn_value = :mpn and a.field_active_value = 1', [':mpn' => $form_values['part_number']]);
+    $results = $query->fetchAll();
+    foreach ($results as $result) {
+      $mpn_details = $result;
+    }
+    // Calculate kit amount for CAT B kit.
+    if (!empty($form_values['organization'])) {
+      $query = \Drupal::database()->query('select
+        pa.field_shopcodeprimaryapprover_value as primary_approver,
+        sa.field_shopcodesecondaryapprover_value as secondary_approver,
+        ta.field_shopcodethirdapprover_value as third_approver,
+        ka.field_kitapprover_value
+        from shope_code_approvers__field_kitapprover ka
+        join shope_code_approvers__2ac328e2fb pa
+        on ka.entity_id = pa.entity_id and ka.revision_id = pa.revision_id
+        join shope_code_approvers__ecf0b013d0 sa
+        on ka.entity_id = sa.entity_id and ka.revision_id = sa.revision_id
+        join shope_code_approvers__379d29e2ab ta
+        on ka.entity_id = ta.entity_id and ka.revision_id = ta.revision_id
+        where ka.field_kitapprover_value = :organization', [':organization' => $form_values['organization']]);
+      $results = $query->fetchAll();
+      foreach ($results as $result) {
+        $approvers[] = $result->primary_approver;
+        $approvers[] = $result->secondary_approver;
+        $approvers[] = $result->third_approver;
+      }
+      $discount_amount = $mpn_details->kit_cost * $form_values['quantity'];
+    }
+    // Calculate discount amount for CAT B silicon.
+    else {
+      $mpnid = _get_mpnid($form_values['part_number']);
+      $query = \Drupal::database()->query('SELECT
+        case
+        when palt.field_primaryapproverleaveto_value >= NOW() and palf.field_primaryapproverleavefrom_value <= NOW()
+        then sa.field_shopcodesecondaryapprover_value
+        else pa.field_shopcodeprimaryapprover_value
+        end as approver
+        FROM shope_code_approvers__2ac328e2fb pa
+        JOIN shope_code_approvers__e88f95388b palt
+        on pa.entity_id = palt.entity_id and pa.revision_id = palt.revision_id
+        JOIN shope_code_approvers__658c50a642 palf
+        on pa.entity_id = palf.entity_id and pa.revision_id = palf.revision_id
+        JOIN shope_code_approvers__ecf0b013d0 sa
+        on pa.entity_id = sa.entity_id and pa.revision_id = sa.revision_id
+        JOIN shope_code_approvers__field_cat_a_b cat
+        on pa.entity_id = cat.entity_id and pa.revision_id = cat.revision_id and cat.field_cat_a_b_value = \'CAT B\'
+        JOIN shope_code_approvers__field_mpnid mpnid
+        on pa.entity_id = mpnid.entity_id and pa.revision_id = mpnid.revision_id
+        WHERE mpnid.field_mpnid_value = :mpnid', [':mpnid' => $mpnid]);
+      $results = $query->fetchAll();
+      foreach ($results as $result) {
+        $approvers[] = $result->approver;
+      }
+      $discount_amount= $mpn_details->sampleMSRP * $form_values['quantity'];
+    }
   }
+
+  if (empty($approvers)) {
+    $approvers[] = '259045696';
+  }
+
+  $approver_ids = implode(',', $approvers);
+
+  // Query to get user mail.
+  $query = \Drupal::database()->query('select
+    u.mail as mail,
+    fn.field_first_name_value as first_name,
+    ln.field_last_name_value as last_name
+    from users_field_data u
+    join user__field_legacy_uid luid
+    on u.uid = luid.entity_id and luid.field_legacy_uid_value = 431130
+    join user__field_first_name fn
+    on luid.entity_id = fn.entity_id
+    join user__field_last_name ln
+    on luid.entity_id = ln.entity_id', [':approver_ids' => $approver_ids]);
+  $results = $query->fetchAll();
+  $approvers_mail = [];
+  $approvers_name = [];
+  foreach ($results as $result) {
+    $approvers_mail[] = $result->mail;
+    $approvers_name[] = '<a href="mailto:' . $result->mail . '">' . $result->first_name . ' ' . $result->last_name . '</a>';
+  }
+
+  $current_user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  $user_name = '<a href="mailto:' . $current_user->getEmail() . '">' . $current_user->get('field_first_name')->getValue()[0]['value'] . ' ' . $current_user->get('field_last_name')->getValue()[0]['value'] . '</a>';
+  $form_state->setValue('requester', $user_name);
+  $form_state->setValue('requester_mail', $current_user->getEmail());
+  $form_state->setValue('approver_mail', implode(',',$approvers_mail));
+  $form_state->setValue('approver', implode(',',$approvers_name));
+  $form_state->setValue('discount_amount', $discount_amount);
+  $form_state->setValue('promo_code', $promocode);
 }
