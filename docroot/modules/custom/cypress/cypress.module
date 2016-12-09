@@ -5,6 +5,8 @@
  * Contains cypress.module.
  */
 
+use Drupal\Core\Entity\EntityType;
+
 /**
  * Implements hook_form_FORM_ID_alter().
  */
@@ -128,4 +130,135 @@ function get_saml_user_attributes($account) {
   $user_object->set("field_first_name" ,$saml_attribute['firstName'][0]);
   $user_object->set("field_last_name" ,$saml_attribute['lastName'][0]);
   $user_object->save();
+}
+
+/**
+ * Form alter to add additional submit handler.
+ *
+ * @param array $form
+ *   Form array.
+ * @param FormStateInterface $form_state
+ *   Form state object.
+ */
+function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_state) {
+  $user_roles = \Drupal::currentUser()->getRoles();
+  if(in_array("administrator", $user_roles)) {
+    $elements_to_hide = ['email_to', 'custom_emails', 'requester', 'approver', 'promocode_status'];
+    foreach ($elements_to_hide as $element) {
+      $form['elements'][$element]['#access'] = FALSE;
+    }
+  }
+  $mpn = \Drupal::request()->query->get('mpn');
+  $cat = \Drupal::request()->query->get('cat');
+  $mpnid = 0;
+  // If CAT B check kit or silicon.
+  if ($cat == 'cat_b') {
+    $query = \Drupal::database()->query('SELECT
+      fmpnid.field_mpnid_value as mpnid
+      from node n
+      join node__field_mpn fmpn
+      on n.nid = fmpn.entity_id
+      and n.vid = fmpn.revision_id
+      and n.type = \'my_samples\'
+      and fmpn.field_mpn_value = :mpn
+      join node__field_mpnid fmpnid
+      on fmpn.entity_id = fmpnid.entity_id
+      and fmpn.revision_id = fmpnid.revision_id', [':mpn' => $mpn]);
+    $results = $query->fetchAll();
+    foreach ($results as $result) {
+      $mpnid = $result->mpnid;
+    }
+    // For kit mpnid won't exist.
+    if (!$mpnid) {
+      $cat .= '_kit';
+    }
+  }
+  $form['elements']['type']['#value'] = $cat;
+  array_unshift($form['actions']['submit']['#submit'], 'cypress_promocode_submit_form');
+}
+
+/**
+ * Additional submit handler to implement promo code logic.
+ *
+ * @param array $form
+ *   Form array.
+ * @param FormStateInterface $form_state
+ *   Form state object.
+ */
+function cypress_promocode_submit_form($form, $form_state) {
+  $form_values = $form_state->getValues();
+  $cat = $form_values['type'];
+  if ($cat == 'cat_a') {
+    $query = \Drupal::database()->query('SELECT u.mail
+      FROM users_field_data u
+      join user__field_legacy_uid uli
+      on u.uid = uli.entity_id and uli.field_legacy_uid_value =
+      (SELECT
+        DISTINCT
+        case
+        when palt.field_primaryapproverleaveto_value <= NOW() and palf.field_primaryapproverleavefrom_value >= NOW()
+        then sa.field_shopcodesecondaryapprover_value
+        else pa.field_shopcodeprimaryapprover_value
+        end as approver
+        FROM shope_code_approvers__2ac328e2fb pa
+        JOIN shope_code_approvers__e88f95388b palt
+        on pa.entity_id = palt.entity_id and pa.revision_id = palt.revision_id
+        JOIN shope_code_approvers__658c50a642 palf
+        on pa.entity_id = palf.entity_id and pa.revision_id = palf.revision_id
+        JOIN shope_code_approvers__ecf0b013d0 sa
+        on pa.entity_id = sa.entity_id and pa.revision_id = sa.revision_id
+        JOIN shope_code_approvers__field_country_id ci
+        on pa.entity_id = ci.entity_id and pa.revision_id = ci.revision_id
+        WHERE ci.field_country_id_value = :region)', [':region' => $form_values['region']]);
+    $results = $query->fetchAll();
+    foreach ($results as $result) {
+      $approver_mail = $result->mail;
+    }
+    $form_state->setValue('email_to', $approver_mail);
+
+    $query = \Drupal::database()->query('select
+      mpnid.field_mpnid_value as mpnid,
+      mpn.field_mpn_value as mpn,
+      msrp.field_samplemsrp_value as sampleMSRP,
+      p1.field_priceone_value as priceone,
+      p2.field_pricetwo_value as pricetwo,
+      p3.field_pricethree_value as pricethree,
+      p4.field_pricefour_value as pricefour,
+      p5.field_pricefive_value as pricefive,
+      p6.field_pricesix_value as pricesix
+      from node n
+      join node__field_mpn mpn
+      on n.nid = mpn.entity_id and n.vid = mpn.revision_id
+      join node__field_mpnid mpnid
+      on n.nid = mpnid.entity_id and n.vid = mpnid.revision_id
+      join node__field_samplemsrp msrp
+      on n.nid = msrp.entity_id and n.vid = msrp.revision_id
+      left join node__field_priceone p1
+      on n.nid = p1.entity_id and n.vid = p1.revision_id
+      left join node__field_pricetwo p2
+      on n.nid = p2.entity_id and n.vid = p2.revision_id
+      left join node__field_pricethree p3
+      on n.nid = p3.entity_id and n.vid = p3.revision_id
+      left join node__field_pricefour p4
+      on n.nid = p4.entity_id and n.vid = p4.revision_id
+      left join node__field_pricefive p5
+      on n.nid = p5.entity_id and n.vid = p5.revision_id
+      left join node__field_pricesix p6
+      on n.nid = p6.entity_id and n.vid = p6.revision_id
+      where mpn.field_mpn_value = :mpn', [':mpn' => $form_values['part_number']]);
+    $results = $query->fetchAll();
+    foreach ($results as $result) {
+      $mpn_details = $result;
+    }
+
+  }
+  elseif ($cat == 'cat_b_kit') {
+
+  }
+  elseif ($cat == 'cat_b') {
+
+  }
+  else {
+    // Throw error.
+  }
 }
