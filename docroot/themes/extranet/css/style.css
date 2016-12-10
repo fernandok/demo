@@ -1017,7 +1017,7 @@ body.path-file-search .region-content .view-header button.btn-info {
 
     #content-main{
         width: 55%;
-        text-align: center;
+        /*text-align: center;*/
     }
     .main-nav-menu{
       height: 0em;
@@ -1160,21 +1160,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     position: absolute;
     left: 89%;
     }
-     body.path-frontpage #content-main {
-        width: 70%;
-        /*text-align: center;*/
-    }
-    body.page-node-type-cy-page #content-main{
-      width: 70%;
-    }
-    body.page-node-type-stcon #content-main{
-      width: 70%;
-    }
-    body.path-file-search #content-main{
-      width: 70%;
-    }
-    /*site-search page*/
-    body.path-search #content-main{
+    #content-main.col-sm-9 {
       width: 70%;
     }
     /*search label*/
@@ -1629,5 +1615,10 @@ span.yaml-form-help {
   background-color: #3498db;
   border-color: #3498db;
   padding: 0.45em 3em;
+}
+@media only screen and (max-width: 1023px){
+  #yamlform-submission-promocode-form .form-item > input, #yamlform-submission-promocode-form .form-item > select {
+    width: 100%;
+  }
 }
 /* End Promo code form */
