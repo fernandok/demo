@@ -8,6 +8,7 @@ use Drupal\Core\Url;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\file\Entity\File;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
+use Drupal\Component\Utility\Bytes;
 
 /**
  * Plugin implementation of the 'file_download_all' formatter.
@@ -90,6 +91,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           }
         }
         $last_updated = $file->get('changed')->get(0)->getValue()['value'];
+        $file_size = $this->format_size_in_mb($file->getSize());
         $rows[] = [
           ['data' => $bu],
           ['data' => $division],
@@ -104,7 +106,8 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
             ],
           ],
           ['data' => $language],
-          ['data' => format_size($file->getSize())],
+          // ['data' => format_size($file->getSize())],
+          ['data' => $file_size],
           ['data' => date('Y/m/d', $last_updated)],
         ];
       }
@@ -150,6 +153,10 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
      }
 */
     return $elements;
+  }
+
+  private function format_size_in_mb($size) {
+    return round(($size / pow(Bytes::KILOBYTE, 2)), 2) . ' MB';
   }
 
 }
