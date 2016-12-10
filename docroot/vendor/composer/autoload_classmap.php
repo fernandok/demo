@@ -461,7 +461,4 @@ return array(
     'Symfony\\Component\\HttpKernel\\HttpKernelInterface' => $vendorDir . '/symfony/http-kernel/HttpKernelInterface.php',
     'Symfony\\Component\\HttpKernel\\TerminableInterface' => $vendorDir . '/symfony/http-kernel/TerminableInterface.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
-    'XMLSecEnc' => $vendorDir . '/robrichards/xmlseclibs/src/XMLSecEnc.php',
-    'XMLSecurityDSig' => $vendorDir . '/robrichards/xmlseclibs/src/XMLSecurityDSig.php',
-    'XMLSecurityKey' => $vendorDir . '/robrichards/xmlseclibs/src/XMLSecurityKey.php',
 );
