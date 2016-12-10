@@ -160,7 +160,6 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
     }
   }
   $form['elements']['type']['#value'] = $cat;
-  array_unshift($form['actions']['submit']['#submit'], 'cypress_test_promocode');
   array_unshift($form['actions']['submit']['#submit'], 'cypress_promocode_submit_form');
 }
 
