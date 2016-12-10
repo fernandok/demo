@@ -142,11 +142,9 @@ function get_saml_user_attributes($account) {
  */
 function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_state) {
   $user_roles = \Drupal::currentUser()->getRoles();
-  if(!in_array("administrator", $user_roles)) {
-    $elements_to_hide = ['approver_mail', 'custom_emails', 'requester', 'approver', 'promocode_status', 'discount_amount', 'promo_code', 'requester_mail'];
-    foreach ($elements_to_hide as $element) {
-      $form['elements'][$element]['#access'] = FALSE;
-    }
+  $elements_to_hide = ['approver_mail', 'custom_emails', 'requester', 'approver', 'promocode_status', 'discount_amount', 'promo_code', 'requester_mail'];
+  foreach ($elements_to_hide as $element) {
+    $form['elements'][$element]['#access'] = FALSE;
   }
   $mpn = \Drupal::request()->query->get('mpn');
   $cat = \Drupal::request()->query->get('cat');
@@ -206,6 +204,7 @@ function cypress_promocode_submit_form($form, $form_state) {
   $approvers = [];
   $discount_amount = 0;
   $promocode = '';
+  $msrp = 0;
   if ($cat == 'cat_a') {
     // Query to get approver mail for CAT A
     $query = \Drupal::database()->query('SELECT
@@ -283,8 +282,7 @@ function cypress_promocode_submit_form($form, $form_state) {
     else {
       $discount_price_per_unit = round($mpn_details->pricesix, 2);
     }
-    $discount_amount = $discount_price_per_unit * $form_values['quantity'];
-    $form_state->setValue('discount_amount', $discount_amount);
+    $msrp = $discount_price_per_unit;
   }
   else {
     // Query to get mpn details for CAT B.
@@ -330,7 +328,7 @@ function cypress_promocode_submit_form($form, $form_state) {
         $approvers[] = $result->secondary_approver;
         $approvers[] = $result->third_approver;
       }
-      $discount_amount = $mpn_details->kit_cost * $form_values['quantity'];
+      $msrp = $mpn_details->kit_cost;
     }
     // Calculate discount amount for CAT B silicon.
     else {
@@ -357,7 +355,7 @@ function cypress_promocode_submit_form($form, $form_state) {
       foreach ($results as $result) {
         $approvers[] = $result->approver;
       }
-      $discount_amount= $mpn_details->sampleMSRP * $form_values['quantity'];
+      $msrp = $mpn_details->sampleMSRP;
     }
   }
 
@@ -386,7 +384,8 @@ function cypress_promocode_submit_form($form, $form_state) {
     $approvers_mail[] = $result->mail;
     $approvers_name[] = '<a href="mailto:' . $result->mail . '">' . $result->first_name . ' ' . $result->last_name . '</a>';
   }
-
+  $discount_amount = $msrp * $form_values['quantity'];
+  $promocode = date('y') . date('W') . date('l') . mt_rand(001,99999);
   $current_user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
   $user_name = '<a href="mailto:' . $current_user->getEmail() . '">' . $current_user->get('field_first_name')->getValue()[0]['value'] . ' ' . $current_user->get('field_last_name')->getValue()[0]['value'] . '</a>';
   $form_state->setValue('requester', $user_name);
