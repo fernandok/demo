@@ -5,7 +5,6 @@ dependencies:
   - block
   - cypress
   - entity_reference_revisions
-  - extranet_clone_content
   - field
   - inline_entity_form
   - menu_ui
