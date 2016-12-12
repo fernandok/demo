@@ -1171,23 +1171,11 @@ body.path-file-search .region-content .view-header button.btn-info {
     position: absolute;
     left: 89%;
     }
-     body.path-frontpage #content-main {
-        width: 70%;
+    #content-main.col-sm-9 {
+      width: 70%;
+    }
+    body.path-frontpage #content-main {
         text-align: justify;
-    }
-    body.page-node-type-cy-page #content-main{
-      width: 70%;
-    }
-
-    body.page-node-type-stcon #content-main{
-      width: 70%;
-    }
-    body.path-file-search #content-main{
-      width: 70%;
-    }
-    /*site-search page*/
-    body.path-search #content-main{
-      width: 70%;
     }
     /*search label*/
     body.path-search .form-item.js-form-item.form-type-search{
@@ -1626,3 +1614,28 @@ body.path-search .main-container.container .row section#content-main .region.reg
   background-color: initial;
 }
 /**End Search form block**/
+/* Start Promo code form. */
+#yamlform-submission-promocode-form .form-item {
+  margin-top: 1em;
+  margin-bottom: 0.5em;
+}
+#yamlform-submission-promocode-form .form-item > input, #yamlform-submission-promocode-form .form-item > select {
+  width: 50%;
+  display: block;
+  height: 2.5em;
+}
+span.yaml-form-help {
+  font-size: 0.9em;
+  font-style: italic;
+}
+#yamlform-submission-promocode-form button#edit-submit {
+  background-color: #3498db;
+  border-color: #3498db;
+  padding: 0.45em 3em;
+}
+@media only screen and (max-width: 1023px){
+  #yamlform-submission-promocode-form .form-item > input, #yamlform-submission-promocode-form .form-item > select {
+    width: 100%;
+  }
+}
+/* End Promo code form */
