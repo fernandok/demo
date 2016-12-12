@@ -1,3 +1,46 @@
+/*form display for other than admin*/
+.form-item {
+    margin-top: 1em;
+    margin-bottom: 0.5em;
+}
+.form-item #edit-title-0-value{
+    width: 50%;
+    display: block;
+    height: 2.5em;
+}
+.form-item .link-edit-summary {
+    display: none;
+}
+.form-item-body-0-value .form-textarea-wrapper #edit-body-0-value{
+    width: 50%;
+    display: block;
+    height: 2.5em;
+}
+.form-textarea-wrapper #edit-revision-log-0-value{
+    width: 50%;
+    display: block;
+    height: 2.5em;
+}
+.form-type-vertical-tabs ul.vertical-tabs-list {
+    width: 50%;
+}
+.field--name-field-it-extranet-pages {
+    width: 50%;
+    display: block;
+}
+.field--name-field-it-extranet-pages .paragraphs-dropbutton-wrapper .field-add-more-submit{
+    padding: 7px;
+}
+.field--name-field-it-extranet-pages button.btn-success{
+    padding: 7px;
+    margin-top: 17px;
+}
+.field--name-field-it-extranet-pages button.btn-default{
+    padding: 7px;
+    margin-top: 17px;
+}
+/*End of form*/
+
 /* start global */
 a:hover {
   color: #3780cb !important;

@@ -72,6 +72,7 @@ class ItExtranetPagesMenuBlock extends BlockBase implements ContainerFactoryPlug
 	public function build() {
 		// Get other Extranet Pages Attactched to the current Extranet content.
 		$current_path = $this->pathCurrent->getPath();
+		$current_path = \Drupal::service('path.alias_manager')->getPathByAlias($current_path);
 		$path_args = explode('/', $current_path);
 		// Get the node id from title.
 		$db = \Drupal::database();
@@ -95,7 +96,7 @@ class ItExtranetPagesMenuBlock extends BlockBase implements ContainerFactoryPlug
 				$extranet_node_id = $path_args[2];
 			}
 		}
-
+		
 		$e_links[$extranet_node_id] = array(
 			'title' => Node::load($extranet_node_id)->getTitle(),
 			'link' => $this->pathAlias->getAliasByPath('/node/' . $extranet_node_id),
