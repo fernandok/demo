@@ -1389,6 +1389,9 @@ body.path-file-search .region-content .view-header button.btn-info {
     #content-main .region.region-content .views-element-container.form-group .view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content{
       margin: 0 4.5%;
     }
+    #content-main.col-sm-9{
+        width: 74%;
+    }
 
 }
 /*End of Responsive for Laptop 1231px*/
