@@ -1019,9 +1019,9 @@ body.path-file-search .region-content .view-header button.btn-info {
       padding-top: 0px;
     }
 
-    body.path-frontpage #content-main{
+    #content-main.col-sm-9{
         width: 55%;
-        text-align: center;
+        /*text-align: center;*/
     }
 
     .main-nav-menu{
