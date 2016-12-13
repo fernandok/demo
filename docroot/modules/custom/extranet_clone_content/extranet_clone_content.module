@@ -2,86 +2,88 @@
 
 /**
  * @file
- * Contains extranet_clone_content.module
+ * Contains extranet_clone_content.module.
  */
 
-use Drupal\node\NodeInterface;
+use Drupal\Core\Form\FormStateInterface;
 use Drupal\page_access\Entity\PageAccess;
 
 /**
  * Implements hook_form_FORM_ID_alter().
  */
-function extranet_clone_content_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $formState, $form_id) {
-	if ($form_id == 'node_it_extranet_edit_form' || $form_id == 'node_it_extranet_form') {
-		foreach (array_keys($form['actions']) as $action) {
-			if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
-				$form['actions'][$action]['#submit'][] = 'extranet_clone_content_update_page_access';
-			}
-		}
-	}
+function extranet_clone_content_form_alter(&$form, FormStateInterface $formState, $form_id) {
+  if ($form_id == 'node_it_extranet_edit_form' || $form_id == 'node_it_extranet_form') {
+    foreach (array_keys($form['actions']) as $action) {
+      if ($action != 'preview' && isset($form['actions'][$action]['#type']) && $form['actions'][$action]['#type'] === 'submit') {
+        $form['actions'][$action]['#submit'][] = 'extranet_clone_content_update_page_access';
+      }
+    }
+  }
 }
 
 /**
  * Custom submit handler to save page access settings for IT Extranet Pages.
  *
- * @param $form
+ * @param array $form
+ *   Form to access page.
  * @param \Drupal\Core\Form\FormStateInterface $formState
+ *   Access the formstate.
  */
-function extranet_clone_content_update_page_access(array &$form, \Drupal\Core\Form\FormStateInterface $formState) {
-	$node = $formState->getFormObject()->getEntity();
-	$values = $formState->getValues();
-	$it_extranet_pages = $node->get('field_it_extranet_pages')->getValue();
-	$page_access_deleted = FALSE;
-	if (!empty($it_extranet_pages)) {
-		if (!empty($values['page_access'])) {
-			if (empty($values['page_access']['enabled'])) {
-				$page_access_deleted = TRUE;
-			}
-			foreach ($it_extranet_pages as $it_extranet_page) {
-				$it_ep_page_entity = PageAccess::loadByNid($it_extranet_page['target_id']);
-				if ($page_access_deleted) {
-					$it_ep_page_entity->delete();
-				}
-				else {
-					$it_ep_page_entity_id = !empty($it_ep_page_entity) ? $it_ep_page_entity->id() : '';
-					_page_access_node_save($it_extranet_page['target_id'], $values['page_access'], $it_ep_page_entity_id);
-				}
-			}
-		}
-	}
+function extranet_clone_content_update_page_access(array &$form, FormStateInterface $formState) {
+  $node = $formState->getFormObject()->getEntity();
+  $values = $formState->getValues();
+  $it_extranet_pages = $node->get('field_it_extranet_pages')->getValue();
+  $page_access_deleted = FALSE;
+  if (!empty($it_extranet_pages)) {
+    if (!empty($values['page_access'])) {
+      if (empty($values['page_access']['enabled'])) {
+        $page_access_deleted = TRUE;
+      }
+      foreach ($it_extranet_pages as $it_extranet_page) {
+        $it_ep_page_entity = PageAccess::loadByNid($it_extranet_page['target_id']);
+        if ($page_access_deleted) {
+          $it_ep_page_entity->delete();
+        }
+        else {
+          $it_ep_page_entity_id = !empty($it_ep_page_entity) ? $it_ep_page_entity->id() : '';
+          _page_access_node_save($it_extranet_page['target_id'], $values['page_access'], $it_ep_page_entity_id);
+        }
+      }
+    }
+  }
 }
 
 /**
  * Implements hook_theme().
  */
 function extranet_clone_content_theme($existing, $type, $theme, $path) {
-	return [
-		'extranets_pages_menu_block' => [
-			'variables' => [
-				'e_links' => NULL,
-				'ep_links' => NULL,
-				'names' => NULL,
-			],
-			'template' => 'extranets-pages-menu-block',
-		],
-	];
+  return [
+    'extranets_pages_menu_block' => [
+      'variables' => [
+        'e_links' => NULL,
+        'ep_links' => NULL,
+        'names' => NULL,
+      ],
+      'template' => 'extranets-pages-menu-block',
+    ],
+  ];
 }
 
 /**
  * Fetches Extranet Pages from Extranet content id.
  */
 function extranet_clone_content_fetch_extranet_pages($extranet_content_id) {
-	$db = \Drupal::database();
-	$query = $db->select('node', 'n');
-	$query->condition('n.nid', $extranet_content_id);
-	$query->join('node__field_it_extranet_pages', 'fiep', 'n.nid = fiep.entity_id');
-	$query->addField('fiep', 'field_it_extranet_pages_target_id', 'page_id');
-	$query->join('node_field_data', 'nfd', 'fiep.field_it_extranet_pages_target_id = nfd.nid');
-	$query->addField('nfd', 'title');
-	$pages = $query->execute()->fetchAll();
+  $db = \Drupal::database();
+  $query = $db->select('node', 'n');
+  $query->condition('n.nid', $extranet_content_id);
+  $query->join('node__field_it_extranet_pages', 'fiep', 'n.nid = fiep.entity_id');
+  $query->addField('fiep', 'field_it_extranet_pages_target_id', 'page_id');
+  $query->join('node_field_data', 'nfd', 'fiep.field_it_extranet_pages_target_id = nfd.nid');
+  $query->addField('nfd', 'title');
+  $pages = $query->execute()->fetchAll();
 
-	foreach ($pages as $page) {
-		$extranet_pages[$page->page_id] = $page->title;
-	}
-	return $extranet_pages;
+  foreach ($pages as $page) {
+    $extranet_pages[$page->page_id] = $page->title;
+  }
+  return $extranet_pages;
 }

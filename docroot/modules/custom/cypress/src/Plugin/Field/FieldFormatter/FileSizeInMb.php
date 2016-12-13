@@ -34,7 +34,9 @@ class FileSizeInMb extends FileSize {
     $elements = [];
 
     foreach ($items as $delta => $item) {
-      $elements[$delta] = ['#markup' => round(($item->value / pow(Bytes::KILOBYTE, 2)), 2) . ' MB'];
+      $elements[$delta] = [
+        '#markup' => round(($item->value / pow(Bytes::KILOBYTE, 2)), 2) . ' MB',
+      ];
     }
 
     return $elements;

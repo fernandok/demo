@@ -1,10 +1,15 @@
-(function ($){
+/**
+ * @file
+ * Js file to make the tables responsive.
+ */
+
+(function ($) {
   $(document).ready(function () {
     // Table responsive.
     if ($(window).width() <= 800) {
-      $('table').each(function() {
+      $('table').each(function () {
         headers = [];
-        $(this).find('tr th').each(function() {
+        $(this).find('tr th').each(function () {
           if (typeof $(this).data('title') != 'undefined') {
             header = $(this).data('title').split(',');
             headers = headers.concat(header);
@@ -16,8 +21,8 @@
             headers.push(header.trim());
           }
         });
-        $(this).find('tr').each(function() {
-          $(this).find('td').each(function(index) {
+        $(this).find('tr').each(function () {
+          $(this).find('td').each(function (index) {
             $(this).attr('data-title', headers[index]);
             if ($(this).text().trim() == '') {
               $(this).html('<div class="responsive-table-empty-row-data"></div>');

@@ -91,7 +91,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           }
         }
         $last_updated = $file->get('changed')->get(0)->getValue()['value'];
-        $file_size = $this->format_size_in_mb($file->getSize());
+        $file_size = $this->formatSizeInMb($file->getSize());
         $rows[] = [
           ['data' => $bu],
           ['data' => $division],
@@ -139,23 +139,13 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         $elements[3]['download_all_documents_bottom'] = $download_all_docs;
       }
     }
-/*
-     $download_all_files_link = Link::fromTextAndUrl('Download All Documents', $url)->toRenderable();
-     $download_all_files_link['#attributes']['class'] = ['download-all-files'];
-
-     Akamai files.
-     foreach ($akamai_elements as $akamai_element) {
-       $elements[] = [
-         '#theme' => 'cypress_akamai_file_download',
-         '#uri' => $akamai_element['akamai_uri'],
-         '#description' => $akamai_element['akamai_description'],
-       ];
-     }
-*/
     return $elements;
   }
 
-  private function format_size_in_mb($size) {
+  /**
+   * To get the file size.
+   */
+  private function formatSizeInMb($size) {
     return round(($size / pow(Bytes::KILOBYTE, 2)), 2) . ' MB';
   }
 

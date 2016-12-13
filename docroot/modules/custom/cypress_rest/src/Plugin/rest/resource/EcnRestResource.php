@@ -2,7 +2,6 @@
 
 namespace Drupal\cypress_rest\Plugin\rest\resource;
 
-use Drupal\Core\Entity\Entity;
 use Drupal\node\Entity\Node;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\file\Entity\File;
@@ -47,14 +46,14 @@ class EcnRestResource extends ResourceBase {
    *
    * @var array
    */
-  protected $paragraphs_file_ids;
+  protected $paragraphsFileIds;
 
   /**
    * Paragraph id for the documents.
    *
    * @var array
    */
-  protected $doc_paragraph_id;
+  protected $docParagraphId;
 
   /**
    * Constructs a Drupal\rest\Plugin\ResourceBase object.

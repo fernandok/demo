@@ -33,7 +33,8 @@ class SamlLoginRedirect implements EventSubscriberInterface {
     $request = $event->getRequest();
     $request_path_info = $request->getPathInfo();
     if (\Drupal::currentUser()->isAnonymous() && $request_path_info != '/user/logout' && $request_path_info != '/saml_login' && $request_path_info != '/user/login' && $request_path_info != '/rest/session/token') {
-     $event->setResponse(new RedirectResponse('/saml_login'));
+      $event->setResponse(new RedirectResponse('/saml_login'));
     }
   }
+
 }

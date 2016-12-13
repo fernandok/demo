@@ -18,7 +18,9 @@
     left: -9999px;
   }
 
-  tr { border: 1px solid #ccc; }
+  tr {
+    border: 1px solid #ccc;
+  }
 
   td {
     /* Behave  like a "row" */
@@ -26,8 +28,8 @@
     border-bottom: 1px solid #eee !important;
     position: relative!important;
     padding-left: 50% !important;
-    white-space: normal !important ;
-    text-align:left !important;
+    white-space: normal !important;
+    text-align: left !important;
   }
 
   td:before {
@@ -39,7 +41,7 @@
     width: 45%;
     padding-right: 10px;
     white-space: nowrap;
-    text-align:left;
+    text-align: left;
     font-weight: bold;
   }
 

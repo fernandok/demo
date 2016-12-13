@@ -5,7 +5,8 @@
  * Contains cypress.module.
  */
 
-use Drupal\Core\Entity\EntityType;
+use Drupal\user\Entity\User;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_form_FORM_ID_alter().
@@ -30,7 +31,7 @@ function cypress_form_node_cy_page_edit_form_alter(&$form, $form_state) {
  *   Current form state.
  */
 function _cypress_alter_document_paragraphs(&$form, $form_state) {
-  foreach($form['field_files']['widget'] as $key => &$widget) {
+  foreach ($form['field_files']['widget'] as $key => &$widget) {
     if (!is_int($key)) {
       continue;
     }
@@ -39,27 +40,30 @@ function _cypress_alter_document_paragraphs(&$form, $form_state) {
     $subform['field_akamai_uri']['#states'] = [
       'invisible' => [
         ':input[name="' . $file_type_name_attr . '"]' => [
-          'checked' => FALSE
+          'checked' => FALSE,
         ],
       ],
     ];
     $subform['field_akamai_description']['#states'] = [
       'invisible' => [
         ':input[name="' . $file_type_name_attr . '"]' => [
-          'checked' => FALSE
+          'checked' => FALSE,
         ],
       ],
     ];
     $subform['field_file']['#states'] = [
       'invisible' => [
         ':input[name="' . $file_type_name_attr . '"]' => [
-          'checked' => TRUE
+          'checked' => TRUE,
         ],
       ],
     ];
   }
 }
 
+/**
+ * Implements hook_theme().
+ */
 function cypress_theme($existing, $type, $theme, $path) {
   return [
     'cypress_download_all_docs' => [
@@ -87,21 +91,23 @@ function cypress_theme($existing, $type, $theme, $path) {
   ];
 }
 
-// to map the first_name, last_name and roles for simplesamlphp
+/**
+ * To map the first_name, last_name and roles for simplesamlphp.
+ */
 function get_saml_user_attributes($account) {
-  $user_act_id =  $account->id();
-  $user_object = \Drupal\user\Entity\User::load($user_act_id);
+  $user_act_id = $account->id();
+  $user_object = User::load($user_act_id);
   $saml_attribute = \Drupal::service('simplesamlphp_auth.manager')->getAttributes();
   $saml_role_ids = $saml_attribute['roles'];
   $user_get_roles = $user_object->get('roles')->getValue();
   $user_roles = array(
-      '11' => 'administrator',
-      '21' => 'cypress_employees',
-      '106' => 'mysites',
-      '111' => 'all_distributors',
-      '116' => 'sales_rep',
+    '11' => 'administrator',
+    '21' => 'cypress_employees',
+    '106' => 'mysites',
+    '111' => 'all_distributors',
+    '116' => 'sales_rep',
   );
-  if(empty($user_get_roles)) {
+  if (empty($user_get_roles)) {
     foreach ($saml_role_ids as $saml_role_id) {
       if ($saml_role_id == 2) {
         continue;
@@ -111,7 +117,7 @@ function get_saml_user_attributes($account) {
       }
     }
   }
-  elseif(!empty($user_get_roles)) {
+  elseif (!empty($user_get_roles)) {
     foreach ($user_get_roles as $user_get_role) {
       if (!in_array($user_get_role['target_id'], $saml_role_ids)) {
         $remove_role = $user_get_role['target_id'];
@@ -127,8 +133,8 @@ function get_saml_user_attributes($account) {
       }
     }
   }
-  $user_object->set("field_first_name" ,$saml_attribute['firstName'][0]);
-  $user_object->set("field_last_name" ,$saml_attribute['lastName'][0]);
+  $user_object->set("field_first_name", $saml_attribute['firstName'][0]);
+  $user_object->set("field_last_name", $saml_attribute['lastName'][0]);
   $user_object->save();
 }
 
@@ -137,12 +143,15 @@ function get_saml_user_attributes($account) {
  *
  * @param array $form
  *   Form array.
- * @param FormStateInterface $form_state
+ * @param object $form_state
  *   Form state object.
  */
 function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_state) {
   $user_roles = \Drupal::currentUser()->getRoles();
-  $elements_to_hide = ['approver_mail', 'custom_emails', 'requester', 'approver', 'promocode_status', 'discount_amount', 'promo_code', 'requester_mail'];
+  $elements_to_hide = [
+    'approver_mail', 'custom_emails', 'requester', 'approver',
+    'promocode_status', 'discount_amount', 'promo_code', 'requester_mail',
+  ];
   foreach ($elements_to_hide as $element) {
     $form['elements'][$element]['#access'] = FALSE;
   }
@@ -167,7 +176,7 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
  * @param string $mpn
  *   Marketing part number.
  *
- * @return integer
+ * @return int
  *   Marketing part number id.
  */
 function _get_mpnid($mpn) {
@@ -198,7 +207,7 @@ function _get_mpnid($mpn) {
  * @param FormStateInterface $form_state
  *   Form state object.
  */
-function cypress_promocode_submit_form($form, $form_state) {
+function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
   $form_values = $form_state->getValues();
   $cat = $form_values['type'];
   $approvers = [];
@@ -206,7 +215,7 @@ function cypress_promocode_submit_form($form, $form_state) {
   $promocode = '';
   $msrp = 0;
   if ($cat == 'cat_a') {
-    // Query to get approver mail for CAT A
+    // Query to get approver mail for CAT A.
     $query = \Drupal::database()->query('SELECT
         DISTINCT
         case
@@ -385,13 +394,13 @@ function cypress_promocode_submit_form($form, $form_state) {
     $approvers_name[] = '<a href="mailto:' . $result->mail . '">' . $result->first_name . ' ' . $result->last_name . '</a>';
   }
   $discount_amount = $msrp * $form_values['quantity'];
-  $promocode = date('y') . date('W') . date('l') . mt_rand(001,99999);
-  $current_user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+  $promocode = date('y') . date('W') . date('l') . mt_rand(001, 99999);
+  $current_user = User::load(\Drupal::currentUser()->id());
   $user_name = '<a href="mailto:' . $current_user->getEmail() . '">' . $current_user->get('field_first_name')->getValue()[0]['value'] . ' ' . $current_user->get('field_last_name')->getValue()[0]['value'] . '</a>';
   $form_state->setValue('requester', $user_name);
   $form_state->setValue('requester_mail', $current_user->getEmail());
-  $form_state->setValue('approver_mail', implode(',',$approvers_mail));
-  $form_state->setValue('approver', implode(',',$approvers_name));
+  $form_state->setValue('approver_mail', implode(',', $approvers_mail));
+  $form_state->setValue('approver', implode(',', $approvers_name));
   $form_state->setValue('discount_amount', $discount_amount);
   $form_state->setValue('promo_code', $promocode);
 }
