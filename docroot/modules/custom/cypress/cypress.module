@@ -147,27 +147,29 @@ function get_saml_user_attributes($account) {
  *   Form state object.
  */
 function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_state) {
-  $user_roles = \Drupal::currentUser()->getRoles();
-  $elements_to_hide = [
-    'approver_mail', 'custom_emails', 'requester', 'approver',
-    'promocode_status', 'discount_amount', 'promo_code', 'requester_mail',
-  ];
-  foreach ($elements_to_hide as $element) {
-    $form['elements'][$element]['#access'] = FALSE;
+  $current_path = \Drupal::service('path.current')->getPath();
+  if (preg_match('/yamlform\/manage\/promocode\/submission\/\d+\/edit$/', $current_path)) {
+
   }
-  $mpn = \Drupal::request()->query->get('mpn');
-  $cat = \Drupal::request()->query->get('cat');
-  $mpnid = 0;
-  // If CAT B check kit or silicon.
-  if ($cat == 'cat_b') {
-    $mpnid = _get_mpnid($mpn);
-    // For kit mpnid won't exist.
-    if (!$mpnid) {
-      $cat .= '_kit';
+  else {
+    $elements_to_hide = ['approver_mail', 'custom_emails', 'requester', 'approver', 'promocode_status', 'discount_amount', 'promo_code', 'requester_mail'];
+    foreach ($elements_to_hide as $element) {
+      $form['elements'][$element]['#access'] = FALSE;
     }
+    $mpn = \Drupal::request()->query->get('mpn');
+    $cat = \Drupal::request()->query->get('cat');
+    $mpnid = 0;
+    // If CAT B check kit or silicon.
+    if ($cat == 'cat_b') {
+      $mpnid = _get_mpnid($mpn);
+      // For kit mpnid won't exist.
+      if (!$mpnid) {
+        $cat .= '_kit';
+      }
+    }
+    $form['elements']['type']['#value'] = $cat;
+    array_unshift($form['actions']['submit']['#submit'], 'cypress_promocode_submit_form');
   }
-  $form['elements']['type']['#value'] = $cat;
-  array_unshift($form['actions']['submit']['#submit'], 'cypress_promocode_submit_form');
 }
 
 /**
