@@ -98,8 +98,8 @@ function get_saml_user_attributes($account) {
   $user_act_id = $account->id();
   $user_object = User::load($user_act_id);
   $saml_attribute = \Drupal::service('simplesamlphp_auth.manager')->getAttributes();
-  print_r($saml_attribute);exit;
   $saml_role_ids = $saml_attribute['roles'];
+  $saml_mail = $saml_attribute['mail'][0];
   $user_get_roles = $user_object->get('roles')->getValue();
   $user_roles = array(
     '11' => 'administrator',
@@ -117,6 +117,9 @@ function get_saml_user_attributes($account) {
         $user_object->addRole($user_roles[$saml_role_id]);
       }
     }
+    if ($saml_mail == 'prof@cypress.com') {
+      $user_object->addRole('publisher');
+    }
   }
   elseif (!empty($user_get_roles)) {
     foreach ($user_get_roles as $user_get_role) {
@@ -132,6 +135,9 @@ function get_saml_user_attributes($account) {
       if (isset($user_roles[$saml_role_id])) {
         $user_object->addRole($user_roles[$saml_role_id]);
       }
+    }
+    if ($saml_mail == 'manoj.k@valuebound.com') {
+      $user_object->addRole('publisher');
     }
   }
   $user_object->set("field_first_name", $saml_attribute['firstName'][0]);
