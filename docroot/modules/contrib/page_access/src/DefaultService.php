@@ -30,7 +30,7 @@ class DefaultService {
       $user_roles = $account->getRoles();
       $allowed_roles = $page_access_settings['page_access']['roles'];
       if (!empty(array_intersect($user_roles, $allowed_roles))) {
-        return ['view'];
+        $user_has_access[] = 'view';
       }
 
       $uid = $account->id();

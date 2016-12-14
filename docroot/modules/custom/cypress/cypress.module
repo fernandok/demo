@@ -148,14 +148,44 @@ function get_saml_user_attributes($account) {
  */
 function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_state) {
   $current_path = \Drupal::service('path.current')->getPath();
+  $elements_to_hide = ['approver_mail', 'custom_emails', 'requester', 'approver', 'discount_amount', 'promo_code', 'requester_mail'];
   if (preg_match('/yamlform\/manage\/promocode\/submission\/\d+\/edit$/', $current_path)) {
-
+    $op = \Drupal::request()->query->get('op');
+    $promocode_status_value = '';
+    switch ($op) {
+      case 'approve':
+        $promocode_status_value = 'Approved';
+        break;
+      case 'reject':
+        $promocode_status_value = 'Rejected';
+        break;
+      case 'modify':
+        $promocode_status_value = 'Modify';
+        break;
+    }
+    $form['elements']['promocode_status']['#default_value'] = $promocode_status_value;
+    if ($op == 'modify') {
+      $elements_to_hide[] = 'promocode_status';
+    }
+    else {
+      array_push(
+        $elements_to_hide,
+        'quantity',
+        'customer',
+        'end_user',
+        'production_date',
+        'opportunity_registration',
+        'project_name',
+        'application', 'annual_volume_',
+        'cypress_fae_fse',
+        'additional_details',
+        'customer_part_number',
+        'purchase_order_number'
+      );
+    }
   }
   else {
-    $elements_to_hide = ['approver_mail', 'custom_emails', 'requester', 'approver', 'promocode_status', 'discount_amount', 'promo_code', 'requester_mail'];
-    foreach ($elements_to_hide as $element) {
-      $form['elements'][$element]['#access'] = FALSE;
-    }
+    $elements_to_hide[] = 'promocode_status';
     $mpn = \Drupal::request()->query->get('mpn');
     $cat = \Drupal::request()->query->get('cat');
     $mpnid = 0;
@@ -169,6 +199,9 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
     }
     $form['elements']['type']['#value'] = $cat;
     array_unshift($form['actions']['submit']['#submit'], 'cypress_promocode_submit_form');
+  }
+  foreach ($elements_to_hide as $element) {
+    $form['elements'][$element]['#access'] = FALSE;
   }
 }
 
