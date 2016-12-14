@@ -98,6 +98,7 @@ function get_saml_user_attributes($account) {
   $user_act_id = $account->id();
   $user_object = User::load($user_act_id);
   $saml_attribute = \Drupal::service('simplesamlphp_auth.manager')->getAttributes();
+  print_r($saml_attribute);exit;
   $saml_role_ids = $saml_attribute['roles'];
   $user_get_roles = $user_object->get('roles')->getValue();
   $user_roles = array(
