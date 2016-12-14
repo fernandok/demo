@@ -2,13 +2,17 @@
 <div class="row">
   <div class="col-sm-12">
     <div id="ww_and_cy">
-      <span id="ww">WW: {{ ww }}</span>
-      {% if cy_change < 0 %}
-        {% set cy_change_class = 'flag-red' %}
-      {% else %}
-        {% set cy_change_class = 'flag-green' %}
-      {% endif %}
-      <span id="cy_stock">CY: {{ cy_price }} <span class="{{ cy_change_class }}">{{ cy_change }}</span></span>
+      <span id="date">{{ "now"|date("l d-F-Y g:i A") }}</span>
+      <span>
+        <span id="ww">WW: {{ ww }}</span>
+        {% if cy_change < 0 %}
+          {% set cy_change_class = 'flag-red' %}
+        {% else %}
+          {% set cy_change_class = 'flag-green' %}
+        {% endif %}
+        <span id="cy_stock">CY: {{ cy_price }} <span class="{{ cy_change_class }}">{{ cy_change }}</span></span>
+      </span>
+      <span id="link_to_cypress"><a href="http://www.cypress.com/">Go to Cypress</a></span>
     </div>
   </div>
 </div>

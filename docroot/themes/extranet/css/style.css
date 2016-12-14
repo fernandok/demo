@@ -361,16 +361,32 @@ body.page-node-type-cy-page table.archive  thead tr th .col-2 {
   text-align: center;
   padding: 0.5% 0;
 }
-#ww_and_cy #ww {
+#ww_and_cy #ww, #ww_and_cy #date, #ww_and_cy #cy_stock {
   border-right: 1px solid white;
   margin-right: 0.6%;
   padding-right: 1%;
+  font-size: 14px;
+}
+#ww_and_cy #link_to_cypress a {
+  color: white;
+  font-size: 14px;
 }
 #ww_and_cy #cy_stock .flag-red {
   color: red;
 }
 #ww_and_cy #cy_stock .flag-green {
   color: green;
+}
+@media (max-width: 767px) {
+  #ww_and_cy #date {
+    white-space: nowrap;
+  }
+  #ww_and_cy>span {
+    display: block;
+  }
+  #ww_and_cy>span, #cy_stock {
+    border: 0 !important;
+  }
 }
 /*End nav bar primary*/
 /* Start banner */
