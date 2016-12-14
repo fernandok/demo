@@ -236,7 +236,8 @@ function page_access_get_node_defaults(NodeInterface $node) {
  */
 function page_access_form_node_form_submit($form, FormStateInterface $form_state) {
   $node_id = $form_state->getFormObject()->getEntity()->id();
-  if (!$form_state->isValueEmpty('page_access')) {
+  $user_roles = \Drupal::currentUser()->getRoles();
+  if (!$form_state->isValueEmpty('page_access') && in_array('administrator',$user_roles)) {
     $values = $form_state->getValue('page_access');
     $entity_id = $form_state->getValue('page_access_entity_id');
     if (empty($values['enabled'])) {

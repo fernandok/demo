@@ -1371,8 +1371,10 @@ body.path-file-search .region-content .view-header button.btn-info {
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
     padding-bottom: 3px;
   }
-  body.path-frontpage #content-main {
+  #content-main.col-sm-9 {
     width: 72%;
+  }
+  body.path-frontpage #content-main {
     text-align: justify;
     /*text-align: center;*/
   }
