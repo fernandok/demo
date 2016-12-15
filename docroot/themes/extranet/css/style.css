@@ -512,7 +512,7 @@ span#footer-copyrights {
   text-align: center;
   display: inline-block;
   max-width: 150px;
-  margin: 0 3%;
+  /*margin: 0 4%;*/
   min-height: 210px;
   vertical-align: bottom;
 }
@@ -1281,7 +1281,7 @@ body.path-file-search .region-content .view-header button.btn-info {
   }
 
   body.path-frontpage .view-home-page-menu-icons .views-row {
-  /*float: left;*/
+    margin: 0 4.3%;
   }
 
   body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
@@ -1476,7 +1476,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     width: 100%;
   }
   body.path-frontpage .view-home-page-menu-icons .views-row {
-    margin: 0 2.7%;
+    margin: 0 3.5%;
   }
   body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
     width: 150px;
@@ -1673,7 +1673,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     margin: 0px 5%;
   }
   .view-home-page-menu-icons .view-content .views-row {
-    margin: 0 3%;
+    margin: 0 4.3%;
   }
 
 }
