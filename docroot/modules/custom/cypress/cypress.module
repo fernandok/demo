@@ -82,6 +82,7 @@ function cypress_theme($existing, $type, $theme, $path) {
     ],
     'cypress_ww_cy' => [
       'variables' => [
+        'datetime' => NULL,
         'ww' => NULL,
         'cy_price' => NULL,
         'cy_change' => NULL,
