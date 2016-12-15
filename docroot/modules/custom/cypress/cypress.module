@@ -118,7 +118,7 @@ function get_saml_user_attributes($account) {
         $user_object->addRole($user_roles[$saml_role_id]);
       }
     }
-    if ($saml_mail == 'prof@cypress.com') {
+    if ($saml_mail == 'prof@cypress.com' || $saml_mail == 'manoj.k@valuebound.com') {
       $user_object->addRole('publisher');
     }
   }
@@ -137,7 +137,7 @@ function get_saml_user_attributes($account) {
         $user_object->addRole($user_roles[$saml_role_id]);
       }
     }
-    if ($saml_mail == 'prof@cypress.com') {
+    if ($saml_mail == 'prof@cypress.com' || $saml_mail == 'manoj.k@valuebound.com') {
       $user_object->addRole('publisher');
     }
   }
