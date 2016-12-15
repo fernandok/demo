@@ -339,7 +339,10 @@ body.page-node-type-cy-page table.archive  thead tr th .col-2 {
   padding-right: 5px;
   font-weight: bold;
 }
-
+/*Business marcom-contacts table*/
+body.page-node-type-cy-page table.marcom-contacts td.tel-no{
+  width: 14%;
+}
 
 
 #block-mainnavigation .caret, #block-distributionextranet .caret {
