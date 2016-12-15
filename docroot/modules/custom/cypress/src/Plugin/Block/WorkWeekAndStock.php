@@ -52,7 +52,7 @@ class WorkWeekAndStock extends BlockBase {
     // Only do a check when the session variable is not set.
     if (!isset($_SESSION['user_time_zone'])) {
       $geoip_data = $this->getGeoipData();
-      if ($geoip_data['time_zone']) {
+      if ($geoip_data && $geoip_data['time_zone']) {
         $_SESSION['user_time_zone'] = $geoip_data['time_zone'];
       }
       else {
