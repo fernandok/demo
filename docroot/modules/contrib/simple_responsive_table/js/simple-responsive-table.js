@@ -21,11 +21,17 @@
         $(context).find('table').once('processTable').each(function () {
           headers = [];
           $(this).find('tr th').each(function () {
-            header = $(this).text();
-            // Handle sort headers.
-            header = header.replace('Sort descending', '');
-            header = header.replace('Sort ascending', '');
-            headers.push(header.trim());
+            if (typeof $(this).data('title') != 'undefined') {
+              header = $(this).data('title').split(',');
+              headers = headers.concat(header);
+            }
+            else {
+              header = $(this).text();
+              // Handle sort headers.
+              header = header.replace('Sort descending', '');
+              header = header.replace('Sort ascending', '');
+              headers.push(header.trim());
+            }
           });
           $(this).find('tr').each(function () {
             $(this).find('td').each(function (index) {
