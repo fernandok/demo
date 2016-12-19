@@ -1,0 +1,76 @@
+diff --git a/docroot/modules/contrib/page_access/page_access.module b/docroot/modules/contrib/page_access/page_access.module
+index 6dc4cff..9ac4bc7 100644
+--- a/docroot/modules/contrib/page_access/page_access.module
++++ b/docroot/modules/contrib/page_access/page_access.module
+@@ -9,9 +9,10 @@ use Drupal\Core\Form\FormStateInterface;
+ use Drupal\page_access\Entity\PageAccess;
+ use Drupal\user\Entity\User;
+ use Drupal\Core\Access\AccessResult;
++use Drupal\node\NodeInterface;
+
+ /**
+- * Implements hook_form_BASE_FORM_ID_alter() for \Drupal\node\NodeForm.
++ * Implements hook_form_BASE_FORM_ID_alter().
+  *
+  * Adds page access fields to the node form.
+  *
+@@ -158,7 +159,9 @@ function page_access_form_node_form_alter(&$form, FormStateInterface &$form_stat
+  * Add more user submit handler.
+  *
+  * @param array $form
++ *   Array of forms.
+  * @param \Drupal\Core\Form\FormStateInterface $form_state
++ *   To set values in $formstate.
+  */
+ function page_access_add_user(array $form, FormStateInterface &$form_state) {
+   $page_access_users_count = $form_state->get('page_access_users_count');
+@@
+\ No newline at end of file
+diff --git a/docroot/modules/contrib/page_access/src/DefaultService.php b/docroot/modules/contrib/page_access/src/DefaultService.php
+index d58b38e..bdc71b4 100644
+--- a/docroot/modules/contrib/page_access/src/DefaultService.php
++++ b/docroot/modules/contrib/page_access/src/DefaultService.php
+@@ -21,6 +21,7 @@ class DefaultService {
+    *   User object.
+    *
+    * @return array|null
++   *   Returns array or null value.
+    */
+   function get_user_node_access(NodeInterface $node, AccountInterface $account) {
+     $page_access_settings = page_access_get_node_defaults($node);
+@@ -29,7 +30,7 @@ class DefaultService {
+       $user_roles = $account->getRoles();
+       $allowed_roles = $page_access_settings['page_access']['roles'];
+       if (!empty(array_intersect($user_roles, $allowed_roles))) {
+-        return ['view', 'update'];
++        $user_has_access[] = 'view';
+       }
+
+       $uid = $account->id();
+diff --git a/docroot/modules/contrib/page_access/src/Entity/PageAccess.php b/docroot/modules/contrib/page_access/src/Entity/PageAccess.php
+index 4e2f3cc..5a2c896 100644
+--- a/docroot/modules/contrib/page_access/src/Entity/PageAccess.php
++++ b/docroot/modules/contrib/page_access/src/Entity/PageAccess.php
+@@ -76,9 +76,11 @@ class PageAccess extends ContentEntityBase implements PageAccessInterface {
+   /**
+    * Method to load page access entity using node id.
+    *
+-   * @param $nid
++   * @param int $nid
++   *   Node id of page.
+    *
+    * @return \Drupal\Core\Entity\EntityInterface[]
++   *   Returns property of node.
+    */
+   public function loadByNid($nid) {
+     $page_access_storage = \Drupal::entityManager()->getStorage('page_access');
+@@ -88,7 +90,8 @@ class PageAccess extends ContentEntityBase implements PageAccessInterface {
+   /**
+    * Method to get value of page access settings.
+    *
+-   * @return mixed
++   * @return array
++   *   Returns Array of Values.
+    */
+   public function value() {
+     return $this->get('value')->get(0)->toArray();

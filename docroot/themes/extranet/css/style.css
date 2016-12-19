@@ -537,21 +537,6 @@ span#footer-copyrights {
   padding-left: 3px;
 }
 /*End footer region*/
-/*Stating home page menu icons*/
-.view-home-page-menu-icons .view-content .views-row {
-  text-align: center;
-  display: inline-block;
-  max-width: 150px;
-  margin: 0 3%;
-  min-height: 210px;
-  vertical-align: bottom;
-}
-.path-frontpage h1.page-header {
-  padding-bottom: 20px;
-  margin: 0;
-  border-bottom: 0;
-}
-/*End homepage menu*/
 
 /*STCON content type*/
 body.page-node-type-stcon h1.page-header {
@@ -665,18 +650,29 @@ ul.default_tag_clouds li a.selected:hover {
 /* End Tag cloud */
 
 /* Start homepage menu icons */
+.view-home-page-menu-icons .view-content .views-row {
+  text-align: center;
+  display: inline-block;
+  max-width: 150px;
+  min-height: 210px;
+  vertical-align: bottom;
+  margin: 0 3vw;
+}
+.path-frontpage h1.page-header {
+  padding-bottom: 20px;
+  margin: 0;
+  border-bottom: 0;
+}
 body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
   width: 168px;
 }
-
 #block-extranet-account-menu .glyphicon {
   display: none;
 }
-
 body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap .img-menu {
   display: initial;
 }
-/* End of homepae icon
+/* End of homepage icon
 /*My Samples page*/
 body.path-my-samples .view-content .table-responsive {
   margin-top: 1em;
@@ -972,10 +968,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     /*margin: 0 auto;*/
   }
   body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
-    width: 100%;
-    min-height: 208px;
-  }
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
     width: 150px;
     min-height: 200px;
   }
@@ -1146,7 +1138,7 @@ body.path-file-search .region-content .view-header button.btn-info {
   }
 
   #content-main.col-sm-9 {
-    width: 55%;
+    width: 57%;
     /*text-align: center;*/
   }
 
@@ -1240,10 +1232,6 @@ body.path-file-search .region-content .view-header button.btn-info {
   }
   /* end of npi-corporate presentations*/
 
-  .view-home-page-menu-icons .view-content .views-row {
-    margin: 0 2%;
-  }
-
   footer.footer.container {
     padding: 0.7em 0 0.7em 0;
     margin-top: 1em;
@@ -1316,10 +1304,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     width: 100%;
   }
 
-  body.path-frontpage .view-home-page-menu-icons .views-row {
-    margin: 0 4.3%;
-  }
-
   body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
   width: 150px;
   }
@@ -1328,10 +1312,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     font-size: 16px;
     font-weight: normal;
     text-align: center;
-  }
-
-  #content-main .region.region-content .views-element-container.form-group .view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content {
-    margin: 0 4.5%;
   }
 
    /*edi-support-b2b-image*/
@@ -1438,10 +1418,6 @@ body.path-file-search .region-content .view-header button.btn-info {
   #content-main  .view-content .table-responsive {
     width: 100%;
   }
-  body.path-frontpage .view-home-page-menu-icons .views-row {
-    margin: 0 1.7%;
-  /*float: left;*/
-  }
   body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
     width: 150px;
   }
@@ -1456,10 +1432,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     text-align: left;
   }
   /*end eco-system*/
-
-  #content-main .region.region-content .views-element-container.form-group .view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content {
-    margin: 0 4.5%;
-  }
 
 }
 /*End of Responsive for Laptop 1131px*/
@@ -1511,9 +1483,6 @@ body.path-file-search .region-content .view-header button.btn-info {
   #content-main  .view-content .table-responsive {
     width: 100%;
   }
-  body.path-frontpage .view-home-page-menu-icons .views-row {
-    margin: 0 3.5%;
-  }
   body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
     width: 150px;
   }
@@ -1522,10 +1491,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     font-size: 16px;
     font-weight: normal;
     text-align: center;
-  }
-
-  #content-main .region.region-content .views-element-container.form-group .view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content {
-    margin: 0 4.5%;
   }
   #content-main.col-sm-9 {
     width: 74%;
@@ -1592,11 +1557,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     text-align: center;
   }
 
-  #content-main .region.region-content .views-element-container.form-group .view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content {
-    margin: 0 4.5%;
-  }
-
-
 }
 /*End of Responsive for Laptop 1360px*/
 
@@ -1620,6 +1580,9 @@ body.path-file-search .region-content .view-header button.btn-info {
 
   aside.col-sm-3 {
     width: 22%;
+  }
+  #content-main.col-sm-9 {
+    width: 78%;
   }
 
   nav#block-mainnavigation ul.menu.nav.navbar-nav li > a,
@@ -1651,14 +1614,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     font-weight: normal;
     text-align: center;
   }
-
-  #content-main .region.region-content .views-element-container.form-group .view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content {
-    width: 100%;
-    margin: 0px 5.2%;
-  }
-  .view-home-page-menu-icons .view-content .views-row {
-    margin: 0 2%;
-  }
 }
 /* End of Responsive for Larger Laptops 1440px */
 
@@ -1677,6 +1632,9 @@ body.path-file-search .region-content .view-header button.btn-info {
 
   aside.col-sm-3 {
     width: 17%;
+  }
+  #content-main.col-sm-9 {
+    width: 83%;
   }
 
   nav#block-mainnavigation ul.menu.nav.navbar-nav li > a,
@@ -1702,14 +1660,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     font-size: 16px;
     font-weight: normal;
     text-align: center;
-  }
-
-  #content-main .region.region-content .views-element-container.form-group .view.view-home-page-menu-icons.view-id-home_page_menu_icons.view-display-id-page_1 .view-content {
-    width: 100%;
-    margin: 0px 5%;
-  }
-  .view-home-page-menu-icons .view-content .views-row {
-    margin: 0 4.3%;
   }
 
 }

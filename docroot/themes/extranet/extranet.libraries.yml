@@ -1,12 +1,10 @@
 global-styling:
   js:
     js/menu.js: {}
-    js/responsive-table.js: {}
   css:
     theme:
       css/style.less: {}
       css/style.css: {}
-      css/responsive-table.css: {}
   dependencies:
     - bootstrap/theme
 
