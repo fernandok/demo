@@ -115,7 +115,7 @@ a {
   padding-left: 12px;
 }
 #block-searchform #search-block-form .button {
-  background-color: #217dbb;
+  /*background-color: #217dbb;*/
   height: 33px;
   border: none;
   padding-right: 12px;
@@ -480,7 +480,7 @@ body.path-frontpage h1.page-header {
 }
 .download-all-files {
   color: white;
-  background-color: #09357A;
+  background-color: #E84A00;
   display: inline-block;
   padding: 0.5% 2%;
   font-weight: bold;
@@ -496,7 +496,7 @@ body.path-frontpage h1.page-header {
 }
 .static-download-all-files-wrapper {
   padding: 0.5em;
-  background-color: #09357A;
+  background-color: #E84A00;
   display: none;
 }
 .static-download-all-files-wrapper.show {
@@ -506,10 +506,10 @@ body.path-frontpage h1.page-header {
   z-index: 100;
 }
 .download-all-files .download-label {
-  font-size: 0.95em;
+  font-size: 0.7em;
 }
 .download-all-files .title {
-  font-size: 0.7em;
+  font-size: 0.95em;
 }
 /* End download all docs */
 /*Start footer region*/
@@ -1707,7 +1707,7 @@ body.path-search .main-container.container .row section#content-main .region.reg
 }
 #block-searchform #search-block-form #edit-keys {
   height: 33px;
-  border: 1px solid #217dbb;
+  border: 1px solid rgba(0,0,0,0.25);
   background-color: initial;
 }
 /**End Search form block**/
