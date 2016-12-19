@@ -492,7 +492,7 @@ body.path-frontpage h1.page-header {
 .download-all-files .download-all-icon, .static-download-all-files-wrapper .download-all-icon {
   width: 28px;
   height: 29px;
-  background: url('../images/download-icon.png');
+  background: url('../images/icon-download.png');
 }
 .static-download-all-files-wrapper {
   padding: 0.5em;
