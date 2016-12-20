@@ -92,8 +92,34 @@ a {
 .main-nav-menu, .account-menu-log {
   /*height: 7.25em;*/
 }
-.main-nav-menu nav#block-cypressmainnavigation {
-  /*margin-top: 2em;*/
+
+.search-block-form-header {
+  margin-top: 6px;
+  padding: 0;
+}
+
+.account-menu-log {
+ padding-left: 0;
+ padding-right: 40px;
+}
+#block-searchform-2 #search-block-form--2 #edit-keys--2 {
+  height: 33px;
+  border: 1px solid #217dbb;
+  background-color: initial;
+}
+#block-searchform-2 #search-block-form--2 .button {
+  background-color: #217dbb;
+  height: 33px;
+  border: none;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+#block-searchform #search-block-form .button {
+  /*background-color: #217dbb;*/
+  height: 33px;
+  border: none;
+  padding-right: 12px;
+  padding-left: 12px;
 }
 .account-menu-log nav#block-extranet-account-menu,
 #block-userloginmenu {
@@ -102,6 +128,10 @@ a {
 #block-userloginmenu ul.menu.nav {
   float: right;
   margin-top: 0.7em;
+}
+#block-searchform-2 {
+  border-bottom: 1px solid #b3c1d6;
+  padding: 10px;
 }
 #block-userloginmenu ul li a:hover {
   background-color: white;
@@ -450,7 +480,7 @@ body.path-frontpage h1.page-header {
 }
 .download-all-files {
   color: white;
-  background-color: #09357A;
+  background-color: #E84A00;
   display: inline-block;
   padding: 0.5% 2%;
   font-weight: bold;
@@ -462,11 +492,11 @@ body.path-frontpage h1.page-header {
 .download-all-files .download-all-icon, .static-download-all-files-wrapper .download-all-icon {
   width: 28px;
   height: 29px;
-  background: url('../images/download-icon.png');
+  background: url('../images/icon-download.png');
 }
 .static-download-all-files-wrapper {
   padding: 0.5em;
-  background-color: #09357A;
+  background-color: #E84A00;
   display: none;
 }
 .static-download-all-files-wrapper.show {
@@ -476,10 +506,10 @@ body.path-frontpage h1.page-header {
   z-index: 100;
 }
 .download-all-files .download-label {
-  font-size: 0.95em;
+  font-size: 0.7em;
 }
 .download-all-files .title {
-  font-size: 0.7em;
+  font-size: 0.95em;
 }
 /* End download all docs */
 /*Start footer region*/
@@ -1042,7 +1072,12 @@ body.path-file-search .region-content .view-header button.btn-info {
 }
 /* End of Responsive for Mobile*/
 
-
+@media only screen and (min-width: 768px) and (max-width: 1259px) {
+  .account-menu-log {
+    padding-left: 0;
+    padding-right: 20px;
+  }
+}
 
 /* Start of Responsive for Tablet*/
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
@@ -1051,6 +1086,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     padding-right: 10px;
     font-size: 16px;
   }
+
   #block-workweekandstock .container.full-width .row {
     background-color: #09357a;
     padding: 0.43em;
@@ -1662,21 +1698,16 @@ body.path-search .main-container.container .row section#content-main .region.reg
 /** Strting Search form block left side **/
 #block-searchform {
   padding: 10px;
-  border-bottom: 1px solid #b3c1d6;
+  /*border-bottom: 1px solid #b3c1d6;*/
 }
-#block-searchform #search-block-form .button {
-  background-color: #217dbb;
-  height: 33px;
-  border: none;
-  padding-right: 12px;
-  padding-left: 12px;
-}
+
+
 #block-searchform #search-block-form .button span.glyphicon-search {
   top: -1px;
 }
 #block-searchform #search-block-form #edit-keys {
   height: 33px;
-  border: 1px solid #217dbb;
+  border: 1px solid rgba(0,0,0,0.25);
   background-color: initial;
 }
 /**End Search form block**/
