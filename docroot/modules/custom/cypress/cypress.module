@@ -156,10 +156,17 @@ function get_saml_user_attributes($account) {
  */
 function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_state) {
   $current_path = \Drupal::service('path.current')->getPath();
-  $elements_to_hide = ['approver_mail', 'custom_emails', 'requester', 'approver', 'discount_amount', 'promo_code', 'requester_mail'];
+  $elements_to_hide = ['approver_mail', 'custom_emails', 'requester', 'approver', 'discount_amount', 'promo_code', 'requester_mail', 'action_links', 'approver_subject', 'requester_subject'];
   if (preg_match('/yamlform\/manage\/promocode\/submission\/\d+\/edit$/', $current_path)) {
+    $promocode_status_value = $form['elements']['promocode_status']['#default_value'];
+    if ($promocode_status_value != 'Modify' && $promocode_status_value != '') {
+      $form['actions']['submit']['#disabled'] = true;
+      $form['actions']['submit']['#suffix'] = 'Promocode is been ' . lcfirst($promocode_status_value) . ', so can\'t been submitted again';
+    }
     $op = \Drupal::request()->query->get('op');
-    $promocode_status_value = '';
+    if (!empty($op)) {
+      $promocode_status_value = $op;
+    }
     switch ($op) {
       case 'approve':
         $promocode_status_value = 'Approved';
@@ -455,6 +462,25 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
   }
   // Generate promocode.
   $promocode = $user_division_code . date('y') . date('W') . date('N') . mt_rand(001, 99999);
+  $approver_subject = 'Request to Approve Promo Code';
+  $requester_subject = 'Request For Promo Code Successfully Sent';
+  $action_links = 'width: 32%; display: inline-block; text-align: center;';
+  switch ($form_values['promocode_status']) {
+    case 'Approved':
+    case 'Rejected':
+        $approver_subject = '[' . $form_values['promocode_status'] . '] ' . $approver_subject;
+        $requester_subject = '[' . $form_values['promocode_status'] . '] ' . $requester_subject;
+        $action_links = 'display: none;';
+      break;
+
+    case 'Modify':
+      $approver_subject = '[Modified] ' . $approver_subject;
+      $requester_subject = '[Modified] ' . $requester_subject;
+      break;
+  }
+  $form_state->setValue('approver_subject', $approver_subject);
+  $form_state->setValue('requester_subject', $requester_subject);
+  $form_state->setValue('action_links', $action_links);
   $form_state->setValue('requester', $user_name);
   $form_state->setValue('requester_mail', $current_user->getEmail());
   $form_state->setValue('approver_mail', implode(',', $approvers_mail));
