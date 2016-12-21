@@ -1,0 +1,5 @@
+name: DB Log Filter
+type: module
+description: Enables to log DB messages based on type and severity.
+core: 8.x
+package: Other
