@@ -33,7 +33,9 @@ td {
 td:before {
   /* Now like a table header */
   position: absolute;
+  top: 14px;
   left: 14px;
+  width: 45%;
   padding-right: 10px;
   white-space: nowrap;
   text-align: left;
