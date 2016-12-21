@@ -179,7 +179,7 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
         break;
     }
     $form['elements']['promocode_status']['#default_value'] = $promocode_status_value;
-    if ($op == 'modify') {
+    if ($op == 'modify' || $op == 'Modify') {
       $elements_to_hide[] = 'promocode_status';
     }
     else {
@@ -461,7 +461,10 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
     $user_division_code = $result->division_code;
   }
   // Generate promocode.
-  $promocode = $user_division_code . date('y') . date('W') . date('N') . mt_rand(001, 99999);
+  if (!isset($form_values['promo_code']) || empty($form_values['promo_code'])) {
+    $promocode = $user_division_code . date('y') . date('W') . date('N') . mt_rand(001, 99999);
+    $form_state->setValue('promo_code', $promocode);
+  }
   $approver_subject = 'Request to Approve Promo Code';
   $requester_subject = 'Request For Promo Code Successfully Sent';
   $action_links = 'width: 32%; display: inline-block; text-align: center;';
@@ -486,5 +489,4 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
   $form_state->setValue('approver_mail', implode(',', $approvers_mail));
   $form_state->setValue('approver', implode(',', $approvers_name));
   $form_state->setValue('discount_amount', $discount_amount);
-  $form_state->setValue('promo_code', $promocode);
 }
