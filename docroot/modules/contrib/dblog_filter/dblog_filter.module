@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @file
+ * Contains dblog_filter.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dblog_filter_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.dblog_filter':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Allows to Store particular DB log messages based on type and severity. Refer to README.txt in module folder.') . '</p>';
+      return $output;
+
+    default:
+  }
+}
