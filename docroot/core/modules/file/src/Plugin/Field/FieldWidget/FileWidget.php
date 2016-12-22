@@ -394,7 +394,7 @@ class FileWidget extends WidgetBase implements ContainerFactoryPluginInterface {
       $config = \Drupal::config('file.settings');
       $element['description'] = array(
         '#type' => $config->get('description.type'),
-        '#title' => t('Description'),
+        '#title' => t('File Title'),
         '#value' => isset($item['description']) ? $item['description'] : '',
         '#maxlength' => $config->get('description.length'),
         '#description' => t('The description may be used as the label of the link to the file.'),
