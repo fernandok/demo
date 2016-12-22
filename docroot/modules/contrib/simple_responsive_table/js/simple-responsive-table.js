@@ -10,7 +10,8 @@
       // Table responsive.
       if ($(window).width() <= maxWidth) {
         modulePath = drupalSettings.simpleResponsiveTable.modulePath;
-        cssFilePath = '/' + modulePath + '/css/simple-responsive-table.css';
+        rand = Math.floor(Math.random() * 1000);
+        cssFilePath = '/' + modulePath + '/css/simple-responsive-table.css?' + rand;
         // Load css file dynamically only for small screens.
         $("<link/>", {
            rel: "stylesheet",

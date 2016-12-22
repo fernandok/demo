@@ -868,7 +868,7 @@ body.path-file-search .region-content .view-header button.btn-info {
   }
 
 
-  #navbar .navbar-header .region.region-navigation .container.full-width .row .col-md-3.account-menu-log nav#block-extranet-account-menu
+  #navbar .navbar-header .region.region-navigation .container.full-width .row .account-menu-log nav#block-extranet-account-menu
   ul.menu.nav.navbar-nav.navbar-right li.expanded.dropdown.open ul.menu.dropdown-menu {
     top: 85%;
     position: absolute;
@@ -876,7 +876,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     left: auto;
     right: 0;
   }
-  #navbar .navbar-header .region.region-navigation .container.full-width .row .col-md-3.account-menu-log nav#block-extranet-account-menu
+  #navbar .navbar-header .region.region-navigation .container.full-width .row .account-menu-log nav#block-extranet-account-menu
   ul.menu.nav.navbar-nav.navbar-right li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
     background: #ffffff;
     color: #000000;
