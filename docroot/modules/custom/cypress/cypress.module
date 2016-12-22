@@ -191,7 +191,8 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
         'production_date',
         'opportunity_registration',
         'project_name',
-        'application', 'annual_volume_',
+        'application',
+        'annual_volume_',
         'cypress_fae_fse',
         'additional_details',
         'customer_part_number',
@@ -441,11 +442,11 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
   $approvers_name = [];
   foreach ($results as $result) {
     $approvers_mail[] = $result->mail;
-    $approvers_name[] = '<a href="mailto:' . $result->mail . '">' . $result->first_name . ' ' . $result->last_name . '</a>';
+    $approvers_name[] = $result->mail;
   }
   $discount_amount = $msrp * $form_values['quantity'];
   $current_user = User::load(\Drupal::currentUser()->id());
-  $user_name = '<a href="mailto:' . $current_user->getEmail() . '">' . $current_user->get('field_first_name')->getValue()[0]['value'] . ' ' . $current_user->get('field_last_name')->getValue()[0]['value'] . '</a>';
+  $user_name = $current_user->getEmail();
   // Query to get approver divison code.
   $query = \Drupal::database()->query('select nd.title as division_code
     from node__field_legacy_user_id nluid
