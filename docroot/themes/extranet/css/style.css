@@ -1749,10 +1749,12 @@ body.path-search .main-container.container .row section#content-main .region.reg
   margin-top: 1em;
   margin-bottom: 0.5em;
 }
-#yamlform-submission-promocode-form .form-item > input, #yamlform-submission-promocode-form .form-item > select {
+#yamlform-submission-promocode-form .form-item > input, #yamlform-submission-promocode-form .form-item select {
   width: 50%;
   display: block;
   height: 2.5em;
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 span.yaml-form-help {
   font-size: 0.9em;
