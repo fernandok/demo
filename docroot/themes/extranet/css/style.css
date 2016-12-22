@@ -256,6 +256,8 @@ span.welcome-first-last-name {
 /*End Welcome user block*/
 /*Start nav bar primary*/
 #block-mainnavigation .navbar-nav,
+.extranet-pages-menu-block .navbar-nav,
+.extranet-pages-menu-block .navbar-nav li,
 #block-mainnavigation .navbar-nav li,
 #block-distributionextranet .navbar-nav,
 #block-distributionextranet .navbar-nav li {
@@ -273,15 +275,18 @@ span.welcome-first-last-name {
 }
 
 #block-mainnavigation .navbar-nav li a:hover,
+/*.extranet-pages-menu-block .navbar-nav li a:hover,*/
 #block-distributionextranet .navbar-nav li a:hover {
   background-color: #ecf0f1;
 }
 nav#block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.active,
+.extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.active,
 nav#block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.active {
   background: #09357a;
   color: #ffffff;
 }
 nav#block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.active>a,
+.extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.active>a,
 nav#block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.active>a {
   background: #09357a;
   color: #ffffff;
@@ -291,6 +296,7 @@ nav#block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.activ
   z-index: 0;
 }
 nav#block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.active a.is-active,
+nav.extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.active a.is-active,
 nav#block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.active a.is-active {
   color: #ffffff;
 }
@@ -375,7 +381,7 @@ body.page-node-type-cy-page table.marcom-contacts td.tel-no{
 }
 
 
-#block-mainnavigation .caret, #block-distributionextranet .caret {
+#block-mainnavigation .caret, #block-distributionextranet .caret, .extranet-pages-menu-block .caret {
   position: absolute;
   left: 87%;
   top: 47%;
@@ -563,7 +569,7 @@ body.page-node-type-stcon .ui-tabs-panel > h4 {
   padding-left: 2.7em;
   font-size: 14px;
   display: block;
-  background-color: #e8ebf1 !important;
+  background-color: #e8ebf1;
 }
 
 @media (min-width: 768px) {
@@ -588,6 +594,7 @@ body.page-node-type-stcon .ui-tabs-panel > h4 {
   background-color: #f5f5f2;
 }
 #block-admindashboard .open > .dropdown-menu, #block-mainnavigation .open > .dropdown-menu,
+.extranet-pages-menu-block .open > .dropdown-menu,
 #block-distributionextranet .open > .dropdown-menu {
   display: block;
   position: relative;
@@ -598,16 +605,18 @@ body.page-node-type-stcon .ui-tabs-panel > h4 {
   background-color: #f5f5f2;
 }
 #block-mainnavigation .open > .dropdown-menu,
+.extranet-pages-menu-block .open > .dropdown-menu,
 #block-distributionextranet .open > .dropdown-menu {
   padding-left: 0;
   background-color: #e8ebf1;
   border-radius: 0;
   z-index: 0;
 }
-#block-mainnavigation .open > .dropdown-menu > li, #block-distributionextranet .open > .dropdown-menu > li {
+#block-mainnavigation .open > .dropdown-menu > li,.extranet-pages-menu-block .open > .dropdown-menu > li, #block-distributionextranet .open > .dropdown-menu > li {
   border: none;
 }
 #block-mainnavigation .open > .dropdown-menu > li > a,
+.extranet-pages-menu-block .open > .dropdown-menu > li > a,
 #block-distributionextranet .open > .dropdown-menu > li > a {
   white-space: normal;
   padding-top: 10px;
@@ -616,6 +625,7 @@ body.page-node-type-stcon .ui-tabs-panel > h4 {
   color: #09357a;
 }
 #block-mainnavigation .open > .dropdown-menu > li > a.is-active,
+.extranet-pages-menu-block .open > .dropdown-menu > li > a.is-active,
 #block-distributionextranet .open > .dropdown-menu > li > a.is-active {
   background-color: #09357a !important;
   color: white;
@@ -952,6 +962,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     padding-right: 0px;
   }
   #block-mainnavigation .open > .dropdown-menu > li > a,
+  .extranet-pages-menu-block .open > .dropdown-menu > li >a,
   #block-distributionextranet .open > .dropdown-menu > li > a {
     padding-bottom: 3px;
     padding-top: 0px;
@@ -959,6 +970,7 @@ body.path-file-search .region-content .view-header button.btn-info {
   /* End of Welcome User block */
 
   #block-mainnavigation .navbar-nav,
+  .extranet-pages-menu-block .navbar-nav,
   #block-distributionextranet .navbar-nav {
     margin: 0 auto;
   }
@@ -1123,16 +1135,16 @@ body.path-file-search .region-content .view-header button.btn-info {
   .welcome-user-wrapper span.col-sm-7.welcome-first-last-name span.first-last-name {
     font-size: 17px;
   }
-  nav#block-mainnavigation ul.menu.nav.navbar-nav li  > a, nav#block-distributionextranet ul.menu.nav.navbar-nav li  > a {
+  nav#block-mainnavigation ul.menu.nav.navbar-nav li  > a, .extranet-pages-menu-block ul.menu.nav.navbar-nav li >a, nav#block-distributionextranet ul.menu.nav.navbar-nav li  > a {
     padding-top: 10.5px;
     padding-bottom: 5px;
   }
 
-  #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu {
+  #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,.extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu {
     padding-top: 0px;
   }
 
-  #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
+  #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,.extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
     padding-bottom: 3px;
     padding-top: 0px;
   }
@@ -1269,22 +1281,25 @@ body.path-file-search .region-content .view-header button.btn-info {
   }
 
   nav#block-mainnavigation ul.menu.nav.navbar-nav li > a,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li > a,
   nav#block-distributionextranet ul.menu.nav.navbar-nav li > a {
     padding-top: 10px;
     padding-bottom: 5px;
   }
 
   #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu {
     padding-top: 0px;
   }
 
   #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
     padding-bottom: 3px;
   }
 
-  #block-mainnavigation .caret, #block-distributionextranet .caret {
+  #block-mainnavigation .caret, #block-distributionextranet .caret .extranet-pages-menu-block .caret {
   position: absolute;
   left: 89%;
   }
@@ -1379,6 +1394,7 @@ body.path-file-search .region-content .view-header button.btn-info {
     right: 3px;
   }
   #block-mainnavigation .caret,
+  .extranet-pages-menu-block .caret,
   #block-distributionextranet .caret {
     position: absolute;
     left: 90%;
@@ -1392,17 +1408,20 @@ body.path-file-search .region-content .view-header button.btn-info {
   }
 
   nav#block-mainnavigation ul.menu.nav.navbar-nav li > a,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li > a,
   nav#block-distributionextranet ul.menu.nav.navbar-nav li > a {
     padding-top: 10px;
     padding-bottom: 5px;
   }
 
   #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu {
     padding-top: 0px;
   }
 
   #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
     padding-bottom: 3px;
   }
@@ -1460,17 +1479,20 @@ body.path-file-search .region-content .view-header button.btn-info {
   }
 
   nav#block-mainnavigation ul.menu.nav.navbar-nav li > a,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li > a,
   nav#block-distributionextranet ul.menu.nav.navbar-nav li > a {
     padding-top: 10px;
     padding-bottom: 5px;
   }
 
   #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu {
     padding-top: 0px;
   }
 
   #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
     padding-bottom: 3px;
   }
@@ -1523,17 +1545,20 @@ body.path-file-search .region-content .view-header button.btn-info {
   }
 
   nav#block-mainnavigation ul.menu.nav.navbar-nav li > a,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li > a,
   nav#block-distributionextranet ul.menu.nav.navbar-nav li > a {
     padding-top: 10px;
     padding-bottom: 5px;
   }
 
   #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu {
     padding-top: 0px;
   }
 
   #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
     padding-bottom: 3px;
   }
@@ -1586,22 +1611,27 @@ body.path-file-search .region-content .view-header button.btn-info {
   }
 
   nav#block-mainnavigation ul.menu.nav.navbar-nav li > a,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li > a,
   nav#block-distributionextranet ul.menu.nav.navbar-nav li > a {
     padding-top: 10px;
     padding-bottom: 5px;
   }
 
   #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu {
     padding-top: 0px;
   }
 
-  #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a, #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
+  #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,
+  #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
   padding-bottom: 3px;
   padding-top: 0px;
   }
 
   #block-mainnavigation .caret,
+  .extranet-pages-menu-block .caret,
   #block-distributionextranet .caret {
     position: absolute;
     left: 88%;
@@ -1638,17 +1668,20 @@ body.path-file-search .region-content .view-header button.btn-info {
   }
 
   nav#block-mainnavigation ul.menu.nav.navbar-nav li > a,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li > a,
   nav#block-distributionextranet ul.menu.nav.navbar-nav li > a {
     padding-top: 10px;
     padding-bottom: 5px;
   }
 
   #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu,
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu {
     padding-top: 0px;
   }
 
   #block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,
+  .extranet-pages-menu-block ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a,
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
   padding-bottom: 3px;
   padding-top: 0px;

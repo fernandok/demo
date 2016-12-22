@@ -42,6 +42,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         t('BU'),
         t('DIV'),
         t('Title'),
+        t('Revsion'),
         t('Language'),
         t('File size'),
         t('Last updated'),
@@ -92,6 +93,10 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         }
         $last_updated = $file->get('changed')->get(0)->getValue()['value'];
         $file_size = $this->formatSizeInMb($file->getSize());
+        if(!empty($paragraph->get('field_spec_revision'))) {
+          $revision = $paragraph->get('field_spec_revision')
+            ->getValue()[0]['value'];
+        }
         $rows[] = [
           ['data' => $bu],
           ['data' => $division],
@@ -105,6 +110,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
               ],
             ],
           ],
+          ['data' => $revision],
           ['data' => $language],
           // ['data' => format_size($file->getSize())],
           ['data' => $file_size],
