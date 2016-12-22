@@ -97,7 +97,9 @@ a {
   margin-top: 6px;
   padding: 0;
 }
-
+body.path-my-samples .view-my-samples .form-item {
+  margin:0;
+}
 .account-menu-log {
  padding-left: 0;
  padding-right: 40px;
