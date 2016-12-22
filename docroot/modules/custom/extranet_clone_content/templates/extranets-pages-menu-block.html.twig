@@ -12,8 +12,8 @@
              <span class="caret"></span></a>
              <ul class="menu dropdown-menu">
               {% for ep_childs in ep_link.child %}
-                  <li class ="expanded dropdown">
-                    <a href="{{ ep_childs.link }}" class="{{ ep_link.a_class }}">{{ ep_childs.title }}</a>
+                  <li class ="expanded dropdown {{ ep_childs.li_class }}">
+                    <a href="{{ ep_childs.link }}" class="{{ ep_childs.a_class }}">{{ ep_childs.title }}</a>
                   </li>
               {% endfor %}
              </ul>

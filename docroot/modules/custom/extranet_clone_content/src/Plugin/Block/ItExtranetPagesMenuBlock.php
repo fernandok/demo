@@ -108,8 +108,12 @@ class ItExtranetPagesMenuBlock extends BlockBase implements ContainerFactoryPlug
         'title' => $page_title,
         'link' => $this->pathAlias->getAliasByPath('/node/' . $page_id),
       );
-      if ($path_args[2] == $page_id && !empty($subpages)) {
-        $ep_links[$page_id]['li_class'] = 'open active';
+      if ($path_args[2] == $page_id) {
+        $ep_links[$page_id]['li_class'] = 'active';
+        if (!empty($subpages)) {
+          $ep_links[$page_id]['li_class'] .= ' open';
+        }
+
       }
       foreach ($subpages as $subpage) {
         $ep_links[$page_id]['child'][$subpage->nid] = array(
@@ -119,6 +123,7 @@ class ItExtranetPagesMenuBlock extends BlockBase implements ContainerFactoryPlug
         if ($path_args[2] == $subpage->nid) {
           $ep_links[$page_id]['li_class'] = 'open';
           $ep_links[$page_id]['child'][$subpage->nid]['a_class'] = 'is_active';
+          $ep_links[$page_id]['child'][$subpage->nid]['li_class'] = 'active';
         }
       }
     }

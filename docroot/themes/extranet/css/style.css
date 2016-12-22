@@ -275,8 +275,10 @@ span.welcome-first-last-name {
 }
 
 #block-mainnavigation .navbar-nav li a:hover,
-/*.extranet-pages-menu-block .navbar-nav li a:hover,*/
 #block-distributionextranet .navbar-nav li a:hover {
+  background-color: #ecf0f1;
+}
+.extranet-pages-menu-block .navbar-nav li a:hover {
   background-color: #ecf0f1;
 }
 nav#block-mainnavigation ul.menu.nav.navbar-nav li.expanded.dropdown.active,
