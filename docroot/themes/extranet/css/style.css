@@ -1066,7 +1066,15 @@ body.path-file-search .region-content .view-header button.btn-info {
   body.path-search .region-content > h3 {
     text-align: left !important;
   }
-
+  /*sap-node-226-image*/
+  .sap-img-1{
+    width: 100%;
+  }
+  .sap-img-2{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
 
 
   /* End of main-container*/
@@ -1087,6 +1095,10 @@ body.path-file-search .region-content .view-header button.btn-info {
   /*End of footer*/
 }
 /* End of Responsive for Mobile*/
+
+@media only screen and (min-width: 320px) and (max-width: 767px){
+  
+}
 
 @media only screen and (min-width: 768px) and (max-width: 1259px) {
   .account-menu-log {
