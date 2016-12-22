@@ -80,10 +80,23 @@ function extranet_clone_content_fetch_extranet_pages($extranet_content_id) {
   $query->addField('fiep', 'field_it_extranet_pages_target_id', 'page_id');
   $query->join('node_field_data', 'nfd', 'fiep.field_it_extranet_pages_target_id = nfd.nid');
   $query->addField('nfd', 'title');
+  $query->leftJoin('node__field_it_extranet_page_reference','pn','pn.entity_id = fiep.field_it_extranet_pages_target_id');
+  $query->isNull('pn.field_it_extranet_page_reference_target_id');
   $pages = $query->execute()->fetchAll();
 
   foreach ($pages as $page) {
     $extranet_pages[$page->page_id] = $page->title;
   }
   return $extranet_pages;
+}
+
+function extranet_clone_content_fetch_extranet_subpage_id_from_parent($extranet_parent_id) {
+  $query = \Drupal::database()->select('node_field_data', 'n');
+  $query->fields('n',['nid','title']);
+  $query->join('node__field_it_extranet_page_reference','pn','pn.entity_id = n.nid');
+  $query->condition('n.type','it_extranet_pages');
+  $query->condition('pn.field_it_extranet_page_reference_target_id',$extranet_parent_id);
+  $subpages = $query->execute()->fetchAll();
+
+  return $subpages;
 }

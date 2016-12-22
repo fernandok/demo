@@ -58,11 +58,11 @@ class ItExtranetPagesMenuBlock extends BlockBase implements ContainerFactoryPlug
    */
   public static function create(ContainerInterface $container, array $configuration, $plugin_id, $plugin_definition) {
     return new static(
-    $configuration,
-    $plugin_id,
-    $plugin_definition,
-    $container->get('path.alias_manager'),
-    $container->get('path.current')
+      $configuration,
+      $plugin_id,
+      $plugin_definition,
+      $container->get('path.alias_manager'),
+      $container->get('path.current')
     );
   }
 
@@ -72,7 +72,8 @@ class ItExtranetPagesMenuBlock extends BlockBase implements ContainerFactoryPlug
   public function build() {
     // Get other Extranet Pages Attactched to the current Extranet content.
     $current_path = $this->pathCurrent->getPath();
-    $current_path = \Drupal::service('path.alias_manager')->getPathByAlias($current_path);
+    $current_path = \Drupal::service('path.alias_manager')
+      ->getPathByAlias($current_path);
     $path_args = explode('/', $current_path);
     // Get the node id from title.
     $db = \Drupal::database();
@@ -80,14 +81,12 @@ class ItExtranetPagesMenuBlock extends BlockBase implements ContainerFactoryPlug
     $query->condition('n.nid', $path_args[2]);
     $query->addField('n', 'type');
     $node_type = $query->execute()->fetchField();
-    $e_links = $ep_links = array();
-
+    $e_links = $ep_links = $sub_links = array();
     if ($node_type == 'it_extranet_pages') {
       $query = $db->select('node__field_it_extranet_pages', 'fiep');
       $query->condition('fiep.field_it_extranet_pages_target_id', $path_args[2]);
       $query->addField('fiep', 'entity_id');
       $extranet_id = $query->execute()->fetchField();
-
       $extranet_node_id = $extranet_id;
     }
     // If it_extranet, get extranet_pages.
@@ -104,10 +103,24 @@ class ItExtranetPagesMenuBlock extends BlockBase implements ContainerFactoryPlug
     // Fetch Children.
     $extranet_pages = extranet_clone_content_fetch_extranet_pages($extranet_node_id);
     foreach ($extranet_pages as $page_id => $page_title) {
+      $subpages = extranet_clone_content_fetch_extranet_subpage_id_from_parent($page_id);
       $ep_links[$page_id] = array(
         'title' => $page_title,
         'link' => $this->pathAlias->getAliasByPath('/node/' . $page_id),
       );
+      if ($path_args[2] == $page_id && !empty($subpages)) {
+        $ep_links[$page_id]['li_class'] = 'open active';
+      }
+      foreach ($subpages as $subpage) {
+        $ep_links[$page_id]['child'][$subpage->nid] = array(
+          'title' => $subpage->title,
+          'link' => $this->pathAlias->getAliasByPath('/node/' . $subpage->nid),
+        );
+        if ($path_args[2] == $subpage->nid) {
+          $ep_links[$page_id]['li_class'] = 'open';
+          $ep_links[$page_id]['child'][$subpage->nid]['a_class'] = 'is_active';
+        }
+      }
     }
     $build = [];
     $build['it_extranet_pages_menu_block'] = [

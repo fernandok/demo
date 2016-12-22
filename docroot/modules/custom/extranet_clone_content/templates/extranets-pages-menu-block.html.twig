@@ -1,20 +1,26 @@
 <div class="extranet-pages-menu-block">
-  <div class="e-link">
-    <ul class="nav">
-      {% for e_link in e_links %}
-        <li>
-          <a href="{{ e_link.link }}">{{ e_link.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
-  <div class="ep-link">
-    <ul class="nav">
-      {% for ep_link in ep_links %}
-        <li>
-          <a href="{{ ep_link.link }}">{{ ep_link.title }}</a>
-        </li>
-      {% endfor %}
-    </ul>
-  </div>
+  <ul class="menu nav navbar-nav">
+    {% for e_link in e_links %}
+      <li class ="expanded dropdown">
+        <a href="{{ e_link.link }}">{{ e_link.title }}</a>
+      </li>
+    {% endfor %}
+    {% for ep_link in ep_links %}
+      <li class ="expanded dropdown {{ ep_link.li_class }}">
+        <a href="{{ ep_link.link }}" class="{{ ep_link.a_class }}">{{ ep_link.title }}
+          {% if ep_link.child %}
+             <span class="caret"></span></a>
+             <ul class="menu dropdown-menu">
+              {% for ep_childs in ep_link.child %}
+                  <li class ="expanded dropdown">
+                    <a href="{{ ep_childs.link }}" class="{{ ep_link.a_class }}">{{ ep_childs.title }}</a>
+                  </li>
+              {% endfor %}
+             </ul>
+          {% else %}
+            </a>
+          {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
 </div>
