@@ -1158,6 +1158,10 @@ body.path-file-search .region-content .view-header button.btn-info {
 /* Start of Responsive for Tablet*/
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
 
+  body.path-search #block-searchform-2 {
+    display: none;
+  }
+
   #ww_and_cy #ww {
     padding-right: 10px;
     font-size: 16px;
@@ -1840,3 +1844,9 @@ span.yaml-form-help {
   }
 }
 /* End Promo code form */
+
+/*for node/66 table header*/
+body.page-node-type-cy-page table.need-help thead .tr-bcgd th {
+  padding-bottom: 0px;
+}
+/*End table header*/
