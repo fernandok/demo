@@ -100,6 +100,9 @@ a {
 body.path-my-samples .view-my-samples .form-item {
   margin:0;
 }
+body.path-search #block-searchform {
+  visibility: hidden;
+}
 .account-menu-log {
  padding-left: 0;
  padding-right: 40px;
@@ -1136,6 +1139,11 @@ body.path-file-search .region-content .view-header button.btn-info {
   body.path-my-samples #edit-submit-my-samples.btn{
     position: relative;
     bottom: 2px;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 767px){
+  body.path-search #block-searchform-2 {
+    display: none;
   }
 }
 /*End Responsive for Mysamples-page*/
