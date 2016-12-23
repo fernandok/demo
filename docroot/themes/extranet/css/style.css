@@ -1095,10 +1095,50 @@ body.path-file-search .region-content .view-header button.btn-info {
   /*End of footer*/
 }
 /* End of Responsive for Mobile*/
-
-@media only screen and (min-width: 320px) and (max-width: 767px){
-  
+/*Start Responsive for Mysamples-page*/
+@media only screen and (min-width: 320px) and (max-width: 374px){
+  body.path-my-samples .form-type-textfield{
+    width: 74%;
+    display: inline-block;
+  }
+  body.path-my-samples #edit-actions.form-actions{
+    width: 18%;
+    display: inline-block;
+  }
+  body.path-my-samples #edit-submit-my-samples.btn{
+    position: relative;
+    bottom: 2px;
+  }
 }
+@media only screen and (min-width: 375px) and (max-width: 424px){
+  body.path-my-samples .form-type-textfield{
+    width: 78%;
+    display: inline-block;
+  }
+  body.path-my-samples #edit-actions.form-actions{
+    width: 18%;
+    display: inline-block;
+  }
+  body.path-my-samples #edit-submit-my-samples.btn{
+    position: relative;
+    bottom: 2px;
+  }
+}
+@media only screen and (min-width: 425px) and (max-width: 767px){
+  body.path-my-samples .form-type-textfield{
+    width: 80%;
+    display: inline-block;
+  }
+  body.path-my-samples #edit-actions.form-actions{
+    width: 18%;
+    display: inline-block;
+  }
+  body.path-my-samples #edit-submit-my-samples.btn{
+    position: relative;
+    bottom: 2px;
+  }
+}
+/*End Responsive for Mysamples-page*/
 
 @media only screen and (min-width: 768px) and (max-width: 1259px) {
   .account-menu-log {
