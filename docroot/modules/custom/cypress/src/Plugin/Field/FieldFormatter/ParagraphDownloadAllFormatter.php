@@ -39,6 +39,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
 
     if ($paragraphs = $this->getEntitiesToView($items, $langcode)) {
       $header = [
+        '',
         t('BU'),
         t('DIV'),
         t('Title'),
@@ -98,6 +99,14 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
             ->getValue()[0]['value'];
         }
         $rows[] = [
+          [
+            'data' => [
+              '#theme' => 'cypress_checkbox',
+              '#name' => 'download_file_selector',
+              '#value' => $file->id(),
+              '#classes' => 'download_file_selector',
+            ],
+          ],
           ['data' => $bu],
           ['data' => $division],
           [

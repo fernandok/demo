@@ -4,3 +4,9 @@ cypress.download_all_documents:
     _controller: '\Drupal\cypress\Controller\DownloadController::downloadAllDocs'
   requirements:
     _permission: 'access content'
+cypress.download_selected_documents:
+  path: '/download_selected_documents/{node_id}'
+  defaults:
+    _controller: '\Drupal\cypress\Controller\DownloadController::downloadSelectedDocs'
+  requirements:
+    _permission: 'access content'

@@ -89,6 +89,14 @@ function cypress_theme($existing, $type, $theme, $path) {
       ],
       'template' => 'cypress-ww-cy',
     ],
+    'cypress_checkbox' => [
+      'variables' => [
+        'name' => NULL,
+        'value' => NULL,
+        'classes' => NULL,
+      ],
+      'template' => 'cypress-checkbox',
+    ]
   ];
 }
 
