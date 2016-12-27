@@ -384,7 +384,7 @@ body.page-node-type-cy-page table.archive  thead tr th .col-2 {
 }
 /*Business marcom-contacts table*/
 body.page-node-type-cy-page table.marcom-contacts td.tel-no{
-  width: 14%;
+  /*width: 14%;*/
 }
 
 
@@ -1850,3 +1850,17 @@ body.page-node-type-cy-page table.need-help thead .tr-bcgd th {
   padding-bottom: 0px;
 }
 /*End table header*/
+/* Override responsive table. */
+@media only screen and (max-width: 800px) {
+  .view-id-file_search .table>tbody>tr>td, .field--name-field-files .table>tbody>tr>td {
+    display: none;
+  }
+  .view-id-file_search .table>tbody>tr>td:nth-child(3), .field--name-field-files .table>tbody>tr>td:nth-child(4) {
+    display: block;
+    padding-left: 14px !important;
+  }
+  .view-id-file_search .table>tbody>tr>td:nth-child(3):before, .field--name-field-files .table>tbody>tr>td:nth-child(4):before {
+    content: '';
+  }
+}
+/* Override responsive table. */
