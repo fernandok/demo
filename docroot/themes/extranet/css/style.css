@@ -1863,4 +1863,13 @@ body.page-node-type-cy-page table.need-help thead .tr-bcgd th {
     content: '';
   }
 }
+.table-striped > tbody > tr.highlight-latest {
+  background-color: rgba(249,217,217,0.5);
+}
+.table-striped > tbody > tr.highlight-latest:nth-of-type(odd) {
+  background-color: rgba(249,217,217,1);
+}
+.table-striped > tbody > tr.highlight-latest:hover {
+  background-color: #f9f9f9;
+}
 /* Override responsive table. */
