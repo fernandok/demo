@@ -1792,26 +1792,27 @@ body.page-node-type-cy-page table.need-help thead .tr-bcgd th {
 @media all and (min-width: 376px) {
   .view-home-page-menu-icons .views-row {
     display: inline-block;
+    margin: 0 2%;
   }
 }
 @media all and (min-width: 376px) and (max-width: 768px) {
   .view-home-page-menu-icons .views-row {
-    width: 49%;
+    width: 45%;
   }
 }
 @media all and (min-width: 769px) and (max-width: 1023px) {
   .view-home-page-menu-icons .views-row {
-    width: 32%;
+    width: 28%;
   }
 }
 @media all and (min-width: 1024px) and (max-width: 1439px) {
   .view-home-page-menu-icons .views-row {
-    width: 24%;
+    width: 20%;
   }
 }
 @media all and (min-width: 1440px) {
   .view-home-page-menu-icons .views-row {
-    width: 19%;
+    width: 15%;
   }
 }
 /* End home dashboard icons */
