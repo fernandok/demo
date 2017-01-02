@@ -667,27 +667,13 @@ ul.default_tag_clouds li a.selected:hover {
 /* End Tag cloud */
 
 /* Start homepage menu icons */
-.view-home-page-menu-icons .view-content .views-row {
-  text-align: center;
-  display: inline-block;
-  max-width: 150px;
-  min-height: 210px;
-  vertical-align: bottom;
-  margin: 0 3vw;
-}
 .path-frontpage h1.page-header {
   padding-bottom: 20px;
   margin: 0;
   border-bottom: 0;
 }
-body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
-  width: 168px;
-}
 #block-extranet-account-menu .glyphicon {
   display: none;
-}
-body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap .img-menu {
-  display: initial;
 }
 /* End of homepage icon
 /*My Samples page*/
@@ -983,22 +969,6 @@ body.path-file-search .region-content .view-header button.btn-info {
   }
   /* End of aside*/
 
-  .view-home-page-menu-icons .view-content .views-row {
-    /*margin: 0 auto;*/
-  }
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
-    width: 150px;
-    min-height: 200px;
-  }
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap  a .title-menu-link h4 {
-    font-size: 16px;
-    font-weight: normal;
-    text-align: center;
-  }
-  .path-frontpage #content-main .view-content {
-    text-align: center;
-  }
-
   /*stcon-2016 image*/
   section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
   #tabs-68.ui-tabs-panel.ui-widget-content.ui-corner-bottom p a img {
@@ -1225,14 +1195,6 @@ body.path-file-search .region-content .view-header button.btn-info {
   .main-nav-menu{
     height: 0em;
   }
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
-    width: 150px;
-  }
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap a .title-menu-link h4 {
-    font-size: 16px;
-    font-weight: normal;
-    text-align: center;
-  }
   /*stcon-2016 image*/
   section#content-main article .content .entity-ref-tab-formatter-tabs.ui-tabs.ui-widget.ui-widget-content.ui-corner-all
   #tabs-68.ui-tabs-panel.ui-widget-content.ui-corner-bottom p a img {
@@ -1387,16 +1349,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     width: 100%;
   }
 
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
-  width: 150px;
-  }
-
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap a .title-menu-link h4 {
-    font-size: 16px;
-    font-weight: normal;
-    text-align: center;
-  }
-
    /*edi-support-b2b-image*/
   img.edi-support-b2b-img {
     width: 100%;
@@ -1505,15 +1457,6 @@ body.path-file-search .region-content .view-header button.btn-info {
   #content-main  .view-content .table-responsive {
     width: 100%;
   }
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
-    width: 150px;
-  }
-
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap a .title-menu-link h4 {
-    font-size: 16px;
-    font-weight: normal;
-    text-align: center;
-  }
   /*eco-system*/
   #content-main .quickedit-field {
     text-align: left;
@@ -1573,15 +1516,6 @@ body.path-file-search .region-content .view-header button.btn-info {
   #content-main  .view-content .table-responsive {
     width: 100%;
   }
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
-    width: 150px;
-  }
-
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap a .title-menu-link h4 {
-    font-size: 16px;
-    font-weight: normal;
-    text-align: center;
-  }
   #content-main.col-sm-9 {
     width: 74%;
   }
@@ -1640,16 +1574,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     width: 100%;
   }
 
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
-  width: 150px;
-  }
-
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap a .title-menu-link h4{
-    font-size: 16px;
-    font-weight: normal;
-    text-align: center;
-  }
-
 }
 /*End of Responsive for Laptop 1360px*/
 
@@ -1704,14 +1628,6 @@ body.path-file-search .region-content .view-header button.btn-info {
     position: absolute;
     left: 88%;
   }
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
-  width: 150px;
-  }
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap a .title-menu-link h4 {
-    font-size: 16px;
-    font-weight: normal;
-    text-align: center;
-  }
 }
 /* End of Responsive for Larger Laptops 1440px */
 
@@ -1753,14 +1669,6 @@ body.path-file-search .region-content .view-header button.btn-info {
   #block-distributionextranet ul.menu.nav.navbar-nav li.expanded.dropdown.open ul.menu.dropdown-menu li.expanded.dropdown a {
   padding-bottom: 3px;
   padding-top: 0px;
-  }
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap {
-    width: 150px;
-  }
-  body.path-frontpage .view-home-page-menu-icons .views-row .image-menu-title-wrap a .title-menu-link h4 {
-    font-size: 16px;
-    font-weight: normal;
-    text-align: center;
   }
 
 }
@@ -1873,3 +1781,37 @@ body.page-node-type-cy-page table.need-help thead .tr-bcgd th {
   background-color: #f9f9f9;
 }
 /* Override responsive table. */
+/* Start home dashboard icons */
+.view-home-page-menu-icons .views-row {
+  min-height: 215px;
+  vertical-align: bottom;
+}
+.view-home-page-menu-icons .views-row .title-menu-link {
+  text-align: center;
+}
+@media all and (min-width: 376px) {
+  .view-home-page-menu-icons .views-row {
+    display: inline-block;
+  }
+}
+@media all and (min-width: 376px) and (max-width: 768px) {
+  .view-home-page-menu-icons .views-row {
+    width: 49%;
+  }
+}
+@media all and (min-width: 769px) and (max-width: 1023px) {
+  .view-home-page-menu-icons .views-row {
+    width: 32%;
+  }
+}
+@media all and (min-width: 1024px) and (max-width: 1439px) {
+  .view-home-page-menu-icons .views-row {
+    width: 24%;
+  }
+}
+@media all and (min-width: 1440px) {
+  .view-home-page-menu-icons .views-row {
+    width: 19%;
+  }
+}
+/* End home dashboard icons */
