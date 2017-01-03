@@ -44,6 +44,13 @@ function _cypress_alter_document_paragraphs(&$form, $form_state) {
         ],
       ],
     ];
+//    $subform['field_akamai_url_test']['#states'] = [
+//      'invisible' => [
+//        ':input[name="' . $file_type_name_attr . '"]' => [
+//          'checked' => FALSE,
+//        ],
+//      ],
+//    ];
     $subform['field_akamai_description']['#states'] = [
       'invisible' => [
         ':input[name="' . $file_type_name_attr . '"]' => [
