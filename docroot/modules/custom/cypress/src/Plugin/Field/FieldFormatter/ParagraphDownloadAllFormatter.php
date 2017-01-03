@@ -54,8 +54,8 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         $is_akamai = $paragraph->get('field_file_type')->get(0)->getValue()['value'];
         if ($is_akamai) {
           $akamai_elements[] = [
-            'akamai_uri' => $paragraph->get('field_akamai_uri')->get(0)->getValue()['value'],
-            'akamai_description' => $paragraph->get('field_akamai_description')->get(0)->getValue()['value'],
+           // 'akamai_uri' => $paragraph->get('field_akamai_uri')->get(0)->getValue()['value'],
+          //  'akamai_description' => $paragraph->get('field_akamai_description')->get(0)->getValue()['value'],
           ];
           continue;
         }
