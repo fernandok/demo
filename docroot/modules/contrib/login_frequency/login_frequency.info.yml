@@ -1,0 +1,4 @@
+name: Login frequency
+description: Track user logins frequency
+type: module
+core: 8.x
