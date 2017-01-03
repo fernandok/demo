@@ -21,6 +21,7 @@
  * @ingroup themeable
  */
 #}
+
 {% if context.list_style %}
   {%- set attributes = attributes.addClass('item-list__' ~ context.list_style) %}
 {% endif %}
@@ -30,6 +31,9 @@
   {%- endif -%}
 
   {%- if items -%}
+    <ol>
+    <span class="row"><h3>Showing results for "<strong>{{ keys }}</strong>".</h3></span>
+    </ol>
     <{{ list_type }}{{ attributes }}>
       {%- for item in items -%}
         <span{{ item.attributes }} class="row">{{ item.value }}</span>
