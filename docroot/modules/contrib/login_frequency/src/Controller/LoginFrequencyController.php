@@ -23,7 +23,7 @@ class LoginFrequencyController extends ControllerBase {
       array('data' => t('Username'), 'field' => 'ufd.name'),
       array('data' => t('E-mail Id'), 'field' => 'ufd.mail'),
       array('data' => t('Frequency'), 'field' => 'frequency', 'sort' => 'desc'),
-      array('data' => t('Action')),
+//      array('data' => t('Action')),
     );
 
     $query = db_select('login_tracker', 'lt')
@@ -61,12 +61,12 @@ class LoginFrequencyController extends ControllerBase {
 
     $rows = array();
     foreach ($history as $entry) {
-      $url = Url::fromUserInput('#');
+//      $url = Url::fromUserInput('#');
       $rows[] = array(
         $entry->name,
         $entry->mail,
         $entry->frequency,
-        Link::fromTextAndUrl('View full history', $url),
+//        Link::fromTextAndUrl('View full history', $url),
       );
     }
     $output['history'] = array(
