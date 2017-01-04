@@ -26,14 +26,14 @@ class LoginFrequencyController extends ControllerBase {
 //      array('data' => t('Action')),
     );
 
-    $query = db_select('login_tracker', 'lt')
+    $query = db_select('login_frequency', 'lf')
         ->extend('Drupal\Core\Database\Query\TableSortExtender')
         ->extend('Drupal\Core\Database\Query\PagerSelectExtender');
 
-    $query->join('users', 'u', 'lt.uid = u.uid');
+    $query->join('users', 'u', 'lf.uid = u.uid');
     $query->join('users_field_data', 'ufd', 'u.uid = ufd.uid');
-    $query->addExpression('count(lt.uid)', 'frequency');
-    $query->groupBy('lt.uid, name, mail');
+    $query->addExpression('count(lf.uid)', 'frequency');
+    $query->groupBy('lf.uid, name, mail');
 
     $result = $query
         ->fields('u', array('uid'))

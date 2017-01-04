@@ -1819,14 +1819,14 @@ body.page-node-type-cy-page table.need-help thead .tr-bcgd th {
   }
 }
 /* End home dashboard icons */
-#block-mainnavigation ul.menu.nav li.expanded>a>span.caret, 
+#block-mainnavigation ul.menu.nav li.expanded>a>span.caret,
 #block-itextranetpagesmenublock ul.menu.nav li.expanded>a>span.caret,
 #block-distributionextranet ul.menu.nav li.expanded>a>span.caret {
   border-top: 5px dashed;
   border-right: 5px solid transparent;
   border-left: 5px solid transparent;
 }
-#block-mainnavigation ul.menu.nav li.expanded>a>span.caret:hover, 
+#block-mainnavigation ul.menu.nav li.expanded>a>span.caret:hover,
 #block-itextranetpagesmenublock ul.menu.nav li.expanded>a>span.caret:hover,
 #block-distributionextranet ul.menu.nav li.expanded>a>span.caret:hover {
   border-top-color: #E84A00;
