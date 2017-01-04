@@ -32,11 +32,6 @@ class AkamiUrlWidget extends WidgetBase {
       '#type' => 'textfield',
       '#default_value' => $value,
       '#prefix' => '<div id = "akamai-url-widget-' . $parent_akamai_id . '">',
-      '#states' => array(
-        'invisible' => array(
-          '#edit-field-files-' . $parent_akamai_id . '-subform-field-akamai-url-0-value' => array('filled' => TRUE),
-        ),
-      ),
     );
     $element['akamai_submit'] = array(
       '#name' => $parent_akamai_id . '_upload_button',
@@ -47,11 +42,6 @@ class AkamiUrlWidget extends WidgetBase {
         'wrapper' => 'akamai-url-widget-' . $parent_akamai_id,
       ],
       '#suffix' => '</div>',
-      '#states' => array(
-        'invisible' => array(
-          '#edit-field-files-' . $parent_akamai_id . '-subform-field-akamai-url-0-value' => array('filled' => TRUE),
-        ),
-      ),
     );
     $akamai_value = explode('/', ($value));
     $akamai_descp_value = end($akamai_value);
