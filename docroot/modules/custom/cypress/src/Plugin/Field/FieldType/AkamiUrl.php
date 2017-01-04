@@ -11,7 +11,7 @@ use Drupal\Core\TypedData\DataDefinition;
  *
  * @FieldType(
  *   id = "akami_url",
- *   label = @Translation("Example Akamai Url"),
+ *   label = @Translation("Akamai Url"),
  *   module = "cypress",
  *   description = @Translation("Demonstrates a field composed of an RGB color."),
  *   default_widget = "akami_url",

@@ -34,7 +34,7 @@ class AkamiUrlWidget extends WidgetBase {
       '#prefix' => '<div id = "akamai-url-widget-' . $parent_akamai_id . '">',
       '#states' => array(
         'invisible' => array(
-          '#edit-field-files-' . $parent_akamai_id . '-subform-field-akamai-url-test-0-value' => array('filled' => TRUE),
+          '#edit-field-files-' . $parent_akamai_id . '-subform-field-akamai-url-0-value' => array('filled' => TRUE),
         ),
       ),
     );
@@ -49,7 +49,7 @@ class AkamiUrlWidget extends WidgetBase {
       '#suffix' => '</div>',
       '#states' => array(
         'invisible' => array(
-          '#edit-field-files-' . $parent_akamai_id . '-subform-field-akamai-url-test-0-value' => array('filled' => TRUE),
+          '#edit-field-files-' . $parent_akamai_id . '-subform-field-akamai-url-0-value' => array('filled' => TRUE),
         ),
       ),
     );
@@ -57,6 +57,8 @@ class AkamiUrlWidget extends WidgetBase {
     $akamai_descp_value = end($akamai_value);
 
     if (!empty($value)) {
+      $element['value']['#access'] = FALSE;
+      $element['akamai_submit']['#access'] = FALSE;
       $element['akamai_description'] = array(
         '#type' => 'markup',
         '#markup' => '<div id = "akamai-remove-url-widget-' . $parent_akamai_id . '"><div class ="akamai-image"><img src = "/core/themes/classy/images/icons/x-office-spreadsheet.png" />' . $akamai_descp_value . '</div>',
@@ -81,7 +83,7 @@ class AkamiUrlWidget extends WidgetBase {
   public function akamaiUrl(array &$form, FormStateInterface $form_state) {
     $parents = $form_state->getTriggeringElement()['#parents'];
     $parent_paragraph_id = $form_state->getTriggeringElement()['#parents'][1];
-    $title = $form_state->getValues()['field_files'][$parent_paragraph_id]['subform']['field_akamai_url_test'][0]['value'];
+    $title = $form_state->getValues()['field_files'][$parent_paragraph_id]['subform']['field_akamai_url'][0]['value'];
     $akamai_value = explode('/', ($title));
     $akamai_descp_value = end($akamai_value);
     $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_description']['#value'] = $akamai_descp_value;
@@ -97,6 +99,8 @@ class AkamiUrlWidget extends WidgetBase {
    */
   public function akamai_remove_url(array &$form, FormStateInterface $form_state) {
     $parents = $form_state->getTriggeringElement()['#parents'];
+    $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['value']['#access'] = TRUE;
+    $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_submit']['#access'] = TRUE;
     return [
       $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['value'],
       $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_submit'],
