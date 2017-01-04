@@ -47,8 +47,8 @@ class AkamiUrlWidget extends WidgetBase {
     $akamai_descp_value = end($akamai_value);
 
     if (!empty($value)) {
-      $element['value']['#access'] = FALSE;
-      $element['akamai_submit']['#access'] = FALSE;
+//      $element['value']['#access'] = FALSE;
+//      $element['akamai_submit']['#access'] = FALSE;
       $element['akamai_description'] = array(
         '#type' => 'markup',
         '#markup' => '<div id = "akamai-remove-url-widget-' . $parent_akamai_id . '"><div class ="akamai-image"><img src = "/core/themes/classy/images/icons/x-office-spreadsheet.png" />' . $akamai_descp_value . '</div>',
@@ -89,8 +89,8 @@ class AkamiUrlWidget extends WidgetBase {
    */
   public function akamai_remove_url(array &$form, FormStateInterface $form_state) {
     $parents = $form_state->getTriggeringElement()['#parents'];
-    $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['value']['#access'] = TRUE;
-    $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_submit']['#access'] = TRUE;
+//    $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['value']['#access'] = TRUE;
+//    $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_submit']['#access'] = TRUE;
     return [
       $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['value'],
       $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_submit'],
