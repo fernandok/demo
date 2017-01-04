@@ -1675,6 +1675,13 @@ body.path-file-search .region-content .view-header button.btn-info {
 }
 /* End of Responsive for Larger Desktops */
 /** Site Search Page **/
+#search-for{
+  color: #1A0DAB;
+}
+#search-for-key{
+  margin-left: 40px;
+  font-size: 26px;
+}
 body.path-search nav.tabs,
 body.path-search div.search-advanced,
 body.path-search a.search-help-link {

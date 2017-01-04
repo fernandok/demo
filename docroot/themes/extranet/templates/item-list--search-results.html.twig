@@ -31,9 +31,7 @@
   {%- endif -%}
 
   {%- if items -%}
-    <ol>
-    <span class="row"><h3>Showing results for "<strong>{{ keys }}</strong>".</h3></span>
-    </ol>
+    <span class="row"><span id="search-for-key">Showing results for <strong><span id="search-for">{{ keys }}</span></strong></span></span>
     <{{ list_type }}{{ attributes }}>
       {%- for item in items -%}
         <span{{ item.attributes }} class="row">{{ item.value }}</span>
