@@ -36,7 +36,7 @@ class LoginFrequencyController extends ControllerBase {
     $query->groupBy('lf.uid, name, mail');
 
     $result = $query
-        ->fields('u', array('uid'))
+        ->fields('lf', array('uid'))
         ->fields('ufd', array('name', 'mail'))
         ->orderByHeader($header)
         ->limit(50)

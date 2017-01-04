@@ -37,13 +37,6 @@ function _cypress_alter_document_paragraphs(&$form, $form_state) {
     }
     $subform = &$widget['subform'];
     $file_type_name_attr = "field_files[$key][subform][field_file_type][value]";
-    $subform['field_akamai_uri']['#states'] = [
-      'invisible' => [
-        ':input[name="' . $file_type_name_attr . '"]' => [
-          'checked' => FALSE,
-        ],
-      ],
-    ];
 //    $subform['field_akamai_url_test']['#states'] = [
 //      'invisible' => [
 //        ':input[name="' . $file_type_name_attr . '"]' => [
@@ -51,13 +44,6 @@ function _cypress_alter_document_paragraphs(&$form, $form_state) {
 //        ],
 //      ],
 //    ];
-    $subform['field_akamai_description']['#states'] = [
-      'invisible' => [
-        ':input[name="' . $file_type_name_attr . '"]' => [
-          'checked' => FALSE,
-        ],
-      ],
-    ];
     $subform['field_file']['#states'] = [
       'invisible' => [
         ':input[name="' . $file_type_name_attr . '"]' => [

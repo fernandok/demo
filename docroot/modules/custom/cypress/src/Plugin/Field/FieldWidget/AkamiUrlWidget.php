@@ -27,58 +27,51 @@ class AkamiUrlWidget extends WidgetBase {
    */
   public function formElement(FieldItemListInterface $items, $delta, array $element, array &$form, FormStateInterface $form_state) {
     $value = isset($items[$delta]->value) ? $items[$delta]->value : '';
-    static $static_delta = 0;
     $parent_akamai_id = $element['#field_parents'][1];
     $element['value'] = $element + array(
       '#type' => 'textfield',
-      '#title' => $this->t('Akamai Test'),
       '#default_value' => $value,
-      '#prefix' => '<div id = "akamai-url-widget-' . $static_delta . '"><div class = "container-inline">',
+      '#prefix' => '<div id = "akamai-url-widget-' . $parent_akamai_id . '">',
       '#states' => array(
         'invisible' => array(
           '#edit-field-files-' . $parent_akamai_id . '-subform-field-akamai-url-test-0-value' => array('filled' => TRUE),
-        )
+        ),
       ),
     );
     $element['akamai_submit'] = array(
+      '#name' => $parent_akamai_id . '_upload_button',
       '#type' => 'button',
-      '#value' => 'akamai url' . $static_delta ,
+      '#value' => 'akamai url',
       '#ajax' => [
         'callback' => array($this, 'akamaiUrl'),
-        'wrapper' => 'akamai-url-widget-' . $static_delta,
+        'wrapper' => 'akamai-url-widget-' . $parent_akamai_id,
       ],
       '#suffix' => '</div>',
       '#states' => array(
         'invisible' => array(
           '#edit-field-files-' . $parent_akamai_id . '-subform-field-akamai-url-test-0-value' => array('filled' => TRUE),
-        )
+        ),
       ),
     );
-    $element['akamai_image'] = array (
-      '#type' => 'markup',
-     // '#markup' => '<div class = "akamai-image"><img src = "/themes/extranet/images/Session6_Image-130px.jpg" /></div>',
-    );
-
     $akamai_value = explode('/', ($value));
     $akamai_descp_value = end($akamai_value);
 
     if (!empty($value)) {
       $element['akamai_description'] = array(
-        '#type' => 'textfield',
-        '#title' => $this->t('Akamai Description'),
-        '#default_value' => $akamai_descp_value,
+        '#type' => 'markup',
+        '#markup' => '<div id = "akamai-remove-url-widget-' . $parent_akamai_id . '"><div class ="akamai-image"><img src = "/core/themes/classy/images/icons/x-office-spreadsheet.png" />' . $akamai_descp_value . '</div>',
+      );
+      $element['akamai_remove'] = array(
+        '#name' => $parent_akamai_id . '_remove_button',
+        '#type' => 'button',
+        '#value' => 'akamai remove',
+        '#ajax' => [
+          'callback' => array($this, 'akamai_remove_url'),
+          'wrapper' => 'akamai-remove-url-widget-' . $parent_akamai_id,
+        ],
         '#suffix' => '</div>',
       );
     }
-    else {
-      $element['akamai_description'] = array(
-        '#type' => 'textfield',
-        '#title' => $this->t('Akamai Description'),
-        '#default_value' => '',
-        '#suffix' => '</div>',
-      );
-    }
-    $static_delta++;
     return $element;
   }
 
@@ -92,10 +85,22 @@ class AkamiUrlWidget extends WidgetBase {
     $akamai_value = explode('/', ($title));
     $akamai_descp_value = end($akamai_value);
     $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_description']['#value'] = $akamai_descp_value;
-    $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['value']['#access'] = TRUE;
-    $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_description']['#access'] = TRUE;
-    return $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_description'];
+    return [
+      $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_description'],
+      $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_remove'],
+    ];
 
+  }
+
+  /**
+   * Ajax callback to autofill akamai description field.
+   */
+  public function akamai_remove_url(array &$form, FormStateInterface $form_state) {
+    $parents = $form_state->getTriggeringElement()['#parents'];
+    return [
+      $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['value'],
+      $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_submit'],
+    ];
   }
 
   public function validate($element, FormStateInterface $form_state) {
