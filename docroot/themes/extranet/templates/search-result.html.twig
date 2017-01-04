@@ -59,11 +59,12 @@
  */
 #}
 {{ title_prefix }}
+<span class="icon glyphicon glyphicon {{ icon }}"></span>
 <span class="search-title-list">
   <a href="{{ url }}">{{ title }}</a>
 </span><br>
 <span class="serach-list-ur">{{ url }}</span><br>
-<span class="search-list-typ-date">[{{ info_split.type }}] Update on: {{info_split.date}}</span>
+<span class="search-list-typ-date"><strong>[{{ type }}]</strong> Update on: {{date}}</span>
 {{ title_suffix }}
 {% if snippet %}
   <p{{ content_attributes }}>{{ snippet }}</p>

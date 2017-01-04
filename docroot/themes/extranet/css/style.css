@@ -481,6 +481,7 @@ body.path-search .main-container.container .row section#content-main .region.reg
 body.path-search .main-container.container .row section#content-main .region.region-content > h2 {
   text-align: left;
   padding-left: 1em;
+  display: none;
 }
 body.path-frontpage h1.page-header {
   visibility: hidden;
@@ -1692,6 +1693,7 @@ body.path-search .region-content .button{
 }
 body.path-search form.search-page-form {
   text-align: -webkit-center;
+  margin-top: 2em;
 }
 body.path-search form.search-page-form #edit-keys {
   border: 1px solid #217dbb;
@@ -1702,9 +1704,10 @@ body.path-search .region-content div.form-item {
 body.path-search .main-container.container .row section#content-main .region.region-content h1.page-header {
   background-color: white;
   text-transform: none;
+  display: none;
 }
 /** End of Site Search **/
-/** Strting Search form block left side **/
+/** Starting Search form block left side **/
 #block-searchform {
   padding: 10px;
   /*border-bottom: 1px solid #b3c1d6;*/
@@ -1816,3 +1819,15 @@ body.page-node-type-cy-page table.need-help thead .tr-bcgd th {
   }
 }
 /* End home dashboard icons */
+#block-mainnavigation ul.menu.nav li.expanded>a>span.caret,
+#block-itextranetpagesmenublock ul.menu.nav li.expanded>a>span.caret,
+#block-distributionextranet ul.menu.nav li.expanded>a>span.caret {
+  border-top: 5px dashed;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+}
+#block-mainnavigation ul.menu.nav li.expanded>a>span.caret:hover,
+#block-itextranetpagesmenublock ul.menu.nav li.expanded>a>span.caret:hover,
+#block-distributionextranet ul.menu.nav li.expanded>a>span.caret:hover {
+  border-top-color: #E84A00;
+}
