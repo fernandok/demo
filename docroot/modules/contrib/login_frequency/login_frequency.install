@@ -8,10 +8,10 @@
 /**
  * Implements hook_schema().
  */
-function login_tracker_schema() {
-  $schema['login_tracker'] = array(
+function login_frequency_schema() {
+  $schema['login_frequency'] = array(
     'fields' => array(
-      'record_id' => array(
+      'id' => array(
         'type' => 'serial',
         'not null' => TRUE,
         'description' => 'Unique ID for this record.',
@@ -26,16 +26,12 @@ function login_tracker_schema() {
         'not null' => TRUE,
         'description' => "Timestamp for the user's login.",
       ),
-      'data' => array(
+      'login_data' => array(
         'type' => 'text',
         'size' => 'medium',
         'not null' => TRUE,
         'description' => "Additional data stored at time of login.",
       ),
-    ),
-    'indexes' => array(
-      'login_tracker_uid' => array('uid'),
-      'login_tracker_login_timestamp' => array('login_timestamp'),
     ),
     'foreign keys' => array(
       'uid' => array(
@@ -43,7 +39,7 @@ function login_tracker_schema() {
         'columns' => array('uid' => 'uid'),
       ),
     ),
-    'primary key' => array('record_id'),
+    'primary key' => array('id'),
   );
   return $schema;
 }
