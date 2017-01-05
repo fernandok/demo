@@ -692,13 +692,13 @@ $config = array(
      * See http://www.php.net/manual/en/pdo.drivers.php for the various
      * syntaxes.
      */
-    'store.sql.dsn'                 => 'mysql:host=staging-10582;dbname=cypressextdev',
+    'store.sql.dsn'                 => 'mysql:host=localhost;dbname=simplesaml_cypress',
 
     /*
      * The username and password to use when connecting to the database.
      */
-    'store.sql.username' => 's26586',
-    'store.sql.password' => 'VfmuJ5mkMMf4i3Y',
+    'store.sql.username' => 'root',
+    'store.sql.password' => 'root',
 
     /*
      * The prefix we should use on our tables.
@@ -850,4 +850,34 @@ $config = array(
 
 );
 
-$config['baseurlpath'] = 'http://'. $_SERVER['HTTP_HOST'] .'/simplesaml/';
+//$config['baseurlpath'] = 'http://'. $_SERVER['HTTP_HOST'] .'/simplesaml/';
+
+if (!empty($_ENV['AH_SITE_NAME'])) {
+    $protocol = 'http://';
+    switch ($_ENV['AH_SITE_NAME']) {
+        case 'cypressextdev.prod.acquia-sites.com':
+            $config['store.sql.dsn'] = 'mysql:host=staging-10582;dbname=cypressextdev';
+            $config['store.sql.username'] = 's26586';
+            $config['store.sql.password'] = 'VfmuJ5mkMMf4i3Y';
+            break;
+        case 'cypressextstg.prod.acquia-sites.com/':
+            $config['store.sql.dsn'] = 'mysql:host=staging-10582;dbname=cypressextstg';
+            $config['store.sql.username'] = 's26585';
+            $config['store.sql.password'] = 'DiH2xdE5DAMfhhv';
+            break;
+//        case 'cypresscom':
+//            $protocol = 'https://';
+//            $config['store.sql.dsn'] = 'mysql:host=fsdb-10580;dbname=cypresscom';
+//            $config['store.sql.username'] = 's11353';
+//            $config['store.sql.password'] = 'pDqLCLaJauzPn7h';
+//            break;
+        default:
+            $config['store.sql.dsn'] = 'mysql:host=localhost;dbname=simplesaml_cypress';
+            $config['store.sql.username'] = 'root';
+            $config['store.sql.password'] = 'root';
+            break;
+    }
+    // We want to explicitly specify simplesaml baseurlpath so that we can handle
+    // properly simplesaml under reverse proxy issues.
+    $config['baseurlpath'] = 'http://'. $_SERVER['HTTP_HOST'] .'/simplesaml/';
+}
