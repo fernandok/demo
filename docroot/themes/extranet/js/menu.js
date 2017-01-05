@@ -31,6 +31,11 @@
         $('#block-cypressmainnavigation ul.menu.nav li.expanded>a').removeClass('active');
       }
     });
+    $('#block-mainnavigation ul.menu.nav li.expanded>a>span.caret, #block-itextranetpagesmenublock ul.menu.nav li.expanded>a>span.caret, #block-distributionextranet ul.menu.nav li.expanded>a>span.caret').click(function (e) {
+      e.stopPropagation();
+      e.preventDefault();
+      $(this).parents('li').toggleClass('open');
+    });
 
     // Manage active sub menu.
     $('.region-sidebar-first ul.menu.nav>li.active').each(function () {

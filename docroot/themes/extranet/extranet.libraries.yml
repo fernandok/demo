@@ -3,7 +3,6 @@ global-styling:
     js/menu.js: {}
   css:
     theme:
-      css/style.less: {}
       css/style.css: {}
   dependencies:
     - bootstrap/theme

@@ -44,7 +44,6 @@ class DownloadController extends ControllerBase {
       }
     }
 
-    $redirect_on_error_to = empty($_SERVER['HTTP_REFERER']) ? '/' : $_SERVER['HTTP_REFERER'];
     $files = [];
 
     // Construct zip archive and add all files, then stream it.
@@ -62,6 +61,45 @@ class DownloadController extends ControllerBase {
       }
     }
 
+    return $this->compressFiles($files, $zip_files_directory, $file_path);
+  }
+
+  /**
+   * Method archive selected file associated with node and stream it for download.
+   *
+   * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+   *   Error Messages.
+   */
+  public function downloadSelectedDocs($node_id) {
+    $node = Node::load($node_id);
+    $file_ids = \Drupal::request()->get('docs');
+    $file_ids = explode(',', $file_ids);
+    $file_objs = File::loadMultiple($file_ids);
+    $files = [];
+    $zip_files_directory = DRUPAL_ROOT . '/sites/default/files/daf_zips';
+    $file_path = $zip_files_directory . '/' . $node->getTitle() . ' - Selected.zip';
+    foreach ($file_objs as $file_obj) {
+      $files[] = $file_obj->getFileUri();
+    }
+
+    return $this->compressFiles($files, $zip_files_directory, $file_path);
+  }
+
+  /**
+   * Method to compress files and stream it.
+   *
+   * @param array $files
+   *   Files ids.
+   * @param string $zip_files_directory
+   *   Zip file directory.
+   * @param string $file_path
+   *   Full file path.
+   *
+   * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|\Symfony\Component\HttpFoundation\RedirectResponse
+   *   Error Messages.
+   */
+  protected function compressFiles($files, $zip_files_directory, $file_path) {
+    $redirect_on_error_to = empty($_SERVER['HTTP_REFERER']) ? '/' : $_SERVER['HTTP_REFERER'];
     $file_zip = NULL;
     if (file_prepare_directory($zip_files_directory, FILE_CREATE_DIRECTORY)) {
       foreach ($files as $file) {

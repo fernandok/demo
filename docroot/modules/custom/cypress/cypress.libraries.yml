@@ -1,0 +1,6 @@
+download-selected-file-styling:
+  version: 1.3
+  js:
+    js/download_selected_file.js: {}
+  dependencies:
+    - core/jquery

@@ -1,5 +1,15 @@
 <?php
 
+if ($_SERVER['SERVER_NAME'] == 'cypress.local') {
+    $url = 'http://cypress.local';
+}
+elseif ($_SERVER['SERVER_NAME'] == 'cypressextdev.prod.acquia-sites.com') {
+    $url = 'http://cypressextdev.prod.acquia-sites.com';
+}
+elseif ($_SERVER['SERVER_NAME'] == 'cypressextstg.prod.acquia-sites.com') {
+    $url = 'http://cypressextstg.prod.acquia-sites.com';
+}
+
 $config = array(
 
     // This is a authentication source which handles admin authentication.
@@ -17,7 +27,7 @@ $config = array(
 
         // The entity ID of this SP.
         // Can be NULL/unset, in which case an entity ID is generated based on the metadata URL.
-        'entityID' => 'http://cypressextdev.prod.acquia-sites.com',
+        'entityID' => $url,
 
         // The entity ID of the IdP this should SP should contact.
         // Can be NULL/unset, in which case the user will be shown a list of available IdPs.

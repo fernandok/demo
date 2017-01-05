@@ -39,6 +39,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
 
     if ($paragraphs = $this->getEntitiesToView($items, $langcode)) {
       $header = [
+        '',
         t('BU'),
         t('DIV'),
         t('Title'),
@@ -48,12 +49,13 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         t('Last updated'),
       ];
       $rows = [];
+      $timestamp_to_highlight = strtotime("-2 week");
       foreach ($paragraphs as $delta => $paragraph) {
         $is_akamai = $paragraph->get('field_file_type')->get(0)->getValue()['value'];
         if ($is_akamai) {
           $akamai_elements[] = [
-            'akamai_uri' => $paragraph->get('field_akamai_uri')->get(0)->getValue()['value'],
-            'akamai_description' => $paragraph->get('field_akamai_description')->get(0)->getValue()['value'],
+           // 'akamai_uri' => $paragraph->get('field_akamai_uri')->get(0)->getValue()['value'],
+          //  'akamai_description' => $paragraph->get('field_akamai_description')->get(0)->getValue()['value'],
           ];
           continue;
         }
@@ -97,7 +99,15 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           $revision = $paragraph->get('field_spec_revision')
             ->getValue()[0]['value'];
         }
-        $rows[] = [
+        $rows[$delta]['data'] = [
+          [
+            'data' => [
+              '#theme' => 'cypress_checkbox',
+              '#name' => 'download_file_selector',
+              '#value' => $file->id(),
+              '#classes' => 'download_file_selector',
+            ],
+          ],
           ['data' => $bu],
           ['data' => $division],
           [
@@ -112,10 +122,12 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           ],
           ['data' => $revision],
           ['data' => $language],
-          // ['data' => format_size($file->getSize())],
           ['data' => $file_size],
-          ['data' => date('Y/m/d', $last_updated)],
+          ['data' => date('d/m/Y', $last_updated)],
         ];
+        if ($timestamp_to_highlight <= $last_updated) {
+          $rows[$delta]['class'] = ['highlight-latest'];
+        }
       }
 
       // Download all paragraph files.

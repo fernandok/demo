@@ -17,6 +17,7 @@ class ComposerStaticInitDrupal8
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
         'def43f6c87e4f8dfd0c9e1b1bab14fe8' => __DIR__ . '/..' . '/symfony/polyfill-iconv/bootstrap.php',
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
+        '5abda994d126976858eb25d2546ee3c9' => __DIR__ . '/..' . '/simplesamlphp/simplesamlphp/lib/_autoload_modules.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -36,6 +37,7 @@ class ComposerStaticInitDrupal8
         'W' => 
         array (
             'Wikimedia\\Composer\\' => 19,
+            'WhiteHat101\\Crypt\\' => 18,
             'Webmozart\\Assert\\' => 17,
         ),
         'S' => 
@@ -81,6 +83,7 @@ class ComposerStaticInitDrupal8
         ),
         'D' => 
         array (
+            'Drupal\\composer_manager\\Composer\\' => 33,
             'Drupal\\Driver\\' => 14,
             'Drupal\\Core\\Composer\\' => 21,
             'Drupal\\Core\\' => 12,
@@ -134,6 +137,10 @@ class ComposerStaticInitDrupal8
         'Wikimedia\\Composer\\' => 
         array (
             0 => __DIR__ . '/..' . '/wikimedia/composer-merge-plugin/src',
+        ),
+        'WhiteHat101\\Crypt\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/whitehat101/apr1-md5/src',
         ),
         'Webmozart\\Assert\\' => 
         array (
@@ -255,6 +262,10 @@ class ComposerStaticInitDrupal8
         array (
             0 => __DIR__ . '/..' . '/fabpot/goutte/Goutte',
         ),
+        'Drupal\\composer_manager\\Composer\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/modules/contrib/composer_manager/src/Composer',
+        ),
         'Drupal\\Driver\\' => 
         array (
             0 => __DIR__ . '/../..' . '/drivers/lib/Drupal/Driver',
@@ -318,6 +329,18 @@ class ComposerStaticInitDrupal8
             'Stack' => 
             array (
                 0 => __DIR__ . '/..' . '/stack/builder/src',
+            ),
+            'Solarium\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/solarium/solarium/library',
+            ),
+            'SimpleSAML' => 
+            array (
+                0 => __DIR__ . '/..' . '/simplesamlphp/simplesamlphp/lib',
+            ),
+            'SAML2_' => 
+            array (
+                0 => __DIR__ . '/..' . '/simplesamlphp/saml2/src',
             ),
         ),
         'P' => 
@@ -826,6 +849,9 @@ class ComposerStaticInitDrupal8
         'Symfony\\Component\\HttpKernel\\HttpKernelInterface' => __DIR__ . '/..' . '/symfony/http-kernel/HttpKernelInterface.php',
         'Symfony\\Component\\HttpKernel\\TerminableInterface' => __DIR__ . '/..' . '/symfony/http-kernel/TerminableInterface.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
+        'XMLSecEnc' => __DIR__ . '/..' . '/robrichards/xmlseclibs/src/XMLSecEnc.php',
+        'XMLSecurityDSig' => __DIR__ . '/..' . '/robrichards/xmlseclibs/src/XMLSecurityDSig.php',
+        'XMLSecurityKey' => __DIR__ . '/..' . '/robrichards/xmlseclibs/src/XMLSecurityKey.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
