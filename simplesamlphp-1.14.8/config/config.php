@@ -3,21 +3,21 @@
  * The configuration of SimpleSAMLphp
  *
  */
-$config['store.sql.dsn'] = 'mysql:host=localhost;dbname=simplesaml_cypress';
-$config['store.sql.username'] = 'root';
-$config['store.sql.password'] = 'root';
+$sql['dsn'] = 'mysql:host=localhost;dbname=simplesaml_cypress';
+$sql['username'] = 'root';
+$sql['password'] = 'root';
 if (!empty($_ENV['AH_SITE_NAME'])) {
     switch ($_ENV['AH_SITE_NAME']) {
         case 'http://cypressextdev.prod.acquia-sites.com':
-            $config['store.sql.dsn'] = 'mysql:host=staging-10582;dbname=cypressextdev';
-            $config['store.sql.username'] = 's26586';
-            $config['store.sql.password'] = 'VfmuJ5mkMMf4i3Y';
+            $sql['dsn'] = 'mysql:host=staging-10582;dbname=cypressextdev';
+            $sql['username'] = 's26586';
+            $sql['password'] = 'VfmuJ5mkMMf4i3Y';
             break;
 
         case 'http://cypressextstg.prod.acquia-sites.com':
-            $config['store.sql.dsn'] = 'mysql:host=staging-10582;dbname=cypressextstg';
-            $config['store.sql.username'] = 's26585';
-            $config['store.sql.password'] = 'DiH2xdE5DAMfhhv';
+            $sql['dsn'] = 'mysql:host=staging-10582;dbname=cypressextstg';
+            $sql['username'] = 's26585';
+            $sql['password'] = 'DiH2xdE5DAMfhhv';
             break;
     }
 }
@@ -710,13 +710,13 @@ $config = array(
      * See http://www.php.net/manual/en/pdo.drivers.php for the various
      * syntaxes.
      */
-  'store.sql.dsn'                 => 'mysql:host=staging-10582;dbname=cypressextdev',
+  'store.sql.dsn'                 => $sql['dsn'],
 
     /*
      * The username and password to use when connecting to the database.
      */
-  'store.sql.username' => 's26586',
-  'store.sql.password' => 'VfmuJ5mkMMf4i3Y',
+  'store.sql.username' => $sql['username'],
+  'store.sql.password' => $sql['password'],
 
     /*
      * The prefix we should use on our tables.
@@ -869,4 +869,3 @@ $config = array(
 );
 
 $config['baseurlpath'] = 'http://'. $_SERVER['HTTP_HOST'] .'/simplesaml/';
-
