@@ -485,6 +485,12 @@ body.path-search .main-container.container .row section#content-main .region.reg
 body.path-frontpage h1.page-header {
   visibility: hidden;
 }
+/*start edi-first page*/
+.content .edi-h2{
+    font-size: 23px;
+    font-weight: bold;
+}
+/*end edi-first page*/
 /* Title-heading styles*/
 
 /* Start download all docs */
@@ -589,6 +595,7 @@ body.page-node-type-stcon .ui-tabs-panel > h4 {
 /* Start subpage menu */
 .field--name-field-sub-pages>.field--label {
   font-weight: bold;
+  margin-top: 30px;
 }
 .field--name-field-sub-pages>.field__items>.field--item {
   background-color: #e8ebf1;
