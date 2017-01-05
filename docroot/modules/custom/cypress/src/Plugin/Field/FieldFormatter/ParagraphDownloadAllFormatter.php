@@ -35,6 +35,10 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
    * {@inheritdoc}
    */
   public function viewElements(FieldItemListInterface $items, $langcode) {
+    // The first part of the akamai file, download manager.
+    define('CY_AKAMAI_DOWNLOAD_MANAGER_URL', 'http://dlm.cypress.com.edgesuite.net/downloadmanager');
+    // The first part of the akamai file, direct download.
+    define('CY_AKAMAI_DIRECT_DOWNLOAD_URL', 'http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager');
     $elements = [];
     $akamai_elements = [];
 
@@ -78,15 +82,19 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           $get_akamai_url = $paragraph->get('field_akamai_url')->getValue()[0]['value'];
           $url = explode('/', ($get_akamai_url));
           $title = end($url);
-          $get_url = Url::fromUri('http://dlm.cypress.com.edgesuite.net/downloadmanager/software/' . $title, array('attributes' => array('target' => '_blank')));
+          $get_url = Url::fromUri($get_akamai_url, array('attributes' => array('target' => '_blank')));
           $get_title_link = Link::fromTextAndUrl(t($title), $get_url)->toString();
+          $get_direct_link = str_replace(CY_AKAMAI_DOWNLOAD_MANAGER_URL, CY_AKAMAI_DIRECT_DOWNLOAD_URL, $get_akamai_url);
+          $get_driect_url = Url::fromUri($get_direct_link);
+          $direct_link = Link::fromTextAndUrl(t('(DirectDownload)'), $get_driect_url)->toString();
           $akamai_elements[] = [
             ['data' => $bu],
             ['data' => $division],
             [
               'data' => [
                 '#theme' => 'cypress_akamai_file_image',
-                '#label' => $get_title_link,
+                '#link' => $get_title_link,
+                '#directlink' => $direct_link,
               ],
             ],
             ['data' => $revision],

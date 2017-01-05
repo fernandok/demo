@@ -101,7 +101,8 @@ function cypress_theme($existing, $type, $theme, $path) {
     ],
     'cypress_akamai_file_image' => [
       'variables' => [
-        'label' => NULL,
+        'link' => NULL,
+        'directlink' => NULL,
       ],
       'template' => 'cypress-akamai-file-image',
     ],
