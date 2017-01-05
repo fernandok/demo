@@ -100,9 +100,6 @@ a {
 body.path-my-samples .view-my-samples .form-item {
   margin:0;
 }
-body.path-search #block-searchform {
-  visibility: hidden;
-}
 .account-menu-log {
  padding-left: 0;
  padding-right: 40px;
