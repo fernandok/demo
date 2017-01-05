@@ -89,7 +89,13 @@ function cypress_theme($existing, $type, $theme, $path) {
         'classes' => NULL,
       ],
       'template' => 'cypress-checkbox',
-    ]
+    ],
+    'cypress_akamai_file_image' => [
+      'variables' => [
+        'label' => NULL,
+      ],
+      'template' => 'cypress-akamai-file-image',
+    ],
   ];
 }
 

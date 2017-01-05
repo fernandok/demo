@@ -9,6 +9,7 @@ use Drupal\taxonomy\Entity\Term;
 use Drupal\file\Entity\File;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Component\Utility\Bytes;
+use Drupal\Core\Link;
 
 /**
  * Plugin implementation of the 'file_download_all' formatter.
@@ -53,9 +54,42 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
       foreach ($paragraphs as $delta => $paragraph) {
         $is_akamai = $paragraph->get('field_file_type')->get(0)->getValue()['value'];
         if ($is_akamai) {
+          $bu = '';
+          $division = '';
+          if (!empty($paragraph->get('field_bu'))
+            && !empty($paragraph->get('field_bu')->get(0))) {
+            $bu_tid = $paragraph->get('field_bu')->get(0)->getValue()['target_id'];
+            if (!empty(Term::load($bu_tid))) {
+              $bu = Term::load($bu_tid)->get('name')->value;
+            }
+          }
+
+          if (!empty($paragraph->get('field_div'))
+            && !empty($paragraph->get('field_div')->get(0))) {
+            $div_tid = $paragraph->get('field_div')->get(0)->getValue()['target_id'];
+            if (!empty(Term::load($div_tid))) {
+              $division = Term::load($div_tid)->get('name')->value;
+            }
+          }
+          if (!empty($paragraph->get('field_spec_revision'))) {
+            $revision = $paragraph->get('field_spec_revision')
+              ->getValue()[0]['value'];
+          }
+          $get_akamai_url = $paragraph->get('field_akamai_url')->getValue()[0]['value'];
+          $url = explode('/', ($get_akamai_url));
+          $title = end($url);
+          $get_url = Url::fromUri('http://dlm.cypress.com.edgesuite.net/downloadmanager/software/' . $title, array('attributes' => array('target' => '_blank')));
+          $get_title_link = Link::fromTextAndUrl(t($title), $get_url)->toString();
           $akamai_elements[] = [
-           // 'akamai_uri' => $paragraph->get('field_akamai_uri')->get(0)->getValue()['value'],
-          //  'akamai_description' => $paragraph->get('field_akamai_description')->get(0)->getValue()['value'],
+            ['data' => $bu],
+            ['data' => $division],
+            [
+              'data' => [
+                '#theme' => 'cypress_akamai_file_image',
+                '#label' => $get_title_link,
+              ],
+            ],
+            ['data' => $revision],
           ];
           continue;
         }
@@ -95,7 +129,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         }
         $last_updated = $file->get('changed')->get(0)->getValue()['value'];
         $file_size = $this->formatSizeInMb($file->getSize());
-        if(!empty($paragraph->get('field_spec_revision'))) {
+        if (!empty($paragraph->get('field_spec_revision'))) {
           $revision = $paragraph->get('field_spec_revision')
             ->getValue()[0]['value'];
         }
@@ -155,6 +189,19 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           '#rows' => $rows,
         ];
         $elements[3]['download_all_documents_bottom'] = $download_all_docs;
+        if ($akamai_elements) {
+          $elements[4] = [
+            '#theme' => 'table__file_formatter_table',
+            '#header' => [
+              'BU',
+              'DIV',
+              'Title',
+              'Revision',
+            ],
+            '#prefix' => '<div class="akamai-title"><h4>' . 'Large Files' . '</h4></div>',
+            '#rows' => $akamai_elements,
+          ];
+        }
       }
     }
     return $elements;
