@@ -1674,12 +1674,19 @@ body.path-file-search .region-content .view-header button.btn-info {
 }
 /* End of Responsive for Larger Desktops */
 /** Site Search Page **/
+body.path-search .region-content{
+  color: #727375;
+}
+body.path-search #search-form {
+  display: none;
+}
 #search-for{
   color: #1A0DAB;
 }
 #search-for-key{
   margin-left: 40px;
-  font-size: 26px;
+  font-size: 15px;
+  font-family: "open_sanssemibold",Arial,sans-serif;
 }
 body.path-search nav.tabs,
 body.path-search div.search-advanced,
