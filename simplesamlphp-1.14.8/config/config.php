@@ -6,15 +6,15 @@
 $sql['dsn'] = 'mysql:host=localhost;dbname=simplesaml_cypress';
 $sql['username'] = 'root';
 $sql['password'] = 'root';
-if (!empty($_ENV['AH_SITE_NAME'])) {
-    switch ($_ENV['AH_SITE_NAME']) {
-        case 'http://cypressextdev.prod.acquia-sites.com':
+if (!empty($_ENV['AH_SITE_ENVIRONMENT'])) {
+    switch ($_ENV['AH_SITE_ENVIRONMENT']) {
+        case 'dev':
             $sql['dsn'] = 'mysql:host=staging-10582;dbname=cypressextdev';
             $sql['username'] = 's26586';
             $sql['password'] = 'VfmuJ5mkMMf4i3Y';
             break;
 
-        case 'http://cypressextstg.prod.acquia-sites.com':
+        case 'test':
             $sql['dsn'] = 'mysql:host=staging-10582;dbname=cypressextstg';
             $sql['username'] = 's26585';
             $sql['password'] = 'DiH2xdE5DAMfhhv';
