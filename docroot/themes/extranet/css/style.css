@@ -100,9 +100,6 @@ a {
 body.path-my-samples .view-my-samples .form-item {
   margin:0;
 }
-body.path-search #block-searchform {
-  visibility: hidden;
-}
 .account-menu-log {
  padding-left: 0;
  padding-right: 40px;
@@ -1681,12 +1678,19 @@ body.path-file-search .region-content .view-header button.btn-info {
 }
 /* End of Responsive for Larger Desktops */
 /** Site Search Page **/
+body.path-search .region-content{
+  color: #727375;
+}
+body.path-search #search-form {
+  display: none;
+}
 #search-for{
   color: #1A0DAB;
 }
 #search-for-key{
   margin-left: 40px;
-  font-size: 26px;
+  font-size: 15px;
+  font-family: "open_sanssemibold",Arial,sans-serif;
 }
 body.path-search nav.tabs,
 body.path-search div.search-advanced,
