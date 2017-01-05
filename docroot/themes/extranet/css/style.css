@@ -100,9 +100,6 @@ a {
 body.path-my-samples .view-my-samples .form-item {
   margin:0;
 }
-body.path-search #block-searchform {
-  visibility: hidden;
-}
 .account-menu-log {
  padding-left: 0;
  padding-right: 40px;
@@ -198,7 +195,7 @@ body.path-search #block-searchform {
   background-color: #e8ebf1;
   border: 1px solid #eaeff2 !important;
   vertical-align: middle;
-  text-align: center;
+  text-align: left;
   padding: 14px;
 }
 .table>thead>tr>th.date-center {
@@ -472,9 +469,8 @@ body.path-file-search #content-main h2,
 body.path-search .main-container.container .row section#content-main .region.region-content > h2 {
   background-color: #ecf0f1;
   text-align: center;
-  font-size: 23px;
+  font-size: 30px;
   padding: 9px 0;
-  text-transform: uppercase;
   margin-top: 22px;
   font-family: "open_sanssemibold",Arial,sans-serif;
 }
@@ -486,6 +482,12 @@ body.path-search .main-container.container .row section#content-main .region.reg
 body.path-frontpage h1.page-header {
   visibility: hidden;
 }
+/*start edi-first page*/
+.content .edi-h2{
+    font-size: 23px;
+    font-weight: bold;
+}
+/*end edi-first page*/
 /* Title-heading styles*/
 
 /* Start download all docs */
@@ -590,6 +592,7 @@ body.page-node-type-stcon .ui-tabs-panel > h4 {
 /* Start subpage menu */
 .field--name-field-sub-pages>.field--label {
   font-weight: bold;
+  margin-top: 30px;
 }
 .field--name-field-sub-pages>.field__items>.field--item {
   background-color: #e8ebf1;
@@ -1675,12 +1678,19 @@ body.path-file-search .region-content .view-header button.btn-info {
 }
 /* End of Responsive for Larger Desktops */
 /** Site Search Page **/
+body.path-search .region-content{
+  color: #727375;
+}
+body.path-search #search-form {
+  display: none;
+}
 #search-for{
   color: #1A0DAB;
 }
 #search-for-key{
   margin-left: 40px;
-  font-size: 26px;
+  font-size: 15px;
+  font-family: "open_sanssemibold",Arial,sans-serif;
 }
 body.path-search nav.tabs,
 body.path-search div.search-advanced,

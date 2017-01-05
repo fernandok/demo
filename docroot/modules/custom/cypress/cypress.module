@@ -8,6 +8,22 @@
 use Drupal\user\Entity\User;
 use Drupal\Core\Form\FormStateInterface;
 
+function cypress_block_build_alter(array &$build, \Drupal\Core\Block\BlockPluginInterface $block) {
+  if ($block->getPluginId() == 'search_form_block') {
+    $build['#cache']['max-age'] = 0;
+  }
+}
+
+function cypress_form_search_block_form_alter(&$form, $form_state) {
+
+  if (!empty(\Drupal::request()->query->get('keys'))) {
+    $form['keys']['#value'] = \Drupal::request()->query->get('keys');
+  }
+  else {
+    $form['keys']['#value'] = '';
+  }
+}
+
 /**
  * Implements hook_form_FORM_ID_alter().
  */
@@ -37,13 +53,6 @@ function _cypress_alter_document_paragraphs(&$form, $form_state) {
     }
     $subform = &$widget['subform'];
     $file_type_name_attr = "field_files[$key][subform][field_file_type][value]";
-//    $subform['field_akamai_url_test']['#states'] = [
-//      'invisible' => [
-//        ':input[name="' . $file_type_name_attr . '"]' => [
-//          'checked' => FALSE,
-//        ],
-//      ],
-//    ];
     $subform['field_file']['#states'] = [
       'invisible' => [
         ':input[name="' . $file_type_name_attr . '"]' => [
