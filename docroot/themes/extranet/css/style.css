@@ -705,6 +705,7 @@ body.path-file-search .region-content div.view-filters.form-group .form-inline .
   display: block;
   width: 100%;
   height: 2.5em;
+  padding: 7px 10px;
 }
 body.path-file-search .region-content div.view-filters.form-group div#edit-actions {
   vertical-align: bottom;
