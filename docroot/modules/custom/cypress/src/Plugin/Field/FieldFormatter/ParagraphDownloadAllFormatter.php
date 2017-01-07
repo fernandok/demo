@@ -80,10 +80,19 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
               ->getValue()[0]['value'];
           }
           $get_akamai_url = $paragraph->get('field_akamai_url')->getValue()[0]['value'];
+          $get_description = $paragraph->get('field_akamai_url_description')->getValue()[0]['value'];
           $url = explode('/', ($get_akamai_url));
           $title = end($url);
           $get_url = Url::fromUri($get_akamai_url, array('attributes' => array('target' => '_blank')));
-          $get_title_link = Link::fromTextAndUrl(t($title), $get_url)->toString();
+          if (empty($get_description)) {
+            $get_title_link = Link::fromTextAndUrl(t($title), $get_url)->toString();
+          }
+          else {
+            $get_title_link = Link::fromTextAndUrl(($get_description), $get_url)->toString();
+          }
+          $akamai_file_size = $paragraph->get('field_akamai_url')->getValue()[0]['file_size'];
+          $last_updated_date = $paragraph->get('field_akamai_url')->getValue()[0]['last_changed'];
+
           $get_direct_link = str_replace(CY_AKAMAI_DOWNLOAD_MANAGER_URL, CY_AKAMAI_DIRECT_DOWNLOAD_URL, $get_akamai_url);
           $get_driect_url = Url::fromUri($get_direct_link);
           $direct_link = Link::fromTextAndUrl(t('(DirectDownload)'), $get_driect_url)->toString();
@@ -98,6 +107,8 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
               ],
             ],
             ['data' => $revision],
+            ['data' => $this->formatSizeInMb($akamai_file_size)],
+            ['data' => date('d/m/Y', $last_updated_date)],
           ];
           continue;
         }
@@ -205,6 +216,8 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
               'DIV',
               'Title',
               'Revision',
+              'File size',
+              'Last updated',
             ],
             '#prefix' => '<div class="akamai-title"><h4>' . 'Large Files' . '</h4></div>',
             '#rows' => $akamai_elements,
