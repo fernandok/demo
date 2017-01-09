@@ -90,12 +90,18 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           else {
             $get_title_link = Link::fromTextAndUrl(($get_description), $get_url)->toString();
           }
+          $language = '';
+          if (!empty($paragraph->get('field_language')->get(0))) {
+            $language_tid = $paragraph->get('field_language')->get(0)->getValue()['target_id'];
+            if (!empty(Term::load($language_tid))) {
+              $language = Term::load($language_tid)->get('name')->getValue()[0]['value'];
+            }
+          }
           $akamai_file_size = $paragraph->get('field_akamai_url')->getValue()[0]['file_size'];
           if ($akamai_file_size < 0) {
             $akamai_file_size = 0;
           }
           $last_updated_date = $paragraph->get('field_akamai_url')->getValue()[0]['last_changed'];
-
           $get_direct_link = str_replace(CY_AKAMAI_DOWNLOAD_MANAGER_URL, CY_AKAMAI_DIRECT_DOWNLOAD_URL, $get_akamai_url);
           $get_driect_url = Url::fromUri($get_direct_link);
           $direct_link = Link::fromTextAndUrl(t('(Direct Download)'),
@@ -111,6 +117,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
               ],
             ],
             ['data' => $revision],
+            ['data' => $language],
             ['data' => $this->formatSizeInMb($akamai_file_size)],
             ['data' => date('d/m/Y', $last_updated_date)],
           ];
@@ -220,6 +227,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
               'DIV',
               'Title',
               'Revision',
+              'Language',
               'File size',
               'Last updated',
             ],
