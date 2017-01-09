@@ -1759,9 +1759,9 @@ body.path-search .main-container.container .row section#content-main .region.reg
 }
 #yamlform-submission-promocode-form .form-item-msrp input {
   display: inline-block;
-  width: 43%;
+  width: 49%;
 }
-#yamlform-submission-promocode-form .form-item-msrp label.edit-msrp {
+#yamlform-submission-promocode-form .form-item-msrp label {
   display: block;
 }
 span.yaml-form-help {
@@ -1776,6 +1776,10 @@ span.yaml-form-help {
 @media only screen and (max-width: 1023px){
   #yamlform-submission-promocode-form .form-item > input, #yamlform-submission-promocode-form .form-item > select {
   width: 100%;
+  }
+  #yamlform-submission-promocode-form .form-item-msrp input {
+    display: inline-block;
+    width: 95.7%;
   }
 }
 /* End Promo code form */
