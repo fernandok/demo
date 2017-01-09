@@ -1757,6 +1757,13 @@ body.path-search .main-container.container .row section#content-main .region.reg
   padding-top: 5px;
   padding-bottom: 5px;
 }
+#yamlform-submission-promocode-form .form-item-msrp input {
+  display: inline-block;
+  width: 43%;
+}
+#yamlform-submission-promocode-form .form-item-msrp label.edit-msrp {
+  display: block;
+}
 span.yaml-form-help {
   font-size: 0.9em;
   font-style: italic;
