@@ -1847,3 +1847,7 @@ body.page-node-type-cy-page table.need-help thead .tr-bcgd th {
 #block-distributionextranet ul.menu.nav li.expanded>a>span.caret:hover {
   border-top-color: #E84A00;
 }
+/** Paragraph type **/
+div.paragraph-type-title {
+  display: none;
+}
