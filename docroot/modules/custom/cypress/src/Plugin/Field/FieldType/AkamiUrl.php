@@ -5,7 +5,6 @@ namespace Drupal\cypress\Plugin\Field\FieldType;
 use Drupal\Core\Field\FieldItemBase;
 use Drupal\Core\Field\FieldStorageDefinitionInterface;
 use Drupal\Core\TypedData\DataDefinition;
-use Drupal\Component\Utility\Bytes;
 
 /**
  * Plugin implementation of the 'field_example_rgb' field type.
@@ -20,6 +19,7 @@ use Drupal\Component\Utility\Bytes;
  * )
  */
 class AkamiUrl extends FieldItemBase {
+
   /**
    * {@inheritdoc}
    */
@@ -65,16 +65,42 @@ class AkamiUrl extends FieldItemBase {
     return $properties;
   }
 
+  /**
+   * {@inheritdoc}
+   */
   public function preSave() {
     parent::preSave();
 
-//    $query =\Drupal::database()->select('paragraph__field_akamai_url', 'pt');
-//    $query->fields('pt', ['field_akamai_url_value']);
-//    $query->condition('entity_id', '5567');
-//    $results = $query->execute()->fetchAll();
-//    $current_value = $results[0]->field_akamai_url_value;
-//
-//    if ($current_value != $this->values['value']) {
+    //To add new Akamai Url.
+    $get_url = $this->values['value'];
+    $get_direct_link = str_replace(
+      'http://dlm.cypress.com.edgesuite.net/downloadmanager',
+      'http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager',
+      $get_url
+    );
+    $url = $get_direct_link;
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_HEADER, TRUE);
+    curl_setopt($ch, CURLOPT_NOBODY, TRUE);
+    // Make it a HEAD request.
+    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
+    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+    $head = curl_exec($ch);
+    $size = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
+    $this->values['file_size'] = $size;
+    $this->values['last_changed'] = time();
+    curl_close($ch);
+
+    // To update the existing Akamai_Url.
+    $get_entity_id = $this->getEntity()->id();
+    $query = \Drupal::database()->select('paragraph__field_akamai_url', 'pt');
+    $query->fields('pt', ['field_akamai_url_value']);
+    $query->condition('entity_id', $get_entity_id);
+    $results = $query->execute()->fetchAll();
+    $current_value = $results[0]->field_akamai_url_value;
+
+    if ($current_value != $this->values['value']) {
       $get_url = $this->values['value'];
       $get_direct_link = str_replace(
         'http://dlm.cypress.com.edgesuite.net/downloadmanager',
@@ -91,9 +117,10 @@ class AkamiUrl extends FieldItemBase {
       curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
       $head = curl_exec($ch);
       $size = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
-      $this->values['file_size'] = $size;
-      $this->values['last_changed'] = time();
+      $this->properties['file_size']->setValue($size, TRUE);
+      $this->properties['last_changed']->setValue(time(), TRUE);
       curl_close($ch);
+    }
   }
-  
+
 }

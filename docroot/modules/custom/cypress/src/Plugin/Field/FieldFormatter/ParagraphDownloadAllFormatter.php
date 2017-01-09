@@ -91,6 +91,9 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
             $get_title_link = Link::fromTextAndUrl(($get_description), $get_url)->toString();
           }
           $akamai_file_size = $paragraph->get('field_akamai_url')->getValue()[0]['file_size'];
+          if ($akamai_file_size < 0) {
+            $akamai_file_size = 0;
+          }
           $last_updated_date = $paragraph->get('field_akamai_url')->getValue()[0]['last_changed'];
 
           $get_direct_link = str_replace(CY_AKAMAI_DOWNLOAD_MANAGER_URL, CY_AKAMAI_DIRECT_DOWNLOAD_URL, $get_akamai_url);
