@@ -2,12 +2,15 @@
 
 if ($_SERVER['SERVER_NAME'] == 'cypress.local') {
   $url = 'http://cypress.local';
+  $idp = 'http://cypresscomdev.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php';
 }
 elseif ($_SERVER['SERVER_NAME'] == 'cypressextdev.prod.acquia-sites.com') {
   $url = 'http://cypressextdev.prod.acquia-sites.com';
+  $idp = 'http://cypresscomdev.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php';
 }
 elseif ($_SERVER['SERVER_NAME'] == 'cypressextstg.prod.acquia-sites.com') {
   $url = 'http://cypressextstg.prod.acquia-sites.com';
+  $idp = 'http://cypresscomstg.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php';
 }
 $config = array(
 
@@ -29,7 +32,7 @@ $config = array(
 
         // The entity ID of the IdP this should SP should contact.
         // Can be NULL/unset, in which case the user will be shown a list of available IdPs.
-        'idp' => 'http://cypresscomdev.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php',
+        'idp' => $idp,
 
         'privatekey'           => 'saml.pem',
         'certificate'          => 'saml.crt',
