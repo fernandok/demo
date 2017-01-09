@@ -71,56 +71,73 @@ class AkamiUrl extends FieldItemBase {
   public function preSave() {
     parent::preSave();
 
-    //To add new Akamai Url.
-    $get_url = $this->values['value'];
-    $get_direct_link = str_replace(
+    $parent_entity = $this->getEntity();
+    if ($parent_entity->isNew()) {
+      // To add new Akamai Url.
+      $this->setAdditionalProperties();
+    }
+    else {
+      // To update the existing Akamai_Url if changed.
+      $get_entity_id = $this->getEntity()->id();
+      $query = \Drupal::database()->select('paragraph__field_akamai_url', 'pt');
+      $query->fields('pt', ['field_akamai_url_value']);
+      $query->condition('entity_id', $get_entity_id);
+      $results = $query->execute()->fetchAll();
+      $current_value = $results[0]->field_akamai_url_value;
+      if ($current_value != $this->values['value']) {
+        $this->setAdditionalProperties();
+      }
+    }
+  }
+
+  /**
+   * Method to set or update akamai file size and last modified date.
+   */
+  private function setAdditionalProperties() {
+    $file_direct_link = $this->getAkamaiDirectDownloadLink();
+    $size = $this->getExternalFileSize($file_direct_link);
+    $this->properties['file_size']->setValue($size, TRUE);
+    $this->properties['last_changed']->setValue(time(), TRUE);
+  }
+
+  /**
+   * Method to get Akamai direct download link.
+   *
+   * @return string
+   *   Akamai file direct download link.
+   */
+  private function getAkamaiDirectDownloadLink() {
+    $akamai_url = $this->values['value'];
+    $akamai_direct_link = str_replace(
       'http://dlm.cypress.com.edgesuite.net/downloadmanager',
       'http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager',
-      $get_url
+      $akamai_url
     );
-    $url = $get_direct_link;
+
+    return $akamai_direct_link;
+  }
+
+  /**
+   * Private method to get external akamai file size.
+   *
+   * @param string $file_url
+   *   External file url.
+   *
+   * @return int
+   *   File size.
+   */
+  private function getExternalFileSize($file_url) {
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_HEADER, TRUE);
     curl_setopt($ch, CURLOPT_NOBODY, TRUE);
     // Make it a HEAD request.
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-    curl_setopt($ch, CURLOPT_URL, $url);
+    curl_setopt($ch, CURLOPT_URL, $file_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     $head = curl_exec($ch);
-    $size = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
-    $this->values['file_size'] = $size;
-    $this->values['last_changed'] = time();
+    $file_size = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
     curl_close($ch);
-
-    // To update the existing Akamai_Url.
-    $get_entity_id = $this->getEntity()->id();
-    $query = \Drupal::database()->select('paragraph__field_akamai_url', 'pt');
-    $query->fields('pt', ['field_akamai_url_value']);
-    $query->condition('entity_id', $get_entity_id);
-    $results = $query->execute()->fetchAll();
-    $current_value = $results[0]->field_akamai_url_value;
-
-    if ($current_value != $this->values['value']) {
-      $get_url = $this->values['value'];
-      $get_direct_link = str_replace(
-        'http://dlm.cypress.com.edgesuite.net/downloadmanager',
-        'http://dlm.cypress.com.edgesuite.net/akdlm/downloadmanager',
-        $get_url
-      );
-      $url = $get_direct_link;
-      $ch = curl_init();
-      curl_setopt($ch, CURLOPT_HEADER, TRUE);
-      curl_setopt($ch, CURLOPT_NOBODY, TRUE);
-      // Make it a HEAD request.
-      curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
-      curl_setopt($ch, CURLOPT_URL, $url);
-      curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
-      $head = curl_exec($ch);
-      $size = curl_getinfo($ch, CURLINFO_CONTENT_LENGTH_DOWNLOAD);
-      $this->properties['file_size']->setValue($size, TRUE);
-      $this->properties['last_changed']->setValue(time(), TRUE);
-      curl_close($ch);
-    }
+    return $file_size;
   }
 
 }

@@ -27,7 +27,7 @@ class AkamiUrlWidget extends WidgetBase {
     $items[$delta];
     $values = isset($items[$delta]) ? $items[$delta] : '';
     $parent_akamai_id = $element['#field_parents'][1];
-    $form['#attached']['library'][] = 'cypress/akamai-styling';
+
     $element['value'] = $element + array(
       '#type' => 'textfield',
       '#default_value' => $values->value,
@@ -37,6 +37,9 @@ class AkamiUrlWidget extends WidgetBase {
         ),
       ),
       '#attributes' => ['class' => ['akamai-uri-field']],
+      '#element_validate' => array(
+        array($this, 'validateAkamaiUrl'),
+      ),
     );
 
     $element['file_size'] = array(
@@ -54,29 +57,16 @@ class AkamiUrlWidget extends WidgetBase {
   }
 
   /**
-   * Ajax callback to autofill akamai description field.
+   * Callback to validate Akamai url.
    */
-  public function akamaiUrl(array &$form, FormStateInterface $form_state) {
-    $parents = $form_state->getTriggeringElement()['#parents'];
-    $parent_paragraph_id = $form_state->getTriggeringElement()['#parents'][1];
-    $title = $form_state->getValues()['field_files'][$parent_paragraph_id]['subform']['field_akamai_url'][0]['value'];
-    $akamai_value = explode('/', ($title));
-    $akamai_descp_value = end($akamai_value);
-    $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_remove']['#prefix'] = '<div class ="akamai-image"><img src = "/core/themes/classy/images/icons/x-office-spreadsheet.png" />' . $akamai_descp_value . '</div>';
-    return [
-      $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_remove'],
-    ];
-  }
-
-  /**
-   * Ajax callback to autofill akamai description field.
-   */
-  public function akamai_remove_url(array &$form, FormStateInterface $form_state) {
-    $parents = $form_state->getTriggeringElement()['#parents'];
-    return [
-      $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['value'],
-      $form[$parents[0]]['widget'][$parents[1]][$parents[2]][$parents[3]]['widget'][$parents[4]]['akamai_submit'],
-    ];
+  public function validateAkamaiUrl(&$element, &$form_state, $form) {
+    $form_values = $form_state->getValues();
+    $field_parents = $element['#field_parents'];
+    if ($form_values[$field_parents[0]][$field_parents[1]][$field_parents[2]]['field_file_type']['value']) {
+      if (!preg_match('/^(http|httpprivate):\/\/dlm.cypress.com.edgesuite.net/', $element['#value'])) {
+        $form_state->setError($element, t('Please enter valid Akamai link.'));
+      }
+    }
   }
 
 }

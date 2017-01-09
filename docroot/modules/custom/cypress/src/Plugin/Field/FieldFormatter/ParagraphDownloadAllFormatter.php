@@ -98,7 +98,8 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
 
           $get_direct_link = str_replace(CY_AKAMAI_DOWNLOAD_MANAGER_URL, CY_AKAMAI_DIRECT_DOWNLOAD_URL, $get_akamai_url);
           $get_driect_url = Url::fromUri($get_direct_link);
-          $direct_link = Link::fromTextAndUrl(t('(DirectDownload)'), $get_driect_url)->toString();
+          $direct_link = Link::fromTextAndUrl(t('(Direct Download)'),
+            $get_driect_url)->toString();
           $akamai_elements[] = [
             ['data' => $bu],
             ['data' => $division],
