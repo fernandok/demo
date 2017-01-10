@@ -138,8 +138,9 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
       $url = $connecting_string . $vid . '=';
       foreach ($vocabulary_terms as $term) {
         $term = $this->termstorage->load($term->tid);
-        $term_url = $url . urlencode($term->getName());
-        $terms[$term->id()] = [
+        $tid = $term->id();
+        $term_url = $url . $tid;
+        $terms[$tid] = [
           'name' => $term->getName(),
           'url' => $term_url,
         ];

@@ -32,8 +32,9 @@
     // Highlighting tag cloud.
     selected_bu = decodeURIComponent($.urlParam('bu')).split('+')[0];
     selected_div = decodeURIComponent($.urlParam('division')).split('+')[0];
+    selected_language = decodeURIComponent($.urlParam('language')).split('+')[0];
     $('body.path-file-search ul.default_tag_clouds li a').each(function () {
-      if ($(this).html() == selected_bu || $(this).html() == selected_div) {
+      if ($(this).data('tid') == selected_bu || $(this).data('tid') == selected_div || $(this).data('tid') == selected_language) {
         $(this).addClass('selected');
       }
     });
