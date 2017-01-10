@@ -172,3 +172,6 @@ details summary:focus,
 details summary:hover {
   text-decoration: underline;
 }
+div.paragraph-type-title {
+  display: none;
+}
