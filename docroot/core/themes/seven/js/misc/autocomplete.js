@@ -28,7 +28,7 @@
   $.widget('ui.autocomplete', $.ui.autocomplete, {
     _search: function (value) {
       this.pending++;
-      Drupal.Ajax.prototype.glyphiconStart(this.element);
+      this.element.addClass('ui-autocomplete-loading');
       this.cancelSearch = false;
       this.source({term: value}, this._response());
     },
@@ -40,7 +40,7 @@
         }
         if (index === this.requestIndex) this.__response(content);
         this.pending--;
-        if (!this.pending) Drupal.Ajax.prototype.glyphiconStop(this.element);
+        this.element.removeClass('ui-autocomplete-loading');
       }, this);
     }
   });
