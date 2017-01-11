@@ -116,6 +116,7 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
 
     $selected_bu = \Drupal::request()->get('bu');
     $selected_div = \Drupal::request()->get('division');
+    $selected_language = \Drupal::request()->get('language');
 
     $vocabularies_selected = $config['vocabularies'];
     $terms = [];
@@ -124,13 +125,19 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
       $connecting_string = \Drupal::request()->getPathInfo() . '?';
       switch ($vid) {
         case 'bu':
-          if (!empty($selected_div) && empty($selected_bu)) {
+          if (empty($selected_bu) && (!empty($selected_language) || !empty($selected_div))) {
             $connecting_string = \Drupal::request()->getUri() . '&';
           }
           break;
 
         case 'division':
-          if (!empty($selected_bu) && empty($selected_div)) {
+          if (empty($selected_div) && (!empty($selected_language) || !empty($selected_bu))) {
+            $connecting_string = \Drupal::request()->getUri() . '&';
+          }
+          break;
+
+        case 'language':
+          if (empty($selected_language) && (!empty($selected_bu) || !empty($selected_div))) {
             $connecting_string = \Drupal::request()->getUri() . '&';
           }
           break;
