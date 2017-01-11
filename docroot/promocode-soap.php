@@ -7,5 +7,5 @@
  */
 
 $soap_client = new \SoapClient('http://wwwqa.cypress.com/bjdev/promocode_webservice.cfc?wsdl');
-$result = $soap_client->__soapCall('promocodeRequest', []);
+$result = $soap_client->__soapCall('promocode', []);
 echo "<pre>".print_r($result, true)."</pre>"; exit;
