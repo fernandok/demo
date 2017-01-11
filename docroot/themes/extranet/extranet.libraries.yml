@@ -6,6 +6,7 @@ global-styling:
       css/style.css: {}
   dependencies:
     - bootstrap/theme
+    - classy/file
 
 file-search:
   js:

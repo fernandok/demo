@@ -7,6 +7,9 @@
 
 use \Drupal\user\Entity\User;
 use \Drupal\file\Entity\File;
+use Drupal\Core\Template\Attribute;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 /**
  * Implements hook_preprocess_HOOK() for html.html.twig.
@@ -152,4 +155,47 @@ function extranet_preprocess_yamlform_submission_html(&$variables) {
   unset($variables['data']['type']);
   unset($variables['data']['approver_subject']);
   unset($variables['data']['requester_subject']);
+}
+
+function extranet_preprocess_file_link(&$variables) {
+  $file = $variables['file'];
+  $options = array();
+
+  $file_entity = ($file instanceof File) ? $file : File::load($file->fid);
+  // @todo Wrap in file_url_transform_relative(). This is currently
+  // impossible. As a work-around, we currently add the 'url.site' cache context
+  // to ensure different file URLs are generated for different sites in a
+  // multisite setup, including HTTP and HTTPS versions of the same site.
+  // Fix in https://www.drupal.org/node/2646744.
+  $url = file_create_url($file_entity->getFileUri());
+  $variables['#cache']['contexts'][] = 'url.site';
+
+  $mime_type = $file->getMimeType();
+  // Set options as per anchor format described at
+  // http://microformats.org/wiki/file-format-examples
+  $options['attributes']['type'] = $mime_type . '; length=' . $file->getSize();
+
+  // Use the description as the link text if available.
+  if (empty($variables['description'])) {
+    $link_text = $file_entity->getFilename();
+  }
+  else {
+    $link_text = $variables['description'];
+    $options['attributes']['title'] = $file_entity->getFilename();
+  }
+
+  // Classes to add to the file field for icons.
+  $classes = array(
+    'file',
+    // Add a specific class for each and every mime type.
+    'file--mime-' . strtr($mime_type, array('/' => '-', '.' => '-')),
+    // Add a more general class for groups of well known MIME types.
+    'file--' . file_icon_class($mime_type),
+  );
+
+  // Set file classes to the options array.
+  $variables['attributes'] = new Attribute($variables['attributes']);
+  $variables['attributes']->addClass($classes);
+
+  $variables['link'] = Link::fromTextAndUrl($link_text, Url::fromUri($url, $options));
 }
