@@ -704,6 +704,7 @@ body.path-file-search .region-content div.view-filters.form-group .form-inline .
   display: block;
   width: 100%;
   height: 2.5em;
+  padding: 7px 10px;
 }
 body.path-file-search .region-content div.view-filters.form-group div#edit-actions {
   vertical-align: bottom;
@@ -1756,6 +1757,13 @@ body.path-search .main-container.container .row section#content-main .region.reg
   padding-top: 5px;
   padding-bottom: 5px;
 }
+#yamlform-submission-promocode-form .form-item-msrp input {
+  display: inline-block;
+  width: 49%;
+}
+#yamlform-submission-promocode-form .form-item-msrp label {
+  display: block;
+}
 span.yaml-form-help {
   font-size: 0.9em;
   font-style: italic;
@@ -1768,6 +1776,10 @@ span.yaml-form-help {
 @media only screen and (max-width: 1023px){
   #yamlform-submission-promocode-form .form-item > input, #yamlform-submission-promocode-form .form-item > select {
   width: 100%;
+  }
+  #yamlform-submission-promocode-form .form-item-msrp input {
+    display: inline-block;
+    width: 95.7%;
   }
 }
 /* End Promo code form */
@@ -1846,4 +1858,8 @@ body.page-node-type-cy-page table.need-help thead .tr-bcgd th {
 #block-itextranetpagesmenublock ul.menu.nav li.expanded>a>span.caret:hover,
 #block-distributionextranet ul.menu.nav li.expanded>a>span.caret:hover {
   border-top-color: #E84A00;
+}
+/** Paragraph type **/
+div.paragraph-type-title {
+  display: none;
 }

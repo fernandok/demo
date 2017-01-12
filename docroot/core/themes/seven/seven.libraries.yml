@@ -104,3 +104,13 @@ tour-styling:
   css:
     theme:
       css/components/tour.theme.css: {}
+
+autocomplete-cypress:
+  js:
+    js/misc/autocomplete.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/drupal.ajax
+    - core/jquery.ui.autocomplete

@@ -4,7 +4,7 @@
   </li>
   {% for term_id, term in tags %}
     <li class="tag_clouds_term">
-      <a href="{{ term.url }}">{{ term.name }}</a>
+      <a data-tid = "{{ term_id }}" href="{{ term.url }}">{{ term.name }}</a>
     </li>
   {% endfor %}
 </ul>
