@@ -4,7 +4,7 @@
 *
 * @license http://opensource.org/licenses/MIT
 * @link https://github.com/thephpleague/csv/
-* @version 7.2.0
+* @version 8.1.1
 * @package League.csv
 *
 * For the full copyright and license information, please view the LICENSE
@@ -15,6 +15,7 @@ namespace League\Csv;
 use InvalidArgumentException;
 use League\Csv\Modifier\RowFilter;
 use ReflectionMethod;
+use SplFileObject;
 use Traversable;
 
 /**
@@ -36,7 +37,7 @@ class Writer extends AbstractCsv
     /**
      * The CSV object holder
      *
-     * @var \SplFileObject
+     * @var SplFileObject
      */
     protected $csv;
 
@@ -68,8 +69,8 @@ class Writer extends AbstractCsv
      */
     protected static function initFputcsv()
     {
-        if (is_null(static::$fputcsv)) {
-            static::$fputcsv  = new ReflectionMethod('\SplFileObject', 'fputcsv');
+        if (null === static::$fputcsv) {
+            static::$fputcsv = new ReflectionMethod('\SplFileObject', 'fputcsv');
             static::$fputcsv_param_count = static::$fputcsv->getNumberOfParameters();
         }
     }
@@ -89,7 +90,7 @@ class Writer extends AbstractCsv
     {
         if (!is_array($rows) && !$rows instanceof Traversable) {
             throw new InvalidArgumentException(
-                'the provided data must be an array OR a \Traversable object'
+                'the provided data must be an array OR a `Traversable` object'
             );
         }
 
@@ -115,7 +116,7 @@ class Writer extends AbstractCsv
         $row = $this->formatRow($row);
         $this->validateRow($row);
 
-        if (is_null($this->csv)) {
+        if (null === $this->csv) {
             $this->csv = $this->getIterator();
         }
 
@@ -150,7 +151,7 @@ class Writer extends AbstractCsv
      */
     public function isActiveStreamFilter()
     {
-        return parent::isActiveStreamFilter() && is_null($this->csv);
+        return parent::isActiveStreamFilter() && null === $this->csv;
     }
 
     /**
