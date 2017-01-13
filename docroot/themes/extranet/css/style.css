@@ -659,7 +659,11 @@ body.path-it-extranet-dashboard .view-header .add-it-extranet {
 /* Start Tag cloud */
 ul.default_tag_clouds {
   text-align: justify;
-  padding: 1em;
+  padding: 0 1em 1em;
+  display: none;
+}
+#clear-file-search {
+  display: none;
 }
 ul.default_tag_clouds li a.selected,
 ul.default_tag_clouds li a.selected:hover {
@@ -721,9 +725,10 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
 .default_tag_clouds {
   margin-bottom: 0;
 }
-body.path-file-search .region-content .view-header button.btn-info {
+body.path-file-search .region-content button.btn-info.file-search-button {
   padding: 0 1em;
   margin: 0 1.2em 1em;
+  width: 12em;
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   body.path-file-search .region-content div.view-filters.form-group div.form-item {
