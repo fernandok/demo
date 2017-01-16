@@ -750,7 +750,10 @@ body.path-file-search .region-content button.btn-info.file-search-button {
 body.page-node-type-stcon .ui-tabs .ui-tabs-panel p a img{
   width: 100%;
 }
-
+body.page-node-type-stcon .ui-tabs #tabs-5511.ui-tabs-panel p img,
+body.page-node-type-stcon .ui-tabs #tabs-5516.ui-tabs-panel h3 img{
+  width: 100%;
+}
 /* End STcon Responsive for Mobile*/
 }
 /* Start of Responsive for Mobile*/
