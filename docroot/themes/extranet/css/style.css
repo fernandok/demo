@@ -740,7 +740,14 @@ body.path-file-search .region-content .view-header button.btn-info {
 }
 /* End File search */
 
+/* Start STcon Responsive for Mobile*/
+@media only screen and (max-width: 768px){
+body.page-node-type-stcon .ui-tabs .ui-tabs-panel p a img{
+  width: 100%;
+}
 
+/* End STcon Responsive for Mobile*/
+}
 /* Start of Responsive for Mobile*/
 @media only screen and (min-width: 320px) and (max-width: 1023px) {
   .navbar-toggle {
