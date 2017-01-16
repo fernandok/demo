@@ -1899,3 +1899,13 @@ body.page-node-type-cy-page table.need-help thead .tr-bcgd th {
 div.paragraph-type-title {
   display: none;
 }
+
+/* Highlight Home page Icons*/
+body.path-frontpage .view-home-page-menu-icons .img-menu img{
+  opacity: 1;
+}
+
+body.path-frontpage .view-home-page-menu-icons .img-menu img:hover{
+  opacity: 0.7;
+  /*border: 1px solid black;*/
+}
