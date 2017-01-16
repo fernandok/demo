@@ -217,6 +217,8 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           '#theme' => 'table__file_formatter_table',
           '#header' => $header,
           '#rows' => $rows,
+          '#prefix' => '<div class="page-files-wrapper">',
+          '#suffix' => '</div>',
         ];
         $elements[3]['download_all_documents_bottom'] = $download_all_docs;
         if ($akamai_elements) {
@@ -231,8 +233,9 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
               'File size',
               'Last updated',
             ],
-            '#prefix' => '<div class="akamai-title"><h4>' . 'Large Files' . '</h4></div>',
+            '#prefix' => '<div class="akamai-files-wrapper"><div class="akamai-title"><h4>' . 'Large Files' . '</h4></div>',
             '#rows' => $akamai_elements,
+            '#suffix' => '</div>',
           ];
         }
       }
