@@ -494,7 +494,7 @@ body.path-frontpage h1.page-header {
 }
 .download-all-files {
   color: white;
-  background-color: #E84A00;
+  background-color: red;
   display: inline-block;
   padding: 0.5% 2%;
   font-weight: bold;
@@ -520,7 +520,9 @@ body.path-frontpage h1.page-header {
   z-index: 100;
 }
 .download-all-files .download-label {
-  font-size: 0.7em;
+  font-size: 0.8em;
+  vertical-align: super;
+  display: inline-block;
 }
 .download-all-files .title {
   font-size: 0.95em;
@@ -656,6 +658,14 @@ body.path-it-extranet-dashboard .view-header .add-it-extranet {
   color: white;
 }
 /* End IT Extract Dashboard Add IT Exyranet Button */
+/*start it-extranet image styles*/
+body.page-node-type-it-extranet .content img.automative-img{
+    width: 50%;
+}
+img.true-touch-img{
+    width: 43%;
+}
+/*end it-extranet image styles*/
 /* Start Tag cloud */
 ul.default_tag_clouds {
   text-align: justify;
@@ -745,7 +755,25 @@ body.path-file-search .region-content button.btn-info.file-search-button {
 }
 /* End File search */
 
-
+/* Start STcon Responsive for Mobile*/
+@media only screen and (max-width: 768px){
+body.page-node-type-stcon .ui-tabs .ui-tabs-panel p a img{
+  width: 100%;
+}
+body.page-node-type-stcon .ui-tabs #tabs-5511.ui-tabs-panel p img,
+body.page-node-type-stcon .ui-tabs #tabs-5516.ui-tabs-panel h3 img{
+  width: 100%;
+}
+/* End STcon Responsive for Mobile*/
+/*Start Automative Extranet Responsive*/
+body.page-node-type-it-extranet .content img.automative-img{
+  width: 100%;
+}
+img.true-touch-img{
+    width: 100%;
+}
+/*End Automative Extranet Responsive*/
+}
 /* Start of Responsive for Mobile*/
 @media only screen and (min-width: 320px) and (max-width: 1023px) {
   .navbar-toggle {
@@ -1016,7 +1044,7 @@ body.path-file-search .region-content button.btn-info.file-search-button {
   /*end nedd-help*/
   /*eco-system*/
   body.page-node-type-cy-page .table-responsive span.file-link a {
-    word-wrap: break-word;
+    word-break: break-word;
   }
 
 
