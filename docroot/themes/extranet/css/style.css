@@ -510,7 +510,7 @@ body.path-frontpage h1.page-header {
 }
 .static-download-all-files-wrapper {
   padding: 0.5em;
-  background-color: #E84A00;
+  background-color: red;
   display: none;
 }
 .static-download-all-files-wrapper.show {
