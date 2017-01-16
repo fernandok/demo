@@ -461,7 +461,6 @@ body.page-node-type-cy-page table.marcom-contacts td.tel-no{
   margin: 0 auto;
 }
 /* End content menu home icon */
-
 /* Title-heading styles*/
 .main-container.container .row section#content-main .region.region-content h1.page-header,
 body.path-file-search #content-main h2,
@@ -662,7 +661,11 @@ body.path-it-extranet-dashboard .view-header .add-it-extranet {
 /* Start Tag cloud */
 ul.default_tag_clouds {
   text-align: justify;
-  padding: 1em;
+  padding: 0 1em 1em;
+  display: none;
+}
+#clear-file-search {
+  display: none;
 }
 ul.default_tag_clouds li a.selected,
 ul.default_tag_clouds li a.selected:hover {
@@ -712,6 +715,7 @@ body.path-file-search .region-content div.view-filters.form-group .form-inline .
 body.path-file-search .region-content div.view-filters.form-group div#edit-actions {
   vertical-align: bottom;
   margin-left: 0.5%;
+  margin-top: 1.5%;
 }
 body.path-file-search .region-content div.view-filters.form-group button#edit-submit-file-search {
   padding: 0.45em 3em;
@@ -723,9 +727,10 @@ body.path-file-search .region-content div.view-filters.form-group .input-group-a
 .default_tag_clouds {
   margin-bottom: 0;
 }
-body.path-file-search .region-content .view-header button.btn-info {
+body.path-file-search .region-content button.btn-info.file-search-button {
   padding: 0 1em;
   margin: 0 1.2em 1em;
+  width: 12em;
 }
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
   body.path-file-search .region-content div.view-filters.form-group div.form-item {
@@ -742,7 +747,17 @@ body.path-file-search .region-content .view-header button.btn-info {
 }
 /* End File search */
 
-
+/* Start STcon Responsive for Mobile*/
+@media only screen and (max-width: 768px){
+body.page-node-type-stcon .ui-tabs .ui-tabs-panel p a img{
+  width: 100%;
+}
+body.page-node-type-stcon .ui-tabs #tabs-5511.ui-tabs-panel p img,
+body.page-node-type-stcon .ui-tabs #tabs-5516.ui-tabs-panel h3 img{
+  width: 100%;
+}
+/* End STcon Responsive for Mobile*/
+}
 /* Start of Responsive for Mobile*/
 @media only screen and (min-width: 320px) and (max-width: 1023px) {
   .navbar-toggle {
@@ -1013,7 +1028,7 @@ body.path-file-search .region-content .view-header button.btn-info {
   /*end nedd-help*/
   /*eco-system*/
   body.page-node-type-cy-page .table-responsive span.file-link a {
-    word-wrap: break-word;
+    word-break: break-word;
   }
 
 

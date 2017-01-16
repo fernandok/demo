@@ -12,20 +12,31 @@
     else {
        return results[1] || 0;
     }
-  }
+  };
 
   $(document).ready(function () {
-    // Advanced search.
     views_exposed_filter = $('body.path-file-search .region-content div.view-filters.form-group');
     tag_cloud = $('body.path-file-search .region-content section.block-dynamictagclouds ul.default_tag_clouds');
+    // Advanced search.
     $('#file-advanced-search').click(function () {
       views_exposed_filter.slideToggle();
-      tag_cloud.slideToggle();
       if ($(this).hasClass('expanded')) {
         $(this).removeClass('expanded').html('Advanced Search');
       }
       else {
         $(this).addClass('expanded').html('Hide Advanced Search');
+        $('#file-meta-tag-search[class~="expanded"]').trigger('click');
+      }
+    });
+    // Meta tag search.
+    $('#file-meta-tag-search').click(function () {
+      tag_cloud.slideToggle();
+      if ($(this).hasClass('expanded')) {
+        $(this).removeClass('expanded').html('Meta Tag Search');
+      }
+      else {
+        $(this).addClass('expanded').html('Hide Meta Tag Search');
+        $('#file-advanced-search[class~="expanded"]').trigger('click');
       }
     });
 
@@ -41,6 +52,14 @@
 
     if ($.urlParam('filename') != null && $.urlParam('product') != null) {
       $('#file-advanced-search').trigger('click');
+      $('#clear-file-search').show();
+    }
+    else if ($.urlParam('bu') != null || $.urlParam('division') != null || $.urlParam('language') != null) {
+      $('#file-meta-tag-search').trigger('click');
+      $('#clear-file-search').show();
+    }
+    else {
+      $('#clear-file-search').hide();
     }
   });
 })(jQuery);
