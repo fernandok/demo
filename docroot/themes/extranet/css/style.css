@@ -660,8 +660,7 @@ body.path-it-extranet-dashboard .view-header .add-it-extranet {
 /* End IT Extract Dashboard Add IT Exyranet Button */
 /*start it-extranet image styles*/
 body.page-node-type-it-extranet .content img.automative-img{
-    /*width: 800px;
-    height: 452px;*/
+    width: 50%;
 }
 /*end it-extranet image styles*/
 /* Start Tag cloud */
@@ -765,7 +764,7 @@ body.page-node-type-stcon .ui-tabs #tabs-5516.ui-tabs-panel h3 img{
 /* End STcon Responsive for Mobile*/
 /*Start Automative Extranet Responsive*/
 body.page-node-type-it-extranet .content img.automative-img{
-  /*width: 100%;*/
+  width: 100%;
 }
 /*End Automative Extranet Responsive*/
 }
