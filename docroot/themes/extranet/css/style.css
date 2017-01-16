@@ -1026,7 +1026,7 @@ body.page-node-type-stcon .ui-tabs #tabs-5516.ui-tabs-panel h3 img{
   /*end nedd-help*/
   /*eco-system*/
   body.page-node-type-cy-page .table-responsive span.file-link a {
-    word-wrap: break-word;
+    word-break: break-word;
   }
 
 
