@@ -44,7 +44,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
 
     if ($paragraphs = $this->getEntitiesToView($items, $langcode)) {
       $header = [
-        '',
+        t('Select'),
         t('BU'),
         t('DIV'),
         t('Title'),
@@ -197,12 +197,12 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
       // Download all paragraph files.
       $field_name = $items->getName();
       $parent_node_id = $items->getParent()->get('nid')->getValue()[0]['value'];
-      $node_label = $items->getParent()->get('title')->getValue()[0]['value'];
+      // $node_label = $items->getParent()->get('title')->getValue()[0]['value'];
       $url = Url::fromUserInput('/download_all_documents/' . $parent_node_id . '/' . $field_name);
       if (!empty($rows)) {
         $download_all_docs = [
           '#theme' => 'cypress_download_all_docs',
-          '#label' => $node_label,
+          // '#label' => $node_label,
           '#link' => $url,
         ];
         $elements[0]['download_all_documents_top'] = $download_all_docs;
