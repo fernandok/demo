@@ -103,6 +103,7 @@ function cypress_theme($existing, $type, $theme, $path) {
         'name' => NULL,
         'value' => NULL,
         'classes' => NULL,
+        'is_new' => NULL,
       ],
       'template' => 'cypress-checkbox',
     ],

@@ -170,6 +170,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
               '#name' => 'download_file_selector',
               '#value' => $file->id(),
               '#classes' => 'download_file_selector',
+              '#is_new' => '',
             ],
           ],
           ['data' => $bu],
@@ -191,6 +192,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         ];
         if ($timestamp_to_highlight <= $last_updated) {
           $rows[$delta]['class'] = ['highlight-latest'];
+          $rows[$delta]['data'][0]['data']['#is_new'] = t('new');
         }
       }
 

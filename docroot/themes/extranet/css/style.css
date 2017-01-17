@@ -209,6 +209,7 @@ body.path-my-samples .view-my-samples .form-item {
   border-top: 0px;
   padding: 14px;
   vertical-align: middle;
+  position: relative;
 }
 .table>tbody>tr>td span.file-size {
   display: none;
@@ -1901,11 +1902,30 @@ div.paragraph-type-title {
 }
 
 /* Highlight Home page Icons*/
-body.path-frontpage .view-home-page-menu-icons .img-menu img{
-  opacity: 1;
+/*body.path-frontpage .view-home-page-menu-icons .img-menu img{*/
+  /*opacity: 1;*/
+/*}*/
+
+/*body.path-frontpage .view-home-page-menu-icons .img-menu img:hover{*/
+  /*opacity: 0.7;*/
+/*}*/
+
+/* Highlight the new button*/
+body.page-node-type-cy-page .table-responsive tr.highlight-latest .new-tag{
+  writing-mode: vertical-lr;
+  text-orientation: sideways-right;
+  transform: rotate(225deg);
+  font-size: 1em;
+  position: absolute;
+  top: 2px;
+  left: 3px;
+  color: red;
+  font-weight: bold;
+  animation: blink-animation 2s steps(5, start) infinite;
 }
 
-body.path-frontpage .view-home-page-menu-icons .img-menu img:hover{
-  opacity: 0.7;
-  /*border: 1px solid black;*/
+@keyframes blink-animation {
+to {
+  visibility: hidden;
+}
 }
