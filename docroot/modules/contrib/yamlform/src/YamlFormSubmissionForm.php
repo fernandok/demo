@@ -441,18 +441,18 @@ class YamlFormSubmissionForm extends ContentEntityForm {
 
     // Display link to previous submissions message when user is adding a new
     // submission.
-    if ($this->isGet()
-      && ($this->isRoute('entity.yamlform.canonical') || $this->isYamlFormEntityReferenceFromSourceEntity())
-      && $yamlform->access('submission_view_own')
-      && ($previous_total = $this->storage->getTotal($yamlform, $this->sourceEntity, $this->currentUser()))
-    ) {
-      if ($previous_total > 1) {
-        $this->messageManager->display(YamlFormMessageManagerInterface::SUBMISSIONS_PREVIOUS);
-      }
-      elseif ($yamlform_submission->id() != $this->storage->getLastSubmission($yamlform, $this->sourceEntity, $this->currentUser())->id()) {
-        $this->messageManager->display(YamlFormMessageManagerInterface::SUBMISSION_PREVIOUS);
-      }
-    }
+    // if ($this->isGet()
+    //   && ($this->isRoute('entity.yamlform.canonical') || $this->isYamlFormEntityReferenceFromSourceEntity())
+    //   && $yamlform->access('submission_view_own')
+    //   && ($previous_total = $this->storage->getTotal($yamlform, $this->sourceEntity, $this->currentUser()))
+    // ) {
+    //   if ($previous_total > 1) {
+    //     $this->messageManager->display(YamlFormMessageManagerInterface::SUBMISSIONS_PREVIOUS);
+    //   }
+    //   elseif ($yamlform_submission->id() != $this->storage->getLastSubmission($yamlform, $this->sourceEntity, $this->currentUser())->id()) {
+    //     $this->messageManager->display(YamlFormMessageManagerInterface::SUBMISSION_PREVIOUS);
+    //   }
+    // }
   }
 
   /****************************************************************************/
