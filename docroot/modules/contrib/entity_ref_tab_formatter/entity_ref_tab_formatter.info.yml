@@ -4,8 +4,8 @@ description: Entity Reference Tab Formatter Display
 # core: 8.x
 package: Entity
 
-# Information added by Drupal.org packaging script on 2016-10-26
-version: '8.x-1.1'
+# Information added by Drupal.org packaging script on 2016-12-19
+version: '8.x-1.2'
 core: '8.x'
 project: 'entity_ref_tab_formatter'
-datestamp: 1477470247
+datestamp: 1482147493

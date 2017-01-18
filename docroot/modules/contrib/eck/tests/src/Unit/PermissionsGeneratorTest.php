@@ -7,7 +7,7 @@ use Drupal\eck\PermissionsGenerator;
 /**
  * Tests the form element implementation.
  *
- * @group eck
+ * @group Eck
  */
 class PermissionsGeneratorTest extends UnitTestBase{
 
@@ -20,18 +20,20 @@ class PermissionsGeneratorTest extends UnitTestBase{
   protected function setUp() {
     parent::setUp();
 
-    $this->sut = $this->getNewSUT();
+    $this->sut = $this->createNewSubjectUnderTest();
   }
 
   /**
    * @return \Drupal\eck\PermissionsGenerator
    */
-  private function getNewSUT() {
-    $permissions = new PermissionsGenerator();
-    $permissions->setStringTranslation($this->getStringTranslationStub());
-    $permissions->setUrlGenerator($this->getMockForAbstractClass('\Drupal\Core\Routing\UrlGeneratorInterface'));
+  private function createNewSubjectUnderTest() {
+    $urlGeneratorMock = $this->getMockForAbstractClass('\Drupal\Core\Routing\UrlGeneratorInterface');
 
-    return $permissions;
+    $permissionsGenerator = new PermissionsGenerator();
+    $permissionsGenerator->setStringTranslation($this->getStringTranslationStub());
+    $permissionsGenerator->setUrlGenerator($urlGeneratorMock);
+
+    return $permissionsGenerator;
   }
 
   /**
@@ -44,8 +46,9 @@ class PermissionsGeneratorTest extends UnitTestBase{
   /**
    * @test
    */
-  public function generatesCorrectPermissionsWithSingleEntity() {
+  public function givenSingleEntityType_generatesCorrectPermissions() {
     $this->addEntityToStorage($this->createEckEntityType('entity_type'));
+
     $permissions = $this->sut->entityPermissions();
     $this->assertCreatePermission($permissions);
     $this->assertGlobalPermissions($permissions);
@@ -55,8 +58,9 @@ class PermissionsGeneratorTest extends UnitTestBase{
   /**
    * @test
    */
-  public function generatesCorrectPermissionsWithSingleEntityWithEnabledAuthorField() {
+  public function givenSingleEntityTypeWithAuthorField_generatesCorrectPermissions() {
     $this->addEntityToStorage($this->createEckEntityType('entity_type', ['uid' => TRUE]));
+
     $permissions = $this->sut->entityPermissions();
     $this->assertCreatePermission($permissions);
     $this->assertGlobalPermissions($permissions);
@@ -66,9 +70,10 @@ class PermissionsGeneratorTest extends UnitTestBase{
   /**
    * @test
    */
-  public function generatesCorrectPermissionsWithMultipleEntities() {
+  public function givenMultipleEntityTypesWithMixedSettings_generatesCorrectPermissions() {
     $this->addEntityToStorage($this->createEckEntityType('entity_type'));
     $this->addEntityToStorage($this->createEckEntityType('another_type', ['uid' => TRUE]));
+
     $permissions = $this->sut->entityPermissions();
     $this->assertCreatePermission($permissions);
     $this->assertGlobalPermissions($permissions);

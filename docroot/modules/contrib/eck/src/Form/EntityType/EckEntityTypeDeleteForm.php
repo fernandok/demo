@@ -55,8 +55,8 @@ class EckEntityTypeDeleteForm extends EntityDeleteForm {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    $content_entity = $this->entityManager->getDefinition($this->entity->id());
-    $this->entityManager->onEntityTypeDelete($content_entity);
+    $content_entity = $this->entityTypeManager->getDefinition($this->entity->id());
+    \Drupal::service('entity_type.listener')->onEntityTypeDelete($content_entity);
     // Delete the entity type.
     $this->entity->delete();
     // Set a message that the entity type was deleted.

@@ -47,8 +47,7 @@ function eck_entity_type_build(array &$entity_types) {
     $eck_entity_type = $entity_types['eck_entity_type'];
 
     // Get the existing ECK types.
-    $entity_manager = \Drupal::entityManager();
-    $eck_types = $entity_manager->createHandlerInstance(
+    $eck_types = \Drupal::entityTypeManager()->createHandlerInstance(
       $eck_entity_type->getHandlerClass('storage'),
       $eck_entity_type
     )->loadMultiple();
@@ -172,6 +171,7 @@ function eck_menu_local_actions_alter(&$local_actions) {
    */
   foreach ($eck_types as $name => $type) {
     $local_actions['eck.bundle.' . $type->id() . '.add'] = $defaults + [
+      'id' => 'eck.bundle.' . $type->id() . '.add',
       'route_name' => 'eck.entity.' . $type->id() . '_type.add',
       'title' => t('Add @label bundle', array('@label' => $type->label())),
       'appears_on' => [
@@ -182,6 +182,7 @@ function eck_menu_local_actions_alter(&$local_actions) {
     if ($eckBundleInfo->entityTypeHasBundles($type->id())) {
       $bundle_machine_names = $eckBundleInfo->getEntityTypeBundleMachineNames($type->id());
       $local_actions['eck.' . $type->id() . '.add'] = $defaults + [
+        'id' => 'eck.' . $type->id() . '.add',
         'title' => t('Add @label', array('@label' => $type->label())),
         'appears_on' => [
           'eck.entity.' . $type->id() . '.list',
