@@ -4,3 +4,8 @@ download-selected-file-styling:
     js/download_selected_file.js: {}
   dependencies:
     - core/jquery
+promocode-submission:
+  js:
+    js/promocode_auto_submit.js: {}
+  dependencies:
+    - core/jquery
