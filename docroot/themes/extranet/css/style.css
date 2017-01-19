@@ -1902,10 +1902,10 @@ div.paragraph-type-title {
 }
 
 /* Highlight Home page Icons*/
-body.path-frontpage .view-home-page-menu-icons .image-menu-title-wrap{
-  display: inline-block;
-  position: relative;
-}
+/*body.path-frontpage .view-home-page-menu-icons .image-menu-title-wrap{*/
+  /*display: inline-block;*/
+  /*position: relative;*/
+/*}*/
 body.path-frontpage .view-home-page-menu-icons .hvr-float-shadow:hover {
   transform: translateY(-5px);
 }
