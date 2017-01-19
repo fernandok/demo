@@ -3,8 +3,8 @@
 namespace Drupal\eck\Form\EntityBundle;
 
 use Drupal\Core\Entity\EntityForm;
-use Drupal\Core\Entity\EntityManagerInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Url;
 use Drupal\eck\Entity\EckEntityBundle;
@@ -20,18 +20,15 @@ class EckEntityBundleForm extends EntityForm {
   /**
    * The entity manager.
    *
-   * @var \Drupal\Core\Entity\EntityManagerInterface
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
    */
-  protected $entityManager;
+  protected $entityTypeManager;
 
   /**
-   * Constructs the EckEntityBundleForm object.
-   *
-   * @param EntityManagerInterface $entity_manager
-   *   The entity manager.
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entityTypeManager
    */
-  public function __construct(EntityManagerInterface $entity_manager) {
-    $this->entityManager = $entity_manager;
+  public function __construct(EntityTypeManagerInterface $entityTypeManager) {
+    $this->entityTypeManager = $entityTypeManager;
   }
 
   /**
@@ -39,7 +36,7 @@ class EckEntityBundleForm extends EntityForm {
    */
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('entity.manager')
+      $container->get('entity_type.manager')
     );
   }
 
@@ -50,7 +47,7 @@ class EckEntityBundleForm extends EntityForm {
     $form = parent::form($form, $form_state);
     $entity_type_id = $this->entity->getEntityType()->getBundleOf();
     $type = $this->entity;
-    $entity = $this->entityManager->getStorage($entity_type_id)->create([
+    $entity = $this->entityTypeManager->getStorage($entity_type_id)->create([
         'type' => $this->operation == 'add' ? $type->uuid(): $type->id()]
     );
     $type_label = $entity->getEntityType()->getLabel();

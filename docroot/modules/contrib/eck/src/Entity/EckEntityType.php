@@ -45,8 +45,6 @@ use Drupal\eck\EckEntityTypeInterface;
  */
 class EckEntityType extends ConfigEntityBase implements EckEntityTypeInterface {
 
-  use LinkGeneratorTrait;
-
   /**
    * If this entity type has an "Author" base field.
    *
@@ -84,7 +82,7 @@ class EckEntityType extends ConfigEntityBase implements EckEntityTypeInterface {
     // Clear the router cache to prevent RouteNotFoundException while creating
     // the edit link.
     \Drupal::service('router.builder')->rebuild();
-    $edit_link = $this->l(t('Edit'), $this->urlInfo());
+    $edit_link = $this->link(t('Edit entity type'));
 
     if ($update) {
       $this->logger($this->id())->notice(
@@ -98,7 +96,7 @@ class EckEntityType extends ConfigEntityBase implements EckEntityTypeInterface {
 
       // Notify storage to create the database schema.
       $entity_type = $this->entityTypeManager()->getDefinition($this->id());
-      $this->entityManager()->onEntityTypeCreate($entity_type);
+      \Drupal::service('entity_type.listener')->onEntityTypeCreate($entity_type);
 
       $this->logger($this->id())->notice(
         'Entity type %label has been added.',

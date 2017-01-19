@@ -71,8 +71,8 @@ class UITest extends TestBase {
    * Makes sure the operations on the entity type listing page work as expected.
    */
   public function testEntityTypeListingOperations() {
-    $entityManager = \Drupal::entityTypeManager();
-    $entity = $entityManager->getDefinition('eck_entity_type');
+    $entityTypeManager = \Drupal::entityTypeManager();
+    $entity = $entityTypeManager->getDefinition('eck_entity_type');
     $this->drupalGet(Url::fromRoute('eck.entity_type.list'));
     $this->assertText(t('There is no @label yet.', array('@label' => $entity->getLabel())));
 
