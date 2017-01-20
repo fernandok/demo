@@ -221,7 +221,9 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           '#rows' => $rows,
           '#prefix' => '<div class="page-files-wrapper">',
           '#suffix' => '</div>',
+          '#attributes' => ['class' => ['sticky-enabled']],
         ];
+        $elements[2]['#attached']['library'][] = 'core/drupal.tableheader';
         $elements[3]['download_all_documents_bottom'] = $download_all_docs;
         if ($akamai_elements) {
           $elements[4] = [

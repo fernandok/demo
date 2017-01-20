@@ -1974,3 +1974,19 @@ body.page-node-type-cy-page .table-responsive tr.highlight-latest .ribbon .new-t
   padding: 0px 6px 0px 12px;
   vertical-align: text-top;
 }
+
+/* Sticky Header Css*/
+body.page-node-type-cy-page table.sticky-header {
+  background-color: rgb(232, 235, 241);
+  width: 937px !important;
+}
+body.page-node-type-cy-page table.sticky-header th:first-child {
+  width: 86px !important;
+}
+body.page-node-type-cy-page table.sticky-header th:nth-child(6) {
+  width: 97px !important;
+}
+body.page-node-type-cy-page table.sticky-header th:nth-child(7) {
+  width: 79px !important;
+}
+/* End of Header Css*/
