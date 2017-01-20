@@ -55,6 +55,8 @@ class EcnRestResource extends ResourceBase {
    */
   protected $docParagraphId;
 
+  protected $fileField;
+
   /**
    * Constructs a Drupal\rest\Plugin\ResourceBase object.
    *
@@ -142,9 +144,18 @@ class EcnRestResource extends ResourceBase {
       else {
         $page_storage = \Drupal::entityManager()->getStorage('node');
         $page = $page_storage->load($node['nid']);
-        if (!($page instanceof Node) || $page->getType() != 'cy_page') {
+        if (!($page instanceof Node) || ($page->getType() != 'cy_page' &&
+          $page->getType() != 'dwr')) {
           $response[] = ['error' => 'There is no node found for the given node id ' . $node['nid'] . '.'];
           continue;
+        }
+        else {
+          if ($page->getType() == 'cy_page') {
+            $this->fileField = 'field_files';
+          }
+          else if ($page->getType() == 'dwr') {
+            $this->fileField = 'field_dwr_files';
+          }
         }
         $this->setConditionCheckingProperties($page);
         $documents = $node['documents'];
@@ -199,7 +210,7 @@ class EcnRestResource extends ResourceBase {
    */
   private function setConditionCheckingProperties($node) {
     $nid = $node->id();
-    $this->paragraphs[$nid] = $node->get('field_files')->getValue();
+    $this->paragraphs[$nid] = $node->get($this->fileField)->getValue();
     $paragraphs_ids = [];
     foreach ($this->paragraphs[$nid] as $paragraph) {
       $paragraphs_ids[] = $paragraph['target_id'];
@@ -504,7 +515,7 @@ class EcnRestResource extends ResourceBase {
   private function addParagraph(&$page, $doc) {
     $nid = $page->id();
     if (!isset($this->paragraphs[$nid])) {
-      $this->paragraphs[$nid] = $node->get('field_files')->getValue();
+      $this->paragraphs[$nid] = $node->get($this->fileField)->getValue();
     }
     // Save file.
     $file = file_save_data(base64_decode($doc['file_data']), 'public://' . $doc['file_name'], FILE_EXISTS_REPLACE);
@@ -534,7 +545,7 @@ class EcnRestResource extends ResourceBase {
       'target_id' => $paragraph->id(),
       'target_revision_id' => $paragraph->getRevisionId(),
     ];
-    $page->field_files = $this->paragraphs[$nid];
+    $page->{$this->fileField} = $this->paragraphs[$nid];
     // Return new file id.
     return [
       'spec_number' => $doc['spec_number'],
@@ -613,7 +624,7 @@ class EcnRestResource extends ResourceBase {
       }
     }
     // Update the node paragraph list.
-    $page->field_files = $this->paragraphs[$nid];
+    $page->{$this->fileField} = $this->paragraphs[$nid];
     // Delete the file.
     $this->deleteFile($doc['file_id']);
 
