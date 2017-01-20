@@ -1990,3 +1990,12 @@ body.page-node-type-cy-page table.sticky-header th:nth-child(7) {
   width: 79px !important;
 }
 /* End of Header Css*/
+
+/* File Search Page Sort*/
+body.path-file-search .view-file-search .table-responsive th.views-field-field-bu {
+  width: 89px;
+}
+
+body.path-file-search .view-file-search .table-responsive th.views-field-field-div {
+  width: 154px;
+}

@@ -54,7 +54,7 @@
       $('#file-advanced-search').trigger('click');
       $('#clear-file-search').show();
     }
-    else if ($.urlParam('bu') != null || $.urlParam('division') != null || $.urlParam('language') != null) {
+    else if ($.isNumeric($.urlParam('bu')) || $.isNumeric($.urlParam('division')) || $.isNumeric($.urlParam('language'))) {
       $('#file-meta-tag-search').trigger('click');
       $('#clear-file-search').show();
     }
