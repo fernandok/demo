@@ -226,6 +226,8 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
         'organization'
       );
     }
+
+    $form['actions']['submit']['#submit'][] = 'cypress_send_approval_mail';
   }
   else {
     $elements_to_hide[] = 'promocode_status';
@@ -516,6 +518,32 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
   $form_state->setValue('approver_mail', implode(',', $approvers_mail));
   $form_state->setValue('approver', implode(',', $approvers_name));
   $form_state->setValue('discount_amount', $discount_amount);
+}
+
+/**
+ * Additional submit handler to send promocode approval/rejection mail.
+ *
+ * @param array $form
+ *   Form array.
+ * @param FormStateInterface $form_state
+ *   Form state object.
+ */
+function cypress_send_approval_mail($form, FormStateInterface $form_state) {
+  $form_values = $form_state->getValues();
+  if ($form_values['promocode_status'] == 'Approved'
+    || $form_values['promocode_status'] == 'Rejected'
+    || $form_values['promocode_status'] == 'Modify') {
+    $yaml_form_submission = $form_state->getBuildInfo()['callback_object'];
+    $yaml_form_submission_entity = $yaml_form_submission->getEntity();
+    $yaml_form = $yaml_form_submission_entity->getYamlForm();
+    $yaml_form_handlers = $yaml_form->getHandlers();
+    $yaml_form_handler_ids = $yaml_form_handlers->getInstanceIds();
+    foreach ($yaml_form_handler_ids as $yaml_form_handler_id) {
+      $yaml_email_handler = $yaml_form_handlers->get($yaml_form_handler_id);
+      $yaml_form_submission_data = $yaml_email_handler->getMessage($yaml_form_submission_entity);
+      $yaml_email_handler->sendMessage($yaml_form_submission_data);
+    }
+  }
 }
 
 /**
