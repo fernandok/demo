@@ -12,6 +12,7 @@ use Drupal\rest\ResourceResponse;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Psr\Log\LoggerInterface;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Provides a resource to get view modes by entity and bundle.
@@ -54,6 +55,8 @@ class EcnRestResource extends ResourceBase {
    * @var array
    */
   protected $docParagraphId;
+
+  protected $fileField;
 
   /**
    * Constructs a Drupal\rest\Plugin\ResourceBase object.
@@ -142,9 +145,18 @@ class EcnRestResource extends ResourceBase {
       else {
         $page_storage = \Drupal::entityManager()->getStorage('node');
         $page = $page_storage->load($node['nid']);
-        if (!($page instanceof Node) || $page->getType() != 'cy_page') {
+        if (!($page instanceof Node) || ($page->getType() != 'cy_page' &&
+          $page->getType() != 'dwr')) {
           $response[] = ['error' => 'There is no node found for the given node id ' . $node['nid'] . '.'];
           continue;
+        }
+        else {
+          if ($page->getType() == 'cy_page') {
+            $this->fileField = 'field_files';
+          }
+          else if ($page->getType() == 'dwr') {
+            $this->fileField = 'field_dwr_files';
+          }
         }
         $this->setConditionCheckingProperties($page);
         $documents = $node['documents'];
@@ -199,7 +211,7 @@ class EcnRestResource extends ResourceBase {
    */
   private function setConditionCheckingProperties($node) {
     $nid = $node->id();
-    $this->paragraphs[$nid] = $node->get('field_files')->getValue();
+    $this->paragraphs[$nid] = $node->get($this->fileField)->getValue();
     $paragraphs_ids = [];
     foreach ($this->paragraphs[$nid] as $paragraph) {
       $paragraphs_ids[] = $paragraph['target_id'];
@@ -504,7 +516,7 @@ class EcnRestResource extends ResourceBase {
   private function addParagraph(&$page, $doc) {
     $nid = $page->id();
     if (!isset($this->paragraphs[$nid])) {
-      $this->paragraphs[$nid] = $node->get('field_files')->getValue();
+      $this->paragraphs[$nid] = $node->get($this->fileField)->getValue();
     }
     // Save file.
     $file = file_save_data(base64_decode($doc['file_data']), 'public://' . $doc['file_name'], FILE_EXISTS_REPLACE);
@@ -517,7 +529,8 @@ class EcnRestResource extends ResourceBase {
         "description" => $doc['file_description'],
       ],
       'field_application_tags' => $tags['application_tags'],
-      'field_category' => $tags['category'],
+      'field_bu' => $tags['business_unit'],
+      'field_div' => $tags['division'],
       'field_cyu_training_url' => $doc['cyu_training_url'],
       'field_doc_type' => $doc['doc_type'][0],
       'field_family' => $tags['family'],
@@ -534,7 +547,7 @@ class EcnRestResource extends ResourceBase {
       'target_id' => $paragraph->id(),
       'target_revision_id' => $paragraph->getRevisionId(),
     ];
-    $page->field_files = $this->paragraphs[$nid];
+    $page->{$this->fileField} = $this->paragraphs[$nid];
     // Return new file id.
     return [
       'spec_number' => $doc['spec_number'],
@@ -565,7 +578,8 @@ class EcnRestResource extends ResourceBase {
       "description" => $doc['file_description'],
     ];
     $paragraph->field_application_tags = $tags['application_tags'];
-    $paragraph->field_category = $tags['category'];
+    $paragraph->field_bu = $tags['business_unit'];
+    $paragraph->field_div = $tags['division'];
     $paragraph->field_cyu_training_url = $doc['cyu_training_url'];
     $paragraph->field_doc_type = $doc['doc_type'][0];
     $paragraph->field_family = $tags['family'];
@@ -613,7 +627,7 @@ class EcnRestResource extends ResourceBase {
       }
     }
     // Update the node paragraph list.
-    $page->field_files = $this->paragraphs[$nid];
+    $page->{$this->fileField} = $this->paragraphs[$nid];
     // Delete the file.
     $this->deleteFile($doc['file_id']);
 
@@ -654,14 +668,17 @@ class EcnRestResource extends ResourceBase {
    *
    * @param array $tags
    *   Tag names.
+   * @param string $vid
+   *   Vocabulary id.
    *
    * @return array
    *   Tag ids.
    */
-  private function getTagIds($tags) {
+  private function getTagIds($tags, $vid) {
     $tag_ids = [];
+
     foreach ($tags as $tag_name) {
-      $tag_id = $this->getTidByName($tag_name);
+      $tag_id = $this->getTidByName($tag_name, $vid);
       if ($tag_id) {
         $tag_ids[] = ['target_id' => $tag_id];
       }
@@ -691,16 +708,13 @@ class EcnRestResource extends ResourceBase {
    *   Paragraph tags.
    */
   private function getAllTags($doc) {
-    $tags['application_tags'] = $this->getTagIds($doc['application_tags']);
-    $category = $doc['business_unit'];
-    if (isset($doc['division']) && !empty($doc['division'])) {
-      $category .= ' - ' . $doc['division'];
-    }
-    $tags['category'] = $this->getTagIds([$category]);
-    $tags['family'] = $this->getTagIds($doc['family']);
-    $tags['language'] = $this->getTagIds([$doc['language']]);
-    $tags['product'] = $this->getTagIds($doc['product']);
-    $tags['product_tags'] = $this->getTagIds($doc['product_tags']);
+    $tags['application_tags'] = $this->getTagIds($doc['application_tags'], 'application_tag');
+    $tags['business_unit'] = $this->getTagIds([$doc['business_unit']], 'bu');
+    $tags['division'] = $this->getTagIds([$doc['division']], 'division');
+    $tags['family'] = $this->getTagIds($doc['family'], 'family');
+    $tags['language'] = $this->getTagIds([$doc['language']], 'language');
+    $tags['product'] = $this->getTagIds($doc['product'], 'product');
+    $tags['product_tags'] = $this->getTagIds($doc['product_tags'], 'product_tags');
 
     return $tags;
   }
