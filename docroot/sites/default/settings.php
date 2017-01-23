@@ -788,7 +788,7 @@ else {
 
 $config['simplesamlphp_auth.settings'] = [
  // Basic settings.
-   // 'activate'                => TRUE, // Enable or Disable SAML login.
+    'activate'                => TRUE, // Enable or Disable SAML login.
     'auth_source'             => 'default-sp',
     'login_link_display_name' => 'Login with your SSO account',
     'register_users'          => TRUE,
