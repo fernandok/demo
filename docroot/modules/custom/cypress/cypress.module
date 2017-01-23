@@ -181,7 +181,20 @@ function get_saml_user_attributes($account) {
  */
 function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_state) {
   $current_path = \Drupal::service('path.current')->getPath();
-  $elements_to_hide = ['approver_mail', 'custom_emails', 'requester', 'approver', 'discount_amount', 'promo_code', 'requester_mail', 'action_links', 'approver_subject', 'requester_subject'];
+  $elements_to_hide = [
+    'approver_mail',
+    'custom_emails',
+    'requester',
+    'approver',
+    'discount_amount',
+    'promo_code',
+    'requester_mail',
+    'action_links',
+    'approver_subject',
+    'requester_subject',
+    'approver_mail_statement',
+    'requester_mail_statement',
+  ];
   if (preg_match('/yamlform\/manage\/promocode\/submission\/\d+\/edit$/', $current_path)) {
     $promocode_status_value = $form['elements']['promocode_status']['#default_value'];
     if ($promocode_status_value != 'Modify' && $promocode_status_value != '') {
