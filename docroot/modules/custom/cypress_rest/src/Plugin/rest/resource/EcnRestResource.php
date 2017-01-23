@@ -12,6 +12,7 @@ use Drupal\rest\ResourceResponse;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Psr\Log\LoggerInterface;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * Provides a resource to get view modes by entity and bundle.
@@ -528,7 +529,8 @@ class EcnRestResource extends ResourceBase {
         "description" => $doc['file_description'],
       ],
       'field_application_tags' => $tags['application_tags'],
-      'field_category' => $tags['category'],
+      'field_bu' => $tags['business_unit'],
+      'field_div' => $tags['division'],
       'field_cyu_training_url' => $doc['cyu_training_url'],
       'field_doc_type' => $doc['doc_type'][0],
       'field_family' => $tags['family'],
@@ -576,7 +578,8 @@ class EcnRestResource extends ResourceBase {
       "description" => $doc['file_description'],
     ];
     $paragraph->field_application_tags = $tags['application_tags'];
-    $paragraph->field_category = $tags['category'];
+    $paragraph->field_bu = $tags['business_unit'];
+    $paragraph->field_div = $tags['division'];
     $paragraph->field_cyu_training_url = $doc['cyu_training_url'];
     $paragraph->field_doc_type = $doc['doc_type'][0];
     $paragraph->field_family = $tags['family'];
@@ -665,14 +668,17 @@ class EcnRestResource extends ResourceBase {
    *
    * @param array $tags
    *   Tag names.
+   * @param string $vid
+   *   Vocabulary id.
    *
    * @return array
    *   Tag ids.
    */
-  private function getTagIds($tags) {
+  private function getTagIds($tags, $vid) {
     $tag_ids = [];
+
     foreach ($tags as $tag_name) {
-      $tag_id = $this->getTidByName($tag_name);
+      $tag_id = $this->getTidByName($tag_name, $vid);
       if ($tag_id) {
         $tag_ids[] = ['target_id' => $tag_id];
       }
@@ -702,16 +708,13 @@ class EcnRestResource extends ResourceBase {
    *   Paragraph tags.
    */
   private function getAllTags($doc) {
-    $tags['application_tags'] = $this->getTagIds($doc['application_tags']);
-    $category = $doc['business_unit'];
-    if (isset($doc['division']) && !empty($doc['division'])) {
-      $category .= ' - ' . $doc['division'];
-    }
-    $tags['category'] = $this->getTagIds([$category]);
-    $tags['family'] = $this->getTagIds($doc['family']);
-    $tags['language'] = $this->getTagIds([$doc['language']]);
-    $tags['product'] = $this->getTagIds($doc['product']);
-    $tags['product_tags'] = $this->getTagIds($doc['product_tags']);
+    $tags['application_tags'] = $this->getTagIds($doc['application_tags'], 'application_tag');
+    $tags['business_unit'] = $this->getTagIds([$doc['business_unit']], 'bu');
+    $tags['division'] = $this->getTagIds([$doc['division']], 'division');
+    $tags['family'] = $this->getTagIds($doc['family'], 'family');
+    $tags['language'] = $this->getTagIds([$doc['language']], 'language');
+    $tags['product'] = $this->getTagIds($doc['product'], 'product');
+    $tags['product_tags'] = $this->getTagIds($doc['product_tags'], 'product_tags');
 
     return $tags;
   }
