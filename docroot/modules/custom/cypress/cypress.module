@@ -514,8 +514,8 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
     case 'Approved':
       // _cypress_post_promocode_to_legacy($form_values);
     case 'Rejected':
-      $approver_mail_statement = 'Promo code ' . $form_values['promo_code'] . 'has been' . $form_values['promocode_status'];
-      $requester_mail_statement = 'Request for ' . $form_values['promo_code'] . 'has been approved';
+      $approver_mail_statement = 'Promo code ' . $form_values['promo_code'] . ' has been ' . $form_values['promocode_status'];
+      $requester_mail_statement = 'Request for ' . $form_values['promo_code'] . ' has been ' . $form_values['promocode_status'];
       $approver_subject = '[' . $form_values['promocode_status'] . '] ' . $approver_subject;
       $requester_subject = '[' . $form_values['promocode_status'] . '] ' . $requester_subject;
       $action_links = 'display: none;';
