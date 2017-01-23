@@ -660,6 +660,17 @@ class EcnRestResource extends ResourceBase {
     $terms = \Drupal::entityManager()->getStorage('taxonomy_term')->loadByProperties($properties);
     $term = reset($terms);
 
+    // Create tag if not present.
+    if (empty($term)) {
+      Term::create([
+        'name' => $name,
+        'vid' => $vid,
+      ])->save();
+
+      $terms = \Drupal::entityManager()->getStorage('taxonomy_term')->loadByProperties($properties);
+      $term = reset($terms);
+    }
+
     return !empty($term) ? $term->id() : 0;
   }
 
