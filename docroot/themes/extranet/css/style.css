@@ -1928,65 +1928,60 @@ body.path-frontpage .view-home-page-menu-icons .hvr-float-shadow:hover:before {
   transform: translateY(5px);
 }
 
-
-/*body.path-frontpage .view-home-page-menu-icons .img-menu img:hover{*/
-  /*opacity: 0.7;*/
-/*}*/
-
 /* Highlight the new button*/
-body.page-node-type-cy-page .table-responsive tr.highlight-latest .ribbon{
+.table-responsive tr.highlight-latest .ribbon{
   position: absolute;
   top: 3px;
   right: 27px;
 }
-body.page-node-type-cy-page .table-responsive tr.highlight-latest .ribbon.red{
+.table-responsive tr.highlight-latest .ribbon.red {
   background: #0074bd ;
   color: #fff;
   border-left: 3px solid red;
 }
-body.page-node-type-cy-page .table-responsive tr.highlight-latest .ribbon:before {
+.table-responsive tr.highlight-latest .ribbon:before {
   content: '';
   position: absolute;
   right: -10px;
   border-right: 10px solid transparent;
 }
 
-body.page-node-type-cy-page .table-responsive tr.highlight-latest .ribbon:after{
+.table-responsive tr.highlight-latest .ribbon:after {
   content: '';
   position: absolute;
   right: -10px;
   border-right: 10px solid transparent;
 }
-body.page-node-type-cy-page .table-responsive tr.highlight-latest .ribbon:before {
+.table-responsive tr.highlight-latest .ribbon:before {
   top: 0;
 }
-body.page-node-type-cy-page .table-responsive tr.highlight-latest .ribbon:after {
+.table-responsive tr.highlight-latest .ribbon:after {
   bottom:0;
 }
-body.page-node-type-cy-page .table-responsive tr.highlight-latest .ribbon.red:before{
+.table-responsive tr.highlight-latest .ribbon.red:before {
   border-top: 21px solid #0074bd ;
 }
-body.page-node-type-cy-page .table-responsive tr.highlight-latest .ribbon.red:after {
+.table-responsive tr.highlight-latest .ribbon.red:after {
   border-bottom: 21px solid #0074bd ;
 }
-body.page-node-type-cy-page .table-responsive tr.highlight-latest .ribbon .new-tag {
+.table-responsive tr.highlight-latest .ribbon .new-tag {
   font-size: 13px;
   padding: 0px 6px 0px 12px;
   vertical-align: text-top;
 }
 
 /* Sticky Header Css*/
-body.page-node-type-cy-page table.sticky-header {
+table.sticky-header {
   background-color: rgb(232, 235, 241);
   width: 937px !important;
 }
-body.page-node-type-cy-page table.sticky-header th:first-child {
+table.sticky-header th:first-child table.sticky-header th:first-child {
   width: 86px !important;
 }
-body.page-node-type-cy-page table.sticky-header th:nth-child(6) {
+table.sticky-header th:nth-child(6) {
   width: 97px !important;
 }
-body.page-node-type-cy-page table.sticky-header th:nth-child(7) {
+table.sticky-header th:nth-child(7) {
   width: 79px !important;
 }
 /* End of Header Css*/
