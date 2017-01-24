@@ -7,6 +7,7 @@
 
 use Drupal\user\Entity\User;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Database\Query;
 
 function cypress_block_build_alter(array &$build, \Drupal\Core\Block\BlockPluginInterface $block) {
   if ($block->getPluginId() == 'search_form_block') {
@@ -219,7 +220,9 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
         $promocode_status_value = 'Modify';
         break;
     }
+    $arg  = explode('/',$a);
     $form['elements']['promocode_status']['#default_value'] = $promocode_status_value;
+
     if ($op == 'modify' || $op == 'Modify') {
       $elements_to_hide[] = 'promocode_status';
     }
@@ -271,6 +274,7 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
  *   Marketing part number id.
  */
 function _get_mpnid($mpn) {
+  //$cat = \Drupal::request()->query->get('cat');
   $mpnid = 0;
   $query = \Drupal::database()->query('SELECT
     fmpnid.field_mpnid_value as mpnid
@@ -290,6 +294,7 @@ function _get_mpnid($mpn) {
   return $mpnid;
 }
 
+
 /**
  * Additional submit handler to implement promo code logic.
  *
@@ -299,9 +304,11 @@ function _get_mpnid($mpn) {
  *   Form state object.
  */
 function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
+
   $form_values = $form_state->getValues();
   $cat = $form_values['type'];
   $approvers = [];
+  $a = _get_mpnid('CY62136EV30LL-45BVXIT');
   $discount_amount = 0;
   $promocode = '';
   $msrp = 0;
@@ -505,12 +512,26 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
   // Set the date in email description.
   $expire_date = date('m-d-y', strtotime("+10 days"));
   // Query to get the Sample status
-  $mpn_id = _get_mpnid($form_values['part_number']);
-  $query = \Drupal::database()->select('node__field_sample_status', 'nss');
-  $query->fields('nss', ['field_sample_status_value']);
-  $query->condition('entity_id', $mpn_id);
+  $cat = \Drupal::request()->query->get('cat');
+  if($cat == 'cat_b') {
+    $cat = 'B';
+  }
+  else {
+    $cat = 'A';
+  }
+  $mpnid = \Drupal::request()->query->get('mpnid');
+  $query = \Drupal::database()->select('node__field_sample_status', 'fssv');
+  $query->fields('fssv', ['field_sample_status_value']);
+  $query->join('node__field_mpn_cat_a_b','fmpncatab','fmpncatab.entity_id = fssv.entity_id');
+  $query->join('node__field_mpnid','fmpnid','fmpnid.entity_id = fmpncatab.entity_id');
+  $query->condition(db_or()
+    ->condition('fmpncatab.field_mpn_cat_a_b_value', $cat)
+    ->condition('fmpncatab.field_mpn_cat_a_b_value', 'CAT B'));
+  $query->condition('fmpnid.field_mpnid_value', $mpnid);
   $results = $query->execute()->fetchAll();
-  $sample_status = $results[0]->field_sample_status_value;
+  foreach($results as $result) {
+    $sample_status = $result->field_sample_status_value;
+  }
   // Generate promocode.
   if (!isset($form_values['promo_code']) || empty($form_values['promo_code'])) {
     $promocode = $user_division_code . date('y') . date('W') . date('N') . mt_rand(001, 99999);
@@ -546,7 +567,7 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
       $requester_subject = '[Modified] ' . $requester_subject;
       break;
   }
-  $form_state->setValue('mpn_id', $mpn_id);
+  $form_state->setValue('mpn_id', $mpnid);
   $form_state->setValue('add_to_cart_link', $add_to_cart_link);
   $form_state->setvalue('approver_mail_statement', $approver_mail_statement);
   $form_state->setValue('requester_mail_statement', $requester_mail_statement);
