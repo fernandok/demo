@@ -194,6 +194,8 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
     'requester_subject',
     'approver_mail_statement',
     'requester_mail_statement',
+    'add_to_cart_link',
+    'mpn_id',
   ];
   if (preg_match('/yamlform\/manage\/promocode\/submission\/\d+\/edit$/', $current_path)) {
     $promocode_status_value = $form['elements']['promocode_status']['#default_value'];
@@ -500,6 +502,15 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
   foreach ($results as $result) {
     $user_division_code = $result->division_code;
   }
+  // Set the date in email description.
+  $expire_date = date('m-d-y', strtotime("+10 days"));
+  // Query to get the Sample status
+  $mpn_id = _get_mpnid($form_values['part_number']);
+  $query = \Drupal::database()->select('node__field_sample_status', 'nss');
+  $query->fields('nss', ['field_sample_status_value']);
+  $query->condition('entity_id', $mpn_id);
+  $results = $query->execute()->fetchAll();
+  $sample_status = $results[0]->field_sample_status_value;
   // Generate promocode.
   if (!isset($form_values['promo_code']) || empty($form_values['promo_code'])) {
     $promocode = $user_division_code . date('y') . date('W') . date('N') . mt_rand(001, 99999);
@@ -510,11 +521,19 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
   $action_links = 'width: 32%; display: inline-block; text-align: center;';
   $approver_mail_statement = 'You have a request to approve promo code. ' . $promocode . ' The details of the request are indicated below on this email. Please click on the links below to approve or reject the request. You may also change some of the details of the request by clicking on the modify link.';
   $requester_mail_statement = 'Thank you.Your request for promo code. ' . $promocode . ' has been routed for approval.Please check with the approver on the status of your request.Your promo code will not work until the approver has approved this request.';
+  $add_to_cart_link = 'display: none;';
+  $approved_second_sentence = '';
   switch ($form_values['promocode_status']) {
     case 'Approved':
       // _cypress_post_promocode_to_legacy($form_values);
+      $approved_second_sentence = 'Please note that this promo code is set to expire on ' . $expire_date . ' so please make sure to enter your order before then.';
+      if ($sample_status == 1 || $sample_status == 'Restricted Sampling') {
+       // $add_to_cart_link = '<a href="http://www.cypress.com/?app=cart&amp;action=add&amp;itemID=' . $mpn_id . '&type=2"><img src="/sites/default/files/button_addcart3.jpg" /></a>';
+        $add_to_cart_link = 'width: 32%; display: inline-block; text-align: center;';
+      }
+
     case 'Rejected':
-      $approver_mail_statement = 'Promo code ' . $form_values['promo_code'] . ' has been ' . $form_values['promocode_status'];
+      $approver_mail_statement = 'Promo code ' . $form_values['promo_code'] . ' has been ' . $form_values['promocode_status'] . $approved_second_sentence;
       $requester_mail_statement = 'Request for ' . $form_values['promo_code'] . ' has been ' . $form_values['promocode_status'];
       $approver_subject = '[' . $form_values['promocode_status'] . '] ' . $approver_subject;
       $requester_subject = '[' . $form_values['promocode_status'] . '] ' . $requester_subject;
@@ -527,6 +546,8 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
       $requester_subject = '[Modified] ' . $requester_subject;
       break;
   }
+  $form_state->setValue('mpn_id', $mpn_id);
+  $form_state->setValue('add_to_cart_link', $add_to_cart_link);
   $form_state->setvalue('approver_mail_statement', $approver_mail_statement);
   $form_state->setValue('requester_mail_statement', $requester_mail_statement);
   $form_state->setValue('approver_subject', $approver_subject);
@@ -576,3 +597,25 @@ function cypress_send_approval_mail($form, FormStateInterface $form_state) {
 //   $result = $soap_client->__soapCall('promocodeRequest', []);
 //   echo "<pre>".print_r($result, true)."</pre>"; exit;
 // }
+
+/**
+ * Method to get the sample status.
+ *
+ * @param array $form_state
+ *   Form Values.
+ *
+ * @return string
+ *    Return the sample status.
+ */
+
+//function cypress_addtocart_email_link($form, FormStateInterface $form_state) {
+//  $form_values = $form_state->getValues();
+//  $mpn_id = _get_mpnid($form_values['part_number']);
+//  $query = \Drupal::database()->select('node__field_sample_status', 'nss');
+//  $query->fields('nss', ['field_sample_status_value']);
+//  $query->condition('entity_id', $mpn_id);
+//  $results = $query->execute()->fetchAll();
+//  $sample_status = $results[0]->field_sample_status_value;
+//
+//  return $sample_status;
+//}
