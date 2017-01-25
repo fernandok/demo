@@ -309,7 +309,6 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
   $form_values = $form_state->getValues();
   $cat = $form_values['type'];
   $approvers = [];
-  $a = _get_mpnid('CY62136EV30LL-45BVXIT');
   $discount_amount = 0;
   $promocode = '';
   $msrp = 0;
@@ -572,7 +571,9 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
       $requester_subject = '[Modified] ' . $requester_subject;
       break;
   }
-  $form_state->setValue('mpn_id', $mpnid);
+  if (!empty($mpnid)) {
+    $form_state->setValue('mpn_id', $mpnid);
+  }
   $form_state->setValue('add_to_cart_link', $add_to_cart_link);
   $form_state->setvalue('approver_mail_statement', $approver_mail_statement);
   $form_state->setValue('requester_mail_statement', $requester_mail_statement);

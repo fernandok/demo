@@ -34,7 +34,7 @@ class WorkWeekAndStock extends BlockBase {
     $date_time = new \DateTime('NOW', $date_time_zone);
     $build['work_week_and_stock'] = [
       '#theme' => 'cypress_ww_cy',
-      '#datetime' => $date_time->format("l d-F-Y g:i A"),
+      '#datetime' => $date_time->format("l F d, Y g:i A"),
       '#ww' => date('y') . date('W'),
       '#cy_price' => $price,
       '#cy_change'  => $change,

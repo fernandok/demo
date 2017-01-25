@@ -1990,7 +1990,23 @@ table.sticky-header th:nth-child(7) {
 body.path-file-search .view-file-search .table-responsive th.views-field-field-bu {
   width: 89px;
 }
-
 body.path-file-search .view-file-search .table-responsive th.views-field-field-div {
   width: 154px;
 }
+/* End of File Search Page Sort*/
+
+/* Cypress Share Block*/
+.block-work-week-and-stock #ww_and_cy #ww a{
+  color: white;
+}
+.block-work-week-and-stock #link_to_cypress {
+  border-right: 1px solid white;
+  margin-right: 0.6%;
+  padding-right: 1%;
+  font-size: 14px;
+}
+.block-work-week-and-stock #link_to_sfdc a{
+  color: white;
+  font-size: 14px;
+}
+/* End of Cypress Share block*/

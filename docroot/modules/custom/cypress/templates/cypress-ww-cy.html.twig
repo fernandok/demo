@@ -4,7 +4,7 @@
     <div id="ww_and_cy">
       <span id="date">{{ datetime }}</span>
       <span>
-        <span id="ww">WW: {{ ww }}</span>
+        <span id="ww"><a href="https://my.cypress.com/?id=10328&pageID=2632" target="_blank">WW: {{ ww }}</a></span>
         {% if cy_change < 0 %}
           {% set cy_change_class = 'flag-red' %}
         {% else %}
@@ -13,6 +13,7 @@
         <span id="cy_stock">CY: {{ cy_price }} <span class="{{ cy_change_class }}">{{ cy_change }}</span></span>
       </span>
       <span id="link_to_cypress"><a href="http://www.cypress.com/">Go to cypress.com</a></span>
+      <span id="link_to_sfdc"><a href="https://login.salesforce.com/" target="_blank">Go to SFDC</a></span>
     </div>
   </div>
 </div>
