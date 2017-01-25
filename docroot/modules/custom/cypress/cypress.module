@@ -519,7 +519,6 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
   else {
     $cat = 'A';
   }
- // $temp = \Drupal::request()->query;
   $mpnid = \Drupal::request()->query->get('mpnid');
   // Generate promocode.
   if (!isset($form_values['promo_code']) || empty($form_values['promo_code'])) {
