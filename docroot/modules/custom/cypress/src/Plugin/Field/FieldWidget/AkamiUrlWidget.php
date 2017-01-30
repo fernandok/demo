@@ -63,7 +63,7 @@ class AkamiUrlWidget extends WidgetBase {
     $form_values = $form_state->getValues();
     $field_parents = $element['#field_parents'];
     if ($form_values[$field_parents[0]][$field_parents[1]][$field_parents[2]]['field_file_type']['value']) {
-      if (!preg_match('/^(http|httpprivate):\/\/dlm.cypress.com.edgesuite.net/', $element['#value'])) {
+      if (!preg_match('/^(http|httpprivate):\/\/dlm.cypress.com.edgesuite.net/', $element['#value']) || !preg_match('/^(http|httpprivate):\/\/download.cypress.com/')) {
         $form_state->setError($element, t('Please enter valid Akamai link.'));
       }
     }
