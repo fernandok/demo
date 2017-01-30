@@ -227,23 +227,23 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         ];
         $elements[2]['#attached']['library'][] = 'core/drupal.tableheader';
         $elements[3]['download_all_documents_bottom'] = $download_all_docs;
-        if ($akamai_elements) {
-          $elements[4] = [
-            '#theme' => 'table__file_formatter_table',
-            '#header' => [
-              'BU',
-              'DIV',
-              'Title',
-              'Rev',
-              'Language',
-              'File size',
-              'Last updated',
-            ],
-            '#prefix' => '<div class="akamai-files-wrapper"><div class="akamai-title"><h4>' . 'Large Files' . '</h4></div>',
-            '#rows' => $akamai_elements,
-            '#suffix' => '</div>',
-          ];
-        }
+      }
+      if (!empty($akamai_elements)) {
+        $elements[4] = [
+          '#theme' => 'table__file_formatter_table',
+          '#header' => [
+            'BU',
+            'DIV',
+            'Title',
+            'Rev',
+            'Language',
+            'File size',
+            'Last updated',
+          ],
+          '#prefix' => '<div class="akamai-files-wrapper"><div class="akamai-title"><h4>' . 'Large Files' . '</h4></div>',
+          '#rows' => $akamai_elements,
+          '#suffix' => '</div>',
+        ];
       }
     }
     return $elements;
