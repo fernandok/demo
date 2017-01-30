@@ -163,7 +163,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           $revision = $paragraph->get('field_spec_revision')
             ->getValue()[0]['value'];
         }
-        $rows[$delta]['data'] = [
+        $rows[$last_updated]['data'] = [
           [
             'data' => [
               '#theme' => 'cypress_checkbox',
@@ -191,10 +191,12 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           ['data' => date('d/m/Y', $last_updated)],
         ];
         if ($timestamp_to_highlight <= $last_updated) {
-          $rows[$delta]['class'] = ['highlight-latest'];
-          $rows[$delta]['data'][0]['data']['#is_new'] = t('New');
+          $rows[$last_updated]['class'] = ['highlight-latest'];
+          $rows[$last_updated]['data'][0]['data']['#is_new'] = t('New');
         }
       }
+     // to sort the array by created date
+      arsort($rows);
 
       // Download all paragraph files.
       $field_name = $items->getName();

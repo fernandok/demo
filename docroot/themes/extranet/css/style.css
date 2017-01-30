@@ -2010,3 +2010,7 @@ body.path-file-search .view-file-search .table-responsive th.views-field-field-d
   font-size: 14px;
 }
 /* End of Cypress Share block*/
+
+.table-responsive input[type="checkbox"] {
+  margin: 12px 0 0 !important;
+}
