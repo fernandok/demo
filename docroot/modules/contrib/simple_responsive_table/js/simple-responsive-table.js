@@ -37,7 +37,7 @@
           $(this).find('tr').each(function () {
             $(this).find('td').each(function (index) {
               $(this).attr('data-title', headers[index]);
-              if ($(this).text().trim() == '') {
+              if ($(this).text().trim() == '' && $(this).html().trim() == '') {
                 $(this).html('<div class="simple-responsive-table-empty-row-data"></div>');
               }
             });
