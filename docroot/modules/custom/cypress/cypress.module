@@ -322,13 +322,13 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
         else pa.field_shopcodeprimaryapprover_value
         end as approver
         FROM shope_code_approvers__2ac328e2fb pa
-        JOIN shope_code_approvers__e88f95388b palt
+        LEFT JOIN shope_code_approvers__e88f95388b palt
         on pa.entity_id = palt.entity_id and pa.revision_id = palt.revision_id
-        JOIN shope_code_approvers__658c50a642 palf
+        LEFT JOIN shope_code_approvers__658c50a642 palf
         on pa.entity_id = palf.entity_id and pa.revision_id = palf.revision_id
-        JOIN shope_code_approvers__ecf0b013d0 sa
+        LEFT JOIN shope_code_approvers__ecf0b013d0 sa
         on pa.entity_id = sa.entity_id and pa.revision_id = sa.revision_id
-        JOIN shope_code_approvers__field_country_id ci
+        LEFT JOIN shope_code_approvers__field_country_id ci
         on pa.entity_id = ci.entity_id and pa.revision_id = ci.revision_id
         WHERE ci.field_country_id_value = :region', [':region' => $form_values['region']]);
     $results = $query->fetchAll();
@@ -424,9 +424,9 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
         from shope_code_approvers__field_kitapprover ka
         join shope_code_approvers__2ac328e2fb pa
         on ka.entity_id = pa.entity_id and ka.revision_id = pa.revision_id
-        join shope_code_approvers__ecf0b013d0 sa
+        left join shope_code_approvers__ecf0b013d0 sa
         on ka.entity_id = sa.entity_id and ka.revision_id = sa.revision_id
-        join shope_code_approvers__379d29e2ab ta
+        left join shope_code_approvers__379d29e2ab ta
         on ka.entity_id = ta.entity_id and ka.revision_id = ta.revision_id
         where ka.field_kitapprover_value = :organization', [':organization' => $form_values['organization']]);
       $results = $query->fetchAll();
@@ -447,11 +447,11 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
         else pa.field_shopcodeprimaryapprover_value
         end as approver
         FROM shope_code_approvers__2ac328e2fb pa
-        JOIN shope_code_approvers__e88f95388b palt
+        LEFT JOIN shope_code_approvers__e88f95388b palt
         on pa.entity_id = palt.entity_id and pa.revision_id = palt.revision_id
-        JOIN shope_code_approvers__658c50a642 palf
+        LEFT JOIN shope_code_approvers__658c50a642 palf
         on pa.entity_id = palf.entity_id and pa.revision_id = palf.revision_id
-        JOIN shope_code_approvers__ecf0b013d0 sa
+        LEFT JOIN shope_code_approvers__ecf0b013d0 sa
         on pa.entity_id = sa.entity_id and pa.revision_id = sa.revision_id
         JOIN shope_code_approvers__field_cat_a_b cat
         on pa.entity_id = cat.entity_id and pa.revision_id = cat.revision_id and cat.field_cat_a_b_value = \'CAT B\'

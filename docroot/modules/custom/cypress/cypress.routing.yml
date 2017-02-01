@@ -10,3 +10,10 @@ cypress.download_selected_documents:
     _controller: '\Drupal\cypress\Controller\DownloadController::downloadSelectedDocs'
   requirements:
     _permission: 'access content'
+cypress.form:
+  path: '/approver-updation'
+  defaults:
+    _title: 'Approver Updation'
+    _form: '\Drupal\cypress\Form\ApproverupdationForm'
+  requirements:
+    _permission: 'access content'
