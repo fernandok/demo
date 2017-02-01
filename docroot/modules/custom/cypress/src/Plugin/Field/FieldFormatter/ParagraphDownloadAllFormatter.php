@@ -240,7 +240,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
             'File size',
             'Last updated',
           ],
-          '#prefix' => '<div class="akamai-files-wrapper"><div class="akamai-title"><h4>' . 'Large Files' . '</h4></div>',
+          '#prefix' => '<div class="akamai-files-wrapper"><div class="akamai-download"><a href="http://download.cypress.com/CY_SALESBAG-ZIPs/CY_SALESBAG-MARCH-2016.zip"><img src="/themes/extranet/images/Salesbag-Button.jpg" /></a></div>',
           '#rows' => $akamai_elements,
           '#suffix' => '</div>',
         ];
