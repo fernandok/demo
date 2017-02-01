@@ -511,9 +511,9 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
   }
   // Set the date in email description.
   $expire_date = date('m-d-y', strtotime("+10 days"));
-  // Query to get the Sample status
+  // Query to get the Sample status.
   $cat = $form_values['type'];
-  if($cat == 'cat_b') {
+  if ($cat == 'cat_b') {
     $cat = 'CAT B';
   }
   else {
@@ -538,8 +538,8 @@ function cypress_promocode_submit_form($form, FormStateInterface $form_state) {
       $approved_second_sentence = 'Please note that this promo code is set to expire on ' . $expire_date . ' so please make sure to enter your order before then.';
       $query = \Drupal::database()->select('node__field_sample_status', 'fssv');
       $query->fields('fssv', ['field_sample_status_value']);
-      $query->join('node__field_mpn_cat_a_b','fmpncatab','fmpncatab.entity_id = fssv.entity_id');
-      $query->join('node__field_mpnid','fmpnid','fmpnid.entity_id = fmpncatab.entity_id');
+      $query->join('node__field_mpn_cat_a_b', 'fmpncatab', 'fmpncatab.entity_id = fssv.entity_id');
+      $query->join('node__field_mpnid', 'fmpnid', 'fmpnid.entity_id = fmpncatab.entity_id');
 //  $query->condition(db_or()
 //    ->condition('fmpncatab.field_mpn_cat_a_b_value', $cat)
       $query->condition('fmpncatab.field_mpn_cat_a_b_value', $cat);
