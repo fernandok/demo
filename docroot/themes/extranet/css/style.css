@@ -495,7 +495,7 @@ body.path-frontpage h1.page-header {
 }
 .download-all-files {
   color: white;
-  background-color: red;
+  background-color: #e12726;
   display: inline-block;
   padding: 0.5% 2%;
   font-weight: bold;
@@ -511,7 +511,7 @@ body.path-frontpage h1.page-header {
 }
 .static-download-all-files-wrapper {
   padding: 0.5em;
-  background-color: red;
+  background-color: #e12726;
   display: none;
 }
 .static-download-all-files-wrapper.show {
@@ -2013,4 +2013,9 @@ body.path-file-search .view-file-search .table-responsive th.views-field-field-d
 
 .table-responsive input[type="checkbox"] {
   margin: 12px 0 0 !important;
+}
+
+/* Akamai Download button */
+body.page-node-type-cy-page .akamai-files-wrapper .akamai-download {
+  margin-bottom: 10px;
 }
