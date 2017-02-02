@@ -2019,3 +2019,27 @@ body.path-file-search .view-file-search .table-responsive th.views-field-field-d
 body.page-node-type-cy-page .akamai-files-wrapper .akamai-download {
   margin-bottom: 10px;
 }
+
+/* Start Approver Updation form. */
+.approver-updation-form .form-item > input {
+  width: 50%;
+  display: block;
+  height: 2.5em;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.approver-updation-form button#edit-submit {
+  background-color: #3498db;
+  border-color: #3498db;
+  padding: 0.45em 3em;
+  margin-top: 20px;
+}
+.approver-updation-form .glyphicon-ok {
+  display: none;
+}
+@media only screen and (max-width: 1023px){
+  approver-updation-form .form-item > input {
+    width: 100%;
+  }
+}
+/* End Approver Updation form. */
