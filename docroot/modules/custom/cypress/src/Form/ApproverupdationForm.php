@@ -24,7 +24,7 @@ class ApproverupdationForm extends FormBase
     {
         $form['approver_name'] = array(
             '#type' => 'textfield',
-            '#title' => t('Approver:'),
+            '#title' => t('Approver'),
             '#required' => TRUE,
         );
         $form['approver_from_date'] = array(
