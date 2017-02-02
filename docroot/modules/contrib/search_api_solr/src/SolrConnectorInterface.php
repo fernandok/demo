@@ -219,6 +219,14 @@ interface SolrConnectorInterface extends ConfigurablePluginInterface {
   public function getSelectQuery();
 
   /**
+   * Creates a new Solarium extract query.
+   *
+   * @return \Solarium\QueryType\Extract\Query
+   *   The Extract query.
+   */
+  public function getExtractQuery();
+
+  /**
    * Returns a Solarium query helper object.
    *
    * @param \Solarium\Core\Query\QueryInterface|null $query
@@ -275,6 +283,15 @@ interface SolrConnectorInterface extends ConfigurablePluginInterface {
    * @param \Solarium\Core\Client\Endpoint|NULL $endpoint
    */
   public function optimize(Endpoint $endpoint = NULL);
+
+  /**
+   * Execute a extract query.
+   *
+   * @param \Solarium\Core\Query\QueryInterface|\Solarium\QueryType\Extract\Query $query
+   *
+   * @return \Solarium\QueryType\Extract\Result
+   */
+  public function extract(QueryInterface $query);
 
   /**
    * Returns an endpoint.
