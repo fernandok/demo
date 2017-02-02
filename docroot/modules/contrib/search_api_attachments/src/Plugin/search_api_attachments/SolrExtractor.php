@@ -70,9 +70,9 @@ class SolrExtractor extends TextExtractorPluginBase {
     /** @var \Drupal\search_api_solr\Plugin\search_api\backend\SearchApiSolrBackend $backend */
     $backend = $server->getBackend();
     // Initialise the Client.
-    $client = $backend->getSolrConnection();
+    $client = $backend->getSolrConnector();
     // Create the Query.
-    $query = $client->createExtract();
+    $query = $client->getExtractQuery();
     // setExtractOnly is only available in solarium 3.3.0 and up.
     $query->setExtractOnly(TRUE);
     $query->setFile($filepath);

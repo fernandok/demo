@@ -1,0 +1,17 @@
+diff --git a/src/Plugin/search_api/processor/FilesExtrator.php b/src/Plugin/search_api/processor/FilesExtrator.php
+index 8b39a14..fff09cd 100644
+--- a/src/Plugin/search_api/processor/FilesExtrator.php
++++ b/src/Plugin/search_api/processor/FilesExtrator.php
+@@ -162,8 +162,11 @@ class FilesExtrator extends ProcessorPluginBase {
+ 
+         $property_path = static::SAA_PREFIX . $field_name;
+ 
++        $fields = $this->getFieldsHelper()
++          ->filterForPropertyPath($item->getFields(), NULL, $property_path);
++
+         // A way to load $field.
+-        foreach ($this->filterForPropertyPath($item->getFields(), $property_path) as $field) {
++        foreach ($fields as $field) {
+           if ($entity->hasField($field_name)) {
+             $filefield_values = $entity->get($field_name)->getValue();
+ 
