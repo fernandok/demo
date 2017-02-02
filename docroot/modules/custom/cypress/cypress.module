@@ -9,6 +9,7 @@ use Drupal\user\Entity\User;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Database\Query;
 use Drupal\Core\Url;
+use Drupal\views\ViewExecutable;
 
 function cypress_block_build_alter(array &$build, \Drupal\Core\Block\BlockPluginInterface $block) {
   if ($block->getPluginId() == 'search_form_block') {
@@ -636,6 +637,15 @@ function cypress_link_alter(&$variables) {
   $is_external = $a->isExternal();
   if ($is_external) {
     $variables['options']['attributes']['target'] = '_blank';
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function cypress_views_pre_render(ViewExecutable $view) {
+  if (isset($view) && ($view->storage->id() == 'file_search')) {
+    $view->element['#attached']['library'][] = 'cypress/download-selected-file-styling';
   }
 }
 

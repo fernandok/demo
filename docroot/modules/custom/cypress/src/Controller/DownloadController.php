@@ -71,13 +71,19 @@ class DownloadController extends ControllerBase {
    *   Error Messages.
    */
   public function downloadSelectedDocs($node_id) {
-    $node = Node::load($node_id);
+    if ($node_id != 0) {
+      $node = Node::load($node_id);
+      $title = $node->getTitle();
+    }
+    else {
+      $title = 'All Files';
+    }
     $file_ids = \Drupal::request()->get('docs');
     $file_ids = explode(',', $file_ids);
     $file_objs = File::loadMultiple($file_ids);
     $files = [];
     $zip_files_directory = DRUPAL_ROOT . '/sites/default/files/daf_zips';
-    $file_path = $zip_files_directory . '/' . $node->getTitle() . ' - Selected.zip';
+    $file_path = $zip_files_directory . '/' . $title . ' - Selected.zip';
     foreach ($file_objs as $file_obj) {
       $files[] = $file_obj->getFileUri();
     }
