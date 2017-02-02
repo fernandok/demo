@@ -1973,7 +1973,7 @@ body.path-frontpage .view-home-page-menu-icons .hvr-float-shadow:hover:before {
 /* Sticky Header Css*/
 table.sticky-header {
   background-color: rgb(232, 235, 241);
-  width: 937px !important;
+  width: initial !important;
 }
 table.sticky-header th:first-child table.sticky-header th:first-child {
   width: 86px !important;

@@ -253,10 +253,14 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
     $elements_to_hide[] = 'promocode_status';
     $mpn = \Drupal::request()->query->get('mpn');
     $cat = \Drupal::request()->query->get('cat');
+    $sample_status = \Drupal::request()->query->get('sstatus');
     $mpnid = 0;
     // If CAT B check kit or silicon.
     if ($cat == 'cat_b' && preg_match('/kit/i', $mpn)) {
       $cat .= '_kit';
+    }
+    if ($cat == 'cat_b' && $sample_status == 'Open Sampling') {
+      $cat = 'cat_a';
     }
     $form['elements']['type']['#value'] = $cat;
   }
