@@ -27,6 +27,22 @@
           download_label.html('DOWNLOAD ALL FILE(S)');
         }
       });
+      $('.download_file_selector', context).on('click', function(e) {
+        numberOfFilesSelected = $('.download_file_selector:checked', context).length;
+        if (window.location.pathname == '/file-search') {
+        if(numberOfFilesSelected > 10) {
+          e.preventDefault();
+          alert('You can download 10 files at a time');
+        }
+          if (numberOfFilesSelected > 0) {
+            download_label.html('DOWNLOAD SELECTED FILE(S)');
+            $('.download-all-files').show();
+          }
+          else {
+            $('.download-all-files').hide()
+          }
+        }
+      });
     }
   }
 })(jQuery, Drupal);

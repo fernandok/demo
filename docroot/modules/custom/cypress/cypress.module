@@ -9,6 +9,7 @@ use Drupal\user\Entity\User;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Database\Query;
 use Drupal\Core\Url;
+use Drupal\views\ViewExecutable;
 
 function cypress_block_build_alter(array &$build, \Drupal\Core\Block\BlockPluginInterface $block) {
   if ($block->getPluginId() == 'search_form_block') {
@@ -252,10 +253,14 @@ function cypress_form_yamlform_submission_promocode_form_alter(&$form, $form_sta
     $elements_to_hide[] = 'promocode_status';
     $mpn = \Drupal::request()->query->get('mpn');
     $cat = \Drupal::request()->query->get('cat');
+    $sample_status = \Drupal::request()->query->get('sstatus');
     $mpnid = 0;
     // If CAT B check kit or silicon.
     if ($cat == 'cat_b' && preg_match('/kit/i', $mpn)) {
       $cat .= '_kit';
+    }
+    if ($cat == 'cat_b' && $sample_status == 'Open Sampling') {
+      $cat = 'cat_a';
     }
     $form['elements']['type']['#value'] = $cat;
   }
@@ -636,6 +641,15 @@ function cypress_link_alter(&$variables) {
   $is_external = $a->isExternal();
   if ($is_external) {
     $variables['options']['attributes']['target'] = '_blank';
+  }
+}
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function cypress_views_pre_render(ViewExecutable $view) {
+  if (isset($view) && ($view->storage->id() == 'file_search')) {
+    $view->element['#attached']['library'][] = 'cypress/download-selected-file-styling';
   }
 }
 
