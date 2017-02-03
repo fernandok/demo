@@ -11,3 +11,14 @@ global-styling:
 file-search:
   js:
     js/file-search.js: {}
+
+# libraries-extend
+extranet-autocomplete-cypress:
+  js:
+    js/misc/autocomplete.js: {}
+  dependencies:
+      - core/jquery
+      - core/drupal
+      - core/drupalSettings
+      - core/drupal.ajax
+      - core/jquery.ui.autocomplete
