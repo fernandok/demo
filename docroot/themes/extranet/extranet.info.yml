@@ -6,6 +6,10 @@ core: 8.x
 libraries:
   - extranet/global-styling
 
+libraries-extend:
+  core/drupal.autocomplete:
+    - extranet/extranet-autocomplete-cypress
+
 base theme: bootstrap
 
 regions:
