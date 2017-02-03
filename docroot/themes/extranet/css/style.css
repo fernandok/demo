@@ -2044,11 +2044,12 @@ body.page-node-type-cy-page .akamai-files-wrapper .akamai-download {
 }
 /* End Approver Updation form. */
 
-/* File Search sort icons css. */
+/* File Search sort icons and meta tag search css. */
 body.path-file-search th.views-field a::after {
   content: "\E150";
   font-family: "Glyphicons Halflings";
   margin-left: 0.5em;
+  font-weight: normal;
 }
 body.path-file-search th.views-field.is-active a::after {
   content: '';
@@ -2069,4 +2070,15 @@ body.path-file-search .view-file-search span.tablesort--asc::before {
 body.path-file-search .view-file-search span.tablesort--asc {
   background-image: none;
 }
-
+body.path-file-search .term-bu {
+  background-color: #fff93e;
+  border-radius: 7px;
+}
+body.path-file-search .term-division {
+  background-color: #72cece;
+  border-radius: 7px;
+}
+body.path-file-search .term-language {
+  background-color: #2fff3a;
+  border-radius: 7px;
+ }
