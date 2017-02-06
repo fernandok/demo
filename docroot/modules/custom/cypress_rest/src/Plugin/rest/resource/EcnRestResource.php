@@ -199,7 +199,7 @@ class EcnRestResource extends ResourceBase {
         $page->save();
       }
     }
-print_r($response);exit;
+
     return new ResourceResponse($response);
   }
 
@@ -252,7 +252,6 @@ print_r($response);exit;
           'file_description',
           'business_unit',
           'doc_type',
-          'paragraph_file_type',
           'family',
           'language',
           'spec_revision',
@@ -267,7 +266,6 @@ print_r($response);exit;
           'file_description',
           'business_unit',
           'doc_type',
-          'paragraph_file_type',
           'family',
           'language',
           'spec_revision',
@@ -426,26 +424,6 @@ print_r($response);exit;
     return $error;
   }
 
-  /**
-   * Method to validate file type.
-   *
-   * @param object $node
-   *   Node object.
-   * @param int $value
-   *   File id.
-   *
-   * @return string
-   *   Error message.
-   */
-  private function validateParagraphFileType($node, $value) {
-    $error = '';
-
-    if (empty($value)) {
-      $error = 'File type is required for add/update operation.';
-    }
-
-    return $error;
-  }
   /**
    * Method to validate file family.
    *
