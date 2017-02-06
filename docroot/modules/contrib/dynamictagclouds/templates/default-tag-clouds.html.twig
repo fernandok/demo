@@ -26,11 +26,16 @@
         <a data-tid = "{{ term_id }}" href="{{ term.url }}">{{ term.name }}</a>
       </li>
     {% endif %}
-      {% if (term.type == 'language') %}
-        <li class="tag_clouds_term term-language">
-          <a data-tid = "{{ term_id }}" href="{{ term.url }}">{{ term.name }}</a>
-        </li>
-      {% endif %}
+    {% if (term.type == 'language') %}
+      <li class="tag_clouds_term term-language">
+        <a data-tid = "{{ term_id }}" href="{{ term.url }}">{{ term.name }}</a>
+      </li>
+    {% endif %}
+    {% if (term.type == 'product_tags') %}
+      <li class="tag_clouds_term term-language">
+        <a data-tid = "{{ term_id }}" href="{{ term.url }}">{{ term.name }}</a>
+      </li>
+    {% endif %}
   {% endfor %}
 </ul>
 {{ attach_library('extranet/file-search') }}

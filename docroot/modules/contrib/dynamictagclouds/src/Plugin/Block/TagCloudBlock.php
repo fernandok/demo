@@ -117,6 +117,7 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
     $selected_bu = \Drupal::request()->get('bu');
     $selected_div = \Drupal::request()->get('division');
     $selected_language = \Drupal::request()->get('language');
+    $selected_product_tags = \Drupal::request()->get('field_product_tags_target_id');
 
     $vocabularies_selected = $config['vocabularies'];
     $terms = [];
@@ -125,24 +126,35 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
       $connecting_string = \Drupal::request()->getPathInfo() . '?';
       switch ($vid) {
         case 'bu':
-          if (empty($selected_bu) && (!empty($selected_language) || !empty($selected_div))) {
+          if (empty($selected_bu) && (!empty($selected_language) || !empty($selected_div) || !empty($selected_product_tags))) {
             $connecting_string = \Drupal::request()->getUri() . '&';
           }
           break;
 
         case 'division':
-          if (empty($selected_div) && (!empty($selected_language) || !empty($selected_bu))) {
+          if (empty($selected_div) && (!empty($selected_language) || !empty($selected_bu) || !empty($selected_product_tags))) {
             $connecting_string = \Drupal::request()->getUri() . '&';
           }
           break;
 
         case 'language':
-          if (empty($selected_language) && (!empty($selected_bu) || !empty($selected_div))) {
+          if (empty($selected_language) && (!empty($selected_bu) || !empty($selected_div) || !empty($selected_product_tags))) {
+            $connecting_string = \Drupal::request()->getUri() . '&';
+          }
+          break;
+
+        case 'product_tags':
+          if (empty($selected_product_tags) && (!empty($selected_bu) || !empty($selected_div) || !empty($selected_language))) {
             $connecting_string = \Drupal::request()->getUri() . '&';
           }
           break;
       }
-      $url = $connecting_string . $vid . '=';
+      if ($vid == 'product_tags') {
+        $url = $connecting_string . 'field_product_tags_target_id=';
+      }
+      else {
+        $url = $connecting_string . $vid . '=';
+      }
       foreach ($vocabulary_terms as $term) {
         $term = $this->termstorage->load($term->tid);
         $tid = $term->id();
@@ -163,7 +175,7 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
       '#theme' => 'default_tag_clouds',
       '#tags' => $terms,
       '#attached' => array(
-        'library' =>  array(
+        'library' => array(
           'dynamictagclouds/' . $style . '_tag_cloud'
         ),
       ),

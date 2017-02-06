@@ -44,8 +44,9 @@
     selected_bu = decodeURIComponent($.urlParam('bu')).split('+')[0];
     selected_div = decodeURIComponent($.urlParam('division')).split('+')[0];
     selected_language = decodeURIComponent($.urlParam('language')).split('+')[0];
+    selected_product_tags = decodeURIComponent($.urlParam('field_product_tags_target_id')).split('+')[0];
     $('body.path-file-search ul.default_tag_clouds li a').each(function () {
-      if ($(this).data('tid') == selected_bu || $(this).data('tid') == selected_div || $(this).data('tid') == selected_language) {
+      if ($(this).data('tid') == selected_bu || $(this).data('tid') == selected_div || $(this).data('tid') == selected_language || $(this).data('tid') == selected_product_tags) {
         $(this).addClass('selected');
       }
     });
@@ -54,7 +55,7 @@
       $('#file-advanced-search').trigger('click');
       $('#clear-file-search').show();
     }
-    else if ($.isNumeric($.urlParam('bu')) || $.isNumeric($.urlParam('division')) || $.isNumeric($.urlParam('language'))) {
+    else if ($.isNumeric($.urlParam('bu')) || $.isNumeric($.urlParam('division')) || $.isNumeric($.urlParam('language')) || $.isNumeric($.urlParam('field_product_tags_target_id'))) {
       $('#file-meta-tag-search').trigger('click');
       $('#clear-file-search').show();
     }
