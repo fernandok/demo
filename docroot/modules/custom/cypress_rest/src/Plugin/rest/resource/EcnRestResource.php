@@ -199,7 +199,7 @@ class EcnRestResource extends ResourceBase {
         $page->save();
       }
     }
-
+print_r($response);exit;
     return new ResourceResponse($response);
   }
 
@@ -252,6 +252,7 @@ class EcnRestResource extends ResourceBase {
           'file_description',
           'business_unit',
           'doc_type',
+          'paragraph_file_type',
           'family',
           'language',
           'spec_revision',
@@ -266,6 +267,7 @@ class EcnRestResource extends ResourceBase {
           'file_description',
           'business_unit',
           'doc_type',
+          'paragraph_file_type',
           'family',
           'language',
           'spec_revision',
@@ -425,6 +427,26 @@ class EcnRestResource extends ResourceBase {
   }
 
   /**
+   * Method to validate file type.
+   *
+   * @param object $node
+   *   Node object.
+   * @param int $value
+   *   File id.
+   *
+   * @return string
+   *   Error message.
+   */
+  private function validateParagraphFileType($node, $value) {
+    $error = '';
+
+    if (empty($value)) {
+      $error = 'File type is required for add/update operation.';
+    }
+
+    return $error;
+  }
+  /**
    * Method to validate file family.
    *
    * @param object $node
@@ -533,6 +555,7 @@ class EcnRestResource extends ResourceBase {
       'field_div' => $tags['division'],
       'field_cyu_training_url' => $doc['cyu_training_url'],
       'field_doc_type' => $doc['doc_type'][0],
+      'field_paragraph_file_type' => $tags['paragraph_file_type'][0],
       'field_family' => $tags['family'],
       'field_language' => $tags['language'],
       'field_product' => $tags['product'],
@@ -582,6 +605,7 @@ class EcnRestResource extends ResourceBase {
     $paragraph->field_div = $tags['division'];
     $paragraph->field_cyu_training_url = $doc['cyu_training_url'];
     $paragraph->field_doc_type = $doc['doc_type'][0];
+    $paragraph->field_paragraph_file_type = $tags['paragraph_file_type'][0];
     $paragraph->field_family = $tags['family'];
     $paragraph->field_language = $tags['language'];
     $paragraph->field_product = $tags['product'];
@@ -721,6 +745,7 @@ class EcnRestResource extends ResourceBase {
   private function getAllTags($doc) {
     $tags['application_tags'] = $this->getTagIds($doc['application_tags'], 'application_tag');
     $tags['business_unit'] = $this->getTagIds([$doc['business_unit']], 'bu');
+    $tags['paragraph_file_type'] = $this->getTagIds([$doc['doc_type']], 'file_type');
     $tags['division'] = $this->getTagIds([$doc['division']], 'division');
     $tags['family'] = $this->getTagIds($doc['family'], 'family');
     $tags['language'] = $this->getTagIds([$doc['language']], 'language');
