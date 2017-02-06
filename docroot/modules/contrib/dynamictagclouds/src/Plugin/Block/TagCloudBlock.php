@@ -150,6 +150,7 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
         $terms[$tid] = [
           'name' => $term->getName(),
           'url' => $term_url,
+          'type' => $vid,
         ];
       }
     }

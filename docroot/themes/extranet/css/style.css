@@ -1973,7 +1973,7 @@ body.path-frontpage .view-home-page-menu-icons .hvr-float-shadow:hover:before {
 /* Sticky Header Css*/
 table.sticky-header {
   background-color: rgb(232, 235, 241);
-  width: 937px !important;
+  width: initial !important;
 }
 table.sticky-header th:first-child table.sticky-header th:first-child {
   width: 86px !important;
@@ -2043,3 +2043,42 @@ body.page-node-type-cy-page .akamai-files-wrapper .akamai-download {
   }
 }
 /* End Approver Updation form. */
+
+/* File Search sort icons and meta tag search css. */
+body.path-file-search th.views-field a::after {
+  content: "\E150";
+  font-family: "Glyphicons Halflings";
+  margin-left: 0.5em;
+  font-weight: normal;
+}
+body.path-file-search th.views-field.is-active a::after {
+  content: '';
+}
+body.path-file-search .view-file-search span.tablesort--desc::before {
+  content: "\E152";
+  font-family: "Glyphicons Halflings";
+  font-weight: normal;
+}
+body.path-file-search .view-file-search span.tablesort--desc {
+  background-image: none;
+}
+body.path-file-search .view-file-search span.tablesort--asc::before {
+  content: "\E151";
+  font-family: "Glyphicons Halflings";
+  font-weight: normal;
+}
+body.path-file-search .view-file-search span.tablesort--asc {
+  background-image: none;
+}
+body.path-file-search .term-bu {
+  background-color: #fff93e;
+  border-radius: 7px;
+}
+body.path-file-search .term-division {
+  background-color: #72cece;
+  border-radius: 7px;
+}
+body.path-file-search .term-language {
+  background-color: #2fff3a;
+  border-radius: 7px;
+ }
