@@ -124,6 +124,18 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
     foreach ($vocabularies_selected as $vid) {
       $vocabulary_terms = $this->termstorage->loadTree($vid);
       $connecting_string = \Drupal::request()->getPathInfo() . '?';
+      if ($vid == 'bu') {
+        $classes = 'tag_clouds_term term-bu';
+      }
+      if ($vid == 'division') {
+        $classes = 'tag_clouds_term term-division';
+      }
+      if ($vid == 'language') {
+        $classes = 'tag_clouds_term term-language';
+      }
+      if ($vid == 'product_tags') {
+        $classes = 'tag_clouds_term term-product-tags';
+      }
       switch ($vid) {
         case 'bu':
           if (empty($selected_bu) && (!empty($selected_language) || !empty($selected_div) || !empty($selected_product_tags))) {
@@ -163,6 +175,7 @@ class TagCloudBlock extends BlockBase implements ContainerFactoryPluginInterface
           'name' => $term->getName(),
           'url' => $term_url,
           'type' => $vid,
+          'classes' => $classes,
         ];
       }
     }

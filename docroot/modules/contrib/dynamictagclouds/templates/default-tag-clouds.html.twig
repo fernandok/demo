@@ -16,26 +16,9 @@
     <a href="/file-search">ALL</a>
   </li>
   {% for term_id, term in tags %}
-    {% if (term.type == 'bu') %}
-      <li class="tag_clouds_term term-bu">
+      <li class="tag_clouds_term {{ term.classes }}">
         <a data-tid = "{{ term_id }}" href="{{ term.url }}">{{ term.name }}</a>
       </li>
-    {% endif %}
-    {% if (term.type == 'division') %}
-      <li class="tag_clouds_term term-division">
-        <a data-tid = "{{ term_id }}" href="{{ term.url }}">{{ term.name }}</a>
-      </li>
-    {% endif %}
-    {% if (term.type == 'language') %}
-      <li class="tag_clouds_term term-language">
-        <a data-tid = "{{ term_id }}" href="{{ term.url }}">{{ term.name }}</a>
-      </li>
-    {% endif %}
-    {% if (term.type == 'product_tags') %}
-      <li class="tag_clouds_term term-language">
-        <a data-tid = "{{ term_id }}" href="{{ term.url }}">{{ term.name }}</a>
-      </li>
-    {% endif %}
   {% endfor %}
 </ul>
 {{ attach_library('extranet/file-search') }}

@@ -2071,14 +2071,18 @@ body.path-file-search .view-file-search span.tablesort--asc {
   background-image: none;
 }
 body.path-file-search .term-bu {
-  background-color: #fff93e;
+  background-color: #1C77B4;
   border-radius: 7px;
 }
 body.path-file-search .term-division {
-  background-color: #72cece;
+  background-color: #19AE92;
   border-radius: 7px;
 }
 body.path-file-search .term-language {
-  background-color: #2fff3a;
+  background-color: #3E88B9;
   border-radius: 7px;
  }
+body.path-file-search .term-product-tags {
+  background-color: #95CFF6;;
+  border-radius: 7px;
+}
