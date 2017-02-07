@@ -2071,19 +2071,19 @@ body.path-file-search .view-file-search span.tablesort--asc {
   background-image: none;
 }
 body.path-file-search .term-bu {
-  background-color: #1C77B4;
+  background-color: #87CEEB;
   border-radius: 7px;
 }
 body.path-file-search .term-division {
-  background-color: #19AE92;
+  background-color: #98F5FF;
   border-radius: 7px;
 }
 body.path-file-search .term-language {
-  background-color: #0F4D91;
+  background-color: #4CB7A5;
   border-radius: 7px;
  }
 body.path-file-search .term-product-tags {
-  background-color: #95CFF6;;
+  background-color: #8DB6CD;;
   border-radius: 7px;
 }
 table.myTable thead tr .header::after {
