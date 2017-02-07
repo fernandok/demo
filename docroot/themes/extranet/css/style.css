@@ -2101,3 +2101,5 @@ table.myTable thead tr .header::after {
 table.sort-select thead tr .header:first-child::after{
   display: none;
 }
+
+
