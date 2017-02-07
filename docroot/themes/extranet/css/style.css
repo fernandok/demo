@@ -2086,20 +2086,29 @@ body.path-file-search .term-product-tags {
   background-color: #95CFF6;;
   border-radius: 7px;
 }
-table.myTable thead tr .headerSortDown::after, table.myTable thead tr .headerSortUp::after {
-  content: "\E150";
-  font-family: "Glyphicons Halflings";
-  margin-left: 0.5em;
-  font-weight: normal;
-}
 table.myTable thead tr .header::after {
   content: "\E150";
   font-family: "Glyphicons Halflings";
   margin-left: 0.5em;
   font-weight: normal;
 }
+table.myTable thead tr .headerSortDown::after {
+  content: "\E151";
+  font-family: "Glyphicons Halflings";
+  font-weight: normal;
+}
+table.myTable thead tr .headerSortDown {
+  background-image: none;
+}
+table.myTable thead tr .headerSortUp::after {
+  content: "\E152";
+  font-family: "Glyphicons Halflings";
+  font-weight: normal;
+}
+table.myTable thead tr .headerSortUp{
+  background-image: none;
+}
 table.sort-select thead tr .header:first-child::after{
   display: none;
 }
-
 
