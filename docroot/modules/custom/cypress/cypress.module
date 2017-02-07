@@ -25,6 +25,7 @@ function cypress_form_search_block_form_alter(&$form, $form_state) {
   else {
     $form['keys']['#value'] = '';
   }
+  $form['#action'] = '/search/extranet';
 }
 
 /**
