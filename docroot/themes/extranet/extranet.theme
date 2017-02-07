@@ -58,7 +58,13 @@ function extranet_theme_suggestions_field_alter(array &$suggestions, array $vari
  * Implements hook_preprocess_node().
  */
 function extranet_preprocess_node(array &$variables) {
-  // Default to turning off byline/submitted.
+  $node = $variables['elements']['#node'];
+  $options = ['absolute' => TRUE];
+  $url = \Drupal\Core\Url::fromRoute('entity.node.canonical', ['node' => $node->id()], $options);
+  $variables['node_path'] = $url->toString();
+  $variables['node_type'] = $node->type->entity->label();
+  $updated_date = $node->changed->getValue();
+  $variables['node_updated'] = $updated_date['0']['value'];
 }
 
 /**
@@ -198,4 +204,17 @@ function extranet_preprocess_file_link(&$variables) {
   $variables['attributes']->addClass($classes);
 
   $variables['link'] = Link::fromTextAndUrl($link_text, Url::fromUri($url, $options));
+}
+
+/*
+ * Implements hook_preprocess_views_view_unformatted().
+ */
+function extranet_preprocess_views_view_unformatted(&$variables) {
+  $view = $variables['view'];
+  $view_title = $view->storage->id();
+  if ($view_title == "extranet_search") {
+    if (isset($_GET['keys'])) {
+      $keyword = $variables['search_keyword'] = $_GET['keys'];
+    }
+  }
 }
