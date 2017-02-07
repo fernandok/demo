@@ -72,25 +72,24 @@
 #}
 
 {%
-  set classes = [
-    'node',
-    'node--type-' ~ node.bundle|clean_class,
-    node.isPromoted() ? 'node--promoted',
-    node.isSticky() ? 'node--sticky',
-    not node.isPublished() ? 'node--unpublished',
-    view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
-  ]
+set classes = [
+'node',
+'node--type-' ~ node.bundle|clean_class,
+node.isPromoted() ? 'node--promoted',
+node.isSticky() ? 'node--sticky',
+not node.isPublished() ? 'node--unpublished',
+view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
+]
 %}
 {% set date = node_updated|format_date('long') %}
 {% set text %}
-     {{ content.body|render|striptags }}
+    {{ content.body|render|striptags }}
 {% endset %}
-<div class = "row">
-  <div class="search-title-list">
-    <span class="icon glyphicon glyphicon glyphicon-blackboard"></span>
-    {{ content.title }}
-  </div>
-  <div class="serach-list-ur">{{ node_path }}</div>
-  <div class="search-list-typ-date"><strong>[{{ node_type }}]</strong> Update on: {{ date }}</div>
-  <p> {{ text|length > 200 ? text|slice(0, 200) ~ '...' : text }} </p>
-</div
+<div class="search-title-list">
+  <span class="icon glyphicon glyphicon glyphicon-blackboard"></span>
+  <a href = " {{ node_path }} ">{{ node.getTitle() }} </a>
+</div>
+<div class="serach-list-ur">{{ node_path }}</div>
+<div class="search-list-typ-date"><strong>[{{ node_type }}]</strong> Update on: {{ date }}</div>
+<p> {{ text|length > 200 ? text|slice(0, 200) ~ '...' : text }} </p>
+</div>
