@@ -2038,7 +2038,7 @@ body.page-node-type-cy-page .akamai-files-wrapper .akamai-download {
   display: none;
 }
 @media only screen and (max-width: 1023px){
-  approver-updation-form .form-item > input {
+  .approver-updation-form .form-item > input {
     width: 100%;
   }
 }
@@ -2085,4 +2085,19 @@ body.path-file-search .term-language {
 body.path-file-search .term-product-tags {
   background-color: #95CFF6;;
   border-radius: 7px;
+}
+table.myTable thead tr .headerSortDown::after, table.myTable thead tr .headerSortUp::after {
+  content: "\E150";
+  font-family: "Glyphicons Halflings";
+  margin-left: 0.5em;
+  font-weight: normal;
+}
+table.myTable thead tr .header::after {
+  content: "\E150";
+  font-family: "Glyphicons Halflings";
+  margin-left: 0.5em;
+  font-weight: normal;
+}
+table.sort-select thead tr .header:first-child::after{
+  display: none;
 }
