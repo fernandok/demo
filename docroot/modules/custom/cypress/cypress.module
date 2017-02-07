@@ -18,14 +18,13 @@ function cypress_block_build_alter(array &$build, \Drupal\Core\Block\BlockPlugin
 }
 
 function cypress_form_search_block_form_alter(&$form, $form_state) {
-
+  $form['#action'] = '/search/extranet';
   if (!empty(\Drupal::request()->query->get('keys'))) {
     $form['keys']['#value'] = \Drupal::request()->query->get('keys');
   }
   else {
     $form['keys']['#value'] = '';
   }
-  $form['#action'] = '/search/extranet';
 }
 
 /**
