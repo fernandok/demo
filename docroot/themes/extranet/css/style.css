@@ -2111,4 +2111,9 @@ table.myTable thead tr .headerSortUp{
 table.sort-select thead tr .header:first-child::after{
   display: none;
 }
-
+.view-id-extranet_search > .view-empty, .view-id-extranet_search > .view-content {
+  margin-top: 1.5em;
+}
+.view-id-extranet_search > .view-content ol .views-field{
+  margin-top: 1em;
+}
