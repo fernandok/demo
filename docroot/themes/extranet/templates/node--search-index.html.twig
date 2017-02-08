@@ -87,7 +87,9 @@ view_mode ? 'node--view-mode-' ~ view_mode|clean_class,
 <div class = "row">
     <div class="search-title-list">
         <span class="icon glyphicon glyphicon glyphicon-blackboard"></span>
-        {{ content.title }}
+        <span class="search-title-list">
+      <a href = " {{ node_path }} ">{{ node.getTitle() }} </a>
+    </span>
     </div>
     <div class="serach-list-ur">{{ node_path }}</div>
     <div class="search-list-typ-date"><strong>[{{ node_type }}]</strong> Update on: {{ date }}</div>

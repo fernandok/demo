@@ -9,3 +9,14 @@ promocode-submission:
     js/promocode_auto_submit.js: {}
   dependencies:
     - core/jquery
+tablesorter-js:
+   js:
+     js/jquery.tablesorter.js: {}
+   dependencies:
+    - core/jquery
+paragraph-tablesorter:
+   js:
+     js/paragraph_tablesorter.js: {}
+   dependencies:
+    - core/jquery
+    - cypress/tablesorter-js

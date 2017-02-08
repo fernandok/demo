@@ -2038,7 +2038,7 @@ body.page-node-type-cy-page .akamai-files-wrapper .akamai-download {
   display: none;
 }
 @media only screen and (max-width: 1023px){
-  approver-updation-form .form-item > input {
+  .approver-updation-form .form-item > input {
     width: 100%;
   }
 }
@@ -2071,18 +2071,49 @@ body.path-file-search .view-file-search span.tablesort--asc {
   background-image: none;
 }
 body.path-file-search .term-bu {
-  background-color: #1C77B4;
+  background-color: #87CEEB;
   border-radius: 7px;
 }
 body.path-file-search .term-division {
-  background-color: #19AE92;
+  background-color: #98F5FF;
   border-radius: 7px;
 }
 body.path-file-search .term-language {
-  background-color: #0F4D91;
+  background-color: #4CB7A5;
   border-radius: 7px;
  }
 body.path-file-search .term-product-tags {
-  background-color: #95CFF6;;
+  background-color: #8DB6CD;;
   border-radius: 7px;
+}
+table.myTable thead tr .header::after {
+  content: "\E150";
+  font-family: "Glyphicons Halflings";
+  margin-left: 0.5em;
+  font-weight: normal;
+}
+table.myTable thead tr .headerSortDown::after {
+  content: "\E151";
+  font-family: "Glyphicons Halflings";
+  font-weight: normal;
+}
+table.myTable thead tr .headerSortDown {
+  background-image: none;
+}
+table.myTable thead tr .headerSortUp::after {
+  content: "\E152";
+  font-family: "Glyphicons Halflings";
+  font-weight: normal;
+}
+table.myTable thead tr .headerSortUp{
+  background-image: none;
+}
+table.sort-select thead tr .header:first-child::after{
+  display: none;
+}
+.view-id-extranet_search > .view-empty, .view-id-extranet_search > .view-content {
+  margin-top: 1.5em;
+}
+.view-id-extranet_search > .view-content ol .views-field{
+  margin-top: 1em;
 }
