@@ -163,7 +163,7 @@ function extranet_preprocess_yamlform_submission_html(&$variables) {
   unset($variables['data']['requester_subject']);
 }
 
-function extranet_preprocess_file_link(&$variables) {
+function extranet_preprocess_file_entity_download_link(&$variables) {
   $file = $variables['file'];
   $options = array();
 

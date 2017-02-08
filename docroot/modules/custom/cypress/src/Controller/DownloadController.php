@@ -10,6 +10,7 @@ use Drupal\download_all_files\Plugin\Archiver\Zip;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\ResponseHeaderBag;
+use Drupal\file_download_tracker\FileDownloadTracker;
 
 /**
  * Class DownloadController.
@@ -57,7 +58,7 @@ class DownloadController extends ControllerBase {
       $file_id = $paragraph->get('field_file')->get(0)->getValue()['target_id'];
       $file_obj = File::load($file_id);
       if ($file_obj) {
-        $files[] = $file_obj->getFileUri();
+        $files[$file_obj->get('fid')->getValue()[0]['value']] = $file_obj->getFileUri();
       }
     }
 
@@ -85,7 +86,7 @@ class DownloadController extends ControllerBase {
     $zip_files_directory = DRUPAL_ROOT . '/sites/default/files/daf_zips';
     $file_path = $zip_files_directory . '/' . $title . ' - Selected.zip';
     foreach ($file_objs as $file_obj) {
-      $files[] = $file_obj->getFileUri();
+      $files[$file_obj->get('fid')->getValue()[0]['value']] = $file_obj->getFileUri();
     }
 
     return $this->compressFiles($files, $zip_files_directory, $file_path);
@@ -105,6 +106,16 @@ class DownloadController extends ControllerBase {
    *   Error Messages.
    */
   protected function compressFiles($files, $zip_files_directory, $file_path) {
+    // Dispatch the FileDownloadTracker Event.
+    $selected_fids = array_keys($files);
+    // load the Symfony event dispatcher object through services
+    $dispatcher = \Drupal::service('event_dispatcher');
+    // creating our event class object.
+    $event = new FileDownloadTracker($selected_fids);
+    // dispatching the event through the ‘dispatch’  method,
+    // passing event name and event object ‘$event’ as parameters.
+    $dispatcher->dispatch(FileDownloadTracker::SUBMIT, $event);
+
     $redirect_on_error_to = empty($_SERVER['HTTP_REFERER']) ? '/' : $_SERVER['HTTP_REFERER'];
     $file_zip = NULL;
     if (file_prepare_directory($zip_files_directory, FILE_CREATE_DIRECTORY)) {

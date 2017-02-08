@@ -5,6 +5,7 @@ namespace Drupal\cypress\Plugin\Field\FieldFormatter;
 use Drupal\file\Plugin\Field\FieldFormatter\TableFormatter;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Url;
+use Drupal\file_entity\Entity\FileEntity;
 use Drupal\taxonomy\Entity\Term;
 use Drupal\file\Entity\File;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
@@ -148,7 +149,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
         }
         $file_obj = $paragraph->get('field_file')->get(0)->getValue();
         $file_id = $file_obj['target_id'];
-        $file = File::load($file_id);
+        $file = FileEntity::load($file_id);
         $description = $file_obj['description'];
         $language = '';
         if (!empty($paragraph->get('field_language')->get(0))) {
@@ -163,6 +164,8 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           $revision = $paragraph->get('field_spec_revision')
             ->getValue()[0]['value'];
         }
+        //$file_download_link = Url::fromUserInput('/file/'.$file_id.'/download');
+        $file_download_link = $file->downloadUrl();
         $rows[$last_updated]['data'] = [
           [
             'data' => [
@@ -177,9 +180,9 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           ['data' => $division],
           [
             'data' => [
-              '#theme' => 'file_link',
+              '#theme' => 'file_entity_download_link',
               '#file' => $file,
-              '#description' => $description,
+              '#download_link' => Link::fromTextAndUrl($description, $file_download_link),
               '#cache' => [
                 'tags' => $file->getCacheTags(),
               ],
