@@ -11,6 +11,7 @@ use Drupal\file\Entity\File;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Component\Utility\Bytes;
 use Drupal\Core\Link;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Plugin implementation of the 'file_download_all' formatter.
@@ -244,16 +245,23 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           t('File size'),
           t('Last updated'),
         ];
-        $elements[4] = [
-          '#theme' => 'table__file_formatter_table',
-          '#header' => $header,
-          '#prefix' => '<div class="akamai-files-wrapper"><div class="akamai-download"><a href="http://download.cypress.com/CY_SALESBAG-ZIPs/CY_SALESBAG-MARCH-2016.zip"><img src="/themes/extranet/images/Salesbag-Button.jpg" /></a></div>',
-          '#rows' => $akamai_elements,
-          '#suffix' => '</div>',
-          '#attributes' => [
-            'class' => ['myTable'],
-          ],
-        ];
+          $current_path = \Drupal::service('path.current')->getPath();
+          $result = \Drupal::service('path.alias_manager')->getAliasByPath($current_path);
+          $result_array = explode('/',$result);
+          if($result_array[2] == 'cy-salesbag') {
+              $image = '<div class="akamai-download"><a href="http://download.cypress.com/CY_SALESBAG-ZIPs/CY_SALESBAG-MARCH-2016.zip"><img src="/themes/extranet/images/Salesbag-Button.jpg" /></a></div>';
+          }
+              $elements[4] = [
+                  '#theme' => 'table__file_formatter_table',
+                  '#header' => $header,
+
+                  '#prefix' => '<div class="akamai-files-wrapper">'.$image.'',
+                  '#rows' => $akamai_elements,
+                  '#suffix' => '</div>',
+                  '#attributes' => [
+                      'class' => ['myTable'],
+                  ],
+              ];
         $elements[4]['#attached']['library'][] = 'cypress/paragraph-tablesorter';
       }
     }
