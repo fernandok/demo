@@ -12,13 +12,14 @@
   </div>
 </div>
 <ul class="default_tag_clouds">
-  <li class="tag_cloud_term">
-    <a href="/file-search">ALL</a>
-  </li>
-  {% for term_id, term in tags %}
-      <li class="tag_clouds_term {{ term.classes }}">
-        <a data-tid = "{{ term_id }}" href="{{ term.url }}">{{ term.name }}</a>
-      </li>
+  {% for term_vid,tags_vid in tags %}
+    <div class = "tags-cloud">
+      {% for term_id, term in tags_vid %}
+        <li class="tag_clouds_term {{ term.class }}">
+          <a data-tid = "{{ term_id }}" href="{{ term.url }}">{{ term.name }}</a>
+        </li>
+      {% endfor %}
+    </div>
   {% endfor %}
 </ul>
 {{ attach_library('extranet/file-search') }}

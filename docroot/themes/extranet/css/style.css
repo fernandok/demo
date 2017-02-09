@@ -2117,3 +2117,6 @@ table.sort-select thead tr .header:first-child::after{
 .view-id-extranet_search > .view-content ol .views-field{
   margin-top: 1em;
 }
+body.path-file-search ul.default_tag_clouds .tags-cloud {
+  margin-bottom: 12px;
+}
