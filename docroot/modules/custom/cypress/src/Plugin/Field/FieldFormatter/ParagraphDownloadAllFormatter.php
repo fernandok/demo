@@ -227,7 +227,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           '#prefix' => '<div class="page-files-wrapper">',
           '#suffix' => '</div>',
           '#attributes' => [
-            'class' => ['sticky-enabled myTable sort-select'],
+            'class' => ['sticky-enabled paragraph_table'],
           ],
         ];
         $elements[2]['#attached']['library'][] = 'core/drupal.tableheader';
@@ -251,7 +251,7 @@ class ParagraphDownloadAllFormatter extends TableFormatter {
           '#rows' => $akamai_elements,
           '#suffix' => '</div>',
           '#attributes' => [
-            'class' => ['myTable'],
+            'class' => ['akamai_table'],
           ],
         ];
         $elements[4]['#attached']['library'][] = 'cypress/paragraph-tablesorter';
