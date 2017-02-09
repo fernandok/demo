@@ -54,20 +54,33 @@ class FdtEntityNameField extends FieldPluginBase {
   public function render(ResultRow $values) {
     $type = $values->file_download_entity_field_data_entity_type;
     $id = $values->file_download_entity_field_data_entity_id;
+    $query = \Drupal::database()->select('paragraph__field_file', 'pff');
+    $query->fields('pff', ['field_file_description']);
+    $query->condition('field_file_target_id', $id);
+    $results = $query->execute()->fetchAll();
+    $file_descp = $results[0]->field_file_description;
     if(is_numeric($id)) {
-      if($type == 'file') {
-        $file_load = File::load($id);
-        $entity_name = $file_load->getFilename();
-      } else {
+      if ($type == 'file') {
+        if (!empty($file_descp)) {
+          $entity_name = $file_descp;
+        }
+        else {
+          $file_load = File::load($id);
+          $entity_name = $file_load->getFilename();
+        }
+      }
+      else {
         $node_load = Node::load($id);
         $entity_name = $node_load->getTitle();
       }
-    } else {
-        $entity_name = $GLOBALS['base_url']. "/" .$id;
+    }
+    else {
+      $entity_name = $GLOBALS['base_url']. "/" .$id;
     }
 
     return $entity_name;
   }
 
 }
+
 
