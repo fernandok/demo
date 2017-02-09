@@ -2045,29 +2045,29 @@ body.page-node-type-cy-page .akamai-files-wrapper .akamai-download {
 /* End Approver Updation form. */
 
 /* File Search sort icons and meta tag search css. */
-body.path-file-search th.views-field a::after {
+th.views-field a::after {
   content: "\E150";
   font-family: "Glyphicons Halflings";
   margin-left: 0.5em;
   font-weight: normal;
 }
-body.path-file-search th.views-field.is-active a::after {
+th.views-field.is-active a::after {
   content: '';
 }
-body.path-file-search .view-file-search span.tablesort--desc::before {
+span.tablesort--desc::before {
   content: "\E152";
   font-family: "Glyphicons Halflings";
   font-weight: normal;
 }
-body.path-file-search .view-file-search span.tablesort--desc {
+span.tablesort--desc {
   background-image: none;
 }
-body.path-file-search .view-file-search span.tablesort--asc::before {
+span.tablesort--asc::before {
   content: "\E151";
   font-family: "Glyphicons Halflings";
   font-weight: normal;
 }
-body.path-file-search .view-file-search span.tablesort--asc {
+span.tablesort--asc {
   background-image: none;
 }
 body.path-file-search .term-bu {
