@@ -54,13 +54,18 @@ class FdtEntityNameField extends FieldPluginBase {
   public function render(ResultRow $values) {
     $type = $values->file_download_entity_field_data_entity_type;
     $id = $values->file_download_entity_field_data_entity_id;
-    if($type == 'file') {
-      $file_load = File::load($id);
-      $entity_name = $file_load->getFilename();
+    if(is_numeric($id)) {
+      if($type == 'file') {
+        $file_load = File::load($id);
+        $entity_name = $file_load->getFilename();
+      } else {
+        $node_load = Node::load($id);
+        $entity_name = $node_load->getTitle();
+      }
     } else {
-      $node_load = Node::load($id);
-      $entity_name = $node_load->getTitle();
+        $entity_name = $GLOBALS['base_url']. "/" .$id;
     }
+
     return $entity_name;
   }
 

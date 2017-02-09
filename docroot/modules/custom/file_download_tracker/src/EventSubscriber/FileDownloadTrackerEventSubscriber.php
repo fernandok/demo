@@ -35,6 +35,9 @@ class FileDownloadTrackerEventSubscriber implements EventSubscriberInterface {
     $path = \Drupal::service('path.alias_manager')->getPathByAlias($req);
     if(preg_match('/node\/(\d+)/', $path, $matches)) {
       $eid = $matches[1];
+    } else {
+      $url = explode("/", $req);
+      $eid = $url[1];
     }
     $ip_address = \Drupal::request()->getClientIp();
     $user_id = \Drupal::currentUser()->id();
