@@ -51,7 +51,7 @@
       }
     });
 
-    if ($.urlParam('filename') != null && $.urlParam('product') != null) {
+    if ($.urlParam('filename') != null || $.urlParam('field_paragraph_file_type_target_id') != null) {
       $('#file-advanced-search').trigger('click');
       $('#clear-file-search').show();
     }

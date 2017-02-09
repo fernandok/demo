@@ -8,7 +8,7 @@ use Drupal\file\Entity\File;
 use Drupal\file\FileUsage\FileUsageBase;
 use Drupal\paragraphs\Entity\Paragraph;
 use Drupal\rest\Plugin\ResourceBase;
-use Drupal\rest\ResourceResponse;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Psr\Log\LoggerInterface;
@@ -117,7 +117,7 @@ class EcnRestResource extends ResourceBase {
 
     // Validate ECN data.
     if (empty($data)) {
-      return new ResourceResponse(['error' => 'Empty ECN data cannot be processed.']);
+      return new JsonResponse(['error' => 'Empty ECN data cannot be processed.']);
     }
 
     // Process ECN data.
@@ -130,7 +130,7 @@ class EcnRestResource extends ResourceBase {
    * @param array $data
    *   ECN post data.
    *
-   * @return ResourceResponse
+   * @return JsonResponse
    *   Response with list of processed files' id.
    */
   private function processEcnData($data) {
@@ -200,7 +200,7 @@ class EcnRestResource extends ResourceBase {
       }
     }
 
-    return new ResourceResponse($response);
+    return new JsonResponse($response);
   }
 
   /**
@@ -495,7 +495,7 @@ class EcnRestResource extends ResourceBase {
    * @param array $doc
    *   Document to be processed.
    *
-   * @return ResourceResponse
+   * @return JsonResponse
    *   Processed file id.
    */
   private function processNodeDocument($page, $doc) {
