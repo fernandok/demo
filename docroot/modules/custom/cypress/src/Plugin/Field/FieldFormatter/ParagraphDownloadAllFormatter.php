@@ -11,8 +11,6 @@ use Drupal\file\Entity\File;
 use Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem;
 use Drupal\Component\Utility\Bytes;
 use Drupal\Core\Link;
-use Symfony\Component\HttpFoundation\Request;
-
 /**
  * Plugin implementation of the 'file_download_all' formatter.
  *
