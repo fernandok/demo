@@ -2086,26 +2086,31 @@ body.path-file-search .term-product-tags {
   background-color: #8DB6CD;;
   border-radius: 7px;
 }
-table.myTable thead tr .header::after {
+table.paragraph_table thead tr .header::after,
+table.akamai_table thead tr .header::after {
   content: "\E150";
   font-family: "Glyphicons Halflings";
   margin-left: 0.5em;
   font-weight: normal;
 }
-table.myTable thead tr .headerSortDown::after {
+table.paragraph_table thead tr .headerSortDown::after,
+table.akamai_table thead tr .headerSortDown::after {
   content: "\E151";
   font-family: "Glyphicons Halflings";
   font-weight: normal;
 }
-table.myTable thead tr .headerSortDown {
+table.paragraph_table thead tr .headerSortDown,
+table.akamai_table thead tr .headerSortDown {
   background-image: none;
 }
-table.myTable thead tr .headerSortUp::after {
+table.paragraph_table thead tr .headerSortUp::after,
+table.akamai_table thead tr .headerSortUp::after {
   content: "\E152";
   font-family: "Glyphicons Halflings";
   font-weight: normal;
 }
-table.myTable thead tr .headerSortUp{
+table.paragraph_table thead tr .headerSortUp,
+table.akamai_table thead tr .headerSortUp{
   background-image: none;
 }
 table.sort-select thead tr .header:first-child::after{
