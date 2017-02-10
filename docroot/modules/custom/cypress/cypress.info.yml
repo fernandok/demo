@@ -1,5 +1,0 @@
-name: cypress
-type: module
-description: Cypress features & customization
-core: 8.x
-package: Cypress

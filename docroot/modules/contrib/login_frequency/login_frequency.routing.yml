@@ -1,7 +1,0 @@
-login_frequency.report:
-  path: '/admin/reports/login_frequency'
-  defaults:
-    _controller: 'Drupal\login_frequency\Controller\LoginFrequencyController::report'
-    _title: 'Login history'
-  requirements:
-    _custom_access: 'Drupal\login_frequency\Controller\LoginFrequencyController::checkUserReportAccess'

@@ -1,6 +1,0 @@
-services:
-  cypress.front_page:
-    class: Drupal\cypress\EventSubscriber\SamlLoginRedirect
-    tags:
-      - { name: 'event_subscriber' }
-

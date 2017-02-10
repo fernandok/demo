@@ -1,5 +1,0 @@
-name: Cypress REST
-type: module
-description: REST resources for cypress.
-core: 8.x
-package: Web services

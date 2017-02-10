@@ -1,6 +1,0 @@
-dblog_filter.settings:
-  title: 'DBLog Filter Settings'
-  parent: system.admin_config_development
-  description: 'Configure the database logging to be stored.'
-  route_name: dblog_filter.settings
-  weight: -15

@@ -1,7 +1,0 @@
-name: File Download Tracker
-type: module
-description: File downloads tracker
-core: 8.x
-package: Custom
-dependencies:
-  - file_entity
