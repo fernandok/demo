@@ -1,0 +1,14 @@
+uuid: 20139c27-a9f4-44ef-bd65-f5213a06f6c0
+name: 'Cypress Store'
+mail: manoj.k@valuebound.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node
+admin_compact_mode: false
+weight_select_max: 100
+langcode: en
+default_langcode: en
+_core:
+  default_config_hash: AyT9s8OUcclfALRE_imByOMgtZ19eOlqdF6zI3p7yqo
