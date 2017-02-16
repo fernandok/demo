@@ -19,7 +19,7 @@ use Drupal\Core\Field\BaseFieldDefinition;
  *     plural = "@count logs",
  *   ),
  *   handlers = {
- *     "access" = "Drupal\commerce\EmbeddedEntityAccessControlHandler",
+ *     "access" = "Drupal\commerce\EntityAccessControlHandler",
  *     "list_builder" = "Drupal\commerce_log\LogListBuilder",
  *     "storage" = "Drupal\commerce_log\LogStorage",
  *     "view_builder" = "Drupal\commerce_log\LogViewBuilder",
