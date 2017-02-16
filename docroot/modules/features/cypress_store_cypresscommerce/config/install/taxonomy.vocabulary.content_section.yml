@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Content Section'
+vid: content_section
+description: ''
+hierarchy: 0
+weight: 0

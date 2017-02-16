@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Content Keywords'
+vid: content_keywords
+description: ''
+hierarchy: 0
+weight: 0

@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_files_ref
+  module:
+    - file
+id: commerce_product.default.field_files_ref
+field_name: field_files_ref
+entity_type: commerce_product
+bundle: default
+label: 'Related Files'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'bmp doc docx exe gif htm html ibs iso jpg mp4 pdf png ppt pptx rar rtf txt vsd wmv xls xlsx zip apk hex'
+  max_filesize: 100MB
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

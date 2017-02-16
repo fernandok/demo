@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Training Series Category'
+vid: training
+description: ''
+hierarchy: 0
+weight: 0
