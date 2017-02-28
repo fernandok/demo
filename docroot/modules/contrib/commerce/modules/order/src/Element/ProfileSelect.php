@@ -90,12 +90,13 @@ class ProfileSelect extends CommerceElementBase {
       throw new \InvalidArgumentException('The commerce_profile_select #available_countries property must be an array.');
     }
 
+    //Initialize variables.
     $element['#profile'] = $element['#default_value'];
     $pane_id = $element['#name'];
     $mode = 'view';
-
     $profile_selection_parents = $element['#parents'];
     $profile_selection_parents[] = 'profile_selection';
+
     $profile_id = $form_state->getValue($profile_selection_parents);
     $storage = $form_state->getStorage();
     $bundle = $element['#profile']->bundle();
@@ -106,9 +107,16 @@ class ProfileSelect extends CommerceElementBase {
     }
     // If an AJAX rebuild happened, we might have our data in form state.
     elseif (!empty($storage['pane_' . $pane_id])) {
-      $profile = $storage['pane_' . $pane_id]['profile'];
+      $default_profile = $storage['pane_' . $pane_id]['profile'];
+      $default_profile_id = $default_profile->id();
       $mode = $storage['pane_' . $pane_id]['mode'];
-      $bundle = $profile->bundle();
+      $bundle = $default_profile->bundle();
+    }
+    // Loading the page for the first time.
+    elseif ($element['#profile']->id()) {
+      $default_profile = $element['#profile'];
+      $default_profile_id = $default_profile->id();
+      $bundle = $default_profile->bundle();
     }
 
     $ajax_wrapper_id = Html::getUniqueId('profile-select-ajax-wrapper');
@@ -120,7 +128,6 @@ class ProfileSelect extends CommerceElementBase {
     $profile_uid = $element['#profile']->getOwnerId();
     // Anonymous users don't get an addressbook.
     if ($profile_uid) {
-      $default_profile_id = '';
       $profile_ids = \Drupal::service('entity.query')
         ->get('profile')
         ->condition('uid', $profile_uid)
@@ -130,7 +137,7 @@ class ProfileSelect extends CommerceElementBase {
         ->execute();
       $profiles = Profile::loadMultiple($profile_ids);
       $profile_options = [];
-      /** @var Profile $profile_option */
+      /** @var \Drupal\profile\Entity\Profile $profile_option */
       foreach ($profiles as $profile_option) {
         if (empty($default_profile_id)) {
           $default_profile_id = $profile_option->id();
@@ -140,30 +147,25 @@ class ProfileSelect extends CommerceElementBase {
       }
       $profile_options['new_address'] = t('+ Enter a new address');
     }
-    // No profile set yet. First see if one exists already.
-    if (empty($profile)) {
-      // No profiles found or user wants to create a new one. Do it.
-      if (empty($profiles) || $mode == 'new') {
-        $values = [
-          'type' => $element['#profile']->bundle(),
-          'uid' => $element['#profile']->getOwnerId(),
-        ];
-        $profile = Profile::create($values);
-        $mode = 'new';
-      }
-      // Set the latest profile as the default one.
-      else {
-        $profile = $default_profile;
-      }
-    }
 
     // Remember the current profile and mode in form state.
-    $storage['pane_' . $pane_id] = [
-      'profile' => $profile,
-      'mode' => $mode,
-    ];
-    $form_state->setStorage($storage);
-    $element['#profile'] = $profile;
+    if (!empty($default_profile)) {
+      $storage['pane_' . $pane_id] = [
+        'profile' => $default_profile,
+        'mode' => $mode
+      ];
+      $form_state->setStorage($storage);
+      $element['#profile'] = $default_profile;
+    }
+    // No profiles found or user wants to create a new one.
+    elseif (empty($profiles) || $mode == 'new') {
+      $values = [
+        'type' => $element['#profile']->bundle(),
+        'uid' => $element['#profile']->getOwnerId()
+      ];
+      $default_profile = Profile::create($values);
+      $mode = 'new';
+    }
 
     $form_display = EntityFormDisplay::collectRenderDisplay($element['#profile'], 'default');
     $form_display->buildForm($element['#profile'], $element, $form_state);
@@ -201,7 +203,7 @@ class ProfileSelect extends CommerceElementBase {
     if ($mode == 'view') {
       $view_builder = \Drupal::entityTypeManager()
         ->getViewBuilder('profile');
-      $content = $view_builder->view($profile, 'default');
+      $content = $view_builder->view($default_profile, 'default');
 
       $element['rendered_profile'] = [
         $content,
@@ -304,24 +306,23 @@ class ProfileSelect extends CommerceElementBase {
   }
 
   /**
-   * Form AJAX callback.
+   * Profile form AJAX callback.
    *
    * @param array $form
    *   The complete form array.
    * @param \Drupal\Core\Form\FormStateInterface $form_state
    *   The current state of the form.
-   * @param Symfony\Component\HttpFoundation\Request $request
+   * @param \Symfony\Component\HttpFoundation\Request $request
    *   The Request object.
    *
    * @return array
    *   The form element replace the wrapper with.
    */
-  public static function profileSelectAjax(array &$form, FormStateInterface &$form_state, Request $request) {
+  public static function profileSelectAjax(array &$form, FormStateInterface $form_state, Request $request) {
     $triggering_element = $form_state->getTriggeringElement();
     $array_parents = $triggering_element['#array_parents'];
     array_pop($array_parents);
-    $element = NestedArray::getValue($form, $array_parents);
-    return $element;
+    return NestedArray::getValue($form, $array_parents);
   }
 
   /**
