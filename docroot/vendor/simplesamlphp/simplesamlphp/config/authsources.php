@@ -6,7 +6,7 @@ if ($_SERVER['SERVER_NAME'] == 'store.local') {
 }
 elseif ($_SERVER['SERVER_NAME'] == 'cypressextdev2.prod.acquia-sites.com') {
   $url = 'http://cypressextdev2.prod.acquia-sites.com';
-  $idp = '';
+  $idp = 'http://docroot.dd:8083/simplesaml/saml2/idp/metadata.php';
 }
 //elseif ($_SERVER['SERVER_NAME'] == 'cypressextstg.prod.acquia-sites.com') {
 //  $url = 'http://cypressextstg.prod.acquia-sites.com';
