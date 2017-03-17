@@ -6,21 +6,21 @@
 //$sql['dsn'] = 'mysql:host=localhost;dbname=store';
 //$sql['username'] = 'root';
 //$sql['password'] = 'root';
-//if (!empty($_ENV['AH_SITE_ENVIRONMENT'])) {
-//    switch ($_ENV['AH_SITE_ENVIRONMENT']) {
-//        case 'dev':
-//            $sql['dsn'] = 'mysql:host=staging-10582;dbname=cypressextdev2';
-//            $sql['username'] = 's30011';
-//            $sql['password'] = 'rBypwa8Ch5n45Mb';
-//            break;
+if (!empty($_ENV['AH_SITE_ENVIRONMENT'])) {
+    switch ($_ENV['AH_SITE_ENVIRONMENT']) {
+        case 'dev2':
+            $sql['dsn'] = 'mysql:host=staging-10582;dbname=cypressextdev2';
+            $sql['username'] = 's30011';
+            $sql['password'] = 'rBypwa8Ch5n45Mb';
+            break;
 //
 //        case 'test':
 //            $sql['dsn'] = 'mysql:host=staging-10582;dbname=cypressextstg';
 //            $sql['username'] = 's26585';
 //            $sql['password'] = 'DiH2xdE5DAMfhhv';
 ////            break;
-//    }
-//}
+    }
+}
 
 $config = array(
 
@@ -710,13 +710,13 @@ $config = array(
    * See http://www.php.net/manual/en/pdo.drivers.php for the various
    * syntaxes.
    */
-  'store.sql.dsn'                 => 'mysql:host=staging-10582;dbname=cypressextdev2',
+  'store.sql.dsn'                 => $sql['dsn'],
 
   /*
    * The username and password to use when connecting to the database.
    */
-  'store.sql.username' => 's30011',
-  'store.sql.password' => 'rBypwa8Ch5n45Mb',
+  'store.sql.username' => $sql['username'],
+  'store.sql.password' => $sql['password'],
 
   /*
    * The prefix we should use on our tables.
