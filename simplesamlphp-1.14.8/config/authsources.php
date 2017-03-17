@@ -1,17 +1,17 @@
 <?php
 
-if ($_SERVER['SERVER_NAME'] == 'cypress.local') {
-  $url = 'http://cypress.local';
-  $idp = 'http://cypresscomdev.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php';
+if ($_SERVER['SERVER_NAME'] == 'store.local') {
+  $url = 'store.local';
+  $idp = '';
 }
-elseif ($_SERVER['SERVER_NAME'] == 'cypressextdev.prod.acquia-sites.com') {
-  $url = 'http://cypressextdev.prod.acquia-sites.com';
-  $idp = 'http://cypresscomdev.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php';
+elseif ($_SERVER['SERVER_NAME'] == 'cypressextdev2.prod.acquia-sites.com') {
+  $url = 'http://cypressextdev2.prod.acquia-sites.com';
+  $idp = '';
 }
-elseif ($_SERVER['SERVER_NAME'] == 'cypressextstg.prod.acquia-sites.com') {
-  $url = 'http://cypressextstg.prod.acquia-sites.com';
-  $idp = 'http://cypresscomstg.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php';
-}
+//elseif ($_SERVER['SERVER_NAME'] == 'cypressextstg.prod.acquia-sites.com') {
+//  $url = 'http://cypressextstg.prod.acquia-sites.com';
+//  $idp = 'http://cypresscomstg.prod.acquia-sites.com/simplesaml/saml2/idp/metadata.php';
+//}
 $config = array(
 
     // This is a authentication source which handles admin authentication.
