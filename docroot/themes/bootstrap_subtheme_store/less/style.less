@@ -1,0 +1,88 @@
+// out: ../css/style.css
+// Bootstrap Framework.
+@import 'bootstrap';
+
+// Base-theme overrides.
+@import 'overrides';
+
+/*Start styles for store*/
+/*start styles for header*/
+.navbar-brand {
+	display: none;
+}
+.block-search-form-block {
+    margin-left: 6em;
+}
+/*variables for header*/
+@font-size-pmenu: 14px;
+@link-color: #1d1b1c;
+@opacity-hover: 0.5;
+@font-open: "Open Sans";
+
+ul.navbar-nav{
+	font-size: @font-size-pmenu;
+
+	li.expanded{
+
+		a{
+			color: @link-color;
+			font-family: @font-open;
+			padding-top: 6px;
+
+			&:hover{
+				opacity: @opacity-hover; 
+				background: none;
+			}
+			&:focus{
+				background: none;
+			}
+			&::before{
+				content: "|";
+    			padding-right: 16px;
+			}
+			span.caret{
+				display: none;
+			}
+			
+		}
+		ul.dropdown-menu{
+			padding: 8px;
+   			min-width: 120px;
+
+   			li.dropdown{
+   				padding: 8px 0;
+   				border-top: 1px solid #afafaf;
+
+	   			&:first-child{
+	   				border: none;
+	   			}
+
+	   			a{
+					white-space: normal;
+		    		word-break: break-word;
+		    		width: 130px;
+		    		text-align: center;
+	   			
+		   			&:hover{
+		   				color: #3780cb;
+		   			}
+		   			&::before{
+						content: "";
+		    			padding-right: 0;
+					}
+				}
+
+		   	}
+		}
+	}
+}
+
+
+
+
+
+
+
+
+
+/*End styles for header*/
