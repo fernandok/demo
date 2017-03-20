@@ -12,6 +12,6 @@
 function cypress_store_preprocess_page(&$variables) {
 
   if (\Drupal::service('path.matcher')->isFrontPage() == 1) {
-    $variables['#attached']['library'][] = 'bootstrap_subtheme_store/slick';
+    $variables['#attached']['library'][] = 'cypress_store/slick';
   }
 }
