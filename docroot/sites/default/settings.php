@@ -88,13 +88,13 @@
  */
 
 //$databases['default']['default'] = array(
-//    'database' => 'simplesaml_cypress',
-//    'username' => 'root',
-//    'password' => 'root',
-//    'host' => 'localhost',
-//    'port' => '3306',
-//    'driver' => 'mysql',
-//    'prefix' => '',
+//   'database' => 'store',
+//   'username' => 'root',
+//   'password' => 'root',
+//   'host' => 'localhost',
+//   'port' => '3306',
+//   'driver' => 'mysql',
+//   'prefix' => '',
 //);
 
 /**
@@ -788,7 +788,7 @@ else {
 
 $config['simplesamlphp_auth.settings'] = [
  // Basic settings.
-    'activate'                => FALSE, // Enable or Disable SAML login.
+    'activate'                => TRUE, // Enable or Disable SAML login.
     'auth_source'             => 'default-sp',
     'login_link_display_name' => 'Login with your SSO account',
     'register_users'          => TRUE,
@@ -799,7 +799,7 @@ $config['simplesamlphp_auth.settings'] = [
         'set_drupal_pwd'        => TRUE,
         'default_login_users'   => '',
         'default_login_roles'   => array(
-            'authenticated' => FALSE,
+            'authenticated' => 'authenticated',
             'administrator' => 'administrator',
             'all_distributors' => 'all_distributors',
             'sales_rep' => 'sales_rep',

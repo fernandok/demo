@@ -7,19 +7,19 @@
 //$sql['username'] = 'root';
 //$sql['password'] = 'root';
 if (!empty($_ENV['AH_SITE_ENVIRONMENT'])) {
-  switch ($_ENV['AH_SITE_ENVIRONMENT']) {
-    case 'dev2':
-      $sql['dsn'] = 'mysql:host=staging-10582;dbname=cypressextdev2';
-      $sql['username'] = 's30011';
-      $sql['password'] = 'rBypwa8Ch5n45Mb';
-      break;
+    switch ($_ENV['AH_SITE_ENVIRONMENT']) {
+        case 'dev2':
+            $sql['dsn'] = 'mysql:host=staging-10582;dbname=cypressextdev2';
+            $sql['username'] = 's30011';
+            $sql['password'] = 'rBypwa8Ch5n45Mb';
+            break;
 //
 //        case 'test':
 //            $sql['dsn'] = 'mysql:host=staging-10582;dbname=cypressextstg';
 //            $sql['username'] = 's26585';
 //            $sql['password'] = 'DiH2xdE5DAMfhhv';
 ////            break;
-  }
+    }
 }
 
 $config = array(
