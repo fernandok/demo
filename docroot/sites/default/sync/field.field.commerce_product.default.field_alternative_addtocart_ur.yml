@@ -1,0 +1,21 @@
+uuid: fbb3877c-0759-4e06-b7c9-8d264739aebf
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_alternative_addtocart_ur
+_core:
+  default_config_hash: qaNtRxrG9MTgioxgPLZ6mvDhvHYiMl2W_AKUEvgDZzM
+id: commerce_product.default.field_alternative_addtocart_ur
+field_name: field_alternative_addtocart_ur
+entity_type: commerce_product
+bundle: default
+label: 'Alternative Add to cart URL'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

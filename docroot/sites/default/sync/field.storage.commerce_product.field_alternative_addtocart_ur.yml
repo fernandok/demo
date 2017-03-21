@@ -1,0 +1,23 @@
+uuid: ca94e0c7-88f9-4e34-92ce-31afcc94cb62
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+_core:
+  default_config_hash: rQBpCmyizq9ad1Us12CdxQnxid7Tp79O64S8Ff001M8
+id: commerce_product.field_alternative_addtocart_ur
+field_name: field_alternative_addtocart_ur
+entity_type: commerce_product
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

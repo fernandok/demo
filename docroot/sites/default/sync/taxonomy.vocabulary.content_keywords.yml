@@ -1,0 +1,11 @@
+uuid: b41ca372-4817-4176-93d4-7c73d147bc76
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: CajQy2dqyfk5o_iIjd6I-dM1v8sA3mInNtvQ7C88A4Q
+name: 'Content Keywords'
+vid: content_keywords
+description: ''
+hierarchy: 0
+weight: 0

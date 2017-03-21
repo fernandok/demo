@@ -1,0 +1,19 @@
+uuid: 18e0416a-753d-4cd6-bdf5-290e728b5838
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_mpn_cat_a_b
+    - node.type.my_samples
+id: node.my_samples.field_mpn_cat_a_b
+field_name: field_mpn_cat_a_b
+entity_type: node
+bundle: my_samples
+label: 'CAT A OR CAT B'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

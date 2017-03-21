@@ -1,0 +1,21 @@
+uuid: f14b5df4-a357-44c5-87cc-efc90e07e313
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+_core:
+  default_config_hash: fn6-gmf4-zUaR0QmJ24P5V2hCS4sVy8BP588EXx-SAs
+id: commerce_product.field_ecn_body
+field_name: field_ecn_body
+entity_type: commerce_product
+type: string_long
+settings:
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

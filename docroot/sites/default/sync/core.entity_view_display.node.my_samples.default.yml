@@ -1,0 +1,168 @@
+uuid: 0bc797cb-69ac-4575-9659-92b9dfc6830f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.my_samples.body
+    - field.field.node.my_samples.field_active
+    - field.field.node.my_samples.field_cansample
+    - field.field.node.my_samples.field_kit_cost
+    - field.field.node.my_samples.field_mpn
+    - field.field.node.my_samples.field_mpn_cat_a_b
+    - field.field.node.my_samples.field_mpnid
+    - field.field.node.my_samples.field_mysampl_msrp
+    - field.field.node.my_samples.field_mysampl_plm_status
+    - field.field.node.my_samples.field_pricefive_
+    - field.field.node.my_samples.field_pricefour
+    - field.field.node.my_samples.field_priceone
+    - field.field.node.my_samples.field_pricesix
+    - field.field.node.my_samples.field_pricethree
+    - field.field.node.my_samples.field_pricetwo
+    - field.field.node.my_samples.field_sample_category
+    - field.field.node.my_samples.field_sample_status
+    - field.field.node.my_samples.field_samplemsrp
+    - field.field.node.my_samples.field_status
+    - node.type.my_samples
+  module:
+    - options
+    - text
+    - user
+id: node.my_samples.default
+targetEntityType: node
+bundle: my_samples
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 101
+    settings: {  }
+    third_party_settings: {  }
+  field_active:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_cansample:
+    weight: 103
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_kit_cost:
+    weight: 105
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_mpn:
+    weight: 106
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_mpn_cat_a_b:
+    weight: 104
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_mpnid:
+    weight: 107
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_mysampl_msrp:
+    weight: 108
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_mysampl_plm_status:
+    weight: 109
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_pricefive_:
+    weight: 110
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_pricefour:
+    weight: 111
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_priceone:
+    weight: 112
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_pricesix:
+    weight: 113
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_pricethree:
+    weight: 114
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_pricetwo:
+    weight: 115
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_sample_category:
+    weight: 116
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_sample_status:
+    weight: 118
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+  field_samplemsrp:
+    weight: 117
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_status:
+    weight: 119
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  links:
+    weight: 100
+hidden: {  }

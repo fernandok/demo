@@ -1,0 +1,19 @@
+uuid: 272f63b9-df0d-4bf3-a320-632a7b3c4707
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_files_ref
+id: commerce_product.default.field_files_ref
+field_name: field_files_ref
+entity_type: commerce_product
+bundle: default
+label: 'Related Files'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

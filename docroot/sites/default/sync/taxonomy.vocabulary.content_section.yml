@@ -1,0 +1,11 @@
+uuid: 735aebba-3676-49b7-8139-95f6eba47581
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 6HALJRpBGNP_oJPizhznyVvc9kNusDP6vvGJDSGMYoM
+name: 'Content Section'
+vid: content_section
+description: ''
+hierarchy: 0
+weight: 0

@@ -1,0 +1,11 @@
+uuid: 1f32995c-d7d4-43e8-8be1-0cf2da2b155e
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: gim66ALtM-38oLBugHO55byP_xxcsGSq0GrfkInPUgk
+name: Applications
+vid: applications
+description: ''
+hierarchy: 0
+weight: 0

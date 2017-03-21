@@ -1,0 +1,30 @@
+uuid: 1a192021-6144-4872-9324-1ff2fe657bb9
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_related_content_section
+    - taxonomy.vocabulary.content_section
+_core:
+  default_config_hash: FB21f5JOi30auPI55nI-nPOAyuOWYR1ZMJtK4IA_8QE
+id: commerce_product.default.field_related_content_section
+field_name: field_related_content_section
+entity_type: commerce_product
+bundle: default
+label: 'Related Content Section'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      content_section: content_section
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

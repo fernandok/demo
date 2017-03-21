@@ -1,0 +1,12 @@
+uuid: 0f60b6ad-bcd2-4836-a92f-43ee168b98d5
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: QPuFH9E4612ox18hXdUXL8FhU021rCvOtYISSmvMQzc
+id: default
+label: Default
+orderItemType: default
+generateTitle: true
+traits:
+  - purchasable_entity_shippable

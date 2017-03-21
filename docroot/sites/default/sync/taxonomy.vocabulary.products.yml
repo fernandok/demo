@@ -1,0 +1,11 @@
+uuid: 8dfd8ea0-e1af-4044-b8c3-5a788531d13d
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: uX8hVLf9A60DrlIUum_I_aKNy8fZG3FevE8GpuC5nbE
+name: Products
+vid: products
+description: ''
+hierarchy: 0
+weight: 0

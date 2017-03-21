@@ -1,0 +1,22 @@
+uuid: 8b39b3e0-ee73-4369-9d64-a6fe5cc1fbb9
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - taxonomy
+_core:
+  default_config_hash: ip7U8eL39cMRt3mHY7wTX5O2BqeFTpC4dOebb-YUR9g
+id: commerce_product.field_related_trainings
+field_name: field_related_trainings
+entity_type: commerce_product
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

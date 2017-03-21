@@ -1,0 +1,11 @@
+uuid: 85f89729-8d05-465c-90a4-d2dba3a277dc
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: EFyuutPh3F7jcdHutHq9vxa9U4Vwkl5G2EQcJYUZRbY
+name: 'Training Series Category'
+vid: training
+description: ''
+hierarchy: 0
+weight: 0

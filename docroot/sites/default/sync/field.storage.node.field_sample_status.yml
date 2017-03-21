@@ -1,0 +1,30 @@
+uuid: a02b051e-ae6e-47c9-8f55-b627d146040b
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_sample_status
+field_name: field_sample_status
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: '0'
+      label: 'No Ordering'
+    -
+      value: '1'
+      label: 'Open Sampling'
+    -
+      value: '2'
+      label: 'Restricted Sampling'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

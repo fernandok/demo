@@ -1,0 +1,21 @@
+uuid: c4b034bf-8f6e-4f96-8cee-0ae71022547d
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_pricefive_
+field_name: field_pricefive_
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

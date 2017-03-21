@@ -1,0 +1,22 @@
+uuid: cd6e72b2-2df3-4d93-8ec7-166bbdf093c8
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - taxonomy
+_core:
+  default_config_hash: GCe-0UkWuUOqhvsEkXZdMLs2tIkhBecTD1XxsKYzc7w
+id: commerce_product.field_related_solutions
+field_name: field_related_solutions
+entity_type: commerce_product
+type: entity_reference
+settings:
+  target_type: taxonomy_term
+module: core
+locked: false
+cardinality: -1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

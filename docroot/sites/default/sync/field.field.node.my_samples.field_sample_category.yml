@@ -1,0 +1,19 @@
+uuid: 06873dc1-c41a-4780-b197-befe66b4f690
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sample_category
+    - node.type.my_samples
+id: node.my_samples.field_sample_category
+field_name: field_sample_category
+entity_type: node
+bundle: my_samples
+label: 'Sample Category'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

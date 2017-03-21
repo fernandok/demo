@@ -1,0 +1,30 @@
+uuid: 43673f4d-81ba-45d4-a37f-fe1eaef8fbe6
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.default
+    - field.storage.commerce_product.field_spec_num
+    - taxonomy.vocabulary.spec_numbers
+_core:
+  default_config_hash: 8cwowJXDccz619sO40cJpX5By2rzRFQh0DdF7dbMSSc
+id: commerce_product.default.field_spec_num
+field_name: field_spec_num
+entity_type: commerce_product
+bundle: default
+label: 'Spec Number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      spec_numbers: spec_numbers
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
