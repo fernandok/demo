@@ -253,8 +253,8 @@
  *   );
  * @endcode
  */
- $config_directories = array();
- $config_directories[CONFIG_SYNC_DIRECTORY] = 'sites/default/sync';
+ //$config_directories = array();
+ //$config_directories[CONFIG_SYNC_DIRECTORY] = 'sites/default/sync';
 
 /**
  * Settings:
