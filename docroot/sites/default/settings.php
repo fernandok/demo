@@ -87,15 +87,15 @@
  * @endcode
  */
 
-//$databases['default']['default'] = array(
-//   'database' => 'store',
-//   'username' => 'root',
-//   'password' => 'root',
-//   'host' => 'localhost',
-//   'port' => '3306',
-//   'driver' => 'mysql',
-//   'prefix' => '',
-//);
+// $databases['default']['default'] = array(
+//    'database' => 'store',
+//    'username' => 'root',
+//    'password' => 'root',
+//    'host' => 'localhost',
+//    'port' => '3306',
+//    'driver' => 'mysql',
+//    'prefix' => '',
+// );
 
 /**
  * Customizing database settings.
@@ -253,8 +253,8 @@
  *   );
  * @endcode
  */
- //$config_directories = array();
- //$config_directories[CONFIG_SYNC_DIRECTORY] = 'sites/default/sync';
+ $config_directories = array();
+ $config_directories[CONFIG_SYNC_DIRECTORY] = 'sites/default/sync';
 
 /**
  * Settings:
