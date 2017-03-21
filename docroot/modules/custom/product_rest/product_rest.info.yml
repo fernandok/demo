@@ -1,0 +1,5 @@
+name: Product Rest
+type: module
+description: Creating product using REST Resources
+core: 8.x
+package: Custom

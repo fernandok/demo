@@ -1,0 +1,34 @@
+<?php
+
+/**
+ * @file
+ * Contains product_rest.module..
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_help().
+ */
+function product_rest_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the product_rest module.
+    case 'help.page.product_rest':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Creating product using REST Resources') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function product_rest_form_alter(&$form, $form_state, $form_id) {
+   if($form_id == 'commerce_product_default_add_form' || $form_id == 'commerce_product_default_edit_form') {
+     //$form['field_node_id']['#type'] = 'hidden';
+   }
+}
