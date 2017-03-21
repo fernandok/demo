@@ -1,0 +1,14 @@
+{
+  "name": "drupal/product_rest",
+  "type": "drupal-module",
+  "description": "Creating product using REST Resources",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://www.drupal.org/project/product_rest",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "http://drupal.org/project/issues/product_rest",
+    "source": "http://cgit.drupalcode.org/product_rest"
+  },
+  "require": { }
+}
