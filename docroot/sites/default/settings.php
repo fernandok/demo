@@ -253,8 +253,8 @@
  *   );
  * @endcode
  */
-// $config_directories = array();
-// $config_directories['sync'] = 'sites/default/files/config_2a9c3aa4d4c34c019af4af2fe0e7a37cb20aaff2/sync';
+ //$config_directories = array();
+ //$config_directories[CONFIG_SYNC_DIRECTORY] = 'sites/default/sync';
 
 /**
  * Settings:
