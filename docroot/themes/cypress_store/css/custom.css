@@ -1,0 +1,72 @@
+.slick-prev:before {
+  content: url('../css/images/left-arrow.png');
+}
+.slick-next:before {
+  content: url('../css/images/right-arrow.png');
+}
+.block-views-blockdelivery-address-block-2 .block-title {
+  margin-left: -24px;
+}
+.slick-prev,
+.slick-next {
+  border: 2px solid #a8a8a8;
+  background-size: contain;
+  height: 90px;
+  padding-right: 24px;
+  border-radius: 5px;
+  padding-left: 4px;
+  height: 127px;
+  margin-top: 21px;
+}
+#sm-w {
+  border: 2px solid #a8a8a8;
+  padding: 10px;
+  margin-left: 5px;
+}
+.address-boxes-sec-1 {
+  margin: 2px auto;
+  border-bottom: 1px solid #7e7a7a;
+  padding: 10px 0px 10px 0px;
+  font-size: 15px;
+}
+.address-boxes-sec-1 .address-name {
+  display: inline-block;
+  margin-left: 5px;
+  font-size: 18px;
+}
+.address-boxes-sec-1 .address-icons {
+  display: inline-block;
+  float: right;
+}
+.address-boxes-sec-1 .address-icons .address-delete {
+  display: inline-block;
+}
+.address-boxes-sec-1 .address-icons .address-delete .profile-delete {
+  background: url('../css/images/rubbish-bin-delete-button.png') no-repeat;
+  text-indent: -9999px;
+  display: block;
+  width: 25px;
+  margin-right: 7px;
+}
+.address-boxes-sec-1 .address-icons .address-edit {
+  display: inline-block;
+}
+.address-boxes-sec-1 .address-icons .address-edit .profile-edit {
+  background: url('../css/images/pencil-edit-button.png') no-repeat;
+  text-indent: -9999px;
+  display: block;
+  width: 25px;
+  height: 30px;
+}
+.address-boxes-sec-2 {
+  padding: 10px 0px 10px 0px;
+  font-size: 15px;
+  color: #636262;
+  margin: 5px;
+}
+.address-boxes-sec-3 {
+  margin: 2px auto;
+  border-top: 1px solid #7e7a7a;
+  padding: 5px;
+  color: #5d5b5b;
+}
