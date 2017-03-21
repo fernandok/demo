@@ -1,0 +1,5 @@
+name: Cypress Store Vendor Integration.
+type: module
+description: Custom module for Cypress store vendor integration.
+core: 8.x
+package: Custom
