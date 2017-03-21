@@ -87,15 +87,15 @@
  * @endcode
  */
 
-// $databases['default']['default'] = array(
-//    'database' => 'store',
-//    'username' => 'root',
-//    'password' => 'root',
-//    'host' => 'localhost',
-//    'port' => '3306',
-//    'driver' => 'mysql',
-//    'prefix' => '',
-// );
+//$databases['default']['default'] = array(
+//   'database' => 'store',
+//   'username' => 'root',
+//   'password' => 'root',
+//   'host' => 'localhost',
+//   'port' => '3306',
+//   'driver' => 'mysql',
+//   'prefix' => '',
+//);
 
 /**
  * Customizing database settings.
@@ -253,8 +253,6 @@
  *   );
  * @endcode
  */
- $config_directories = array();
- $config_directories[CONFIG_SYNC_DIRECTORY] = 'sites/default/sync';
 
 /**
  * Settings:
@@ -827,3 +825,6 @@ if (isset($_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR']) && file_exists($_SERVER['D
   require $_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR'] . '/cld_prod_cypressext_dev_default.inc';
 }
 // </DDSETTINGS>
+
+//$config_directories = array();
+$config_directories['sync'] = 'sites/default/sync';
