@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vb
- * Date: 21/3/17
- * Time: 8:39 PM
- */
 
 namespace Drupal\cypress_store_vendor;
 

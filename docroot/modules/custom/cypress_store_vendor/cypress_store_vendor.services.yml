@@ -1,5 +1,5 @@
 services:
-  cypress_store_vendor.get_inventory:
-    class: Drupal\cypress_store_vendor\InventoryService
+  cypress_store_vendor.vendor:
+    class: Drupal\cypress_store_vendor\VendorService
     arguments: []
 
