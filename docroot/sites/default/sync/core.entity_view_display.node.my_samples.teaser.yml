@@ -4,23 +4,32 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
-    - field.field.node.my_samples.body
+    - field.field.node.my_samples.field_active
+    - field.field.node.my_samples.field_cansample
+    - field.field.node.my_samples.field_kit_cost
+    - field.field.node.my_samples.field_mpn
+    - field.field.node.my_samples.field_mpn_cat_a_b
+    - field.field.node.my_samples.field_mpnid
+    - field.field.node.my_samples.field_mysampl_msrp
+    - field.field.node.my_samples.field_mysampl_plm_status
+    - field.field.node.my_samples.field_pricefive_
+    - field.field.node.my_samples.field_pricefour
+    - field.field.node.my_samples.field_priceone
+    - field.field.node.my_samples.field_pricesix
+    - field.field.node.my_samples.field_pricethree
+    - field.field.node.my_samples.field_pricetwo
+    - field.field.node.my_samples.field_sample_category
+    - field.field.node.my_samples.field_sample_status
+    - field.field.node.my_samples.field_samplemsrp
+    - field.field.node.my_samples.field_status
     - node.type.my_samples
   module:
-    - text
     - user
 id: node.my_samples.teaser
 targetEntityType: node
 bundle: my_samples
 mode: teaser
 content:
-  body:
-    label: hidden
-    type: text_summary_or_trimmed
-    weight: 101
-    settings:
-      trim_length: 600
-    third_party_settings: {  }
   links:
     weight: 100
 hidden:
