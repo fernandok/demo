@@ -1,0 +1,21 @@
+uuid: 4c9bfe85-938c-4b95-a4ef-3b0b6beff1ba
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_mysampl_msrp
+field_name: field_mysampl_msrp
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,25 @@
+uuid: ec5bb5f9-d502-4d1b-8ba2-b4741a5f70f4
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - cypress_store
+_core:
+  default_config_hash: NDwadleLD3YVSbDUaakxyYZyINYtkFtOVGShfq4kWy8
+id: cypress_store_branding
+theme: cypress_store
+region: header
+weight: -6
+provider: null
+plugin: system_branding_block
+settings:
+  id: system_branding_block
+  label: 'Site branding'
+  provider: system
+  label_display: '0'
+  use_site_logo: true
+  use_site_name: true
+  use_site_slogan: true
+visibility: {  }

@@ -1,0 +1,22 @@
+uuid: 18ba5fbc-e324-4c4d-b9f9-a849a45a77cb
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - cypress_store
+_core:
+  default_config_hash: KHQIJ7Vfl25lTjzIc7qIvnuistt-Mw2O0kG4jCofmkI
+id: cypress_store_messages
+theme: cypress_store
+region: highlighted
+weight: 0
+provider: null
+plugin: system_messages_block
+settings:
+  id: system_messages_block
+  label: 'Status messages'
+  provider: system
+  label_display: '0'
+visibility: {  }

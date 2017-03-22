@@ -1,0 +1,22 @@
+uuid: ddb4420e-b541-4294-951a-df23394ca21b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.my_samples
+  module:
+    - text
+id: node.my_samples.body
+field_name: body
+entity_type: node
+bundle: my_samples
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+field_type: text_with_summary

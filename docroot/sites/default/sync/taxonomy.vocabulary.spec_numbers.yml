@@ -1,0 +1,11 @@
+uuid: d16ddb08-c7ec-4cd1-9634-9b69c480c447
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: dxgLSXjC7uipSbzZOBROwWocIz9MHt9Ig1RAVCh9o_k
+name: 'Spec Numbers'
+vid: spec_numbers
+description: ''
+hierarchy: 0
+weight: 0

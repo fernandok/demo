@@ -1,0 +1,11 @@
+uuid: e74a77ab-a9f3-4b58-ac66-5525481440f0
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: 1NcnVWwTK_HfJsLL0YEKZdo-9Vr_uRsj5Tt0eYwFaT0
+name: 'Package Family'
+vid: package_family
+description: ''
+hierarchy: 0
+weight: 0

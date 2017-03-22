@@ -1,0 +1,22 @@
+uuid: de4eba72-6e39-4a5b-a545-e242b1ea315d
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - cypress_store
+_core:
+  default_config_hash: 9EoWV2Lot6FVSr50t4hoKgiz1LIXYWNG-IIPYsWxBqo
+id: cypress_store_content
+theme: cypress_store
+region: '-1'
+weight: 1
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  provider: system
+  label_display: '0'
+visibility: {  }

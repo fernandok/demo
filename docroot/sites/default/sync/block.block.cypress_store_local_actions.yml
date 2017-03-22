@@ -1,0 +1,20 @@
+uuid: 13570289-f1d3-4b8f-90e7-2719782140ec
+langcode: en
+status: false
+dependencies:
+  theme:
+    - cypress_store
+_core:
+  default_config_hash: 13GQpeITIJsp1kyPniXtWZfyFH87vb1xxJCHifL4UeE
+id: cypress_store_local_actions
+theme: cypress_store
+region: '-1'
+weight: 0
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  provider: core
+  label_display: '0'
+visibility: {  }

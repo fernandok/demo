@@ -1,0 +1,11 @@
+uuid: 29330506-8461-488e-9bee-7f2dfb94cd62
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: y6AJi6_Hw7QwYpZNJEYIs0BSB5u280F-FyeSbmfc1mk
+name: Persona
+vid: persona
+description: ''
+hierarchy: 0
+weight: 0

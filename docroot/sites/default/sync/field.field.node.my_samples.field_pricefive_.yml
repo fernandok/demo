@@ -1,0 +1,19 @@
+uuid: d2517641-b738-4801-86e3-d78f647516c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pricefive_
+    - node.type.my_samples
+id: node.my_samples.field_pricefive_
+field_name: field_pricefive_
+entity_type: node
+bundle: my_samples
+label: "pricefive\t"
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

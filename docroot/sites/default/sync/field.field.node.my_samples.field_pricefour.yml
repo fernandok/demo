@@ -1,0 +1,19 @@
+uuid: ebf4637c-c7fa-446e-857a-4e92fe1ea927
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pricefour
+    - node.type.my_samples
+id: node.my_samples.field_pricefour
+field_name: field_pricefour
+entity_type: node
+bundle: my_samples
+label: pricefour
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

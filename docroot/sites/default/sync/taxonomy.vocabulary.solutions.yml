@@ -1,0 +1,11 @@
+uuid: 1ab0fd48-f1eb-422b-8ca0-c7131319b4f1
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: Pn-lJgikMZKI93-S0M1R-IkIwYOZ_havwMkyEFZH27c
+name: Solutions
+vid: solutions
+description: ''
+hierarchy: 0
+weight: 0

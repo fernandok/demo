@@ -1,0 +1,19 @@
+uuid: c0d3a860-ba60-4ba5-8d9a-8f2dd1627e9b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_pricesix
+    - node.type.my_samples
+id: node.my_samples.field_pricesix
+field_name: field_pricesix
+entity_type: node
+bundle: my_samples
+label: pricesix
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,20 @@
+uuid: 39555e42-a48c-486c-adb4-ade50d1bf9c7
+langcode: en
+status: false
+dependencies:
+  theme:
+    - cypress_store
+_core:
+  default_config_hash: 7rR9chwXvdM2H8OYMAYx9Zj3GGlPMrZp_M3ZA4thYTk
+id: cypress_store_page_title
+theme: cypress_store
+region: '-1'
+weight: -3
+provider: null
+plugin: page_title_block
+settings:
+  id: page_title_block
+  label: 'Page title'
+  provider: core
+  label_display: '0'
+visibility: {  }

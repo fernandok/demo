@@ -1,0 +1,19 @@
+uuid: aa23f5d6-da9a-46b6-8042-592336c25986
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_samplemsrp
+    - node.type.my_samples
+id: node.my_samples.field_samplemsrp
+field_name: field_samplemsrp
+entity_type: node
+bundle: my_samples
+label: SampleMSRP
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,22 @@
+uuid: 7d319bea-5b43-4408-8f0a-22864b8487b4
+langcode: en
+status: false
+dependencies:
+  theme:
+    - cypress_store
+_core:
+  default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
+id: cypress_store_local_tasks
+theme: cypress_store
+region: '-1'
+weight: -2
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: Tabs
+  provider: core
+  label_display: '0'
+  primary: true
+  secondary: true
+visibility: {  }
