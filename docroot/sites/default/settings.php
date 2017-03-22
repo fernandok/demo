@@ -827,4 +827,5 @@ if (isset($_SERVER['DEVDESKTOP_DRUPAL_SETTINGS_DIR']) && file_exists($_SERVER['D
 // </DDSETTINGS>
 
 //$config_directories = array();
+$settings['install_profile'] = 'standard';
 $config_directories['sync'] = 'sites/default/sync';
