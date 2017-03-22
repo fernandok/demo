@@ -85,291 +85,292 @@ class ProductRestResource extends ResourceBase {
    * @return \Drupal\rest\ResourceResponse Throws exception expected.
    * Throws exception expected.
    */
- public function post($commerce_product_type, $data) {
-   // You must to implement the logic of your REST Resource here.
-   // Use current user after pass authentication to validate access.
-   if (!$this->currentUser->hasPermission('access content')) {
-     throw new AccessDeniedHttpException();
-   }
-   //For Product Taxonomy
-   $related_product = $data->related_product;
-   if($related_product != '') {
-     foreach($related_product as $products) {
-       $term_name = $products['term_name'];
-       $allparents = $products['parents'];
-       $vid = 'products';
-       if(is_array($allparents)) {
-         $pid = 0;
-         foreach($allparents as $parents) {
-           $terms = $this->checkTid($parents, $vid);
-           if($terms != 0) {
-             $pid = $terms[0]['target_id'];
-           }
-           else {
-             if($pid != 0) {
-               $pid = $pid;
-             }else {
-               $pid = 0;
-             }
-           }
-           $tags = $this->getTagIds($parents, $vid, $pid);
-           $pid = $tags[0]['target_id'];
-         }
-       }
-       else {
-         $tags = $this->getTagIds($term_name, $vid, $pid = 0);
-       }
-       $all_tag_id = $this->checkTid($term_name, $vid);
-       $product_tag_id[] = $tags[0]['target_id'];
-     }
-   } else {
-     $product_tag_id = '';
-   }
+  public function post($commerce_product_type, $data) {
+    // You must to implement the logic of your REST Resource here.
+    // Use current user after pass authentication to validate access.
+    if (!$this->currentUser->hasPermission('access content')) {
+      throw new AccessDeniedHttpException();
+    }
+    //For Product Taxonomy
+    $related_product = $data->related_product;
+    if($related_product != '') {
+      foreach($related_product as $products) {
+        $term_name = $products['term_name'];
+        $allparents = $products['parents'];
+        $vid = 'products';
+        if(is_array($allparents)) {
+          $pid = 0;
+          foreach($allparents as $parents) {
+            $terms = $this->checkTid($parents, $vid);
+            if($terms != 0) {
+              $pid = $terms[0]['target_id'];
+            }
+            else {
+              if($pid != 0) {
+                $pid = $pid;
+              }else {
+                $pid = 0;
+              }
+            }
+            $tags = $this->getTagIds($parents, $vid, $pid);
+            $pid = $tags[0]['target_id'];
+          }
+        }
+        else {
+          $tags = $this->getTagIds($term_name, $vid, $pid = 0);
+        }
+        $all_tag_id = $this->checkTid($term_name, $vid);
+        $product_tag_id[] = $tags[0]['target_id'];
+      }
+    } else {
+      $product_tag_id = '';
+    }
 
-   //Fot Applications Taxonomy
-   $related_applications = $data->related_applications;
-   if($related_applications != '') {
-     foreach($related_applications as $applications) {
-       $term_name = $applications['term_name'];
-       $allparents = $applications['parents'];
-       $vid = 'applications';
-       if(is_array($allparents)) {
-         $pid = 0;
-         foreach($allparents as $parents) {
-           $terms = $this->checkTid($parents, $vid);
-           if($terms != 0) {
-             $pid = $terms[0]['target_id'];
-           }
-           else {
-             if($pid != 0) {
-               $pid = $pid;
-             }else {
-               $pid = 0;
-             }
-           }
-           $tags = $this->getTagIds($parents, $vid, $pid);
-           $pid = $tags[0]['target_id'];
-         }
-       }
-       else {
-         $tags = $this->getTagIds($term_name, $vid, $pid = 0);
-       }
-       $all_tag_id = $this->checkTid($term_name, $vid);
-       $applications_tag_id[] = $tags[0]['target_id'];
-     }
-   } else {
-     $applications_tag_id = '';
-   }
+    //Fot Applications Taxonomy
+    $related_applications = $data->related_applications;
+    if($related_applications != '') {
+      foreach($related_applications as $applications) {
+        $term_name = $applications['term_name'];
+        $allparents = $applications['parents'];
+        $vid = 'applications';
+        if(is_array($allparents)) {
+          $pid = 0;
+          foreach($allparents as $parents) {
+            $terms = $this->checkTid($parents, $vid);
+            if($terms != 0) {
+              $pid = $terms[0]['target_id'];
+            }
+            else {
+              if($pid != 0) {
+                $pid = $pid;
+              }else {
+                $pid = 0;
+              }
+            }
+            $tags = $this->getTagIds($parents, $vid, $pid);
+            $pid = $tags[0]['target_id'];
+          }
+        }
+        else {
+          $tags = $this->getTagIds($term_name, $vid, $pid = 0);
+        }
+        $all_tag_id = $this->checkTid($term_name, $vid);
+        $applications_tag_id[] = $tags[0]['target_id'];
+      }
+    } else {
+      $applications_tag_id = '';
+    }
 
-   //For Trainings Taxonomy
-   $related_trainings = $data->related_trainings;
-   if($related_trainings != '') {
-     foreach($related_trainings as $trainings) {
-       $term_name = $trainings['term_name'];
-       $allparents = $trainings['parents'];
-       $vid = 'training';
-       if(is_array($allparents)) {
-         $pid = 0;
-         foreach($allparents as $parents) {
-           $terms = $this->checkTid($parents, $vid);
-           if($terms != 0) {
-             $pid = $terms[0]['target_id'];
-           }
-           else {
-             if($pid != 0) {
-               $pid = $pid;
-             }else {
-               $pid = 0;
-             }
-           }
-           $tags = $this->getTagIds($parents, $vid, $pid);
-           $pid = $tags[0]['target_id'];
-         }
-       }
-       else {
-         $tags = $this->getTagIds($term_name, $vid, $pid = 0);
-       }
-       $all_tag_id = $this->checkTid($term_name, $vid);
-       $trainings_tag_id[] = $tags[0]['target_id'];
-     }
-   } else {
-     $trainings_tag_id = '';
-   }
+    //For Trainings Taxonomy
+    $related_trainings = $data->related_trainings;
+    if($related_trainings != '') {
+      foreach($related_trainings as $trainings) {
+        $term_name = $trainings['term_name'];
+        $allparents = $trainings['parents'];
+        $vid = 'training';
+        if(is_array($allparents)) {
+          $pid = 0;
+          foreach($allparents as $parents) {
+            $terms = $this->checkTid($parents, $vid);
+            if($terms != 0) {
+              $pid = $terms[0]['target_id'];
+            }
+            else {
+              if($pid != 0) {
+                $pid = $pid;
+              }else {
+                $pid = 0;
+              }
+            }
+            $tags = $this->getTagIds($parents, $vid, $pid);
+            $pid = $tags[0]['target_id'];
+          }
+        }
+        else {
+          $tags = $this->getTagIds($term_name, $vid, $pid = 0);
+        }
+        $all_tag_id = $this->checkTid($term_name, $vid);
+        $trainings_tag_id[] = $tags[0]['target_id'];
+      }
+    } else {
+      $trainings_tag_id = '';
+    }
 
-   //For Document Type
-   $document_type = $data->document_type;
-   if(!empty($document_type)) {
-     $tags = $this->getTagIds($document_type, 'documentation', $pid = 0);
-     $document_type_id = $tags[0]['target_id'];
-   }else {
-     $document_type_id = '';
-   }
+    //For Document Type
+    $document_type = $data->document_type;
+    if(!empty($document_type)) {
+      $tags = $this->getTagIds($document_type, 'documentation', $pid = 0);
+      $document_type_id = $tags[0]['target_id'];
+    }else {
+      $document_type_id = '';
+    }
 
-   //For Package Family
-   $package_family = $data->package_family;
-   if(!empty($package_family)) {
-     $tags = $this->getTagIds($package_family, 'package_family', $pid = 0);
-     $package_family_id = $tags[0]['target_id'];
-   }else {
-     $package_family_id = '';
-   }
+    //For Package Family
+    $package_family = $data->package_family;
+    if(!empty($package_family)) {
+      $tags = $this->getTagIds($package_family, 'package_family', $pid = 0);
+      $package_family_id = $tags[0]['target_id'];
+    }else {
+      $package_family_id = '';
+    }
 
-   //For Spec Number
-   $spec_number = $data->spec_number;
-   if(!empty($spec_number)) {
-     $tags = $this->getTagIds($spec_number, 'spec_numbers', $pid = 0);
-     $spec_number_id = $tags[0]['target_id'];
-   }else{
-     $spec_number_id = '';
-   }
+    //For Spec Number
+    $spec_number = $data->spec_number;
+    if(!empty($spec_number)) {
+      $tags = $this->getTagIds($spec_number, 'spec_numbers', $pid = 0);
+      $spec_number_id = $tags[0]['target_id'];
+    }else{
+      $spec_number_id = '';
+    }
 
-   //For Related Solutions
-   $related_solutions = $data->related_solutions;
-   if($related_solutions != '') {
-     foreach($related_solutions as $solutions) {
-       $tags = $this->getTagIds($solutions, 'solutions', $pid = 0);
-       $related_solutions_id[] = $tags[0]['target_id'];
-     }
-   } else {
-     $related_solutions_id = '';
-   }
+    //For Related Solutions
+    $related_solutions = $data->related_solutions;
+    if($related_solutions != '') {
+      foreach($related_solutions as $solutions) {
+        $tags = $this->getTagIds($solutions, 'solutions', $pid = 0);
+        $related_solutions_id[] = $tags[0]['target_id'];
+      }
+    } else {
+      $related_solutions_id = '';
+    }
 
-   //For Related Persona
-   $related_persona = $data->related_persona;
-   if($related_persona != '') {
-     foreach($related_persona as $persona) {
-       $tags = $this->getTagIds($persona, 'persona', $pid = 0);
-       $related_persona_id[] = $tags[0]['target_id'];
-     }
-   } else {
-     $related_persona_id = '';
-   }
+    //For Related Persona
+    $related_persona = $data->related_persona;
+    if($related_persona != '') {
+      foreach($related_persona as $persona) {
+        $tags = $this->getTagIds($persona, 'persona', $pid = 0);
+        $related_persona_id[] = $tags[0]['target_id'];
+      }
+    } else {
+      $related_persona_id = '';
+    }
 
-   //For Related Content Section
-   $related_content_section = $data->related_content_section;
-   if($related_content_section != '') {
-     foreach($related_content_section as $content_section) {
-       $tags = $this->getTagIds($content_section, 'content_section', $pid = 0);
-       $related_content_section_id[] = $tags[0]['target_id'];
-     }
-   } else {
-     $related_content_section_id = '';
-   }
+    //For Related Content Section
+    $related_content_section = $data->related_content_section;
+    if($related_content_section != '') {
+      foreach($related_content_section as $content_section) {
+        $tags = $this->getTagIds($content_section, 'content_section', $pid = 0);
+        $related_content_section_id[] = $tags[0]['target_id'];
+      }
+    } else {
+      $related_content_section_id = '';
+    }
 
-   //For Related Content keywords
-   $related_content_keywords = $data->related_content_keywords;
-   if($related_content_keywords != '') {
-     foreach($related_content_keywords as $content_keywords) {
-       $tags = $this->getTagIds($content_keywords, 'content_keywords', $pid = 0);
-       $related_content_keywords_id[] = $tags[0]['target_id'];
-     }
-   } else {
-     $related_content_keywords_id = '';
-   }
+    //For Related Content keywords
+    $related_content_keywords = $data->related_content_keywords;
+    if($related_content_keywords != '') {
+      foreach($related_content_keywords as $content_keywords) {
+        $tags = $this->getTagIds($content_keywords, 'content_keywords', $pid = 0);
+        $related_content_keywords_id[] = $tags[0]['target_id'];
+      }
+    } else {
+      $related_content_keywords_id = '';
+    }
 
-   //For Search Keywords
-   $search_keywords_all = $data->search_keywords;
-   if($search_keywords_all != '') {
-     foreach($search_keywords_all as $search_keywords_val) {
-       $search_keywords[] = $search_keywords_val;
-     }
-   } else {
-       $search_keywords = '';
-   }
+    //For Search Keywords
+    $search_keywords_all = $data->search_keywords;
+    if($search_keywords_all != '') {
+      foreach($search_keywords_all as $search_keywords_val) {
+        $search_keywords[] = $search_keywords_val;
+      }
+    } else {
+      $search_keywords = '';
+    }
 
-   //For Price
-   if($data->price != '') {
-     $price = $data->price;
-   } else {
-     $price = 0;
-   }
+    //For Price
+    if($data->price != '') {
+      $price = $data->price;
+    } else {
+      $price = 0;
+    }
 
-   $product = Product::load($data->node_id);
-   if($product == '' && !isset($data->operations)) {
+    $product = Product::load($data->node_id);
+    if($product == '' && !isset($data->operations)) {
 
-     //Price Variation
-     $product_variation = ProductVariation::create(
-       array(
-         'type' => 'default',
-         'price' => new Price($price, 'USD'),
-       )
-     );
-     $product_variation->save();
+      //Price Variation
+      $product_variation = ProductVariation::create(
+        array(
+          'type' => 'default',
+          'price' => new Price($price, 'USD'),
+        )
+      );
+      $product_variation->save();
 
 
-     $product = Product::create(
-       array(
-         'type' => 'default',
-         'product_id' => $data->node_id,
-         'title' => $data->title,
-         'body' => [
-           //'summary' => '',
-           'value' => $data->body->value,
-           'format' => 'full_html',
-         ],
-         'field_version' => $data->version,
-         'field_document_source' => $data->document_source,
-         'field_alternative_addtocart_ur' => $data->addtocart_url,
-         'field_ecn_body' => $data->ecn_body,
-         'field_document_code' => $data->document_code,
-         'field_document_type' => $data->document_type,
-         'variations' => [$product_variation],
-         'field_image' => $data->image,
-         'field_related_products' => $product_tag_id,
-         'field_related_applications' => $applications_tag_id,
-         'field_related_trainings' => $trainings_tag_id,
-         'field_document_type' => $document_type_id,
-         'field_package_family' => $package_family_id,
-         'field_spec_num' => $spec_number_id,
-         'field_related_solutions' => $related_solutions_id,
-         'field_related_persona' => $related_persona_id,
-         'field_related_content_section' => $related_content_section_id,
-         'field_related_content_keywords' => $related_content_keywords_id,
-         'field_files_ref' => $data->related_files,
-         'field_search_keywords' => $search_keywords,
-         'field_node_id' => $data->node_id
-       )
-     );
-     $product->save();
-   }
-   else if ($product != '' && !isset($data->operations )) {
-     //Save Product Variation
-     $product_variation = $product->getVariations()[0]->id();
-     $product_variation = ProductVariation::load($product_variation);
-     $product_variation->type = 'default';
-     $product_variation->price = new Price($price, 'USD');
-     $product_variation->save();
-     //Save Product
-     $product->title = $data->title;
-     $product->body->value = $data->body->value;
-     $product->body->format = 'full_html';
-     $product->field_version = $data->version;
-     $product->field_document_source = $data->document_source;
-     $product->field_alternative_addtocart_ur = $data->addtocart_url;
-     $product->field_ecn_body = $data->ecn_body;
-     $product->field_document_code = $data->document_code;
-     $product->variations = [$product_variation];
-     $product->field_image = $data->image;
-     $product->field_related_products = $product_tag_id;
-     $product->field_related_applications = $applications_tag_id;
-     $product->field_related_trainings = $trainings_tag_id;
-     $product->field_document_type = $document_type_id;
-     $product->field_spec_num = $spec_number_id;
-     $product->field_related_solutions = $related_solutions_id;
-     $product->field_related_persona = $related_persona_id;
-     $product->field_related_content_section = $related_content_section_id;
-     $product->field_related_content_keywords = $related_content_keywords_id;
-     $product->field_files_ref = $data->related_files;
-     $product->field_search_keywords = $search_keywords;
-     $product->save();
-   }
-   elseif($data->operations == 'delete') {
-     $product->type = 'default';
-     $product->delete();
-   }
+      $product = Product::create(
+        array(
+          'type' => 'default',
+          'product_id' => $data->node_id,
+          'title' => $data->title,
+          'body' => [
+            //'summary' => '',
+            'value' => $data->body->value,
+            'format' => 'full_html',
+          ],
+          'field_version' => $data->version,
+          'field_document_source' => $data->document_source,
+          'field_alternative_addtocart_ur' => $data->addtocart_url,
+          'field_ecn_body' => $data->ecn_body,
+          'field_document_code' => $data->document_code,
+          'field_document_type' => $data->document_type,
+          'variations' => [$product_variation],
+          'field_image' => $data->image,
+          'field_related_products' => $product_tag_id,
+          'field_related_applications' => $applications_tag_id,
+          'field_related_trainings' => $trainings_tag_id,
+          'field_document_type' => $document_type_id,
+          'field_package_family' => $package_family_id,
+          'field_spec_num' => $spec_number_id,
+          'field_related_solutions' => $related_solutions_id,
+          'field_related_persona' => $related_persona_id,
+          'field_related_content_section' => $related_content_section_id,
+          'field_related_content_keywords' => $related_content_keywords_id,
+          'field_files_ref' => $data->related_files,
+          'field_search_keywords' => $search_keywords,
+          'field_node_id' => $data->node_id
+        )
+      );
+      $product->save();
+    }
+    else if ($product != '' && !isset($data->operations )) {
+      //Save Product Variation
+      $product_variation = $product->getVariations()[0]->id();
+      $product_variation = ProductVariation::load($product_variation);
+      $product_variation->type = 'default';
+      $product_variation->price = new Price($price, 'USD');
+      $product_variation->save();
+      //Save Product
+      $product->title = $data->title;
+      $product->body->value = $data->body->value;
+      $product->body->format = 'full_html';
+      $product->field_version = $data->version;
+      $product->field_document_source = $data->document_source;
+      $product->field_alternative_addtocart_ur = $data->addtocart_url;
+      $product->field_ecn_body = $data->ecn_body;
+      $product->field_document_code = $data->document_code;
+      $product->variations = [$product_variation];
+      $product->field_image = $data->image;
+      $product->field_related_products = $product_tag_id;
+      $product->field_related_applications = $applications_tag_id;
+      $product->field_related_trainings = $trainings_tag_id;
+      $product->field_document_type = $document_type_id;
+      $product->field_package_family = $package_family_id;
+      $product->field_spec_num = $spec_number_id;
+      $product->field_related_solutions = $related_solutions_id;
+      $product->field_related_persona = $related_persona_id;
+      $product->field_related_content_section = $related_content_section_id;
+      $product->field_related_content_keywords = $related_content_keywords_id;
+      $product->field_files_ref = $data->related_files;
+      $product->field_search_keywords = $search_keywords;
+      $product->save();
+    }
+    elseif($data->operations == 'delete') {
+      $product->type = 'default';
+      $product->delete();
+    }
 
-   return new ResourceResponse($product);
- }
+    return new ResourceResponse($product);
+  }
 
   /**
    * Utility: find term by name and vid.
