@@ -3,7 +3,6 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.my_samples.body
     - field.field.node.my_samples.field_active
     - field.field.node.my_samples.field_cansample
     - field.field.node.my_samples.field_kit_cost
@@ -25,19 +24,12 @@ dependencies:
     - node.type.my_samples
   module:
     - options
-    - text
     - user
 id: node.my_samples.default
 targetEntityType: node
 bundle: my_samples
 mode: default
 content:
-  body:
-    label: hidden
-    type: text_default
-    weight: 101
-    settings: {  }
-    third_party_settings: {  }
   field_active:
     weight: 102
     label: above
