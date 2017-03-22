@@ -23,4 +23,22 @@ content:
     third_party_settings: {  }
   links:
     weight: 100
-hidden: {  }
+hidden:
+  field_active: true
+  field_cansample: true
+  field_kit_cost: true
+  field_mpn: true
+  field_mpn_cat_a_b: true
+  field_mpnid: true
+  field_mysampl_msrp: true
+  field_mysampl_plm_status: true
+  field_pricefive_: true
+  field_pricefour: true
+  field_priceone: true
+  field_pricesix: true
+  field_pricethree: true
+  field_pricetwo: true
+  field_sample_category: true
+  field_sample_status: true
+  field_samplemsrp: true
+  field_status: true
