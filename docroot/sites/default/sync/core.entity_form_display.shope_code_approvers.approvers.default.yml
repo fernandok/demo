@@ -1,0 +1,100 @@
+uuid: 6bc4deaa-c08b-47e2-ac79-8ee7b54548ff
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.shope_code_approvers.approvers
+    - field.field.shope_code_approvers.approvers.field_cat_a_b
+    - field.field.shope_code_approvers.approvers.field_country_id
+    - field.field.shope_code_approvers.approvers.field_kitapprover
+    - field.field.shope_code_approvers.approvers.field_mpnid
+    - field.field.shope_code_approvers.approvers.field_primaryapproverleave
+    - field.field.shope_code_approvers.approvers.field_primaryapproverleavefrom
+    - field.field.shope_code_approvers.approvers.field_primaryapproverleaveto
+    - field.field.shope_code_approvers.approvers.field_shopcodeapproversid
+    - field.field.shope_code_approvers.approvers.field_shopcodeprimaryapprover
+    - field.field.shope_code_approvers.approvers.field_shopcodesecondaryapprover
+    - field.field.shope_code_approvers.approvers.field_shopcodethirdapprover
+id: shope_code_approvers.approvers.default
+targetEntityType: shope_code_approvers
+bundle: approvers
+mode: default
+content:
+  field_cat_a_b:
+    weight: 3
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_country_id:
+    weight: 4
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_kitapprover:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_mpnid:
+    weight: 6
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_primaryapproverleave:
+    weight: 7
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_primaryapproverleavefrom:
+    weight: 8
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_primaryapproverleaveto:
+    weight: 9
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_shopcodeapproversid:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_shopcodeprimaryapprover:
+    weight: 11
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_shopcodesecondaryapprover:
+    weight: 12
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+  field_shopcodethirdapprover:
+    weight: 13
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+hidden: {  }

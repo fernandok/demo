@@ -1,0 +1,19 @@
+uuid: aad7cc9b-c98e-4eec-a473-05010ae5311e
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.shope_code_approvers.approvers
+    - field.storage.shope_code_approvers.field_cat_a_b
+id: shope_code_approvers.approvers.field_cat_a_b
+field_name: field_cat_a_b
+entity_type: shope_code_approvers
+bundle: approvers
+label: cat_a_b
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
