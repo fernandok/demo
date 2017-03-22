@@ -52,7 +52,9 @@ module:
   profile: 0
   quickedit: 0
   rdf: 0
+  rest: 0
   search: 0
+  serialization: 0
   shortcut: 0
   simplesamlphp_auth: 0
   state_machine: 0
