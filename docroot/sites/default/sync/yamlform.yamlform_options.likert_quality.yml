@@ -1,0 +1,12 @@
+uuid: 217f60b9-f736-4207-9612-d868ab22f657
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - yamlform
+_core:
+  default_config_hash: jpn3wSAzyvB-_7rQbN9VA3W2kVGmJx3NUQZTbyO5b2g
+id: likert_quality
+label: 'Likert: Quality'
+options: "1: Poor\n2: Fair\n3: Good\n4: Very good\n5: Excellent\n"
