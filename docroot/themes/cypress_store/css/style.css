@@ -7525,3 +7525,22 @@ footer .region-footer .footer-block a:hover {
   text-decoration: none;
   opacity: 0.5;
 }
+footer .region-footer .footer-block .footer-menu {
+  text-align: center;
+}
+footer .region-footer .footer-block .footer-menu ul {
+  padding-left: 0;
+  margin: 15px 0;
+}
+footer .region-footer .footer-block .footer-menu ul li {
+  display: inline-block;
+  list-style-type: none;
+  margin: 0 1rem;
+}
+footer .region-footer .footer-block .footer-menu ul li a {
+  text-transform: uppercase;
+  font-weight: bold;
+}
+footer .region-footer .footer-block .footer-menu .copyright {
+  margin-top: 2em;
+}
