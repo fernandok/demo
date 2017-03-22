@@ -1,0 +1,138 @@
+uuid: 977c70bb-9909-40fa-bd37-9fb7495bc7ba
+langcode: en
+status: true
+dependencies: {  }
+uid: 1
+template: false
+id: promocode
+title: Promocode
+description: 'Enter your data into the fields below to generate a promo code. Note that all fields are required in order for a promo code to be generated.'
+elements: "part_number:\n  '#type': textfield\n  '#title': 'Part Number'\n  '#default_value': '[current-page:query:mpn]'\n  '#attributes':\n    readonly: readonly\nmsrp:\n  '#type': textfield\n  '#title': MSRP\n  '#default_value': '[current-page:query:msrp]'\n  '#field_prefix': $\n  '#attributes':\n    readonly: readonly\nquantity:\n  '#type': textfield\n  '#title': Quantity\n  '#required': true\n  '#pattern': ^\\d+$\norganization:\n  '#type': select\n  '#title': Organization\n  '#options':\n    22: 'Product Line use : Analog - Power Management ICs'\n    9: 'Product Line use : Async SRAM'\n    6: 'Product Line use : Automotive'\n    23: 'Product Line use : Auto MCU'\n    26: 'Product Line use : IoT'\n    25: 'Product Line use : MCU'\n    21: 'Product Line use : NAND Flash'\n    24: 'Product Line use : NOR Flash'\n    11: 'Product Line use : NVP - Non Volatile Products'\n    13: 'Product Line use : Sync SRAM'\n    14: 'Product Line use : TSBU - Clocks and Buffers'\n    17: 'Product Line use : USB'\n    8: University\n    20: 'Cypress Academy'\n  '#empty_option': 'Please select the approver'\n  '#states':\n    visible:\n      ':input[name=\"type\"]':\n        value: cat_b_kit\nregion:\n  '#type': select\n  '#title': Region\n  '#options':\n    1: Americas\n    2: Europe\n    3: Japan\n    4: 'Asia Pacific - China, Taiwan, India and ASEAN'\n    5: Korea\n  '#empty_option': 'Please select the approver'\n  '#states':\n    visible:\n      ':input[name=\"type\"]':\n        value: cat_a\ncustomer:\n  '#type': textfield\n  '#title': Customer\n  '#required': true\nend_user:\n  '#type': textfield\n  '#title': 'End User'\n  '#required': true\nproduction_date:\n  '#type': date\n  '#title': 'Production Date'\n  '#required': true\n  '#date_date_format': m/d/y\nopportunity_registration:\n  '#type': textfield\n  '#title': Opportunity/Registration\n  '#required': true\nproject_name:\n  '#type': textfield\n  '#title': 'Project Name'\n  '#required': true\napplication:\n  '#type': textfield\n  '#title': Application\n  '#required': true\nannual_volume:\n  '#type': textfield\n  '#title': 'Annual Volume'\n  '#required': true\ncypress_fae_fse:\n  '#type': textfield\n  '#title': 'Cypress FAE/FSE'\n  '#required': true\nadditional_details:\n  '#type': textfield\n  '#title': 'Additional Details'\n  '#required': true\ncustomer_part_number:\n  '#type': textfield\n  '#title': 'Customer Part Number'\npurchase_order_number:\n  '#type': textfield\n  '#title': 'Purchase Order Number'\npromocode_status:\n  '#type': select\n  '#title': 'Promocode Status'\n  '#options':\n    Approved: Approved\n    Rejected: Rejected\n    Modify: Modify\ncustom_emails:\n  '#type': textfield\n  '#title': 'Custom Emails'\ntype:\n  '#type': hidden\napprover:\n  '#type': textfield\n  '#title': Approver\ndiscount_amount:\n  '#type': textfield\n  '#title': 'Discount Amount'\npromo_code:\n  '#type': textfield\n  '#title': 'Promo code'\napprover_mail:\n  '#type': textfield\n  '#title': 'Approver mail'\nrequester:\n  '#type': textfield\n  '#title': Requester\nrequester_mail:\n  '#type': textfield\n  '#title': 'Requester mail'\naction_links:\n  '#type': textfield\n  '#title': 'Action links'\napprover_subject:\n  '#type': textfield\n  '#title': 'Approver subject'\nrequester_subject:\n  '#type': textfield\n  '#title': 'Requester subject'\napprover_mail_statement:\n  '#type': textfield\n  '#title': 'Approver mail statement'\nrequester_mail_statement:\n  '#type': textfield\n  '#title': 'Requester mail statement'\nadd_to_cart_link:\n  '#type': textfield\n  '#title': 'Add to cart link'\nmpn_id:\n  '#type': textfield\n  '#title': 'Mpn id'\n"
+css: ''
+javascript: ''
+settings:
+  page: true
+  page_submit_path: ''
+  page_confirm_path: ''
+  form_submit_label: ''
+  form_submit_attributes: {  }
+  form_exception_message: ''
+  form_closed_message: ''
+  form_confidential: false
+  form_confidential_message: ''
+  form_prepopulate: false
+  form_prepopulate_source_entity: false
+  form_novalidate: false
+  form_unsaved: false
+  form_disable_back: false
+  form_autofocus: false
+  form_details_toggle: false
+  wizard_progress_bar: true
+  wizard_progress_pages: false
+  wizard_progress_percentage: false
+  wizard_next_button_label: ''
+  wizard_next_button_attributes: {  }
+  wizard_prev_button_label: ''
+  wizard_prev_button_attributes: {  }
+  wizard_start_label: ''
+  wizard_complete: true
+  wizard_complete_label: ''
+  preview: 0
+  preview_next_button_label: ''
+  preview_next_button_attributes: {  }
+  preview_prev_button_label: ''
+  preview_prev_button_attributes: {  }
+  preview_message: ''
+  draft: false
+  draft_auto_save: false
+  draft_button_label: ''
+  draft_button_attributes: {  }
+  draft_saved_message: ''
+  draft_loaded_message: ''
+  confirmation_type: page
+  confirmation_message: ''
+  confirmation_url: ''
+  confirmation_attributes: {  }
+  confirmation_back: true
+  confirmation_back_label: ''
+  confirmation_back_attributes: {  }
+  limit_total: null
+  limit_total_message: ''
+  limit_user: null
+  limit_user_message: ''
+  entity_limit_total: null
+  entity_limit_user: null
+  results_disabled: false
+  results_disabled_ignore: false
+  token_update: false
+access:
+  create:
+    roles:
+      - anonymous
+      - authenticated
+    users: {  }
+  view_any:
+    roles:
+      - administrator
+    users: {  }
+  update_any:
+    roles:
+      - authenticated
+    users: {  }
+  delete_any:
+    roles:
+      - administrator
+    users: {  }
+  purge_any:
+    roles:
+      - administrator
+    users: {  }
+  view_own:
+    roles:
+      - administrator
+    users: {  }
+  update_own:
+    roles:
+      - administrator
+    users: {  }
+  delete_own:
+    roles:
+      - administrator
+    users: {  }
+handlers:
+  email:
+    id: email
+    label: 'Approver mail'
+    handler_id: email
+    status: true
+    weight: 0
+    settings:
+      to_mail: rajeshwari@valuebound.com
+      cc_mail: ''
+      bcc_mail: ''
+      from_mail: webmaster@cypress.com
+      from_name: default
+      subject: '[yamlform-submission:values:approver_subject:value]'
+      body: "<div class=\"container\" style=\"width: 55%; margin: 0 auto; border-top: 15px solid #ccc; border-left: 10px solid #ccc;\n\t border-right: 10px solid #ccc; border-bottom: 4px solid #ccc; padding: 1.6em;\">\n<div class=\"cypress-logo-img\" style=\"text-align:center;\"><a href=\"http://www.cypress.com\"><img alt=\"cypress-logo\" src=\"http://cypressextdev.prod.acquia-sites.com/themes/extranet/images/cypresslogo.png\" /></a></div>\n\n<div>\n<p>[yamlform-submission:values:approver_mail_statement]</p>\n</div>\n\n<div style=\"padding-bottom: 2%;\">Requestor:\n<div style=\"float: right\">[yamlform-submission:values:requester]</div>\n</div>\n\n<div style=\"padding-bottom: 2%;\">MPN: <span style=\"float:right\">[yamlform-submission:values:part_number]</span></div>\n\n<div style=\"padding-bottom: 2%;\">MSRP: <span style=\"float:right\">[yamlform-submission:values:msrp]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Quantity: <span style=\"float:right\">[yamlform-submission:values:quantity]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Discount Amount: <span style=\"float:right\">[yamlform-submission:values:discount_amount]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Customer: <span style=\"float:right\">[yamlform-submission:values:customer]</span></div>\n\n<div style=\"padding-bottom: 2%;\">End User: <span style=\"float:right\">[yamlform-submission:values:end_user]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Production Date: <span style=\"float:right\">[yamlform-submission:values:production_date]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Opportunity Number: <span style=\"float:right\">[yamlform-submission:values:opportunity_registration]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Project Name <span style=\"float:right\">[yamlform-submission:values:project_name]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Application <span style=\"float:right\">[yamlform-submission:values:application]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Annual Volume <span style=\"float:right\">[yamlform-submission:values:annual_volume_]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Cypress FAE/FSE <span style=\"float:right\">[yamlform-submission:values:cypress_fae_fse]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Additional Details <span style=\"float:right\">[yamlform-submission:values:additional_details]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Customer Part Number <span style=\"float:right\">[yamlform-submission:values:customer_part_number]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Purchase Order Number <span style=\"float:right\">[yamlform-submission:values:purchase_order_number]</span></div>\n\n<div style=\"[yamlform-submission:values:action_links]\"><a href=\"\t[yamlform-submission:url:edit-form]?op=approve\" target=\"_blank\">Approve</a></div>\n\n<div style=\"[yamlform-submission:values:action_links]\"><a href=\"\t[yamlform-submission:url:edit-form]?op=reject\" target=\"_blank\">Reject</a></div>\n\n<div style=\"[yamlform-submission:values:action_links]\"><a href=\"\t[yamlform-submission:url:edit-form]?op=modify\" target=\"_blank\">Modify</a></div>\n\n<div style=\"[yamlform-submission:values:add_to_cart_link]\"><a href=\"http://www.cypress.com/?app=cart&amp;action=add&amp;itemID=[yamlform-submission:values:mpn_id]&amp;type=2\"><img src=\"http://cypressextdev.prod.acquia-sites.com/themes/extranet/images/button_addcart.jpg\" /></a></div>\n</div>"
+      excluded_elements: {  }
+      html: true
+      attachments: false
+      debug: false
+  email_1:
+    id: email
+    label: 'Requester mail'
+    handler_id: email_1
+    status: true
+    weight: 1
+    settings:
+      to_mail: rajeshwari@valuebound.com
+      cc_mail: ''
+      bcc_mail: ''
+      from_mail: webmaster@cypress.com
+      from_name: default
+      subject: '[yamlform-submission:values:requester_subject:value]'
+      body: "<div class=\"wrapper\">\n<div class=\"container\" style=\"width: 55%; margin: 0 auto; border-top: 15px solid #ccc; border-left: 10px solid #ccc;\n\t border-right: 10px solid #ccc; border-bottom: 4px solid #ccc; padding: 1.6em;\">\n<div class=\"cypress-logo-img\" style=\"text-align:center;\"><a href=\"http://www.cypress.com\"><img alt=\"cypress-logo\" src=\"http://cypressextdev.prod.acquia-sites.com/themes/extranet/images/cypresslogo.png\" /></a></div>\n\n<div>\n<p>[yamlform-submission:values:requester_mail_statement]</p>\n</div>\n\n<div style=\"padding-bottom: 2%;\">Approver: <span style=\"float:right\">[yamlform-submission:values:approver]</span></div>\n\n<div style=\"padding-bottom: 2%;\">MPN: <span style=\"float:right\">[yamlform-submission:values:part_number]</span></div>\n\n<div style=\"padding-bottom: 2%;\">MSRP: <span style=\"float:right\">[yamlform-submission:values:msrp]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Quantity: <span style=\"float:right\">[yamlform-submission:values:quantity]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Discount Amount: <span style=\"float:right\">[yamlform-submission:values:discount_amount]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Customer: <span style=\"float:right\">[yamlform-submission:values:customer]</span></div>\n\n<div style=\"padding-bottom: 2%;\">End User: <span style=\"float:right\">[yamlform-submission:values:end_user]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Production Date: <span style=\"float:right\">[yamlform-submission:values:production_date]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Opportunity Number: <span style=\"float:right\">[yamlform-submission:values:opportunity_registration]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Project Name <span style=\"float:right\">[yamlform-submission:values:project_name]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Application <span style=\"float:right\">[yamlform-submission:values:application]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Annual Volume <span style=\"float:right\">[yamlform-submission:values:annual_volume_]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Cypress FAE/FSE <span style=\"float:right\">[yamlform-submission:values:cypress_fae_fse]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Additional Details <span style=\"float:right\">[yamlform-submission:values:additional_details]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Customer Part Number<span style=\"float:right\">[yamlform-submission:values:customer_part_number]</span></div>\n\n<div style=\"padding-bottom: 2%;\">Purchase Order Number<span style=\"float:right\">[yamlform-submission:values:purchase_order_number]</span></div>\n<br />\n<a href=\"[site:url]/form/promocode\" target=\"_blank\">Request a new promo code</a></div>\n</div>"
+      excluded_elements: {  }
+      html: true
+      attachments: false
+      debug: false
