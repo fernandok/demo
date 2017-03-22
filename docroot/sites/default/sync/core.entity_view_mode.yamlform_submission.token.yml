@@ -1,0 +1,10 @@
+uuid: d01f4cd8-7eb4-4c3e-ab8e-3df71984aad6
+langcode: en
+status: true
+dependencies:
+  module:
+    - yamlform
+id: yamlform_submission.token
+label: Token
+targetEntityType: yamlform_submission
+cache: true

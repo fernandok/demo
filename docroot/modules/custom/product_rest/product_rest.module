@@ -28,7 +28,7 @@ function product_rest_help($route_name, RouteMatchInterface $route_match) {
  * Implements hook_form_alter().
  */
 function product_rest_form_alter(&$form, $form_state, $form_id) {
-   if($form_id == 'commerce_product_default_add_form' || $form_id == 'commerce_product_default_edit_form') {
-     //$form['field_node_id']['#type'] = 'hidden';
-   }
+  if($form_id == 'commerce_product_default_add_form' || $form_id == 'commerce_product_default_edit_form') {
+    $form['field_node_id']['#type'] = 'hidden';
+  }
 }

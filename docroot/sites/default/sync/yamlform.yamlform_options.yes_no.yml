@@ -1,0 +1,12 @@
+uuid: 0cde62d2-7e42-4421-8184-d6f4a6f071e4
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - yamlform
+_core:
+  default_config_hash: bbCoEdZNq8D9o0aVTSwPR63PVzjEiqnFFsPEWWlLcOE
+id: yes_no
+label: Yes/No
+options: "Yes: Yes\nNo: No\n"

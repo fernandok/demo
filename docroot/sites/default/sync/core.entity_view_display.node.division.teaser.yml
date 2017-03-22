@@ -1,0 +1,19 @@
+uuid: ac092824-2f2c-4061-a078-eda1aa61a93d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.division.field_legacy_division_id
+    - node.type.division
+  module:
+    - user
+id: node.division.teaser
+targetEntityType: node
+bundle: division
+mode: teaser
+content:
+  links:
+    weight: 100
+hidden:
+  field_legacy_division_id: true

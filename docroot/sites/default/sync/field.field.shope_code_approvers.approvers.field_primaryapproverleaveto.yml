@@ -1,0 +1,19 @@
+uuid: 66ae33f9-bdc0-488d-96ee-cde6c8cfd82b
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.shope_code_approvers.approvers
+    - field.storage.shope_code_approvers.field_primaryapproverleaveto
+id: shope_code_approvers.approvers.field_primaryapproverleaveto
+field_name: field_primaryapproverleaveto
+entity_type: shope_code_approvers
+bundle: approvers
+label: Primaryapproverleaveto
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,19 @@
+uuid: d82c1d7a-6034-435b-aa2c-f722eec23573
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.shope_code_approvers.approvers
+    - field.storage.shope_code_approvers.field_shopcodeapproversid
+id: shope_code_approvers.approvers.field_shopcodeapproversid
+field_name: field_shopcodeapproversid
+entity_type: shope_code_approvers
+bundle: approvers
+label: Shopcodeapproversid
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
