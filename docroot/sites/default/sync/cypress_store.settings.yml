@@ -15,7 +15,7 @@ features:
   favicon: 1
   node_user_picture: 1
 logo:
-  path: 'public://CYPRESS_LOGO_2017_RGB_249x78px_0.png'
+  path: themes/cypress_store/images/cypress.svg
   url: ''
   use_default: 0
 table_responsive: '-1'

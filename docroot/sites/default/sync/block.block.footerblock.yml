@@ -1,0 +1,25 @@
+uuid: 9de7d329-48b7-4311-a3ba-517612d91e37
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:85920225-3367-4255-adfa-81920c034389'
+  module:
+    - block_content
+  theme:
+    - cypress_store
+id: footerblock
+theme: cypress_store
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:85920225-3367-4255-adfa-81920c034389'
+settings:
+  id: 'block_content:85920225-3367-4255-adfa-81920c034389'
+  label: 'footer block'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
