@@ -1,0 +1,18 @@
+diff --git a/src/Plugin/Field/FieldWidget/ShippingRateWidget.php b/src/Plugin/Field/FieldWidget/ShippingRateWidget.php
+index 8b7716d..854cad8 100644
+--- a/src/Plugin/Field/FieldWidget/ShippingRateWidget.php
++++ b/src/Plugin/Field/FieldWidget/ShippingRateWidget.php
+@@ -117,10 +117,11 @@ class ShippingRateWidget extends WidgetBase implements ContainerFactoryPluginInt
+       }
+     }
+ 
+-    $option_ids = array_keys($options);
++    //getting saved shipping method id
++    $default_id = $shipment->getShippingMethodId();
+     $element['#type'] = 'radios';
+     $element['#options'] = array_column($options, 'label', 'id');
+-    $element['#default_value'] = reset($option_ids);
++    $element['#default_value'] = intval($default_id);
+     // Store relevant data for extractFormValues().
+     foreach ($options as $option_id => $option) {
+       $element[$option_id]['#shipping_method_id'] = $option['shipping_method_id'];
