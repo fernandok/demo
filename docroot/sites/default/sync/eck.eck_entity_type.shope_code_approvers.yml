@@ -1,0 +1,10 @@
+uuid: 1728e046-1255-4232-8462-fc3f91424f06
+langcode: en
+status: true
+dependencies: {  }
+id: shope_code_approvers
+label: 'Shope Code Approvers'
+created: false
+changed: false
+uid: false
+title: false

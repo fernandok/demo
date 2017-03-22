@@ -1,0 +1,19 @@
+uuid: 683c55e6-d2c3-45b9-b96a-18d7dda5478d
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.shope_code_approvers.approvers
+    - field.storage.shope_code_approvers.field_shopcodesecondaryapprover
+id: shope_code_approvers.approvers.field_shopcodesecondaryapprover
+field_name: field_shopcodesecondaryapprover
+entity_type: shope_code_approvers
+bundle: approvers
+label: Shopcodesecondaryapprover
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

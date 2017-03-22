@@ -1,0 +1,9 @@
+uuid: c0d1f9d8-1643-4968-8353-f73ff2f1712e
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_entity_type.shope_code_approvers
+name: Approvers
+type: approvers
+description: 'Cypress approvers for shop-code'

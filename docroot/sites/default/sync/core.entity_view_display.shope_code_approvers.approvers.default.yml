@@ -1,0 +1,100 @@
+uuid: c9513626-a690-46c9-812b-ddf47203a9a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.shope_code_approvers.approvers
+    - field.field.shope_code_approvers.approvers.field_cat_a_b
+    - field.field.shope_code_approvers.approvers.field_country_id
+    - field.field.shope_code_approvers.approvers.field_kitapprover
+    - field.field.shope_code_approvers.approvers.field_mpnid
+    - field.field.shope_code_approvers.approvers.field_primaryapproverleave
+    - field.field.shope_code_approvers.approvers.field_primaryapproverleavefrom
+    - field.field.shope_code_approvers.approvers.field_primaryapproverleaveto
+    - field.field.shope_code_approvers.approvers.field_shopcodeapproversid
+    - field.field.shope_code_approvers.approvers.field_shopcodeprimaryapprover
+    - field.field.shope_code_approvers.approvers.field_shopcodesecondaryapprover
+    - field.field.shope_code_approvers.approvers.field_shopcodethirdapprover
+id: shope_code_approvers.approvers.default
+targetEntityType: shope_code_approvers
+bundle: approvers
+mode: default
+content:
+  field_cat_a_b:
+    weight: 0
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_country_id:
+    weight: 1
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_kitapprover:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_mpnid:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_primaryapproverleave:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_primaryapproverleavefrom:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_primaryapproverleaveto:
+    weight: 6
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_shopcodeapproversid:
+    weight: 7
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_shopcodeprimaryapprover:
+    weight: 8
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_shopcodesecondaryapprover:
+    weight: 9
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_shopcodethirdapprover:
+    weight: 10
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+hidden: {  }
