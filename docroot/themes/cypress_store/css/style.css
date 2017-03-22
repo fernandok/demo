@@ -7482,18 +7482,26 @@ body {
   background: none;
   outline: 1px dotted currentColor;
 }
-.products-submenu {
-  display: none;
-}
-.products-submenu li {
-  list-style-type: none;
-}
-.products-submenu li a {
-  font-size: 16px;
-}
-.products-submenu .parent-nav a {
-  font-weight: bold;
-}
+/*.products-submenu{
+		display: none;
+
+		li{
+			list-style-type: none;
+
+			a{
+				font-size: 16px;
+			}
+
+		}
+
+		.parent-nav{
+
+			a{
+				font-weight: bold;
+			}
+		}
+	}
+*/
 /*End styles for header*/
 /*footer styles*/
 footer {

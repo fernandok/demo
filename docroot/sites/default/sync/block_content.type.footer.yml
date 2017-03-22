@@ -1,0 +1,8 @@
+uuid: 5592190d-f16a-40cf-9b35-20dcc080f423
+langcode: en
+status: true
+dependencies: {  }
+id: footer
+label: Footer
+revision: 0
+description: 'Footer for store'

@@ -1,9 +1,9 @@
-uuid: 9de7d329-48b7-4311-a3ba-517612d91e37
+uuid: 25f558f0-f0c1-4f8f-abb9-a9fe944324b2
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:85920225-3367-4255-adfa-81920c034389'
+    - 'block_content:footer:6587bb1a-2b1d-4740-8b70-10ad353bb29d'
   module:
     - block_content
   theme:
@@ -13,9 +13,9 @@ theme: cypress_store
 region: footer
 weight: 0
 provider: null
-plugin: 'block_content:85920225-3367-4255-adfa-81920c034389'
+plugin: 'block_content:6587bb1a-2b1d-4740-8b70-10ad353bb29d'
 settings:
-  id: 'block_content:85920225-3367-4255-adfa-81920c034389'
+  id: 'block_content:6587bb1a-2b1d-4740-8b70-10ad353bb29d'
   label: 'footer block'
   provider: block_content
   label_display: '0'
