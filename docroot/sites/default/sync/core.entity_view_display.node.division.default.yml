@@ -1,0 +1,24 @@
+uuid: f2dcc6c5-fe2b-46be-b296-3491b63a90c6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.division.field_legacy_division_id
+    - node.type.division
+  module:
+    - user
+id: node.division.default
+targetEntityType: node
+bundle: division
+mode: default
+content:
+  field_legacy_division_id:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  links:
+    weight: 100
+hidden: {  }
