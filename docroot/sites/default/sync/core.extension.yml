@@ -26,6 +26,7 @@ module:
   contact: 0
   contextual: 0
   cypress_store_cypresscommerce: 0
+  cypress_store_vendor: 0
   datetime: 0
   dblog: 0
   dynamic_page_cache: 0
