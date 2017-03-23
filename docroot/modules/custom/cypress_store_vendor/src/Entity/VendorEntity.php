@@ -9,7 +9,7 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *
  * @ConfigEntityType(
  *   id = "vendor_entity",
- *   label = @Translation("Vendor entity"),
+ *   label = @Translation("Vendor"),
  *   handlers = {
  *     "list_builder" = "Drupal\cypress_store_vendor\VendorEntityListBuilder",
  *     "form" = {
@@ -30,11 +30,11 @@ use Drupal\Core\Config\Entity\ConfigEntityBase;
  *     "description" = "description"
  *   },
  *   links = {
- *     "canonical" = "/admin/structure/vendor_entity/{vendor_entity}",
- *     "add-form" = "/admin/structure/vendor_entity/add",
- *     "edit-form" = "/admin/structure/vendor_entity/{vendor_entity}/edit",
- *     "delete-form" = "/admin/structure/vendor_entity/{vendor_entity}/delete",
- *     "collection" = "/admin/structure/vendor_entity"
+ *     "canonical" = "/admin/structure/vendor/{vendor_entity}",
+ *     "add-form" = "/admin/structure/vendor/add",
+ *     "edit-form" = "/admin/structure/vendor/{vendor_entity}/edit",
+ *     "delete-form" = "/admin/structure/vendor/{vendor_entity}/delete",
+ *     "collection" = "/admin/structure/vendor"
  *   }
  * )
  */

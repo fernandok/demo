@@ -13,7 +13,7 @@ class VendorEntityListBuilder extends ConfigEntityListBuilder {
    * {@inheritdoc}
    */
   public function buildHeader() {
-    $header['label'] = $this->t('Vendor entity');
+    $header['label'] = $this->t('Vendor');
     return $header + parent::buildHeader();
   }
 
