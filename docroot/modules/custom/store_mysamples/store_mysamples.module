@@ -303,7 +303,7 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
         then sa.field_shopcodesecondaryapprover_value
         else pa.field_shopcodeprimaryapprover_value
         end as approver
-        FROM sshope_code_approvers__626119b36b pa
+        FROM shope_code_approvers__626119b36b pa
         LEFT JOIN shope_code_approvers__e1d9a69442 palt
         on pa.entity_id = palt.entity_id and pa.revision_id = palt.revision_id
         LEFT JOIN shope_code_approvers__d91892ceeb palf
@@ -404,7 +404,7 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
       $results = $query->execute()->fetchAll();
       foreach($results as $result) {
         $sample_status = $result->field_sample_status_value;
-        if ($sample_status == '2') {
+        if ($sample_status == 2) {
           // $add_to_cart_link = '<a href="http://www.cypress.com/?app=cart&amp;action=add&amp;itemID=' . $mpn_id . '&type=2"><img src="/sites/default/files/button_addcart3.jpg" /></a>';
           $add_to_cart_link = 'width: 32%; display: inline-block; text-align: center;';
           break;
