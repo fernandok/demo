@@ -1,0 +1,7 @@
+uuid: a9121d41-e7ec-4f2c-bc04-7067bb851fb8
+langcode: en
+status: true
+dependencies: {  }
+id: test
+label: test1
+description: "cypress_store_vendor.vendor_entity.*:\r\n  type: config_entity\r\n  label: 'Vendor entity config'\r\n  mapping:\r\n    id:\r\n      type: string\r\n      label: 'ID'\r\n    label:\r\n      type: label\r\n      label: 'Label'\r\n    description:\r\n      type: string\r\n      label: 'Vendor Configuration'\r\n    uuid:\r\n      type: string"

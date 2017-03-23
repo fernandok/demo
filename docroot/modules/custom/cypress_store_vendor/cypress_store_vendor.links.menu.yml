@@ -1,0 +1,8 @@
+# Vendor entity menu items definition
+entity.vendor_entity.collection:
+  title: 'Vendor entity'
+  route_name: entity.vendor_entity.collection
+  description: 'List Vendor entity (bundles)'
+  parent: system.admin_structure
+  weight: 99
+
