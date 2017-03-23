@@ -288,6 +288,7 @@ class ProductRestResource extends ResourceBase {
     if($product == '' && !isset($data->operations)) {
 
       //Price Variation
+
       $product_variation = ProductVariation::create(
         array(
           'type' => 'default',
@@ -307,6 +308,7 @@ class ProductRestResource extends ResourceBase {
             'value' => $data->body->value,
             'format' => 'full_html',
           ],
+          'stores' => 1,
           'field_version' => $data->version,
           'field_document_source' => $data->document_source,
           'field_alternative_addtocart_ur' => $data->addtocart_url,
@@ -328,6 +330,7 @@ class ProductRestResource extends ResourceBase {
           'field_files_ref' => $data->related_files,
           'field_search_keywords' => $search_keywords,
           'field_node_id' => $data->node_id
+
         )
       );
       $product->save();
@@ -349,6 +352,7 @@ class ProductRestResource extends ResourceBase {
       $product->field_ecn_body = $data->ecn_body;
       $product->field_document_code = $data->document_code;
       $product->variations = [$product_variation];
+      $product->stores = 1;
       $product->field_image = $data->image;
       $product->field_related_products = $product_tag_id;
       $product->field_related_applications = $applications_tag_id;
