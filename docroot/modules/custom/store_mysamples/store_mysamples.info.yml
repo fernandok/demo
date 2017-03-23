@@ -1,0 +1,5 @@
+name: store_mysamples
+type: module
+description: MySamples Integration for Store
+core: 8.x
+package: Custom
