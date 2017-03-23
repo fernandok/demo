@@ -1,5 +1,5 @@
 order_routing.admin_settings:
-  path: '/admin/config/order_routing'
+  path: '/admin/config/system/order_routing'
   defaults:
     _form: '\Drupal\cypress_store_vendor\Form\OrderRoutingSettingsForm'
   requirements:
