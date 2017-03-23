@@ -1,0 +1,5 @@
+promocode-submission:
+  js:
+    js/promocode_auto_submit.js: {}
+  dependencies:
+    - core/jquery

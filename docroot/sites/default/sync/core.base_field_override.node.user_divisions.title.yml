@@ -1,0 +1,18 @@
+uuid: 51cc7783-2711-4ebc-8317-477c10f34ca9
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.user_divisions
+id: node.user_divisions.title
+field_name: title
+entity_type: node
+bundle: user_divisions
+label: 'Division ID or Name'
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
