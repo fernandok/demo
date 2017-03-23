@@ -32,7 +32,6 @@ class VendorEntityForm extends EntityForm {
     $form['description'] = array(
       '#type' => 'textarea',
       '#title' => $this->t('Vendor Configuration'),
-      '#maxlength' => 1000,
       '#default_value' => $vendor_entity->getDescription(),
       '#description' => $this->t("Description should be in YAML format."),
       '#required' => TRUE,
@@ -63,7 +62,7 @@ class VendorEntityForm extends EntityForm {
     try {
       $value =  $yaml->parse($content, TRUE);
       if(!is_array($value)) {
-        return $form_state->setErrorByName('description', 'Vendor Configuration should be an YAML Format');
+        return $form_state->setErrorByName('description', 'Vendor Configuration should be in YAML Format');
       }
     } catch (ParseException $e) {
       return $form_state->setErrorByName('description', $e->getMessage());
