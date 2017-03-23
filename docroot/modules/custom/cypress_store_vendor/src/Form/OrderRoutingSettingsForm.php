@@ -52,7 +52,7 @@ class OrderRoutingSettingsForm extends ConfigFormBase {
     try {
       $value =  $yaml->parse($order_routing, TRUE);
       if(!is_array($value)) {
-        return $form_state->setErrorByName('description', 'Vendor Configuration should be in YAML Format');
+        return $form_state->setErrorByName('description', 'Order Routing Configuration should be in YAML Format');
       }
     } catch (ParseException $e) {
       return $form_state->setErrorByName('description', $e->getMessage());
