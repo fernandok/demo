@@ -1,6 +1,6 @@
 uuid: cf707cb2-4058-4a05-935b-3dab7911fd46
 langcode: en
-status: true
+status: false
 dependencies:
   content:
     - 'block_content:basic:0763bf7f-36f2-4d7c-85f2-1b0218c117a2'
@@ -10,8 +10,8 @@ dependencies:
     - cypress_store
 id: primarymenu
 theme: cypress_store
-region: header
-weight: -7
+region: '-1'
+weight: 3
 provider: null
 plugin: 'block_content:0763bf7f-36f2-4d7c-85f2-1b0218c117a2'
 settings:
