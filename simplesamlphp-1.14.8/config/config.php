@@ -3,9 +3,9 @@
  * The configuration of SimpleSAMLphp
  *
  */
-//$sql['dsn'] = 'mysql:host=localhost;dbname=store';
-//$sql['username'] = 'root';
-//$sql['password'] = 'root';
+$sql['dsn'] = 'mysql:host=localhost;dbname=cypress_store';
+$sql['username'] = 'root';
+$sql['password'] = 'password124';
 if (!empty($_ENV['AH_SITE_ENVIRONMENT'])) {
   switch ($_ENV['AH_SITE_ENVIRONMENT']) {
     case 'dev2':

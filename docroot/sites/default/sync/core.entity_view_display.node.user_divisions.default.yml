@@ -1,0 +1,24 @@
+uuid: 1e5cb137-56fb-4471-9431-e23658cee719
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.user_divisions.field_legacy_user_id
+    - node.type.user_divisions
+  module:
+    - user
+id: node.user_divisions.default
+targetEntityType: node
+bundle: user_divisions
+mode: default
+content:
+  field_legacy_user_id:
+    weight: 102
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  links:
+    weight: 100
+hidden: {  }

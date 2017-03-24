@@ -21,7 +21,9 @@
 #sm-w {
   border: 2px solid #a8a8a8;
   padding: 10px;
-  margin-left: 5px;
+  margin-left: 25px;
+  margin-right: 25px;
+  line-height: 22px;
 }
 .address-boxes-sec-1 {
   margin: 2px auto;

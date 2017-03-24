@@ -1,0 +1,25 @@
+uuid: bfe910ca-d015-48ef-8629-de2048142564
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:footer:107605c5-b499-41d8-b335-a385dbd8c275'
+  module:
+    - block_content
+  theme:
+    - cypress_store
+id: contactus
+theme: cypress_store
+region: footer
+weight: 0
+provider: null
+plugin: 'block_content:107605c5-b499-41d8-b335-a385dbd8c275'
+settings:
+  id: 'block_content:107605c5-b499-41d8-b335-a385dbd8c275'
+  label: 'Contact Us'
+  provider: block_content
+  label_display: visible
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

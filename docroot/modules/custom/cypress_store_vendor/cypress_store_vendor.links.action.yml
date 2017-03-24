@@ -1,0 +1,6 @@
+entity.vendor_entity.add_form:
+  route_name: 'entity.vendor_entity.add_form'
+  title: 'Add Vendor'
+  appears_on:
+    - entity.vendor_entity.collection
+
