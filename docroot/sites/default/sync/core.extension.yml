@@ -15,6 +15,9 @@ module:
   commerce_cart: 0
   commerce_checkout: 0
   commerce_order: 0
+  commerce_payment: 0
+  commerce_payment_example: 0
+  commerce_paypal: 0
   commerce_price: 0
   commerce_product: 0
   commerce_promotion: 0
@@ -26,7 +29,6 @@ module:
   contact: 0
   contextual: 0
   cypress_store_cypresscommerce: 0
-  cypress_store_vendor: 0
   datetime: 0
   dblog: 0
   dynamic_page_cache: 0

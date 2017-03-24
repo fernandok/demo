@@ -117,7 +117,7 @@ handlers:
       excluded_elements: {  }
       html: true
       attachments: false
-      debug: true
+      debug: false
   email_1:
     id: email
     label: 'Requester mail'
@@ -135,4 +135,4 @@ handlers:
       excluded_elements: {  }
       html: true
       attachments: false
-      debug: true
+      debug: false

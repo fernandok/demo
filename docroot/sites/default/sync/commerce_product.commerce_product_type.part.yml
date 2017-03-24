@@ -1,0 +1,10 @@
+uuid: 95ea0a01-7309-4568-bc5c-7793386befb3
+langcode: en
+status: true
+dependencies: {  }
+id: part
+label: Part
+description: 'Map the Part Products from cypress legacy system'
+variationType: default
+injectVariationFields: true
+traits: {  }
