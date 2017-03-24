@@ -192,6 +192,7 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
     $pane_form['#wrapper_id'] = Html::getUniqueId('shipping-information-wrapper');
     $pane_form['#prefix'] = '<div id="' . $pane_form['#wrapper_id'] . '">';
     $pane_form['#suffix'] = '</div>';
+    $pane_form['#attached']['library'][] = 'commerce_shipping/shipping_checkout';
 
     $pane_form['shipping_profile'] = [
       '#type' => 'commerce_profile_select',
@@ -206,6 +207,9 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
       '#ajax' => [
         'callback' => [get_class($this), 'ajaxRefresh'],
         'wrapper' => $pane_form['#wrapper_id'],
+      ],
+      '#attributes' => [
+        'class' => ['js-hide'],
       ],
     ];
 
