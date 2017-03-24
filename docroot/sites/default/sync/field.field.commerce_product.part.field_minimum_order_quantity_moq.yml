@@ -1,0 +1,19 @@
+uuid: 2d6c8c94-2774-4c19-8aaf-cc0b92c792df
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+    - field.storage.commerce_product.field_minimum_order_quantity_moq
+id: commerce_product.part.field_minimum_order_quantity_moq
+field_name: field_minimum_order_quantity_moq
+entity_type: commerce_product
+bundle: part
+label: 'Minimum Order Quantity (MOQ)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

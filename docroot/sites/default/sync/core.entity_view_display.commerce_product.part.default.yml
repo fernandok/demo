@@ -5,10 +5,52 @@ dependencies:
   config:
     - commerce_product.commerce_product_type.part
     - field.field.commerce_product.part.body
+    - field.field.commerce_product.part.field_can_sample
+    - field.field.commerce_product.part.field_development_kit
+    - field.field.commerce_product.part.field_dqr_specnum_ref
+    - field.field.commerce_product.part.field_eccn
+    - field.field.commerce_product.part.field_eccn_suball
+    - field.field.commerce_product.part.field_estimated_lead_time_days
+    - field.field.commerce_product.part.field_hts_code
+    - field.field.commerce_product.part.field_inventory
+    - field.field.commerce_product.part.field_lead_ball_finish
+    - field.field.commerce_product.part.field_minimum_order_quantity_moq
+    - field.field.commerce_product.part.field_moisture_sensitivity_level
+    - field.field.commerce_product.part.field_mpn_id
+    - field.field.commerce_product.part.field_no_of_pins
+    - field.field.commerce_product.part.field_order_close
+    - field.field.commerce_product.part.field_order_entry_closed_date
+    - field.field.commerce_product.part.field_order_increment
+    - field.field.commerce_product.part.field_package
+    - field.field.commerce_product.part.field_package_type
+    - field.field.commerce_product.part.field_part_family
+    - field.field.commerce_product.part.field_pb_free
+    - field.field.commerce_product.part.field_peak_reflow_temp
+    - field.field.commerce_product.part.field_pqr_specnum_ref
+    - field.field.commerce_product.part.field_pqtp_name
+    - field.field.commerce_product.part.field_price_five
+    - field.field.commerce_product.part.field_price_four
+    - field.field.commerce_product.part.field_price_one
+    - field.field.commerce_product.part.field_price_six
+    - field.field.commerce_product.part.field_price_three
+    - field.field.commerce_product.part.field_price_two
+    - field.field.commerce_product.part.field_product_family
+    - field.field.commerce_product.part.field_prune_start_date
+    - field.field.commerce_product.part.field_related_content_keywords
+    - field.field.commerce_product.part.field_related_content_section
+    - field.field.commerce_product.part.field_related_persona
+    - field.field.commerce_product.part.field_related_products
+    - field.field.commerce_product.part.field_rohs_compliant
+    - field.field.commerce_product.part.field_shipping_closed
+    - field.field.commerce_product.part.field_show_price
+    - field.field.commerce_product.part.field_standard_pack_quantity
+    - field.field.commerce_product.part.field_status_display
+    - field.field.commerce_product.part.field_status_raw
     - field.field.commerce_product.part.stores
     - field.field.commerce_product.part.variations
   module:
     - commerce_product
+    - datetime
     - text
 id: commerce_product.part.default
 targetEntityType: commerce_product
@@ -21,6 +63,323 @@ content:
     weight: -4
     settings: {  }
     third_party_settings: {  }
+  field_can_sample:
+    weight: 40
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_development_kit:
+    weight: 15
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_dqr_specnum_ref:
+    weight: 47
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_eccn:
+    weight: 32
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_eccn_suball:
+    weight: 33
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_estimated_lead_time_days:
+    weight: 30
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_hts_code:
+    weight: 31
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_inventory:
+    weight: 41
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+  field_lead_ball_finish:
+    weight: 38
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_minimum_order_quantity_moq:
+    weight: 28
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_moisture_sensitivity_level:
+    weight: 34
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_mpn_id:
+    weight: 11
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_no_of_pins:
+    weight: 26
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_order_close:
+    weight: 12
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+  field_order_entry_closed_date:
+    weight: 51
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+  field_order_increment:
+    weight: 29
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_package:
+    weight: 24
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_package_type:
+    weight: 25
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_part_family:
+    weight: 44
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_pb_free:
+    weight: 37
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_peak_reflow_temp:
+    weight: 35
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_pqr_specnum_ref:
+    weight: 46
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_pqtp_name:
+    weight: 42
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_price_five:
+    weight: 21
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+  field_price_four:
+    weight: 20
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+  field_price_one:
+    weight: 17
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+  field_price_six:
+    weight: 22
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+  field_price_three:
+    weight: 19
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+  field_price_two:
+    weight: 18
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+  field_product_family:
+    weight: 16
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_prune_start_date:
+    weight: 14
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+  field_related_content_keywords:
+    weight: 50
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_related_content_section:
+    weight: 49
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_related_persona:
+    weight: 48
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_related_products:
+    weight: 45
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+  field_rohs_compliant:
+    weight: 36
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_shipping_closed:
+    weight: 13
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+  field_show_price:
+    weight: 23
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
+  field_standard_pack_quantity:
+    weight: 27
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_status_display:
+    weight: 43
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+  field_status_raw:
+    weight: 39
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
   variations:
     type: commerce_add_to_cart
     weight: 10

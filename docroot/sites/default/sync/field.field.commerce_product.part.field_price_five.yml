@@ -1,0 +1,23 @@
+uuid: 4e130840-fe56-4ecb-8de6-d537962e4f43
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+    - field.storage.commerce_product.field_price_five
+id: commerce_product.part.field_price_five
+field_name: field_price_five
+entity_type: commerce_product
+bundle: part
+label: 'Price five'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: float

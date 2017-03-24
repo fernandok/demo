@@ -1,0 +1,21 @@
+uuid: 8260fa1b-c0f1-4460-a3dd-0b1131afa974
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_minimum_order_quantity_moq
+field_name: field_minimum_order_quantity_moq
+entity_type: commerce_product
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

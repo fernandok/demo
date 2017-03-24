@@ -1,0 +1,18 @@
+uuid: 04375fa8-5a23-4127-ae70-c548b289756f
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_price_two
+field_name: field_price_two
+entity_type: commerce_product
+type: float
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

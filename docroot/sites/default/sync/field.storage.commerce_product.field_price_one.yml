@@ -1,0 +1,18 @@
+uuid: ceb770c0-ddba-4b22-8595-06760a983a31
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_price_one
+field_name: field_price_one
+entity_type: commerce_product
+type: float
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

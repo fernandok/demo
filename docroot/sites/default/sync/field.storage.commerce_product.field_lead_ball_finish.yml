@@ -1,0 +1,21 @@
+uuid: 63fb0741-69e9-4d8f-8d01-ff1c5e2b4fe9
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_lead_ball_finish
+field_name: field_lead_ball_finish
+entity_type: commerce_product
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
