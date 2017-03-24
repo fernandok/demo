@@ -1,0 +1,8 @@
+uuid: f6b96551-3fae-429a-9667-e211c24f1bc9
+langcode: en
+status: true
+dependencies: {  }
+id: primary_menu
+label: 'Primary Menu'
+revision: 0
+description: 'Primary menu for header'

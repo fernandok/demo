@@ -1,0 +1,21 @@
+uuid: e2ecdfd1-ec60-40b1-a9b4-4752e8036faf
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.primary_menu
+    - field.field.block_content.primary_menu.body
+  module:
+    - text
+id: block_content.primary_menu.default
+targetEntityType: block_content
+bundle: primary_menu
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }
