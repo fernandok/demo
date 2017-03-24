@@ -1,0 +1,21 @@
+uuid: 2d0e92f2-42dc-4a95-8c10-c8508fd639f3
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+    - field.storage.commerce_product.field_order_entry_closed_date
+  module:
+    - datetime
+id: commerce_product.part.field_order_entry_closed_date
+field_name: field_order_entry_closed_date
+entity_type: commerce_product
+bundle: part
+label: 'Order Entry Closed Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

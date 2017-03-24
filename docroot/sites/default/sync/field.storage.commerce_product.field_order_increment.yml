@@ -1,0 +1,21 @@
+uuid: e8f413bb-f83c-4ba5-b99a-b03bf8a908a6
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_order_increment
+field_name: field_order_increment
+entity_type: commerce_product
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

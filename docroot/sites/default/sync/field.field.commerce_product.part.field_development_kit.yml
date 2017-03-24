@@ -1,0 +1,19 @@
+uuid: 7438c2db-2e6a-46c4-9809-69dcda217dd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+    - field.storage.commerce_product.field_development_kit
+id: commerce_product.part.field_development_kit
+field_name: field_development_kit
+entity_type: commerce_product
+bundle: part
+label: 'Development Kit'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

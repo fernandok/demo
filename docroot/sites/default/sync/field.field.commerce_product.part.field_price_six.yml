@@ -1,0 +1,23 @@
+uuid: 4f41d869-ddb7-415f-8928-11f558554fa7
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+    - field.storage.commerce_product.field_price_six
+id: commerce_product.part.field_price_six
+field_name: field_price_six
+entity_type: commerce_product
+bundle: part
+label: 'Price six'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: float

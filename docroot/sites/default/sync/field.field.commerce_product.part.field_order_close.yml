@@ -1,0 +1,21 @@
+uuid: 1fd3c8d0-c053-46c4-bb40-241a31f202af
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+    - field.storage.commerce_product.field_order_close
+  module:
+    - datetime
+id: commerce_product.part.field_order_close
+field_name: field_order_close
+entity_type: commerce_product
+bundle: part
+label: 'Order Close Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

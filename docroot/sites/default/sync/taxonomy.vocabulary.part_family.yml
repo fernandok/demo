@@ -1,0 +1,9 @@
+uuid: df04bfcb-13ab-48c7-8aba-85f0654dc7af
+langcode: en
+status: true
+dependencies: {  }
+name: 'Part Family'
+vid: part_family
+description: ''
+hierarchy: 0
+weight: 0

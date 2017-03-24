@@ -1,0 +1,18 @@
+uuid: a821953f-5220-45cb-9daf-802f7ed85307
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+id: commerce_product.field_rohs_compliant
+field_name: field_rohs_compliant
+entity_type: commerce_product
+type: boolean
+settings: {  }
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

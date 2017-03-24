@@ -1,0 +1,20 @@
+uuid: b7b6250c-134b-43cc-80ab-65dbb32b2bbf
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_product
+    - datetime
+id: commerce_product.field_shipping_closed
+field_name: field_shipping_closed
+entity_type: commerce_product
+type: datetime
+settings:
+  datetime_type: date
+module: datetime
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
