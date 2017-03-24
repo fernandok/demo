@@ -1,0 +1,25 @@
+uuid: cf707cb2-4058-4a05-935b-3dab7911fd46
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:0763bf7f-36f2-4d7c-85f2-1b0218c117a2'
+  module:
+    - block_content
+  theme:
+    - cypress_store
+id: primarymenu
+theme: cypress_store
+region: header
+weight: -7
+provider: null
+plugin: 'block_content:0763bf7f-36f2-4d7c-85f2-1b0218c117a2'
+settings:
+  id: 'block_content:0763bf7f-36f2-4d7c-85f2-1b0218c117a2'
+  label: primary-menu
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
