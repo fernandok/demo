@@ -198,7 +198,7 @@ class PartRestResource extends ResourceBase {
       $product_variation = ProductVariation::create(
         array(
           'type' => 'part_store',
-          'price' => new Price('3', 'USD'),
+          'price' => new Price('0', 'USD'),
         )
       );
       $product_variation->save();
@@ -264,7 +264,7 @@ class PartRestResource extends ResourceBase {
       $part_variation = $part->getVariations()[0]->id();
       $part_variation = ProductVariation::load($part_variation);
       $part_variation->type = 'part_store';
-      $part_variation->price = new Price('3', 'USD');
+      $part_variation->price = new Price('0', 'USD');
       $part_variation->save();
 
       // Save Part Product.
@@ -282,8 +282,43 @@ class PartRestResource extends ResourceBase {
       $part->field_lead_ball_finish = $data->lead_ball_finish;
       $part->field_minimum_order_quantity_moq = $data->minimum_order_quantity_moq;
       $part->field_moisture_sensitivity_level = $data->moisture_sensitivity_level;
+      $part->field_mpn_id = $data->mpn_id;
+      $part->field_no_of_pins = $data->no_of_pins;
+      $part->field_order_close = $o_close;
+      $part->field_order_entry_closed_date = date('Y-m-d\TH:i:s' ,$data->order_entry_closed_date);
+      $part->field_order_increment = $data->order_increment;
+      $part->field_package = $data->package;
+      $part->field_package_type = $data->package_type;
+      $part->field_pb_free = $data->pb_free;
+      $part->field_peak_reflow_temp = $data->peak_reflow_temp;
+      $part->field_pqtp_name = $data->pqtp_name;
+      $part->field_price_five = $data->price_five;
+      $part->field_price_four = $data->price_four;
+      $part->field_price_one = $data->price_one;
+      $part->field_price_six = $data->price_six;
+      $part->field_price_three = $data->price_three;
+      $part->field_price_two = $data->price_two;
+      $part->field_product_family = $data->product_family;
+      $part->field_prune_start_date = $p_notice_date;
+      $part->field_rohs_compliant = $data->rohs_compliant;
+      $part->field_show_price = $data->show_price;
+      $part->field_standard_pack_quantity = $data->standard_pack_quantity;
+      $part->field_status_display = $data->status_display;
+      $part->field_status_raw = $data->status;
+      $part->field_related_persona = $related_persona_id;
+      $part->field_related_content_section = $related_content_section_id;
+      $part->field_related_content_keywords = $related_content_keywords_id;
+      $part->field_related_products = $product_tag_id;
+      $part->field_part_family = $data->part_family;
+      $part->field_pqr_specnum_ref = $package_spec_ref_id;
+      $part->field_dqr_specnum_ref = $device_spec_ref_id;
       $part->save();
     }
+    elseif($data->operations == 'delete') {
+      $part->type = 'part';
+      $part->delete();
+    }
+    
     return new ResourceResponse($part);
   }
 
