@@ -1,0 +1,10 @@
+uuid: ecef9632-ff0e-4c83-9197-477b30c28f2d
+langcode: en
+status: true
+dependencies: {  }
+id: part_store
+label: 'Part Store'
+orderItemType: default
+generateTitle: true
+traits:
+  - purchasable_entity_shippable

@@ -1,0 +1,25 @@
+uuid: 823f7a4e-5554-4d06-95e8-66d26e58c787
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_variation_type.part_store
+    - field.field.commerce_product_variation.part_store.weight
+  module:
+    - commerce_price
+id: commerce_product_variation.part_store.default
+targetEntityType: commerce_product_variation
+bundle: part_store
+mode: default
+content:
+  price:
+    type: commerce_price_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden:
+  created: true
+  sku: true
+  status: true
+  uid: true
+  weight: true

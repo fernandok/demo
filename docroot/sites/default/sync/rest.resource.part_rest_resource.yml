@@ -1,0 +1,17 @@
+uuid: 59a3a78b-49ab-42e6-b9bc-acb3f251e813
+langcode: en
+status: true
+dependencies:
+  module:
+    - basic_auth
+    - product_rest
+    - serialization
+id: part_rest_resource
+plugin_id: part_rest_resource
+granularity: method
+configuration:
+  POST:
+    supported_formats:
+      - json
+    supported_auth:
+      - basic_auth
