@@ -195,7 +195,6 @@ class PartRestResource extends ResourceBase {
 
     $part = Product::load($data->node_id);
     if($part == '' && !isset($data->operations)) {
-
       $product_variation = ProductVariation::create(
         array(
           'type' => 'part_store',
@@ -258,6 +257,31 @@ class PartRestResource extends ResourceBase {
           'variations' => [$product_variation]
         )
       );
+      $part->save();
+    }
+    elseif ($part != '' && !isset($data->operations)) {
+      // Save Part Variation.
+      $part_variation = $part->getVariations()[0]->id();
+      $part_variation = ProductVariation::load($part_variation);
+      $part_variation->type = 'part_store';
+      $part_variation->price = new Price('3', 'USD');
+      $part_variation->save();
+
+      // Save Part Product.
+      $part->title = $data->title;
+      $part->body->value = $data->body->value;
+      $part->body->format = 'full_html';
+      $part->field_can_sample = $data->can_sample;
+      $part->field_development_kit = $data->development_kit;
+      $part->field_eccn = $data->eccn;
+      $part->field_eccn_suball = $data->eccn_suball;
+      $part->field_estimated_lead_time_days = $data->estimated_lead_time_days;
+      $part->field_hts_code = $data->hts_code;
+      $part->field_inventory = $data->inventory;
+      $part->field_shipping_closed = $last_date;
+      $part->field_lead_ball_finish = $data->lead_ball_finish;
+      $part->field_minimum_order_quantity_moq = $data->minimum_order_quantity_moq;
+      $part->field_moisture_sensitivity_level = $data->moisture_sensitivity_level;
       $part->save();
     }
     return new ResourceResponse($part);
@@ -328,5 +352,35 @@ class PartRestResource extends ResourceBase {
     return $tag_ids;
   }
 
+  /**
+   * Method to check whether the term id is already there
+   *
+   * @param string $name
+   *   Term name.
+   * @param int $vid
+   *   Term vid.
+   * @param int $pid
+   *   Parent term vid.
+   *
+   * @return int
+   *   Term id or 0 if none.
+   */
+  private function checkTid($name = NULL, $vid = NULL) {
+
+    $properties = [];
+    if (!empty($name)) {
+      $properties['name'] = $name;
+    }
+    if (!empty($vid)) {
+      $properties['vid'] = $vid;
+    }
+    //for single term insertion
+    $terms = \Drupal::entityManager()->getStorage('taxonomy_term')->loadByProperties($properties);
+    $term = reset($terms);
+    if ($term) {
+      $tag_ids[] = ['target_id' => $term];
+    }else
+      return !empty($term) ? $term->id() : 0;
+  }
 
 }
