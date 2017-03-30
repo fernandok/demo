@@ -21,8 +21,8 @@ use Psr\Log\LoggerInterface;
  *   label = @Translation("Product rest resource"),
  *   serialization_class = "Drupal\commerce_product\Entity\Product",
  *   uri_paths = {
- *     "canonical" = "/api/product/{commerce_product_type}",
- *     "https://www.drupal.org/link-relations/create" = "/api/product/{commerce_product_type}"
+ *     "canonical" = "/api/product/document/{commerce_product_type}",
+ *     "https://www.drupal.org/link-relations/create" = "/api/product/document/{commerce_product_type}"
  *   }
  * )
  */

@@ -1,4 +1,4 @@
-uuid: b8129509-f8ad-4157-8282-5a3bd54133df
+uuid: 59a3a78b-49ab-42e6-b9bc-acb3f251e813
 langcode: en
 status: true
 dependencies:
@@ -6,8 +6,8 @@ dependencies:
     - basic_auth
     - product_rest
     - serialization
-id: product_rest_resource
-plugin_id: product_rest_resource
+id: part_rest_resource
+plugin_id: part_rest_resource
 granularity: method
 configuration:
   POST:

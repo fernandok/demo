@@ -1,0 +1,16 @@
+<?php
+/**
+ * Implements hook_mail().
+ */
+function cypress_store_vendor_mail($key, &$message, $params) {
+$options = array(
+  'langcode' => $message['langcode'],
+);
+ switch ($key) {
+   case 'logger':
+     $message['from'] = \Drupal::config('system.site')->get('mail');
+     $message['subject'] = t('logger: @title', array('@title' => $params['title']), $options);
+     $message['body'][] = $params['message'];
+     break;
+ }
+}

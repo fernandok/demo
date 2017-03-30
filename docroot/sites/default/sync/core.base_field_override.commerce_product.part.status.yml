@@ -1,0 +1,22 @@
+uuid: c86f7d0d-27f1-4a67-85ca-7e967809bded
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+id: commerce_product.part.status
+field_name: status
+entity_type: commerce_product
+bundle: part
+label: Published
+description: 'Whether the product is published.'
+required: false
+translatable: true
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

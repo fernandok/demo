@@ -1,0 +1,7 @@
+uuid: ba625a1e-0700-4537-9ae6-2b6ce684ae9e
+langcode: en
+status: true
+dependencies: {  }
+id: digikey
+label: DigiKey
+description: "dev2:\r\n  endPoint : 'http://test.samplecomponents.com/webservices/wssamples/service.asmx?wsdl'\r\n  programId : 'cypress'\r\n  securityId : 'v0651sfp'"
