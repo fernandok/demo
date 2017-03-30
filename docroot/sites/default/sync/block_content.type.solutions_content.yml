@@ -1,0 +1,8 @@
+uuid: 918af489-9749-42f2-94b5-8eab56e7790c
+langcode: en
+status: true
+dependencies: {  }
+id: solutions_content
+label: Solutions-content
+revision: 0
+description: 'submenu for Solutions'

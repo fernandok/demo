@@ -1,0 +1,25 @@
+uuid: 4278bf4b-73de-426d-9c86-d10d89ded3b8
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:products_menu_content:1f572ce6-95db-4388-9c3d-b618f65ab6e5'
+  module:
+    - block_content
+  theme:
+    - cypress_store
+id: productssubmenu1
+theme: cypress_store
+region: '-1'
+weight: -3
+provider: null
+plugin: 'block_content:1f572ce6-95db-4388-9c3d-b618f65ab6e5'
+settings:
+  id: 'block_content:1f572ce6-95db-4388-9c3d-b618f65ab6e5'
+  label: Products-submenu-1
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
