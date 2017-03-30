@@ -10,6 +10,8 @@ use Drupal\Core\Form\ConfigFormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\Yaml\Parser;
 use Symfony\Component\Yaml\Exception\ParseException;
+use Drupal\cypress_store_vendor\CypressStoreVendor;
+
 
 class OrderRoutingSettingsForm extends ConfigFormBase {
 
@@ -55,6 +57,14 @@ class OrderRoutingSettingsForm extends ConfigFormBase {
         return $form_state->setErrorByName('description', 'Order Routing Configuration should be in YAML Format');
       }
     } catch (ParseException $e) {
+      $message = array('subject' => 'DigiKey', 'body' => $e->getMessage());
+      $dispatcher = \Drupal::service('event_dispatcher');
+      // Creating our CypressStoreVendor event class object.
+      $event = new CypressStoreVendor($message);
+      // Dispatching the event through the ‘dispatch’  method,
+      // Passing event name and event object ‘$event’ as parameters.
+      $dispatcher->dispatch(CypressStoreVendor::ERROR, $event);
+
       return $form_state->setErrorByName('description', $e->getMessage());
     }
   }
