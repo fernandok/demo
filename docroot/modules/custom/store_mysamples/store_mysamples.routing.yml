@@ -1,0 +1,7 @@
+store_mysamples.promocode_status:
+  path: '/promocode_status'
+  defaults:
+    _controller: '\Drupal\store_mysamples\Controller\PromocodeStatus::content'
+    _title: 'Promocode Status'
+  requirements:
+    _permission: 'access content'
