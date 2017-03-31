@@ -143,7 +143,7 @@ class DigiKey {
         "details" => array(
           "detail" => array(
             "0" => array(
-              "manufacturer_part_number" => "123",
+              "manufacturer_part_number" => "CY8CKIT-029A",
               "customer_part_number" => "asdas",
               "quantity" => "1",
               "compliant" => "cvb",

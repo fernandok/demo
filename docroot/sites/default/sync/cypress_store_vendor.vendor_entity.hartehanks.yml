@@ -1,0 +1,7 @@
+uuid: 8f56b196-e6cd-40a9-8468-5d01b77cc70c
+langcode: en
+status: true
+dependencies: {  }
+id: hartehanks
+label: HarteHanks
+description: "dev2:\r\n  endPoint : 'https://oms.harte-hanks.com/pmomsws/order.asmx?wsdl'\r\n  programId : 'test_ws'\r\n  securityId : 'test_ws'"
