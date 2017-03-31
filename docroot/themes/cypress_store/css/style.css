@@ -7518,15 +7518,15 @@ body {
   color: #3780cb;
   background: none;
 }
-.region-header #block-primarymenublock .primary-menu li a img {
+.region-header .primary-menu a img {
   height: 16px;
   width: 16px;
 }
-.region-header #block-primarymenublock .primary-menu li a:hover {
+.region-header .primary-menu a:hover {
   text-decoration: none;
   opacity: 0.5;
 }
-.region-header #block-primarymenublock .primary-menu li a:focus {
+.region-header .primary-menu a:focus {
   text-decoration: none;
   outline: none;
 }
