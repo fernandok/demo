@@ -1,0 +1,29 @@
+uuid: e6514495-df36-4e5a-8b19-f42b99a98151
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:buy_sample_content_menu:61008d91-a9dc-4309-9caa-bf58b81d0ba6'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - cypress_store
+third_party_settings:
+  block_class:
+    classes: ''
+id: buysamplesubmenu_2
+theme: cypress_store
+region: header
+weight: 0
+provider: null
+plugin: 'block_content:61008d91-a9dc-4309-9caa-bf58b81d0ba6'
+settings:
+  id: 'block_content:61008d91-a9dc-4309-9caa-bf58b81d0ba6'
+  label: 'Buy & Sample Submenu'
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
