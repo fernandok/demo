@@ -1,0 +1,8 @@
+uuid: c1b6a1d1-ec1f-4df4-a4c4-e71994612cb3
+langcode: en
+status: true
+dependencies: {  }
+id: products_menu_content
+label: products-menu-content
+revision: 0
+description: 'products sub menu'

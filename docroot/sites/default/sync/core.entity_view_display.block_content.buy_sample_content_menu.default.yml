@@ -1,0 +1,21 @@
+uuid: 2dafd861-32d4-4cac-9a62-d33a214b96e3
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.buy_sample_content_menu
+    - field.field.block_content.buy_sample_content_menu.body
+  module:
+    - text
+id: block_content.buy_sample_content_menu.default
+targetEntityType: block_content
+bundle: buy_sample_content_menu
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

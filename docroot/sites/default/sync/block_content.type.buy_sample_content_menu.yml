@@ -1,0 +1,8 @@
+uuid: 2cc3d5a4-0daa-40e5-aaf4-d151d5b47e79
+langcode: en
+status: true
+dependencies: {  }
+id: buy_sample_content_menu
+label: 'Buy & Sample content menu'
+revision: 0
+description: 'Submenu for Buy & Sample'

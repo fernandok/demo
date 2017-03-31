@@ -1,0 +1,22 @@
+uuid: 16e80038-1fc1-403c-aba2-4e02217421fa
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.products_menu_content
+    - field.storage.block_content.body
+  module:
+    - text
+id: block_content.products_menu_content.body
+field_name: body
+entity_type: block_content
+bundle: products_menu_content
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary

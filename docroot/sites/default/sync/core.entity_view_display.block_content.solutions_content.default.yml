@@ -1,0 +1,21 @@
+uuid: e6dfb2e5-2980-4338-9544-fa5247059911
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.solutions_content
+    - field.field.block_content.solutions_content.body
+  module:
+    - text
+id: block_content.solutions_content.default
+targetEntityType: block_content
+bundle: solutions_content
+mode: default
+content:
+  body:
+    label: hidden
+    type: text_default
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

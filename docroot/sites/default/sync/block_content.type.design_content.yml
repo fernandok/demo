@@ -1,0 +1,8 @@
+uuid: fe32c57d-8586-4d95-9ade-d9d1aaf3f33a
+langcode: en
+status: true
+dependencies: {  }
+id: design_content
+label: 'Design content'
+revision: 0
+description: 'Submenu for Design Support'

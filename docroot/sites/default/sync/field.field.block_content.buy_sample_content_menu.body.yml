@@ -1,0 +1,22 @@
+uuid: a7aa89bc-e1df-49ce-ae1b-790f12e82fd8
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.buy_sample_content_menu
+    - field.storage.block_content.body
+  module:
+    - text
+id: block_content.buy_sample_content_menu.body
+field_name: body
+entity_type: block_content
+bundle: buy_sample_content_menu
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: false
+field_type: text_with_summary
