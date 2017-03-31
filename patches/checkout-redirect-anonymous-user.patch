@@ -1,0 +1,46 @@
+diff --git a/modules/checkout/src/Plugin/Commerce/CheckoutPane/Login.php b/modules/checkout/src/Plugin/Commerce/CheckoutPane/Login.php
+index 90654a5..2eceb87 100644
+--- a/modules/checkout/src/Plugin/Commerce/CheckoutPane/Login.php
++++ b/modules/checkout/src/Plugin/Commerce/CheckoutPane/Login.php
+@@ -13,6 +13,7 @@ use Drupal\Core\Link;
+ use Drupal\user\UserAuthInterface;
+ use Symfony\Component\DependencyInjection\ContainerInterface;
+ use Symfony\Component\HttpFoundation\RequestStack;
++use Drupal\simplesamlphp_auth\Controller;
+ 
+ /**
+  * Provides the login pane.
+@@ -191,31 +192,10 @@ class Login extends CheckoutPaneBase implements CheckoutPaneInterface, Container
+         ],
+       ],
+     ];
+-    $pane_form['returning_customer']['name'] = [
+-      '#type' => 'textfield',
+-      '#title' => $this->t('Username'),
+-      '#size' => 60,
+-      '#maxlength' => USERNAME_MAX_LENGTH,
+-      '#attributes' => [
+-        'autocorrect' => 'none',
+-        'autocapitalize' => 'none',
+-        'spellcheck' => 'false',
+-        'autofocus' => 'autofocus',
+-      ],
+-    ];
+-    $pane_form['returning_customer']['password'] = [
+-      '#type' => 'password',
+-      '#title' => $this->t('Password'),
+-      '#size' => 60,
+-    ];
+     $pane_form['returning_customer']['submit'] = [
+       '#type' => 'submit',
+-      '#value' => $this->t('Log in'),
+-      '#op' => 'login',
+-    ];
+-    $pane_form['returning_customer']['forgot_password'] = [
+-      '#type' => 'markup',
+-      '#markup' => Link::createFromRoute($this->t('Forgot password?'), 'user.pass')->toString(),
++      '#value' => Link::createFromRoute($this->t('Log In'), 'simplesamlphp_auth.saml_login')->toString(),
++     // '#op' => 'login',
+     ];
+ 
+     $pane_form['guest'] = [
