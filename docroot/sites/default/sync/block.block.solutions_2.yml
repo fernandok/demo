@@ -1,0 +1,29 @@
+uuid: 125225c6-e4b9-42cd-851f-ba7a36f3de43
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:solutions_content:112f086a-1059-466b-8790-9a2ec05cbe95'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - cypress_store
+third_party_settings:
+  block_class:
+    classes: ''
+id: solutions_2
+theme: cypress_store
+region: header
+weight: -11
+provider: null
+plugin: 'block_content:112f086a-1059-466b-8790-9a2ec05cbe95'
+settings:
+  id: 'block_content:112f086a-1059-466b-8790-9a2ec05cbe95'
+  label: solutions
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

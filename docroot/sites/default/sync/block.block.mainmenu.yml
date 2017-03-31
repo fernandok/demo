@@ -11,7 +11,7 @@ dependencies:
 id: mainmenu
 theme: cypress_store
 region: header
-weight: -11
+weight: -12
 provider: null
 plugin: 'system_menu_block:main-menu'
 settings:

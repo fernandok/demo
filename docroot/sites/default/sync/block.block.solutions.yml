@@ -1,6 +1,6 @@
 uuid: 4cf1d90e-edc2-4b42-80ab-848fc2b6df2b
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - block_class
@@ -11,8 +11,8 @@ third_party_settings:
     classes: solutions-menu-block
 id: solutions
 theme: cypress_store
-region: header
-weight: -10
+region: '-1'
+weight: 4
 provider: null
 plugin: 'block_content:753d7428-14ac-4e92-8186-43a38ef3148f'
 settings:
