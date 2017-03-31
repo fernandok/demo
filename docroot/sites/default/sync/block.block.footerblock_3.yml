@@ -1,16 +1,20 @@
-uuid: a546949d-9500-4a39-ae30-31bb9cbaedbf
+uuid: fa2b1d0a-bd40-4415-8522-881f74e0d8b0
 langcode: en
-status: false
+status: true
 dependencies:
   content:
     - 'block_content:footer:6a0e984d-1c5f-48e2-8ff9-b129fd552af6'
   module:
+    - block_class
     - block_content
   theme:
     - cypress_store
-id: footerblock_2
+third_party_settings:
+  block_class:
+    classes: ''
+id: footerblock_3
 theme: cypress_store
-region: '-1'
+region: footer
 weight: 0
 provider: null
 plugin: 'block_content:6a0e984d-1c5f-48e2-8ff9-b129fd552af6'
