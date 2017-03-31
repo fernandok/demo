@@ -2,10 +2,6 @@ uuid: 4278bf4b-73de-426d-9c86-d10d89ded3b8
 langcode: en
 status: false
 dependencies:
-  content:
-    - 'block_content:products_menu_content:1f572ce6-95db-4388-9c3d-b618f65ab6e5'
-  module:
-    - block_content
   theme:
     - cypress_store
 id: productssubmenu1

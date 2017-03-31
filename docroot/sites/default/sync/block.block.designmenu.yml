@@ -2,16 +2,12 @@ uuid: 0d04fb0c-5bee-45d5-a1c6-546ca714bf22
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:design_content:cccdcc60-651a-4b9f-b770-85996cc79d07'
-  module:
-    - block_content
   theme:
     - cypress_store
 id: designmenu
 theme: cypress_store
 region: header
-weight: -6
+weight: -7
 provider: null
 plugin: 'block_content:cccdcc60-651a-4b9f-b770-85996cc79d07'
 settings:

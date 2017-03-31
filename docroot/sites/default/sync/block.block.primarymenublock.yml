@@ -2,11 +2,8 @@ uuid: c2fabbd6-e1e8-417f-a98c-244a9ec2d332
 langcode: en
 status: true
 dependencies:
-  content:
-    - 'block_content:primary_menu:01fe2614-a5f1-46db-a7b4-3acac67e3d20'
   module:
     - block_class
-    - block_content
   theme:
     - cypress_store
 third_party_settings:
@@ -15,7 +12,7 @@ third_party_settings:
 id: primarymenublock
 theme: cypress_store
 region: header
-weight: -10
+weight: -11
 provider: null
 plugin: 'block_content:01fe2614-a5f1-46db-a7b4-3acac67e3d20'
 settings:

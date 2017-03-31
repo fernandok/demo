@@ -11,7 +11,7 @@ _core:
 id: cypress_store_search
 theme: cypress_store
 region: header
-weight: -11
+weight: -12
 provider: null
 plugin: search_form_block
 settings:

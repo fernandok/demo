@@ -1,0 +1,29 @@
+uuid: 2a965926-7f1a-4c1f-a069-fdb95eb1d6e7
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:products_menu_content:1682f081-642c-4bdb-9e66-3e0b79f95d3c'
+  module:
+    - block_class
+    - block_content
+  theme:
+    - cypress_store
+third_party_settings:
+  block_class:
+    classes: ''
+id: productssubmenu_2
+theme: cypress_store
+region: header
+weight: -8
+provider: null
+plugin: 'block_content:1682f081-642c-4bdb-9e66-3e0b79f95d3c'
+settings:
+  id: 'block_content:1682f081-642c-4bdb-9e66-3e0b79f95d3c'
+  label: Products-submenu
+  provider: block_content
+  label_display: '0'
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }
