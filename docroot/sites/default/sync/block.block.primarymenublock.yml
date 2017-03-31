@@ -5,9 +5,13 @@ dependencies:
   content:
     - 'block_content:primary_menu:01fe2614-a5f1-46db-a7b4-3acac67e3d20'
   module:
+    - block_class
     - block_content
   theme:
     - cypress_store
+third_party_settings:
+  block_class:
+    classes: 'primary-block col-md-4'
 id: primarymenublock
 theme: cypress_store
 region: header

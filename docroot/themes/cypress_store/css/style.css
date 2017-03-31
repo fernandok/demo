@@ -7482,39 +7482,39 @@ body {
   font-size: larger;
   opacity: 0.7;
 }
-.region-header #block-primarymenublock {
+.region-header .primary-block {
   padding-right: 0;
   padding-left: 0;
   margin-left: 5.5em;
   float: right;
 }
-.region-header #block-primarymenublock .primary-menu {
+.region-header .primary-menu {
   position: relative;
   top: 2.6rem;
 }
-.region-header #block-primarymenublock .primary-menu li {
+.region-header .primary-menu li {
   list-style-type: none;
   display: inline-block;
   padding: 5px;
 }
-.region-header #block-primarymenublock .primary-menu li ul.language-menu,
-.region-header #block-primarymenublock .primary-menu li ul.account-menu {
+.region-header .primary-menu li ul.language-menu,
+.region-header .primary-menu li ul.account-menu {
   min-width: 100px;
   width: 125px;
   text-align: center;
   padding: 16px;
 }
-.region-header #block-primarymenublock .primary-menu li ul.language-menu li,
-.region-header #block-primarymenublock .primary-menu li ul.account-menu li {
+.region-header .primary-menu li ul.language-menu li,
+.region-header .primary-menu li ul.account-menu li {
   padding: 15px 0 !important;
   border-bottom: 1px solid #afafaf;
 }
-.region-header #block-primarymenublock .primary-menu li ul.language-menu li:last-child,
-.region-header #block-primarymenublock .primary-menu li ul.account-menu li:last-child {
+.region-header .primary-menu li ul.language-menu li:last-child,
+.region-header .primary-menu li ul.account-menu li:last-child {
   border: none;
 }
-.region-header #block-primarymenublock .primary-menu li ul.language-menu li a:hover,
-.region-header #block-primarymenublock .primary-menu li ul.account-menu li a:hover {
+.region-header .primary-menu li ul.language-menu li a:hover,
+.region-header .primary-menu li ul.account-menu li a:hover {
   color: #3780cb;
   background: none;
 }
@@ -7595,8 +7595,7 @@ body {
 	}
 */
 /*solutions submenu*/
-section#block-solutions,
-section#block-solutions-2 {
+section.solutions-menu-block {
   clear: both;
 }
 .menu-drop {
