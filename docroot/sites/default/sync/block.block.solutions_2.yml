@@ -11,7 +11,7 @@ dependencies:
     - cypress_store
 third_party_settings:
   block_class:
-    classes: ''
+    classes: solutions-menu-block
 id: solutions_2
 theme: cypress_store
 region: header
