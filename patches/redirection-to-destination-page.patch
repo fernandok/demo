@@ -1,0 +1,17 @@
+diff --git a/simplesamlphp_auth.module b/simplesamlphp_auth.module
+index 85b1b1a..007a67f 100644
+--- a/simplesamlphp_auth.module
++++ b/simplesamlphp_auth.module
+@@ -152,10 +152,11 @@ function simplesamlphp_auth_form_user_login_form_alter(&$form, FormStateInterfac
+   }
+ 
+   $label = Drupal::config('simplesamlphp_auth.settings')->get('login_link_display_name');
++  $destination = \Drupal::service('redirect.destination')->getAsArray();
+   $form['simplesamlphp_auth_login_link'] = [
+     '#title' => $label,
+     '#type' => 'link',
+-    '#url' => Url::fromRoute('simplesamlphp_auth.saml_login'),
++    '#url' => Url::fromRoute('simplesamlphp_auth.saml_login', [], ['query' => $destination]),
+     '#attributes' => [
+       'title' => $label,
+       'class' => ['simplesamlphp-auth-login-link'],
