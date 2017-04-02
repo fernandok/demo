@@ -7392,6 +7392,9 @@ body {
 .user-logged-in .user-menu ul.menu.nav li a .caret {
   display: none;
 }
+.user-logged-in .user-menu ul.menu.nav li a[href="/user/login"] {
+  display: none;
+}
 .user-logged-in .user-menu ul.menu.nav li ul.menu {
   min-width: 100px;
   text-align: center;
