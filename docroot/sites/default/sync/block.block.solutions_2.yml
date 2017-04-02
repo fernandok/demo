@@ -15,7 +15,7 @@ third_party_settings:
 id: solutions_2
 theme: cypress_store
 region: header
-weight: -10
+weight: -12
 provider: null
 plugin: 'block_content:112f086a-1059-466b-8790-9a2ec05cbe95'
 settings:

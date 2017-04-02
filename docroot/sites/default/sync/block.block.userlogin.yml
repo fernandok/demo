@@ -1,0 +1,24 @@
+uuid: 70a5fe3d-f640-438f-a6e5-d7f4211d44c2
+langcode: en
+status: false
+dependencies:
+  module:
+    - block_class
+    - user
+  theme:
+    - cypress_store
+third_party_settings:
+  block_class:
+    classes: ''
+id: userlogin
+theme: cypress_store
+region: '-1'
+weight: -2
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  provider: user
+  label_display: '0'
+visibility: {  }

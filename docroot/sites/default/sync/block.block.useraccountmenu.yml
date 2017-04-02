@@ -1,19 +1,21 @@
-uuid: 4abcfc14-be97-4795-aad8-aa999b9a8863
+uuid: 406bfa74-4f31-4cc4-95c4-c0768fd3c2ba
 langcode: en
-status: false
+status: true
 dependencies:
   config:
     - system.menu.account
   module:
+    - block_class
     - system
   theme:
     - cypress_store
-_core:
-  default_config_hash: DweBpscQZdG0-fHkSpUzdYucrNH45G_KF7Z82V-oyQM
-id: cypress_store_account_menu
+third_party_settings:
+  block_class:
+    classes: user-menu
+id: useraccountmenu
 theme: cypress_store
-region: '-1'
-weight: -9
+region: header
+weight: -14
 provider: null
 plugin: 'system_menu_block:account'
 settings:
@@ -22,5 +24,5 @@ settings:
   provider: system
   label_display: '0'
   level: 1
-  depth: 1
+  depth: 0
 visibility: {  }

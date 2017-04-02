@@ -7375,6 +7375,57 @@ body {
 }
 /*Start styles for store*/
 /*start styles for header*/
+.user-logged-in .user-menu ul.menu.nav li:last-child {
+  display: none;
+}
+.user-logged-in .user-menu ul.menu.nav li a {
+  padding: 0 2px !important;
+  margin-right: 20px !important;
+  margin-top: -8px;
+  background: none;
+}
+.user-logged-in .user-menu ul.menu.nav li a:hover,
+.user-logged-in .user-menu ul.menu.nav li a:focus {
+  background: none;
+  opacity: 0.5;
+}
+.user-logged-in .user-menu ul.menu.nav li a .caret {
+  display: none;
+}
+.user-logged-in .user-menu ul.menu.nav li ul.menu {
+  min-width: 100px;
+  text-align: center;
+  padding: 16px;
+}
+.user-logged-in .user-menu ul.menu.nav li ul.menu li {
+  padding: 15px 0 !important;
+  border-bottom: 1px solid #afafaf;
+}
+.user-logged-in .user-menu ul.menu.nav li ul.menu li a {
+  padding: 3px 20px !important;
+  margin: 0 !important;
+}
+.user-logged-in .user-menu ul.menu.nav li ul.menu li a:hover {
+  color: #3780cb;
+}
+.user-logged-in .user-menu ul.menu.nav li ul.menu li:nth-child(2) {
+  /*border-bottom: none;*/
+}
+.path-frontpage .user-menu ul.menu.nav li a,
+.path-user .user-menu ul.menu.nav li a {
+  padding: 0px;
+  margin-right: 64px;
+  margin-top: -7px;
+  background: none;
+}
+.path-frontpage .user-menu ul.menu.nav li a:hover,
+.path-user .user-menu ul.menu.nav li a:hover,
+.path-frontpage .user-menu ul.menu.nav li a:focus,
+.path-user .user-menu ul.menu.nav li a:focus {
+  color: #3780cb;
+  opacity: 0.5;
+  background: none;
+}
 .header {
   width: 1024px;
   margin: 0 auto;
@@ -7699,6 +7750,13 @@ footer .region-footer .footer-block .footer-menu ul li {
 footer .region-footer .footer-block .footer-menu ul li a {
   text-transform: uppercase;
   font-weight: bold;
+}
+footer .region-footer .footer-block .footer-menu .social-icons a .social-icon {
+  height: 32px;
+  padding: 0px 15px;
+}
+footer .region-footer .footer-block .footer-menu .social-icons a:hover {
+  opacity: 1;
 }
 footer .region-footer .footer-block .footer-menu .copyright {
   margin-top: 2em;
