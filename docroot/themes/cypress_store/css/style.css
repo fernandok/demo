@@ -7376,7 +7376,7 @@ body {
 /*Start styles for store*/
 /*start styles for header*/
 .user-logged-in .user-menu ul.menu.nav li:last-child {
-  display: none;
+  /*display: none;*/
 }
 .user-logged-in .user-menu ul.menu.nav li a {
   padding: 0 2px !important;
