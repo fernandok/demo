@@ -4,4 +4,4 @@ status: true
 dependencies: {  }
 id: hartehanks
 label: HarteHanks
-description: "dev2:\r\n  endPoint : 'https://oms.harte-hanks.com/pmomsws/order.asmx?wsdl'\r\n  programId : 'test_ws'\r\n  securityId : 'test_ws'"
+description: "dev2:\r\n  endPoint : 'https://oms.harte-hanks.com/pmomsws/order.asmx?wsdl'\r\n  Username : 'test_ws'\r\n  Password : 'test_ws'"
