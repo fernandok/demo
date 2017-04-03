@@ -7798,7 +7798,8 @@ footer .region-footer .footer-block .footer-menu .copyright {
     margin: 0;
   }
   .menu-drop {
-    width: 978px;
+    /*width: 978px;*/
+    width: 1009px !important;
   }
 }
 @media (min-width: 1440px) {
