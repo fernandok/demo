@@ -1,0 +1,19 @@
+uuid: d3c9172f-1d15-41eb-a5d6-2da565075c83
+langcode: en
+status: true
+dependencies:
+  module:
+    - cypress_custom_address
+    - profile
+id: profile.field_contact_address
+field_name: field_contact_address
+entity_type: profile
+type: contact_address_item
+settings: {  }
+module: cypress_custom_address
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
