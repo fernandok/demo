@@ -21,3 +21,7 @@ permissions:
   - 'access checkout'
   - 'access commerce_order overview'
   - 'view own commerce_order'
+  - 'add own customer profile'
+  - 'delete own customer profile'
+  - 'edit own customer profile'
+  - 'view own customer profile'
