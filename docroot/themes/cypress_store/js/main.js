@@ -94,20 +94,20 @@ $(function(){
 	      $('.language-menu').css("display", "none");
 	  	});
 
-	  // 	var widthMenu = $(window).width();
-	  if($(window).width() > 1024){
-	  	// $('.menu-drop').parent('div').css('width', widthMenu);
-	  	$('.menu-drop').parent('div').width($(window).width());
-	   // $('.menu-drop').parent('div').addClass('menu-drop-parent');
-	  }
-      var windowsize = $(window).width();
+	 //  // 	var widthMenu = $(window).width();
+	 //  if($(window).width() > 1024){
+	 //  	// $('.menu-drop').parent('div').css('width', widthMenu);
+	 //  	$('.menu-drop').parent('div').width($(window).width());
+	 //   // $('.menu-drop').parent('div').addClass('menu-drop-parent');
+	 //  }
+  //     var windowsize = $(window).width();
       
-		$(window).resize(function() {
-		  // $('.menu-drop').parent('div').css('width', windowsize);
-		  // var windowsize = $(window).width();
-		  $('.menu-drop').parent('div').width($(window).width());
-		  $('.menu-drop').parent('div').addClass('menu-drop-parent');
-		});
+		// $(window).resize(function() {
+		//   // $('.menu-drop').parent('div').css('width', windowsize);
+		//   // var windowsize = $(window).width();
+		//   $('.menu-drop').parent('div').width($(window).width());
+		//   $('.menu-drop').parent('div').addClass('menu-drop-parent');
+		// });
 	$('.menu-drop').parent('div').addClass('menu-drop-parent');
 
 	});
