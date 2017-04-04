@@ -32,12 +32,11 @@ class HarteHanks{
     $config = \Drupal::config('cypress_store_vendor.vendor_entity.hartehanks')
       ->get('description');
     $parsedData = Yaml::parse($config);
-    var_dump($parsedData);exit;
+
     //Todo change dev2 to be dynamic based on envirnment
-//    $this->endPoint = $parsedData['dev2']['endPoint'];
-//    var_dump($this->endPoint);exit;
-//    $this->program_id = $parsedData['dev2']['programId'];
-//    $this->security_id = $parsedData['dev2']['securityId'];
+    $this->endPoint = $parsedData['dev2']['endPoint'];
+    $this->userName = $parsedData['dev2']['Username'];
+    $this->password = $parsedData['dev2']['Password'];
   }
 
   public function AddNewOrder(){

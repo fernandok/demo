@@ -1,0 +1,7 @@
+uuid: aa15e541-b26e-4749-80d8-49ad858658fb
+langcode: en
+status: true
+dependencies: {  }
+id: avnet
+label: Avnet
+description: "dev2:\r\n  endPoint : 'https://b2b-test.avnet.com:8543/soap/default'\r\n  Username : 'cypress'\r\n  Password : 'cypress123'"
