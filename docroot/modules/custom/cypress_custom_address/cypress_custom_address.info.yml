@@ -1,0 +1,5 @@
+name: Cypress Custom Address.
+type: module
+description: Extending Address Module Integration.
+core: 8.x
+package: Custom
