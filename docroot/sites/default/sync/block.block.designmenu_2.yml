@@ -14,8 +14,8 @@ third_party_settings:
     classes: ''
 id: designmenu_2
 theme: cypress_store
-region: header
-weight: -10
+region: dropdown_menu
+weight: -15
 provider: null
 plugin: 'block_content:6b533116-2039-4208-836a-e6ce433b14d7'
 settings:
