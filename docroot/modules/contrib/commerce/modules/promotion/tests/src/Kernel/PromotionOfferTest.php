@@ -123,6 +123,49 @@ class PromotionOfferTest extends CommerceKernelTestBase {
   }
 
   /**
+   * Tests order fixed off.
+   */
+  public function testOrderFixedOff() {
+    // Use addOrderItem so the total is calculated.
+    $order_item = OrderItem::create([
+      'type' => 'test',
+      'quantity' => '2',
+      'unit_price' => [
+        'number' => '20.00',
+        'currency_code' => 'USD',
+      ],
+    ]);
+    $order_item->save();
+    $this->order->addItem($order_item);
+
+    // Starts now, enabled. No end time.
+    $promotion = Promotion::create([
+      'name' => 'Promotion 1',
+      'order_types' => [$this->order->bundle()],
+      'stores' => [$this->store->id()],
+      'status' => TRUE,
+      'offer' => [
+        'target_plugin_id' => 'commerce_promotion_order_fixed_off',
+        'target_plugin_configuration' => [
+          'amount' => '1.0',
+        ],
+      ],
+    ]);
+    $promotion->save();
+
+    /** @var \Drupal\commerce\Plugin\Field\FieldType\PluginItem $offer_field */
+    $offer_field = $promotion->get('offer')->first();
+    $this->assertEquals('1.0', $offer_field->target_plugin_configuration['amount']);
+
+    $promotion->apply($this->order);
+
+    $this->assertEquals(1, count($this->order->getAdjustments()));
+    $this->assertEquals(new Price('39.00', 'USD'), $this->order->getTotalPrice
+    ());
+
+  }
+
+  /**
    * Tests product percentage off.
    */
   public function testProductPercentageOff() {

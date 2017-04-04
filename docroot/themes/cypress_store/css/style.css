@@ -7429,11 +7429,6 @@ body {
   opacity: 0.5;
   background: none;
 }
-.header {
-  width: 1024px;
-  margin: 0 auto;
-  float: none;
-}
 .region-header {
   /*search box*/
   /*ul.navbar-nav{
@@ -7628,6 +7623,18 @@ body {
   border: none;
   opacity: 0.5;
 }
+/*start hamburger menu*/
+button.navbar-toggle {
+  float: left;
+  margin-top: 2.3em;
+}
+button.navbar-toggle .icon-bar {
+  background-color: #09357a;
+  width: 42px;
+  height: 4px;
+  margin: 0.4em 0;
+}
+/*end hamburger menu*/
 /*.products-submenu{
 		display: none;
 
@@ -7768,10 +7775,70 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .menu-drop {
     background: #ffffff;
     width: 1024px;
+    /*width: 978px;*/
   }
   .menu-drop-parent {
     background: #002431;
     position: relative;
+    /*right: 26.42%;*/
+    right: 0;
+  }
+  .header {
+    width: 1024px;
+    margin: 0 auto;
+    float: none;
+    /*width: 994px;*/
+  }
+  .container {
+    /*margin: 0;*/
+  }
+}
+@media (min-width: 1024px) and (max-width: 1400px) {
+  .container {
+    margin: 0;
+  }
+  .menu-drop {
+    /*width: 978px;*/
+    width: 1009px !important;
+  }
+}
+@media (min-width: 1440px) {
+  .menu-drop-parent {
+    right: 22.42%;
+  }
+}
+@media (min-width: 1520px) {
+  .menu-drop-parent {
     right: 26.42%;
+  }
+}
+@media (min-width: 2560px) {
+  .menu-drop-parent {
+    right: 79.42%;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 425px) {
+  .slick-prev {
+    left: -13px !important;
+    margin-top: 0;
+  }
+  .slick-next {
+    right: -13px !important;
+    margin-top: 0;
+  }
+  a.logo img {
+    width: 160px !important;
+  }
+  .main-menu .menu.nav {
+    float: left !important;
+    clear: left;
+    padding-top: 0 !important;
+    padding-left: 3em;
+  }
+  .main-menu .menu.nav li {
+    display: block !important;
+  }
+  .main-menu .menu.nav li a {
+    padding: 10px 15px !important;
   }
 }
