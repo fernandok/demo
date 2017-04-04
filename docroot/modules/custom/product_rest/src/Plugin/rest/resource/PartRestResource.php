@@ -198,7 +198,7 @@ class PartRestResource extends ResourceBase {
       $product_variation = ProductVariation::create(
         array(
           'type' => 'part_store',
-          'price' => new Price('0', 'USD'),
+          'price' => new Price('3', 'USD'),
         )
       );
       $product_variation->save();

@@ -1,0 +1,6 @@
+services:
+  cypress_custom_address.profile_label_subscriber:
+    class: Drupal\cypress_custom_address\EventSubscriber\ContactLabelSubscriber
+    arguments: ['@entity_type.manager']
+    tags:
+      - { name: event_subscriber }

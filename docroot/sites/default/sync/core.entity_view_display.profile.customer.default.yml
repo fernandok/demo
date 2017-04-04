@@ -4,12 +4,13 @@ status: true
 dependencies:
   config:
     - field.field.profile.customer.address
+    - field.field.profile.customer.field_contact_address
     - profile.type.customer
   enforced:
     module:
       - commerce_order
   module:
-    - address
+    - cypress_custom_address
 _core:
   default_config_hash: '-D8G44VGLIAIFvoHm_u7-Awnie4iCenOWfldrpNy_ys'
 id: profile.customer.default
@@ -17,10 +18,11 @@ targetEntityType: profile
 bundle: customer
 mode: default
 content:
-  address:
-    type: address_default
+  field_contact_address:
     weight: 0
     label: hidden
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+    type: contact_default
+hidden:
+  address: true
