@@ -15,7 +15,7 @@ third_party_settings:
 id: productssubmenu_2
 theme: cypress_store
 region: header
-weight: -9
+weight: -11
 provider: null
 plugin: 'block_content:1682f081-642c-4bdb-9e66-3e0b79f95d3c'
 settings:

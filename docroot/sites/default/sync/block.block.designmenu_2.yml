@@ -15,7 +15,7 @@ third_party_settings:
 id: designmenu_2
 theme: cypress_store
 region: header
-weight: -8
+weight: -10
 provider: null
 plugin: 'block_content:6b533116-2039-4208-836a-e6ce433b14d7'
 settings:

@@ -147,7 +147,6 @@ class ProfileSelect extends CommerceElementBase {
       }
       $profile_options['new_address'] = t('+ Enter a new address');
     }
-
     // Remember the current profile and mode in form state.
     if (!empty($default_profile)) {
       $storage['pane_' . $pane_id] = [
@@ -169,7 +168,7 @@ class ProfileSelect extends CommerceElementBase {
 
     $form_display = EntityFormDisplay::collectRenderDisplay($element['#profile'], 'default');
     $form_display->buildForm($element['#profile'], $element, $form_state);
-    if (!empty($element['address']['widget'][0])) {
+/*    if (!empty($element['address']['widget'][0])) {
       $widget_element = &$element['address']['widget'][0];
       // Remove the details wrapper from the address widget.
       $widget_element['#type'] = 'container';
@@ -181,8 +180,20 @@ class ProfileSelect extends CommerceElementBase {
       if (!empty($element['#available_countries'])) {
         $widget_element['address']['#available_countries'] = $element['#available_countries'];
       }
-    }
-
+    }*/
+      if (!empty($element['field_contact_address']['widget'][0])) {
+          $widget_element = &$element['field_contact_address']['widget'][0];
+          // Remove the details wrapper from the address widget.
+          $widget_element['#type'] = 'container';
+          // Provide a default country.
+          if (!empty($element['#default_country']) && empty($widget_element['field_contact_address']['#default_value']['country_code'])) {
+              $widget_element['field_contact_address']['#default_value']['country_code'] = $element['#default_country'];
+          }
+          // Limit the available countries.
+          if (!empty($element['#available_countries'])) {
+              $widget_element['field_contact_address']['#available_countries'] = $element['#available_countries'];
+          }
+      }
     $called_class = get_called_class();
     if (!empty($profile_uid) && $mode != 'edit' && !empty($profile_options)) {
       $element['profile_selection'] = [
@@ -219,7 +230,9 @@ class ProfileSelect extends CommerceElementBase {
         ],
         '#element_validate' => [[$called_class, 'profileEditCancelValidate']],
       ];
-      $element['address']['#access'] = FALSE;
+      //$element['address']['#access'] = FALSE;
+      $element['field_contact_address']['#access'] = FALSE;
+
     }
     // Add the field widgets for an existing profile.
     elseif (!empty($profiles) && $mode == 'edit') {
@@ -256,7 +269,8 @@ class ProfileSelect extends CommerceElementBase {
       $parents = $triggering_element['#parents'];
       $last_parent = array_pop($parents);
       if ($last_parent == 'edit_button') {
-        $element['address']['#access'] = TRUE;
+        //$element['address']['#access'] = TRUE;
+        //$element['field_contact_address']['#access'] = TRUE; //By Default contact_address is TRUE
         $element['edit_button']['#access'] = FALSE;
         $element['rendered_profile']['#access'] = FALSE;
         $element['profile_selection']['#access'] = FALSE;

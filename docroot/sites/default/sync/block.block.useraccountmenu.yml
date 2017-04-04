@@ -1,9 +1,9 @@
-uuid: cb2ee64d-1492-4b29-8765-94e9707e314e
+uuid: 406bfa74-4f31-4cc4-95c4-c0768fd3c2ba
 langcode: en
 status: true
 dependencies:
   config:
-    - system.menu.main-menu
+    - system.menu.account
   module:
     - block_class
     - system
@@ -11,16 +11,16 @@ dependencies:
     - cypress_store
 third_party_settings:
   block_class:
-    classes: 'main-menu hidden-xs'
-id: mainmenu
+    classes: 'user-menu hidden-xs'
+id: useraccountmenu
 theme: cypress_store
 region: header
-weight: -13
+weight: -14
 provider: null
-plugin: 'system_menu_block:main-menu'
+plugin: 'system_menu_block:account'
 settings:
-  id: 'system_menu_block:main-menu'
-  label: 'Main menu'
+  id: 'system_menu_block:account'
+  label: 'User account menu'
   provider: system
   label_display: '0'
   level: 1

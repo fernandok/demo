@@ -15,7 +15,7 @@ third_party_settings:
 id: buysamplesubmenu_2
 theme: cypress_store
 region: header
-weight: 0
+weight: -9
 provider: null
 plugin: 'block_content:61008d91-a9dc-4309-9caa-bf58b81d0ba6'
 settings:

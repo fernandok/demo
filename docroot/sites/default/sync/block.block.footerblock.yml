@@ -7,7 +7,7 @@ dependencies:
 id: footerblock
 theme: cypress_store
 region: '-1'
-weight: -1
+weight: 0
 provider: null
 plugin: 'block_content:6587bb1a-2b1d-4740-8b70-10ad353bb29d'
 settings:

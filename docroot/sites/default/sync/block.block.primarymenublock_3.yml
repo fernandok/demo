@@ -11,11 +11,11 @@ dependencies:
     - cypress_store
 third_party_settings:
   block_class:
-    classes: 'primary-block col-md-4'
+    classes: 'primary-block col-md-4 hidden-xs'
 id: primarymenublock_3
 theme: cypress_store
 region: header
-weight: -13
+weight: -15
 provider: null
 plugin: 'block_content:b279251a-b5e5-4098-a688-ebaddb9e606a'
 settings:
