@@ -25,3 +25,4 @@ permissions:
   - 'delete own customer profile'
   - 'edit own customer profile'
   - 'view own customer profile'
+  - 'add any customer profile'
