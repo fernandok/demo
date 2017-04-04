@@ -7716,6 +7716,9 @@ section.solutions-menu-block {
 li.menu-item.level-2 {
   list-style-type: none;
 }
+.menu-column-inner ul {
+  padding-left: 0;
+}
 /*end of products submenu*/
 /*start buy menu */
 #buy-menu-content a {
@@ -7785,7 +7788,7 @@ footer .region-footer .footer-block .footer-menu .copyright {
   }
   header {
     width: 1024px !important;
-    margin: 0 auto;
+    margin: 0 auto !important;
     float: none;
     /*width: 994px;
 	}
