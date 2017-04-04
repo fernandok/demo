@@ -41,9 +41,9 @@ class ContactDefaultWidget extends AddressDefaultWidget {
                     ':input[name="payment_information[billing_information][field_contact_address][0][address][country_code]"]' => ['value' => ''],
                 ],
             ],
-            '#element_validate' => array(
+/*            '#element_validate' => array(
                 array($this, 'contact_validate'),
-            ),
+            ),*/
         );
         return $widget;
     }
@@ -51,7 +51,7 @@ class ContactDefaultWidget extends AddressDefaultWidget {
     /**
      * {@inheritdoc}
      */
-    public function contact_validate($element, FormStateInterface $form_state, $form)
+/*    public function contact_validate($element, FormStateInterface $form_state, $form)
     {
         $form_values = $form_state->getValues();
         $payment_contact = $form_values['payment_information']['billing_information']['field_contact_address'][0]['address']['contact'];
@@ -62,5 +62,5 @@ class ContactDefaultWidget extends AddressDefaultWidget {
         if ((strlen($payment_contact) > 10) || (strlen($shipping_contact) > 10)) {
             $form_state->setError($element, t('Contact number should be 10 digit.'));
         }
-    }
+    }*/
 }

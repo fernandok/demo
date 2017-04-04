@@ -5,7 +5,7 @@ dependencies:
   config:
     - profile.type.customer
   module:
-    - address
+    - cypress_custom_address
     - profile
     - user
 id: delivery_address
@@ -58,10 +58,10 @@ display:
       row:
         type: fields
       fields:
-        address_given_name:
-          id: address_given_name
-          table: profile__address
-          field: address_given_name
+        contact_address_given_name:
+          id: contact_address_given_name
+          table: profile
+          field: contact_address_given_name
           relationship: none
           group_type: group
           admin_label: ''
@@ -105,8 +105,59 @@ display:
           empty: ''
           hide_empty: false
           empty_zero: false
-          hide_alter_empty: true
-          plugin_id: standard
+          hide_alter_empty: false
+          entity_type: profile
+          plugin_id: field_contact_first_name
+        contact_address_family_name:
+          id: contact_address_family_name
+          table: profile
+          field: contact_address_family_name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          entity_type: profile
+          plugin_id: field_contact_last_name
         delete_profile:
           id: delete_profile
           table: profile
@@ -209,10 +260,10 @@ display:
           text: ''
           entity_type: profile
           plugin_id: entity_link_edit
-        address_address_line1:
-          id: address_address_line1
-          table: profile__address
-          field: address_address_line1
+        contact_address_address_line1:
+          id: contact_address_address_line1
+          table: profile
+          field: contact_address_address_line1
           relationship: none
           group_type: group
           admin_label: ''
@@ -256,12 +307,13 @@ display:
           empty: ''
           hide_empty: false
           empty_zero: false
-          hide_alter_empty: true
-          plugin_id: standard
-        address_locality:
-          id: address_locality
-          table: profile__address
-          field: address_locality
+          hide_alter_empty: false
+          entity_type: profile
+          plugin_id: field_contact_address_line1
+        contact_address_locality:
+          id: contact_address_locality
+          table: profile
+          field: contact_address_locality
           relationship: none
           group_type: group
           admin_label: ''
@@ -305,12 +357,13 @@ display:
           empty: ''
           hide_empty: false
           empty_zero: false
-          hide_alter_empty: true
-          plugin_id: subdivision
-        address_postal_code:
-          id: address_postal_code
-          table: profile__address
-          field: address_postal_code
+          hide_alter_empty: false
+          entity_type: profile
+          plugin_id: field_contact_locality
+        contact_address_postal_code:
+          id: contact_address_postal_code
+          table: profile
+          field: contact_address_postal_code
           relationship: none
           group_type: group
           admin_label: ''
@@ -354,12 +407,13 @@ display:
           empty: ''
           hide_empty: false
           empty_zero: false
-          hide_alter_empty: true
-          plugin_id: standard
-        address_administrative_area:
-          id: address_administrative_area
-          table: profile__address
-          field: address_administrative_area
+          hide_alter_empty: false
+          entity_type: profile
+          plugin_id: field_contact_postal_code
+        contact_address_administrative_area:
+          id: contact_address_administrative_area
+          table: profile
+          field: contact_address_administrative_area
           relationship: none
           group_type: group
           admin_label: ''
@@ -403,8 +457,9 @@ display:
           empty: ''
           hide_empty: false
           empty_zero: false
-          hide_alter_empty: true
-          plugin_id: subdivision
+          hide_alter_empty: false
+          entity_type: profile
+          plugin_id: field_contact_administrative_area
         mail:
           id: mail
           table: users_field_data
@@ -469,6 +524,56 @@ display:
           entity_type: user
           entity_field: mail
           plugin_id: field
+        contact_address_contact:
+          id: contact_address_contact
+          table: profile
+          field: contact_address_contact
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          entity_type: profile
+          plugin_id: field_contact_number
         nothing:
           id: nothing
           table: views
@@ -480,7 +585,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div id=\"sm-w\" class=\"slide-main-wrp\">\n    <div class=\"address-boxes-sec-1\">\n        <div class=\"address-name\">{{ address_given_name }} {{ address_family_name }}</div>\n        <div class=\"address-icons\">\n            <div class=\"address-delete\">{{ delete_profile }}</div>\n            <div class=\"address-edit\">{{ edit_profile }}</div>\n        </div>\n    </div>\n    <div class=\"address-boxes-sec-2\">\n        <div class=\"address-info\">{{ address_address_line1 }}</div>\n        <div class=\"address-city-pin\">{{ address_locality }} {{ address_postal_code }}</div>\n        <div class=\"address-area\">{{ address_administrative_area }}</div>\n        <div class=\"address-mail\">{{ mail }}</div>\n    </div>\n    <div class=\"address-boxes-sec-3\">\n        <div class=\"address-contact\">Contact:  9898834345</div>\n    </div>\n</div>"
+            text: "<div id=\"sm-w\" class=\"slide-main-wrp\">\n    <div class=\"address-boxes-sec-1\">\n        <div class=\"address-name\">{{ contact_address_given_name }} {{ contact_address_family_name }}</div>\n        <div class=\"address-icons\">\n            <div class=\"address-delete\">{{ delete_profile }}</div>\n            <div class=\"address-edit\">{{ edit_profile }}</div>\n        </div>\n    </div>\n    <div class=\"address-boxes-sec-2\">\n        <div class=\"address-info\">{{ contact_address_address_line1 }}</div>\n        <div class=\"address-city-pin\">{{ contact_address_locality }} {{ address_postal_code }}</div>\n        <div class=\"address-area\">{{ contact_address_administrative_area }}</div>\n        <div class=\"address-mail\">{{ mail }}</div>\n    </div>\n    <div class=\"address-boxes-sec-3\">\n        <div class=\"address-contact\">Contact:  {{ contact_address_contact }}</div>\n    </div>\n</div>"
             make_link: false
             path: ''
             absolute: false
