@@ -5,9 +5,13 @@ dependencies:
   config:
     - system.menu.main-menu
   module:
+    - block_class
     - system
   theme:
     - cypress_store
+third_party_settings:
+  block_class:
+    classes: 'main-menu hidden-xs'
 id: mainmenu
 theme: cypress_store
 region: header

@@ -11,7 +11,7 @@ dependencies:
     - cypress_store
 third_party_settings:
   block_class:
-    classes: user-menu
+    classes: 'user-menu hidden-xs'
 id: useraccountmenu
 theme: cypress_store
 region: header
