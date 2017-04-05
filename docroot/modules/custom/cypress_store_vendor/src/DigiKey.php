@@ -124,7 +124,7 @@ class DigiKey {
       "order" => array(
         "vid_number" => $orderId,
         "order_date" => $orderDate,
-        "order_type" => 'testing',
+        "order_type" => 'Production',
         "first_name" => $shippingAdress['given_name'],
         "last_name" => $shippingAdress['family_name'],
         "company_name" => $shippingAdress['organization'],
@@ -144,10 +144,10 @@ class DigiKey {
           "detail" => array(
             "0" => array(
               "manufacturer_part_number" => "CY8CKIT-029A",
-              "customer_part_number" => "asdas",
+              "customer_part_number" => "CY8CKIT-029A",
               "quantity" => "1",
-              "compliant" => "cvb",
-              "backorders" => "hjk"
+              "compliant" => "Yes",
+              "backorders" => "Allow"
             ),
 //          "1" => array(
 //            "manufacturer_part_number" => "string",
@@ -195,13 +195,13 @@ class DigiKey {
 
 // function call to convert array to xml
     $this->array_to_xml($parameter, $xml_stuent_info);
-    //    var_dump($xml_stuent_info);exit;
+        var_dump($xml_stuent_info);exit;
 
     $client = new \SoapClient($endPoint);
-    $response = $client->SubmitOrder($parameter);
+    $response = $client->SubmitOrder($xml_stuent_info);
 //    $response = $client->SubmitOrder($xml_stuent_info);
-//    var_dump($response);
-//    exit;
+    var_dump($response);
+    exit;
 
   }
 
