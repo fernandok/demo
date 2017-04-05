@@ -7730,6 +7730,7 @@ li.menu-item.level-2 {
 footer {
   width: 100% !important;
   background: #002431;
+  padding: 64px;
 }
 footer .region-footer {
   margin: 0px 11%;

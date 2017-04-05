@@ -14,7 +14,7 @@ $(function(){
 			$('ul.language-menu').hide();
 			$('ul.user-menu').toggle();
 		});
-		// $('.user-logged-in .user-menu ul.menu.nav li ul.menu ').append('<img alt="Close" class="h1 close-nav" src="/themes/cypress_store/images/main-nav-caret.svg">');
+		$('.user-logged-in .user-menu ul.menu.nav li ul.menu ').append('<img alt="Close" class="h1 close-nav" src="/themes/cypress_store/images/main-nav-caret.svg">');
 		$("[role='heading']").addClass('col-md-12 header');
 		// $(".form-search").append("<input class="form-submit" type="submit" id="edit-submit">");
 		$('.region-header').prepend('<button type="button" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>');
