@@ -26,14 +26,31 @@ $(function(){
 
 		$('.main-menu ul.menu.nav ul').addClass('hidden-lg hidden-md hidden-sm');
 		$('.menu-drop').addClass('hidden-xs');
+
+		// $('.main-menu ul.menu.nav li:nth-child(1) ul').addClass('first-child-menu')
+
 		// if($(window).width() < 767){
 		
 	 //  		$("#block-mainmenu > ul > li:nth-child(1)").click(function(e){
 		//       e.preventDefault();
 
-		//       var $content = $('.main-menu ul.menu.nav ul');
+		//       var $content = $('.main-menu ul.menu.nav li:nth-child(1) ul');
 		//       var isVisible =  $content.is(":visible");
-		//       $('.main-menu ul.menu.nav ul').hide();
+		//       $('.main-menu ul.menu.nav li:nth-child(1) ul').hide();
+		//       if(isVisible) {
+		//         return;
+		//       }
+		//       $content.show();
+	 //    	});
+	 //    }
+	 //    if($(window).width() < 767){
+		
+	 //  		$("#block-mainmenu > ul > li:nth-child(2)").click(function(e){
+		//       e.preventDefault();
+
+		//       var $content = $('.main-menu ul.menu.nav li:nth-child(2) ul');
+		//       var isVisible =  $content.is(":visible");
+		//       $('.main-menu ul.menu.nav li:nth-child(2) ul').hide();
 		//       if(isVisible) {
 		//         return;
 		//       }

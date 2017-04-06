@@ -202,3 +202,23 @@
     opacity: .75;
     color: black;
 }
+
+@media only screen and (min-width: 320px) and (max-width: 767px){
+    .slick-prev{
+        left: 2px !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        background: url(../images/left-arrow.png);
+        background-repeat: no-repeat;
+        background-position-y: 50px;
+    }
+    .slick-next{
+        padding: 0 !important;
+        margin: 0 !important;
+        background: url(../images/right-arrow.png);
+        background-repeat: no-repeat;
+        background-position-y: 50px;
+        right: 2px !important;
+    }
+
+}
