@@ -22,7 +22,12 @@ $(function(){
 			$('.main-menu').toggleClass('hidden-xs');
 			$('.menu-drop').hide();
 		});
-		// $('.region-header').append('<a href="/user" class="dropdown-toggle user-icon" data-target="#" data-toggle="dropdown" aria-expanded="false"> <img src="/themes/cypress_store/images/user-image.png" alt="my pic"><span class="caret"></span></a>');
+		// if($(window).width() < 767){
+		// 	$('.region-header').append('<a href="/user" class="dropdown-toggle user-icon" data-target="#" data-toggle="dropdown" aria-expanded="false"> <img src="/themes/cypress_store/images/user-image.png" alt="my pic"><span class="caret"></span></a>');
+		// 	// $('a.user-icon').on('click', function(){
+		// 	// 	$('.user-menu').find('ul.menu.nav > li:nth-child(1)').removeClass('open').addClass('open');
+		// 	// });
+		// }
 
 		$('.main-menu ul.menu.nav ul').addClass('hidden-lg hidden-md hidden-sm');
 		$('.menu-drop').addClass('hidden-xs');
