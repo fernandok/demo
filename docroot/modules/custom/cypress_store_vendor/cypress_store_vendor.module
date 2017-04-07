@@ -1,4 +1,10 @@
 <?php
+
+define("AVNET", '\Drupal\cypress_store_vendor\Avnet');
+define("DIGIKEY", '\Drupal\cypress_store_vendor\Digikey');
+
+use Drupal\cypress_store_vendor\Avnet;
+
 /**
  * Implements hook_mail().
  */
@@ -13,4 +19,14 @@ $options = array(
      $message['body'][] = $params['message'];
      break;
  }
+}
+
+/**
+ * Implements hook_cron().
+ *
+ * Cron to update Avnet inventory details.
+ */
+function cypress_store_vendor_cron() {
+  $avnet_handler = new Avnet();
+  $avnet_handler->updateInventory();
 }

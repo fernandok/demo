@@ -23,9 +23,12 @@ class VendorService {
    *   Vendor name.
    * @param string $mpn
    *   Product/Part number.
+   * @param string $region
+   *   Optional region, which need for Avnet.
    */
-  public function getInventory($vendor, $mpn) {
-
+  public function getInventory($vendor, $mpn, $region = '') {
+    $vendor_handler = new $vendor();
+    return $vendor_handler->getInventory($mpn, $region);
   }
 
   /**
