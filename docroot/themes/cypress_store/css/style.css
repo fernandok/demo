@@ -7824,4 +7824,41 @@ footer .region-footer .footer-block .footer-menu .copyright {
     padding: 10px 0px 10px 10px !important;
     margin: 0 !important;
   }
+  a.user-icon {
+    position: relative;
+    top: 2.7em;
+    left: 5%;
+  }
+  a.user-icon img {
+    width: 35px;
+  }
+  /*footer styles responsive*/
+  footer {
+    padding: 20px 0 !important;
+  }
+  footer .footer-menu {
+    padding: 0;
+  }
+  footer .footer-menu ul {
+    margin-bottom: 0 !important;
+  }
+  footer .footer-menu ul li {
+    margin: 0 5px !important;
+  }
+  footer .footer-menu a {
+    padding: 0;
+  }
+  footer .footer-menu .social-icons {
+    padding: 0 0 10px 0;
+  }
+  footer .footer-menu p.copyright {
+    margin: 0 !important;
+  }
+  /*end footer styles responsive*/
+}
+@media only screen and (min-width: 320px) and (max-width: 360px) {
+  .social-icons a {
+    display: inline-block;
+    width: 52px;
+  }
 }
