@@ -7771,6 +7771,17 @@ footer .region-footer .footer-block .footer-menu .social-icons a .social-icon {
 footer .region-footer .footer-block .footer-menu .social-icons a:hover {
   opacity: 1;
 }
+footer .region-footer .footer-block .footer-menu .social-icons a .fil-col {
+  fill: #ffffff;
+}
+footer .region-footer .footer-block .footer-menu .social-icons a .facebook-icon .fil-col:hover,
+footer .region-footer .footer-block .footer-menu .social-icons a .linkedin-icon .fil-col:hover,
+footer .region-footer .footer-block .footer-menu .social-icons a .twitter-icon .fil-col:hover {
+  fill: #0076b5 !important;
+}
+footer .region-footer .footer-block .footer-menu .social-icons a .youtube-icon .fil-col:hover {
+  fill: #c4302b !important;
+}
 footer .region-footer .footer-block .footer-menu .copyright {
   margin-top: 2em;
 }
