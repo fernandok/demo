@@ -9,9 +9,9 @@ label: 'Cypress Paypal'
 weight: null
 plugin: paypal_express_checkout
 configuration:
-  api_username: chirag_api1.valuebound.com
-  api_password: C3J36CEAKEBSXABH
-  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AoHB2kXzFJrt.KljhGdJmEdi5LmV
+  api_username: padma.priya_api1.valuebound.com
+  api_password: E6J3VASFDAJ2HCYW
+  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AyhO4tG6uMjelRgE-vkhsy2SOP6U
   solution_type: SoleBilling
   mode: test
   payment_method_types:
