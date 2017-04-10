@@ -181,8 +181,7 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
     $pane_form['#wrapper_id'] = 'shipping-information-wrapper';
     $pane_form['#prefix'] = '<div id="' . $pane_form['#wrapper_id'] . '">';
     $pane_form['#suffix'] = '</div>';
-    $pane_form['#attached']['library'][] = 'commerce_shipping/shipping_checkout';
-
+   
     $pane_form['shipping_profile'] = [
       '#type' => 'commerce_profile_select',
       '#default_value' => $shipping_profile,
@@ -200,9 +199,6 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
       // The calculation process only needs a valid shipping profile.
       '#limit_validation_errors' => [
         array_merge($pane_form['#parents'], ['shipping_profile']),
-      ],
-      '#attributes' => [
-        'class' => ['js-hide'],
       ],
     ];
     $pane_form['removed_shipments'] = [

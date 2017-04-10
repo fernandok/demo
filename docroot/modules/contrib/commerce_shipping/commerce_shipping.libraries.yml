@@ -1,7 +1,0 @@
-shipping_checkout:
-  version: VERSION
-  js:
-    js/shipping_checkout.js: {}
-  dependencies:
-    - core/jquery
-    - core/drupal
