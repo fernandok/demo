@@ -160,17 +160,17 @@ class ProfileSelect extends CommerceElementBase {
         }
         $form_display = EntityFormDisplay::collectRenderDisplay($element['#default_value'], 'default');
         $form_display->buildForm($element['#default_value'], $element, $form_state);
-        if (!empty($element['address']['widget'][0])) {
-            $widget_element = &$element['address']['widget'][0];
+        if (!empty($element['field_contact_address']['widget'][0])) {
+            $widget_element = &$element['field_contact_address']['widget'][0];
             // Remove the details wrapper from the address widget.
             $widget_element['#type'] = 'container';
             // Provide a default country.
-            if (!empty($element['#default_country']) && empty($widget_element['address']['#default_value']['country_code'])) {
-                $widget_element['address']['#default_value']['country_code'] = $element['#default_country'];
+            if (!empty($element['#default_country']) && empty($widget_element['field_contact_address']['#default_value']['country_code'])) {
+                $widget_element['field_contact_address']['#default_value']['country_code'] = $element['#default_country'];
             }
             // Limit the available countries.
             if (!empty($element['#available_countries'])) {
-                $widget_element['address']['#available_countries'] = $element['#available_countries'];
+                $widget_element['field_contact_address']['#available_countries'] = $element['#available_countries'];
             }
         }
         $called_class = get_called_class();
