@@ -7862,3 +7862,26 @@ footer .region-footer .footer-block .footer-menu .copyright {
     width: 52px;
   }
 }
+@media only screen and (min-width: 767px) and (max-width: 1023px) {
+  .region-header .block-search-form-block {
+    left: 1em;
+  }
+  .path-frontpage .user-menu ul.menu.nav li a,
+  .path-user .user-menu ul.menu.nav li a {
+    margin-left: 17em;
+    margin-top: -8px;
+  }
+  .region-header .primary-block {
+    float: left !important;
+    margin-left: 0 !important;
+  }
+  .user-menu .navbar-right {
+    float: left !important;
+  }
+  .region-header nav#block-mainmenu ul {
+    padding-top: 0 !important;
+  }
+  .region-header .block-search-form-block span .button {
+    right: 9.7em;
+  }
+}

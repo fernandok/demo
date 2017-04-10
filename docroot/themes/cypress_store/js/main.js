@@ -5,7 +5,7 @@ $(function(){
 		$("#block-primarymenublock").addClass('col-md-4 hidden-xs');
 		$('.language-menu, .account-menu').addClass("dropdown-menu");
 		$('.primary-menu li:nth-child(2), .primary-menu li:last-child').addClass('dropdown expanded');
-		$('.primary-menu li:nth-child(2)').on('click',function(){
+		$('.primary-menu li:nth-child(2) a').on('click',function(){
 			// $(this).toggleClass('open');
 			$('ul.account-menu').hide();
 			$('ul.language-menu').toggle();
@@ -22,12 +22,16 @@ $(function(){
 			$('.main-menu').toggleClass('hidden-xs');
 			$('.menu-drop').hide();
 		});
-		// if($(window).width() < 767){
-		// 	$('.region-header').append('<a href="/user" class="dropdown-toggle user-icon" data-target="#" data-toggle="dropdown" aria-expanded="false"> <img src="/themes/cypress_store/images/user-image.png" alt="my pic"><span class="caret"></span></a>');
-		// 	// $('a.user-icon').on('click', function(){
-		// 	// 	$('.user-menu').find('ul.menu.nav > li:nth-child(1)').removeClass('open').addClass('open');
-		// 	// });
-		// }
+		if($(window).width() < 767){
+			$('.region-header').append('<a href="/user" class="dropdown-toggle user-icon" data-target="#" data-toggle="dropdown" aria-expanded="false"> <img src="/themes/cypress_store/images/user-image.png" alt="my pic"><span class="caret"></span></a>');
+			$('a.user-icon').on('click', function(){
+				// alert('ok');
+				$('.user-menu ul.menu.nav > li:nth-child(1)').addClass('open');
+			// });
+			// $('.user-menu').toggleClass('hidden-xs');
+			// $('.user-menu ul.menu.nav > li:first-child > a').replaceWith("<a href="/user" class="dropdown-toggle user-icon" data-target="#" data-toggle="dropdown" aria-expanded="false"> <img src="/themes/cypress_store/images/user-image.png" alt="my pic"><span class="caret"></span></a>");
+		});
+	}
 
 		$('.main-menu ul.menu.nav ul').addClass('hidden-lg hidden-md hidden-sm');
 		$('.menu-drop').addClass('hidden-xs');
