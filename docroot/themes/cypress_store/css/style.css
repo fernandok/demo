@@ -7858,6 +7858,11 @@ footer .region-footer .footer-block .footer-menu .copyright {
     left: 12%;
   }
 }
+@media only screen and (max-width: 500px) {
+  .region-header .primary-block {
+    margin-left: 0 !important;
+  }
+}
 /*end for mobiles*/
 /*start for tablets*/
 @media only screen and (min-width: 767px) and (max-width: 1023px) {
