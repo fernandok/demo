@@ -292,7 +292,6 @@ class ProfileSelect extends CommerceElementBase {
         $pane_id = $element['#name'];
         $storage = $form_state->getStorage();
         if (in_array($storage['pane_' . $pane_id]['mode'], ['new', 'edit'])) {
-            kint($pane_id);exit;
             $form_display = EntityFormDisplay::collectRenderDisplay($element['#profile'], 'default');
             $form_display->extractFormValues($element['#profile'], $element, $form_state);
             $element['#profile']->save();
