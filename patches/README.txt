@@ -6,3 +6,8 @@ File: redirection-to-destination-page.patch
 Desc: This patch redirection to destination - After Login user should be redirected to cart page.
 Applies to: commerce version 8.x-2.x-dev.
 
+File: commerce_shipping-autorecalculate.patch
+Desc: This patch automatically recalculates the shipping method.
+Applies to: commerce version 8.x-2.x-dev.
+
+
