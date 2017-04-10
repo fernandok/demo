@@ -247,11 +247,12 @@ class ShipmentTest extends CommerceKernelTestBase {
           'declared_value' => new Price('15', 'USD'),
         ]),
       ],
-      'shipping_profile_id' => $profile->id(),
+      'shipping_profile' => $profile,
       'package_type_id' => 'custom_box',
       // State is not a custom field, but it simplifies this test.
       'custom_fields' => [
         'state' => 'ready',
+        'no_field' => 'custom_value',
       ],
     ]);
     $shipment = Shipment::create([
@@ -265,6 +266,7 @@ class ShipmentTest extends CommerceKernelTestBase {
     $this->assertEquals($proposed_shipment->getItems(), $shipment->getItems());
     $this->assertEquals($proposed_shipment->getPackageTypeId(), $shipment->getPackageType()->getId());
     $this->assertEquals('ready', $shipment->getState()->value);
+    $this->assertEquals('custom_value', $shipment->getData('no_field'));
   }
 
   /**
