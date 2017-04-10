@@ -398,7 +398,7 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
 
       // Create custom coupon for promocode.
       $custom_coupon = Coupon::create([
-        'promotion_id' => 1,
+        'promotion_id' => 2,
         'code' => $form_values['promo_code'],
         'status' => TRUE,
       ]);
@@ -406,7 +406,7 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
       $coupons = $promotion->get('coupons')->getValue();
       // Append coupon to promotion.
       $next_index = count($coupons);
-      $promotion->coupons[$next_index] = $custom_coupon->id();
+      $promotion->coupons[] = $custom_coupon->id();
       $promotion->save();
       
       $approved_second_sentence = 'Please note that this promo code is set to expire on ' . $expire_date . ' so please make sure to enter your order before then.';
