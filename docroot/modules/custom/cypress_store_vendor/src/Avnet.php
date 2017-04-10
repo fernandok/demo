@@ -1,13 +1,8 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: vb
- * Date: 4/4/17
- * Time: 3:17 PM
- */
 
 namespace Drupal\cypress_store_vendor;
 
+use Drupal\cypress_store_vendor\Entity\AvnetInventoryEntity;
 use Symfony\Component\Yaml\Yaml;
 
 class Avnet{
@@ -18,12 +13,12 @@ class Avnet{
    */
   protected $endPoint;
   /**
-   * HarteHanks UserName
+   * Avnet UserName
    * @var
    */
   protected $userName;
   /**
-   * HarteHanks Password
+   * Avnet Password
    * @var
    */
   protected $password;
@@ -39,13 +34,79 @@ class Avnet{
     $this->password = $parsedData['dev2']['Password'];
   }
 
-  public function Inventory(){
-    $client = \Drupal::httpClient();
-    $request = $client->post('https://b2b-test.avnet.com:8543/soap/default',[
-      'auth' => ['cypress','cypress123']
-      ]);
+  public function getInventory($mpn, $region = 'SH') {
+    $inventory_details = \Drupal::configFactory()->getEditable('cypress_store_vendor.avnet_inventory_entity.details')->get('details');
+    $inventory = unserialize($inventory_details);
+    if (isset($inventory[$region]) && isset($inventory[$region][$mpn])) {
+      return ltrim($inventory[$region][$mpn]['quantity'], 0);
+    }
+    return 0;
+  }
 
-    $response = $request->getBody();
-    var_dump($request->getBody());exit;
+  public function updateInventory() {
+    $client = \Drupal::httpClient();
+    $body = <<<XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pl="www.avnet.com/3pl">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <pl:gatewayMessage>
+      <gatewayRequest>
+        <encodedXmlRequest>
+            &lt;inventory_request&gt;
+            &lt;partlist get_all="true"/&gt;
+            &lt;/inventory_request&gt;
+        </encodedXmlRequest>
+      </gatewayRequest>
+    </pl:gatewayMessage>
+  </soapenv:Body>
+</soapenv:Envelope>
+XML;
+    $replace_trailing_xml = <<<XML
+<\/encodedXmlResponse>
+  <\/gatewayResponse>
+<\/tns:gatewayMessage><\/SOAP-ENV:Body>
+<\/SOAP-ENV:Envelope>
+XML;
+    try {
+      $request = $client->post(
+        $this->endPoint,
+        [
+          'auth' => [$this->userName, $this->password],
+          'body' => $body
+        ]
+      );
+
+      $response = $request->getBody();
+      $content = $response->getContents();
+      $content = substr($content, 770);
+      $content = preg_replace("/$replace_trailing_xml/",'', $content);
+      $content = htmlspecialchars_decode($content);
+
+      $avnet_inventory_entity = \Drupal::configFactory()->getEditable('cypress_store_vendor.avnet_inventory_entity.details');
+      $avnet_inventory_entity->set('changed', REQUEST_TIME);
+      $avnet_inventory_entity->set('details', $this->parseDetails($content));
+      $avnet_inventory_entity->save();
+    }
+    catch (\Exception $e) {
+      
+    }
+  }
+
+
+
+  /**
+   * Save the Avnet inventory detail.
+   */
+  protected function parseDetails($inventory_xml) {
+    $inventory_details = simplexml_load_string($inventory_xml);
+    $inventory = [];
+    foreach ($inventory_details->part as $part) {
+      $part = (array) $part;
+      $inventory[$part['warehouse_code']][$part['partno']] = [
+        'quantity' => $part['qoh'],
+        'date' => $part['inventory_date'],
+      ];
+    }
+    return serialize($inventory);
   }
 }

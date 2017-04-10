@@ -1,0 +1,17 @@
+cypress_store_vendor.avnet_inventory_entity.*:
+  type: config_entity
+  label: 'Avnet inventory entity config'
+  mapping:
+    id:
+      type: string
+      label: 'ID'
+    uuid:
+      type: string
+    label:
+      type: string
+    details:
+      type: string
+      label: 'Details'
+    changed:
+      type: string
+      label: 'Changed'

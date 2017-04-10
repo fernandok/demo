@@ -6,14 +6,12 @@ use Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane\CheckoutPaneBase;
 use Drupal\commerce_checkout\Plugin\Commerce\CheckoutFlow\CheckoutFlowInterface;
 use Drupal\commerce_shipping\OrderShipmentSummaryInterface;
 use Drupal\commerce_shipping\PackerManagerInterface;
-use Drupal\Component\Utility\Html;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Entity\Entity\EntityFormDisplay;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
 use Drupal\Core\Render\Element;
-use Drupal\Core\Render\RendererInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 /**
@@ -31,13 +29,6 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPluginInterface {
 
   /**
-   * The entity type manager.
-   *
-   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
-   */
-  protected $entityTypeManager;
-
-  /**
    * The packer manager.
    *
    * @var \Drupal\commerce_shipping\PackerManagerInterface
@@ -50,13 +41,6 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
    * @var \Drupal\commerce_shipping\OrderShipmentSummaryInterface
    */
   protected $orderShipmentSummary;
-
-  /**
-   * The renderer.
-   *
-   * @var \Drupal\Core\Render\RendererInterface
-   */
-  protected $renderer;
 
   /**
    * Constructs a new ShippingInformation object.
@@ -75,16 +59,12 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
    *   The packer manager.
    * @param \Drupal\commerce_shipping\OrderShipmentSummaryInterface $order_shipment_summary
    *   The order shipment summary.
-   * @param \Drupal\Core\Render\RendererInterface $renderer
-   *   The renderer.
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, CheckoutFlowInterface $checkout_flow, EntityTypeManagerInterface $entity_type_manager, PackerManagerInterface $packer_manager, OrderShipmentSummaryInterface $order_shipment_summary, RendererInterface $renderer) {
-    parent::__construct($configuration, $plugin_id, $plugin_definition, $checkout_flow);
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, CheckoutFlowInterface $checkout_flow, EntityTypeManagerInterface $entity_type_manager, PackerManagerInterface $packer_manager, OrderShipmentSummaryInterface $order_shipment_summary) {
+    parent::__construct($configuration, $plugin_id, $plugin_definition, $checkout_flow, $entity_type_manager);
 
-    $this->entityTypeManager = $entity_type_manager;
     $this->packerManager = $packer_manager;
     $this->orderShipmentSummary = $order_shipment_summary;
-    $this->renderer = $renderer;
   }
 
   /**
@@ -98,8 +78,7 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
       $checkout_flow,
       $container->get('entity_type.manager'),
       $container->get('commerce_shipping.packer_manager'),
-      $container->get('commerce_shipping.order_shipment_summary'),
-      $container->get('renderer')
+      $container->get('commerce_shipping.order_shipment_summary')
     );
   }
 
@@ -156,20 +135,29 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function isVisible() {
-    // @todo Check that the order contains at least one shippable entity.
-    return $this->order->hasField('shipments');
+    if (!$this->order->hasField('shipments')) {
+      return FALSE;
+    }
+
+    // The order must contain at least one shippable purchasable entity.
+    foreach ($this->order->getItems() as $order_item) {
+      $purchased_entity = $order_item->getPurchasedEntity();
+      if ($purchased_entity && $purchased_entity->hasField('weight')) {
+        return TRUE;
+      }
+    }
+
+    return FALSE;
   }
 
   /**
    * {@inheritdoc}
    */
   public function buildPaneSummary() {
-    if (!$this->isVisible()) {
-      return '';
+    $summary = [];
+    if ($this->isVisible()) {
+      $summary = $this->orderShipmentSummary->build($this->order);
     }
-    $summary = $this->orderShipmentSummary->build($this->order);
-    $summary = $this->renderer->render($summary);
-
     return $summary;
   }
 
@@ -186,13 +174,13 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
     $available_countries = [];
     foreach ($store->get('shipping_countries') as $country_item) {
       $available_countries[] = $country_item->value;
-    };
+    }
 
     // Prepare the form for ajax.
-    $pane_form['#wrapper_id'] = Html::getUniqueId('shipping-information-wrapper');
+    // Not using Html::getUniqueId() on the wrapper ID to avoid #2675688.
+    $pane_form['#wrapper_id'] = 'shipping-information-wrapper';
     $pane_form['#prefix'] = '<div id="' . $pane_form['#wrapper_id'] . '">';
     $pane_form['#suffix'] = '</div>';
-    $pane_form['#attached']['library'][] = 'commerce_shipping/shipping_checkout';
 
     $pane_form['shipping_profile'] = [
       '#type' => 'commerce_profile_select',
@@ -208,37 +196,35 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
         'callback' => [get_class($this), 'ajaxRefresh'],
         'wrapper' => $pane_form['#wrapper_id'],
       ],
-      '#attributes' => [
-        'class' => ['js-hide'],
+      // The calculation process only needs a valid shipping profile.
+      '#limit_validation_errors' => [
+        array_merge($pane_form['#parents'], ['shipping_profile']),
       ],
     ];
-
-    $shipments = $this->order->shipments->referencedEntities();
-    $shipment_storage = $this->entityTypeManager->getStorage('commerce_shipment');
-    $triggering_element = $form_state->getTriggeringElement();
-    $force_packing = empty($shipments) && empty($this->configuration['require_shipping_profile']);
-    if (!empty($triggering_element['#recalculate']) || $force_packing) {
-      $proposed_shipments = $this->packerManager->pack($this->order, $shipping_profile);
-      foreach ($proposed_shipments as $index => $proposed_shipment) {
-        /** @var \Drupal\commerce_shipping\Entity\ShipmentInterface $shipment */
-        if (isset($shipments[$index])) {
-          $shipment = $shipments[$index];
-        }
-        else {
-          $shipment = $shipment_storage->create([
-            'type' => $proposed_shipment->getType(),
-          ]);
-        }
-        $shipment->populateFromProposedShipment($proposed_shipment);
-        $shipments[$index] = $shipment;
-      }
-    }
-
-    $single_shipment = count($shipments) === 1;
+    $pane_form['removed_shipments'] = [
+      '#type' => 'value',
+      '#value' => [],
+    ];
     $pane_form['shipments'] = [
       '#type' => 'container',
     ];
+
+    $shipments = $this->order->shipments->referencedEntities();
+    $recalculate_shipping = $form_state->get('recalculate_shipping');
+    $force_packing = empty($shipments) && empty($this->configuration['require_shipping_profile']);
+    if ($recalculate_shipping || $force_packing) {
+      list($shipments, $removed_shipments) = $this->packerManager->packToShipments($this->order, $shipping_profile, $shipments);
+
+      // Store the IDs of removed shipments for submitPaneForm().
+      $pane_form['removed_shipments']['#value'] = array_map(function ($shipment) {
+        /** @var \Drupal\commerce_shipping\Entity\ShipmentInterface $shipment */
+        return $shipment->id();
+      }, $removed_shipments);
+    }
+
+    $single_shipment = count($shipments) === 1;
     foreach ($shipments as $index => $shipment) {
+      /** @var \Drupal\commerce_shipping\Entity\ShipmentInterface $shipment */
       $pane_form['shipments'][$index] = [
         '#parents' => array_merge($pane_form['#parents'], ['shipments', $index]),
         '#array_parents' => array_merge($pane_form['#parents'], ['shipments', $index]),
@@ -268,14 +254,26 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function validatePaneForm(array &$pane_form, FormStateInterface $form_state, array &$complete_form) {
+    $shipment_indexes = Element::children($pane_form['shipments']);
     $triggering_element = $form_state->getTriggeringElement();
-    if (!empty($triggering_element['#recalculate'])) {
+    $recalculate = !empty($triggering_element['#recalculate']);
+    $button_type = isset($triggering_element['#button_type']) ? $triggering_element['#button_type'] : '';
+    if (!$recalculate && $button_type == 'primary' && empty($shipment_indexes)) {
+      // The checkout step was submitted without shipping being calculated.
+      // Force the recalculation now and reload the page.
+      $recalculate = TRUE;
+      drupal_set_message('Please select a shipping method.', 'error');
+      $form_state->setRebuild(TRUE);
+    }
+
+    if ($recalculate) {
+      $form_state->set('recalculate_shipping', TRUE);
       // The profile in form state needs to reflect the submitted values, since
       // it will be passed to the packers when the form is rebuilt.
       $form_state->set('shipping_profile', $pane_form['shipping_profile']['#profile']);
     }
 
-    foreach (Element::children($pane_form['shipments']) as $index) {
+    foreach ($shipment_indexes as $index) {
       $shipment = clone $pane_form['shipments'][$index]['#shipment'];
       $form_display = EntityFormDisplay::collectRenderDisplay($shipment, 'default');
       $form_display->removeComponent('shipping_profile');
@@ -289,7 +287,6 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
    * {@inheritdoc}
    */
   public function submitPaneForm(array &$pane_form, FormStateInterface $form_state, array &$complete_form) {
-    $old_shipments = $this->order->shipments->referencedEntities();
     // Save the modified shipments.
     $shipments = [];
     foreach (Element::children($pane_form['shipments']) as $index) {
@@ -306,10 +303,11 @@ class ShippingInformation extends CheckoutPaneBase implements ContainerFactoryPl
     $this->order->shipments = $shipments;
 
     // Delete shipments that are no longer in use.
-    $removed_shipments = array_diff_key($old_shipments, $shipments);
-    foreach ($removed_shipments as $removed_shipment) {
-      /** @var \Drupal\commerce_shipping\Entity\ShipmentInterface $removed_shipment */
-      $removed_shipment->delete();
+    $removed_shipment_ids = $pane_form['removed_shipments']['#value'];
+    if (!empty($removed_shipment_ids)) {
+      $shipment_storage = $this->entityTypeManager->getStorage('commerce_shipment');
+      $removed_shipments = $shipment_storage->loadMultiple($removed_shipment_ids);
+      $shipment_storage->delete($removed_shipments);
     }
   }
 

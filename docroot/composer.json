@@ -52,13 +52,10 @@
         "post-package-install": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
         "post-package-update": "Drupal\\Core\\Composer\\Composer::vendorTestCodeCleanup",
         "drupal-rebuild": "Drupal\\composer_manager\\Composer\\Command::rebuild",
-        "drupal-update": "Drupal\\composer_manager\\Composer\\Command::update"
+        "drupal-update": "Drupal\\composer_manager\\Composer\\Command::update",
+        "remove-git-submodules": "find . -mindepth 2 -type d -name .git | xargs rm -rf"
     },
     "repositories": {
-        "0": {
-            "type": "composer",
-            "url": "https://packagist.drupal-composer.org"
-        },
         "drupal": {
             "type": "composer",
             "url": "https://packages.drupal.org/8"
