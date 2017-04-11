@@ -35,6 +35,11 @@ $(function(){
 		$('a.user-icon').on('click', function(){
 				// alert('ok');
 				// $('.primary-menu').toggleClass('hidden-xs');
+			$('.mobile-menu').toggle();
+		});
+		$('.english').on('click', function(){
+			$('.language-menu').toggle();
+			// alert("hi");
 		});
 
 		$('.main-menu ul.menu.nav ul').addClass('hidden-lg hidden-md hidden-sm');
