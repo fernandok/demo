@@ -9,6 +9,9 @@ dependencies:
     - views
   theme:
     - cypress_store
+third_party_settings:
+  block_class:
+    classes: ''
 id: views_block__delivery_address_block_1
 theme: cypress_store
 region: content
