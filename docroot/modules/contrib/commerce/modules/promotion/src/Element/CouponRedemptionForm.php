@@ -110,20 +110,20 @@ class CouponRedemptionForm extends CommerceElementBase {
       '#submit' => [
         [get_called_class(), 'applyCoupon'],
       ],
-      '#ajax' => [
-        'callback' => [get_called_class(), 'ajaxRefresh'],
-        'wrapper' => $element['#wrapper_id'],
-      ],
+//      '#ajax' => [
+//        'callback' => [get_called_class(), 'ajaxRefresh'],
+//        'wrapper' => $element['#wrapper_id'],
+//      ],
       '#access' => !$has_coupons,
     ];
     $element['remove'] = [
       '#type' => 'submit',
       '#value' => $element['#remove_title'],
       '#name' => 'remove_coupon',
-      '#ajax' => [
-        'callback' => [get_called_class(), 'ajaxRefresh'],
-        'wrapper' => $element['#wrapper_id'],
-      ],
+//      '#ajax' => [
+//        'callback' => [get_called_class(), 'ajaxRefresh'],
+//        'wrapper' => $element['#wrapper_id'],
+//      ],
       '#weight' => 50,
       '#limit_validation_errors' => [
         $element['#parents'],
@@ -140,11 +140,11 @@ class CouponRedemptionForm extends CommerceElementBase {
   /**
    * Ajax callback.
    */
-  public static function ajaxRefresh(array $form, FormStateInterface $form_state) {
-    $parents = $form_state->getTriggeringElement()['#parents'];
-    array_pop($parents);
-    return NestedArray::getValue($form, $parents);
-  }
+//  public static function ajaxRefresh(array $form, FormStateInterface $form_state) {
+//    $parents = $form_state->getTriggeringElement()['#parents'];
+//    array_pop($parents);
+//    return NestedArray::getValue($form, $parents);
+//  }
 
   /**
    * Apply coupon submit callback.
@@ -163,7 +163,7 @@ class CouponRedemptionForm extends CommerceElementBase {
     $coupon = $form_state->getValue($parents);
     $order->get('coupons')->appendItem($coupon);
     $order->save();
-    $form_state->setRebuild();
+   // $form_state->setRebuild();
     drupal_set_message($element['#submit_message']);
   }
 
@@ -183,7 +183,7 @@ class CouponRedemptionForm extends CommerceElementBase {
 
     $order->get('coupons')->setValue([]);
     $order->save();
-    $form_state->setRebuild();
+  //  $form_state->setRebuild();
   }
 
   /**

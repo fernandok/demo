@@ -1,4 +1,4 @@
-uuid: b93c0f6c-6b98-4e20-a5cc-07437204b36d
+uuid: 99ce2d70-9ff4-493b-a064-9ccd4a0c9896
 langcode: en
 status: true
 dependencies:
@@ -9,9 +9,9 @@ label: 'Cypress Paypal'
 weight: null
 plugin: paypal_express_checkout
 configuration:
-  api_username: chirag_api1.valuebound.com
-  api_password: C3J36CEAKEBSXABH
-  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AoHB2kXzFJrt.KljhGdJmEdi5LmV
+  api_username: padma.priya_api1.valuebound.com
+  api_password: E6J3VASFDAJ2HCYW
+  signature: AFcWxV21C7fd0v3bYYYRCpSSRl31AyhO4tG6uMjelRgE-vkhsy2SOP6U
   solution_type: SoleBilling
   mode: test
   payment_method_types:

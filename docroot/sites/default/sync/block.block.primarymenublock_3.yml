@@ -11,7 +11,7 @@ dependencies:
     - cypress_store
 third_party_settings:
   block_class:
-    classes: 'primary-block col-md-4 hidden-xs col-sm-6'
+    classes: 'primary-block col-md-4 col-sm-6'
 id: primarymenublock_3
 theme: cypress_store
 region: header
