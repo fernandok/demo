@@ -21,6 +21,7 @@ $(function(){
 		$('button.navbar-toggle').on('click',function(){
 			$('.main-menu').toggleClass('hidden-xs');
 			$('.menu-drop').hide();
+			// $('.mobile-menu').hide();
 		});
 		// if($(window).width() < 767){
 		// 	$('.region-header').append('<a href="/user" class="dropdown-toggle user-icon" data-target="#" data-toggle="dropdown" aria-expanded="false"> <img src="/themes/cypress_store/images/user-image.png" alt="my pic"><span class="caret"></span></a>');
@@ -36,13 +37,16 @@ $(function(){
 				// alert('ok');
 				// $('.primary-menu').toggleClass('hidden-xs');
 			$('.mobile-menu').toggle();
+			// $('.main-menu').hide();
 		});
-		$('.english').on('click', function(){
+		$('.english').on('click', function(e){
 			$('.language-menu').toggle();
 			// alert("hi");
 		});
+		$('.mobile-menu .language-menu').removeClass('dropdown-menu');
 
 		$('.main-menu ul.menu.nav ul').addClass('hidden-lg hidden-md hidden-sm');
+		// $('.main-menu ul.menu.nav ul').removeClass('dropdown-menu').addClass('nav-xs');
 		$('.menu-drop').addClass('hidden-xs');
 
 		// $('.main-menu ul.menu.nav li:nth-child(1) ul').addClass('first-child-menu')
