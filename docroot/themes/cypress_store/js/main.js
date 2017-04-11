@@ -21,19 +21,32 @@ $(function(){
 		$('button.navbar-toggle').on('click',function(){
 			$('.main-menu').toggleClass('hidden-xs');
 			$('.menu-drop').hide();
+			// $('.mobile-menu').hide();
 		});
-		if($(window).width() < 767){
-			$('.region-header').append('<a href="/user" class="dropdown-toggle user-icon" data-target="#" data-toggle="dropdown" aria-expanded="false"> <img src="/themes/cypress_store/images/user-image.png" alt="my pic"><span class="caret"></span></a>');
-			$('a.user-icon').on('click', function(){
+		// if($(window).width() < 767){
+		// 	$('.region-header').append('<a href="/user" class="dropdown-toggle user-icon" data-target="#" data-toggle="dropdown" aria-expanded="false"> <img src="/themes/cypress_store/images/user-image.png" alt="my pic"><span class="caret"></span></a>');
+		// 	$('a.user-icon').on('click', function(){
+		// 		// alert('ok');
+		// 		$('.user-menu ul.menu.nav > li:nth-child(1)').addClass('open');
+		// 	// });
+		// 	// $('.user-menu').toggleClass('hidden-xs');
+		// 	// $('.user-menu ul.menu.nav > li:first-child > a').replaceWith("<a href="/user" class="dropdown-toggle user-icon" data-target="#" data-toggle="dropdown" aria-expanded="false"> <img src="/themes/cypress_store/images/user-image.png" alt="my pic"><span class="caret"></span></a>");
+		// 	});
+		// }
+		$('a.user-icon').on('click', function(){
 				// alert('ok');
-				$('.user-menu ul.menu.nav > li:nth-child(1)').addClass('open');
-			// });
-			// $('.user-menu').toggleClass('hidden-xs');
-			// $('.user-menu ul.menu.nav > li:first-child > a').replaceWith("<a href="/user" class="dropdown-toggle user-icon" data-target="#" data-toggle="dropdown" aria-expanded="false"> <img src="/themes/cypress_store/images/user-image.png" alt="my pic"><span class="caret"></span></a>");
+				// $('.primary-menu').toggleClass('hidden-xs');
+			$('.mobile-menu').toggle();
+			// $('.main-menu').hide();
 		});
-	}
+		$('.english').on('click', function(e){
+			$('.language-menu').toggle();
+			// alert("hi");
+		});
+		$('.mobile-menu .language-menu').removeClass('dropdown-menu');
 
 		$('.main-menu ul.menu.nav ul').addClass('hidden-lg hidden-md hidden-sm');
+		// $('.main-menu ul.menu.nav ul').removeClass('dropdown-menu').addClass('nav-xs');
 		$('.menu-drop').addClass('hidden-xs');
 
 		// $('.main-menu ul.menu.nav li:nth-child(1) ul').addClass('first-child-menu')
@@ -132,7 +145,7 @@ $(function(){
 	 //  	$('.menu-drop').parent('div').width($(window).width());
 	 //   // $('.menu-drop').parent('div').addClass('menu-drop-parent');
 	 //  }
-  //     var windowsize = $(window).width();
+  	 //    var windowsize = $(window).width();
       
 		// $(window).resize(function() {
 		//   // $('.menu-drop').parent('div').css('width', windowsize);
@@ -140,7 +153,6 @@ $(function(){
 		//   $('.menu-drop').parent('div').width($(window).width());
 		//   $('.menu-drop').parent('div').addClass('menu-drop-parent');
 		// });
-	$('.menu-drop').parent('div').addClass('menu-drop-parent');
-
+		$('.menu-drop').parent('div').addClass('menu-drop-parent');
 	});
 });
