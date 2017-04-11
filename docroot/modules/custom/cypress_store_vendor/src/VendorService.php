@@ -41,8 +41,9 @@ class VendorService {
    * @param array $params
    *   Additional data.
    */
-  public function setOrder($vendor, $order, $params) {
-
+  public function setOrder($vendor, $order, $params = []) {
+    $vendor_handler = new $vendor();
+    return $vendor_handler->setOrder($order, $params);
   }
 
 }

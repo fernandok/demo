@@ -2,6 +2,7 @@
 
 namespace Drupal\cypress_store_vendor;
 
+use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\cypress_store_vendor\Entity\AvnetInventoryEntity;
 use Symfony\Component\Yaml\Yaml;
 
@@ -23,6 +24,9 @@ class Avnet{
    */
   protected $password;
 
+  /**
+   * Avnet constructor.
+   */
   public function __construct() {
     $config = \Drupal::config('cypress_store_vendor.vendor_entity.avnet')
       ->get('description');
@@ -34,6 +38,17 @@ class Avnet{
     $this->password = $parsedData['dev2']['Password'];
   }
 
+  /**
+   * Method to get inventory details from Avnet.
+   *
+   * @param string $mpn
+   *   Marketing Part number.
+   * @param string $region
+   *   Avnet inventory region or branch.
+   *
+   * @return int|string
+   *   Part quantity in Avnet.
+   */
   public function getInventory($mpn, $region = 'SH') {
     $inventory_details = \Drupal::configFactory()->getEditable('cypress_store_vendor.avnet_inventory_entity.details')->get('details');
     $inventory = unserialize($inventory_details);
@@ -43,6 +58,9 @@ class Avnet{
     return 0;
   }
 
+  /**
+   * Method to get whole inventory details of Avnet.
+   */
   public function updateInventory() {
     $client = \Drupal::httpClient();
     $body = <<<XML
@@ -92,10 +110,14 @@ XML;
     }
   }
 
-
-
   /**
-   * Save the Avnet inventory detail.
+   * Parse the Avnet inventory xml detail.
+   *
+   * @param string $inventory_xml
+   *   Avnet inventory xml.
+   *
+   * @return array
+   *   Whole Avnet inventory detail as an array.
    */
   protected function parseDetails($inventory_xml) {
     $inventory_details = simplexml_load_string($inventory_xml);
@@ -108,5 +130,17 @@ XML;
       ];
     }
     return serialize($inventory);
+  }
+
+  /**
+   * Method to submit order to Avnet vendor.
+   *
+   * @param OrderInterface $order
+   *   Commerce order.
+   * @param array $params
+   *   Additional parameters.
+   */
+  public function setOrder($order, $params) {
+
   }
 }
