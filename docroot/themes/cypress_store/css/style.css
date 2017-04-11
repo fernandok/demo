@@ -7934,6 +7934,36 @@ footer .region-footer .footer-block .footer-menu .copyright {
     text-decoration: none;
   }
 }
+/*.path-frontpage ul.mobile-menu {
+    display: none !important;
+}
+.user-logged-in.path-frontpage li.anonymous {
+    display: none;
+}*/
+/*.path-frontpage li.anonymous {
+    display: block !important;
+}*/
+.user-logged-in a[href="/user/login"] {
+  display: none;
+}
+.path-user ul.mobile-menu li {
+  display: none;
+}
+.path-user ul.mobile-menu li.anonymous {
+  display: block !important;
+}
+.user-logged-in.path-user ul.mobile-menu li {
+  display: block !important;
+}
+.path-frontpage ul.mobile-menu li {
+  display: none;
+}
+.path-frontpage ul.mobile-menu li.anonymous {
+  display: block !important;
+}
+.user-logged-in.path-frontpage ul.mobile-menu li {
+  display: block !important;
+}
 /*end for mobiles*/
 /*start for tablets*/
 @media only screen and (min-width: 767px) and (max-width: 1023px) {

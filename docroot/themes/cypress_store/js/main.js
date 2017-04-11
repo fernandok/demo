@@ -5,7 +5,7 @@ $(function(){
 		$("#block-primarymenublock").addClass('col-md-4 hidden-xs');
 		$('.language-menu, .account-menu').addClass("dropdown-menu");
 		$('.primary-menu li:nth-child(2), .primary-menu li:last-child').addClass('dropdown expanded');
-		$('.primary-menu li:nth-child(2) a').on('click',function(){
+		$('.primary-menu li:nth-child(2) > a').on('click',function(){
 			// $(this).toggleClass('open');
 			$('ul.account-menu').hide();
 			$('ul.language-menu').toggle();
