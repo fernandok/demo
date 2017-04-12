@@ -7875,6 +7875,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .caret {
     margin-left: -8px;
   }
+  .main-menu .menu.nav {
+    padding-left: 0 !important;
+  }
 }
 @media only screen and (min-width: 375px) and (max-width: 425px) {
   /*.region-header a.logo {
@@ -7970,7 +7973,7 @@ footer .region-footer .footer-block .footer-menu .copyright {
 }
 /*end for mobiles*/
 /*start for tablets*/
-@media only screen and (min-width: 767px) and (max-width: 1023px) {
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
   .region-header .block-search-form-block {
     left: 1em;
   }
