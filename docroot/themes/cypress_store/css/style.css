@@ -7803,6 +7803,10 @@ footer .region-footer .footer-block .footer-menu .copyright {
   }
   .main-menu .menu.nav li {
     display: block !important;
+    /*&:last-child {
+				    text-align: center;
+				    padding-right: 20px;
+				}*/
   }
   .main-menu .menu.nav li a {
     padding: 10px 15px !important;
@@ -7810,6 +7814,10 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .main-menu .menu.nav li ul.dropdown-menu {
     padding-top: 1em !important;
     position: relative;
+    /*li:last-child{
+						text-align: start !important;
+    					padding-right: 0 !important;
+					}*/
   }
   .main-menu .menu.nav li ul.dropdown-menu a {
     padding: 10px 0px 10px 10px !important;
@@ -7971,6 +7979,27 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .user-logged-in.path-frontpage ul.mobile-menu li {
   display: block !important;
 }
+.user-logged-in.path-frontpage .mobile-menu img.close-nav-user,
+.user-logged-in.path-user .mobile-menu img.close-nav-user {
+  margin-top: 2.3em;
+  position: relative;
+  right: 20px;
+}
+.main-menu .menu.nav li ul img.close-nav {
+  margin: 10px auto;
+  display: block;
+}
+.mobile-menu a {
+  padding: 8px 0;
+}
+.path-frontpage .mobile-menu img.close-nav-user {
+  right: 0;
+  margin-top: 20px;
+}
+/*.language-menu img.close-nav{
+	margin-top: 20px;
+	right: 0 !important;
+}*/
 /*end for mobiles*/
 /*start for tablets*/
 @media only screen and (min-width: 768px) and (max-width: 1023px) {
