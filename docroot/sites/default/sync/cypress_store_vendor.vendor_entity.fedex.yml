@@ -1,0 +1,7 @@
+uuid: 67ba73ab-367d-4ac6-822d-1fb496e8e1df
+langcode: en
+status: true
+dependencies: {  }
+id: fedex
+label: Fedex
+description: "dev2:\r\n  authenticationKey : 'JwNhTonwuIb0sfmc'\r\n  password : 'M94he5lnlz2X33d3IPs2t5Bfb'\r\n  accountNumber : '510087100'\r\n  meterNumber : '118505605'\r\n  url : 'https://wsbeta.fedex.com:443/web-services'"
