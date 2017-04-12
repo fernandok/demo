@@ -12,7 +12,7 @@ use Drupal\Core\Entity\Entity;
 use Drupal\cypress_store_vendor\Entity\VendorEntity;
 use Symfony\Component\Yaml\Yaml;
 
-class DigiKey {
+class DigiKey extends VendorBase{
   /**
    * The Api End Point
    * @var
@@ -230,27 +230,5 @@ class DigiKey {
       ->get('address')
       ->getValue();
     return $billingAddress[0];
-  }
-
-  /**
-   * Convery Array to Xml
-   * @param $student_info
-   * @param $xml_student_info
-   */
-  public function array_to_xml($student_info, &$xml_student_info) {
-    foreach ($student_info as $key => $value) {
-      if (is_array($value)) {
-        if (!is_numeric($key)) {
-          $subnode = $xml_student_info->addChild("$key");
-          $this->array_to_xml($value, $subnode);
-        }
-        else {
-          $this->array_to_xml($value, $xml_student_info);
-        }
-      }
-      else {
-        $xml_student_info->addChild("$key", "$value");
-      }
-    }
   }
 }

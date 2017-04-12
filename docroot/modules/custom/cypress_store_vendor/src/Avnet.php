@@ -6,7 +6,7 @@ use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\cypress_store_vendor\Entity\AvnetInventoryEntity;
 use Symfony\Component\Yaml\Yaml;
 
-class Avnet{
+class Avnet extends VendorBase {
 
   /**
    * The Api End Point
@@ -79,12 +79,6 @@ class Avnet{
   </soapenv:Body>
 </soapenv:Envelope>
 XML;
-    $replace_trailing_xml = <<<XML
-<\/encodedXmlResponse>
-  <\/gatewayResponse>
-<\/tns:gatewayMessage><\/SOAP-ENV:Body>
-<\/SOAP-ENV:Envelope>
-XML;
     try {
       $request = $client->post(
         $this->endPoint,
@@ -95,10 +89,14 @@ XML;
       );
 
       $response = $request->getBody();
-      $content = $response->getContents();
-      $content = substr($content, 770);
-      $content = preg_replace("/$replace_trailing_xml/",'', $content);
+      $original_content = $response->getContents();
+      $content = substr($original_content, strpos($original_content, '<encodedXmlResponse>') + 20);
+      $content = $this->cleanTrailingXml($content);
       $content = htmlspecialchars_decode($content);
+      if (empty(trim($content))) {
+        $msg = $this->getErrorMessage($original_content);
+        throw new \Exception($msg, 500);
+      }
 
       $avnet_inventory_entity = \Drupal::configFactory()->getEditable('cypress_store_vendor.avnet_inventory_entity.details');
       $avnet_inventory_entity->set('changed', REQUEST_TIME);
@@ -106,7 +104,7 @@ XML;
       $avnet_inventory_entity->save();
     }
     catch (\Exception $e) {
-      
+      $error_message = $e->getMessage();
     }
   }
 
@@ -141,6 +139,125 @@ XML;
    *   Additional parameters.
    */
   public function setOrder($order, $params) {
+    $client = \Drupal::httpClient();
 
+    $body = <<<XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pl="www.avnet.com/3pl">
+  <soapenv:Header/>
+  <soapenv:Body>
+    <pl:gatewayMessage>
+      <gatewayRequest>
+        <encodedXmlRequest>
+          &lt;order&gt;
+            &lt;order_id&gt;101&lt;/order_id&gt;
+            &lt;order_date&gt;04/10/2017 17:02&lt;/order_date&gt;
+            &lt;order_type&gt;P&lt;/order_type&gt;
+            &lt;first_name&gt;FIRST NAME&lt;/first_name&gt;
+            &lt;last_name&gt;LAST NAME&lt;/last_name&gt;
+            &lt;company_name&gt;COMPANY NAME&lt;/company_name&gt;
+            &lt;address1&gt;address1&lt;/address1&gt;
+            &lt;address2&gt;address2&lt;/address2&gt;
+            &lt;city&gt;CITY&lt;/city&gt;
+            &lt;state&gt;STATE&lt;/state&gt;
+            &lt;zipcode&gt;695035&lt;/zipcode&gt;
+            &lt;country&gt;India&lt;/country&gt;
+            &lt;email&gt;manoj.k@valuebound.com&lt;/email&gt;
+            &lt;phone&gt;9876543210&lt;/phone&gt;
+            &lt;detail&gt;
+              &lt;partno&gt;CY8C100&lt;/partno&gt;
+              &lt;custpartno&gt;1000&lt;/custpartno&gt;
+              &lt;qty&gt;11&lt;/qty&gt;
+              &lt;htc&gt;&lt;/htc&gt;
+              &lt;eccn&gt;&lt;/eccn&gt;
+              &lt;eccnall&gt;&lt;/eccnall&gt;
+            &lt;/detail&gt;
+            &lt;detail&gt;
+              &lt;partno&gt;CY8C101&lt;/partno&gt;
+              &lt;custpartno&gt;1010&lt;/custpartno&gt;
+              &lt;qty&gt;2&lt;/qty&gt;
+              &lt;htc&gt;&lt;/htc&gt;
+              &lt;eccn&gt;&lt;/eccn&gt;
+              &lt;eccnall&gt;&lt;/eccnall&gt;
+            &lt;/detail&gt;
+            &lt;detail_count&gt;2&lt;/detail_count&gt;
+              &lt;application&gt;&lt;/application&gt;
+              &lt;end_equipment&gt;&lt;/end_equipment&gt;
+              &lt;ship_control_code/&gt;
+              &lt;ship_via&gt;FEDEX Express Economy 2nd Day Air&lt;/ship_via&gt;
+              &lt;tpb_account/&gt;
+              &lt;tpb_type/&gt;
+              &lt;tpb_first_name/&gt;
+              &lt;tpb_last_name/&gt;
+              &lt;tpb_company_name/&gt;
+             &lt;tpb_address1/&gt;
+             &lt;tpb_address2/&gt;
+              &lt;tpb_city/&gt;
+              &lt;tpb_state/&gt;
+              &lt;tpb_zipcode/&gt;
+              &lt;tpb_country/&gt;
+          &lt;/order&gt;
+        </encodedXmlRequest>
+      </gatewayRequest>
+    </pl:gatewayMessage>
+  </soapenv:Body>
+</soapenv:Envelope>
+XML;
+
+
+    try {
+      $request = $client->post(
+        $this->endPoint,
+        [
+          'auth' => [$this->userName, $this->password],
+          'body' => $body
+        ]
+      );
+
+      $response = $request->getBody();
+      $original_content = $response->getContents();
+      $content = substr($original_content, strpos($original_content, '<encodedXmlResponse>') + 20);
+      $content = $this->cleanTrailingXml($content);
+      $content = htmlspecialchars_decode($content);
+      if (!empty(trim($content))) {
+        $msg = $this->getErrorMessage($original_content);
+        throw new \Exception($msg, 500);
+      }
+
+      $order_ack = (array) new \SimpleXMLElement($content);
+      return $order_ack['order_id'];
+    }
+    catch (\Exception $e) {
+      $error = $e->getMessage();
+    }
+    return 0;
+  }
+
+  /**
+   * @param $content
+   *
+   * @return mixed
+   */
+  protected function cleanTrailingXml($content) {
+    $replace_trailing_xml = <<<XML
+<\/encodedXmlResponse>
+  <\/gatewayResponse>
+<\/tns:gatewayMessage><\/SOAP-ENV:Body>
+<\/SOAP-ENV:Envelope>
+XML;
+    return preg_replace("/$replace_trailing_xml/",'', $content);
+  }
+
+  /**
+   * @param $content
+   *
+   * @return mixed
+   */
+  protected function getErrorMessage($content) {
+    $content = substr($content, strpos($content, '</gatewayRequest>') + 16);
+    $replace_trailing_xml = <<<XML
+<\/tns:gatewayMessage><\/SOAP-ENV:Body>
+<\/SOAP-ENV:Envelope>
+XML;
+    return preg_replace("/$replace_trailing_xml/",'', $content);
   }
 }
