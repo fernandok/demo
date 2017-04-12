@@ -1,9 +1,7 @@
 <?php
 
-namespace Drupal\cypress_store_vendor;
+namespace Drupal\cypress_store_vendor\Vendor;
 
-
-use Behat\Mink\Exception\Exception;
 use Drupal\commerce_order\Entity\Order;
 use Drupal\commerce_shipping\Entity\Shipment;
 use Drupal\commerce_shipping\Entity\ShippingMethod;
@@ -12,7 +10,7 @@ use Drupal\Core\Entity\Entity;
 use Drupal\cypress_store_vendor\Entity\VendorEntity;
 use Symfony\Component\Yaml\Yaml;
 
-class DigiKey extends VendorBase{
+class DigiKey extends VendorBase {
   /**
    * The Api End Point
    * @var
@@ -31,15 +29,11 @@ class DigiKey extends VendorBase{
 
 
   public function __construct() {
-
-    $config = \Drupal::config('cypress_store_vendor.vendor_entity.digikey')
-      ->get('description');
-    $parsedData = Yaml::parse($config);
+    parent::__construct();
     //Todo change dev2 to be dynamic based on envirnment
-    $this->endPoint = $parsedData['dev2']['endPoint'];
-    $this->program_id = $parsedData['dev2']['programId'];
-    $this->security_id = $parsedData['dev2']['securityId'];
-
+    $this->endPoint = $this->config['dev2']['endPoint'];
+    $this->program_id = $this->config['dev2']['programId'];
+    $this->security_id = $this->config['dev2']['securityId'];
   }
 
   /**
@@ -55,7 +49,7 @@ class DigiKey extends VendorBase{
       $client = new \SoapClient($endPoint);
       $response = $client->QueryShipments($parameters);
       return $response;
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
 
     }
   }
@@ -77,7 +71,7 @@ class DigiKey extends VendorBase{
       $client = new \SoapClient($endPoint);
       $response = $client->GetShipment($parameters);
       return $response;
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
 
     }
   }
@@ -99,7 +93,7 @@ class DigiKey extends VendorBase{
       var_dump($response);
       exit;
       return $response;
-    } catch (Exception $e) {
+    } catch (\Exception $e) {
 
     }
   }
