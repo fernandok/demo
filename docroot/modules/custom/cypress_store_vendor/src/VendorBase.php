@@ -2,8 +2,24 @@
 
 namespace Drupal\cypress_store_vendor;
 
+use Symfony\Component\Yaml\Yaml;
+
 
 class VendorBase {
+
+  /**
+   * @var array
+   *
+   * Configuration for vendor.
+   */
+  protected $config;
+
+  public function __construct() {
+    $config_name = strtolower(substr(strrchr(get_class($this), '\\'), 1));
+    $this->config = \Drupal::config('cypress_store_vendor.vendor_entity.' .$config_name)
+      ->get('description');
+    $this->config = Yaml::parse($this->config);
+  }
 
   /**
    * Helper method to convert array to Xml

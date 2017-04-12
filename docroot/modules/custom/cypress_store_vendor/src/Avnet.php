@@ -3,8 +3,6 @@
 namespace Drupal\cypress_store_vendor;
 
 use Drupal\commerce_order\Entity\OrderInterface;
-use Drupal\cypress_store_vendor\Entity\AvnetInventoryEntity;
-use Symfony\Component\Yaml\Yaml;
 
 class Avnet extends VendorBase {
 
@@ -28,14 +26,11 @@ class Avnet extends VendorBase {
    * Avnet constructor.
    */
   public function __construct() {
-    $config = \Drupal::config('cypress_store_vendor.vendor_entity.avnet')
-      ->get('description');
-    $parsedData = Yaml::parse($config);
-
+    parent::__construct();
     //Todo change dev2 to be dynamic based on envirnment
-    $this->endPoint = $parsedData['dev2']['endPoint'];
-    $this->userName = $parsedData['dev2']['Username'];
-    $this->password = $parsedData['dev2']['Password'];
+    $this->endPoint = $this->config['dev2']['endPoint'];
+    $this->program_id = $this->config['dev2']['programId'];
+    $this->security_id = $this->config['dev2']['securityId'];
   }
 
   /**
