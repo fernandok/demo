@@ -72,38 +72,18 @@
   padding: 5px;
   color: #5d5b5b;
 }
-.slick-track {
-  width: auto !important;
-}
 @media only screen and (min-width: 320px) and (max-width: 767px) {
-  .slick-prev:before {
-    content: "";
-  }
-  .slick-next:before {
-    content: "";
-  }
-  .slick-prev {
-    left: 2px !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    background: url(../images/left-arrow.png) !important;
-    background-repeat: no-repeat !important;
-    background-position-y: 50px !important;
-    background-size: 18px !important;
-  }
+  .slick-prev,
   .slick-next {
-    padding: 0 !important;
     margin: 0 !important;
-    background: url(../images/right-arrow.png) !important;
-    background-repeat: no-repeat !important;
-    background-position-y: 50px !important;
-    background-size: 18px !important;
-    right: 2px !important;
   }
 }
 .slick-prev {
-  left: 2px !important;
+  left: -13px !important;
 }
 .slick-next {
-  right: 3px !important;
+  right: -13px !important;
+}
+.slick-list {
+  margin: 0 15px;
 }
