@@ -3,7 +3,7 @@
 define("AVNET", '\Drupal\cypress_store_vendor\Avnet');
 define("DIGIKEY", '\Drupal\cypress_store_vendor\Digikey');
 
-use Drupal\cypress_store_vendor\Avnet;
+use Drupal\cypress_store_vendor\Vendor\Avnet;
 
 /**
  * Implements hook_mail().
