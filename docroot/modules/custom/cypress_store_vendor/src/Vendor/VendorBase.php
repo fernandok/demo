@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cypress_store_vendor;
+namespace Drupal\cypress_store_vendor\Vendor;
 
 use Symfony\Component\Yaml\Yaml;
 

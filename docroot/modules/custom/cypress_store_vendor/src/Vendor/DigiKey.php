@@ -1,6 +1,6 @@
 <?php
 
-namespace Drupal\cypress_store_vendor;
+namespace Drupal\cypress_store_vendor\Vendor;
 
 use Drupal\commerce_order\Entity\Order;
 use Drupal\commerce_shipping\Entity\Shipment;
