@@ -22,6 +22,11 @@ class Avnet extends VendorBase {
    * @var
    */
   protected $password;
+  /**
+   * Avnet Partner Id
+   * @var
+   */
+  protected $partnerId;
 
   /**
    * Avnet constructor.
@@ -32,6 +37,7 @@ class Avnet extends VendorBase {
     $this->endPoint = $this->config['dev2']['endPoint'];
     $this->userName = $this->config['dev2']['Username'];
     $this->password = $this->config['dev2']['Password'];
+    $this->partnerId = $this->config['dev2']['partnerId'];
   }
 
   /**
@@ -97,34 +103,12 @@ XML;
 
       $avnet_inventory_entity = \Drupal::configFactory()->getEditable('cypress_store_vendor.avnet_inventory_entity.details');
       $avnet_inventory_entity->set('changed', REQUEST_TIME);
-      $avnet_inventory_entity->set('details', $this->parseDetails($content));
+      $avnet_inventory_entity->set('details', $this->parseInventoryDetails($content));
       $avnet_inventory_entity->save();
     }
     catch (\Exception $e) {
       $error_message = $e->getMessage();
     }
-  }
-
-  /**
-   * Parse the Avnet inventory xml detail.
-   *
-   * @param string $inventory_xml
-   *   Avnet inventory xml.
-   *
-   * @return array
-   *   Whole Avnet inventory detail as an array.
-   */
-  protected function parseDetails($inventory_xml) {
-    $inventory_details = simplexml_load_string($inventory_xml);
-    $inventory = [];
-    foreach ($inventory_details->part as $part) {
-      $part = (array) $part;
-      $inventory[$part['warehouse_code']][$part['partno']] = [
-        'quantity' => $part['qoh'],
-        'date' => $part['inventory_date'],
-      ];
-    }
-    return serialize($inventory);
   }
 
   /**
@@ -247,6 +231,81 @@ XML;
       $error = $e->getMessage();
     }
     return 0;
+  }
+
+  /**
+   * Method to get shipment details from Avnet.
+   *
+   * @param array $params
+   *   Parameters
+   */
+  public function getShipment($params = []) {
+    $client = \Drupal::httpClient();
+    $body = <<<XML
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pl="www.avnet.com/3pl">
+  <soapenv:Header/>
+    <soapenv:Body>
+      <pl:gatewayMessage>
+        <gatewayRequest>
+          <encodedXmlRequest>
+            &lt;shipment_request&gt;
+              &lt;partner_id&gt;$this->partnerId&lt;/partner_id&gt;
+            &lt;/shipment_request&gt;
+          </encodedXmlRequest>
+        </gatewayRequest>
+      </pl:gatewayMessage>
+    </soapenv:Body>
+</soapenv:Envelope>
+XML;
+    try {
+      $request = $client->post(
+        $this->endPoint,
+        [
+          'auth' => [$this->userName, $this->password],
+          'body' => $body
+        ]
+      );
+
+      $response = $request->getBody();
+      $original_content = $response->getContents();
+      $content = substr($original_content, strpos($original_content, '<encodedXmlResponse>') + 20);
+      $content = $this->cleanTrailingXml($content);
+      $content = htmlspecialchars_decode($content);
+      if (empty(trim($content))) {
+        $msg = $this->getErrorMessage($original_content);
+        throw new \Exception($msg, 500);
+      }
+
+      $shipment = (array) new \SimpleXMLElement($content);
+      return $shipment;
+    }
+    catch (\Exception $e) {
+      // TODO: use custom logger.
+      $error = $e->getMessage();
+    }
+    return [];
+  }
+
+  /**
+   * Parse the Avnet inventory xml detail.
+   *
+   * @param string $inventory_xml
+   *   Avnet inventory xml.
+   *
+   * @return array
+   *   Whole Avnet inventory detail as an array.
+   */
+  protected function parseInventoryDetails($inventory_xml) {
+    $inventory_details = simplexml_load_string($inventory_xml);
+    $inventory = [];
+    foreach ($inventory_details->part as $part) {
+      $part = (array) $part;
+      $inventory[$part['warehouse_code']][$part['partno']] = [
+        'quantity' => $part['qoh'],
+        'date' => $part['inventory_date'],
+      ];
+    }
+    return serialize($inventory);
   }
 
   /**

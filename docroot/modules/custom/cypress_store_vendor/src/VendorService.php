@@ -46,4 +46,19 @@ class VendorService {
     return $vendor_handler->setOrder($order, $params);
   }
 
+  /**
+   * Method to get shipping details.
+   *
+   * @param string $vendor
+   *   Vendor name.
+   * @param string $mpn
+   *   Product/Part number.
+   * @param string $region
+   *   Optional region, which need for Avnet.
+   */
+  public function getShipment($vendor, $params = []) {
+    $vendor_handler = new $vendor();
+    return $vendor_handler->getShipment($params);
+  }
+
 }
