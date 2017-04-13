@@ -4,4 +4,4 @@ status: true
 dependencies: {  }
 id: avnet
 label: Avnet
-description: "dev2:\r\n  endPoint : 'https://b2b-test.avnet.com:8543/soap/default'\r\n  Username : 'cypress'\r\n  Password : 'cypress123'"
+description: "dev2:\r\n  endPoint : 'https://b2b-test.avnet.com:8543/soap/default'\r\n  Username : 'cypress'\r\n  Password : 'cypress123'\r\n  partnerId: 'CYPRESS'"
