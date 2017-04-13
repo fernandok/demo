@@ -54,7 +54,7 @@ $(function(){
 		// if($(window).width() > 767){
 		
 	  		$("#block-mainmenu > ul > li:nth-child(1)").click(function(e){
-		      e.preventDefault();
+		      // e.preventDefault();
 
 		      var $content = $('#solutions-menu-content');
 		      var isVisible =  $content.is(":visible");
@@ -66,7 +66,7 @@ $(function(){
 	    	});
 
 	    	$("#block-mainmenu > ul > li:nth-child(2)").click(function(e){
-					e.preventDefault();
+					// e.preventDefault();
 		      		var $content = $('#products-menu-content');
 		      		var isVisible =  $content.is(":visible");
 				      $('.menu-drop').hide();
@@ -79,7 +79,7 @@ $(function(){
 
 
 	    	$("#block-mainmenu > ul > li:nth-child(3)").click(function(e){
-		      e.preventDefault();
+		      // e.preventDefault();
 
 		      var $content = $('#design-menu-content');
 		      var isVisible =  $content.is(":visible");
@@ -91,7 +91,7 @@ $(function(){
 	    	});
 
 	    	$("#block-mainmenu > ul > li:nth-child(4)").click(function(e){
-		      e.preventDefault();
+		      // e.preventDefault();
 
 		      var $content = $('#buy-menu-content');
 		      var isVisible =  $content.is(":visible");
