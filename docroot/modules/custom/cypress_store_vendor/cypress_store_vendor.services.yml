@@ -7,3 +7,10 @@ services:
     class: Drupal\cypress_store_vendor\EventSubscriber\CypressStoreVendorEventSubscriber
     tags:
       - { name: 'event_subscriber' }
+
+  cypress_store_vendor.order_submit_subscriber:
+    class: Drupal\cypress_store_vendor\EventSubscriber\OrderSubmitSubscriber
+    arguments: []
+    tags:
+      - { name: event_subscriber }
+

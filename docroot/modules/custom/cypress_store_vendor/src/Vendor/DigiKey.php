@@ -198,31 +198,4 @@ class DigiKey extends VendorBase {
     exit;
 
   }
-
-  /**
-   * Get Shipping Address
-   * @param $orderId
-   * @return mixed
-   */
-  public function getShippingAddress($orderId) {
-    $shippingId = Order::load($orderId)->get('shipments')->getValue();
-    $shippingAdress = Shipment::load($shippingId[0]['target_id'])
-      ->getShippingProfile()
-      ->get('address')
-      ->getValue();
-    return $shippingAdress[0];
-  }
-
-  /**
-   * Get Billing Address
-   * @param $orderId
-   * @return mixed
-   */
-  public function getBillingAddress($orderId) {
-    $billingAddress = Order::load($orderId)
-      ->getBillingProfile()
-      ->get('address')
-      ->getValue();
-    return $billingAddress[0];
-  }
 }

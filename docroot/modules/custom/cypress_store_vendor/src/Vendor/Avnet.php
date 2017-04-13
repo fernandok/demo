@@ -57,6 +57,7 @@ class Avnet extends VendorBase {
    * Method to get whole inventory details of Avnet.
    */
   public function updateInventory() {
+
     $client = \Drupal::httpClient();
     $body = <<<XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pl="www.avnet.com/3pl">
@@ -134,6 +135,28 @@ XML;
    *   Additional parameters.
    */
   public function setOrder($order, $params) {
+    $order_id = $order->id();
+    $order_date = $order->get('created')->getValue();
+    $order_date = date('m/d/Y H:i', $order_date[0]['value']);
+    $shipping_address = $this->getShippingAddress($order);
+    $first_name = $shipping_address['given_name'];
+    $last_name = $shipping_address['family_name'];
+    $company_name = $shipping_address['organization'];
+    $address1 = $shipping_address['address_line1'];
+    $address2 = $shipping_address['address_line2'];
+    $city = $shipping_address['locality'];
+    $state = $shipping_address['administrative_area'];
+    $zipcode = $shipping_address['postal_code'];
+    $country = $shipping_address['country_code'];
+    $email = $order->getEmail();
+    $phone = $shipping_address['contact'];
+    $order_items = $order->getItems();
+    foreach ($order_items as $order_item) {
+
+    }
+    $order_items_count = 2;
+    $ship_via = 'FEDEX Express Economy 2nd Day Air';
+
     $client = \Drupal::httpClient();
 
     $body = <<<XML

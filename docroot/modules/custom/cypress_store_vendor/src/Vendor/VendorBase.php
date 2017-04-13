@@ -2,6 +2,7 @@
 
 namespace Drupal\cypress_store_vendor\Vendor;
 
+use Drupal\commerce_order\Entity\Order;
 use Symfony\Component\Yaml\Yaml;
 
 
@@ -44,5 +45,44 @@ class VendorBase {
         $xml->addChild("$key", "$value");
       }
     }
+  }
+
+  /**
+   * Get Shipping Address.
+   *
+   * @param  mixed $order
+   *   Order id or object.
+   *
+   * @return array
+   */
+  public function getShippingAddress($order) {
+    if (is_numeric($order)) {
+      $order = Order::load($order);
+    }
+    $shipments = $order->get('shipments')->referencedEntities();
+    $first_shipment = reset($shipments);
+    $shipping_address = $first_shipment->getShippingProfile()
+      ->get('field_contact_address')
+      ->getValue();
+    return $shipping_address[0];
+  }
+
+  /**
+   * Get Billing Address.
+   *
+   * @param  mixed $order
+   *   Order id or object.
+   *
+   * @return array
+   */
+  public function getBillingAddress($order) {
+    if (is_numeric($order)) {
+      $order = Order::load($order);
+    }
+    $billing_address = $order
+      ->getBillingProfile()
+      ->get('address')
+      ->getValue();
+    return $billing_address[0];
   }
 }
