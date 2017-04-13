@@ -344,7 +344,7 @@ body{
 
 		.icon-bar{
 			background-color: #09357a;
-		    width: 42px;
+		    width: 30px;
 		    height: 4px;
 		    margin: 0.4em 0;
 		}
@@ -539,6 +539,9 @@ footer{
 /* start media queries for responsive*/
 /* start for mobiles*/
 @media only screen and (min-width: 320px) and (max-width: 767px){
+	header{
+		padding: 0 !important;
+	}
 	a.logo img{
 		width: 160px !important;
 		position: absolute;
@@ -552,7 +555,9 @@ footer{
 			float: left !important;
 			clear: left;
 			padding-top: 0 !important;
-			padding-left: 3em;
+			width: 100%;
+    		background: #f0f8ff;
+			/*padding-left: 3em;*/
 		
 			li{
 				display: block !important;
@@ -562,7 +567,7 @@ footer{
 				}
 				ul.dropdown-menu{
 					padding-top: 1em !important;
-					position: relative;
+					/*position: relative;*/
 
 					a{
 					    padding: 10px 0px 10px 10px !important;
@@ -579,6 +584,18 @@ footer{
 				}*/
 			}
 		}
+	}
+	ul.mobile-menu{
+		position: absolute;
+	    right: 0;
+	    top: 100%;
+	    background: #ffffff;
+	    z-index: 999;
+	    margin-right: 0.5em;
+	}
+	.user-icon {
+	    position: relative;
+	    right: 5px;
 	}
 	/*a.user-icon{
 		position: relative;
@@ -632,7 +649,10 @@ footer{
     	margin-left: 5px;
 	}
 	.icons img {
-	    width: 26px;
+	    width: 26px !important;
+	}
+	img.close-nav-user{
+		width: 30px !important;
 	}
 	a.logo img {
 	    width: 140px !important;

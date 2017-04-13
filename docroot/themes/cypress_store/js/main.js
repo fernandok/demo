@@ -37,6 +37,7 @@ $(function(){
 				// alert('ok');
 				// $('.primary-menu').toggleClass('hidden-xs');
 			$('.mobile-menu').toggle();
+			$('.language-menu').hide();
 			// $('.main-menu').hide();
 		});
 		$('.english').on('click', function(e){
@@ -59,6 +60,7 @@ $(function(){
 		      var $content = $('#solutions-menu-content');
 		      var isVisible =  $content.is(":visible");
 		      $('.menu-drop').hide();
+		      $('.mobile-menu').hide();
 		      if(isVisible) {
 		        return;
 		      }
@@ -66,15 +68,15 @@ $(function(){
 	    	});
 
 	    	$("#block-mainmenu > ul > li:nth-child(2)").click(function(e){
-					// e.preventDefault();
-		      		var $content = $('#products-menu-content');
-		      		var isVisible =  $content.is(":visible");
-				      $('.menu-drop').hide();
-				      if(isVisible) {
-
-				        return;
-				      }
-				      $content.show();
+				// e.preventDefault();
+		   		var $content = $('#products-menu-content');
+	    		var isVisible =  $content.is(":visible");
+			    $('.menu-drop').hide();
+		        $('.mobile-menu').hide();
+		        if(isVisible) {
+				    return;
+			    }
+	  	        $content.show();
 			});
 
 
@@ -84,6 +86,7 @@ $(function(){
 		      var $content = $('#design-menu-content');
 		      var isVisible =  $content.is(":visible");
 		      $('.menu-drop').hide();
+		      $('.mobile-menu').hide();
 		        if(isVisible) {
 		        return;
 		      }
@@ -96,6 +99,7 @@ $(function(){
 		      var $content = $('#buy-menu-content');
 		      var isVisible =  $content.is(":visible");
 		      $('.menu-drop').hide();
+		      $('.mobile-menu').hide();
 		      if(isVisible) {
 		        return;
 		      }
@@ -123,5 +127,13 @@ $(function(){
 	  	// });
 
 		$('.menu-drop').parent('div').addClass('menu-drop-parent');
+		// var width= $(window).width();
+		$(window).resize(function(){
+		    $('.main-menu .menu.nav ul.menu.dropdown-menu').width($(window).width()-2);
+		});
+
+		    $('.main-menu .menu.nav ul.menu.dropdown-menu').width($(window).width()-2);
+			// $('.main-menu .menu.nav').width($(window).width()-2);
+		// $('.main-menu .menu.nav ul.menu.dropdown-menu').width(width-2);
 	});
 });

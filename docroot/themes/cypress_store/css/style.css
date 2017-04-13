@@ -7630,7 +7630,7 @@ button.navbar-toggle {
 }
 button.navbar-toggle .icon-bar {
   background-color: #09357a;
-  width: 42px;
+  width: 30px;
   height: 4px;
   margin: 0.4em 0;
 }
@@ -7788,6 +7788,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
 /* start media queries for responsive*/
 /* start for mobiles*/
 @media only screen and (min-width: 320px) and (max-width: 767px) {
+  header {
+    padding: 0 !important;
+  }
   a.logo img {
     width: 160px !important;
     position: absolute;
@@ -7799,7 +7802,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
     float: left !important;
     clear: left;
     padding-top: 0 !important;
-    padding-left: 3em;
+    width: 100%;
+    background: #f0f8ff;
+    /*padding-left: 3em;*/
   }
   .main-menu .menu.nav li {
     display: block !important;
@@ -7813,7 +7818,7 @@ footer .region-footer .footer-block .footer-menu .copyright {
   }
   .main-menu .menu.nav li ul.dropdown-menu {
     padding-top: 1em !important;
-    position: relative;
+    /*position: relative;*/
     /*li:last-child{
 						text-align: start !important;
     					padding-right: 0 !important;
@@ -7822,6 +7827,18 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .main-menu .menu.nav li ul.dropdown-menu a {
     padding: 10px 0px 10px 10px !important;
     margin: 0 !important;
+  }
+  ul.mobile-menu {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    background: #ffffff;
+    z-index: 999;
+    margin-right: 0.5em;
+  }
+  .user-icon {
+    position: relative;
+    right: 5px;
   }
   /*a.user-icon{
 		position: relative;
@@ -7872,7 +7889,10 @@ footer .region-footer .footer-block .footer-menu .copyright {
     margin-left: 5px;
   }
   .icons img {
-    width: 26px;
+    width: 26px !important;
+  }
+  img.close-nav-user {
+    width: 30px !important;
   }
   a.logo img {
     width: 140px !important;
