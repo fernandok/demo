@@ -36,10 +36,9 @@ class OrderSubmitSubscriber implements EventSubscriberInterface {
    * @param GetResponseEvent $event
    */
   public function submitOrderToVendor(Event $event) {
-    $order = $event->getEntity();
-
-    $avnet = new \Drupal\cypress_store_vendor\Vendor\Avnet();
-    $avnet->setOrder($order, []);
+    // $order = $event->getEntity();
+    // $avnet = new \Drupal\cypress_store_vendor\Vendor\Avnet();
+    // $avnet->setOrder($order, []);
   }
 
 }
