@@ -3,6 +3,7 @@
 namespace Drupal\cypress_store_vendor\Vendor;
 
 use Drupal\commerce_order\Entity\Order;
+use Drupal\commerce_order\Entity\OrderItem;
 use Symfony\Component\Yaml\Yaml;
 
 
@@ -84,5 +85,20 @@ class VendorBase {
       ->get('address')
       ->getValue();
     return $billing_address[0];
+  }
+
+  /**
+   * @param \Drupal\commerce_order\Entity\OrderItem $order_item
+   *
+   * @return string
+   */
+  public function getProductMpnId(OrderItem $order_item) {
+    $product_variation = $order_item->getPurchasedEntity();
+    $mpn_id = '';
+    $product_type = $product_variation->get('type')->getValue()[0]['target_id'];
+    if ($product_type == 'part_store') {
+      $mpn_id = $product_variation->getTitle();
+    }
+    return $mpn_id;
   }
 }
