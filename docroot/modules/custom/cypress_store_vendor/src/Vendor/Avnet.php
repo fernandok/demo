@@ -3,7 +3,6 @@
 namespace Drupal\cypress_store_vendor\Vendor;
 
 use Drupal\commerce_order\Entity\OrderInterface;
-use Drupal\Core\Locale\CountryManager;
 
 class Avnet extends VendorBase {
 
@@ -118,6 +117,8 @@ XML;
    *   Commerce order.
    * @param array $params
    *   Additional parameters.
+   *
+   * @return mixed
    */
   public function setOrder($order, $params) {
     $order_id = $order->id();
@@ -238,6 +239,8 @@ XML;
    *
    * @param array $params
    *   Parameters
+   *
+   * @return mixed
    */
   public function getShipment($params = []) {
     $client = \Drupal::httpClient();
