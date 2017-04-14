@@ -564,14 +564,41 @@ footer{
 
 				a{
 					padding: 10px 15px !important;
+
+					&:hover{
+						border: none !important;
+					}
+					&:focus{
+						outline: 0 !important;
+    					color: #0288d1;
+					}
 				}
 				ul.dropdown-menu{
 					padding-top: 1em !important;
 					/*position: relative;*/
 
-					a{
-					    padding: 10px 0px 10px 10px !important;
-	    				margin: 0 !important;
+					li{
+
+						a{
+						    padding: 10px 0px 10px 10px !important;
+		    				margin: 0 !important;
+		    				font-weight: bold !important;
+						}
+						ul{
+							padding-top: 0 !important;
+
+							li{
+								padding: 10px;
+
+								a{
+									font-weight: normal !important;
+								}
+
+								img{
+									display: none;
+								}
+							}
+						}
 					}
 					/*li:last-child{
 						text-align: start !important;
@@ -596,6 +623,12 @@ footer{
 	.user-icon {
 	    position: relative;
 	    right: 5px;
+	}
+	.icons ul a img:first-child {
+	    margin-right: 9px;
+	}
+	.icons ul li a img {
+	    margin-right: 0 !important;
 	}
 	/*a.user-icon{
 		position: relative;

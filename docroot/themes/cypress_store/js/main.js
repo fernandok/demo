@@ -135,5 +135,6 @@ $(function(){
 		    $('.main-menu .menu.nav ul.menu.dropdown-menu').width($(window).width()-2);
 			// $('.main-menu .menu.nav').width($(window).width()-2);
 		// $('.main-menu .menu.nav ul.menu.dropdown-menu').width(width-2);
+			$('.main-menu .menu.nav > li > ul > li > ul').removeClass('dropdown-menu');
 	});
 });

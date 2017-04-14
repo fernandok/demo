@@ -7816,6 +7816,13 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .main-menu .menu.nav li a {
     padding: 10px 15px !important;
   }
+  .main-menu .menu.nav li a:hover {
+    border: none !important;
+  }
+  .main-menu .menu.nav li a:focus {
+    outline: 0 !important;
+    color: #0288d1;
+  }
   .main-menu .menu.nav li ul.dropdown-menu {
     padding-top: 1em !important;
     /*position: relative;*/
@@ -7824,9 +7831,22 @@ footer .region-footer .footer-block .footer-menu .copyright {
     					padding-right: 0 !important;
 					}*/
   }
-  .main-menu .menu.nav li ul.dropdown-menu a {
+  .main-menu .menu.nav li ul.dropdown-menu li a {
     padding: 10px 0px 10px 10px !important;
     margin: 0 !important;
+    font-weight: bold !important;
+  }
+  .main-menu .menu.nav li ul.dropdown-menu li ul {
+    padding-top: 0 !important;
+  }
+  .main-menu .menu.nav li ul.dropdown-menu li ul li {
+    padding: 10px;
+  }
+  .main-menu .menu.nav li ul.dropdown-menu li ul li a {
+    font-weight: normal !important;
+  }
+  .main-menu .menu.nav li ul.dropdown-menu li ul li img {
+    display: none;
   }
   ul.mobile-menu {
     position: absolute;
@@ -7839,6 +7859,12 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .user-icon {
     position: relative;
     right: 5px;
+  }
+  .icons ul a img:first-child {
+    margin-right: 9px;
+  }
+  .icons ul li a img {
+    margin-right: 0 !important;
   }
   /*a.user-icon{
 		position: relative;
