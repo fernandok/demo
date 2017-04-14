@@ -2,6 +2,7 @@
 
 namespace Drupal\cypress_store_vendor\EventSubscriber;
 
+use Drupal\cypress_store_vendor\Vendor\VendorBase;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -37,7 +38,8 @@ class OrderSubmitSubscriber implements EventSubscriberInterface {
    */
   public function submitOrderToVendor(Event $event) {
     // $order = $event->getEntity();
-    // $avnet = new \Drupal\cypress_store_vendor\Vendor\Avnet();
+    // $vendor = VendorBase::AVNET;
+    // $avnet = new $vendor;
     // $avnet->setOrder($order, []);
   }
 

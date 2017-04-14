@@ -10,6 +10,21 @@ use Symfony\Component\Yaml\Yaml;
 class VendorBase {
 
   /**
+   * Vendor class for Avnet.
+   */
+  const AVNET  = '\Drupal\cypress_store_vendor\Vendor\Avnet';
+
+  /**
+   * Vendor class for Digikey.
+   */
+  const DIGIKEY  = '\Drupal\cypress_store_vendor\Vendor\Digikey';
+
+  /**
+   * Vendor class for CML/OM.
+   */
+  const CML  = '\Drupal\cypress_store_vendor\Vendor\Cml';
+
+  /**
    * @var array
    *
    * Configuration for vendor.

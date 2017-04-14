@@ -1,8 +1,5 @@
 <?php
 
-define("AVNET", '\Drupal\cypress_store_vendor\Vendor\Avnet');
-define("DIGIKEY", '\Drupal\cypress_store_vendor\Vendor\Digikey');
-
 use Drupal\cypress_store_vendor\Vendor\Avnet;
 
 /**
