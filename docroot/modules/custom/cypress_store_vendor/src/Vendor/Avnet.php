@@ -318,10 +318,10 @@ XML;
    */
   protected function cleanTrailingXml($content) {
     $replace_trailing_xml = <<<XML
-<\/encodedXmlResponse>
-  <\/gatewayResponse>
-<\/tns:gatewayMessage><\/SOAP-ENV:Body>
-<\/SOAP-ENV:Envelope>
+</encodedXmlResponse>
+  </gatewayResponse>
+</tns:gatewayMessage></SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
 XML;
     return preg_replace("/$replace_trailing_xml/",'', $content);
   }
@@ -334,8 +334,8 @@ XML;
   protected function getErrorMessage($content) {
     $content = substr($content, strpos($content, '</gatewayRequest>') + 16);
     $replace_trailing_xml = <<<XML
-<\/tns:gatewayMessage><\/SOAP-ENV:Body>
-<\/SOAP-ENV:Envelope>
+</tns:gatewayMessage></SOAP-ENV:Body>
+</SOAP-ENV:Envelope>
 XML;
     return preg_replace("/$replace_trailing_xml/",'', $content);
   }
