@@ -7825,6 +7825,7 @@ footer .region-footer .footer-block .footer-menu .copyright {
   }
   .main-menu .menu.nav li ul.dropdown-menu {
     padding-top: 1em !important;
+    width: 100% !important;
     /*position: relative;*/
     /*li:last-child{
 						text-align: start !important;
@@ -7847,6 +7848,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   }
   .main-menu .menu.nav li ul.dropdown-menu li ul li img {
     display: none;
+  }
+  .region-header nav#block-mainmenu ul {
+    float: none !important;
   }
   ul.mobile-menu {
     position: absolute;
