@@ -7518,7 +7518,7 @@ body {
 }
 .region-header .block-search-form-block input.form-control {
   border-radius: 4px !important;
-  width: 320px;
+  /*width: 320px;*/
 }
 .region-header .block-search-form-block span .button {
   background: none;
@@ -7726,6 +7726,9 @@ li.menu-item.level-2 {
 }
 /*end buy menu */
 /*End styles for header*/
+.main {
+  margin-top: 15px;
+}
 /*footer styles*/
 footer {
   width: 100% !important;
@@ -7804,6 +7807,7 @@ footer .region-footer .footer-block .footer-menu .copyright {
     padding-top: 0 !important;
     width: 100%;
     background: #f0f8ff;
+    margin-top: 3em;
     /*padding-left: 3em;*/
   }
   .main-menu .menu.nav li {
@@ -7876,15 +7880,22 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .icons ul li a img {
     margin-right: 0 !important;
   }
-  /*a.user-icon{
-		position: relative;
-	    top: 2.7em;
-	    left: 5%;
-
-	    img{
-	        width: 35px;
-	    }
-	}*/
+  .region-header .block-search-form-block {
+    position: absolute;
+    /*z-index: 999;*/
+    top: 9em;
+    /*left: 3em;*/
+    left: -0.2em;
+  }
+  .region-header .block-search-form-block span .button {
+    right: 0.4em;
+  }
+  .region-header .block-search-form-block input.form-control {
+    left: 2em;
+  }
+  .tooltip.right {
+    display: none !important;
+  }
   /*footer styles responsive*/
   footer {
     padding: 20px 0 !important;
@@ -8077,6 +8088,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .region-header nav#block-mainmenu ul {
     padding-top: 0 !important;
   }
+  .region-header .block-search-form-block input.form-control {
+    width: 320px;
+  }
   .region-header .block-search-form-block span .button {
     right: 9.7em;
   }
@@ -8127,6 +8141,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   }
   footer {
     padding: 64px;
+  }
+  .region-header .block-search-form-block input.form-control {
+    width: 320px;
   }
 }
 @media (min-width: 1024px) and (max-width: 1400px) {
