@@ -138,6 +138,8 @@ body{
 		    	border: none;
 		    	color: #1d1b1c;
 
+		    	display: none !important;
+
 		    	span.glyphicon{
 		    		top:3px;
 					font-size: larger;
@@ -351,6 +353,20 @@ body{
 		}
 	}
 	/*end hamburger menu*/
+	input[type="submit"]{
+		background: url(/themes/cypress_store/images/search.svg);
+	    background-repeat: no-repeat;
+	    width: 20px;
+	    border: 0;
+	    min-width: 0px;
+	    height: 16px;
+	    right: 20px;
+	    position: relative;
+	    z-index: 999;
+	    vertical-align: super;
+	    bottom: 3px;
+	}
+
 	/*.products-submenu{
 		display: none;
 
@@ -458,6 +474,7 @@ li.menu-item.level-2 {
 		font-weight: bold;
 	}
 }
+
 /*end buy menu */
 
 
@@ -677,6 +694,12 @@ footer{
 	.user-logged-in.path-user.has-glyphicons .region-header .block-search-form-block{
 		top: 9em;
 	}
+	input[type="submit"]{
+		right: 0;
+	}
+	input[type="submit"]:focus {
+	    outline: none;
+	}
 	.tooltip.right{
 		display: none !important;
 	}
@@ -889,7 +912,7 @@ footer{
 		padding-top: 0 !important;
 	}
 	.region-header .block-search-form-block input.form-control{
-		width: 320px;
+		width: 320px !important;
 	}
 	.region-header .block-search-form-block span .button{
 		right: 9.7em;
@@ -944,7 +967,7 @@ footer{
 		padding: 64px;
 	}
 	.region-header .block-search-form-block input.form-control{
-		width: 320px;
+		width: 320px !important;
 	}
 }
 @media (min-width: 1024px) and (max-width: 1400px){

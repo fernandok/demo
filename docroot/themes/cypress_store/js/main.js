@@ -2,7 +2,18 @@ var $ = jQuery;
 $(function(){
 	$(document).ready(function(){
 		$(".block-search-form-block").addClass('col-md-4');
-		// $('input[type="search"]').parent().append('<input class="input-submit" type="submit">');
+		var width= $(window).width();
+		$(window).resize(function(){
+		    $('input[type="search"]').width($(window).width()-41);
+		});
+		$('input[type="search"]').width($(window).width()-41);
+		$('input[type="search"]').parent().append('<input class="input-submit" type="submit" value="">');
+		// $('form').find("input[type=search]").each(function(ev){
+		//       if(!$(this).val()) { 
+		//      $(this).attr("placeholder", "Enter your keywords");
+		//   	}
+		// });
+		$('input[type="search"]').attr("placeholder", "Enter your keywords");
 		$("#block-primarymenublock").addClass('col-md-4 hidden-xs');
 		$('.language-menu, .account-menu').addClass("dropdown-menu");
 		$('.primary-menu li:nth-child(2), .primary-menu li:last-child').addClass('dropdown expanded');
