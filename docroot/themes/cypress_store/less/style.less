@@ -86,7 +86,7 @@ body{
 
 					a{
 						padding: 0px;
-					    margin-right: 64px;
+					    margin-right: 22px;
 					    margin-top: -7px;
 					    background: none;
 
@@ -100,8 +100,14 @@ body{
 				}
 			}
 		}
+		.region-header .primary-menu .primary-menu-list {
+		    padding-left: 60px;
+		}
 	}
-
+	
+	.user-logged-in.path-user .region-header .primary-menu .primary-menu-list {
+		padding-left: 36px;
+	}
 
 	
 	.region-header{
@@ -160,10 +166,6 @@ body{
 			    position: relative;
 			    top: 2.6rem;
 			    line-height: 16.1px;
-
-			    .primary-menu-list {
-				    padding-left: 36px;
-				}
 
 			    li {
 				    list-style-type: none;
@@ -631,6 +633,7 @@ footer{
 	}
 	.region-header .block-search-form-block input.form-control{
 		left: 2em;
+		top: 0.7em;
 	}
 	.path-frontpage.has-glyphicons .region-header .block-search-form-block{
 		top: 6em;
@@ -646,6 +649,7 @@ footer{
 	}
 	input[type="submit"]{
 		right: 0;
+		top: 0.5em;
 	}
 	input[type="submit"]:focus {
 	    outline: none;
