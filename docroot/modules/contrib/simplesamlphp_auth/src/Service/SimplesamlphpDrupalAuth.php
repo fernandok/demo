@@ -140,7 +140,7 @@ class SimplesamlphpDrupalAuth {
 
     // It's possible that a user with their username set to this authname
     // already exists in the Drupal database.
-    $existing_user = $this->entityManager->getStorage('user')->loadByProperties(array('name' => $authname));
+    $existing_user = $this->entityManager->getStorage('user')->loadByProperties(array('mail' => $authname));
     $existing_user = $existing_user ? reset($existing_user) : FALSE;
     if ($existing_user) {
       // If auto-enable SAML is activated, link this user to SAML.

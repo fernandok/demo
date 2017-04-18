@@ -7,7 +7,7 @@ dependencies:
 id: primarymenublock_2
 theme: cypress_store
 region: '-1'
-weight: 2
+weight: 3
 provider: null
 plugin: 'block_content:01fe2614-a5f1-46db-a7b4-3acac67e3d20'
 settings:

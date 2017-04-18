@@ -1,7 +1,19 @@
 var $ = jQuery;
 $(function(){
 	$(document).ready(function(){
-		$(".block-search-form-block").addClass('col-md-4 hidden-xs');
+		$(".block-search-form-block").addClass('col-md-4');
+		var width= $(window).width();
+		$(window).resize(function(){
+		    $('input[type="search"]').width($(window).width()-41);
+		});
+		$('input[type="search"]').width($(window).width()-41);
+		$('input[type="search"]').parent().append('<input class="input-submit" type="submit" value="">');
+		// $('form').find("input[type=search]").each(function(ev){
+		//       if(!$(this).val()) { 
+		//      $(this).attr("placeholder", "Enter your keywords");
+		//   	}
+		// });
+		$('input[type="search"]').attr("placeholder", "Enter your keywords");
 		$("#block-primarymenublock").addClass('col-md-4 hidden-xs');
 		$('.language-menu, .account-menu').addClass("dropdown-menu");
 		$('.primary-menu li:nth-child(2), .primary-menu li:last-child').addClass('dropdown expanded');
@@ -18,11 +30,15 @@ $(function(){
 		$("[role='heading']").addClass('col-md-12 header');
 		// $(".form-search").append("<input class="form-submit" type="submit" id="edit-submit">");
 		$('.region-header').prepend('<button type="button" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>');
-		$('button.navbar-toggle').on('click',function(){
-			$('.main-menu').toggleClass('hidden-xs');
-			$('.menu-drop').hide();
-			// $('.mobile-menu').hide();
-		});
+		
+			$('button.navbar-toggle').on('click',function(){
+				$('.main-menu').toggleClass('hidden-xs');
+				$('.menu-drop').hide();
+				$('.navbar-toggle span:nth-child(2)').toggleClass('rotate-close-1');
+				$('.navbar-toggle span:nth-child(3)').toggleClass('rotate-close-2');
+				$('.navbar-toggle span:nth-child(4)').toggleClass('rotate-close-3');
+			});
+
 		// if($(window).width() < 767){
 		// 	$('.region-header').append('<a href="/user" class="dropdown-toggle user-icon" data-target="#" data-toggle="dropdown" aria-expanded="false"> <img src="/themes/cypress_store/images/user-image.png" alt="my pic"><span class="caret"></span></a>');
 		// 	$('a.user-icon').on('click', function(){
