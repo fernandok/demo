@@ -7684,7 +7684,8 @@ footer {
   background: #002431;
 }
 footer .region-footer {
-  margin: 0px 11%;
+  /*margin: 0px 11%;*/
+  margin: 0 auto;
 }
 footer .region-footer .footer-block {
   color: #ffffff;
@@ -7902,6 +7903,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   footer .footer-menu p.copyright {
     margin: 0 !important;
   }
+  footer .region-footer {
+    margin: 0px 11%;
+  }
   /*end footer styles responsive*/
 }
 @media only screen and (min-width: 320px) and (max-width: 360px) {
@@ -7948,9 +7952,58 @@ footer .region-footer .footer-block .footer-menu .copyright {
     left: 12%;
   }
 }
+/*start for tablets*/
+@media only screen and (min-width: 768px) and (max-width: 1023px) {
+  .region-header .block-search-form-block {
+    left: 1em;
+  }
+  .path-frontpage .user-menu ul.menu.nav li a,
+  .path-user .user-menu ul.menu.nav li a {
+    margin-left: 17em;
+    margin-top: -8px;
+  }
+  .region-header .primary-block {
+    /*float: right !important;*/
+    float: left !important;
+    margin-left: 0 !important;
+  }
+  .user-menu .navbar-right {
+    /*float: right !important;*/
+    float: left !important;
+  }
+  /*input[type="submit"] {
+		left: 5em;
+    	right: 0 !important;
+	}*/
+  .region-header nav#block-mainmenu ul {
+    padding-top: 0 !important;
+    /*position: relative;
+    	right: 2em;*/
+  }
+  .region-header .block-search-form-block input.form-control {
+    width: 320px !important;
+    /*left: 7em;*/
+  }
+  .region-header .block-search-form-block span .button {
+    right: 9.7em;
+  }
+  /*.user-logged-in .user-menu ul.menu.nav li a{
+		margin-right: 64px !important;
+	}*/
+  footer .region-footer .footer-block .footer-menu ul {
+    margin: 10px 0;
+  }
+  footer .region-footer .footer-block .footer-menu .copyright {
+    margin: 2em 0 !important;
+  }
+  footer .region-footer {
+    margin: 0 2%;
+  }
+}
 @media only screen and (max-width: 767px) {
   .region-header .primary-block {
     margin-left: 0 !important;
+    float: right !important;
   }
   .region-header .primary-menu ul {
     display: none;
@@ -8048,40 +8101,65 @@ footer .region-footer .footer-block .footer-menu .copyright {
   margin-top: 20px;
 }
 /*end for mobiles*/
-/*start for tablets*/
-@media only screen and (min-width: 768px) and (max-width: 1023px) {
-  .region-header .block-search-form-block {
-    left: 1em;
-  }
-  .path-frontpage .user-menu ul.menu.nav li a,
-  .path-user .user-menu ul.menu.nav li a {
-    margin-left: 17em;
-    margin-top: -8px;
-  }
+@media only screen and (min-width: 768px) and (max-width: 991px) {
   .region-header .primary-block {
-    float: left !important;
-    margin-left: 0 !important;
+    float: right !important;
+    /*margin-left: 0 !important;*/
   }
-  .user-menu .navbar-right {
-    float: left !important;
+  input[type="submit"] {
+    right: 0 !important;
   }
   .region-header nav#block-mainmenu ul {
-    padding-top: 0 !important;
+    /*padding-top: 0 !important;*/
+    position: relative;
+    right: 2em;
   }
   .region-header .block-search-form-block input.form-control {
-    width: 320px !important;
+    left: 2.2em;
   }
-  .region-header .block-search-form-block span .button {
-    right: 9.7em;
+  .icons {
+    position: absolute;
+    left: 19em;
+    margin-top: -2em;
+    z-index: 999;
   }
-  footer .region-footer .footer-block .footer-menu ul {
-    margin: 10px 0;
+  .region-header .block-search-form-block input.form-control {
+    margin-top: 3em;
   }
-  footer .region-footer .footer-block .footer-menu .copyright {
-    margin: 2em 0 !important;
+  .icons ul {
+    margin-top: 0;
   }
-  footer .region-footer {
-    margin: 0 2%;
+  .icons li {
+    list-style-type: none;
+    display: inline-block;
+    width: 30px;
+    margin-left: 8px;
+  }
+  .icons img {
+    width: 30px;
+  }
+  .mobile-menu {
+    display: none;
+  }
+  .icons a:first-child {
+    float: left;
+    clear: both;
+  }
+  .mobile-menu li {
+    width: auto !important;
+    margin-left: 0;
+  }
+  ul.mobile-menu {
+    margin-top: 1em !important;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    padding: 15px;
+    background: #ffffff;
+  }
+  ul.language-menu {
+    margin-top: 0 !important;
+    padding: 10px 0 !important;
+    display: none;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1023px) {
@@ -8121,6 +8199,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   }
   footer {
     padding: 64px;
+  }
+  footer .region-footer {
+    max-width: 1024px;
   }
   .region-header .block-search-form-block input.form-control {
     width: 320px !important;
