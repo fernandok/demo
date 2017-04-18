@@ -154,7 +154,7 @@ function simplesamlphp_auth_form_user_login_form_alter(&$form, FormStateInterfac
   $destination = \Drupal::service('redirect.destination')->getAsArray();
 
   $form['simplesamlphp_auth_login_link'] = array(
-    '#markup' => \Drupal::l($label, new Url('simplesamlphp_auth.saml_login', array(), array(
+    '#markup' => \Drupal::l($label, new Url('simplesamlphp_auth.saml_login', array('query' => $destination), array(
       'attributes' => array(
         'class' => array('simplesamlphp-auth-login-link'),
       ),
