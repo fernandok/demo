@@ -5,6 +5,6 @@ dependencies: {  }
 id: part
 label: Part
 description: 'Map the Part Products from cypress legacy system'
-variationType: default
+variationType: part_store
 injectVariationFields: true
 traits: {  }

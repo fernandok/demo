@@ -1,0 +1,7 @@
+uuid: 04caf0c2-d6fb-4a67-a4e9-def34d9c59ca
+langcode: en
+status: true
+dependencies: {  }
+id: cml
+label: CML
+description: "dev2:\r\n  end_point: 'http://157.95.211.168:7777/orabpel/OMWEBServices/SampleOrderService/4.0'\r\n  username: 'WEBOM_TECH_USER'"
