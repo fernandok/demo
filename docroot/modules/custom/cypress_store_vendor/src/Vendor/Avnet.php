@@ -2,6 +2,7 @@
 
 namespace Drupal\cypress_store_vendor\Vendor;
 
+use Drupal\commerce_order\Entity\Order;
 use Drupal\commerce_order\Entity\OrderInterface;
 
 class Avnet extends VendorBase {
@@ -124,6 +125,7 @@ XML;
     $order_id = $order->id();
     $order_date = $order->get('created')->getValue();
     $order_date = date('m/d/Y H:i', $order_date[0]['value']);
+    $order_type = 'P';
     $shipping_address = $this->getShippingAddress($order);
     $first_name = trim($shipping_address['given_name']);
     $last_name = trim($shipping_address['family_name']);
@@ -153,6 +155,7 @@ XML;
       &lt;/detail&gt;";
       $order_items_count++;
     }
+    // TODO: Make it dynamic.
     $ship_via = 'FEDEX Express Economy 2nd Day Air';
 
     $client = \Drupal::httpClient();
@@ -167,7 +170,7 @@ XML;
           &lt;order&gt;
             &lt;order_id&gt;$order_id&lt;/order_id&gt;
             &lt;order_date&gt;$order_date&lt;/order_date&gt;
-            &lt;order_type&gt;P&lt;/order_type&gt;
+            &lt;order_type&gt;$order_type&lt;/order_type&gt;
             &lt;first_name&gt;$first_name&lt;/first_name&gt;
             &lt;last_name&gt;$last_name&lt;/last_name&gt;
             &lt;company_name&gt;$company_name&lt;/company_name&gt;
@@ -243,6 +246,14 @@ XML;
    * @return mixed
    */
   public function getShipment($params = []) {
+    $this->updateShipment();
+    $order = Order::load($params['order_id']);
+    $shipment = $order->getData('shipment');
+
+    return $shipment;
+  }
+
+  protected function updateShipment() {
     $client = \Drupal::httpClient();
     $body = <<<XML
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:pl="www.avnet.com/3pl">
@@ -271,22 +282,32 @@ XML;
 
       $response = $request->getBody();
       $original_content = $response->getContents();
+      // Just for testing.
+      $original_content = file_get_contents('/home/manoj/Projects/Cypress store/Vendor Doc/Archive/avnet_shipment_response.xml');
       $content = substr($original_content, strpos($original_content, '<encodedXmlResponse>') + 20);
+      $content = str_ireplace('<![CDATA[', '', $content);
       $content = $this->cleanTrailingXml($content);
+      $content = str_ireplace(']]>', '', $content);
       $content = htmlspecialchars_decode($content);
       if (empty(trim($content))) {
         $msg = $this->getErrorMessage($original_content);
         throw new \Exception($msg, 500);
       }
 
-      $shipment = (array) new \SimpleXMLElement($content);
-      return $shipment;
+      $shipments = new \SimpleXMLElement($content);
+      foreach ($shipments as $shipment) {
+        $shipment_detail = (array) $shipment->shipment;
+        unset($shipment_detail['detail']);
+        $order = Order::load($shipment_detail->order_id);
+        $order->setData('vendor', 'avnet');
+        $order->setData('shipment', $shipment_detail);
+        $order->save();
+      }
     }
     catch (\Exception $e) {
       // TODO: use custom logger.
       $error = $e->getMessage();
     }
-    return [];
   }
 
   /**
@@ -317,13 +338,15 @@ XML;
    * @return mixed
    */
   protected function cleanTrailingXml($content) {
-    $replace_trailing_xml = <<<XML
-</encodedXmlResponse>
-  </gatewayResponse>
-</tns:gatewayMessage></SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
-XML;
-    return preg_replace("/$replace_trailing_xml/",'', $content);
+    $trailing_xml_tags = [
+      '</encodedXmlResponse>',
+      '</gatewayResponse>',
+      '</tns:gatewayMessage>',
+      '</SOAP-ENV:Body>',
+      '</SOAP-ENV:Envelope>'
+    ];
+
+    return $this->replaceTrailingXmlTags($trailing_xml_tags, $content);
   }
 
   /**
@@ -333,10 +356,20 @@ XML;
    */
   protected function getErrorMessage($content) {
     $content = substr($content, strpos($content, '</gatewayRequest>') + 16);
-    $replace_trailing_xml = <<<XML
-</tns:gatewayMessage></SOAP-ENV:Body>
-</SOAP-ENV:Envelope>
-XML;
-    return preg_replace("/$replace_trailing_xml/",'', $content);
+    $trailing_xml_tags = [
+      '</tns:gatewayMessage>',
+      '</SOAP-ENV:Body>',
+      '</SOAP-ENV:Envelope>'
+    ];
+
+    return $this->replaceTrailingXmlTags($trailing_xml_tags, $content);
+  }
+
+  protected function replaceTrailingXmlTags($trailing_xml_tags, $content) {
+    foreach ($trailing_xml_tags as $xml_tag) {
+      $content = str_ireplace($xml_tag,'', $content);
+    }
+
+    return trim($content);
   }
 }
