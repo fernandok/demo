@@ -7380,7 +7380,7 @@ body {
 }
 .user-logged-in .user-menu ul.menu.nav li a {
   padding: 0 2px !important;
-  margin-right: 20px !important;
+  margin-right: 13px !important;
   margin-top: -8px;
   background: none;
 }
@@ -7446,7 +7446,7 @@ body {
   /*margin-left: 6em;*/
   position: relative;
   top: 2.5rem;
-  left: 5em;
+  left: 9.3em;
   padding: 0;
   margin-left: -1.2em;
 }
@@ -7475,11 +7475,19 @@ body {
 .region-header .primary-menu {
   position: relative;
   top: 2.6rem;
+  line-height: 16.1px;
+}
+.region-header .primary-menu .primary-menu-list {
+  padding-left: 36px;
 }
 .region-header .primary-menu li {
   list-style-type: none;
   display: inline-block;
-  padding: 5px;
+  padding: 5px 0;
+}
+.region-header .primary-menu li a {
+  padding-right: 8px;
+  padding-left: 5px;
 }
 .region-header .primary-menu li ul.language-menu,
 .region-header .primary-menu li ul.account-menu {
@@ -7532,9 +7540,12 @@ body {
   font-weight: bold;
   text-transform: uppercase;
   padding: 0 0 8px 0;
-  /*margin: 0 15px;*/
   background: none;
   margin-right: 16px;
+  letter-spacing: 0.03em;
+}
+.region-header nav#block-mainmenu ul li a:last-child {
+  margin-right: 0;
 }
 .region-header nav#block-mainmenu ul li a:hover {
   background: none;
@@ -8175,6 +8186,10 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .region-header .primary-block,
   .user-menu .navbar-right {
     float: right !important;
+  }
+  .region-header .primary-menu li a {
+    padding-right: 4px;
+    padding-left: 3px;
   }
 }
 /*end for tablets*/
