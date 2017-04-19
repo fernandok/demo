@@ -106,13 +106,31 @@ body{
 		}
 	}
 	
-	.user-logged-in.path-user .region-header .primary-menu .primary-menu-list {
+	.user-logged-in.path-user .region-header .primary-menu .primary-menu-list,
+	.user-logged-in.path-search .region-header .primary-menu .primary-menu-list  {
 		padding-left: 36px;
 	}
 	.user-logged-in.path-frontpage .region-header .primary-menu .primary-menu-list {
 		padding-left: 36px;
 	}
-
+	
+	@-moz-document url-prefix() {
+	   .path-frontpage .region-header nav#block-mainmenu ul,
+	   .path-user .region-header nav#block-mainmenu ul {
+		   	left: 3em;
+			position: relative;
+	   }
+	   .user-logged-in.path-user .region-header nav#block-mainmenu ul,
+	   .user-logged-in.path-frontpage .region-header nav#block-mainmenu ul {
+	   		left: 0;
+	   }
+	}
+	/*@-moz-document url-prefix() {
+	   {
+		   	left: 3em;
+			position: relative;
+	   }
+	}*/
 	
 	.region-header{
 
@@ -297,6 +315,8 @@ body{
 	button.navbar-toggle{
 		float: left;
 		margin-top: 2.3em;
+		height: 45px;
+    	width: 45px;
 
 		.icon-bar{
 			background-color: #09357a;
@@ -307,7 +327,7 @@ body{
 		}
 	}
 	/*end hamburger menu*/
-	input[type="submit"]{
+	.block-search-form-block input[type="submit"]{
 		background: url(/themes/cypress_store/images/search.svg);
 	    background-repeat: no-repeat;
 	    width: 20px;
@@ -319,6 +339,9 @@ body{
 	    z-index: 999;
 	    vertical-align: super;
 	    bottom: 3px;
+	}
+	.close-nav-user{
+		cursor: pointer;
 	}
 
 	/*.products-submenu{
@@ -427,6 +450,9 @@ li.menu-item.level-2 {
 	a{
 		font-weight: bold;
 	}
+}
+.main-menu .menu.nav{
+	min-height: 33px;
 }
 
 /*end buy menu */
