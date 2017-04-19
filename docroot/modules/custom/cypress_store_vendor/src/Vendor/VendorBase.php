@@ -66,12 +66,14 @@ class VendorBase {
   /**
    * Get Shipping Address.
    *
-   * @param  mixed $order
+   * @param mixed $order
    *   Order id or object.
+   * @param bool $oracle_fields_required
+   *   Whether need to include oracle field data.
    *
    * @return array
    */
-  public function getShippingAddress($order) {
+  public function getShippingAddress($order, $oracle_fields_required = FALSE) {
     if (is_numeric($order)) {
       $order = Order::load($order);
     }
@@ -80,6 +82,18 @@ class VendorBase {
     $shipping_address = $first_shipment->getShippingProfile()
       ->get('field_contact_address')
       ->getValue();
+    if ($oracle_fields_required) {
+      $oracle_fields = ['oracle_customer_site_id', 'om_customer_site_use_id'];
+      foreach ($oracle_fields as $field ){
+        $field_value = $first_shipment->getShippingProfile()
+          ->get("field_$field")
+          ->getValue()[0]['value'];
+        if ($field_value == NULL) {
+          $field_value = 0;
+        }
+        $shipping_address[0][$field] = $field_value;
+      }
+    }
     return $shipping_address[0];
   }
 

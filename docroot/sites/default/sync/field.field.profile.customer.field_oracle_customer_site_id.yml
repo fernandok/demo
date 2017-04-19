@@ -1,0 +1,21 @@
+uuid: 996730ff-da60-4458-ac33-592056b7e326
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_oracle_customer_site_id
+    - profile.type.customer
+id: profile.customer.field_oracle_customer_site_id
+field_name: field_oracle_customer_site_id
+entity_type: profile
+bundle: customer
+label: 'Oracle customer site id'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: '0'
+default_value_callback: ''
+settings: {  }
+field_type: string
