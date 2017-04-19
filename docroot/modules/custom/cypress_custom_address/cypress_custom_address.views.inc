@@ -68,5 +68,12 @@ function cypress_custom_address_field_views_data() {
             'id' => 'field_contact_number',
         ],
     ];
+    $data['profile']['contact_address_deliver_here'] = [
+        'title' => t('Deliver Here'),
+        'help' => t('Deliver Here Button'),
+        'field' => [
+            'id' => 'field_deliver_here',
+        ],
+    ];
     return $data;
 }

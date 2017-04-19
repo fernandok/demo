@@ -45,7 +45,7 @@
 }
 .address-boxes-sec-1 .address-icons .address-delete .profile-delete {
   background: url('../images/rubbish-bin-delete-button.png') no-repeat;
-  text-indent: -9999px;
+  color: rgba(255, 255, 255, 0);
   display: block;
   width: 25px;
   margin-right: 7px;
@@ -55,7 +55,7 @@
 }
 .address-boxes-sec-1 .address-icons .address-edit .profile-edit {
   background: url('../images/pencil-edit-button.png') no-repeat;
-  text-indent: -9999px;
+  color: rgba(255, 255, 255, 0);
   display: block;
   width: 25px;
   height: 30px;
