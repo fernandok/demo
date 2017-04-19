@@ -14,9 +14,9 @@ use Drupal\commerce_product\Entity\Product;
  */
 function cypress_store_preprocess_page(&$variables) {
 
-  if (\Drupal::service('path.matcher')->isFrontPage() == 1) {
+ // if (\Drupal::service('path.matcher')->isFrontPage() == 1) {
     $variables['#attached']['library'][] = 'cypress_store/slick';
-  }
+  //}
 
 }
 

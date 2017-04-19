@@ -1,0 +1,269 @@
+From 95120fce3269c75ead58dec183e17add11a62fb4 Mon Sep 17 00:00:00 2001
+From: Ben McClure <ben.mcclure@gmail.com>
+Date: Sun, 16 Apr 2017 03:30:30 -0500
+Subject: [PATCH] Add support for passing in profile select reuse options
+
+---
+ .../Commerce/CheckoutPane/BillingInformation.php   |   4 +-
+ .../CheckoutPane/BillingInformationPaneBase.php    | 111 +++++++++++++++++++++
+ modules/order/commerce_order.module                |  26 +++++
+ modules/payment/src/Element/PaymentGatewayForm.php |   3 +
+ .../Commerce/CheckoutPane/PaymentInformation.php   |   8 +-
+ .../src/PluginForm/PaymentMethodAddForm.php        |   2 +-
+ 6 files changed, 148 insertions(+), 6 deletions(-)
+ create mode 100644 modules/checkout/src/Plugin/Commerce/CheckoutPane/BillingInformationPaneBase.php
+
+diff --git a/modules/checkout/src/Plugin/Commerce/CheckoutPane/BillingInformation.php b/modules/checkout/src/Plugin/Commerce/CheckoutPane/BillingInformation.php
+index e53b0f9..0ccef92 100644
+--- a/modules/checkout/src/Plugin/Commerce/CheckoutPane/BillingInformation.php
++++ b/modules/checkout/src/Plugin/Commerce/CheckoutPane/BillingInformation.php
+@@ -14,7 +14,7 @@
+  *   wrapper_element = "fieldset",
+  * )
+  */
+-class BillingInformation extends CheckoutPaneBase implements CheckoutPaneInterface {
++class BillingInformation extends BillingInformationPaneBase {
+ 
+   /**
+    * {@inheritdoc}
+@@ -47,7 +47,7 @@ public function buildPaneForm(array $pane_form, FormStateInterface $form_state,
+       '#default_value' => $billing_profile,
+       '#default_country' => $store->getAddress()->getCountryCode(),
+       '#available_countries' => $store->getBillingCountries(),
+-    ];
++    ] + $this->getProfileSelectOptions();
+ 
+     return $pane_form;
+   }
+diff --git a/modules/checkout/src/Plugin/Commerce/CheckoutPane/BillingInformationPaneBase.php b/modules/checkout/src/Plugin/Commerce/CheckoutPane/BillingInformationPaneBase.php
+new file mode 100644
+index 0000000..9c558d4
+--- /dev/null
++++ b/modules/checkout/src/Plugin/Commerce/CheckoutPane/BillingInformationPaneBase.php
+@@ -0,0 +1,111 @@
++<?php
++
++namespace Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane;
++use Drupal\Core\Form\FormStateInterface;
++
++/**
++ * A base class for shared configuration of billing information panes.
++ */
++abstract class BillingInformationPaneBase extends CheckoutPaneBase implements CheckoutPaneInterface {
++
++  /**
++   * {@inheritdoc}
++   */
++  public function defaultConfiguration() {
++    return [
++        'reuse_profile' => FALSE,
++        'reuse_profile_label' => 'My shipping address is the same as my billing address.',
++        'reuse_profile_default' => FALSE,
++      ] + parent::defaultConfiguration();
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function buildConfigurationSummary() {
++    if (!empty($this->configuration['reuse_profile'])) {
++      $summary = $this->t('Allow reuse of shipping profile: Yes') . '<br>';
++      $summary .= $this->t('Reuse shipping profile label: @label', [
++        '@label' => $this->configuration['reuse_profile_label']
++      ]) . '<br>';
++      $summary .= $this->t('Reuse shipping profile by default: @default', [
++        '@default' => ($this->configuration['reuse_profile_default'])
++          ? $this->t('Yes')
++          : $this->t('No')
++      ]);
++    }
++    else {
++      $summary = $this->t('Allow reuse of shipping profile: No');
++    }
++
++    return $summary;
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
++    $form = parent::buildConfigurationForm($form, $form_state);
++    $visible_state = [['.js-reuse-shipping-profile' => ['checked' => TRUE]]];
++
++    $form['reuse_profile'] = [
++      '#type' => 'checkbox',
++      '#title' => $this->t('Allow reuse of shipping profile for billing'),
++      '#default_value' => $this->configuration['reuse_profile'],
++    ];
++    $form['reuse_profile']['#attributes']['class'][] = 'js-reuse-shipping-profile';
++    $form['reuse_profile_label'] = [
++      '#type' => 'textfield',
++      '#title' => $this->t('Reuse shipping profile label'),
++      '#default_value' => $this->configuration['reuse_profile_label'],
++      '#states' => [
++        'visible' => $visible_state,
++      ]
++    ];
++    $form['reuse_profile_default'] = [
++      '#type' => 'checkbox',
++      '#title' => $this->t('Reuse shipping profile by default'),
++      '#default_value' => $this->configuration['reuse_profile_default'],
++      '#states' => [
++        'visible' => $visible_state,
++      ]
++    ];
++
++    return $form;
++  }
++
++  /**
++   * {@inheritdoc}
++   */
++  public function submitConfigurationForm(array &$form, FormStateInterface $form_state) {
++    parent::submitConfigurationForm($form, $form_state);
++
++    if (!$form_state->getErrors()) {
++      $values = $form_state->getValue($form['#parents']);
++      $this->configuration['reuse_profile'] = !empty($values['reuse_profile']);
++      $this->configuration['reuse_profile_label'] = $values['reuse_profile_label'];
++      $this->configuration['reuse_profile_default'] = !empty($values['reuse_profile_default']);
++    }
++  }
++
++  protected function getProfileSelectOptions() {
++    $options = [];
++
++    if (!empty($this->configuration['reuse_profile'])) {
++      $reuse_label = !empty($this->configuration['reuse_profile_label'])
++        ? $this->configuration['reuse_profile_label']
++        : NULL;
++      $reuse_default = isset($this->configuration['reuse_profile_default'])
++        ? $this->configuration['reuse_profile_default']
++        : FALSE;
++
++      $options = [
++        '#reuse_profile_label' => $reuse_label,
++        '#reuse_profile_source' => 'commerce_order_get_shipping_profile',
++        '#reuse_profile_default' => $reuse_default
++      ];
++    }
++
++    return $options;
++  }
++}
+diff --git a/modules/order/commerce_order.module b/modules/order/commerce_order.module
+index 0ccaa7c..23c062c 100644
+--- a/modules/order/commerce_order.module
++++ b/modules/order/commerce_order.module
+@@ -181,3 +181,29 @@ function commerce_order_mail($key, &$message, $params) {
+   $message['subject'] = $params['subject'];
+   $message['body'][] = $params['body'];
+ }
++
++/**
++ * Determine the current shipping profile for reuse as the billing profile.
++ *
++ * @param array $element
++ *   The element reusing the shipping profile.
++ * @param \Drupal\Core\Form\FormStateInterface $form_state
++ *   The form state.
++ * @param array $complete_form
++ *   The complete checkout form.
++ *
++ * @return \Drupal\profile\Entity\ProfileInterface|NULL
++ *   The shipping profile, or NULL if none can be found.
++ */
++function commerce_order_get_shipping_profile(array $element, FormStateInterface $form_state, array $complete_form) {
++  $profile = NULL;
++
++  $storage = $form_state->getStorage();
++  if (isset($storage['pane_shipping_information[shipping_profile]']['profile'])) {
++    $profile = $storage['pane_shipping_information[shipping_profile]']['profile'];
++  } elseif (isset($complete_form['shipping_information']['shipping_profile']['#profile'])) {
++    $profile = $complete_form['shipping_information']['shipping_profile']['#profile'];
++  }
++
++  return $profile;
++}
+diff --git a/modules/payment/src/Element/PaymentGatewayForm.php b/modules/payment/src/Element/PaymentGatewayForm.php
+index a36321c..af2393d 100644
+--- a/modules/payment/src/Element/PaymentGatewayForm.php
++++ b/modules/payment/src/Element/PaymentGatewayForm.php
+@@ -19,6 +19,8 @@
+  *   // On submit, the payment method will be created remotely, and the
+  *   // entity updated, for access via $form_state->getValue('payment_method')
+  *   '#default_value' => $payment_method,
++ *   // Additional options to pass into the commerce_profile_select element.
++ *   '#profile_select_options' => [],
+  * ];
+  * @endcode
+  *
+@@ -35,6 +37,7 @@ public function getInfo() {
+       '#operation' => '',
+       // The entity operated on. Instance of EntityWithPaymentGatewayInterface.
+       '#default_value' => NULL,
++      '#profile_select_options' => [],
+       '#process' => [
+         [$class, 'attachElementSubmit'],
+         [$class, 'processForm'],
+diff --git a/modules/payment/src/Plugin/Commerce/CheckoutPane/PaymentInformation.php b/modules/payment/src/Plugin/Commerce/CheckoutPane/PaymentInformation.php
+index e0121a3..cd2c6e0 100644
+--- a/modules/payment/src/Plugin/Commerce/CheckoutPane/PaymentInformation.php
++++ b/modules/payment/src/Plugin/Commerce/CheckoutPane/PaymentInformation.php
+@@ -2,7 +2,7 @@
+ 
+ namespace Drupal\commerce_payment\Plugin\Commerce\CheckoutPane;
+ 
+-use Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane\CheckoutPaneBase;
++use Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane\BillingInformationPaneBase;
+ use Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\SupportsStoredPaymentMethodsInterface;
+ use Drupal\Component\Utility\Html;
+ use Drupal\Component\Utility\NestedArray;
+@@ -18,7 +18,7 @@
+  *   wrapper_element = "fieldset",
+  * )
+  */
+-class PaymentInformation extends CheckoutPaneBase {
++class PaymentInformation extends BillingInformationPaneBase {
+ 
+   /**
+    * {@inheritdoc}
+@@ -114,6 +114,7 @@ public function buildPaneForm(array $pane_form, FormStateInterface $form_state,
+       }
+     }
+ 
++    $profile_select_options = $this->getProfileSelectOptions();
+     $selected_option = $pane_form['payment_method'][$default_option];
+     $payment_gateway = $payment_gateways[$selected_option['#payment_gateway']];
+     if ($payment_gateway->getPlugin() instanceof SupportsStoredPaymentMethodsInterface) {
+@@ -129,6 +130,7 @@ public function buildPaneForm(array $pane_form, FormStateInterface $form_state,
+         $pane_form['add_payment_method'] = [
+           '#type' => 'commerce_payment_gateway_form',
+           '#operation' => 'add-payment-method',
++          '#profile_select_options' => $profile_select_options,
+           '#default_value' => $payment_method,
+         ];
+       }
+@@ -148,7 +150,7 @@ public function buildPaneForm(array $pane_form, FormStateInterface $form_state,
+         '#default_value' => $billing_profile,
+         '#default_country' => $store->getAddress()->getCountryCode(),
+         '#available_countries' => $store->getBillingCountries(),
+-      ];
++      ] + $profile_select_options;
+     }
+ 
+     return $pane_form;
+diff --git a/modules/payment/src/PluginForm/PaymentMethodAddForm.php b/modules/payment/src/PluginForm/PaymentMethodAddForm.php
+index 0a3ece9..fe58dd0 100644
+--- a/modules/payment/src/PluginForm/PaymentMethodAddForm.php
++++ b/modules/payment/src/PluginForm/PaymentMethodAddForm.php
+@@ -74,7 +74,7 @@ public function buildConfigurationForm(array $form, FormStateInterface $form_sta
+       '#default_value' => $billing_profile,
+       '#default_country' => $store ? $store->getAddress()->getCountryCode() : NULL,
+       '#available_countries' => $store ? $store->getBillingCountries() : [],
+-    ];
++    ] + $form['#profile_select_options'];
+ 
+     return $form;
+   }
