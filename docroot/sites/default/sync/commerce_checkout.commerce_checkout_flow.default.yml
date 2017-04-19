@@ -19,35 +19,6 @@ configuration:
       allow_registration: false
       step: login
       weight: 0
-    contact_information:
-      double_entry: true
-      step: order_information
-      weight: 2
-    shipping_information:
-      require_shipping_profile: true
-      step: order_information
-      weight: 3
-    review:
-      step: review
-      weight: 5
-    completion_message:
-      step: complete
-      weight: 7
-      message: 'Your order number is %order_number. You can view your order on your account page when logged in.'
-    order_summary:
-      view: commerce_checkout_order_summary
-      step: _sidebar
-      weight: 8
-    payment_process:
-      capture: true
-      step: payment
-      weight: 6
-    payment_information:
-      step: order_information
-      weight: 4
-    coupon:
-      step: _disabled
-      weight: 9
     coupon_redemption:
       title: 'Coupon code'
       description: 'Enter your coupon code to redeem a promotion.'
@@ -56,4 +27,36 @@ configuration:
       remove_title: 'Remove coupon'
       step: order_information
       weight: 1
+    contact_information:
+      double_entry: true
+      step: order_information
+      weight: 2
+    shipping_information:
+      require_shipping_profile: true
+      step: order_information
+      weight: 3
+    payment_information:
+      reuse_profile: true
+      reuse_profile_label: 'My shipping address is the same as my billing address.'
+      reuse_profile_default: false
+      step: order_information
+      weight: 4
+    review:
+      step: review
+      weight: 5
+    payment_process:
+      capture: true
+      step: payment
+      weight: 6
+    completion_message:
+      step: complete
+      weight: 7
+      message: 'Your order number is %order_number. You can view your order on your account page when logged in.'
+    order_summary:
+      view: commerce_checkout_order_summary
+      step: _sidebar
+      weight: 8
+    coupon:
+      step: _disabled
+      weight: 9
   order_summary_view: commerce_checkout_order_summary
