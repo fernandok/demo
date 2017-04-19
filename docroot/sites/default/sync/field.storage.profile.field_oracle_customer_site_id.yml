@@ -1,0 +1,21 @@
+uuid: 1045c707-84ac-4b09-944d-34b727e06a46
+langcode: en
+status: true
+dependencies:
+  module:
+    - profile
+id: profile.field_oracle_customer_site_id
+field_name: field_oracle_customer_site_id
+entity_type: profile
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
