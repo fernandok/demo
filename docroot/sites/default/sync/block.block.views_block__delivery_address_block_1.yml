@@ -5,6 +5,7 @@ dependencies:
   config:
     - views.view.delivery_address
   module:
+    - block_class
     - system
     - views
   theme:
@@ -28,6 +29,6 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: '<front>'
+    pages: '/checkout/*/order_information'
     negate: false
     context_mapping: {  }
