@@ -1,0 +1,21 @@
+uuid: fab8a429-8d19-4f69-9f51-2b29d5a379c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.profile.field_om_customer_site_use_id
+    - profile.type.customer
+id: profile.customer.field_om_customer_site_use_id
+field_name: field_om_customer_site_use_id
+entity_type: profile
+bundle: customer
+label: 'om customer site use id'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: '0'
+default_value_callback: ''
+settings: {  }
+field_type: string

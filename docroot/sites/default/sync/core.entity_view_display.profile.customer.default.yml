@@ -5,6 +5,8 @@ dependencies:
   config:
     - field.field.profile.customer.address
     - field.field.profile.customer.field_contact_address
+    - field.field.profile.customer.field_om_customer_site_use_id
+    - field.field.profile.customer.field_oracle_customer_site_id
     - profile.type.customer
   enforced:
     module:
@@ -26,3 +28,5 @@ content:
     type: contact_default
 hidden:
   address: true
+  field_om_customer_site_use_id: true
+  field_oracle_customer_site_id: true
