@@ -7848,7 +7848,7 @@ footer .region-footer .footer-block .footer-menu .copyright {
     right: 5px;
   }
   .icons ul a img:first-child {
-    margin-right: 9px;
+    margin-right: 12px;
   }
   .icons ul li a img {
     margin-right: 0 !important;
@@ -8043,7 +8043,8 @@ footer .region-footer .footer-block .footer-menu .copyright {
     list-style-type: none;
     display: inline-block;
     width: 40px;
-    margin-left: 8px;
+    margin-left: 5px;
+    margin-right: 3px;
   }
   .icons img {
     width: 30px;
@@ -8054,6 +8055,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .icons a:first-child {
     float: left;
     clear: both;
+  }
+  a.user-icon {
+    float: right !important;
   }
   .mobile-menu li {
     width: auto !important;
