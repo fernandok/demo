@@ -113,6 +113,9 @@ body{
 	.user-logged-in.path-frontpage .region-header .primary-menu .primary-menu-list {
 		padding-left: 36px;
 	}
+	.user-logged-in.path-search .user-menu ul.menu.nav li a{
+	   	margin-top: -4px;
+	}
 	
 	@-moz-document url-prefix() {
 	   .path-frontpage .region-header nav#block-mainmenu ul,
@@ -124,6 +127,12 @@ body{
 	   .user-logged-in.path-frontpage .region-header nav#block-mainmenu ul {
 	   		left: 0;
 	   }
+	   .user-logged-in.path-user .primary-menu-list, 
+	   .user-logged-in.path-search .primary-menu-list, 
+	   .user-logged-in.path-frontpage .primary-menu-list{
+	   		padding-left: 30px !important;
+	   }
+	   
 	}
 		
 	.region-header{
@@ -577,7 +586,7 @@ footer{
 				ul.dropdown-menu{
 					padding-top: 1em !important;
 					width: 100% !important;
-					/*position: relative;*/
+					position: absolute !important;
 
 					li{
 
@@ -672,8 +681,8 @@ footer{
 	.user-logged-in.path-user.has-glyphicons .region-header .block-search-form-block{
 		top: 9em;
 	}
-	input[type="submit"]{
-		right: 0;
+	.block-search-form-block input[type="submit"]{
+		right: 0 !important;
 		top: 0.5em;
 	}
 	input[type="submit"]:focus {
@@ -932,7 +941,7 @@ footer{
 		float: right !important;
 		/*margin-left: 0 !important;*/
 	}
-	input[type="submit"] {
+	.block-search-form-block input[type="submit"] {
     	right: 0 !important;
 	}
 	.region-header nav#block-mainmenu ul{
