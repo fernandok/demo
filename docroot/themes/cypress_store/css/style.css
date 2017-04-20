@@ -7435,13 +7435,15 @@ body {
   margin-bottom: 14px;
 }
 .user-logged-in.path-user .region-header .primary-menu .primary-menu-list,
-.user-logged-in.path-search .region-header .primary-menu .primary-menu-list {
+.user-logged-in.path-search .region-header .primary-menu .primary-menu-list,
+.user-logged-in.path-checkout .region-header .primary-menu .primary-menu-list {
   padding-left: 36px;
 }
 .user-logged-in.path-frontpage .region-header .primary-menu .primary-menu-list {
   padding-left: 36px;
 }
-.user-logged-in.path-search .user-menu ul.menu.nav li a {
+.user-logged-in.path-search .user-menu ul.menu.nav li a,
+.user-logged-in.path-checkout .user-menu ul.menu.nav li a {
   margin-top: -4px;
 }
 @-moz-document url-prefix() {
