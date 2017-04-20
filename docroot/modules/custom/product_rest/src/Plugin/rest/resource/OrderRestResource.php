@@ -2,6 +2,7 @@
 
 namespace Drupal\product_rest\Plugin\rest\resource;
 
+use Drupal\Core\Executable\ExecutableException;
 use Drupal\Core\Session\AccountProxyInterface;
 use Drupal\rest\Plugin\ResourceBase;
 use Drupal\rest\ResourceResponse;
@@ -85,15 +86,25 @@ class OrderRestResource extends ResourceBase {
 
     // You must to implement the logic of your REST Resource here.
     // Use current user after pass authentication to validate access.
-    if (!$this->currentUser->hasPermission('access content')) {
-      throw new AccessDeniedHttpException();
+
+    try {
+      $order_load = Order::load($data['order_id']);
+      if(empty($order_load)) {
+        throw new \Exception('There is no matching order for this order id');
+      }
+      $order_load->setData('shipment', $data);
+      $order_load->save();
+      $response = ['status' => 'SUCESS'];
+    }
+
+    catch (\Exception $e) {
+      $response = [
+       'status' => 'FAILURE',
+       'error' =>  $e->getMessage(),
+      ];
     }
     
-    $order_load = Order::load($data['order_id']);
-    $order_load->setData('shipment', $data);
-    $order_load->save();
-    
-    return new ResourceResponse($order_load);
+    return new ResourceResponse($response);
   }
 
 }

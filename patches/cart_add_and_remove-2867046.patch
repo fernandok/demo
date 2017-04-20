@@ -1,0 +1,62 @@
+diff --git a/docroot/modules/contrib/commerce/modules/order/src/Entity/Order.php b/docroot/modules/contrib/commerce/modules/order/src/Entity/Order.php
+index 5aa8dd3..8102ede 100644
+--- a/docroot/modules/contrib/commerce/modules/order/src/Entity/Order.php
++++ b/docroot/modules/contrib/commerce/modules/order/src/Entity/Order.php
+@@ -345,8 +345,10 @@ public function recalculateTotalPrice() {
+         $order_item_total = $order_item->getTotalPrice();
+         $total_price = $total_price ? $total_price->add($order_item_total) : $order_item_total;
+       }
+-      foreach ($this->collectAdjustments() as $adjustment) {
+-        $total_price = $total_price->add($adjustment->getAmount());
++      if ($total_price) {
++        foreach ($this->collectAdjustments() as $adjustment) {
++          $total_price = $total_price->add($adjustment->getAmount());
++        }
+       }
+     }
+     $this->total_price = $total_price;
+diff --git a/docroot/modules/contrib/commerce/modules/order/src/OrderStorage.php b/docroot/modules/contrib/commerce/modules/order/src/OrderStorage.php
+index a527871..d1a9115 100644
+--- a/docroot/modules/contrib/commerce/modules/order/src/OrderStorage.php
++++ b/docroot/modules/contrib/commerce/modules/order/src/OrderStorage.php
+@@ -88,7 +88,7 @@ public function loadUnchanged($id) {
+   protected function doPreSave(EntityInterface $entity) {
+     $id = parent::doPreSave($entity);
+     /** @var \Drupal\commerce_order\Entity\OrderInterface $entity */
+-    if ($entity->getRefreshState() == OrderInterface::REFRESH_ON_SAVE) {
++    if ($entity->hasItems() && $entity->getRefreshState() == OrderInterface::REFRESH_ON_SAVE) {
+       $this->orderRefresh->refresh($entity);
+     }
+     // Only the REFRESH_ON_LOAD state needs to be persisted on the entity.
+diff --git a/docroot/modules/contrib/commerce/modules/promotion/src/Plugin/Commerce/PromotionOffer/OrderPercentageOff.php b/docroot/modules/contrib/commerce/modules/promotion/src/Plugin/Commerce/PromotionOffer/OrderPercentageOff.php
+index a2b4785..c61df02 100644
+--- a/docroot/modules/contrib/commerce/modules/promotion/src/Plugin/Commerce/PromotionOffer/OrderPercentageOff.php
++++ b/docroot/modules/contrib/commerce/modules/promotion/src/Plugin/Commerce/PromotionOffer/OrderPercentageOff.php
+@@ -18,9 +18,11 @@ class OrderPercentageOff extends PercentageOffBase {
+    */
+   public function execute() {
+     $order = $this->getOrder();
+-    $adjustment_amount = $order->getTotalPrice()->multiply($this->getAmount());
+-    $adjustment_amount = $this->rounder->round($adjustment_amount);
+-    $this->applyAdjustment($order, $adjustment_amount);
++    if ($order->getTotalPrice()) {
++      $adjustment_amount = $order->getTotalPrice()->multiply($this->getAmount());
++      $adjustment_amount = $this->rounder->round($adjustment_amount);
++      $this->applyAdjustment($order, $adjustment_amount);
++    }
+   }
+ 
+ }
+diff --git a/docroot/modules/contrib/commerce_shipping/src/ShipmentOrderProcessor.php b/docroot/modules/contrib/commerce_shipping/src/ShipmentOrderProcessor.php
+index 72ce857..65725ef 100644
+--- a/docroot/modules/contrib/commerce_shipping/src/ShipmentOrderProcessor.php
++++ b/docroot/modules/contrib/commerce_shipping/src/ShipmentOrderProcessor.php
+@@ -49,7 +49,7 @@ public function process(OrderInterface $order) {
+ 
+     /** @var \Drupal\commerce_shipping\Entity\ShipmentInterface[] $shipments */
+     $shipments = $order->get('shipments')->referencedEntities();
+-    if ($this->shouldRepack($order, $shipments)) {
++    if (!empty($shipments) && $this->shouldRepack($order, $shipments)) {
+       $first_shipment = reset($shipments);
+       $shipping_profile = $first_shipment->getShippingProfile();
+       list($shipments, $removed_shipments) = $this->packerManager->packToShipments($order, $shipping_profile, $shipments);
