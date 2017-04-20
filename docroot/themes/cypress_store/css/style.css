@@ -8101,6 +8101,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   footer .region-footer {
     margin: 0 2%;
   }
+  .address-boxes-sec-1 .address-icons .address-delete .profile-delete {
+    margin-right: 0 !important;
+  }
 }
 @media only screen and (max-width: 767px) {
   .region-header .primary-block {
@@ -8270,9 +8273,6 @@ footer .region-footer .footer-block .footer-menu .copyright {
     margin-top: 0 !important;
     padding: 10px 0 !important;
     display: none;
-  }
-  .address-boxes-sec-1 .address-icons .address-delete .profile-delete {
-    margin-right: 0 !important;
   }
 }
 @media only screen and (min-width: 992px) and (max-width: 1023px) {
