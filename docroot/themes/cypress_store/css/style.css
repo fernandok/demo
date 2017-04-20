@@ -7949,9 +7949,6 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .not-logged-in.path-user.has-glyphicons .region-header .block-search-form-block {
     top: 5.35em;
   }
-  /*.user-logged-in.path-frontpage.has-glyphicons .region-header .block-search-form-block{
-		top: 9em;
-	}*/
   .user-logged-in .region-header .block-search-form-block {
     top: 9em;
   }
