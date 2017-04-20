@@ -1,6 +1,12 @@
 var $ = jQuery;
 $(function(){
 	$(document).ready(function(){
+		if($(".user-logged-in").length > 0){
+	 }
+	 else{
+	 	$("body").addClass('not-logged-in');
+	 }
+		// $("body:not(user-logged-in)").addClass('not-logged-in');
 		$(".block-search-form-block").addClass('col-md-4 col-sm-4');
 		var width= $(window).width();
 		$(window).resize(function(){
