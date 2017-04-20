@@ -7829,6 +7829,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   font-weight: bold;
   text-decoration: none;
 }
+.block-views-blockdelivery-address-block-1 .delivery-address-slide .slick-slide:focus {
+  outline: 0;
+}
 /* end delivery address slider buttons*/
 /* start media queries for responsive*/
 /* start for mobiles*/
