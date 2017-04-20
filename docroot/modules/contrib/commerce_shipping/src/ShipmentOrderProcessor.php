@@ -49,7 +49,7 @@ class ShipmentOrderProcessor implements OrderProcessorInterface {
 
     /** @var \Drupal\commerce_shipping\Entity\ShipmentInterface[] $shipments */
     $shipments = $order->get('shipments')->referencedEntities();
-    if ($this->shouldRepack($order, $shipments)) {
+    if (!empty($shipments) && $this->shouldRepack($order, $shipments)) {
       $first_shipment = reset($shipments);
       $shipping_profile = $first_shipment->getShippingProfile();
       list($shipments, $removed_shipments) = $this->packerManager->packToShipments($order, $shipping_profile, $shipments);
