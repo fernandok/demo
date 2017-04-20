@@ -9,6 +9,7 @@ dependencies:
     - commerce_cart
     - commerce_order
     - commerce_price
+    - cypress_custom_address
 _core:
   default_config_hash: WAlsAaA9gPHUyIHKhdet4ET-6Mr9XLyzKRa1P4ghapQ
 id: commerce_cart_form
@@ -85,6 +86,104 @@ display:
           hide_empty: false
           default_field_elements: true
       fields:
+        cart_product_image:
+          id: cart_product_image
+          table: views
+          field: cart_product_image
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Cart Product Image'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: field_cart_product_image
+        count_cart_items:
+          id: count_cart_items
+          table: views
+          field: count_cart_items
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Cart Items'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: field_count_cart_items
         purchased_entity:
           id: purchased_entity
           table: commerce_order_item
@@ -398,7 +497,20 @@ display:
           entity_type: commerce_order_item
           entity_field: order_item_id
           plugin_id: standard
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          tokenize: true
+          content:
+            value: 'ITEMS IN CART({{ count_cart_items }})'
+            format: basic_html
+          plugin_id: text
       footer: {  }
       empty: {  }
       relationships:
