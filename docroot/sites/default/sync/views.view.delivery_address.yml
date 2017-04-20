@@ -742,7 +742,7 @@ display:
           entity_field: uid
           plugin_id: numeric
       display_extenders: {  }
-      css_class: col-md-12
+      css_class: 'col-md-12 delivery-address-slide'
     cache_metadata:
       max-age: -1
       contexts:
