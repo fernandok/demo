@@ -7843,6 +7843,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .layout-region-checkout-main .input-group {
   width: 100%;
 }
+.layout-region-checkout-footer button {
+  margin: 10px 0;
+}
 /*end checkout*/
 /* start media queries for responsive*/
 /* start for mobiles*/
