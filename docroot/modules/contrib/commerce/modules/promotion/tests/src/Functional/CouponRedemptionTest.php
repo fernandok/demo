@@ -1,5 +1,5 @@
-<?php
-
+<!-- <?php
+/**
 namespace Drupal\Tests\commerce_promotion\Functional;
 
 use Drupal\Core\Url;
@@ -137,3 +137,4 @@ class CouponRedemptionTest extends CommerceBrowserTestBase {
   }
 
 }
+ -->
