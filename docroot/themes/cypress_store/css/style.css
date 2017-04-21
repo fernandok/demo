@@ -7786,6 +7786,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
 }
 /*end footer styles*/
 /* start delivery address slider buttons*/
+.main {
+  margin: 0 5vw;
+}
 .block-views-blockdelivery-address-block-1 {
   /*border-top: 3px solid #ebedee;*/
   background: #fafafa;
@@ -7833,6 +7836,14 @@ footer .region-footer .footer-block .footer-menu .copyright {
   margin: 0 auto;
 }
 /* end delivery address slider buttons*/
+/*start checkout*/
+.layout-region-checkout-main .input-group-addon {
+  display: none;
+}
+.layout-region-checkout-main .input-group {
+  width: 100%;
+}
+/*end checkout*/
 /* start media queries for responsive*/
 /* start for mobiles*/
 @media only screen and (min-width: 320px) and (max-width: 767px) {
@@ -8003,6 +8014,14 @@ footer .region-footer .footer-block .footer-menu .copyright {
   footer .region-footer {
     margin: 0px 11%;
   }
+  footer .footer-sections {
+    width: 286px;
+    display: inline-block;
+    padding-bottom: 10px;
+  }
+  footer .footer-sections:nth-child(4) {
+    vertical-align: top;
+  }
   /*end footer styles responsive*/
   /*start delivery address styles*/
   .block-views-blockdelivery-address-block-1 {
@@ -8100,9 +8119,12 @@ footer .region-footer .footer-block .footer-menu .copyright {
   footer .region-footer .footer-block .footer-menu .copyright {
     margin: 2em 0 !important;
   }
-  footer .region-footer {
-    margin: 0 2%;
+  footer {
+    padding: 50px;
   }
+  /*footer .region-footer {
+	    margin: 0 2%;
+	}*/
   .address-boxes-sec-1 .address-icons .address-delete .profile-delete {
     margin-right: 0 !important;
   }
