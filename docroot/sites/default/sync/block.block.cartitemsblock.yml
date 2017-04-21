@@ -1,0 +1,30 @@
+uuid: 86a7bd53-1368-4c24-8a6a-a93a08cb8d3f
+langcode: en
+status: true
+dependencies:
+  module:
+    - block_class
+    - cypress_custom_address
+    - system
+  theme:
+    - cypress_store
+third_party_settings:
+  block_class:
+    classes: ''
+id: cartitemsblock
+theme: cypress_store
+region: content
+weight: 0
+provider: null
+plugin: cart_items_block
+settings:
+  id: cart_items_block
+  label: 'CYPRESS CART'
+  provider: cypress_custom_address
+  label_display: visible
+visibility:
+  request_path:
+    id: request_path
+    pages: /cart
+    negate: false
+    context_mapping: {  }

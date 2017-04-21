@@ -54,23 +54,30 @@ class CartProductImage extends FieldPluginBase {
    * {@inheritdoc}
    */
   public function render(ResultRow $values) {
-    // To Create Checkbox inside views.
-   $order_item_id = $values->_relationship_entities['order_items']->id();
+    // To get the product image
+    $order_item_id = $values->_relationship_entities['order_items']->id();
     $order_item = OrderItem::load($order_item_id);
-    $product_var_id = $order_item->get('purchased_entity')->getValue()[0]['target_id'];
+    $product_var_id = $order_item->get('purchased_entity')
+      ->getValue()[0]['target_id'];
     $product_var = ProductVariation::load($product_var_id);
     $product_id = $product_var->get('product_id')->getValue()[0]['target_id'];
-    $product =Product::load($product_id);
-    $product_image = $product->get('field_image')->getValue()[0]['value'];
-
-    if (!empty($product_image)) {
-      $img_src = explode(':', $product_image);
-      $cart_image = $img_src[1];
+    $product = Product::load($product_id);
+    $product_type = $product->get('type')->getValue()[0]['target_id'];
+    if ($product_type == 'default') {
+      $product_image = $product->get('field_image')->getValue()[0]['value'];
+      if (!empty($product_image)) {
+        $img_src = explode(':', $product_image);
+        $cart_image = $img_src[1];
+      }
+      else {
+        $cart_image = '/themes/cypress_store/logo.gif';
+      }
     }
-    else {
+    elseif ($product_type == 'part') {
       $cart_image = '/themes/cypress_store/logo.gif';
     }
-    
+
+
     $output = '<div class = "output"><img src ="'.$cart_image.'" height="100" width="100"></div>';
     $img = check_markup($output, 'full_html');
     return $img;

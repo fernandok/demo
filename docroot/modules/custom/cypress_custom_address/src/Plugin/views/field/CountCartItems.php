@@ -5,7 +5,6 @@ namespace Drupal\cypress_custom_address\Plugin\views\field;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\views\ResultRow;
-use Drupal\commerce_order\Entity\OrderItem;
 use Drupal\commerce_order\Entity\Order;
 
 /**
@@ -56,7 +55,7 @@ class CountCartItems extends FieldPluginBase {
     // To get the order items in the cart.
     $order_item_id = $values->_entity->id();
     $order_item = Order::load($order_item_id);
-    $count_items = count($order_item->get('order_items')->getValue());
+    $count_items = count($order_item->getItems());
 
     return $count_items;
 
