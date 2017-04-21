@@ -18,6 +18,23 @@ function cypress_custom_address_field_views_data() {
         // #global is a special flag which allows a table to appear all the time.
         '#global' => array(),
     );
+
+    $data['views']['cart_product_image'] = [
+        'title' => t('Cart Product Image'),
+        'help' => t('Custom Product Image in Cart'),
+        'field' => [
+            'id' => 'field_cart_product_image',
+        ],
+    ];
+
+    $data['views']['count_cart_items'] = [
+      'title' => t('Cart Items'),
+      'help' => t('Count of Cart Items'),
+      'field' => [
+        'id' => 'field_count_cart_items',
+      ],
+    ];
+
     // Fields.
     $data['profile']['contact_address_given_name'] = [
         'title' => t('Contact First Name'),
