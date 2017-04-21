@@ -5,6 +5,9 @@ namespace Drupal\cypress_custom_address\Plugin\views\field;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\views\ResultRow;
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\commerce_order\Entity\OrderInterface;
+
 
 /**
  * A handler to provide a field that is completely custom by the administrator.
@@ -50,8 +53,17 @@ class DeliverHere extends FieldPluginBase {
      * {@inheritdoc}
      */
     public function render(ResultRow $values) {
-        $output = 'DELIVER HERE';
-        return $output;
+        $profile_id = $values->profile_id;
+        // Get order object.
+        $order = \Drupal::routeMatch()->getParameter('commerce_order');
+        $shipment_id = $order->get('shipments')->getValue()[0]['target_id'];
+        if (!$shipment_id) {
+            $shipment_id = 0;
+        }
+        $order_id = $order->id();
+        $output = '<a href="/deliver-address/' . $profile_id . '/'.$order_id.'/'.$shipment_id.'">DELIVER HERE</a>';
+        $result = check_markup($output, 'full_html');
+        return $result;
     }
 
 }
