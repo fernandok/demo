@@ -6,6 +6,7 @@ $(function(){
 	 else{
 	 	$("body").addClass('not-logged-in');
 	 }
+	 $('.user-login-form input').removeAttr("data-original-title");
 		// $("body:not(user-logged-in)").addClass('not-logged-in');
 		$(".block-search-form-block").addClass('col-md-4 col-sm-4');
 		var width= $(window).width();

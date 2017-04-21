@@ -1,0 +1,7 @@
+cypress_custom_address.content:
+  path: '/deliver-address/{profile_id}/{order_id}/{shipment_id}'
+  defaults:
+    _controller: 'Drupal\cypress_custom_address\Controller\CypressAddressController::content'
+    _title: ''
+  requirements:
+    _permission: 'access content'

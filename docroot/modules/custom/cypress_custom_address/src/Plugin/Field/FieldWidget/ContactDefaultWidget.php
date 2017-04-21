@@ -33,6 +33,7 @@ class ContactDefaultWidget extends AddressDefaultWidget {
         $widget['address']['contact'] = array(
             '#title' => $this->t('Contact'),
             '#type' => 'textfield',
+            '#required' => TRUE,
             '#default_value' => isset($items[$delta]->contact) ? $items[$delta]->contact : null,
             '#weight' => 10,
             '#maxlength' => 10,

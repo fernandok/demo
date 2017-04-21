@@ -3,9 +3,12 @@
 namespace Drupal\commerce_promotion\Element;
 
 use Drupal\commerce\Element\CommerceElementBase;
+use Drupal\commerce_order\Adjustment;
 use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\commerce_promotion\Entity\CouponInterface;
 use Drupal\commerce_promotion\Entity\PromotionInterface;
+use Drupal\Core\Ajax\AjaxResponse;
+use Drupal\Core\Ajax\InsertCommand;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -44,6 +47,8 @@ class CouponRedemptionForm extends CommerceElementBase {
       // The coupon ID.
       '#default_value' => NULL,
       '#order_id' => NULL,
+      '#display_actions' => TRUE,
+      '#single_coupon_mode' => TRUE,
       '#process' => [
         [$class, 'processForm'],
       ],
@@ -80,7 +85,27 @@ class CouponRedemptionForm extends CommerceElementBase {
       throw new \InvalidArgumentException('The commerce_coupon_redemption #order_id must be a valid order ID.');
     }
 
-    $has_coupons = !$order->get('coupons')->isEmpty();
+    /** @var \Drupal\commerce_promotion\Entity\CouponInterface[] $coupons */
+    $coupons = $order->get('coupons')->referencedEntities();
+    $has_coupons = !empty($coupons);
+
+    // Determine if 'add coupon' buttons should be displayed. It should be
+    // on display_actions mode, if there is no coupons, or if at least one of
+    // the coupons is comatible with others.
+    $display_actions = !$has_coupons;
+
+    if (!$element['#single_coupon_mode']) {
+      /** @var \Drupal\commerce_promotion\Entity\CouponInterface $coupon */
+      foreach ((array) $coupons as $coupon) {
+        if ($coupon->getPromotion()
+            ->getCompatibility() == PromotionInterface::COMPATIBLE_ANY
+        ) {
+          $display_actions = TRUE;
+          continue;
+        }
+     }
+    }
+    $display_actions = $element['#display_actions'] && $display_actions;
     $id_prefix = implode('-', $element['#parents']);
     // @todo We cannot use unique IDs, or multiple elements on a page currently.
     // @see https://www.drupal.org/node/2675688
@@ -94,11 +119,13 @@ class CouponRedemptionForm extends CommerceElementBase {
       // Pass the id along to other methods.
       '#wrapper_id' => $wrapper_id,
     ] + $element;
+    $element['coupons'] = CouponRedemptionForm::buildAdjustmentsTable($element, $order, $display_actions);
+    $element['coupons']['#access'] = $has_coupons && !$element['#single_coupon_mode'];
     $element['code'] = [
       '#type' => 'textfield',
       '#title' => $element['#title'],
       '#description' => $element['#description'],
-      '#access' => !$has_coupons,
+      '#access' => $display_actions,
     ];
     $element['apply'] = [
       '#type' => 'submit',
@@ -110,20 +137,20 @@ class CouponRedemptionForm extends CommerceElementBase {
       '#submit' => [
         [get_called_class(), 'applyCoupon'],
       ],
-//      '#ajax' => [
-//        'callback' => [get_called_class(), 'ajaxRefresh'],
-//        'wrapper' => $element['#wrapper_id'],
-//      ],
-      '#access' => !$has_coupons,
+     '#ajax' => [
+       'callback' => [get_called_class(), 'ajaxRefresh'],
+       'wrapper' => $element['#wrapper_id'],
+     ],
+      '#access' => $display_actions,
     ];
     $element['remove'] = [
       '#type' => 'submit',
       '#value' => $element['#remove_title'],
       '#name' => 'remove_coupon',
-//      '#ajax' => [
-//        'callback' => [get_called_class(), 'ajaxRefresh'],
-//        'wrapper' => $element['#wrapper_id'],
-//      ],
+     '#ajax' => [
+       'callback' => [get_called_class(), 'ajaxRefresh'],
+       'wrapper' => $element['#wrapper_id'],
+     ],
       '#weight' => 50,
       '#limit_validation_errors' => [
         $element['#parents'],
@@ -131,7 +158,7 @@ class CouponRedemptionForm extends CommerceElementBase {
       '#submit' => [
         [get_called_class(), 'removeCoupon'],
       ],
-      '#access' => $has_coupons,
+      '#access' => $has_coupons && $element['#single_coupon_mode'],
     ];
 
     return $element;
@@ -140,11 +167,20 @@ class CouponRedemptionForm extends CommerceElementBase {
   /**
    * Ajax callback.
    */
-//  public static function ajaxRefresh(array $form, FormStateInterface $form_state) {
-//    $parents = $form_state->getTriggeringElement()['#parents'];
-//    array_pop($parents);
-//    return NestedArray::getValue($form, $parents);
-//  }
+ public static function ajaxRefresh(array $form, FormStateInterface $form_state) {
+   $parents = $form_state->getTriggeringElement()['#parents'];
+   array_pop($parents);
+    $coupon_element = NestedArray::getValue($form, $parents);
+    $summary_element = $form['sidebar']['order_summary'];
+
+    $response = new AjaxResponse();
+    // To refresh the coupon
+    $response->addCommand(new InsertCommand(NULL, $coupon_element));
+    // To refresh the order summary
+    $response->addCommand(new InsertCommand('[data-drupal-selector="edit-sidebar-order-summary"]', $summary_element));
+
+    return $response;
+ }
 
   /**
    * Apply coupon submit callback.
@@ -163,7 +199,7 @@ class CouponRedemptionForm extends CommerceElementBase {
     $coupon = $form_state->getValue($parents);
     $order->get('coupons')->appendItem($coupon);
     $order->save();
-   // $form_state->setRebuild();
+    $form_state->setRebuild();
     drupal_set_message($element['#submit_message']);
   }
 
@@ -181,9 +217,23 @@ class CouponRedemptionForm extends CommerceElementBase {
     /** @var \Drupal\commerce_order\Entity\OrderInterface $order */
     $order = $order_storage->load($element['#order_id']);
 
-    $order->get('coupons')->setValue([]);
+    if (!empty($triggering_element['#coupon_code'])) {
+      /** @var \Drupal\commerce_promotion\CouponStorageInterface $coupon_storage */
+      $coupon_storage = $entity_type_manager->getStorage('commerce_promotion_coupon');
+      $coupon_to_delete = $coupon_storage->loadByCode($triggering_element['#coupon_code']);
+
+      // Find $coupon_to_delete id.
+      $coupons = $order->get('coupons')->getValue();
+      $coupons_ids = array_map(function ($coupon) {
+        return $coupon['target_id'];
+      }, $coupons);
+      $coupon_id = array_search($coupon_to_delete->id(), $coupons_ids);
+      $order->get('coupons')->removeItem($coupon_id);
+    } else {
+      $order->set('coupons', []);
+    }
     $order->save();
-  //  $form_state->setRebuild();
+    $form_state->setRebuild();
   }
 
   /**
@@ -195,6 +245,10 @@ class CouponRedemptionForm extends CommerceElementBase {
    *   The current state of the form.
    */
   public static function validateForm(array &$element, FormStateInterface $form_state) {
+    $triggering_element = $form_state->getTriggeringElement();
+    if (isset($triggering_element['#coupon_code'])) {
+      return;
+    }
     $coupon_parents = array_merge($element['#parents'], ['code']);
     $coupon_code = $form_state->getValue($coupon_parents);
     if (empty($coupon_code)) {
@@ -264,6 +318,94 @@ class CouponRedemptionForm extends CommerceElementBase {
     }
 
     return FALSE;
+  }
+
+/**
++   * Adjustments table builder.
++   *
++   * @param bool $display_actions
++   *   TRUE if actions displayed.
++   *
++   * @return array Render array.
++   *   Render array.
++   */
+  public static function buildAdjustmentsTable(array $element, OrderInterface $order, $display_actions = TRUE) {
+    $table = [
+      '#type' => 'table',
+      '#header' => [t('Label'), t('Amount')],
+      '#empty' => t('There are no special offers applied.'),
+   ];
+    if ($display_actions) {
+      $table['#header'][] = t('Remove');
+    }
+
+   $adjustments = $order->getAdjustments();
+    foreach ($order->getItems() as $orderItem) {
+      if ($item_adjustments = $orderItem->getAdjustments()) {
+        $adjustments = array_merge($adjustments, $item_adjustments);
+      }
+    }
+    $promotion_ids = array_map(function (Adjustment $adjustment) {
+      return $adjustment->getSourceId();
+    }, $adjustments);
+
+    /** @var \Drupal\commerce_promotion\Entity\CouponInterface[] $coupons */
+    $coupons = $order->get('coupons')->referencedEntities();
+    if (empty($coupons) || empty($adjustments)) {
+      return $table;
+    }
+
+    // Use special format for promotion with coupon.
+    $entity_type_manager = \Drupal::entityTypeManager();
+    /** @var \Drupal\commerce_promotion\CouponStorageInterface $coupon_storage */
+    $coupon_storage = $entity_type_manager->getStorage('commerce_promotion_coupon');
+
+    /** @var \Drupal\commerce_promotion\Entity\CouponInterface $coupon */
+    foreach ($coupons as $index => $coupon) {
+      $adjustment_index = array_search($coupon->getPromotion()->id(), $promotion_ids);
+      $adjustment = $adjustments[$adjustment_index];
+
+      $label = t(':title (code: :code)', [
+        ':title' => $coupon->getPromotion()->getName(),
+        ':code' => $coupon->get('code')->value
+      ]);
+      $table[$index]['label'] = [
+        '#type' => 'inline_template',
+        '#template' => '{{ label }}',
+        '#context' => [
+          'label' => $label,
+        ],
+      ];
+      $table[$index]['amount'] = [
+        '#type' => 'inline_template',
+        '#template' => '{{ price|commerce_price_format }}',
+        '#context' => [
+          'price' => $adjustment->getAmount(),
+        ],
+      ];
+
+      if ($display_actions) {
+        $table[$index]['remove'] = [
+          '#type' => 'submit',
+          '#value' => $element['#remove_title'],
+          '#name' => 'remove_coupon_' . $index,
+          '#ajax' => [
+            'callback' => [get_called_class(), 'ajaxRefresh'],
+            'wrapper' => $element['#wrapper_id'],
+          ],
+          '#weight' => 50,
+          '#limit_validation_errors' => [
+            $element['#parents'],
+          ],
+          '#parents' => ['coupon_redemption', 'coupons', 'remove_coupon_' . $index],
+          '#coupon_code' => $coupon->get('code')->value,
+          '#submit' => [
+            [get_called_class(), 'removeCoupon'],
+          ],
+        ];
+      }
+    }
+    return $table;
   }
 
 }
