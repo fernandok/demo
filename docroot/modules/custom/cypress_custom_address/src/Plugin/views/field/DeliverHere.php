@@ -61,7 +61,7 @@ class DeliverHere extends FieldPluginBase {
             $shipment_id = 0;
         }
         $order_id = $order->id();
-        $output = '<a href="/deliver-address/' . $profile_id . '/'.$order_id.'/'.$shipment_id.'">DELIVER HERE</a>';
+        $output = '<a href="/deliver-address/' . $profile_id . '/'.$order_id.'">DELIVER HERE</a>';
         $result = check_markup($output, 'full_html');
         return $result;
     }
