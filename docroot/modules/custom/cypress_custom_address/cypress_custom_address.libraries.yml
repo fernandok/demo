@@ -1,0 +1,5 @@
+custom-cart-checkout:
+  js:
+    js/cart_checkout.js: {}
+  dependencies:
+    - core/jquery
