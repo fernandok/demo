@@ -25,6 +25,7 @@ configuration:
       submit_title: Redeem
       submit_message: 'Coupon applied'
       remove_title: 'Remove coupon'
+      single_coupon_mode: true
       step: order_information
       weight: 1
     contact_information:
@@ -37,8 +38,8 @@ configuration:
       weight: 3
     payment_information:
       reuse_profile: true
-      reuse_profile_label: 'My shipping address is the same as my billing address.'
-      reuse_profile_default: false
+      reuse_profile_label: 'My billing address is the same as my shipping address.'
+      reuse_profile_default: true
       step: order_information
       weight: 4
     review:
