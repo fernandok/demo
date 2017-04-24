@@ -7853,12 +7853,72 @@ footer .region-footer .footer-block .footer-menu .copyright {
   display: inline-block;
   float: right;
   clear: both;
-  width: 28%;
+  width: 23%;
   background: #fafafa;
+  margin: 0 12vw 0 0;
+  line-height: 28px;
 }
 .block-cypress-custom-address h2.block-title {
   margin-top: 0;
   border-bottom: 1px solid;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 10px;
+  padding-bottom: 10px;
+}
+.block-cypress-custom-address .cart-items {
+  margin: 20px;
+}
+.block-cypress-custom-address .cart-items .total-items-label {
+  font-weight: 600;
+}
+.block-cypress-custom-address .cart-items .total-items-label .total-items {
+  display: inline-block;
+}
+.block-cypress-custom-address .cart-items .total-items-label .items {
+  display: inline-block;
+  float: right;
+  clear: both;
+}
+.block-cypress-custom-address .cart-items .sub-total-value {
+  font-weight: 600;
+}
+.block-cypress-custom-address .cart-items .sub-total-value .total-price {
+  display: inline-block;
+}
+.block-cypress-custom-address .cart-items .sub-total-value .sub-total-price {
+  display: inline-block;
+  float: right;
+  clear: both;
+}
+.block-cypress-custom-address .cart-items #continue-shopping {
+  text-align: center;
+  margin-top: 25px;
+}
+.block-cypress-custom-address .cart-items #continue-shopping a {
+  background: #5bc0de;
+  padding: 10px 46px;
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.block-cypress-custom-address .cart-items #continue-shopping a:hover {
+  text-decoration: none;
+}
+.block-cypress-custom-address .cart-items #checkout-dummy {
+  text-align: center;
+  margin-top: 30px;
+  margin-bottom: 40px;
+}
+.block-cypress-custom-address .cart-items #checkout-dummy a {
+  color: #ffffff;
+  font-weight: bold;
+  text-transform: uppercase;
+  background: #005596;
+  padding: 10px 80px;
+}
+.block-cypress-custom-address .cart-items #checkout-dummy a:hover {
+  text-decoration: none;
 }
 .cart.cart-form {
   display: inline-block;
@@ -7872,6 +7932,7 @@ footer .region-footer .footer-block .footer-menu .copyright {
   font-weight: 600;
   border-bottom: 1px solid;
   margin: 10px;
+  padding-bottom: 6px;
 }
 .cart.cart-form .cypress-cart {
   margin-top: 20px;

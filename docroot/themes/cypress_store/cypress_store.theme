@@ -7,6 +7,7 @@
  */
 
 use Drupal\user\UserInterface;
+use Drupal\commerce_product\Entity\ProductVariation;
 use Drupal\commerce_product\Entity\Product;
 
 /**
@@ -26,7 +27,10 @@ function cypress_store_preprocess_commerce_order_receipt(&$variables) {
   $order = $variables['order_entity'];
   $order_items = $order->getItems();
   foreach ($order_items as $key => $order_item) {
-    $product_id = $order_item->get('purchased_entity')->getValue()[0]['target_id'];
+    $product_var_id = $order_item->get('purchased_entity')
+          ->getValue()[0]['target_id'];
+    $product_var = ProductVariation::load($product_var_id);
+    $product_id = $product_var->get('product_id')->getValue()[0]['target_id'];
     $product = Product::load($product_id);
     $product_image = $product->get('field_image')->getValue()[0]['value'];
     $variables['product_image'][$key] = $product_image;

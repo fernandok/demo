@@ -619,13 +619,80 @@ footer{
 	display: inline-block;
     float: right;
     clear: both;
-    width: 28%;
+    width: 23%;
     background: #fafafa;
+    margin: 0 12vw 0 0;
+    line-height: 28px;
 
     h2.block-title{
     	margin-top: 0;
     	border-bottom: 1px solid;
+    	font-size: 20px;
+	    font-weight: 600;
+	    margin: 10px;
+	    padding-bottom: 10px;
     }
+    .cart-items {
+	    margin: 20px;
+
+	    .total-items-label {
+		    font-weight: 600;
+
+		    .total-items {
+			    display: inline-block;
+			}
+			.items {
+			    display: inline-block;
+			    float: right;
+			    clear: both;
+			}
+		}
+		.sub-total-value {
+		    font-weight: 600;
+
+		    .total-price {
+			    display: inline-block;
+			}
+			.sub-total-price {
+			    display: inline-block;
+			    float: right;
+			    clear: both;
+			}
+		}
+		#continue-shopping {
+		    text-align: center;
+		    margin-top: 25px;
+
+		    a {
+			    background: #5bc0de;
+			    padding: 10px 46px;
+			    color: #ffffff;
+			    font-weight: bold;
+			    text-transform: uppercase;
+
+			    &:hover{
+			    	text-decoration: none;
+			    }
+			}
+		}
+		#checkout-dummy {
+			text-align: center;
+		    margin-top: 30px;
+		    margin-bottom: 40px;
+
+		    a{
+		    	color: #ffffff;
+			    font-weight: bold;
+			    text-transform: uppercase;
+			    background: #005596;
+			    padding: 10px 80px;
+
+			    &:hover{
+			    	text-decoration: none;
+			    }
+		    }
+		}
+	}
 }
 .cart.cart-form{
 	display: inline-block;
@@ -639,6 +706,7 @@ footer{
 	    font-weight: 600;
 	    border-bottom: 1px solid;
     	margin: 10px;
+    	padding-bottom: 6px;
 	}
 	.cypress-cart{
 		margin-top: 20px;
