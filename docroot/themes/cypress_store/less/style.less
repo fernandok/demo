@@ -629,15 +629,70 @@ footer{
 }
 .cart.cart-form{
 	display: inline-block;
-	width: 70%;
+	width: 52%;
     background: #fafafa;
+    line-height: 28px;
+    margin: 0 0 0 8vw;
 
 	.view-header {
 	    font-size: 20px;
 	    font-weight: 600;
 	    border-bottom: 1px solid;
-    	margin-bottom: 10px;
+    	margin: 10px;
 	}
+	.cypress-cart{
+		margin-top: 20px;
+		margin-bottom: 20px;
+
+		.cart-product-image {
+		    display: inline-block;
+		    vertical-align: top;
+		    margin-left: 10px;
+		}
+		.cart-info {
+		    display: inline-block;
+		    margin-left: 20px;
+		    margin-right: 20px;
+    		width: 70%;
+
+    		.field--name-title{
+    			line-height: 20px;
+    		}
+    		.cart-edit-quantity {
+			    font-weight: 600;
+			}
+    		.field--name-price div {
+			    display: inline-block;
+			    font-weight: 600;
+			}
+		}
+		
+		.cart-edit-quantity{
+			.form-item-edit-quantity-0 {
+			    display: inline-block;
+			    font-weight: bolder;
+			}
+		}
+		.quantity-price{
+			.cart-total-price {
+			    display: inline-block;
+			    font-weight: 600;
+			}
+			.cart-remove-button {
+			    display: inline-block;
+			    float: right;
+			    clear: both;
+			}
+		}
+	}
+	#edit-actions.form-wrapper {
+	    background: #ffffff;
+
+	    .btn-info{
+	    	margin: 20px 0;
+	    }
+	}
+	
 }
 /*end checkout*/
 
