@@ -14,4 +14,8 @@ File: cart_add_and_remove-2867046.patch
 Desc: Fix exceptions while adding or removing item from cart.
 Applies to: commerce version 8.x-2.x-dev.
 
+File: billing_address_same_as_shipping_address.patch
+Desc: Adding feature for user to choose same address from shipping profile to billing profile.
+Applies to: commerce version 8.x-2.x-dev.
+
 
