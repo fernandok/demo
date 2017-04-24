@@ -84,18 +84,18 @@ class CartItemsBlock extends BlockBase implements ContainerFactoryPluginInterfac
     $cart_id = $this->cartProvider->getCartIds()[0];
     $order_obj = Order::load($cart_id);
     $items = $order_obj->getItems();
-    $a = 0;
+    $total_items = 0;
     foreach($items as $item) {
-      $a += $item->getQuantity();
+      $total_items += $item->getQuantity();
     }
     $total_price = $order_obj->getTotalPrice()->getNumber();
     $price = number_format((float)$total_price,2,'.','');
     $build = [];
     $build['cart_items_block']['#markup'] = '<div class = "cart-items">
-                                             <div class = "totla-items">Total Items  '.$a.'</div>
-                                             <div class = "total-price">Total Price  $ ' .$price .'</div>
-                                             <div id ="checkout-dummy"><a href="">Checkout</a></div>
+                                             <div class ="total-items-label"><div class = "total-items">Total Items</div><div class ="items">'. $total_items . '</div></div>
+                                             <div class ="sub-total-value"><div class = "total-price">Sub Total</div><div class ="sub-total-price">$ ' .$price .'</div></div>                                            
                                              <div id ="continue-shopping"><a href="/">Continue Shipping</a></div>
+                                             <div id ="checkout-dummy"><a href="">Checkout</a></div>
                                              </div>';
     $build['cart_items_block']['#attached'] = [
       'library' => array('cypress_custom_address/custom-cart-checkout'),
