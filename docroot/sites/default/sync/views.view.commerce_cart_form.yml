@@ -475,7 +475,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<div class =\"cypress-cart\">\n  <div class =\"cart-product-image\">{{ cart_product_image }}</div>\n  <div class =\"cart-item-title\">{{ purchased_entity }}</div>\n  <div class =\"cart-unit-price\">Price : {{ unit_price__number }}</div>\n  <div class =\"cart-edit-quantity\">Quantity : {{ edit_quantity }}</div>\n  <div class =\"cart-remove-button\">{{ remove_button }}</div>\n  <div class =\"cart-total-price\">Total Price:  {{ total_price__number }}</div>\n</div>\n\n"
+            text: "<div class =\"cypress-cart\">\n  <div class =\"cart-product-image\">{{ cart_product_image }}</div>\n  <div class =\"cart-info\">\n    <div class =\"cart-item-title\">{{ purchased_entity }}</div>\n    <div class =\"cart-edit-quantity\">Quantity : {{ edit_quantity }}</div>\n      <div class =\"quantity-price\">\n        <div class =\"cart-total-price\">Total Price:  {{ total_price__number }}</div>\n        <div class =\"cart-remove-button\">{{ remove_button }}</div>\n    </div>\n  </div>\n</div>\n\n"
             make_link: false
             path: ''
             absolute: false
