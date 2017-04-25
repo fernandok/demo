@@ -31,6 +31,7 @@ module:
   contextual: 0
   cypress_custom_address: 0
   cypress_store_cypresscommerce: 0
+  cypress_store_migration: 0
   cypress_store_vendor: 0
   datetime: 0
   dblog: 0
@@ -55,6 +56,10 @@ module:
   kint: 0
   link: 0
   menu_ui: 0
+  migrate: 0
+  migrate_plus: 0
+  migrate_source_csv: 0
+  migrate_tools: 0
   node: 0
   options: 0
   page_cache: 0

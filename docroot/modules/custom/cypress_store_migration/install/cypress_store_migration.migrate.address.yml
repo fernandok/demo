@@ -1,0 +1,25 @@
+id: store_address
+label: Migrate address from the Csv
+migration_group: cypress_store_group_csv
+source:
+  plugin: csv
+  path: modules/custom/cypress_store_migration/assets/Ryan Address Book Export.csv
+  header_row_count: 1
+  keys:
+    - ID
+destination:
+  plugin: entity:profile
+process:
+  uid: USERID
+  type:
+    plugin: default_value
+    default_value: customer
+  field_om_customer_site_use_id: ORACLECUSTSITEUSEID
+  field_oracle_customer_site_id: ORACLEACCOUNTSITEID
+  field_contact_address:
+    plugin: cypressstoremigration
+    source: USERID
+  status:
+    plugin: default_value
+    default_value: 1
+migration_dependencies: {}
