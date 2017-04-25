@@ -8,6 +8,12 @@ use Drupal\commerce_order\Entity\OrderInterface;
 class Avnet extends VendorBase {
 
   /**
+   * The Api region
+   * @var
+   */
+  protected $region;
+
+  /**
    * The Api End Point
    * @var
    */
