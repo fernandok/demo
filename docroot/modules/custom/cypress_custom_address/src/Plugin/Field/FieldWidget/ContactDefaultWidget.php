@@ -31,12 +31,11 @@ class ContactDefaultWidget extends AddressDefaultWidget {
             '#weight' => 1,
         );
         $widget['address']['contact'] = array(
-            '#title' => $this->t('Contact'),
+            '#title' => $this->t('Telephone'),
             '#type' => 'textfield',
             '#required' => TRUE,
             '#default_value' => isset($items[$delta]->contact) ? $items[$delta]->contact : null,
             '#weight' => 10,
-            '#maxlength' => 10,
             '#states' => [
                 'invisible' => [
                     ':input[name="payment_information[billing_information][field_contact_address][0][address][country_code]"]' => ['value' => ''],
