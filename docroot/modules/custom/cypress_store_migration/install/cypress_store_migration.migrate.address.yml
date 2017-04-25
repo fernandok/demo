@@ -3,7 +3,7 @@ label: Migrate address from the Csv
 migration_group: cypress_store_group_csv
 source:
   plugin: csv
-  path: modules/custom/cypress_store_migration/assets/Ryan Address Book Export.csv
+  path: modules/custom/cypress_store_migration/assets/Ryan_Address_Book_Export.csv
   header_row_count: 1
   keys:
     - ID
