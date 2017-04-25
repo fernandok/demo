@@ -1,0 +1,55 @@
+ID,USERID,ADDRESS,ADDRESSMORE,CITYNAME,REGIONNAME,COUNTRYNAME,TELEPHONEAREACODE,TELEPHONE,FIRSTNAME,LASTNAME,COMPANYNAME,POSTALCODE,ORACLEACCOUNTSITEID,ORACLECUSTSITEUSEID
+1,136,198 champion ct,,King,Louisiana,United States,555,1234,ryan,aban,Cypress Semi,555555,,
+2,136,195 Champion Ct,,San Jose,zambia,Zambia,555,1234,ryan,aban,cypress,555555,,
+3,136,4725 121st Street,,Des Moines,Iowa,United States,515,254311,Tom,Stoll,Compressor Controls Corp,50323-2316,,
+4,136,198 Champion Ct,,San Jose,California,United States,408,9434753,Marc,Schepman,Cypress Semiconductor,95134,,
+5,136,198 champion ct,,San Jose,California,United States,408,2189201,Diane,Wilson,Cypress Semiconductor,95134,,
+7,136,2250 NW 114TH AVE.,UNIT 1L,Miami,Florida,United States,305,5948777,Natalia,De Los Rios,COL5108 UNINORTE,33172-3652,,
+8,136,4541 Kingsley St.,Apt. A,Montclair,California,United States,909,9755636,April,Generose,Harte Hanks,91763,,
+9,136,"14,8th Cross, Jalahalli Main Road","Bahubali Nagar, Jalahalli",bangalore,Karnataka,India,9198,45362722,Malhar,Deshpande,Cytech Technology Ltd.,560013,110808,113770
+10,136,Automotive Electronics (SzP/MFI-COS-PEL),Postfach 10 01 07,Salzgitter,Salzg,Germany,49,5341286951,Maik,Behrens,Robert Bosch Elektronik GmbH,38201,,
+11,136,198 Champions Cts,B 6,San Jose,California,United States,555,555550,Ryans,Aban,Cypressss,95134,,
+12,136,198 Bangalore St,,bangalore,Karnataka,India,918,4567894,Ramesh,Babu,adea,12345,,
+13,136,198 Champion Cta,a,San Jose,California,United States,408,9434753,Ryana,Abana,Cypressa,95123,,
+14,136,200 Chapmion Ct,,San Jose,California,United States,408,9434753,Ryanb,Abanb,ciscob,95134,,
+15,136,198 champion ct,,San Jose,California,United States,408,9434753,ryan,aban,cisco,95134,,
+16,136,195 Champion Ct,Building 6.3,San Jose,California,United States,408,9434753,Ryan,Aban,Cypress Semi,95134,,
+17,136,198 Champion Ct,,San Jose,California,United States,408,9434753,ryan,aban,cypress,95123,,
+18,136,198 champion ct,,San Jose,California,United States,408,9434753,Ryan,Aban,Cypress Semiconductor,95134,124222,128042
+19,136,1 infinite loop,,Cupertino,California,United States,408,9434753,ryan,aban,Apple,95014,,
+20,136,4 Neshaminy Interplex,Ste 101,Trevose,Pennsylvania,United States,408,9434753,Linda,Crusemire,Omega Sales,19053,,
+21,136,195 champion ct,,San Jose,Braun,Bermuda,408,9434753,Ryan,Aban,cypress,95134,,
+22,136,355 N Wolfe Rd,Apt 234,Sunnyvale,Alabama,United States,408,348 6393,Ryan,Aban,Cypress Semiconductor,95134,,
+23,136,1400 West Stanford Ranch Rd,Suite 200,ROCKLIN,California,United States,555,5555512,John,Barrowman,VeriFone Inc,95765,,
+24,136,No 1 Shunda Road,Lunjiao Shunde Foshan,guangdong,china,China,86,757277531,Candice,Chou,Mitac,111,,
+25,136,338 Tianshan Rd ChangNing,Room 301.2 HengCheng Plaza No.1,Shanghai,shanhai,China,0,1500067032,Jam,Shen,weikeng,200336,,
+26,136,5 18 14 Konnan ku konnan,,Yokohama,kanag,Japan,23300,3,Tadao,Sato,Tadao Sato,233-0003,,
+27,136,198 ch,champion,San Jose,San J,France,408,3486383,ryan,aban,cypress,95014,,
+28,136,Champs de elysee,,PARIS,Paris,France,4065,75691563,ryan,aban,psg,75008,,
+29,136,2017 Cradock St,,Silver Spring,Maryland,United States,301,8795616,Bert,Jones,MI,20905,,
+30,136,Via Borgazzi 27,,monza,beij,China,555,555-1234,Ryan,Aban,Cypress Semi,222,,
+31,136,398 champion ct,,san josey,manchester,United Kingdom,9154,12365987,Ryany,Abany,Cypressy,1A 234,,
+32,136,498 champion ct,,London,London,United Kingdom,9123,9012837468,Ryanq,Abanq,cypressq,2A 839,,
+33,136,598 champion ct,,san josew,California,United States,408,94347532,Ryanw,Abanw,cypressw,95601,,
+34,136,6414 N. Berkeley Circle,,Moorpark,California,United States,805,8137708,George,Vargas,WCE,93021,81265,83470
+35,136,550 Main St,,Pelion,South Carolina,United States,909,9755636,Althea,Brown,Electronic Systems Inc,29123,81475,83666
+36,136,12230 World Trade Dr.,200,San Diego,California,United States,858,6137915,Rabee,Koudmani,Cypress Semiconductor,92128,83916,86127
+37,136,198 champion ct,,San Jose,California,United States,408,9432800,ryan,aban,cypress,95123,130835,135396
+38,136,Papatya Vadi Konaklari,Mannesman Sok No 31 C 3,Bahcecik,kocaeli,Turkey,90,5304900651,Emel Ergin,Timurlenk,Emel Ergin Timurlenk,41210,104018,107015
+39,136,5001 American Blvd,1040,Bloomington,Minnesota,United States,612,8503338,Mike,Wylde,IRI,55437,89678,92009
+40,136,Via Opera Pia 13,,genova,Genova,Italy,390,103532,Emanuele,Baglini,DIBRIS University of Genova,16145,110392,113357
+45,136,9F No15 Wang Chiu Road Kowloon,Kowloon,hong kong,Hong Kong Island,Hong Kong SAR China,852,23758866,Elaine Tse,50000993,MACNICA,999077,,
+46,136,8F No 50 Lane 10 Kee Hu Road,,Neihu,Taipei City,Taiwan,408,9434753,Lisa,Lien,EDOM,114,112345,115301
+48,136,Cerrada de Arteaga Norte #6,Casa 204 Fraccionamiento Los Laureles,San Juan Del Rio,Querétaro,Mexico,52,4272727116,Manuel Alejandro,Lazcano,Colegio Centro Union,76803,,
+49,136,298 champion ct,,San Jose,Russia,Russia,408,9463475,Ryans,Abans,cypress & Cypress,11101,115302,118316
+50,136,301 174 street,Apt 914,Sunny Isles Beac,Florida,United States,917,9225460,Jay,Pirincci,MD Motivational Enterprises LL,33160,117516,120638
+51,136,"No 579, Qianwan Gang road",Huang Dao,QINGDAO,Shandong Sheng,China,86,1345529217,Hongliang,Zhao,Shandong Univ of Sci and Tech,266590,,
+53,136,163 Selandia Ln,,Carson,California,United States,310,5328128,William,Yun,"Yun Industrial Co., Ltd.",90746,118806,122024
+55,136,KANAGAWAKU MORIYATYO 3 11,SG REALTY YOKOHAMA,Yokohama,kanagawa,Japan,81,454403811,Keigo,Tomioka,Altima,221-0022,,
+56,136,KANAGAWAKU MORIYATYO 3 11,SG REALTY YOKOHAMA,Yokohama,kanagawa,Japan,81,454403811,Shun,Furusawa,Altima MACNICA,221-0022,,
+57,136,"Praca das Missoes 78, Centro",368.196.738-50,MONTE MOR,Sao Paolo,Brazil,5519,988264058,Henrique,Canova,Unisal,13190-000,126697,130768
+42,136,198 champion ct #&,Building 6.3 #201,San Jose,London,United Kingdom,408,9434753,Ryan,Aban,cypress,1101,,
+44,136,388 Ningqiao Rd,,pudong,Shang,China,408,9434753,Jianting,Wu,Alcatel-Lucent,201206,114749,117692
+41,136,Vygovskogo St. 47 28,,Lviv,Lvivska Oblast,Ukraine,380931,253831,Yuriy,Sarabin,Cypress Semiconductor,79054,112226,115182
+46,136,8F No 50 Lane 10 Kee Hu Road,,Neihu,Taipei,Taiwan,408,9434753,Lisa,Lien,EDOM,114,112345,115301
+47,136,3F Tower1 changcheng computer NanShan,,Shenzhen,Guizhou Sheng,China,755,26957998,Carter,Zhou,zenitron SZ office,518000,103457,106491

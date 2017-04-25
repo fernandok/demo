@@ -40,6 +40,7 @@ class OrderRoutingSettingsForm extends ConfigFormBase {
       '#type' => 'textarea',
       '#title' => $this->t('Order Routing Configuration'),
       '#default_value' => $config->get('order_routing_config'),
+      '#rows' => 30,
     );
     return parent::buildForm($form, $form_state);
   }
