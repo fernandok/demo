@@ -52,6 +52,9 @@ class ShipmentOrderProcessor implements OrderProcessorInterface {
     if (!empty($shipments) && $this->shouldRepack($order, $shipments)) {
       $first_shipment = reset($shipments);
       $shipping_profile = $first_shipment->getShippingProfile();
+      if (empty($shipping_profile)) {
+        return;
+      }
       list($shipments, $removed_shipments) = $this->packerManager->packToShipments($order, $shipping_profile, $shipments);
       // @todo Save only the modified shipments.
       foreach ($shipments as $shipment) {

@@ -51,7 +51,7 @@ diff --git a/docroot/modules/contrib/commerce_shipping/src/ShipmentOrderProcesso
 index 72ce857..65725ef 100644
 --- a/docroot/modules/contrib/commerce_shipping/src/ShipmentOrderProcessor.php
 +++ b/docroot/modules/contrib/commerce_shipping/src/ShipmentOrderProcessor.php
-@@ -49,7 +49,7 @@ public function process(OrderInterface $order) {
+@@ -49,7 +49,10 @@ public function process(OrderInterface $order) {
  
      /** @var \Drupal\commerce_shipping\Entity\ShipmentInterface[] $shipments */
      $shipments = $order->get('shipments')->referencedEntities();
@@ -59,4 +59,7 @@ index 72ce857..65725ef 100644
 +    if (!empty($shipments) && $this->shouldRepack($order, $shipments)) {
        $first_shipment = reset($shipments);
        $shipping_profile = $first_shipment->getShippingProfile();
++      if (empty($shipping_profile)) {
++        return;
++      }
        list($shipments, $removed_shipments) = $this->packerManager->packToShipments($order, $shipping_profile, $shipments);
