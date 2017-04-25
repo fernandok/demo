@@ -15,7 +15,7 @@ third_party_settings:
 id: mainmenu
 theme: cypress_store
 region: header
-weight: -13
+weight: -14
 provider: null
 plugin: 'system_menu_block:main-menu'
 settings:
