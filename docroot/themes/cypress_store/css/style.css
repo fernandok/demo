@@ -7375,6 +7375,15 @@ body {
 }
 /*Start styles for store*/
 /*start styles for header*/
+.submenu {
+  clear: both;
+}
+section.main-content {
+  float: none;
+  /*padding: 0 40px;*/
+  margin: 0 5vw;
+  width: auto;
+}
 .user-logged-in .user-menu ul.menu.nav li:last-child {
   /*display: none;*/
 }
@@ -7724,6 +7733,7 @@ li.menu-item.level-2 {
 footer {
   width: 100% !important;
   background: #002431;
+  clear: both;
 }
 footer .region-footer {
   /*margin: 0px 11%;*/
@@ -7814,6 +7824,10 @@ footer .region-footer .footer-block .footer-menu .copyright {
   background: #ffffff;
   word-wrap: break-word;
 }
+.block-views-blockdelivery-address-block-1 .delivery-address-slide #sm-w .address-boxes-sec-2 {
+  min-height: 108px;
+  max-height: 150px;
+}
 .block-views-blockdelivery-address-block-1 .delivery-address-slide #sm-w .address-boxes-sec-3 {
   border-bottom: 1px solid #7e7a7a;
 }
@@ -7849,14 +7863,21 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .commerce-order-item-add-to-cart-form .btn-success {
   margin-bottom: 10px;
 }
+.well {
+  padding: 0;
+  border: none;
+  background: none;
+  box-shadow: none;
+}
 .block-cypress-custom-address {
-  display: inline-block;
-  float: right;
-  clear: both;
-  width: 23%;
+  /*display: inline-block;
+    float: right;
+    clear: both;
+    width: 23%;*/
   background: #fafafa;
-  margin: 0 12vw 0 0;
+  /*margin: 0 12vw 0 0;*/
   line-height: 28px;
+  margin: 0 3vw 0 0;
 }
 .block-cypress-custom-address h2.block-title {
   margin-top: 0;
@@ -7921,8 +7942,8 @@ footer .region-footer .footer-block .footer-menu .copyright {
   text-decoration: none;
 }
 .cart.cart-form {
-  display: inline-block;
-  width: 52%;
+  /*display: inline-block;
+	width: 52%;*/
   background: #fafafa;
   line-height: 28px;
   margin: 0 0 0 8vw;
@@ -7933,6 +7954,8 @@ footer .region-footer .footer-block .footer-menu .copyright {
   border-bottom: 1px solid;
   margin: 10px;
   padding-bottom: 6px;
+  margin-top: 0;
+  padding-top: 10px;
 }
 .cart.cart-form .cypress-cart {
   margin-top: 20px;
@@ -7990,12 +8013,30 @@ footer .region-footer .footer-block .footer-menu .copyright {
   header {
     padding: 0 !important;
   }
+  .container.header {
+    padding: 0;
+  }
   a.logo img {
     width: 160px !important;
     position: absolute;
     left: 0;
     right: 0;
     margin: 0 auto;
+  }
+  section.main-content {
+    padding: 0px;
+    margin-top: 4em;
+  }
+  .cart.cart-form {
+    margin: 0;
+    margin-top: 4em;
+  }
+  .block-cypress-custom-address {
+    margin: 0;
+  }
+  /*product-6*/
+  .alert-success {
+    margin-top: 4em;
   }
   .main-menu .menu.nav {
     float: left !important;
@@ -8129,6 +8170,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .main {
     margin-top: 22px;
   }
+  section.main-content {
+    padding: 0px;
+  }
   /*footer styles responsive*/
   footer {
     padding: 20px 0 !important;
@@ -8253,6 +8297,23 @@ footer .region-footer .footer-block .footer-menu .copyright {
   /*.user-logged-in .user-menu ul.menu.nav li a{
 		margin-right: 64px !important;
 	}*/
+  /*cart page*/
+  .block-cypress-custom-address .cart-items #continue-shopping a {
+    padding: 9px;
+  }
+  .block-cypress-custom-address .cart-items #checkout-dummy a {
+    padding: 9px 43px;
+  }
+  .cart.cart-form,
+  .block-cypress-custom-address {
+    margin: 0;
+  }
+  .sidebar-right {
+    padding-left: 0;
+  }
+  .cart.cart-form .cypress-cart .cart-product-image {
+    margin-left: 0;
+  }
   footer .region-footer .footer-block .footer-menu ul {
     margin: 10px 0;
   }
@@ -8475,6 +8536,12 @@ footer .region-footer .footer-block .footer-menu .copyright {
     margin: 0 auto !important;
     float: none;
   }
+  .header {
+    width: 1024px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+  }
   .container {
     /*margin: 0;*/
   }
@@ -8493,11 +8560,11 @@ footer .region-footer .footer-block .footer-menu .copyright {
     margin: 0;
   }
   .cart.cart-form {
-    width: 65%;
+    /*width: 65%;*/
     margin: 0 0 0 2vw;
   }
   .block-cypress-custom-address {
-    width: 30%;
+    /*width: 30%;*/
     margin: 0 1vw 0 0;
   }
   .block-cypress-custom-address .cart-items #continue-shopping a {
