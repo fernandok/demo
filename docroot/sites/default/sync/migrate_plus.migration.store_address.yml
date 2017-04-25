@@ -1,0 +1,30 @@
+uuid: b3e3d879-8dc4-4251-9916-7ee47e5e378d
+langcode: en
+status: true
+dependencies: {  }
+id: store_address
+migration_tags: null
+migration_group: cypress_store_group_csv
+label: 'Migrate address from the Csv'
+source:
+  plugin: csv
+  path: 'modules/custom/cypress_store_migration/assets/Ryan Address Book Export.csv'
+  header_row_count: 1
+  keys:
+    - ID
+process:
+  uid: USERID
+  type:
+    plugin: default_value
+    default_value: customer
+  field_om_customer_site_use_id: ORACLECUSTSITEUSEID
+  field_oracle_customer_site_id: ORACLEACCOUNTSITEID
+  field_contact_address:
+    plugin: cypressstoremigration
+    source: USERID
+  status:
+    plugin: default_value
+    default_value: 1
+destination:
+  plugin: 'entity:profile'
+migration_dependencies: {  }

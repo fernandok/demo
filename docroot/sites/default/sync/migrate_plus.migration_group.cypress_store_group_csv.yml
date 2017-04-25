@@ -1,0 +1,13 @@
+uuid: cb46df3f-e0ff-490a-befc-07a9b9c89c65
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - cypress_store_migration
+id: cypress_store_group_csv
+label: 'Cypress Store Address CSV Migrations'
+description: 'Migrate contents into Cypress Store with CSV source.'
+source_type: CSV
+module: null
+shared_configuration: null

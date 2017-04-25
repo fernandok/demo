@@ -88,20 +88,22 @@ class CartItemsBlock extends BlockBase implements ContainerFactoryPluginInterfac
     foreach($items as $item) {
       $total_items += $item->getQuantity();
     }
-    $total_price = $order_obj->getTotalPrice()->getNumber();
-    $price = number_format((float)$total_price,2,'.','');
-    $build = [];
-    $build['cart_items_block']['#markup'] = '<div class = "cart-items">
-                                             <div class ="total-items-label"><div class = "total-items">Total Items</div><div class ="items">'. $total_items . '</div></div>
-                                             <div class ="sub-total-value"><div class = "total-price">Sub Total</div><div class ="sub-total-price">$ ' .$price .'</div></div>                                            
+    if($order_obj->getTotalPrice()) {
+      $total_price = $order_obj->getTotalPrice()->getNumber();
+      $price = number_format((float) $total_price, 2, '.', '');
+      $build = [];
+      $build['cart_items_block']['#markup'] = '<div class = "cart-items">
+                                             <div class ="total-items-label"><div class = "total-items">Total Items</div><div class ="items">' . $total_items . '</div></div>
+                                             <div class ="sub-total-value"><div class = "total-price">Sub Total</div><div class ="sub-total-price">$ ' . $price . '</div></div>                                            
                                              <div id ="continue-shopping"><a href="/">Continue Shopping</a></div>
                                              <div id ="checkout-dummy"><a href="">Checkout</a></div>
                                              </div>';
-    $build['cart_items_block']['#attached'] = [
-      'library' => array('cypress_custom_address/custom-cart-checkout'),
-    ];
-    $build['#cache']['max-age'] = 0;
-    return $build;
+      $build['cart_items_block']['#attached'] = [
+        'library' => array('cypress_custom_address/custom-cart-checkout'),
+      ];
+    }
+      $build['#cache']['max-age'] = 0;
+      return $build;
   }
 
 }
