@@ -811,18 +811,19 @@ footer{
 	}
 	section.main-content{
 		padding: 0px;
-		margin-top: 4em;
+		/*margin-top: 4em;*/
+		margin-top: 0;
 	}
 	.cart.cart-form{
 		margin: 0;
-		margin-top: 4em;
+		/*margin-top: 4em;*/
 	}
 	.block-cypress-custom-address{
 		margin: 0;
 	}
 	/*product-6*/
 	.alert-success{
-		margin-top: 4em;
+		/*margin-top: 4em;*/
 	}
 	.main-menu {
 
@@ -832,7 +833,8 @@ footer{
 			padding-top: 0 !important;
 			width: 100%;
     		background: #f0f8ff;
-    		margin-top: 4em;
+    		/*margin-top: 4em;*/
+    		margin-top: 0em;
 			/*padding-left: 3em;*/
 		
 			li{
@@ -905,10 +907,27 @@ footer{
 	    background: #ffffff;
 	    z-index: 999;
 	    margin-right: 0.5em;
+	    width: auto !important;
+	}
+	ul.mobile-menu li:first-child {
+	    margin-left: 0 !important;
 	}
 	.mobile-menu a:focus {
 	    outline: none;
 	    text-decoration: none;
+	}
+	.icons{
+		/*position: relative;
+    	bottom: 6.5em;*/
+    	position: absolute;
+    	bottom: 3.5em;
+    	right: 0;
+    	z-index: 999;
+	}
+	.icons li:first-child {
+	    padding: 0;
+	    margin-right: 0;
+	    margin-left: 44px !important;
 	}
 	.user-icon {
 	    position: relative;
@@ -922,11 +941,14 @@ footer{
 	}
 	
 	.region-header .block-search-form-block{
-	    position: absolute;
+	    /*position: absolute;*/
 	    /*z-index: 999;*/
-	    top: 6em;
+	    /*top: 6em;*/
 	    /*left: 3em;*/
 	    left: -0.2em;
+	    clear: both;
+	    position: relative;
+	    top: 0;
 	}
 	.region-header .block-search-form-block span .button {
 		right: 0.4em;
@@ -935,14 +957,14 @@ footer{
 		left: 2em;
 		top: 0.7em;
 	}
-	.not-logged-in .region-header .block-search-form-block{
+	/*.not-logged-in .region-header .block-search-form-block{
 		top: 6em;
 	}
 	.not-logged-in.path-user.has-glyphicons .region-header .block-search-form-block{
 		top: 5.35em;
-	}
+	}*/
 	.user-logged-in .region-header .block-search-form-block{
-		top: 6em;
+		top: 0em;
 	}
 	.block-search-form-block input[type="submit"]{
 		right: 0 !important;
@@ -1014,7 +1036,7 @@ footer{
 
 	/*start delivery address styles*/
 	.block-views-blockdelivery-address-block-1 {
-		margin-top: 50px;
+		/*margin-top: 50px;*/
 	}
 
 	/*end delivery address styles*/
@@ -1027,12 +1049,20 @@ footer{
 }
 @media only screen and (min-width: 320px) and (max-width: 364px){
 	.icons ul {
-	    margin-top: 3.1em !important;
+	    /*margin-top: 3.1em !important;*/
 	    padding: 0;
+	    margin-top: 0 !important;
+	    width: 30vw !important;
+	    margin-bottom: 17px;
 	}
 	.icons li{
 	    width: 23px !important;
     	margin-left: 5px;
+	}
+	.icons li:first-child {
+	    padding: 0;
+	    margin-right: 17px;
+	    margin-left: 25px !important;
 	}
 	.icons img {
 	    width: 26px !important;
@@ -1053,7 +1083,7 @@ footer{
 		padding-left: 0 !important;
 	}
 	.not-logged-in.path-user.has-glyphicons .region-header .block-search-form-block{
-		top: 4.5em;
+		/*top: 4.5em;*/
 	}
 }
 @media only screen and (min-width: 365px) and (max-width: 400px){
@@ -1147,8 +1177,10 @@ footer{
 		display: block;
 	}
 	.icons ul {
-	    margin-top: 3.3em;
+	    /*margin-top: 3.3em;*/
 	    padding: 0;
+	    margin-top: 0;
+	    width: 35vw;
 	}
 	.icons li {
 	    list-style-type: none;
@@ -1156,7 +1188,13 @@ footer{
 	    width: 40px;
 	    margin-left: 5px;
 	    margin-right: 3px;
+	    padding :0;
 	}
+	/*.icons li:first-child {
+	    padding: 0;
+	    margin-right: 17px;
+	    margin-left: 19px !important;
+	}*/
 	.icons img {
 	    width: 30px;
 	}
@@ -1184,6 +1222,7 @@ footer{
 	    margin-top: 0 !important;
 	    padding: 10px 0 !important;
 	    display: none;
+	    width: auto !important;
 	}
 	.mobile-menu a:hover,.mobile-menu a:focus{
 		color: #3780cb;
@@ -1224,9 +1263,12 @@ footer{
 }*/
 /*.user-logged-in.path-frontpage .mobile-menu img.close-nav-user, */
 .user-logged-in .mobile-menu img.close-nav-user{
-    margin-top: 2.3em;
+    /*margin-top: 2.3em;*/
     position: relative;
-    right: 20px;
+    /*right: 20px;*/
+    right: 0;
+    margin-top: 3px;
+    margin-left: 8px;
 }
 .main-menu .menu.nav li ul img.close-nav{
 	margin: 10px auto;
@@ -1270,6 +1312,7 @@ footer{
 	}
 	.icons ul{
 		margin-top: 0;
+		padding: 0;
 	}
 	.icons li {
 	    list-style-type: none;
