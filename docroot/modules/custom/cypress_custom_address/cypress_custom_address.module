@@ -17,9 +17,7 @@ function cypress_custom_address_form_alter(&$form, $form_state, $form_id) {
 function anonymous_checkout_flow() {
 
   if (\Drupal::currentUser()->isAnonymous()) {
-    $response = new RedirectResponse('/saml_login');
-    $response->send();
-    return;
+    return new RedirectResponse('/saml_login');
   }
 
 }
