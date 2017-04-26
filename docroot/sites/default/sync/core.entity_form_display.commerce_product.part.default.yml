@@ -67,17 +67,20 @@ content:
       summary_rows: 3
       placeholder: ''
     third_party_settings: {  }
+    region: content
   created:
     type: datetime_timestamp
     weight: 44
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_can_sample:
     weight: 34
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   field_development_kit:
     weight: 7
     settings:
@@ -85,6 +88,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_dqr_specnum_ref:
     weight: 33
     settings:
@@ -93,6 +97,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete_tags
+    region: content
   field_eccn:
     weight: 24
     settings:
@@ -100,6 +105,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_eccn_suball:
     weight: 25
     settings:
@@ -107,6 +113,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_estimated_lead_time_days:
     weight: 22
     settings:
@@ -114,6 +121,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_hts_code:
     weight: 23
     settings:
@@ -121,12 +129,14 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_inventory:
     weight: 35
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   field_lead_ball_finish:
     weight: 30
     settings:
@@ -134,6 +144,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_minimum_order_quantity_moq:
     weight: 21
     settings:
@@ -141,6 +152,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_moisture_sensitivity_level:
     weight: 26
     settings:
@@ -148,6 +160,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_mpn_id:
     weight: 1
     settings:
@@ -155,6 +168,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_no_of_pins:
     weight: 19
     settings:
@@ -162,6 +176,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_order_close:
     weight: 4
     settings:
@@ -170,6 +185,7 @@ content:
       time_type: '24'
     third_party_settings: {  }
     type: datetime_datelist
+    region: content
   field_order_entry_closed_date:
     weight: 36
     settings:
@@ -178,6 +194,7 @@ content:
       time_type: '24'
     third_party_settings: {  }
     type: datetime_datelist
+    region: content
   field_order_increment:
     weight: 46
     settings:
@@ -185,6 +202,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_package:
     weight: 17
     settings:
@@ -192,6 +210,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_package_type:
     weight: 18
     settings:
@@ -199,17 +218,20 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_part_family:
     weight: 3
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_pb_free:
     weight: 29
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
   field_peak_reflow_temp:
     weight: 27
     settings:
@@ -217,6 +239,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_pqr_specnum_ref:
     weight: 32
     settings:
@@ -225,6 +248,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete_tags
+    region: content
   field_pqtp_name:
     weight: 37
     settings:
@@ -232,42 +256,49 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_price_five:
     weight: 14
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   field_price_four:
     weight: 13
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   field_price_one:
     weight: 10
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   field_price_six:
     weight: 15
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   field_price_three:
     weight: 12
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   field_price_two:
     weight: 11
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
   field_product_family:
     weight: 8
     settings:
@@ -275,6 +306,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_prune_start_date:
     weight: 6
     settings:
@@ -283,32 +315,38 @@ content:
       time_type: '24'
     third_party_settings: {  }
     type: datetime_datelist
+    region: content
   field_related_content_keywords:
     weight: 41
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_related_content_section:
     weight: 40
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_related_persona:
     weight: 39
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_related_products:
     weight: 9
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_rohs_compliant:
     weight: 28
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
   field_shipping_closed:
     weight: 5
     settings:
@@ -317,12 +355,14 @@ content:
       time_type: '24'
     third_party_settings: {  }
     type: datetime_datelist
+    region: content
   field_show_price:
     weight: 16
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
   field_standard_pack_quantity:
     weight: 20
     settings:
@@ -330,6 +370,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_status_display:
     weight: 38
     settings:
@@ -337,6 +378,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_status_raw:
     weight: 31
     settings:
@@ -344,11 +386,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   path:
     type: path
     weight: 45
     settings: {  }
     third_party_settings: {  }
+    region: content
   stores:
     type: commerce_entity_select
     weight: 47
@@ -357,6 +401,7 @@ content:
       autocomplete_size: 60
       autocomplete_placeholder: ''
     third_party_settings: {  }
+    region: content
   title:
     type: string_textfield
     weight: 0
@@ -364,6 +409,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   uid:
     type: entity_reference_autocomplete
     weight: 42
@@ -372,6 +418,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   variations:
     type: inline_entity_form_complex
     weight: 43
@@ -384,5 +431,6 @@ content:
       allow_existing: false
       match_operator: CONTAINS
     third_party_settings: {  }
+    region: content
 hidden:
   status: true

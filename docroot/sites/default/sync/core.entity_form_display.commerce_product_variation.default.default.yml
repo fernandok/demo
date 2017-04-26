@@ -20,6 +20,7 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
   weight:
     type: physical_measurement_default
     weight: 0
@@ -27,6 +28,7 @@ content:
       default_unit: ''
       allow_unit_change: true
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   sku: true

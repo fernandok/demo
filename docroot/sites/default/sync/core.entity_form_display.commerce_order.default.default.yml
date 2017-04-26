@@ -5,6 +5,7 @@ dependencies:
   config:
     - commerce_order.commerce_order_type.default
     - field.field.commerce_order.default.order_items
+    - field.field.commerce_order.default.shipments
   module:
     - commerce_order
     - inline_entity_form
@@ -20,10 +21,19 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
+    region: content
   billing_profile:
     type: commerce_billing_profile
     weight: 0
     settings: {  }
+    third_party_settings: {  }
+    region: content
+  cart:
+    type: boolean_checkbox
+    settings:
+      display_label: true
+    weight: 20
+    region: content
     third_party_settings: {  }
   order_items:
     type: inline_entity_form_complex
@@ -37,11 +47,13 @@ content:
       allow_existing: false
       form_mode: default
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   ip_address: true
   mail: true
   order_number: true
+  shipments: true
   state: true
   store_id: true
   uid: true

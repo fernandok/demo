@@ -1,0 +1,14 @@
+uuid: 671c5fd8-c751-4bb5-b2b7-722d90a9335b
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.cypress_employees
+  module:
+    - user
+id: user_add_role_action.cypress_employees
+label: 'Add the Cypress Employees role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: cypress_employees

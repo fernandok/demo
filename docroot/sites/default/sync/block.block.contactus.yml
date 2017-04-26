@@ -6,7 +6,7 @@ dependencies:
     - cypress_store
 id: contactus
 theme: cypress_store
-region: '-1'
+region: navigation
 weight: -15
 provider: null
 plugin: 'block_content:107605c5-b499-41d8-b335-a385dbd8c275'

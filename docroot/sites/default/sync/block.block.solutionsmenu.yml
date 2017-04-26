@@ -6,7 +6,7 @@ dependencies:
     - cypress_store
 id: solutionsmenu
 theme: cypress_store
-region: '-1'
+region: navigation
 weight: 5
 provider: null
 plugin: 'block_content:87935f24-210e-4172-b910-fd4228fdd95c'

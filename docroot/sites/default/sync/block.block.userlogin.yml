@@ -12,7 +12,7 @@ third_party_settings:
     classes: ''
 id: userlogin
 theme: cypress_store
-region: '-1'
+region: navigation
 weight: -1
 provider: null
 plugin: user_login_block

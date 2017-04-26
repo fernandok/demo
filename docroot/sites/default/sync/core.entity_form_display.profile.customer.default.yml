@@ -26,6 +26,7 @@ content:
     settings:
       default_country: IN
     third_party_settings: {  }
+    region: content
 hidden:
   address: true
   field_om_customer_site_use_id: true

@@ -11,7 +11,7 @@ third_party_settings:
     classes: 'primary-block col-md-4'
 id: primarymenublock
 theme: cypress_store
-region: '-1'
+region: navigation
 weight: 2
 provider: null
 plugin: 'block_content:01fe2614-a5f1-46db-a7b4-3acac67e3d20'

@@ -1,0 +1,24 @@
+<?php
+
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements form_alter().
+ */
+function cypress_custom_address_form_alter(&$form, $form_state, $form_id) {
+  $order = \Drupal::service('commerce_cart.cart_provider')->getCartIds();
+  $order_id = $order['0'];
+  if($form_id == 'views_form_commerce_cart_form_default_' . $order_id) {
+    array_unshift($form['actions']['checkout']['#submit'], 'anonymous_checkout_flow');
+  }
+}
+
+ // anonymous cart submit sunction
+function anonymous_checkout_flow() {
+
+  if (\Drupal::currentUser()->isAnonymous()) {
+    $response = new RedirectResponse('/saml_login');
+    return $response->send();
+  }
+
+}

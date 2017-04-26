@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.commerce_remote_id
     - field.field.user.user.field_first_name
     - field.field.user.user.field_last_name
     - field.field.user.user.field_legacy_uid
@@ -25,6 +26,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_last_name:
     weight: 12
     label: above
@@ -32,6 +34,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_legacy_uid:
     weight: 13
     label: above
@@ -39,10 +42,13 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   member_for:
     weight: 5
+    region: content
   profile_customer:
     weight: 10
+    region: content
   user_picture:
     type: image
     weight: 0
@@ -51,5 +57,6 @@ content:
       image_link: content
     third_party_settings: {  }
     label: hidden
+    region: content
 hidden:
   commerce_remote_id: true

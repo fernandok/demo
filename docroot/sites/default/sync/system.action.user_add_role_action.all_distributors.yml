@@ -1,0 +1,14 @@
+uuid: 4655b8b2-12cd-4d6a-8fb1-f6c9f073ddd2
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.all_distributors
+  module:
+    - user
+id: user_add_role_action.all_distributors
+label: 'Add the All Distributors role to the selected users'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: all_distributors

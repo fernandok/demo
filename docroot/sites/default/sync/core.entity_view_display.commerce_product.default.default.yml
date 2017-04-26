@@ -42,12 +42,14 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_ecn_body:
     weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
     type: basic_string
+    region: content
   field_files_ref:
     weight: 6
     label: above
@@ -55,6 +57,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_image:
     weight: 4
     label: above
@@ -62,6 +65,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_node_id:
     weight: 5
     label: above
@@ -69,6 +73,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_version:
     weight: 0
     label: above
@@ -76,6 +81,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   variations:
     type: commerce_add_to_cart
     weight: 3
@@ -83,6 +89,7 @@ content:
     settings:
       combine: true
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   field_alternative_addtocart_ur: true
