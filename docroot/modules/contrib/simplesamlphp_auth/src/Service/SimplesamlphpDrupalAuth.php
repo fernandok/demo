@@ -100,7 +100,8 @@ class SimplesamlphpDrupalAuth {
     if (!$account) {
       $account = $this->externalRegister($authname);
     }
-
+    // Cypres Saml Configuration.
+    get_saml_user_attributes($account);
     if ($account) {
       // Determine if roles should be evaluated upon login.
       if ($this->config->get('role.eval_every_time')) {

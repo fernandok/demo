@@ -1,0 +1,9 @@
+uuid: 1c18b5c3-2191-4abc-a440-b92c8fa9a2bc
+langcode: en
+status: true
+dependencies: {  }
+id: cypress_employees
+label: 'Cypress Employees'
+weight: 5
+is_admin: null
+permissions: {  }
