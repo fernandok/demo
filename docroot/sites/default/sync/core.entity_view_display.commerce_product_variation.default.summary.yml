@@ -5,6 +5,7 @@ dependencies:
   config:
     - commerce_product.commerce_product_variation_type.default
     - core.entity_view_mode.commerce_product_variation.summary
+    - field.field.commerce_product_variation.default.weight
 _core:
   default_config_hash: nWr1ZTB007GRrqbIhsncMGNe3-kSio6mGWfNkEgE28M
 id: commerce_product_variation.default.summary
@@ -19,6 +20,7 @@ content:
     settings:
       link: true
     third_party_settings: {  }
+    region: content
   title:
     label: hidden
     type: string
@@ -26,6 +28,8 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    region: content
 hidden:
   price: true
   sku: true
+  weight: true

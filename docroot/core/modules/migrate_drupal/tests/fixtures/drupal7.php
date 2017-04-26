@@ -2512,7 +2512,7 @@ $connection->insert('comment')
   'nid' => '1',
   'uid' => '1',
   'subject' => 'A comment',
-  'hostname' => '::1',
+  'hostname' => '2001:db8:ffff:ffff:ffff:ffff:ffff:ffff',
   'created' => '1421727536',
   'changed' => '1421727536',
   'status' => '1',
@@ -3828,6 +3828,15 @@ $connection->insert('field_config_instance')
   'data' => 'a:7:{s:5:"label";s:21:"Term Entity Reference";s:6:"widget";a:5:{s:6:"weight";s:2:"18";s:4:"type";s:33:"entityreference_autocomplete_tags";s:6:"module";s:15:"entityreference";s:6:"active";i:1;s:8:"settings";a:3:{s:14:"match_operator";s:8:"CONTAINS";s:4:"size";s:2:"60";s:4:"path";s:0:"";}}s:8:"settings";a:2:{s:9:"behaviors";a:1:{s:14:"taxonomy-index";a:1:{s:6:"status";b:1;}}s:18:"user_register_form";b:0;}s:7:"display";a:1:{s:7:"default";a:5:{s:5:"label";s:5:"above";s:4:"type";s:21:"entityreference_label";s:8:"settings";a:1:{s:4:"link";b:0;}s:6:"module";s:15:"entityreference";s:6:"weight";i:17;}}s:8:"required";i:0;s:11:"description";s:0:"";s:13:"default_value";N;}',
   'deleted' => '0',
 ))
+->values(array(
+  'id' => '41',
+  'field_id' => '20',
+  'field_name' => 'field_term_reference',
+  'entity_type' => 'taxonomy_term',
+  'bundle' => 'test_vocabulary',
+  'data' => 'a:7:{s:5:"label";s:14:"Term Reference";s:6:"widget";a:5:{s:6:"weight";s:2:"14";s:4:"type";s:21:"taxonomy_autocomplete";s:6:"module";s:8:"taxonomy";s:6:"active";i:0;s:8:"settings";a:2:{s:4:"size";i:60;s:17:"autocomplete_path";s:21:"taxonomy/autocomplete";}}s:8:"settings";a:1:{s:18:"user_register_form";b:0;}s:7:"display";a:1:{s:7:"default";a:4:{s:5:"label";s:5:"above";s:4:"type";s:6:"hidden";s:6:"weight";s:2:"13";s:8:"settings";a:0:{}}}s:8:"required";i:0;s:11:"description";s:0:"";s:13:"default_value";N;}',
+  'deleted' => '0',
+))
 ->execute();
 
 $connection->schema()->createTable('field_data_body', array(
@@ -4476,6 +4485,18 @@ $connection->insert('field_data_field_file')
   'field_file_display' => '1',
   'field_file_description' => 'file desc',
 ))
+->values(array(
+  'entity_type' => 'user',
+  'bundle' => 'user',
+  'deleted' => '0',
+  'entity_id' => '2',
+  'revision_id' => '2',
+  'language' => 'und',
+  'delta' => '0',
+  'field_file_fid' => '2',
+  'field_file_display' => '1',
+  'field_file_description' => 'file desc',
+))
 ->execute();
 
 $connection->schema()->createTable('field_data_field_float', array(
@@ -4849,6 +4870,16 @@ $connection->insert('field_data_field_integer')
   'language' => 'und',
   'delta' => '0',
   'field_integer_value' => '99',
+))
+->values(array(
+  'entity_type' => 'taxonomy_term',
+  'bundle' => 'test_vocabulary',
+  'deleted' => '0',
+  'entity_id' => '4',
+  'revision_id' => '4',
+  'language' => 'und',
+  'delta' => '0',
+  'field_integer_value' => '6',
 ))
 ->execute();
 
@@ -5649,6 +5680,16 @@ $connection->insert('field_data_field_term_reference')
   'delta' => '0',
   'field_term_reference_tid' => '4',
 ))
+->values(array(
+  'entity_type' => 'taxonomy_term',
+  'bundle' => 'test_vocabulary',
+  'deleted' => '0',
+  'entity_id' => '2',
+  'revision_id' => '2',
+  'language' => 'und',
+  'delta' => '0',
+  'field_term_reference_tid' => '3',
+))
 ->execute();
 
 $connection->schema()->createTable('field_data_field_text', array(
@@ -6097,6 +6138,30 @@ $connection->insert('field_revision_body')
   'language' => 'und',
   'delta' => '0',
   'body_value' => "is - ...is that it's the absolute best show ever. Trust me, I would know.",
+  'body_summary' => '',
+  'body_format' => 'filtered_html',
+))
+->values(array(
+  'entity_type' => 'node',
+  'bundle' => 'article',
+  'deleted' => '0',
+  'entity_id' => '4',
+  'revision_id' => '4',
+  'language' => 'und',
+  'delta' => '0',
+  'body_value' => 'is - Is that is it awesome.',
+  'body_summary' => '',
+  'body_format' => 'filtered_html',
+))
+->values(array(
+  'entity_type' => 'node',
+  'bundle' => 'article',
+  'deleted' => '0',
+  'entity_id' => '5',
+  'revision_id' => '5',
+  'language' => 'und',
+  'delta' => '0',
+  'body_value' => 'en - Is that is it awesome.',
   'body_summary' => '',
   'body_format' => 'filtered_html',
 ))
@@ -6645,6 +6710,18 @@ $connection->insert('field_revision_field_file')
   'field_file_display' => '1',
   'field_file_description' => 'file desc',
 ))
+->values(array(
+  'entity_type' => 'user',
+  'bundle' => 'user',
+  'deleted' => '0',
+  'entity_id' => '2',
+  'revision_id' => '2',
+  'language' => 'und',
+  'delta' => '0',
+  'field_file_fid' => '2',
+  'field_file_display' => '1',
+  'field_file_description' => 'file desc',
+))
 ->execute();
 
 $connection->schema()->createTable('field_revision_field_float', array(
@@ -7022,6 +7099,16 @@ $connection->insert('field_revision_field_integer')
   'language' => 'und',
   'delta' => '0',
   'field_integer_value' => '99',
+))
+->values(array(
+  'entity_type' => 'taxonomy_term',
+  'bundle' => 'test_vocabulary',
+  'deleted' => '0',
+  'entity_id' => '4',
+  'revision_id' => '4',
+  'language' => 'und',
+  'delta' => '0',
+  'field_integer_value' => '6',
 ))
 ->execute();
 
@@ -7830,6 +7917,16 @@ $connection->insert('field_revision_field_term_reference')
   'delta' => '0',
   'field_term_reference_tid' => '4',
 ))
+->values(array(
+  'entity_type' => 'taxonomy_term',
+  'bundle' => 'test_vocabulary',
+  'deleted' => '0',
+  'entity_id' => '2',
+  'revision_id' => '2',
+  'language' => 'und',
+  'delta' => '0',
+  'field_term_reference_tid' => '3',
+))
 ->execute();
 
 $connection->schema()->createTable('field_revision_field_text', array(
@@ -8258,6 +8355,16 @@ $connection->insert('file_managed')
   'status' => '1',
   'timestamp' => '1421727515',
 ))
+->values(array(
+  'fid' => '2',
+  'uid' => '1',
+  'filename' => 'ds9.txt',
+  'uri' => 'public://ds9.txt',
+  'filemime' => 'text/plain',
+  'filesize' => '4720',
+  'status' => '1',
+  'timestamp' => '1421727516',
+))
 ->execute();
 
 $connection->schema()->createTable('file_usage', array(
@@ -8324,6 +8431,13 @@ $connection->insert('file_usage')
   'module' => 'file',
   'type' => 'node',
   'id' => '1',
+  'count' => '1',
+))
+->values(array(
+  'fid' => '2',
+  'module' => 'file',
+  'type' => 'user',
+  'id' => '2',
   'count' => '1',
 ))
 ->execute();
@@ -30855,6 +30969,38 @@ $connection->insert('node')
   'tnid' => '2',
   'translate' => '0',
 ))
+->values(array(
+  'nid' => '4',
+  'vid' => '4',
+  'type' => 'article',
+  'language' => 'is',
+  'title' => 'is - The thing about Firefly',
+  'uid' => '1',
+  'status' => '1',
+  'created' => '1478755274',
+  'changed' => '1478755274',
+  'comment' => '2',
+  'promote' => '1',
+  'sticky' => '0',
+  'tnid' => '4',
+  'translate' => '0',
+))
+->values(array(
+  'nid' => '5',
+  'vid' => '5',
+  'type' => 'article',
+  'language' => 'en',
+  'title' => 'en - The thing about Firefly',
+  'uid' => '1',
+  'status' => '1',
+  'created' => '1478755314',
+  'changed' => '1478755314',
+  'comment' => '2',
+  'promote' => '1',
+  'sticky' => '0',
+  'tnid' => '4',
+  'translate' => '0',
+))
 ->execute();
 
 $connection->schema()->createTable('node_access', array(
@@ -30999,6 +31145,22 @@ $connection->insert('node_comment_statistics')
   'last_comment_uid' => '1',
   'comment_count' => '0',
 ))
+->values(array(
+  'nid' => '4',
+  'cid' => '0',
+  'last_comment_timestamp' => '1478755274',
+  'last_comment_name' => NULL,
+  'last_comment_uid' => '1',
+  'comment_count' => '0',
+))
+->values(array(
+  'nid' => '5',
+  'cid' => '0',
+  'last_comment_timestamp' => '1478755314',
+  'last_comment_name' => NULL,
+  'last_comment_uid' => '1',
+  'comment_count' => '0',
+))
 ->execute();
 
 $connection->schema()->createTable('node_counter', array(
@@ -31053,14 +31215,26 @@ $connection->insert('node_counter')
 ->values(array(
   'nid' => '2',
   'totalcount' => '1',
-  'daycount' => '1',
+  'daycount' => '0',
   'timestamp' => '1471428059',
 ))
 ->values(array(
   'nid' => '3',
   'totalcount' => '1',
-  'daycount' => '1',
+  'daycount' => '0',
   'timestamp' => '1471428153',
+))
+->values(array(
+  'nid' => '4',
+  'totalcount' => '1',
+  'daycount' => '1',
+  'timestamp' => '1478755275',
+))
+->values(array(
+  'nid' => '5',
+  'totalcount' => '1',
+  'daycount' => '1',
+  'timestamp' => '1478755314',
 ))
 ->execute();
 
@@ -31177,6 +31351,30 @@ $connection->insert('node_revision')
   'title' => 'is - The thing about Deep Space 9',
   'log' => '',
   'timestamp' => '1471428152',
+  'status' => '1',
+  'comment' => '2',
+  'promote' => '1',
+  'sticky' => '0',
+))
+->values(array(
+  'nid' => '4',
+  'vid' => '4',
+  'uid' => '1',
+  'title' => 'is - The thing about Firefly',
+  'log' => '',
+  'timestamp' => '1478755274',
+  'status' => '1',
+  'comment' => '2',
+  'promote' => '1',
+  'sticky' => '0',
+))
+->values(array(
+  'nid' => '5',
+  'vid' => '5',
+  'uid' => '1',
+  'title' => 'en - The thing about Firefly',
+  'log' => '',
+  'timestamp' => '1478755314',
   'status' => '1',
   'comment' => '2',
   'promote' => '1',
@@ -42937,6 +43135,30 @@ $connection->insert('url_alias')
   'alias' => 'term33',
   'language' => 'und',
 ))
+->values(array(
+  'pid' => '2',
+  'source' => 'node/2',
+  'alias' => 'deep-space-9',
+  'language' => 'en',
+))
+->values(array(
+  'pid' => '3',
+  'source' => 'node/3',
+  'alias' => 'deep-space-9-is',
+  'language' => 'is',
+))
+->values(array(
+  'pid' => '4',
+  'source' => 'node/4',
+  'alias' => 'firefly-is',
+  'language' => 'is',
+))
+->values(array(
+  'pid' => '5',
+  'source' => 'node/5',
+  'alias' => 'firefly',
+  'language' => 'en',
+))
 ->execute();
 
 $connection->schema()->createTable('users', array(
@@ -43811,7 +44033,7 @@ $connection->insert('variable')
 ))
 ->values(array(
   'name' => 'menu_override_parent_selector',
-  'value' => 'b:0;',
+  'value' => 'b:1;',
 ))
 ->values(array(
   'name' => 'menu_parent_article',

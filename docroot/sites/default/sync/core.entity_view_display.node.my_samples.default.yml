@@ -37,6 +37,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_cansample:
     weight: 103
     label: above
@@ -44,6 +45,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_kit_cost:
     weight: 105
     label: above
@@ -51,6 +53,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_mpn:
     weight: 106
     label: above
@@ -58,6 +61,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_mpn_cat_a_b:
     weight: 104
     label: above
@@ -65,6 +69,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_mpnid:
     weight: 107
     label: above
@@ -72,6 +77,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_mysampl_msrp:
     weight: 108
     label: above
@@ -79,6 +85,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_mysampl_plm_status:
     weight: 109
     label: above
@@ -86,6 +93,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_pricefive_:
     weight: 110
     label: above
@@ -93,6 +101,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_pricefour:
     weight: 111
     label: above
@@ -100,6 +109,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_priceone:
     weight: 112
     label: above
@@ -107,6 +117,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_pricesix:
     weight: 113
     label: above
@@ -114,6 +125,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_pricethree:
     weight: 114
     label: above
@@ -121,6 +133,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_pricetwo:
     weight: 115
     label: above
@@ -128,6 +141,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_sample_category:
     weight: 116
     label: above
@@ -135,12 +149,14 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_sample_status:
     weight: 118
     label: above
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
   field_samplemsrp:
     weight: 117
     label: above
@@ -148,6 +164,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_status:
     weight: 119
     label: above
@@ -155,6 +172,8 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   links:
     weight: 100
+    region: content
 hidden: {  }

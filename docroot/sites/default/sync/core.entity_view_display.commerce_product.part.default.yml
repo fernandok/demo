@@ -63,6 +63,7 @@ content:
     weight: -4
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_can_sample:
     weight: 40
     label: above
@@ -71,6 +72,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
+    region: content
   field_development_kit:
     weight: 15
     label: above
@@ -78,6 +80,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_dqr_specnum_ref:
     weight: 47
     label: above
@@ -85,6 +88,7 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_eccn:
     weight: 32
     label: above
@@ -92,6 +96,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_eccn_suball:
     weight: 33
     label: above
@@ -99,6 +104,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_estimated_lead_time_days:
     weight: 30
     label: above
@@ -106,6 +112,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_hts_code:
     weight: 31
     label: above
@@ -113,6 +120,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_inventory:
     weight: 41
     label: above
@@ -121,6 +129,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
+    region: content
   field_lead_ball_finish:
     weight: 38
     label: above
@@ -128,6 +137,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_minimum_order_quantity_moq:
     weight: 28
     label: above
@@ -135,6 +145,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_moisture_sensitivity_level:
     weight: 34
     label: above
@@ -142,6 +153,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_mpn_id:
     weight: 11
     label: above
@@ -149,6 +161,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_no_of_pins:
     weight: 26
     label: above
@@ -156,6 +169,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_order_close:
     weight: 12
     label: above
@@ -164,6 +178,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
   field_order_entry_closed_date:
     weight: 51
     label: above
@@ -172,6 +187,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
   field_order_increment:
     weight: 29
     label: above
@@ -179,6 +195,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_package:
     weight: 24
     label: above
@@ -186,6 +203,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_package_type:
     weight: 25
     label: above
@@ -193,6 +211,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_part_family:
     weight: 44
     label: above
@@ -200,6 +219,7 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_pb_free:
     weight: 37
     label: above
@@ -209,6 +229,7 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
   field_peak_reflow_temp:
     weight: 35
     label: above
@@ -216,6 +237,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_pqr_specnum_ref:
     weight: 46
     label: above
@@ -223,6 +245,7 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_pqtp_name:
     weight: 42
     label: above
@@ -230,6 +253,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_price_five:
     weight: 21
     label: above
@@ -240,6 +264,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
+    region: content
   field_price_four:
     weight: 20
     label: above
@@ -250,6 +275,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
+    region: content
   field_price_one:
     weight: 17
     label: above
@@ -260,6 +286,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
+    region: content
   field_price_six:
     weight: 22
     label: above
@@ -270,6 +297,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
+    region: content
   field_price_three:
     weight: 19
     label: above
@@ -280,6 +308,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
+    region: content
   field_price_two:
     weight: 18
     label: above
@@ -290,6 +319,7 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
+    region: content
   field_product_family:
     weight: 16
     label: above
@@ -297,6 +327,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_prune_start_date:
     weight: 14
     label: above
@@ -305,6 +336,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
   field_related_content_keywords:
     weight: 50
     label: above
@@ -312,6 +344,7 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_related_content_section:
     weight: 49
     label: above
@@ -319,6 +352,7 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_related_persona:
     weight: 48
     label: above
@@ -326,6 +360,7 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_related_products:
     weight: 45
     label: above
@@ -333,6 +368,7 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
   field_rohs_compliant:
     weight: 36
     label: above
@@ -342,6 +378,7 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
   field_shipping_closed:
     weight: 13
     label: above
@@ -350,6 +387,7 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
   field_show_price:
     weight: 23
     label: above
@@ -359,6 +397,7 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
   field_standard_pack_quantity:
     weight: 27
     label: above
@@ -366,6 +405,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_status_display:
     weight: 43
     label: above
@@ -373,6 +413,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_status_raw:
     weight: 39
     label: above
@@ -380,6 +421,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   variations:
     type: commerce_add_to_cart
     weight: 10
@@ -387,6 +429,7 @@ content:
     settings:
       combine: true
     third_party_settings: {  }
+    region: content
 hidden:
   created: true
   stores: true

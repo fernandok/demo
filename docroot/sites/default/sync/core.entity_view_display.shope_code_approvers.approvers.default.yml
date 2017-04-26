@@ -27,6 +27,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_country_id:
     weight: 1
     label: above
@@ -34,6 +35,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_kitapprover:
     weight: 2
     label: above
@@ -41,6 +43,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_mpnid:
     weight: 3
     label: above
@@ -48,6 +51,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_primaryapproverleave:
     weight: 4
     label: above
@@ -55,6 +59,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_primaryapproverleavefrom:
     weight: 5
     label: above
@@ -62,6 +67,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_primaryapproverleaveto:
     weight: 6
     label: above
@@ -69,6 +75,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_shopcodeapproversid:
     weight: 7
     label: above
@@ -76,6 +83,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_shopcodeprimaryapprover:
     weight: 8
     label: above
@@ -83,6 +91,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_shopcodesecondaryapprover:
     weight: 9
     label: above
@@ -90,6 +99,7 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
   field_shopcodethirdapprover:
     weight: 10
     label: above
@@ -97,4 +107,5 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
+    region: content
 hidden: {  }

@@ -3,6 +3,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.user.user.commerce_remote_id
     - field.field.user.user.field_first_name
     - field.field.user.user.field_last_name
     - field.field.user.user.field_legacy_uid
@@ -20,8 +21,10 @@ mode: default
 content:
   account:
     weight: -10
+    region: content
   contact:
     weight: 5
+    region: content
   field_first_name:
     weight: 7
     settings:
@@ -29,6 +32,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_last_name:
     weight: 8
     settings:
@@ -36,6 +40,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_legacy_uid:
     weight: 9
     settings:
@@ -43,10 +48,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   language:
     weight: 0
+    region: content
   timezone:
     weight: 6
+    region: content
   user_picture:
     type: image_image
     settings:
@@ -54,5 +62,6 @@ content:
       preview_image_style: thumbnail
     third_party_settings: {  }
     weight: -1
+    region: content
 hidden:
   commerce_remote_id: true

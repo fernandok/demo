@@ -18,12 +18,14 @@ content:
     weight: 0
     settings: {  }
     third_party_settings: {  }
+    region: content
   state:
     label: hidden
     type: state_transition_form
     weight: 10
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   adjustments: true
   amount: true

@@ -34,6 +34,7 @@ content:
     weight: 2
     settings: {  }
     third_party_settings: {  }
+    region: content
   field_active:
     weight: 6
     settings:
@@ -41,6 +42,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_cansample:
     weight: 7
     settings:
@@ -48,6 +50,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_kit_cost:
     weight: 9
     settings:
@@ -55,6 +58,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_mpn:
     weight: 10
     settings:
@@ -62,6 +66,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_mpn_cat_a_b:
     weight: 8
     settings:
@@ -69,6 +74,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_mpnid:
     weight: 11
     settings:
@@ -76,6 +82,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_mysampl_msrp:
     weight: 12
     settings:
@@ -83,6 +90,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_mysampl_plm_status:
     weight: 14
     settings:
@@ -90,6 +98,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_pricefive_:
     weight: 19
     settings:
@@ -97,6 +106,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_pricefour:
     weight: 18
     settings:
@@ -104,6 +114,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_priceone:
     weight: 15
     settings:
@@ -111,6 +122,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_pricesix:
     weight: 20
     settings:
@@ -118,6 +130,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_pricethree:
     weight: 17
     settings:
@@ -125,6 +138,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_pricetwo:
     weight: 16
     settings:
@@ -132,6 +146,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_sample_category:
     weight: 21
     settings:
@@ -139,11 +154,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_sample_status:
     weight: 13
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
   field_samplemsrp:
     weight: 22
     settings:
@@ -151,6 +168,7 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   field_status:
     weight: 23
     settings:
@@ -158,23 +176,27 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
+    region: content
   path:
     type: path
     weight: 5
     settings: {  }
     third_party_settings: {  }
+    region: content
   promote:
     type: boolean_checkbox
     settings:
       display_label: true
     weight: 3
     third_party_settings: {  }
+    region: content
   sticky:
     type: boolean_checkbox
     settings:
       display_label: true
     weight: 4
     third_party_settings: {  }
+    region: content
   title:
     type: string_textfield
     weight: 0
@@ -182,6 +204,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
   uid:
     type: entity_reference_autocomplete
     weight: 1
@@ -190,4 +213,5 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    region: content
 hidden: {  }

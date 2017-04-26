@@ -8,7 +8,7 @@ _core:
   default_config_hash: X9I1OB0W3WlWtrK-CNcg6hNWwa8wficanpH8pYnDZDE
 id: cypress_store_local_tasks
 theme: cypress_store
-region: '-1'
+region: navigation
 weight: -4
 provider: null
 plugin: local_tasks_block

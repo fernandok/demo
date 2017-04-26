@@ -20,12 +20,14 @@ content:
     label: above
     settings: {  }
     third_party_settings: {  }
+    region: content
   tracking_code:
     type: commerce_tracking_link
     weight: 1
     label: hidden
     settings: {  }
     third_party_settings: {  }
+    region: content
 hidden:
   adjustments: true
   amount: true
