@@ -7,6 +7,7 @@ use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_shipping\Packer\PackerInterface;
 use Drupal\commerce_shipping\ProposedShipment;
 use Drupal\commerce_shipping\ShipmentItem;
+use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\physical\Weight;
@@ -55,7 +56,7 @@ class CypressPacker implements PackerInterface {
    */
   public function pack(OrderInterface $order, ProfileInterface $shipping_profile) {
     $order_routing_config = $this->configFactory->getEditable('cypress_store_vendor.settings')->get('order_routing_config');
-    $order_routing_config = \Drupal\Core\Serialization\Yaml::decode($order_routing_config);
+    $order_routing_config = Yaml::decode($order_routing_config);
     $proposed_shipments = [];
     $weight = new Weight('0', WeightUnit::KILOGRAM);
     $products = [
