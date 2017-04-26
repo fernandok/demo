@@ -7,6 +7,8 @@ use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_shipping\Packer\PackerInterface;
 use Drupal\commerce_shipping\ProposedShipment;
 use Drupal\commerce_shipping\ShipmentItem;
+use Drupal\Core\Config\ConfigFactoryInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\physical\Weight;
 use Drupal\physical\WeightUnit;
 use Drupal\profile\Entity\ProfileInterface;
@@ -15,6 +17,31 @@ use Drupal\profile\Entity\ProfileInterface;
  * Creates a shipment per order item.
  */
 class CypressPacker implements PackerInterface {
+
+  /**
+   * The entity type manager.
+   *
+   * @var \Drupal\Core\Entity\EntityTypeManagerInterface
+   */
+  protected $entityTypeManager;
+
+  /**
+   * The configuration factory.
+   *
+   * @var \Drupal\Core\Config\ConfigFactoryInterface
+   */
+  protected $configFactory;
+
+  /**
+   * Constructs a new DefaultPacker object.
+   *
+   * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
+   *   The entity type manager.
+   */
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory) {
+    $this->entityTypeManager = $entity_type_manager;
+    $this->configFactory = $config_factory;
+  }
 
   /**
    * {@inheritdoc}
@@ -27,6 +54,8 @@ class CypressPacker implements PackerInterface {
    * {@inheritdoc}
    */
   public function pack(OrderInterface $order, ProfileInterface $shipping_profile) {
+    $order_routing_config = $this->configFactory->getEditable('cypress_store_vendor.settings')->get('order_routing_config');
+    $order_routing_config = \Drupal\Core\Serialization\Yaml::decode($order_routing_config);
     $proposed_shipments = [];
     $weight = new Weight('0', WeightUnit::KILOGRAM);
     $products = [
@@ -66,21 +95,38 @@ class CypressPacker implements PackerInterface {
       }
     }
 
-    $index = 1;
+    $shipment_index = 1;
     foreach ($products as $type => $pack) {
       if (!empty($pack)) {
         $proposed_shipments[] = new ProposedShipment([
-          'type' => 'default',
+          'type' => $this->getShipmentType($order),
           'order_id' => $order->id(),
-          'title' => t("Shipment #$index"),
+          'title' => t("Shipment #$shipment_index"),
           'items' => $pack,
           'shipping_profile' => $shipping_profile,
         ], 'commerce_shipment');
-        $index++;
+        $shipment_index++;
       }
     }
 
     return $proposed_shipments;
+  }
+
+  /**
+   * Gets the shipment type for the current order.
+   *
+   * @param \Drupal\commerce_order\Entity\OrderInterface $order
+   *   The order.
+   *
+   * @return string
+   *   The shipment type.
+   */
+  protected function getShipmentType(OrderInterface $order) {
+    $order_type_storage = $this->entityTypeManager->getStorage('commerce_order_type');
+    /** @var \Drupal\commerce_order\Entity\OrderTypeInterface $order_type */
+    $order_type = $order_type_storage->load($order->bundle());
+
+    return $order_type->getThirdPartySetting('commerce_shipping', 'shipment_type');
   }
 
 }
