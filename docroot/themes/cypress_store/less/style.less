@@ -645,7 +645,7 @@ footer{
     background: #fafafa;
     /*margin: 0 12vw 0 0;*/
     line-height: 28px;
-    margin: 0 3vw 0 0;
+    /*margin: 0 3vw 0 0;*/
 
     h2.block-title{
     	margin-top: 0;
@@ -688,13 +688,15 @@ footer{
 
 		    a {
 			    background: #5bc0de;
-			    padding: 10px 46px;
+			    /*padding: 10px 46px;*/
+			    padding: 10px 30px;
 			    color: #ffffff;
 			    font-weight: bold;
 			    text-transform: uppercase;
 
 			    &:hover{
 			    	text-decoration: none;
+			    	background: #31b0d5;
 			    }
 			}
 		}
@@ -708,10 +710,13 @@ footer{
 			    font-weight: bold;
 			    text-transform: uppercase;
 			    background: #005596;
-			    padding: 10px 80px;
+			    /*padding: 10px 84px;*/
+			    padding: 10px 68px;
+			    opacity: 0.9;
 
 			    &:hover{
 			    	text-decoration: none;
+			    	opacity: 1;
 			    }
 		    }
 		}
@@ -722,7 +727,7 @@ footer{
 	width: 52%;*/
     background: #fafafa;
     line-height: 28px;
-    margin: 0 0 0 8vw;
+    /*margin: 0 0 0 8vw;*/
 
 	.view-header {
 	    font-size: 20px;
@@ -765,7 +770,8 @@ footer{
 		}
 		
 		.cart-edit-quantity{
-			.form-item-edit-quantity-0 {
+
+			[class*='form-item-edit-quantity-'] {
 			    display: inline-block;
 			    font-weight: bolder;
 			}
@@ -1138,7 +1144,7 @@ footer{
 		padding: 9px;
 	}
 	.block-cypress-custom-address .cart-items #checkout-dummy a{
-		padding: 9px 43px;
+		padding: 9px 47px;
 	}
 	.cart.cart-form,.block-cypress-custom-address{
 		margin: 0;
@@ -1148,6 +1154,9 @@ footer{
 	}
 	.cart.cart-form .cypress-cart .cart-product-image{
 		margin-left: 0;
+	}
+	.cart.cart-form .cypress-cart .cart-info{
+		width: 68%;
 	}
 	footer .region-footer .footer-block .footer-menu ul{
 		margin: 10px 0;
@@ -1418,17 +1427,19 @@ footer{
 	}
 	.cart.cart-form{
 		/*width: 65%;*/
-		margin: 0 0 0 2vw;
+		/*margin: 0 0 0 2vw;*/
 	}
 	.block-cypress-custom-address{
 		/*width: 30%;*/
-		margin: 0 1vw 0 0;
+		/*margin: 0 1vw 0 0;*/
 	}
 	.block-cypress-custom-address .cart-items #continue-shopping a{
-		padding: 10px;
+		/*padding: 10px;*/
+		padding: 7px;
 	}
 	.block-cypress-custom-address .cart-items #checkout-dummy a{
-		padding: 10px 44px;
+		/*padding: 10px 48px;*/
+		padding: 7px 45px;
 	}
 
 }
