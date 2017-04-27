@@ -1,7 +1,15 @@
-store_mysamples.promocode_status:
-  path: '/promocode_status'
+store_mysamples.cypress_configuration:
+  path: '/admin/promocode_status'
   defaults:
     _controller: '\Drupal\store_mysamples\Controller\PromocodeStatus::content'
     _title: 'Promocode Status'
   requirements:
-    _permission: 'access content'
+    _permission: 'access administration pages'
+
+store_mysamples.promocode_status:
+  path: '/admin/promocode_status'
+  defaults:
+    _controller: '\Drupal\store_mysamples\Controller\PromocodeStatus::content'
+    _title: 'Promocode Status'
+  requirements:
+    _permission: 'access administration pages'
