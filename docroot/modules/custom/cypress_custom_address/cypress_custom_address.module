@@ -10,7 +10,7 @@ function cypress_custom_address_form_alter(&$form, $form_state, $form_id) {
   $order_id = $order['0'];
   //  kint($form_id);exit;
   if($form_id == 'views_form_commerce_cart_form_default_' . $order_id) {
-      $form['#submit'][] = 'my_cart';
+    //  $form['#submit'][] = 'my_cart';
     array_unshift($form['actions']['checkout']['#submit'], 'anonymous_checkout_flow');
   }
 }
@@ -20,10 +20,8 @@ function anonymous_checkout_flow() {
 
   if (\Drupal::currentUser()->isAnonymous()) {
     $response = new RedirectResponse('/saml_login');
-    return $response->send();
-  }
-  else {
-      echo 'hi';exit;
+    $response->send();
+    return;
   }
 
 }
