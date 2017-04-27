@@ -1,0 +1,14 @@
+uuid: 213da629-a243-4f98-aa10-e269e890a199
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.cypress_employees
+  module:
+    - user
+id: user_remove_role_action.cypress_employees
+label: 'Remove the Cypress Employees role from the selected users'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: cypress_employees

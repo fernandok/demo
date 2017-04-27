@@ -1,0 +1,13 @@
+# Store related configurations.
+store_mysamples.cypress_configuration:
+  title: 'Cypress'
+  route_name: store_mysamples.cypress_configuration
+  description: 'Store related Configurations'
+  parent: system.admin
+  weight: 10
+
+store_mysamples.promocode_status:
+  title: 'Promocode Status'
+  route_name: store_mysamples.promocode_status
+  description: 'Store related Configurations'
+  parent: store_mysamples.cypress_configuration
