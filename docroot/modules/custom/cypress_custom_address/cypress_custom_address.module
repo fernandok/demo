@@ -10,6 +10,7 @@ function cypress_custom_address_form_alter(&$form, $form_state, $form_id) {
   $order_id = $order['0'];
   if($form_id == 'views_form_commerce_cart_form_default_' . $order_id) {
     array_unshift($form['actions']['checkout']['#submit'], 'anonymous_checkout_flow');
+    $form['#submit'][] = 'my_cart';
   }
 }
 
