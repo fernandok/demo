@@ -13,7 +13,7 @@ function cypress_custom_address_form_alter(&$form, $form_state, $form_id) {
   }
 }
 
- // anonymous cart submit sunction
+// anonymous cart submit sunction
 function anonymous_checkout_flow() {
 
   if (\Drupal::currentUser()->isAnonymous()) {
