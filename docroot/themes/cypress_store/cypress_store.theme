@@ -32,8 +32,11 @@ function cypress_store_preprocess_commerce_order_receipt(&$variables) {
     $product_var = ProductVariation::load($product_var_id);
     $product_id = $product_var->get('product_id')->getValue()[0]['target_id'];
     $product = Product::load($product_id);
-    $product_image = $product->get('field_image')->getValue()[0]['value'];
-    $variables['product_image'][$key] = $product_image;
+    $type = $product->get('type')->getValue()[0]['target_id'];
+    if($type == 'default') {
+      $product_image = $product->get('field_image')->getValue()[0]['value'];
+      $variables['product_image'][$key] = $product_image;
+    }
   }
 
 }
