@@ -20,7 +20,7 @@ class CypressPartsProducts extends CheckoutPaneBase {
 
   /**
    * {@inheritdoc}
-   */
+ */
   public function buildPaneForm(array $pane_form, FormStateInterface $form_state, array &$complete_form) {
     $pane_form['#wrapper_id'] = 'parts-information-wrapper';
     $pane_form['#prefix'] = '<div id="' . $pane_form['#wrapper_id'] . '">';
@@ -37,7 +37,7 @@ class CypressPartsProducts extends CheckoutPaneBase {
       'university or educational use' => 'University / Educational Use'
     ];
 
-     $values = $form_state->getValues();
+    $values = $form_state->getValues();
     $value_dropdown_first = isset($values['cypress_parts_products']['primary_application']) ? $values['cypress_parts_products']['primary_application'] : key($primary_applications_options);
 
     $pane_form['primary_application'] = [
@@ -52,15 +52,11 @@ class CypressPartsProducts extends CheckoutPaneBase {
       ],
     ];
 
-  //  kint($form_state->getValue(''));exit;
-
-     $pane_form['dropdown_second'] = array(
+    $pane_form['dropdown_second'] = array(
       '#type' => 'select',
       '#title' => 'Second Dropdown',
-       // '#prefix' => '<div id="dropdown_second_replace">',
-       // '#suffix' => '</div>',
-       '#options' => $this->secondDropdownOptions($value_dropdown_first),
-       '#default_value' => empty($form_state->getValue('dropdown_second')) ? '' : $form_state->getValue('dropdown_second'),
+      '#options' => $this->secondDropdownOptions($value_dropdown_first),
+      '#default_value' => isset($values['cypress_parts_products']['dropdown_second']) ? $values['cypress_parts_products']['dropdown_second'] : '',
     );
 
     return $pane_form;
@@ -87,7 +83,7 @@ class CypressPartsProducts extends CheckoutPaneBase {
         'hands free kit' => 'Hands Free Kit',
         'power door' => 'Power Door'
       ],
-      'communications Systems' => [
+      'communications systems' => [
         '802.11 wireless lan' => '802.11 Wireless LAN',
         'adsl modemRouter' => 'ADSL ModemRouter',
         'atca solutions' => 'ATCA Solutions',
@@ -342,10 +338,6 @@ class CypressPartsProducts extends CheckoutPaneBase {
   }
 
   public function cypressCustomAddressAjaxCallback(&$form, FormStateInterface $form_state) {
-    $values = $form_state->getValues();
-//    $form;exit;
-//    return $form['cypress_parts_products']['dropdown_second'];
-
     $triggering_element = $form_state->getTriggeringElement();
     $parents = array_slice($triggering_element['#parents'], 0, -1);
     return NestedArray::getValue($form, $parents);
@@ -354,7 +346,7 @@ class CypressPartsProducts extends CheckoutPaneBase {
    * {@inheritdoc}
    */
   public function submitPaneForm(array &$pane_form, FormStateInterface $form_state, array &$complete_form) {
-    $test = $pane_form;
+
   }
 
 
