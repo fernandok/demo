@@ -44,24 +44,22 @@ class CypressOrderProcessor implements OrderProcessorInterface
           $product_unit_price = $product_price->getNumber();
           if ($can_sample == 1) {
             if ($product_unit_price < 20 && $quantity <= 10) {
-              $adjustments = $order->getAdjustments();
-              $adjustments[] = new Adjustment([
-                'type' => 'cypress_cart_rules',
-                'label' => 'Cart Rule Adjustment - ' . $product_title,
-                'amount' => new Price('-' . $product_unit_price, 'USD'),
-              ]);
-              $order->setAdjustments($adjustments);
+              $new_adjustment = $product_unit_price * $quantity;
+
             }
             elseif ($product_unit_price < 20 && $quantity > 10) {
               $new_adjustment = $product_unit_price * 10;
-              $adjustments = $order->getAdjustments();
-              $adjustments[] = new Adjustment([
-                'type' => 'cypress_cart_rules',
-                'label' => 'Cart Rule Adjustment - ' . $product_title,
-                'amount' => new Price('-' . $new_adjustment, 'USD'),
-              ]);
-              $order->setAdjustments($adjustments);
             }
+            else {
+              continue;
+            }
+            $adjustments = $order->getAdjustments();
+            $adjustments[] = new Adjustment([
+              'type' => 'cypress_cart_rules',
+              'label' => 'Cart Rule Adjustment - ' . $product_title,
+              'amount' => new Price('-' . $new_adjustment, 'USD'),
+            ]);
+            $order->setAdjustments($adjustments);
           }
         }
       }
