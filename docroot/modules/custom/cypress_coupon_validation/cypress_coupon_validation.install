@@ -1,0 +1,31 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+
+function cypress_coupon_validation_schema() {
+  $schema['cypress_store_coupons'] = array(
+    'fields' => array(
+      'order_id'=>array(
+        'type' => 'int',
+        'not null' => TRUE,
+      ),
+      'user_id'=>array(
+        'type' => 'int',
+        'NOT NULL' => TRUE,
+      ),
+      'promotion_id'=>array(
+        'type' => 'int',
+        'NOT NULL' => TRUE,
+      ),
+      'coupon_code'=>array(
+        'type' => 'varchar',
+        'length' => DRUPAL_EXTENSION_NAME_MAX_LENGTH,
+        'NOT NULL' => TRUE,
+      ),
+    ),
+    'primary key' => array('order_id'),
+  );
+  return $schema;
+}

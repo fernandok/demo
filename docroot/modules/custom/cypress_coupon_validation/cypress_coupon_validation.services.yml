@@ -1,0 +1,6 @@
+services:
+  cypress_coupon_validation.coupon_validation_subscriber:
+      class: Drupal\cypress_coupon_validation\EventSubscriber\CouponValidationSubscriber
+      arguments: []
+      tags:
+        - { name: event_subscriber }
