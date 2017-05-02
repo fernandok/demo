@@ -7454,10 +7454,10 @@ section.main-content {
 	}*/
 @-moz-document url-prefix() {
   /*.path-frontpage .region-header nav#block-mainmenu ul,*/
-  .not-logged-in .region-header nav#block-mainmenu ul {
-    left: 3em;
-    position: relative;
-  }
+  /*.not-logged-in .region-header nav#block-mainmenu ul {
+		   	left: 3em;
+			position: relative;
+	   }*/
   /*.user-logged-in.path-user .region-header nav#block-mainmenu ul,*/
   .user-logged-in .region-header nav#block-mainmenu ul {
     left: 0;
@@ -7680,6 +7680,10 @@ section.solutions-menu-block {
   background: none !important;
   opacity: 0.5;
 }
+.menu-drop .solutions-overview a.group-title:focus {
+  background: none;
+  outline: 0;
+}
 .menu-drop .dropdown-inner {
   line-height: 1.7;
 }
@@ -7695,6 +7699,10 @@ section.solutions-menu-block {
   text-decoration: none;
   background: none !important;
   opacity: 0.5;
+}
+.menu-drop .dropdown-inner a:focus {
+  background: none;
+  outline: 0;
 }
 .menu-drop .dropdown-inner .menu-subnav .menu-item.level-3 {
   margin-bottom: 4px;
@@ -8044,6 +8052,10 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .alert-success {
     /*margin-top: 4em;*/
   }
+  .path-product article img {
+    width: 100%;
+  }
+  /*end product-6*/
   .main-menu .menu.nav {
     float: left !important;
     clear: left;
@@ -8629,6 +8641,24 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .block-cypress-custom-address .cart-items #checkout-dummy a {
     /*padding: 10px 48px;*/
     padding: 7px 45px;
+  }
+  @-moz-document url-prefix() {
+    .block-cypress-custom-address .cart-items #continue-shopping a {
+      padding: 6px;
+    }
+    .block-cypress-custom-address .cart-items #checkout-dummy a {
+      padding: 6px 45px;
+    }
+  }
+}
+@media only screen and (min-width: 768px) and (max-width: 1400px) {
+  @-moz-document url-prefix() {
+    .cart.cart-form .cypress-cart .cart-edit-quantity [class*="form-item-edit-quantity-"] {
+      width: 60%;
+    }
+    .cart.cart-form .cypress-cart .cart-edit-quantity [class*="form-item-edit-quantity-"] input {
+      width: 50%;
+    }
   }
 }
 /*end for desktops*/
