@@ -812,6 +812,9 @@ footer{
 .order-total-line-value {
     width: 30%;
 }
+.layout-region-checkout-secondary td.views-field-total-price__number {
+    text-align: right;
+}
 /*end checkout*/
 
 /* start media queries for responsive*/
@@ -1489,9 +1492,16 @@ footer{
 		margin-left: 0;
 		padding-left: 15px;
 	}
-	.navbar-right{
+	.not-logged-in .navbar-right{
 		margin-right: 0 !important;
 	}
+	.region-header .block-search-form-block{
+		left: 6.3em;
+	}
+	.user-logged-in .region-header .primary-block{
+		padding-left: 0;
+	}
+
 
 }
 /*End for IE*/
