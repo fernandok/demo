@@ -23,6 +23,21 @@ class HarteHanks extends VendorBase {
    * @var
    */
   protected $password;
+  /**
+   * HarteHanks Add New Order EndPoint
+   * @var
+   */
+  protected $addOrderEndPoint;
+  /**
+   * HarteHanks Get Product Availabilities EndPoint
+   * @var
+   */
+  protected $productAvailabilitiesEndPoint;
+  /**
+   * HarteHanks Get Order Info EndPoint
+   * @var
+   */
+  protected $orderInfoEndPoint;
 
   public function __construct() {
     parent::__construct();
@@ -30,9 +45,12 @@ class HarteHanks extends VendorBase {
     $this->endPoint = $this->config['dev2']['endPoint'];
     $this->userName = $this->config['dev2']['Username'];
     $this->password = $this->config['dev2']['Password'];
+    $this->addOrderEndPoint = $this->config['dev2']['addOrderEndPoint'];
+    $this->productAvailabilitiesEndPoint = $this->config['dev2']['productAvailabilitiesEndPoint'];
+    $this->orderInfoEndPoint = $this->config['dev2']['orderInfoEndPoint'];
   }
 
-  public function AddNewOrder($orderId = '242') {
+  public function AddNewOrder($orderId = '244') {
 
     $order = Order::load($orderId);
     $billingAddress = $this->getBillingAddress($order);
@@ -162,12 +180,6 @@ class HarteHanks extends VendorBase {
 
 XML;
 
-//    print"<pre>";
-//    print_r($parameter);
-//    print"</pre>";
-//    exit;
-
-
     try {
 
       $headers = array(
@@ -181,8 +193,8 @@ XML;
         "SOAPAction: \"http://sma-promail/AddOrder\""
       ); //SOAPAction: your op URL
 
-      $url = 'https://oms.harte-hanks.com/pmomsws/order.asmx?op=AddOrder';
-//      $url = $this->endPoint;
+//      $url = 'https://oms.harte-hanks.com/pmomsws/order.asmx?op=AddOrder';
+      $url = $this->addOrderEndPoint;
 
       // PHP cURL  for https connection with auth
       $ch = curl_init();
@@ -199,18 +211,33 @@ XML;
       $response = curl_exec($ch);
       curl_close($ch);
 
-//      print"<pre>";
-//      print_r($response);
-//      print"</pre>";
-      var_dump($response);
+      $content = substr($response, strpos($response, '<AddOrderResult>'));
+      $content = str_ireplace('<![CDATA[', '', $content);
+      $content = $this->cleanTrailingXml($content);
+      $content = str_ireplace(']]>', '', $content);
+      $content = htmlspecialchars_decode($content);
+
+      $shipments = new \SimpleXMLElement($content);
+
+      print"<pre>";
+      print_r($shipments);
+      print"</pre>";
       exit;
 
 
     } catch (\Exception $e) {
-      print"<pre>";
-      print_r($e->getMessage());
-      "</pre>";
+      $content = substr($response, strpos($response, '<soap:Fault>'));
+      $content = $this->cleanTrailingXml($content);
+      $content = htmlspecialchars_decode($content);
+      $shipments = new \SimpleXMLElement($content);
+      print '<pre>';
+      print_r($shipments);
+      print '</pre>';
       exit;
+//      print"<pre>";
+//      print_r($e->getMessage());
+//      "</pre>";
+//      exit;
     }
 
   }
@@ -218,7 +245,7 @@ XML;
   /**
    * @param string $productId
    */
-  public function GetProductAvailabiities($productId = '265651') {
+  public function GetProductAvailabilities($productId = '265651') {
 
     $userName = $this->userName;
     $password = $this->password;
@@ -229,16 +256,16 @@ XML;
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<soap:Header>
-		<AuthenticationHeader xmlns="http://omscom/">
+		<AuthenticationHeader xmlns="http://sma-promail/">
 			<Username>$userName</Username>
 			<Password>$password</Password>
 		</AuthenticationHeader>
-		<DebugHeader xmlns="http://omscom/">
+		<DebugHeader xmlns="http://sma-promail/">
 			<Debug>true</Debug>
 		</DebugHeader>
 	</soap:Header>
 	<soap:Body>
-		<GetProductAvailabilities xmlns="http://omscom/">
+		<GetProductAvailabilities xmlns="http://sma-promail/">
 			<partNumber>$partNumber</partNumber>
 			<!--<owner>D46-Cypress Material Management</owner>-->
 		</GetProductAvailabilities>
@@ -259,8 +286,8 @@ XML;
         "SOAPAction: \"http://sma-promail/GetProductAvailabilities\""
       ); //SOAPAction: your op URL
 
-      $url = 'https://oms.harte-hanks.com/pmomsws/order.asmx?op=GetProductAvailabilities';
-//      $url = $this->endPoint;
+//      $url = 'https://oms.harte-hanks.com/pmomsws/order.asmx?op=GetProductAvailabilities';
+      $url = $this->productAvailabilitiesEndPoint;
 
       // PHP cURL  for https connection with auth
       $ch = curl_init();
@@ -277,43 +304,157 @@ XML;
       $response = curl_exec($ch);
       curl_close($ch);
 
-//      print"<pre>";
-//      print_r($response);
-//      print"</pre>";
-      var_dump($response);
-      exit;
+      $content = substr($response, strpos($response, '<WarehouseLevels>'));
+      $content = str_ireplace('<![CDATA[', '', $content);
+      $content = $this->cleanTrailingXml($content);
+      $content = str_ireplace(']]>', '', $content);
+      $content = htmlspecialchars_decode($content);
 
+      $shipments = new \SimpleXMLElement($content);
+
+      print"<pre>";
+      print_r($shipments);
+      print"</pre>";
+      exit;
 
     } catch (\Exception $e) {
-      print"<pre>";
-      print_r($e->getMessage());
-      "</pre>";
+
+      $content = substr($response, strpos($response, '<soap:Fault>'));
+      $content = $this->cleanTrailingXml($content);
+      $content = htmlspecialchars_decode($content);
+      $shipments = new \SimpleXMLElement($content);
+      print '<pre>';
+      print_r($shipments);
+      print '</pre>';
       exit;
+
+//      print"<pre>";
+//      print_r($e->getMessage());
+//      "</pre>";
+//      exit;
     }
 
 
   }
 
-    public function GetOrderInfo($HHOrderId){
+  /**
+   * HarteHanks Get Order Info
+   * @param string $HHOrderId
+   */
+  public function GetOrderInfo($orderId = '123456') {
+
+    $userName = $this->userName;
+    $password = $this->password;
+
+
     $parameter = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
 	<soap:Header>
-		<AuthenticationHeader xmlns="http://omscom/">
-			<Username>uat_cyp</Username>
-			<Password>uatws123</Password>
+		<AuthenticationHeader xmlns="http://sma-promail/">
+			<Username>$userName</Username>
+			<Password>$password</Password>
 		</AuthenticationHeader>
-		<DebugHeader xmlns="http://omscom/">
+		<DebugHeader xmlns="http://sma-promail/">
 			<Debug>true</Debug>
 		</DebugHeader>
 	</soap:Header>
 	<soap:Body>
-		<GetOrderInfo xmlns="http://omscom/">
-			<orderId>123456</orderId>
+		<GetOrderInfo xmlns="http://sma-promail/">
+			<orderId>$orderId</orderId>
 		</GetOrderInfo>
 	</soap:Body>
 </soap:Envelope>
 XML;
 
+    try {
+
+      $headers = array(
+//        "POST /webservices/wssamples/service.asmx HTTP/1.1",
+//        "Host: test.samplecomponents.com",
+        "Accept: text/xml",
+        "Cache-Control: no-cache",
+        "Pragma: no-cache",
+        "Content-Type: text/xml; charset=utf-8",
+        "Content-Length: " . strlen($parameter),
+        "SOAPAction: \"http://sma-promail/GetOrderInfo\""
+      ); //SOAPAction: your op URL
+
+//      $url = 'https://oms.harte-hanks.com/pmomsws/order.asmx?op=GetOrderInfo';
+      $url = $this->orderInfoEndPoint;
+
+      // PHP cURL  for https connection with auth
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+      curl_setopt($ch, CURLOPT_URL, $url);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+      curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 10);
+      curl_setopt($ch, CURLOPT_POST, TRUE);
+      curl_setopt($ch, CURLOPT_POSTFIELDS, $parameter); // the SOAP request
+      curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+
+      // converting
+      $response = curl_exec($ch);
+      curl_close($ch);
+
+      $content = substr($response, strpos($response, '<GetOrderInfoResult>'));
+      $content = str_ireplace('<![CDATA[', '', $content);
+      $content = $this->cleanTrailingXml($content);
+      $content = str_ireplace(']]>', '', $content);
+      $content = htmlspecialchars_decode($content);
+
+      $shipments = new \SimpleXMLElement($content);
+
+      print"<pre>";
+      print_r($shipments);
+      print"</pre>";
+      exit;
+
+
+    } catch (\Exception $e) {
+      $content = substr($response, strpos($response, '<soap:Fault>'));
+      $content = $this->cleanTrailingXml($content);
+      $content = htmlspecialchars_decode($content);
+      $shipments = new \SimpleXMLElement($content);
+      print '<pre>';
+      print_r($shipments);
+      print '</pre>';
+      exit;
+      /* print"<pre>";
+       print_r($e->getMessage());
+       "</pre>";
+       exit;*/
+    }
+
+  }
+
+  /**
+   * @param $content
+   *
+   * @return mixed
+   */
+  protected function cleanTrailingXml($content) {
+    $trailing_xml_tags = [
+      '</soap:Envelope>',
+      '</soap:Body>',
+      '</GetOrderInfoResponse>',
+      '</Warehouses>',
+      '</ProductAvailabilities>',
+      '</GetProductAvailabilitiesResult>',
+      '</GetProductAvailabilitiesResponse>',
+      '</AddOrderResponse>'
+    ];
+
+    return $this->replaceTrailingXmlTags($trailing_xml_tags, $content);
+  }
+
+
+  protected function replaceTrailingXmlTags($trailing_xml_tags, $content) {
+    foreach ($trailing_xml_tags as $xml_tag) {
+      $content = str_ireplace($xml_tag, '', $content);
+    }
+
+    return trim($content);
   }
 }
