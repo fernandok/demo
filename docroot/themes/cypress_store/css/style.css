@@ -8661,4 +8661,18 @@ footer .region-footer .footer-block .footer-menu .copyright {
     }
   }
 }
+/*Styles for IE*/
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .region-header a.logo img {
+    width: 100%;
+  }
+  .region-header .primary-block {
+    margin-left: 0;
+    padding-left: 15px;
+  }
+  .navbar-right {
+    margin-right: 0 !important;
+  }
+}
+/*End for IE*/
 /*end for desktops*/
