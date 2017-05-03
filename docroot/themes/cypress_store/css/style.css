@@ -8019,6 +8019,15 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .cart.cart-form #edit-actions.form-wrapper .btn-info {
   margin: 20px 0;
 }
+.order-total-line {
+  padding: 5px;
+}
+.order-total-line-label {
+  width: 70%;
+}
+.order-total-line-value {
+  width: 30%;
+}
 /*end checkout*/
 /* start media queries for responsive*/
 /* start for mobiles*/
