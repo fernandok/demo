@@ -121,7 +121,7 @@ class VendorBase {
     }
     $billing_address = $order
       ->getBillingProfile()
-      ->get('address')
+      ->get('field_contact_address')
       ->getValue();
     return $billing_address[0];
   }

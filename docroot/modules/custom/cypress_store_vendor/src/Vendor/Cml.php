@@ -3,6 +3,8 @@
 namespace Drupal\cypress_store_vendor\Vendor;
 
 
+use Drupal\commerce_product\Entity\Product;
+
 class Cml extends VendorBase {
 
   /**
@@ -29,14 +31,24 @@ class Cml extends VendorBase {
   /**
    * Method to get inventory details from CML/OM.
    *
-   * @param string $mpn
-   *   Marketing Part number.
+   * @param string $mpn_id
+   *   Marketing Part number ID.
    *
    * @return int|string
    *   Part quantity in CML/OM.
    */
-  public function getInventory($mpn) {
+  public function getInventory($mpn_id) {
+    $inventory = 0;
+    $product_id = \Drupal::database()->select('commerce_product__field_mpn_id', 'cpfmi')
+      ->fields('cpfmi', ['entity_id'])
+      ->condition('cpfmi.field_mpn_id_value', $mpn_id)
+      ->execute()->fetchCol(0);
+    foreach ($product_id as $prod_id) {
+      $product = Product::load($prod_id);
+      $inventory = $product->get('field_inventory')->first()->getValue()['value'];
+    }
 
+    return $inventory;
   }
 
   /**
