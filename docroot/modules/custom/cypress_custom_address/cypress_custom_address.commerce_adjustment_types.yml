@@ -1,0 +1,4 @@
+cypress_cart_rules:
+  label: Cart Rules Adjustment
+  has_ui: true
+  weight: 0

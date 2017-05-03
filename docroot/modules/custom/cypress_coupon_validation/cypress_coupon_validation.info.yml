@@ -1,0 +1,5 @@
+name: Cypress Coupon Validation.
+type: module
+description: Executing Cypress Custom Validation on Coupons.
+core: 8.x
+package: Custom

@@ -405,7 +405,7 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
     case 'Approved':
       // Create custom Promotion for each promocode.
       $promotion_with_coupon = Promotion::create([
-        'name' => $form_values['part_number'] -  $form_values['promo_code'],
+        'name' => $form_values['part_number'] .'  - '.  $form_values['promo_code'],
         'order_types' => 'default',
         'stores' => 1,
         'status' => TRUE,
