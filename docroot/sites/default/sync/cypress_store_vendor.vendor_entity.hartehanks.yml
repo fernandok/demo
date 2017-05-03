@@ -4,4 +4,4 @@ status: true
 dependencies: {  }
 id: hartehanks
 label: HarteHanks
-description: "dev2:\r\n  endPoint : 'https://oms.harte-hanks.com/pmomsws/order.asmx?wsdl'\r\n  Username : 'uat_cyp'\r\n  Password : 'uatws123'"
+description: "dev2:\r\n  endPoint : 'https://oms.harte-hanks.com/pmomsws/order.asmx?wsdl'\r\n  Username : 'uat_cyp'\r\n  Password : 'uatws123'\r\n  addOrderEndPoint : 'https://oms.harte-hanks.com/pmomsws/order.asmx?op=AddOrder'\r\n  productAvailabilitiesEndPoint : 'https://oms.harte-hanks.com/pmomsws/order.asmx?op=GetProductAvailabilities'\r\n  orderInfoEndPoint : 'https://oms.harte-hanks.com/pmomsws/order.asmx?op=GetOrderInfo'\r\n"

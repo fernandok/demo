@@ -8028,6 +8028,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .order-total-line-value {
   width: 30%;
 }
+.layout-region-checkout-secondary td.views-field-total-price__number {
+  text-align: right;
+}
 /*end checkout*/
 /* start media queries for responsive*/
 /* start for mobiles*/
@@ -8679,8 +8682,17 @@ footer .region-footer .footer-block .footer-menu .copyright {
     margin-left: 0;
     padding-left: 15px;
   }
-  .navbar-right {
+  .not-logged-in .navbar-right {
     margin-right: 0 !important;
+  }
+  .user-logged-in .region-header .block-search-form-block {
+    left: 6.3em;
+  }
+  .user-logged-in .region-header .primary-block {
+    padding-left: 0;
+  }
+  footer .region-footer .footer-block .footer-menu .social-icons a .social-icon {
+    width: 60px;
   }
 }
 /*End for IE*/
