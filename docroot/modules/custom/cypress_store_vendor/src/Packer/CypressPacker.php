@@ -10,6 +10,7 @@ use Drupal\commerce_shipping\ShipmentItem;
 use Drupal\Component\Serialization\Yaml;
 use Drupal\Core\Config\ConfigFactoryInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
+use Drupal\cypress_store_vendor\VendorService;
 use Drupal\physical\Weight;
 use Drupal\physical\WeightUnit;
 use Drupal\profile\Entity\ProfileInterface;
@@ -39,9 +40,10 @@ class CypressPacker implements PackerInterface {
    * @param \Drupal\Core\Entity\EntityTypeManagerInterface $entity_type_manager
    *   The entity type manager.
    */
-  public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory) {
+  public function __construct(EntityTypeManagerInterface $entity_type_manager, ConfigFactoryInterface $config_factory, VendorService $vendor_service) {
     $this->entityTypeManager = $entity_type_manager;
     $this->configFactory = $config_factory;
+    $this->vendorService = $vendor_service;
   }
 
   /**
@@ -59,45 +61,80 @@ class CypressPacker implements PackerInterface {
     $order_routing_config = Yaml::decode($order_routing_config);
     $proposed_shipments = [];
     $weight = new Weight('0', WeightUnit::KILOGRAM);
-    $products = [
-      'product_kit' => [],
-      'product_cat_a' => [],
-      'product_cat_b' => [],
+    $vendors_package = [
+      'AVNETSH' => [],
+      'AVNETHK' => [],
+      'DIGIKEY' => [],
+      'CML' => [],
+      'HH' => [],
     ];
+    // Get shipping region: China or Asia or Non-Asia.
+    $country_code = $shipping_profile->get('field_contact_address')
+      ->first()
+      ->getValue()['country_code'];
+    if ($country_code == 'CN') {
+      $region = 'China';
+    }
+    else {
+      $is_asian_region = $this->vendorService->isAsianCountry($country_code);
+      if ($is_asian_region) {
+        $region = 'Asia';
+      }
+      else {
+        $region = 'Non Asia';
+      }
+    }
     foreach ($order->getItems() as $order_item) {
       $purchased_entity = $order_item->getPurchasedEntity();
       $product_id = $purchased_entity->get('product_id')
         ->getValue()[0]['target_id'];
       $product = Product::load($product_id);
       $product_type = $product->bundle();
-      $quantity = $order_item->getQuantity();
+      $order_item_quantity = (int) $order_item->getQuantity();
       $shipment_item = new ShipmentItem([
         'order_item_id' => $order_item->id(),
         'title' => $order_item->getTitle(),
-        'quantity' => $quantity,
+        'quantity' => $order_item_quantity,
         'weight' => $weight,
-        'declared_value' => $order_item->getUnitPrice()->multiply($quantity),
+        'declared_value' => $order_item->getUnitPrice()->multiply($order_item_quantity),
       ]);
+      // Get order total.
+      $order_item_total_price = (float) $order_item->getTotalPrice()->getNumber();
       switch ($product_type) {
+        // Product type - KIT
         case 'default':
-          $products['product_kit'][] = $shipment_item;
+          $rules = $order_routing_config['kit'];
           break;
-
+        // Product type - Part
         case 'part':
           $can_sample = $product->get('field_can_sample')
             ->getValue()[0]['value'];
+          // Part category - Cat A
           if ($can_sample == 1) {
-            $products['product_cat_a'][] = $shipment_item;
+            $rules = $order_routing_config['cat_a'];
           }
+          // Part category - Cat B
           elseif ($can_sample == 2) {
-            $products['product_cat_b'][] = $shipment_item;
+            $rules = $order_routing_config['cat_b'];
           }
           break;
+      }
+      $vendors = [];
+      foreach ($rules as $rule) {
+        $condition = $rule['condition'];
+        if (eval("return $condition;")) {
+          $vendor_lists = $rule['vendors'];
+          break;
+        }
+      }
+
+      foreach ($vendors as $vendor) {
+
       }
     }
 
     $shipment_index = 1;
-    foreach ($products as $type => $pack) {
+    foreach ($vendors_package as $type => $pack) {
       if (!empty($pack)) {
         $proposed_shipments[] = new ProposedShipment([
           'type' => $this->getShipmentType($order),
