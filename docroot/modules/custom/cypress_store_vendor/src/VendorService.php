@@ -1,6 +1,7 @@
 <?php
 
 namespace Drupal\cypress_store_vendor;
+use Symfony\Component\Validator\Constraints\True;
 
 
 /**
@@ -63,6 +64,58 @@ class VendorService {
   public function getShipment($vendor, $params = []) {
     $vendor_handler = new $vendor();
     return $vendor_handler->getShipment($params);
+  }
+
+  /**
+   * Check For Asian Countries
+   * @param string $countryCode
+   * @return bool
+   */
+  public function listOfAsianCountry($countryCode){
+    $listCountry = [
+      'KZ'=>'Kazakhstan',
+      'KG'=>'Kyrgyzstan',
+      'TJ'=>'Tajikistan',
+      'TM'=>'Turkmenistan',
+      'UZ'=>'Uzbekistan',
+      'HK'=>'Hong Kong',
+      'JP'=>'Japan',
+      'MO'=>'Macao',
+      'MN'=>'Mongolia',
+      'KR'=>'Korea',
+      'TW'=>'Taiwan',
+      'BN'=>'Brunei Darussalam',
+      'MM'=>'Myanmar (Burma)',
+      'KH'=>'Cambodia',
+      'TL'=>'East Timor(Timor-Leste)',
+      'ID'=>'Indonesia',
+      'IL'=>'Israel',
+      'LA'=>'Laos',
+      'MY'=>'Malaysia',
+      'PH'=>'Philippines',
+      'SG'=>'Singapore',
+      'TH'=>'Thailand',
+      'VN'=>'Vietnam',
+      'AF'=>'Afghanistan',
+      'BD'=>'Bangladesh',
+      'BT'=>'Bhutan',
+      'IN'=>'India',
+      'MV'=>'Maldives',
+      'NP'=>'Nepal',
+      'PK'=>'Pakistan',
+      'LK'=>'Sri Lanka',
+      'PG'=>'Papua New Guinea',
+      'NZ'=>'New Zealand',
+      'AU'=>'Australia',
+      'RU'=>'Russian Federation'
+    ];
+
+    if(array_key_exists($countryCode, $listCountry )){
+      return TRUE;
+    }else{
+      return FALSE;
+    }
+
   }
 
 }
