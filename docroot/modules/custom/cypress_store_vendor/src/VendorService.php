@@ -71,23 +71,23 @@ class VendorService {
    * @param string $countryCode
    * @return bool
    */
-  public function listOfAsianCountry($countryCode){
+  public function isAsianCountry($country, $search_in_value = FALSE){
     $listCountry = [
       'KZ'=>'Kazakhstan',
       'KG'=>'Kyrgyzstan',
       'TJ'=>'Tajikistan',
       'TM'=>'Turkmenistan',
       'UZ'=>'Uzbekistan',
-      'HK'=>'Hong Kong',
+      'HK'=>'Hong Kong SAR China',
       'JP'=>'Japan',
-      'MO'=>'Macao',
+      'MO'=>'Macau SAR China',
       'MN'=>'Mongolia',
       'KR'=>'Korea',
       'TW'=>'Taiwan',
-      'BN'=>'Brunei Darussalam',
-      'MM'=>'Myanmar (Burma)',
+      'BN'=>'Brunei',
+      'MM'=>'Myanmar [Burma]',
       'KH'=>'Cambodia',
-      'TL'=>'East Timor(Timor-Leste)',
+      'TL'=>'Timor-Leste',
       'ID'=>'Indonesia',
       'IL'=>'Israel',
       'LA'=>'Laos',
@@ -107,11 +107,13 @@ class VendorService {
       'PG'=>'Papua New Guinea',
       'NZ'=>'New Zealand',
       'AU'=>'Australia',
-      'RU'=>'Russian Federation'
+      'RU'=>'Russia'
     ];
 
-    if(array_key_exists($countryCode, $listCountry )){
+    if($search_in_value == FALSE && array_key_exists($country, $listCountry)){
       return TRUE;
+    }elseif($search_in_value == TRUE && in_array($country, $listCountry)){
+      return True;
     }else{
       return FALSE;
     }
