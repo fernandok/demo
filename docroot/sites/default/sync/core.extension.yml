@@ -29,6 +29,7 @@ module:
   config_update: 0
   contact: 0
   contextual: 0
+  cypress_coupon_validation: 0
   cypress_custom_address: 0
   cypress_store_cypresscommerce: 0
   cypress_store_migration: 0

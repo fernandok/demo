@@ -14,6 +14,7 @@ permissions:
   - 'access comments'
   - 'access commerce_order overview'
   - 'access content'
+  - 'access kint'
   - 'access shortcuts'
   - 'access site-wide contact form'
   - 'add any customer profile'
