@@ -1,9 +1,0 @@
-uuid: 86ab343a-ef3a-4459-afbc-698027cc35a2
-langcode: en
-status: true
-dependencies: {  }
-id: post_part_variation
-label: 'Post Part Variation'
-orderItemType: default
-generateTitle: true
-traits: {  }
