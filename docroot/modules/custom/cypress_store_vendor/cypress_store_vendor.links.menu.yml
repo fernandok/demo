@@ -3,13 +3,13 @@ entity.vendor_entity.collection:
   title: 'Vendor'
   route_name: entity.vendor_entity.collection
   description: 'List Vendor entity (bundles)'
-  parent: system.admin_structure
+  parent: store_mysamples.cypress_configuration
   weight: 99
 
 order_routing.admin_settings:
   title: 'Order Routing Configuration'
   route_name: order_routing.admin_settings
   description: 'Order Routing Confiration Settings Form'
-  parent: system.admin_config_system
+  parent: store_mysamples.cypress_configuration
   weight: 99
 
