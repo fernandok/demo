@@ -110,12 +110,10 @@ class VendorService {
       'RU'=>'Russia'
     ];
 
-    if($search_in_value == FALSE && array_key_exists($country, $listCountry)){
-      return TRUE;
-    }elseif($search_in_value == TRUE && in_array($country, $listCountry)){
-      return True;
-    }else{
-      return FALSE;
+    if($search_in_value == FALSE) {
+      return array_key_exists($country, $listCountry);
+    }elseif($search_in_value == TRUE ) {
+      return in_array($country, $listCountry);
     }
 
   }
