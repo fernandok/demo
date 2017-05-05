@@ -7,6 +7,7 @@ dependencies:
     - field.field.commerce_product_variation.part_store.weight
   module:
     - commerce_price
+    - physical
 id: commerce_product_variation.part_store.default
 targetEntityType: commerce_product_variation
 bundle: part_store
@@ -18,9 +19,16 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  weight:
+    type: physical_measurement_default
+    weight: 1
+    region: content
+    settings:
+      default_unit: ''
+      allow_unit_change: true
+    third_party_settings: {  }
 hidden:
   created: true
   sku: true
   status: true
   uid: true
-  weight: true

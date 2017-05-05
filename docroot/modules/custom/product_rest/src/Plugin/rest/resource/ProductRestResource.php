@@ -19,10 +19,9 @@ use Psr\Log\LoggerInterface;
  * @RestResource(
  *   id = "product_rest_resource",
  *   label = @Translation("Product rest resource"),
- *   serialization_class = "Drupal\commerce_product\Entity\Product",
  *   uri_paths = {
- *     "canonical" = "/api/product/document/{commerce_product_type}",
- *     "https://www.drupal.org/link-relations/create" = "/api/product/document/{commerce_product_type}"
+ *     "canonical" = "/api/product/document",
+ *     "https://www.drupal.org/link-relations/create" = "/api/product/document"
  *   }
  * )
  */
@@ -85,14 +84,16 @@ class ProductRestResource extends ResourceBase {
    * @return \Drupal\rest\ResourceResponse Throws exception expected.
    * Throws exception expected.
    */
-  public function post($commerce_product_type, $data) {
+  public function post($data) {
     // You must to implement the logic of your REST Resource here.
     // Use current user after pass authentication to validate access.
     if (!$this->currentUser->hasPermission('access content')) {
       throw new AccessDeniedHttpException();
     }
+
+   // $a = $data['node_id'];
     //For Product Taxonomy
-    $related_product = $data->related_product;
+    $related_product = $data['related_product'];
     if($related_product != '') {
       foreach($related_product as $products) {
         $term_name = $products['term_name'];
@@ -127,7 +128,7 @@ class ProductRestResource extends ResourceBase {
     }
 
     //Fot Applications Taxonomy
-    $related_applications = $data->related_applications;
+    $related_applications = $data['related_applications'];
     if($related_applications != '') {
       foreach($related_applications as $applications) {
         $term_name = $applications['term_name'];
@@ -162,7 +163,7 @@ class ProductRestResource extends ResourceBase {
     }
 
     //For Trainings Taxonomy
-    $related_trainings = $data->related_trainings;
+    $related_trainings = $data['related_trainings'];
     if($related_trainings != '') {
       foreach($related_trainings as $trainings) {
         $term_name = $trainings['term_name'];
@@ -197,7 +198,7 @@ class ProductRestResource extends ResourceBase {
     }
 
     //For Document Type
-    $document_type = $data->document_type;
+    $document_type = $data['document_type'];
     if(!empty($document_type)) {
       $tags = $this->getTagIds($document_type, 'documentation', $pid = 0);
       $document_type_id = $tags[0]['target_id'];
@@ -206,7 +207,7 @@ class ProductRestResource extends ResourceBase {
     }
 
     //For Package Family
-    $package_family = $data->package_family;
+    $package_family = $data['package_family'];
     if(!empty($package_family)) {
       $tags = $this->getTagIds($package_family, 'package_family', $pid = 0);
       $package_family_id = $tags[0]['target_id'];
@@ -215,7 +216,7 @@ class ProductRestResource extends ResourceBase {
     }
 
     //For Spec Number
-    $spec_number = $data->spec_number;
+    $spec_number = $data['spec_number'];
     if(!empty($spec_number)) {
       $tags = $this->getTagIds($spec_number, 'spec_numbers', $pid = 0);
       $spec_number_id = $tags[0]['target_id'];
@@ -224,7 +225,7 @@ class ProductRestResource extends ResourceBase {
     }
 
     //For Related Solutions
-    $related_solutions = $data->related_solutions;
+    $related_solutions = $data['related_solutions'];
     if($related_solutions != '') {
       foreach($related_solutions as $solutions) {
         $tags = $this->getTagIds($solutions, 'solutions', $pid = 0);
@@ -235,7 +236,7 @@ class ProductRestResource extends ResourceBase {
     }
 
     //For Related Persona
-    $related_persona = $data->related_persona;
+    $related_persona = $data['related_persona'];
     if($related_persona != '') {
       foreach($related_persona as $persona) {
         $tags = $this->getTagIds($persona, 'persona', $pid = 0);
@@ -246,7 +247,7 @@ class ProductRestResource extends ResourceBase {
     }
 
     //For Related Content Section
-    $related_content_section = $data->related_content_section;
+    $related_content_section = $data['related_content_section'];
     if($related_content_section != '') {
       foreach($related_content_section as $content_section) {
         $tags = $this->getTagIds($content_section, 'content_section', $pid = 0);
@@ -257,7 +258,7 @@ class ProductRestResource extends ResourceBase {
     }
 
     //For Related Content keywords
-    $related_content_keywords = $data->related_content_keywords;
+    $related_content_keywords = $data['related_content_keywords'];
     if($related_content_keywords != '') {
       foreach($related_content_keywords as $content_keywords) {
         $tags = $this->getTagIds($content_keywords, 'content_keywords', $pid = 0);
@@ -268,7 +269,7 @@ class ProductRestResource extends ResourceBase {
     }
 
     //For Search Keywords
-    $search_keywords_all = $data->search_keywords;
+    $search_keywords_all = $data['search_keywords'];
     if($search_keywords_all != '') {
       foreach($search_keywords_all as $search_keywords_val) {
         $search_keywords[] = $search_keywords_val;
@@ -278,14 +279,14 @@ class ProductRestResource extends ResourceBase {
     }
 
     //For Price
-    if($data->price != '') {
-      $price = $data->price;
+    if($data['price'] != '') {
+      $price = $data['price'];
     } else {
       $price = 0;
     }
 
-    $product = Product::load($data->node_id);
-    if($product == '' && !isset($data->operations)) {
+    $product = Product::load($data['node_id']);
+    if($product == '' && !isset($data['operations'])) {
 
       //Price Variation
 
@@ -296,27 +297,27 @@ class ProductRestResource extends ResourceBase {
         )
       );
       $product_variation->save();
-
+     // print_r($data);exit;
 
       $product = Product::create(
         array(
           'type' => 'default',
-          'product_id' => $data->node_id,
-          'title' => $data->title,
+          'product_id' => $data['node_id'],
+          'title' => $data['title'],
           'body' => [
             //'summary' => '',
-            'value' => $data->body->value,
+            'value' => $data['body']['value'],
             'format' => 'full_html',
           ],
           'stores' => 1,
-          'field_version' => $data->version,
-          'field_document_source' => $data->document_source,
-          'field_alternative_addtocart_ur' => $data->addtocart_url,
-          'field_ecn_body' => $data->ecn_body,
-          'field_document_code' => $data->document_code,
-          'field_document_type' => $data->document_type,
+          'field_version' => $data['version'],
+          'field_document_source' => $data['document_source'],
+          'field_alternative_addtocart_ur' => $data['addtocart_url'],
+          'field_ecn_body' => $data['ecn_body'],
+          'field_document_code' => $data['document_code'],
+          'field_document_type' => $data['document_type'],
           'variations' => [$product_variation],
-          'field_image' => $data->image,
+          'field_image' => $data['image'],
           'field_related_products' => $product_tag_id,
           'field_related_applications' => $applications_tag_id,
           'field_related_trainings' => $trainings_tag_id,
@@ -327,11 +328,12 @@ class ProductRestResource extends ResourceBase {
           'field_related_persona' => $related_persona_id,
           'field_related_content_section' => $related_content_section_id,
           'field_related_content_keywords' => $related_content_keywords_id,
-          'field_files_ref' => $data->related_files,
+          'field_files_ref' => $data['related_files'],
           'field_search_keywords' => $search_keywords,
-          'field_node_id' => $data->node_id
+          'field_node_id' => $data['node_id']
 
         )
+
       );
       $product->save();
     }
