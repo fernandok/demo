@@ -243,14 +243,13 @@ XML;
   }
 
   /**
-   * @param string $productId
+   * @param string $mpn
+   *   marketing part number
    */
-  public function GetProductAvailabilities($productId = '265651') {
-
+  public function getInventory($mpn) {
+    return 1;
     $userName = $this->userName;
     $password = $this->password;
-    $product = Product::load($productId);
-    $partNumber = $product->getTitle();
 
     $parameter = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
@@ -266,7 +265,7 @@ XML;
 	</soap:Header>
 	<soap:Body>
 		<GetProductAvailabilities xmlns="http://sma-promail/">
-			<partNumber>$partNumber</partNumber>
+			<partNumber>$mpn</partNumber>
 			<!--<owner>D46-Cypress Material Management</owner>-->
 		</GetProductAvailabilities>
 	</soap:Body>

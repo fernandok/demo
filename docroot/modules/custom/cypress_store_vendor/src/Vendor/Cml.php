@@ -37,11 +37,11 @@ class Cml extends VendorBase {
    * @return int|string
    *   Part quantity in CML/OM.
    */
-  public function getInventory($mpn_id) {
+  public function getInventory($mpn) {
     $inventory = 0;
-    $product_id = \Drupal::database()->select('commerce_product__field_mpn_id', 'cpfmi')
-      ->fields('cpfmi', ['entity_id'])
-      ->condition('cpfmi.field_mpn_id_value', $mpn_id)
+    $product_id = \Drupal::database()->select('commerce_product_field_data', 'cpfd')
+      ->fields('cpfd', ['product_id'])
+      ->condition('cpfd.title', $mpn)
       ->execute()->fetchCol(0);
     foreach ($product_id as $prod_id) {
       $product = Product::load($prod_id);

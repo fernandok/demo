@@ -98,6 +98,7 @@ class CypressPacker implements PackerInterface {
         'weight' => $weight,
         'declared_value' => $order_item->getUnitPrice()->multiply($order_item_quantity),
       ]);
+      $mpn = $product->getTitle();
       // Get order total.
       $order_item_total_price = (float) $order_item->getTotalPrice()->getNumber();
       switch ($product_type) {
@@ -119,17 +120,27 @@ class CypressPacker implements PackerInterface {
           }
           break;
       }
+      // Execute order routing rule and get list of vendors.
       $vendors = [];
       foreach ($rules as $rule) {
         $condition = $rule['condition'];
         if (eval("return $condition;")) {
-          $vendor_lists = $rule['vendors'];
+          $vendors = $rule['vendors'];
           break;
         }
       }
-
+      // Choose vendor based on inventory.
+      $last_vendor = end($vendors);
       foreach ($vendors as $vendor) {
-
+        $inventory = $this->vendorService->getInventory($vendor, $mpn);
+        if ($inventory > 0) {
+          $vendors_package[$vendor][] = $shipment_item;
+          break;
+        }
+        // If no vendor is having inventory, need to be shipped via last vendor.
+        if ($vendor == $last_vendor) {
+          $vendors_package[$vendor][] = $shipment_item;
+        }
       }
     }
 
