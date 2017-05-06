@@ -77,7 +77,7 @@ class CypressPacker implements PackerInterface {
     }
     else {
       $is_asian_region = $this->vendorService->isAsianCountry($country_code);
-      if ($is_asian_region) {
+      if ($is_asian_region == TRUE) {
         $region = 'Asia';
       }
       else {

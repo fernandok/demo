@@ -67,53 +67,74 @@ class VendorService {
   /**
    * Check For Asian Countries
    *
-   * @param string $countryCode
+   * @param string $search_by_country_name
    *
    * @return bool
    */
-  public function isAsianCountry($country, $search_in_value = FALSE){
-    $listCountry = [
-      'KZ'=>'Kazakhstan',
-      'KG'=>'Kyrgyzstan',
-      'TJ'=>'Tajikistan',
-      'TM'=>'Turkmenistan',
-      'UZ'=>'Uzbekistan',
-      'HK'=>'Hong Kong SAR China',
-      'JP'=>'Japan',
-      'MO'=>'Macau SAR China',
-      'MN'=>'Mongolia',
-      'KR'=>'Korea',
-      'TW'=>'Taiwan',
-      'BN'=>'Brunei',
-      'MM'=>'Myanmar [Burma]',
-      'KH'=>'Cambodia',
-      'TL'=>'Timor-Leste',
-      'ID'=>'Indonesia',
-      'IL'=>'Israel',
-      'LA'=>'Laos',
-      'MY'=>'Malaysia',
-      'PH'=>'Philippines',
-      'SG'=>'Singapore',
-      'TH'=>'Thailand',
-      'VN'=>'Vietnam',
-      'AF'=>'Afghanistan',
-      'BD'=>'Bangladesh',
-      'BT'=>'Bhutan',
-      'IN'=>'India',
-      'MV'=>'Maldives',
-      'NP'=>'Nepal',
-      'PK'=>'Pakistan',
-      'LK'=>'Sri Lanka',
-      'PG'=>'Papua New Guinea',
-      'NZ'=>'New Zealand',
-      'AU'=>'Australia',
-      'RU'=>'Russia'
+  public function isAsianCountry($country, $search_by_country_name =
+  FALSE){
+    $list_of_asian_country = [
+      'AE' => 'United Arab Emirates',
+      'AF' => 'Afghanistan',
+      'AM' => 'Armenia',
+      'AZ' => 'Azerbaijan',
+      'BD' => 'Bangladesh',
+      'BH' => 'Bahrain',
+      'BN' => 'Brunei',
+      'BT' => 'Bhutan',
+      'CC' => 'Cocos [Keeling] Islands',
+      'CN' => 'China',
+      'CX' => 'Christmas Island',
+      'CY' => 'Cyprus',
+      'GU' => 'Guam',
+      'HK' => 'Hong Kong SAR China',
+      'ID' => 'Indonesia',
+      'IL' => 'Israel',
+      'IN' => 'India',
+      'IO' => 'British Indian Ocean Territory',
+      'IQ' => 'Iraq',
+      'IR' => 'Iran',
+      'JO' => 'Jordan',
+      'JP' => 'Japan',
+      'KG' => 'Kyrgyzstan',
+      'KH' => 'Cambodia',
+      'KP' => 'North Korea',
+      'KR' => 'South Korea',
+      'KW' => 'Kuwait',
+      'KZ' => 'Kazakhstan',
+      'LA' => 'Laos',
+      'LB' => 'Lebanon',
+      'LK' => 'Sri Lanka',
+      'MM' => 'Myanmar [Burma]',
+      'MN' => 'Mongolia',
+      'MO' => 'Macau SAR China',
+      'MV' => 'Maldives',
+      'MY' => 'Malaysia',
+      'NP' => 'Nepal',
+      'OM' => 'Oman',
+      'PH' => 'Philippines',
+      'PK' => 'Pakistan',
+      'PS' => 'Palestinian Territories',
+      'QA' => 'Qatar',
+      'RU' => 'Russia',
+      'SA' => 'Saudi Arabia',
+      'SG' => 'Singapore',
+      'SY' => 'Syria',
+      'TH' => 'Thailand',
+      'TJ' => 'Tajikistan',
+      'TM' => 'Turkmenistan',
+      'TR' => 'Turkey',
+      'TW' => 'Taiwan',
+      'UZ' => 'Uzbekistan',
+      'VN' => 'Vietnam',
+      'YE' => 'Yemen',
     ];
 
-    if($search_in_value == FALSE) {
-      return array_key_exists($country, $listCountry);
-    }elseif($search_in_value == TRUE ) {
-      return in_array($country, $listCountry);
+    if ($search_by_country_name == FALSE) {
+      return array_key_exists($country, $list_of_asian_country);
+    }
+    elseif ($search_by_country_name == TRUE ) {
+      return in_array($country, $list_of_asian_country);
     }
 
   }
