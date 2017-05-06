@@ -92,5 +92,27 @@ function cypress_custom_address_field_views_data() {
             'id' => 'field_deliver_here',
         ],
     ];
+
+  $data['views']['table']['group'] = t('Cart Add-Ons');
+  $data['views']['table']['join'] = array(
+    // #global is a special flag which allows a table to appear all the time.
+    '#global' => array(),
+  );
+
+  $data['views']['cart_product_variants'] = [
+    'title' => t('Cart Product Variants'),
+    'help' => t('Custom Product Variants in Cart'),
+    'field' => [
+      'id' => 'field_cart_product_variants',
+    ],
+  ];
+
+  $data['views']['cart_rules_adjustment'] = [
+    'title' => t('Cart Rules Adjustment Discount'),
+    'help' => t('Cart Rules Adjustment Discount in Cart Page'),
+    'field' => [
+      'id' => 'field_cart_rules_adjustment',
+    ],
+  ];
     return $data;
 }
