@@ -1,0 +1,15 @@
+diff --git a/docroot/modules/contrib/float_labels/js/float_labels.js b/docroot/modules/contrib/float_labels/js/float_labels.js
+index 759070d..3256ec5 100644
+--- a/docroot/modules/contrib/float_labels/js/float_labels.js
++++ b/docroot/modules/contrib/float_labels/js/float_labels.js
+@@ -5,8 +5,8 @@
+     var $forms = $('.float-labels-include-children', context);
+ 
+     var $elements = $('.float-labels-include', context)
+-      .add($forms.find(':input:text, textarea'))
+-      .not('.float-labels-processed, :button, :hidden, select');
++      .add($forms.find(':input:text, textarea, select, input[type=number]'))
++      .not('.float-labels-processed, :button, :hidden');
+ 
+     if (settings.includes && settings.includes.length > 0) {
+       $elements = $elements.is(settings.includes.join(', '));

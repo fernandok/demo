@@ -57,11 +57,11 @@ class Avnet extends VendorBase {
    * @return int|string
    *   Part quantity in Avnet.
    */
-  public function getInventory($mpn, $region = 'SH') {
+  public function getInventory($mpn) {
     $inventory_details = \Drupal::configFactory()->getEditable('cypress_store_vendor.avnet_inventory_entity.details')->get('details');
     $inventory = unserialize($inventory_details);
-    if (isset($inventory[$region]) && isset($inventory[$region][$mpn])) {
-      return ltrim($inventory[$region][$mpn]['quantity'], 0);
+    if (isset($inventory[$this->region]) && isset($inventory[$region][$mpn])) {
+      return ltrim($inventory[$this->region][$mpn]['quantity'], 0);
     }
     return 0;
   }

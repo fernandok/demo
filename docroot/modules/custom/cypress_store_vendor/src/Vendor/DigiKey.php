@@ -80,7 +80,7 @@ class DigiKey extends VendorBase {
    * Query availability of sample product.
    * @return mixed
    */
-  public function QueryAvailability($partNumber = 'CY8C3244PVI-133') {
+  public function getInventory($partNumber) {
     $endPoint = $this->endPoint;
     $parameters = array(
       'program_id' => $this->program_id,
