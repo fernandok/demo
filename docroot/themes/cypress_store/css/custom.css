@@ -87,3 +87,33 @@
 .slick-list {
   margin: 0 15px;
 }
+
+/* Floating label start */
+.float-labels-wrapper.float-labels-required.float-labels-star .float-labels-label {
+  z-index: 999;
+}
+.float-labels-wrapper.float-labels-required.float-labels-star .float-labels-label:after {
+  color: red;
+}
+.float-labels-wrapper .float-labels-item {
+  align-self: flex-end;
+  font-size: inherit;
+  padding: 1em 0.5em 0.25em;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid grey;
+}
+.float-labels-wrapper input[type=number].float-labels-item {
+  padding: 1.5em 0.5em 0.25em;
+}
+.float-labels-wrapper:not(.float-labels-focused) select.float-labels-item {
+  font-size: 0;
+}
+.float-labels-wrapper.float-labels-focused .float-labels-item {
+  border-bottom: 2px solid #00a8e1;
+}
+.has-error .float-labels-wrapper.float-labels-focused .float-labels-item {
+  border-bottom: 2px solid #FF0000;
+}
+/* Floating label end */
