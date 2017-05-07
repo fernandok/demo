@@ -88,6 +88,10 @@
   margin: 0 15px;
 }
 
+* {
+  outline-style: none;
+}
+
 /* Floating label start */
 .float-labels-wrapper.float-labels-required.float-labels-star .float-labels-label {
   z-index: 999;
