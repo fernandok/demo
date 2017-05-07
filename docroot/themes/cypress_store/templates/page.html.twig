@@ -120,7 +120,13 @@
         {# Highlighted #}
         {% if page.highlighted %}
           {% block highlighted %}
-            <div class="highlighted">{{ page.highlighted }}</div>
+            <div class="highlighted container">
+              <div class="row">
+                <div class="col-sm-12">
+                  {{ page.highlighted }}
+                </div>
+              </div>
+            </div>
           {% endblock %}
         {% endif %}
 
