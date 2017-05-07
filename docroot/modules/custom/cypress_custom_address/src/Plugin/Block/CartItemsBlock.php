@@ -2,6 +2,7 @@
 
 namespace Drupal\cypress_custom_address\Plugin\Block;
 
+use Drupal\commerce_cart\CartProvider;
 use Drupal\Core\Block\BlockBase;
 use Drupal\commerce_cart\CartProviderInterface;
 use Drupal\Core\Cache\Cache;
@@ -81,8 +82,14 @@ class CartItemsBlock extends BlockBase implements ContainerFactoryPluginInterfac
 //    $cachable_metadata->addCacheContexts(['user', 'session']);
 
     /** @var \Drupal\commerce_order\Entity\OrderInterface[] $carts */
-    $cart_id = $this->cartProvider->getCartIds()[0];
-    $order_obj = Order::load($cart_id);
+    $carts = $this->cartProvider->getCarts();
+    foreach ($carts as $cart) {
+      $cart_items = $cart->getItems();
+      if (!empty($cart_items)) {
+        $order_obj = $cart;
+        break;
+      }
+    }
     $build = [];
     if ($order_obj) {
       $items = $order_obj->getItems();

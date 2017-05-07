@@ -1,0 +1,13 @@
+name: Commerce Combine Carts
+type: module
+description: Combines multiple carts so that users only ever have one.
+# core: 8.x
+package: Commerce
+dependencies:
+  - commerce_cart
+
+# Information added by Drupal.org packaging script on 2017-05-05
+version: '8.x-1.0-alpha2'
+core: '8.x'
+project: 'commerce_combine_carts'
+datestamp: 1493960300
