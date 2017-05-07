@@ -26,8 +26,9 @@ class CypressOrderProcessor implements OrderProcessorInterface {
       '2' => 'cypress_employees'
     );
     $check_roles = array_intersect($cypress_roles, $user_roles);
-    $order->setAdjustments([]);
+   // $order->setAdjustments([]);
     foreach ($order->getItems() as $order_item) {
+      $order_item->setAdjustments([]);
       $product_variation = $order_item->getPurchasedEntity();
       $default_product_variation_id = $order_item->getPurchasedEntityId();
       $product_variation_type = $product_variation->get('type')->getValue()[0]['target_id'];
@@ -39,7 +40,7 @@ class CypressOrderProcessor implements OrderProcessorInterface {
       $quantity = $order_item->getQuantity();
       $product_title = $product->getTitle();
       foreach ($variation_ids as $variation_id) {
-        $variation_object = ProductVariation::load($variation_id);
+          $variation_object = ProductVariation::load($variation_id);
         $get_part_quantity = $variation_object->get('weight')->getValue()[0]['number'];
         $part_quantity = round($get_part_quantity);
         // The Part Quantity for Variant.
@@ -78,21 +79,21 @@ class CypressOrderProcessor implements OrderProcessorInterface {
         // CAT_A products.
         if ($can_sample == 1) {
           if ($product_unit_price < 20 && $quantity <= 10) {
-            $new_adjustment = $product_unit_price * $quantity;
+            $new_adjustment = $product_unit_price;
           }
           elseif ($product_unit_price < 20 && $quantity > 10) {
-            $new_adjustment = $product_unit_price * 10;
+            $new_adjustment = ($product_unit_price * 10) / $quantity;
           }
           else {
             continue;
           }
-          $adjustments = $order->getAdjustments();
+          $adjustments = $order_item->getAdjustments();
           $adjustments[] = new Adjustment([
             'type' => 'cypress_cart_rules',
             'label' => 'Cart Rule Adjustment - ' . $product_title,
             'amount' => new Price('-' . $new_adjustment, 'USD'),
           ]);
-          $order->setAdjustments($adjustments);
+          $order_item->setAdjustments($adjustments);
         }
       }
     }
