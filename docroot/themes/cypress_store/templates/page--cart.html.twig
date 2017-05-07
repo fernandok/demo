@@ -117,12 +117,18 @@
         {{ page.dropdown_menu }}
       </div>
 
-        {# Highlighted #}
-        {% if page.highlighted %}
-          {% block highlighted %}
-            <div class="highlighted">{{ page.highlighted }}</div>
-          {% endblock %}
-        {% endif %}
+      {# Highlighted #}
+      {% if page.highlighted %}
+        {% block highlighted %}
+          <div class="highlighted container">
+            <div class="row">
+              <div class="col-sm-12">
+                {{ page.highlighted }}
+              </div>
+            </div>
+          </div>
+        {% endblock %}
+      {% endif %}
 
       {# Sidebar First #}
       {% if page.sidebar_first %}
