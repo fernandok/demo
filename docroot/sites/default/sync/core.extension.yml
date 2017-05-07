@@ -15,6 +15,7 @@ module:
   commerce: 0
   commerce_cart: 0
   commerce_checkout: 0
+  commerce_combine_carts: 0
   commerce_order: 0
   commerce_payment: 0
   commerce_payment_example: 0
