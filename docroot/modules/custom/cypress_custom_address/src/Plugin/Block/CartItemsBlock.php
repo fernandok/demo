@@ -103,7 +103,7 @@ class CartItemsBlock extends BlockBase implements ContainerFactoryPluginInterfac
         $build['cart_items_block']['#markup'] = '<div class = "cart-items">
                                              <div class ="total-items-label"><div class = "total-items">Total Items</div><div class ="items">' . $total_items . '</div></div>
                                              <div class ="sub-total-value"><div class = "total-price">Sub Total</div><div class ="sub-total-price">$ ' . $price . '</div></div>                                            
-                                             <div id ="continue-shopping"><a href="/">Continue Shopping</a></div>
+                                             <div id ="continue-shopping"><a href="http://www.cypress.com/cypress-store">Continue Shopping</a></div>
                                              <div id ="checkout-dummy"><a href="">Checkout</a></div>
                                              </div>';
         $build['cart_items_block']['#attached'] = [
