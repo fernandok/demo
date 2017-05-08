@@ -1,5 +1,5 @@
 (function ($) {
-    $('.view-delivery-address .view-content').slick({
+    $('.path-checkout .view-delivery-address .view-content').slick({
         infinite: false,
         speed: 300,
         slidesToShow: 4,
