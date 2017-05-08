@@ -822,18 +822,12 @@ footer{
 /*start address book*/
 .path-addressbook{
 
-	.slick-track {
+	.view-content {
 	    width: 100% !important;
 	}
-	.slick-slide {
+	.views-view-grid {
 	    width: 100% !important;
 		background: #fafafa;
-	}
-	.slick-list{
-		margin: 0;
-	}
-	.slick-slider .slick-track, .slick-slider .slick-list{
-		transform: none !important;
 	}
 	.views-view-grid .views-row {
 	    /*width: 293px;*/
@@ -905,9 +899,6 @@ footer{
 	.user-address-boxes-sec-3 {
 	    padding: 10px 0;
 	    margin: 5px;
-	}
-	.slick-slide:focus {
-	    outline: 0;
 	}
 }
 
@@ -1657,4 +1648,42 @@ footer{
 /*End for IE*/
 /*end for desktops*/
 
+/* For all screens */
+* {
+	outline-style: none;
+}
+details {
+	cursor: pointer;
+}
+
+/* Floating label start */
+.float-labels-wrapper.float-labels-required.float-labels-star .float-labels-label {
+	z-index: 999;
+}
+.float-labels-wrapper.float-labels-required.float-labels-star .float-labels-label:after {
+	color: red;
+}
+.float-labels-wrapper .float-labels-item {
+	align-self: flex-end;
+	font-size: inherit;
+	padding: 1em 0.5em 0.25em;
+	border: 0;
+	border-radius: 0;
+	box-shadow: none;
+	border-bottom: 2px solid #DDDDDD;
+}
+.float-labels-wrapper input[type=number].float-labels-item {
+	padding: 1.5em 0.5em 0.25em;
+}
+.float-labels-wrapper:not(.float-labels-focused) select.float-labels-item {
+	font-size: 0;
+}
+.float-labels-wrapper.float-labels-focused .float-labels-item {
+	border-bottom: 2px solid #00a8e1;
+}
+.has-error .float-labels-wrapper.float-labels-focused .float-labels-item {
+	border-bottom: 2px solid #FF0000;
+}
+/* Floating label end */
+/* For all screens */
 
