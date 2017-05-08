@@ -8035,19 +8035,12 @@ footer .region-footer .footer-block .footer-menu .copyright {
 }
 /*end checkout*/
 /*start address book*/
-.path-addressbook .slick-track {
+.path-addressbook .view-content {
   width: 100% !important;
 }
-.path-addressbook .slick-slide {
+.path-addressbook .views-view-grid {
   width: 100% !important;
   background: #fafafa;
-}
-.path-addressbook .slick-list {
-  margin: 0;
-}
-.path-addressbook .slick-slider .slick-track,
-.path-addressbook .slick-slider .slick-list {
-  transform: none !important;
 }
 .path-addressbook .views-view-grid .views-row {
   /*width: 293px;*/
@@ -8119,9 +8112,6 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .path-addressbook .user-address-boxes-sec-3 {
   padding: 10px 0;
   margin: 5px;
-}
-.path-addressbook .slick-slide:focus {
-  outline: 0;
 }
 /*end address book*/
 /* start media queries for responsive*/
