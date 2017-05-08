@@ -63,6 +63,7 @@ class CartProductImage extends FieldPluginBase {
     $product_id = $product_var->get('product_id')->getValue()[0]['target_id'];
     $product = Product::load($product_id);
     $product_type = $product->get('type')->getValue()[0]['target_id'];
+    $product_image_class = '';
     if ($product_type == 'default') {
       $product_image = $product->get('field_image')->getValue()[0]['value'];
       if (!empty($product_image)) {
@@ -70,15 +71,17 @@ class CartProductImage extends FieldPluginBase {
         $cart_image = $img_src[1];
       }
       else {
-        $cart_image = '/themes/cypress_store/no-product-image.jpg';
+        $cart_image = '/themes/cypress_store/No_image_available.svg';
+        $product_image_class = 'no-image-placeholder';
       }
     }
     elseif ($product_type == 'part') {
-      $cart_image = '/themes/cypress_store/no-product-image.jpg';
+      $cart_image = '/themes/cypress_store/No_image_available.svg';
+      $product_image_class = 'no-image-placeholder';
     }
 
 
-    $output = '<div class = "output"><img src ="'.$cart_image.'" height="100" width="100"></div>';
+    $output = '<div class = "output ' . $product_image_class . '"><img src ="'.$cart_image.'" height="100" width="100"></div>';
     $img = check_markup($output, 'full_html');
     return $img;
 

@@ -90,7 +90,7 @@ class CypressOrderProcessor implements OrderProcessorInterface {
           $adjustments = $order_item->getAdjustments();
           $adjustments[] = new Adjustment([
             'type' => 'cypress_cart_rules',
-            'label' => 'Cart Rule Adjustment - ' . $product_title,
+            'label' => 'CRA - ' . $product_title,
             'amount' => new Price('-' . $new_adjustment * $quantity, 'USD'),
           ]);
           $order_item->setAdjustments($adjustments);
