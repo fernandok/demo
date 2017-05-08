@@ -7980,6 +7980,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   background-color: #fafafa;
   padding: 0 0 20px ;
 }
+.cart.cart-form .cypress-cart .cart-product-image {
+  text-align: center;
+}
 .cart.cart-form .cypress-cart .cart-info .cart-edit-quantity {
   font-weight: 600;
 }
