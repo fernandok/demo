@@ -4,6 +4,7 @@ namespace Drupal\cypress_store_vendor\Vendor;
 
 use Drupal\commerce_order\Entity\Order;
 use Drupal\commerce_order\Entity\OrderItem;
+use Drupal\cypress_store_vendor\CypressStoreVendor;
 use Symfony\Component\Yaml\Yaml;
 
 
@@ -140,4 +141,21 @@ class VendorBase {
     }
     return $mpn_id;
   }
+
+  /**
+   * Email Admin If there is error while Placing order, check product Availability and check shipping in vendor side
+   * @param $subject
+   * @param $body
+   */
+  public function emailVendorExceptionMessage($subject, $body){
+
+    $message = array('subject' => $subject, 'body' => $body);
+    $dispatcher = \Drupal::service('event_dispatcher');
+    // Creating our CypressStoreVendor event class object.
+    $event = new CypressStoreVendor($message);
+    // Dispatching the event through the ‘dispatch’  method,
+    // Passing event name and event object ‘$event’ as parameters.
+    $dispatcher->dispatch(CypressStoreVendor::ERROR, $event);
+  }
+
 }
