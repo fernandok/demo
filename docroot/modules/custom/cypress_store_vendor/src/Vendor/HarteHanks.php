@@ -222,11 +222,9 @@ XML;
 
 
     } catch (\Exception $e) {
-      $content = substr($response, strpos($response, '<soap:Fault>'));
-      $content = $this->cleanTrailingXml($content);
-      $content = htmlspecialchars_decode($content);
-      $shipments = new \SimpleXMLElement($content);
-      return $shipments;
+      $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : HarteHanks' . '<br/>' . 'Request Body :' . htmlentities($parameter) . '<br/>' . 'Response Body : ' . htmlentities($response);
+
+      $this->emailVendorExceptionMessage('HarteHanks Get Order Info ', $body);
     }
 
   }
@@ -235,8 +233,8 @@ XML;
    * @param string $mpn
    *   marketing part number
    */
-  public function getInventory($mpn = 'CY8CKIT') {
-//    return 1;
+  public function getInventory($mpn) {
+    return 1;
     $userName = $this->userName;
     $password = $this->password;
 
@@ -302,9 +300,9 @@ XML;
 
     } catch (\Exception $e) {
 
-      $body = 'Environment : '. $_ENV['AH_SITE_ENVIRONMENT']. '<br/>'. 'Vendor : HarteHanks'. '<br/>'. 'Request Body :'. htmlentities($parameter) .'<br/>'. 'Response Body : '. htmlentities($response) ;
+      $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : HarteHanks' . '<br/>' . 'Request Body :' . htmlentities($parameter) . '<br/>' . 'Response Body : ' . htmlentities($response);
 
-      $this->emailVendorExceptionMessage('HarteHanks Get Product Availability ',$body);
+      $this->emailVendorExceptionMessage('HarteHanks Get Product Availability ', $body);
 
 
     }
@@ -383,11 +381,9 @@ XML;
 
 
     } catch (\Exception $e) {
-      $content = substr($response, strpos($response, '<soap:Fault>'));
-      $content = $this->cleanTrailingXml($content);
-      $content = htmlspecialchars_decode($content);
-      $shipments = new \SimpleXMLElement($content);
-      return $shipments;
+      $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : HarteHanks' . '<br/>' . 'Request Body :' . htmlentities($parameter) . '<br/>' . 'Response Body : ' . htmlentities($response);
+
+      $this->emailVendorExceptionMessage('HarteHanks Get Order Info ', $body);
     }
 
   }
