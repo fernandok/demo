@@ -302,12 +302,9 @@ XML;
 
     } catch (\Exception $e) {
 
-//      $content = substr($response, strpos($response, '<soap:Fault>'));
-//      $content = $this->cleanTrailingXml($content);
-//      $content = htmlspecialchars_decode($content);
-//      $shipments = new \SimpleXMLElement($content);
+      $body = 'Environment : '. $_ENV['AH_SITE_ENVIRONMENT']. '<br/>'. 'Vendor : HarteHanks'. '<br/>'. 'Request Body :'. htmlentities($parameter) .'<br/>'. 'Response Body : '. htmlentities($response) ;
 
-      $this->emailVendorExceptionMessage('HarteHanks Get Product Availability ',$response);
+      $this->emailVendorExceptionMessage('HarteHanks Get Product Availability ',$body);
 
 
     }
