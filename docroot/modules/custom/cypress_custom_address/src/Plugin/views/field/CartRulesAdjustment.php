@@ -75,7 +75,7 @@ class CartRulesAdjustment extends FieldPluginBase {
           $adjustment_currency_code = $adjustment_amount->getCurrencyCode();
           $adjustment_currency = Currency::load($adjustment_currency_code);
           $currency_symbol = $adjustment_currency->getSymbol();
-          $cart_rules_adjustment .= '<div class="adjustment-amount"><div class = "adjustment-label">' . $adjustment_label . '</div><div class = "adjustment-price"> - ' . $currency_symbol . '' . $adjustment_price . '</div></div>';
+          $cart_rules_adjustment .= '<div class="adjustment-amount"><span class = "adjustment-label">' . $adjustment_label . '</span><span class = "adjustment-price"> - ' . $currency_symbol . '' . $adjustment_price . '</span></div>';
         }
       }
     }

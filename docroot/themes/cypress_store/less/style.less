@@ -17,6 +17,10 @@ body{
 	margin: 0;
 }
 
+.btn {
+	border-radius: 0;
+}
+
 /*Start styles for store*/
 	/*start styles for header*/
 	
@@ -733,41 +737,22 @@ footer{
 .cart.cart-form{
 	/*display: inline-block;
 	width: 52%;*/
-    background: #fafafa;
-    line-height: 28px;
+    background-color: #fafafa;
+    line-height: 1.5em;
     /*margin: 0 0 0 8vw;*/
 
 	.view-header {
 	    font-size: 20px;
 	    font-weight: 600;
 	    border-bottom: 1px solid;
-    	margin: 10px;
+    	margin:  0 10px 20px;
     	padding-bottom: 6px;
-    	margin-top: 0;
     	padding-top: 10px;
 	}
 	.cypress-cart{
-		margin-top: 20px;
-		margin-bottom: 20px;
-
-		.cart-product-image {
-		    display: inline-block;
-		    vertical-align: top;
-		    margin-left: 10px;
-		}
+		background-color: #fafafa;
+		padding: 0 0 20px ;
 		.cart-info {
-		    display: inline-block;
-		    margin-left: 20px;
-		    margin-right: 20px;
-    		width: 70%;
-
-    		@media only screen and (min-width: 1024px) and (max-width: 1400px){
-    			width: 67%;
-    		}
-
-    		.field--name-title{
-    			line-height: 20px;
-    		}
     		.cart-edit-quantity {
 			    font-weight: 600;
 			}
@@ -776,7 +761,7 @@ footer{
 			    font-weight: 600;
 			}
 		}
-		
+
 		.cart-edit-quantity{
 
 			[class*='form-item-edit-quantity-'] {
@@ -802,7 +787,13 @@ footer{
 	    .btn-info{
 	    	margin: 20px 0;
 	    }
-	}	
+	}
+
+	@media only screen and (min-width: 320px) and (max-width: 767px){
+		.cart-info {
+			margin-top: 1em;
+		}
+	}
 }
 .order-total-line {
     padding: 5px;
@@ -1308,9 +1299,6 @@ footer{
 	}
 	.cart.cart-form .cypress-cart .cart-product-image{
 		margin-left: 0;
-	}
-	.cart.cart-form .cypress-cart .cart-info{
-		width: 68%;
 	}
 	footer .region-footer .footer-block .footer-menu ul{
 		margin: 10px 0;
