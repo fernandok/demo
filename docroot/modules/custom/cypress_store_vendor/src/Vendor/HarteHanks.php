@@ -4,6 +4,7 @@ namespace Drupal\cypress_store_vendor\Vendor;
 
 use Drupal\commerce_order\Entity\Order;
 use Drupal\commerce_product\Entity\Product;
+use Drupal\cypress_store_vendor\CypressStoreVendor;
 use SimpleSAML\Utils\XML;
 
 class HarteHanks extends VendorBase {
@@ -234,8 +235,8 @@ XML;
    * @param string $mpn
    *   marketing part number
    */
-  public function getInventory($mpn) {
-    return 1;
+  public function getInventory($mpn = 'CY8CKIT') {
+//    return 1;
     $userName = $this->userName;
     $password = $this->password;
 
@@ -301,11 +302,12 @@ XML;
 
     } catch (\Exception $e) {
 
-      $content = substr($response, strpos($response, '<soap:Fault>'));
-      $content = $this->cleanTrailingXml($content);
-      $content = htmlspecialchars_decode($content);
-      $shipments = new \SimpleXMLElement($content);
-      return $shipments;
+//      $content = substr($response, strpos($response, '<soap:Fault>'));
+//      $content = $this->cleanTrailingXml($content);
+//      $content = htmlspecialchars_decode($content);
+//      $shipments = new \SimpleXMLElement($content);
+
+      $this->emailVendorExceptionMessage('HarteHanks Get Product Availability ',$response);
 
 
     }
