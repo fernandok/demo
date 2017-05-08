@@ -183,8 +183,6 @@ XML;
     try {
 
       $headers = array(
-//        "POST /webservices/wssamples/service.asmx HTTP/1.1",
-//        "Host: test.samplecomponents.com",
         "Accept: text/xml",
         "Cache-Control: no-cache",
         "Pragma: no-cache",
@@ -219,10 +217,7 @@ XML;
 
       $shipments = new \SimpleXMLElement($content);
 
-      print"<pre>";
-      print_r($shipments);
-      print"</pre>";
-      exit;
+      return $shipments;
 
 
     } catch (\Exception $e) {
@@ -230,14 +225,7 @@ XML;
       $content = $this->cleanTrailingXml($content);
       $content = htmlspecialchars_decode($content);
       $shipments = new \SimpleXMLElement($content);
-      print '<pre>';
-      print_r($shipments);
-      print '</pre>';
-      exit;
-//      print"<pre>";
-//      print_r($e->getMessage());
-//      "</pre>";
-//      exit;
+      return $shipments;
     }
 
   }
@@ -275,8 +263,6 @@ XML;
     try {
 
       $headers = array(
-//        "POST /webservices/wssamples/service.asmx HTTP/1.1",
-//        "Host: test.samplecomponents.com",
         "Accept: text/xml",
         "Cache-Control: no-cache",
         "Pragma: no-cache",
@@ -311,10 +297,7 @@ XML;
 
       $shipments = new \SimpleXMLElement($content);
 
-      print"<pre>";
-      print_r($shipments);
-      print"</pre>";
-      exit;
+      return $shipments;
 
     } catch (\Exception $e) {
 
@@ -322,15 +305,9 @@ XML;
       $content = $this->cleanTrailingXml($content);
       $content = htmlspecialchars_decode($content);
       $shipments = new \SimpleXMLElement($content);
-      print '<pre>';
-      print_r($shipments);
-      print '</pre>';
-      exit;
+      return $shipments;
 
-//      print"<pre>";
-//      print_r($e->getMessage());
-//      "</pre>";
-//      exit;
+
     }
 
 
@@ -369,8 +346,6 @@ XML;
     try {
 
       $headers = array(
-//        "POST /webservices/wssamples/service.asmx HTTP/1.1",
-//        "Host: test.samplecomponents.com",
         "Accept: text/xml",
         "Cache-Control: no-cache",
         "Pragma: no-cache",
@@ -405,10 +380,7 @@ XML;
 
       $shipments = new \SimpleXMLElement($content);
 
-      print"<pre>";
-      print_r($shipments);
-      print"</pre>";
-      exit;
+      return $shipments;
 
 
     } catch (\Exception $e) {
@@ -416,14 +388,7 @@ XML;
       $content = $this->cleanTrailingXml($content);
       $content = htmlspecialchars_decode($content);
       $shipments = new \SimpleXMLElement($content);
-      print '<pre>';
-      print_r($shipments);
-      print '</pre>';
-      exit;
-      /* print"<pre>";
-       print_r($e->getMessage());
-       "</pre>";
-       exit;*/
+      return $shipments;
     }
 
   }
