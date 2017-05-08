@@ -70,11 +70,11 @@ class CartProductImage extends FieldPluginBase {
         $cart_image = $img_src[1];
       }
       else {
-        $cart_image = '/themes/cypress_store/logo.gif';
+        $cart_image = '/themes/cypress_store/no-product-image.jpg';
       }
     }
     elseif ($product_type == 'part') {
-      $cart_image = '/themes/cypress_store/logo.gif';
+      $cart_image = '/themes/cypress_store/no-product-image.jpg';
     }
 
 
