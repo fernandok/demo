@@ -8053,7 +8053,8 @@ footer .region-footer .footer-block .footer-menu .copyright {
   padding: 10px;
   background: #fff;
   text-align: left;
-  min-height: 207px;
+  /*min-height: 207px;*/
+  min-height: 18.2em;
 }
 .path-addressbook .user-address-boxes-sec-2 {
   min-height: 80px;
@@ -8067,11 +8068,20 @@ footer .region-footer .footer-block .footer-menu .copyright {
   background: #00a8e1;
   color: #fff;
   padding: 10px;
+  text-transform: capitalize;
 }
 .path-addressbook .user-address-boxes-sec-1 {
   border-bottom: 1px solid #7e7a7a;
   /*padding: 10px 0;*/
   margin: 5px;
+}
+.path-addressbook .address-boxes-sec-1 {
+  /*min-height: 73px;*/
+  min-height: 4.5em;
+}
+.path-addressbook .address-boxes-sec-1 .address-name {
+  word-break: break-word;
+  max-width: 70%;
 }
 .path-addressbook .user-adressbook .icons {
   float: right;

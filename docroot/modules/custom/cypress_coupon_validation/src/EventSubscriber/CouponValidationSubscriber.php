@@ -42,15 +42,18 @@ class CouponValidationSubscriber implements EventSubscriberInterface {
   public function couponOrderValidation(Event $event) {
 
     $order_create = $event->getEntity();
-    $order_id = $order_create->get('order_id')->getValue()[0]['value'];             // order_id
-    $user_id = $order_create->get('uid')->getValue()[0]['target_id'];               // user_id
-    $promotion_id = $order_create->get('coupons')->getValue()[0]['target_id'];      // promotion_id
+    // Order_id.
+    $order_id = $order_create->get('order_id')->getValue()[0]['value'];
+    // User_id.
+    $user_id = $order_create->get('uid')->getValue()[0]['target_id'];
+    // Promotion_id.
+    $promotion_id = $order_create->get('coupons')->getValue()[0]['target_id'];
     $coupon = Coupon::load($promotion_id);
-    $coupon_code = $coupon->getCode();                                  // Coupon Code
-
+    // Coupon Code.
+    if(!empty($coupon)) {
+      $coupon_code = $coupon->getCode();
+    }
     // Insert into custom table after order complete.
-
-
       $query =  \Drupal::database()->insert('cypress_store_coupons')
         ->fields(array(
           'order_id' => $order_id,
