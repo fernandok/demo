@@ -7383,6 +7383,7 @@ body {
 /*start styles for header*/
 .submenu {
   clear: both;
+  margin-bottom: 1.5em;
 }
 section.main-content {
   float: none;
