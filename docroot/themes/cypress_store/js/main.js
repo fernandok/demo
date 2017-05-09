@@ -160,9 +160,10 @@ $(function(){
 			// $('.main-menu .menu.nav').width($(window).width()-2);
 		// $('.main-menu .menu.nav ul.menu.dropdown-menu').width(width-2);
 			$('.main-menu .menu.nav > li > ul > li > ul').removeClass('dropdown-menu');
-		$('.path-addressbook .slick-list').addClass('col-md-12 col-sm-12 col-lg-12');
-		$('.path-addressbook .slick-list .views-row').addClass('col-md-3 col-sm-4 col-lg-4');
-		$('.path-addressbook .slick-slide').addClass('col-xs-12');
-
+		// $('.path-addressbook .slick-list').addClass('col-md-12 col-sm-12 col-lg-12');
+		// $('.path-addressbook .slick-list .views-row').addClass('col-md-3 col-sm-4 col-lg-4');
+		// $('.path-addressbook .slick-slide').addClass('col-xs-12');
+		$('.path-addressbook .views-view-grid').addClass('col-sm-12 col-md-12 col-lg-12');
+		$('.path-addressbook .views-view-grid .views-row').addClass('col-sm-6 col-md-4 col-lg-3');
 	});
 });
