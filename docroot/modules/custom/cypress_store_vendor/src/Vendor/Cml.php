@@ -45,7 +45,10 @@ class Cml extends VendorBase {
       ->execute()->fetchCol(0);
     foreach ($product_id as $prod_id) {
       $product = Product::load($prod_id);
-      $inventory = $product->get('field_inventory')->first()->getValue()['value'];
+      $product_inventory = $product->get('field_inventory')->first();
+      if (!empty($product_inventory)) {
+        $inventory = $product_inventory->getValue()['value'];
+      }
     }
 
     return $inventory;
