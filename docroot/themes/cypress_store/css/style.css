@@ -8030,21 +8030,24 @@ footer .region-footer .footer-block .footer-menu .copyright {
 /*end checkout*/
 /*start address book*/
 .path-addressbook .view-content {
-  width: 100% !important;
+  /*width: 100% !important;*/
 }
 .path-addressbook .views-view-grid {
-  width: 100% !important;
+  /*width: 100% !important;*/
   background: #fafafa;
+  padding: 0;
 }
 .path-addressbook .views-view-grid .views-row {
-  /*width: 293px;*/
-  display: inline-block;
+  /* display: inline-block;
+	    border: 2px solid #a8a8a8;
+	    float: none;
+		margin: 5px;
+		padding: 0;
+		width: 24%;*/
+  margin: 10px 0;
+}
+.path-addressbook .views-view-grid .views-col {
   border: 2px solid #a8a8a8;
-  float: none;
-  margin: 5px;
-  padding: 0;
-  width: 24%;
-  margin-top: 15px;
 }
 .path-addressbook .user-adressbook {
   padding: 10px;
@@ -8400,40 +8403,40 @@ footer .region-footer .footer-block .footer-menu .copyright {
   }
 }
 /*addressbook responsive*/
-@media only screen and (min-width: 320px) and (max-width: 599px) {
-  .path-addressbook .views-view-grid .views-row {
-    width: 100%;
-    margin-left: 0;
-  }
+/*@media only screen and (min-width: 320px) and (max-width: 599px){
+	.path-addressbook .views-view-grid .views-row{
+		width: 100%;
+		margin-left: 0;
+	}
+}*/
+/*@media only screen and (min-width: 600px) and (max-width: 767px){
+	.path-addressbook .views-view-grid .views-row{
+		margin-left: 1.4vw;
+	}
 }
-@media only screen and (min-width: 600px) and (max-width: 767px) {
-  .path-addressbook .views-view-grid .views-row {
-    margin-left: 1.4vw;
-  }
+@media only screen and (min-width: 600px) and (max-width: 1023px){
+	.path-addressbook .views-view-grid .views-row{
+		width: 47%;
+	}
 }
-@media only screen and (min-width: 600px) and (max-width: 1023px) {
-  .path-addressbook .views-view-grid .views-row {
-    width: 47%;
-  }
+@media only screen and (min-width: 1024px) and (max-width: 1439px){
+	.path-addressbook .views-view-grid .views-row{
+		width: 31%;
+	}
 }
-@media only screen and (min-width: 1024px) and (max-width: 1439px) {
-  .path-addressbook .views-view-grid .views-row {
-    width: 31%;
-  }
-}
-@media only screen and (min-width: 1440px) and (max-width: 1699px) {
-  .path-addressbook .views-view-grid .views-row {
-    width: 23%;
-  }
+@media only screen and (min-width: 1440px) and (max-width: 1699px){
+	.path-addressbook .views-view-grid .views-row{
+		width: 23%;
+	}
 }
 @media only screen and (min-width: 1700px) {
-  .path-addressbook .views-view-grid .views-row {
-    width: 18%;
-  }
-  .path-addressbook .views-view-grid .views-row {
-    margin-left: 1.2vw;
-  }
-}
+	.path-addressbook .views-view-grid .views-row{
+		width: 18%;
+	}
+	.path-addressbook .views-view-grid .views-row{
+		margin-left: 1.2vw;
+	}
+}*/
 /*end address book responsive*/
 /*@media (width: 414px){
 	a.user-icon{
@@ -8753,11 +8756,11 @@ footer .region-footer .footer-block .footer-menu .copyright {
   }
 }
 /*address book 768 to 1699*/
-@media only screen and (min-width: 768px) and (max-width: 1699px) {
-  .path-addressbook .views-view-grid .views-row {
-    margin-left: 1vw;
-  }
-}
+/*@media only screen and (min-width: 768px) and (max-width: 1699px){
+	.path-addressbook .views-view-grid .views-row{
+		margin-left: 1vw;
+	}
+}*/
 /*address book end*/
 @media (min-width: 1024px) and (max-width: 1400px) {
   .container.header {
