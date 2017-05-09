@@ -94,6 +94,7 @@ class CypressOrderProcessor implements OrderProcessorInterface {
             'amount' => new Price('-' . $new_adjustment, 'USD'),
           ]);
           $order_item->setAdjustments($adjustments);
+          $order_item->save();
         }
       }
     }
