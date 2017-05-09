@@ -8837,7 +8837,7 @@ details {
   z-index: 999;
 }
 .float-labels-wrapper.float-labels-required.float-labels-star .float-labels-label:after {
-  color: red;
+  color: #E32726;
 }
 .float-labels-wrapper .float-labels-item {
   align-self: flex-end;
@@ -8846,7 +8846,7 @@ details {
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  border-bottom: 2px solid #DDDDDD;
+  border-bottom: 1px solid #DDDDDD;
 }
 .float-labels-wrapper input[type=number].float-labels-item {
   padding: 1.5em 0.5em 0.25em;
@@ -8855,10 +8855,10 @@ details {
   font-size: 0;
 }
 .float-labels-wrapper.float-labels-focused .float-labels-item {
-  border-bottom: 2px solid #00a8e1;
+  border-bottom: 1px solid #00a8e1;
 }
 .has-error .float-labels-wrapper.float-labels-focused .float-labels-item {
-  border-bottom: 2px solid #FF0000;
+  border-bottom: 1px solid #E32726;
 }
 /* Floating label end */
 /* Cart empty page start */
@@ -8874,4 +8874,17 @@ details {
   text-decoration: none;
 }
 /* Cart empty page end */
+/* Default Panel fieldset start */
+.panel-default {
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px dotted #aaa;
+  margin: 1em 0 1em 0;
+  box-shadow: none;
+}
+.panel-default .panel-heading {
+  border-bottom: 2px solid rgba(0, 36, 49, 0.7);
+  background: none;
+}
+/* Default Panel fieldset end*/
 /* For all screens */
