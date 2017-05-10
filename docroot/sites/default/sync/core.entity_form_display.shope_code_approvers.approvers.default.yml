@@ -4,9 +4,13 @@ status: true
 dependencies:
   config:
     - eck.eck_type.shope_code_approvers.approvers
+    - field.field.shope_code_approvers.approvers.field_addby
+    - field.field.shope_code_approvers.approvers.field_adddate
     - field.field.shope_code_approvers.approvers.field_cat_a_b
     - field.field.shope_code_approvers.approvers.field_country_id
     - field.field.shope_code_approvers.approvers.field_kitapprover
+    - field.field.shope_code_approvers.approvers.field_modby
+    - field.field.shope_code_approvers.approvers.field_moddate
     - field.field.shope_code_approvers.approvers.field_mpnid
     - field.field.shope_code_approvers.approvers.field_primaryapproverleave
     - field.field.shope_code_approvers.approvers.field_primaryapproverleavefrom
@@ -20,6 +24,22 @@ targetEntityType: shope_code_approvers
 bundle: approvers
 mode: default
 content:
+  field_addby:
+    weight: 15
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_adddate:
+    weight: 18
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_cat_a_b:
     weight: 3
     settings:
@@ -38,6 +58,22 @@ content:
     region: content
   field_kitapprover:
     weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_modby:
+    weight: 17
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_moddate:
+    weight: 19
     settings:
       size: 60
       placeholder: ''

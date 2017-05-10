@@ -1,0 +1,19 @@
+uuid: d55a9b6c-ee54-4828-881a-ec188ca4a567
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.shope_code_approvers.approvers
+    - field.storage.shope_code_approvers.field_adddate
+id: shope_code_approvers.approvers.field_adddate
+field_name: field_adddate
+entity_type: shope_code_approvers
+bundle: approvers
+label: ADDDATE
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
