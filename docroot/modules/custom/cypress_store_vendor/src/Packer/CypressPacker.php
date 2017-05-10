@@ -86,75 +86,79 @@ class CypressPacker implements PackerInterface {
     }
     foreach ($order->getItems() as $order_item) {
       $purchased_entity = $order_item->getPurchasedEntity();
-      $product_id = $purchased_entity->get('product_id')
-        ->getValue()[0]['target_id'];
-      $product = Product::load($product_id);
-      $product_type = $product->bundle();
-      $order_item_quantity = (int) $order_item->getQuantity();
-      $shipment_item = new ShipmentItem([
-        'order_item_id' => $order_item->id(),
-        'title' => $order_item->getTitle(),
-        'quantity' => $order_item_quantity,
-        'weight' => $weight,
-        'declared_value' => $order_item->getUnitPrice()->multiply($order_item_quantity),
-      ]);
-      $mpn = $product->getTitle();
-      // Get order total.
-      $order_item_total_price = (float) $order_item->getTotalPrice()->getNumber();
-      switch ($product_type) {
-        // Product type - KIT
-        case 'default':
-          $rules = $order_routing_config['kit'];
-          break;
-        // Product type - Part
-        case 'part':
-          $can_sample = $product->get('field_can_sample')
-            ->getValue()[0]['value'];
-          // Part category - Cat A
-          if ($can_sample == 1) {
-            $rules = $order_routing_config['cat_a'];
+      if (!empty($purchased_entity)) {
+        $product_id = $purchased_entity->get('product_id')
+          ->getValue()[0]['target_id'];
+        $product = Product::load($product_id);
+        $product_type = $product->bundle();
+        $order_item_quantity = (int) $order_item->getQuantity();
+        $shipment_item = new ShipmentItem([
+          'order_item_id' => $order_item->id(),
+          'title' => $order_item->getTitle(),
+          'quantity' => $order_item_quantity,
+          'weight' => $weight,
+          'declared_value' => $order_item->getUnitPrice()
+            ->multiply($order_item_quantity),
+        ]);
+        $mpn = $product->getTitle();
+        // Get order total.
+        $order_item_total_price = (float) $order_item->getTotalPrice()
+          ->getNumber();
+        switch ($product_type) {
+          // Product type - KIT
+          case 'default':
+            $rules = $order_routing_config['kit'];
+            break;
+          // Product type - Part
+          case 'part':
+            $can_sample = $product->get('field_can_sample')
+              ->getValue()[0]['value'];
+            // Part category - Cat A
+            if ($can_sample == 1) {
+              $rules = $order_routing_config['cat_a'];
+            }
+            // Part category - Cat B
+            elseif ($can_sample == 2) {
+              $rules = $order_routing_config['cat_b'];
+            }
+            break;
+        }
+        // Execute order routing rule and get list of vendors.
+        $vendors = [];
+        foreach ($rules as $rule) {
+          $condition = $rule['condition'];
+          if (eval("return $condition;")) {
+            $vendors = $rule['vendors'];
+            break;
           }
-          // Part category - Cat B
-          elseif ($can_sample == 2) {
-            $rules = $order_routing_config['cat_b'];
+        }
+        // Choose vendor based on inventory.
+        $last_vendor = end($vendors);
+        foreach ($vendors as $vendor) {
+          $inventory = $this->vendorService->getInventory($vendor, $mpn);
+          if ($inventory > 0) {
+            $vendors_package[$vendor][] = $shipment_item;
+            break;
           }
-          break;
-      }
-      // Execute order routing rule and get list of vendors.
-      $vendors = [];
-      foreach ($rules as $rule) {
-        $condition = $rule['condition'];
-        if (eval("return $condition;")) {
-          $vendors = $rule['vendors'];
-          break;
+          // If no vendor is having inventory, need to be shipped via last vendor.
+          if ($vendor == $last_vendor) {
+            $vendors_package[$vendor][] = $shipment_item;
+          }
         }
       }
-      // Choose vendor based on inventory.
-      $last_vendor = end($vendors);
-      foreach ($vendors as $vendor) {
-        $inventory = $this->vendorService->getInventory($vendor, $mpn);
-        if ($inventory > 0) {
-          $vendors_package[$vendor][] = $shipment_item;
-          break;
-        }
-        // If no vendor is having inventory, need to be shipped via last vendor.
-        if ($vendor == $last_vendor) {
-          $vendors_package[$vendor][] = $shipment_item;
-        }
-      }
-    }
 
-    $shipment_index = 1;
-    foreach ($vendors_package as $type => $pack) {
-      if (!empty($pack)) {
-        $proposed_shipments[] = new ProposedShipment([
-          'type' => $this->getShipmentType($order),
-          'order_id' => $order->id(),
-          'title' => t("Shipment #$shipment_index"),
-          'items' => $pack,
-          'shipping_profile' => $shipping_profile,
-        ], 'commerce_shipment');
-        $shipment_index++;
+      $shipment_index = 1;
+      foreach ($vendors_package as $type => $pack) {
+        if (!empty($pack)) {
+          $proposed_shipments[] = new ProposedShipment([
+            'type' => $this->getShipmentType($order),
+            'order_id' => $order->id(),
+            'title' => t("Shipment #$shipment_index"),
+            'items' => $pack,
+            'shipping_profile' => $shipping_profile,
+          ], 'commerce_shipment');
+          $shipment_index++;
+        }
       }
     }
 
