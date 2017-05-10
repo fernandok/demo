@@ -1,4 +1,4 @@
-uuid: 08dfcabf-2a14-4a66-97e7-c3ecad6ea9a0
+uuid: 6495323e-9a58-403a-af90-ece9110d200d
 langcode: en
 status: true
 dependencies:
@@ -61,7 +61,7 @@ mode: default
 content:
   body:
     type: text_textarea_with_summary
-    weight: 2
+    weight: 1
     settings:
       rows: 9
       summary_rows: 3
@@ -70,19 +70,19 @@ content:
     region: content
   created:
     type: datetime_timestamp
-    weight: 44
+    weight: 10
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   field_can_sample:
-    weight: 34
+    weight: 31
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_development_kit:
-    weight: 7
+    weight: 32
     settings:
       size: 60
       placeholder: ''
@@ -96,10 +96,10 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: entity_reference_autocomplete_tags
+    type: entity_reference_autocomplete
     region: content
   field_eccn:
-    weight: 24
+    weight: 34
     settings:
       size: 60
       placeholder: ''
@@ -107,7 +107,7 @@ content:
     type: string_textfield
     region: content
   field_eccn_suball:
-    weight: 25
+    weight: 35
     settings:
       size: 60
       placeholder: ''
@@ -115,7 +115,7 @@ content:
     type: string_textfield
     region: content
   field_estimated_lead_time_days:
-    weight: 22
+    weight: 36
     settings:
       size: 60
       placeholder: ''
@@ -123,133 +123,6 @@ content:
     type: string_textfield
     region: content
   field_hts_code:
-    weight: 23
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_inventory:
-    weight: 35
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
-    region: content
-  field_lead_ball_finish:
-    weight: 30
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_minimum_order_quantity_moq:
-    weight: 21
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_moisture_sensitivity_level:
-    weight: 26
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_mpn_id:
-    weight: 1
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_no_of_pins:
-    weight: 19
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_order_close:
-    weight: 4
-    settings:
-      increment: 15
-      date_order: YMD
-      time_type: '24'
-    third_party_settings: {  }
-    type: datetime_datelist
-    region: content
-  field_order_entry_closed_date:
-    weight: 36
-    settings:
-      increment: 15
-      date_order: YMD
-      time_type: '24'
-    third_party_settings: {  }
-    type: datetime_datelist
-    region: content
-  field_order_increment:
-    weight: 46
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_package:
-    weight: 17
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_package_type:
-    weight: 18
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_part_family:
-    weight: 3
-    settings: {  }
-    third_party_settings: {  }
-    type: options_select
-    region: content
-  field_pb_free:
-    weight: 29
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
-  field_peak_reflow_temp:
-    weight: 27
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_pqr_specnum_ref:
-    weight: 32
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete_tags
-    region: content
-  field_pqtp_name:
     weight: 37
     settings:
       size: 60
@@ -257,50 +130,174 @@ content:
     third_party_settings: {  }
     type: string_textfield
     region: content
+  field_inventory:
+    weight: 38
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_lead_ball_finish:
+    weight: 40
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_minimum_order_quantity_moq:
+    weight: 41
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_moisture_sensitivity_level:
+    weight: 42
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_mpn_id:
+    weight: 43
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_no_of_pins:
+    weight: 44
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_order_close:
+    weight: 45
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_order_entry_closed_date:
+    weight: 46
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_order_increment:
+    weight: 47
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_package:
+    weight: 48
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_package_type:
+    weight: 50
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_part_family:
+    weight: 51
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_pb_free:
+    weight: 52
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
+  field_peak_reflow_temp:
+    weight: 53
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_pqr_specnum_ref:
+    weight: 49
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_pqtp_name:
+    weight: 54
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_price_five:
-    weight: 14
+    weight: 55
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_price_four:
-    weight: 13
+    weight: 56
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_price_one:
-    weight: 10
+    weight: 57
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_price_six:
-    weight: 15
+    weight: 58
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_price_three:
-    weight: 12
+    weight: 59
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_price_two:
-    weight: 11
+    weight: 60
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_product_family:
-    weight: 8
+    weight: 61
     settings:
       size: 60
       placeholder: ''
@@ -308,63 +305,60 @@ content:
     type: string_textfield
     region: content
   field_prune_start_date:
-    weight: 6
-    settings:
-      increment: 15
-      date_order: YMD
-      time_type: '24'
+    weight: 62
+    settings: {  }
     third_party_settings: {  }
-    type: datetime_datelist
+    type: datetime_default
     region: content
   field_related_content_keywords:
-    weight: 41
+    weight: 64
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_related_content_section:
-    weight: 40
+    weight: 65
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_related_persona:
-    weight: 39
+    weight: 66
     settings: {  }
     third_party_settings: {  }
     type: options_select
     region: content
   field_related_products:
-    weight: 9
-    settings: {  }
+    weight: 63
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-    type: options_select
+    type: entity_reference_autocomplete
     region: content
   field_rohs_compliant:
-    weight: 28
+    weight: 67
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_shipping_closed:
-    weight: 5
-    settings:
-      increment: 15
-      date_order: YMD
-      time_type: '24'
+    weight: 39
+    settings: {  }
     third_party_settings: {  }
-    type: datetime_datelist
+    type: datetime_default
     region: content
   field_show_price:
-    weight: 16
+    weight: 68
     settings:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
     region: content
   field_standard_pack_quantity:
-    weight: 20
+    weight: 69
     settings:
       size: 60
       placeholder: ''
@@ -372,7 +366,7 @@ content:
     type: string_textfield
     region: content
   field_status_display:
-    weight: 38
+    weight: 70
     settings:
       size: 60
       placeholder: ''
@@ -380,7 +374,7 @@ content:
     type: string_textfield
     region: content
   field_status_raw:
-    weight: 31
+    weight: 71
     settings:
       size: 60
       placeholder: ''
@@ -389,13 +383,13 @@ content:
     region: content
   path:
     type: path
-    weight: 45
+    weight: 30
+    region: content
     settings: {  }
     third_party_settings: {  }
-    region: content
   stores:
     type: commerce_entity_select
-    weight: 47
+    weight: -10
     settings:
       autocomplete_threshold: 7
       autocomplete_size: 60
@@ -404,24 +398,24 @@ content:
     region: content
   title:
     type: string_textfield
-    weight: 0
+    weight: -5
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    region: content
   uid:
     type: entity_reference_autocomplete
-    weight: 42
+    weight: 5
+    region: content
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    region: content
   variations:
     type: inline_entity_form_complex
-    weight: 43
+    weight: 10
     settings:
       override_labels: true
       label_singular: variation
