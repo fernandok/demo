@@ -1,0 +1,38 @@
+uuid: 8fae9138-a991-4c01-93b9-bcf2da7cca35
+langcode: en
+status: true
+dependencies: {  }
+id: shopcode_approver_CAT_A
+migration_tags: null
+migration_group: null
+label: 'Import ShopcodeApproverCatA'
+source:
+  plugin: csv
+  path: modules/custom/cypress_store_migration/assets/promo_code_approvers_cata_first_export.csv
+  header_row_count: 1
+  keys:
+    - ID
+process:
+  field_cat_a_b: CAT
+  field_country_id: COUNTRYID
+  field_kitapprover: KITAPPROVER
+  field_mpnid: MPNID
+  field_shopcodeapproversid: SHOPCODEAPPROVERSID
+  field_shopcodeprimaryapprover: SHOPCODEPRIMARYAPPROVER
+  field_shopcodesecondaryapprover: SHOPCODESECONDARYAPPROVER
+  field_shopcodethirdapprover: SHOPCODETHIRDAPPROVER
+  field_adddate: ADDDATE
+  field_addby: ADDBY
+  field_moddate: MODDATE
+  field_modby: MODBY
+  field_primaryapproverleave: PRIMARYAPPROVERLEAVE
+  field_primaryapproverleavefrom: PRIMARYAPPROVERLEAVEFROM
+  field_primaryapproverleaveto: PRIMARYAPPROVERLEAVETO
+  type:
+    plugin: default_value
+    default_value: approvers
+destination:
+  plugin: 'entity:shope_code_approvers'
+migration_dependencies:
+  required: {  }
+  optional: {  }

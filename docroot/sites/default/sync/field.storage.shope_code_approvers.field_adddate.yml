@@ -1,0 +1,21 @@
+uuid: 53c6e999-53f6-4f52-9c68-b7081ebdd441
+langcode: en
+status: true
+dependencies:
+  module:
+    - eck
+id: shope_code_approvers.field_adddate
+field_name: field_adddate
+entity_type: shope_code_approvers
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

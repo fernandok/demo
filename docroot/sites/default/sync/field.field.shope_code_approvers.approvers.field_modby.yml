@@ -1,0 +1,19 @@
+uuid: eb257aa8-c9d1-425a-b545-966837404164
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.shope_code_approvers.approvers
+    - field.storage.shope_code_approvers.field_modby
+id: shope_code_approvers.approvers.field_modby
+field_name: field_modby
+entity_type: shope_code_approvers
+bundle: approvers
+label: MODBY
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
