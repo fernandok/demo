@@ -41,9 +41,9 @@ class ContactDefaultWidget extends AddressDefaultWidget {
                     ':input[name="payment_information[billing_information][field_contact_address][0][address][country_code]"]' => ['value' => ''],
                 ],
             ],
-/*            '#element_validate' => array(
+            '#element_validate' => array(
                 array($this, 'contact_validate'),
-            ),*/
+            ),
         );
         return $widget;
     }
@@ -51,16 +51,24 @@ class ContactDefaultWidget extends AddressDefaultWidget {
     /**
      * {@inheritdoc}
      */
-/*    public function contact_validate($element, FormStateInterface $form_state, $form)
+    public function contact_validate($element, FormStateInterface $form_state, $form)
     {
-        $form_values = $form_state->getValues();
-        $payment_contact = $form_values['payment_information']['billing_information']['field_contact_address'][0]['address']['contact'];
-        $shipping_contact = $form_values['shipping_information']['shipping_profile']['field_contact_address'][0]['address']['contact'];
-        if (!is_numeric($payment_contact) || !is_numeric($shipping_contact)) {
-            $form_state->setError($element, t('Contact number should be numeric.'));
+        $phone_util = \libphonenumber\PhoneNumberUtil::getInstance();
+        try {
+          $msg = $phone_util->parse('9895375842', 'IN');
         }
-        if ((strlen($payment_contact) > 10) || (strlen($shipping_contact) > 10)) {
-            $form_state->setError($element, t('Contact number should be 10 digit.'));
+        catch (\libphonenumber\NumberParseException $e) {
+          $error = $e;
         }
-    }*/
+        $test = 1;
+        // $form_values = $form_state->getValues();
+        // $payment_contact = $form_values['payment_information']['billing_information']['field_contact_address'][0]['address']['contact'];
+        // $shipping_contact = $form_values['shipping_information']['shipping_profile']['field_contact_address'][0]['address']['contact'];
+        // if (!is_numeric($payment_contact) || !is_numeric($shipping_contact)) {
+        //     $form_state->setError($element, t('Contact number should be numeric.'));
+        // }
+        // if ((strlen($payment_contact) > 10) || (strlen($shipping_contact) > 10)) {
+        //     $form_state->setError($element, t('Contact number should be 10 digit.'));
+        // }
+    }
 }
