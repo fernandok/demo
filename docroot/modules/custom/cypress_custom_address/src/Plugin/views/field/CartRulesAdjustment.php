@@ -56,6 +56,8 @@ class CartRulesAdjustment extends FieldPluginBase {
    */
   public function render(ResultRow $values) {
     $order_item = $values->_relationship_entities['order_items'];
+    $order_item_total_price = $order_item->getTotalPrice();
+    $total_price = $order_item_total_price->getNumber();
     $adjustments = $order_item->getAdjustments();
     $product_variation = $order_item->getPurchasedEntity();
     $product_id = $product_variation->get('product_id')
@@ -73,10 +75,11 @@ class CartRulesAdjustment extends FieldPluginBase {
           $adjustment_price = trim($adjustment_price, "-");
           $quantity = $order_item->getQuantity();
           $adjustment_price = number_format($adjustment_price * $quantity, '2');
+          $discount_price = $total_price - $adjustment_price;
           $adjustment_currency_code = $adjustment_amount->getCurrencyCode();
           $adjustment_currency = Currency::load($adjustment_currency_code);
           $currency_symbol = $adjustment_currency->getSymbol();
-          $cart_rules_adjustment .= '<div class="adjustment-amount"><span class = "adjustment-label">' . $adjustment_label . '</span><span class = "adjustment-price"> - ' . $currency_symbol . '' . $adjustment_price . '</span></div>';
+          $cart_rules_adjustment .= '<div class="adjustment-amount"><span class = "adjustment-label">Discount Total: </span><span class = "adjustment-price">' . $currency_symbol . '' . $discount_price . '</span></div>';
         }
       }
     }
