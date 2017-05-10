@@ -1,0 +1,20 @@
+uuid: a34bd8c2-7386-4562-a0fc-f3341c36c5dd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_division_code
+  module:
+    - user
+id: user.user.field_division_code
+field_name: field_division_code
+entity_type: user
+bundle: user
+label: 'Division Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

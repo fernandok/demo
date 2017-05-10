@@ -4,6 +4,7 @@ status: true
 dependencies:
   config:
     - field.field.user.user.commerce_remote_id
+    - field.field.user.user.field_division_code
     - field.field.user.user.field_first_name
     - field.field.user.user.field_last_name
     - field.field.user.user.field_legacy_uid
@@ -24,6 +25,14 @@ content:
     region: content
   contact:
     weight: 5
+    region: content
+  field_division_code:
+    weight: 10
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   field_first_name:
     weight: 7

@@ -599,6 +599,12 @@ function get_saml_user_attributes($account) {
 //      $user_object->addRole('administrator');
 //    }
   }
+  $sso_legacy_id = $saml_attribute['username'][0];
+  $uid = explode('_', $sso_legacy_id);
+  $division_code = $uid[0];
+  $legacy_user_id = $uid[1];
+  $user_object->set("field_division_code", $division_code);
+  $user_object->set("field_legacy_uid", $legacy_user_id);
   $user_object->set("field_first_name", $saml_attribute['firstName'][0]);
   $user_object->set("field_last_name", $saml_attribute['lastName'][0]);
   $user_object->save();
