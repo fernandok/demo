@@ -11,6 +11,8 @@ use Drupal\Core\Ajax\AjaxResponse;
 use Drupal\Core\Ajax\InsertCommand;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\commerce_promotion\Entity\Coupon;
+use Drupal\Core\Ajax\HtmlCommand;
 
 /**
  * Provides a form element for redeeming a coupon.
@@ -178,6 +180,10 @@ class CouponRedemptionForm extends CommerceElementBase {
     $response->addCommand(new InsertCommand(NULL, $coupon_element));
     // To refresh the order summary
     $response->addCommand(new InsertCommand('[data-drupal-selector="edit-sidebar-order-summary"]', $summary_element));
+//    if(!empty($promotion_id)) {
+//      $text = t('Coupon Already Used');
+//      $response->addCommand(new HtmlCommand('#coupon_redemption-coupons-ajax-wrapper', $text));
+//    }
 
     return $response;
  }
@@ -246,6 +252,7 @@ class CouponRedemptionForm extends CommerceElementBase {
    */
   public static function validateForm(array &$element, FormStateInterface $form_state) {
     $triggering_element = $form_state->getTriggeringElement();
+   // $a = $triggering_element['#coupon_code'];
     if (isset($triggering_element['#coupon_code'])) {
       return;
     }
@@ -263,6 +270,20 @@ class CouponRedemptionForm extends CommerceElementBase {
     /** @var \Drupal\commerce_promotion\CouponStorageInterface $coupon_storage */
     $coupon_storage = $entity_type_manager->getStorage('commerce_promotion_coupon');
     $coupon = $coupon_storage->loadByCode($coupon_code);
+
+    $order->getItems();
+    // validation on coupon application.
+//    $code = $coupon->getCode();
+//    $query = \Drupal::database()->select('cypress_store_coupons', 'csc');
+//    $query->fields('csc', ['promotion_id']);
+//    $query->condition('csc.coupon_code', $code);
+//    $results = $query->execute()->fetchAll();
+//    $promotion_id = $results[0]->promotion_id;
+//    if(!empty($promotion_id)) {
+//      $form_state->setErrorByName($code_path, t('Promocode is already used. Please use another Promocode'));
+//      return;
+//    }
+
     if (empty($coupon)) {
       $form_state->setErrorByName($code_path, t('Coupon is invalid'));
       return;

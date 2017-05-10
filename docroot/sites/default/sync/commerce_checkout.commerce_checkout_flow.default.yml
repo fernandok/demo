@@ -6,6 +6,7 @@ dependencies:
     - commerce_payment
     - commerce_promotion
     - commerce_shipping
+    - cypress_custom_address
 _core:
   default_config_hash: pfR1VLABSnF4U0h1nL8OOZq7yFfckBmPxVOEwlY91y8
 id: default
@@ -27,21 +28,21 @@ configuration:
       remove_title: 'Remove coupon'
       single_coupon_mode: true
       step: order_information
-      weight: 1
+      weight: 3
     contact_information:
-      double_entry: true
-      step: order_information
-      weight: 2
+      double_entry: false
+      step: _disabled
+      weight: 10
     shipping_information:
       require_shipping_profile: true
       step: order_information
-      weight: 3
+      weight: 1
     payment_information:
       reuse_profile: true
       reuse_profile_label: 'My billing address is the same as my shipping address.'
       reuse_profile_default: true
       step: order_information
-      weight: 4
+      weight: 2
     review:
       step: review
       weight: 5
@@ -60,4 +61,7 @@ configuration:
     coupon:
       step: _disabled
       weight: 9
+    cypress_parts_products:
+      step: order_information
+      weight: 4
   order_summary_view: commerce_checkout_order_summary

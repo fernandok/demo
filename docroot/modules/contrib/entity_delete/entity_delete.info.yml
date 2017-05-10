@@ -1,0 +1,11 @@
+name: Entity Delete
+type: module
+description: This module provide option to delete Entity in bulk.
+# core: 8.x
+package: Custom
+
+# Information added by Drupal.org packaging script on 2017-01-04
+version: '8.x-1.2'
+core: '8.x'
+project: 'entity_delete'
+datestamp: 1483543746

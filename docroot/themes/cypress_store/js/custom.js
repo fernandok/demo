@@ -9,8 +9,8 @@
             {
                 breakpoint: 3000,
                 settings: {
-                    slidesToShow: 6,
-                    slidesToScroll: 6,
+                    slidesToShow: 4,
+                    slidesToScroll: 4,
                 }
             },
             {

@@ -337,7 +337,7 @@ class ProductRestResource extends ResourceBase {
       );
       $product->save();
     }
-    else if ($product != '' && !isset($data->operations )) {
+    else if ($product != '' && !isset($data['operations'] )) {
       //Save Product Variation
       $product_variation = $product->getVariations()[0]->id();
       $product_variation = ProductVariation::load($product_variation);
@@ -345,17 +345,17 @@ class ProductRestResource extends ResourceBase {
       $product_variation->price = new Price($price, 'USD');
       $product_variation->save();
       //Save Product
-      $product->title = $data->title;
-      $product->body->value = $data->body->value;
+      $product->title = $data['title'];
+      $product->body->value = $data['body']['value'];
       $product->body->format = 'full_html';
-      $product->field_version = $data->version;
-      $product->field_document_source = $data->document_source;
-      $product->field_alternative_addtocart_ur = $data->addtocart_url;
-      $product->field_ecn_body = $data->ecn_body;
-      $product->field_document_code = $data->document_code;
+      $product->field_version = $data['version'];
+      $product->field_document_source = $data['document_source'];
+      $product->field_alternative_addtocart_ur = $data['addtocart_url'];
+      $product->field_ecn_body = $data['ecn_body'];
+      $product->field_document_code = $data['document_code'];
       $product->variations = [$product_variation];
       $product->stores = 1;
-      $product->field_image = $data->image;
+      $product->field_image = $data['image'];
       $product->field_related_products = $product_tag_id;
       $product->field_related_applications = $applications_tag_id;
       $product->field_related_trainings = $trainings_tag_id;
@@ -366,7 +366,7 @@ class ProductRestResource extends ResourceBase {
       $product->field_related_persona = $related_persona_id;
       $product->field_related_content_section = $related_content_section_id;
       $product->field_related_content_keywords = $related_content_keywords_id;
-      $product->field_files_ref = $data->related_files;
+      $product->field_files_ref = $data['related_files'];
       $product->field_search_keywords = $search_keywords;
       $product->save();
     }
