@@ -5,7 +5,7 @@ services:
     tags:
       - { name: event_subscriber }
 
-  cypress_custom_address.cypress_order_processor:
-      class: '\Drupal\cypress_custom_address\CypressOrderProcessor'
-      tags:
-        - { name: commerce_order.order_processor, priority: 300 }
+#  cypress_custom_address.cypress_order_processor:
+#      class: '\Drupal\cypress_custom_address\CypressOrderProcessor'
+#      tags:
+#        - { name: commerce_order.order_processor, priority: 300 }
