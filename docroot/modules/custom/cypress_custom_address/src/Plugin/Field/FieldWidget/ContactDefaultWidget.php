@@ -4,6 +4,7 @@ namespace Drupal\cypress_custom_address\Plugin\Field\FieldWidget;
 
 
 use Drupal\address\Plugin\Field\FieldWidget\AddressDefaultWidget;
+use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Field\FieldItemListInterface;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -53,22 +54,28 @@ class ContactDefaultWidget extends AddressDefaultWidget {
      */
     public function contact_validate($element, FormStateInterface $form_state, $form)
     {
-        $phone_util = \libphonenumber\PhoneNumberUtil::getInstance();
-        try {
-          $msg = $phone_util->parse('9895375842', 'IN');
+      $form_values = $form_state->getValues();
+      $array_parents = $element['#parents'];
+      $element_name = implode('][', $array_parents);
+      array_pop($array_parents);
+      $telephone = NestedArray::getValue(
+        $form_values,
+        array_merge($array_parents, ['contact'])
+      );
+      $country_code = NestedArray::getValue(
+        $form_values,
+        array_merge($array_parents, ['country_code'])
+      );
+      $phone_util = \libphonenumber\PhoneNumberUtil::getInstance();
+      try {
+        $phone_util_number = $phone_util->parse($telephone, $country_code);
+        $isValid = $phone_util->isValidNumber($phone_util_number);
+        if (!$isValid) {
+          $form_state->setErrorByName($element_name, 'Please enter valid phone number.');
         }
-        catch (\libphonenumber\NumberParseException $e) {
-          $error = $e;
-        }
-        $test = 1;
-        // $form_values = $form_state->getValues();
-        // $payment_contact = $form_values['payment_information']['billing_information']['field_contact_address'][0]['address']['contact'];
-        // $shipping_contact = $form_values['shipping_information']['shipping_profile']['field_contact_address'][0]['address']['contact'];
-        // if (!is_numeric($payment_contact) || !is_numeric($shipping_contact)) {
-        //     $form_state->setError($element, t('Contact number should be numeric.'));
-        // }
-        // if ((strlen($payment_contact) > 10) || (strlen($shipping_contact) > 10)) {
-        //     $form_state->setError($element, t('Contact number should be 10 digit.'));
-        // }
+      }
+      catch (\libphonenumber\NumberParseException $e) {
+        $form_state->setErrorByName($element_name, 'Please enter valid phone number.');
+      }
     }
 }
