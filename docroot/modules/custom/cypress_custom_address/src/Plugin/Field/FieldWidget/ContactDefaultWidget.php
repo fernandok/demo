@@ -42,9 +42,9 @@ class ContactDefaultWidget extends AddressDefaultWidget {
                     ':input[name="payment_information[billing_information][field_contact_address][0][address][country_code]"]' => ['value' => ''],
                 ],
             ],
-            '#element_validate' => array(
-                array($this, 'contact_validate'),
-            ),
+            // '#element_validate' => array(
+            //     array($this, 'contact_validate'),
+            // ),
         );
         return $widget;
     }
