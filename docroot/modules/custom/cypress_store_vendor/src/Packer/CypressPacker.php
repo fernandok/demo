@@ -65,7 +65,8 @@ class CypressPacker implements PackerInterface {
       'AVNETSH' => [],
       'AVNETHK' => [],
       'DIGIKEY' => [],
-      'CML' => [],
+      'CML_A' => [],
+      'CML_B' => [],
       'HH' => [],
     ];
     // Get shipping region: China or Asia or Non-Asia.
@@ -100,17 +101,18 @@ class CypressPacker implements PackerInterface {
           'declared_value' => $order_item->getUnitPrice()
             ->multiply($order_item_quantity),
         ]);
-        $mpn = $product->getTitle();
         // Get order total.
         $order_item_total_price = (float) $order_item->getTotalPrice()
           ->getNumber();
         switch ($product_type) {
           // Product type - KIT
           case 'default':
+            $mpn = $product->get('field_document_source')->getValue()[0]['value'];
             $rules = $order_routing_config['kit'];
             break;
           // Product type - Part
           case 'part':
+            $mpn = $product->getTitle();
             $can_sample = $product->get('field_can_sample')
               ->getValue()[0]['value'];
             // Part category - Cat A
@@ -136,13 +138,23 @@ class CypressPacker implements PackerInterface {
         $last_vendor = end($vendors);
         foreach ($vendors as $vendor) {
           $inventory = $this->vendorService->getInventory($vendor, $mpn);
+          $vendor_suffix = '';
+          if ($vendor == 'CML') {
+            if ($can_sample == 1) {
+              $vendor_suffix = '_A';
+            }
+            elseif ($can_sample == 2) {
+              $vendor_suffix = '_B';
+            }
+          }
+          $vendor_index = $vendor . $vendor_suffix;
           if ($inventory > 0) {
-            $vendors_package[$vendor][] = $shipment_item;
+            $vendors_package[$vendor_index][] = $shipment_item;
             break;
           }
           // If no vendor is having inventory, need to be shipped via last vendor.
           if ($vendor == $last_vendor) {
-            $vendors_package[$vendor][] = $shipment_item;
+            $vendors_package[$vendor_index][] = $shipment_item;
           }
         }
       }
@@ -156,7 +168,10 @@ class CypressPacker implements PackerInterface {
             'title' => t("Shipment #$shipment_index"),
             'items' => $pack,
             'shipping_profile' => $shipping_profile,
-          ], 'commerce_shipment');
+            'custom_fields' => [
+              'field_vendor' => $type,
+            ]
+          ]);
           $shipment_index++;
         }
       }

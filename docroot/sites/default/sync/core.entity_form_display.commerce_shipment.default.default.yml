@@ -1,4 +1,4 @@
-uuid: e1767d21-3a07-475a-be10-c496fdd28e54
+uuid: 08a8a153-7dc3-4f30-a4d5-574c6d23bc04
 langcode: en
 status: true
 dependencies:
@@ -7,33 +7,33 @@ dependencies:
     - field.field.commerce_shipment.default.field_vendor
   module:
     - commerce_shipping
-    - state_machine
 id: commerce_shipment.default.default
 targetEntityType: commerce_shipment
 bundle: default
 mode: default
 content:
   shipping_method:
-    label: above
-    type: commerce_shipping_method
+    type: commerce_shipping_rate
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  shipping_profile:
+    type: commerce_shipping_profile
     weight: 0
     settings: {  }
-    third_party_settings: {  }
     region: content
-  state:
-    label: hidden
-    type: state_transition_form
+    third_party_settings: {  }
+  title:
+    type: string_textfield
     weight: 1
-    settings: {  }
-    third_party_settings: {  }
     region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
 hidden:
-  adjustments: true
-  amount: true
   field_vendor: true
-  items: true
-  package_type: true
-  shipping_profile: true
-  title: true
+  state: true
   tracking_code: true
   weight: true

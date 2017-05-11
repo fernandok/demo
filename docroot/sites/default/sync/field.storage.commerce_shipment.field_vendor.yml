@@ -1,0 +1,21 @@
+uuid: 3782c8c3-6d6f-45dd-8b6b-861c4b891c72
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_shipping
+id: commerce_shipment.field_vendor
+field_name: field_vendor
+entity_type: commerce_shipment
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
