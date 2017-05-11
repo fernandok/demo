@@ -90,5 +90,11 @@ assignments:
         filter_format: filter_format
     enabled: true
     weight: 7
+  alter:
+    core: true
+    uuid: true
+    user_permissions: true
+    enabled: true
+    weight: 0
 profile_name: ''
 is_profile: false
