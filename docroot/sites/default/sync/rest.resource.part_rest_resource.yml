@@ -8,10 +8,11 @@ dependencies:
     - serialization
 id: part_rest_resource
 plugin_id: part_rest_resource
-granularity: method
+granularity: resource
 configuration:
-  POST:
-    supported_formats:
-      - json
-    supported_auth:
-      - basic_auth
+  methods:
+    - POST
+  formats:
+    - json
+  authentication:
+    - basic_auth

@@ -6,8 +6,8 @@ package: Commerce
 dependencies:
   - commerce_cart
 
-# Information added by Drupal.org packaging script on 2017-05-05
-version: '8.x-1.0-alpha2'
+# Information added by Drupal.org packaging script on 2017-05-08
+version: '8.x-1.0-alpha3'
 core: '8.x'
 project: 'commerce_combine_carts'
-datestamp: 1493960300
+datestamp: 1494262689
