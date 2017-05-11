@@ -760,8 +760,14 @@ footer{
 			text-align: center;
 		}
 		.cart-info {
+
+			.cart-item-title {
+			    padding-bottom: 6px;
+			}
+
     		.cart-edit-quantity {
 			    font-weight: 600;
+			    padding-bottom: 6px;
 			}
     		.field--name-price div {
 			    display: inline-block;
@@ -780,11 +786,22 @@ footer{
 			.cart-total-price {
 			    display: inline-block;
 			    font-weight: 600;
+			    padding-bottom: 6px;
 			}
 			.cart-remove-button {
 			    display: inline-block;
 			    float: right;
 			    clear: both;
+
+			    .delete-order-item {
+				    background: #5bc0de;
+				    border-color: #5bc0de;
+
+				    &:hover,&:focus{
+				    	background: #31b0d5;
+    					border-color: #31b0d5;
+				    }
+				}
 			}
 		}
 	}
@@ -796,11 +813,11 @@ footer{
 	    }
 	}
 
-	@media only screen and (min-width: 320px) and (max-width: 767px){
+	/*@media only screen and (min-width: 320px) and (max-width: 767px){
 		.cart-info {
 			margin-top: 1em;
 		}
-	}
+	}*/
 }
 .order-total-line {
     padding: 5px;
@@ -1175,6 +1192,21 @@ footer{
 		display: none !important;
 	}
 	/*end address book*/
+	/*cart page start*/
+	.cart.cart-form .cypress-cart {
+		border-bottom: 1px solid #a8a8a8;
+		padding: 20px 0;
+	}
+	.cart-product-image {
+		padding: 0;
+    	padding-left: 7px;
+
+		img {
+		    width: 100%;
+		}
+	}
+
+	/*end cart page*/
 }
 @media only screen and (min-width: 320px) and (max-width: 360px){
 	.social-icons a {

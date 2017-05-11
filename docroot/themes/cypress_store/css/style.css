@@ -7968,6 +7968,11 @@ footer .region-footer .footer-block .footer-menu .copyright {
   background-color: #fafafa;
   line-height: 1.5em;
   /*margin: 0 0 0 8vw;*/
+  /*@media only screen and (min-width: 320px) and (max-width: 767px){
+		.cart-info {
+			margin-top: 1em;
+		}
+	}*/
 }
 .cart.cart-form .view-header {
   font-size: 20px;
@@ -7984,8 +7989,12 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .cart.cart-form .cypress-cart .cart-product-image {
   text-align: center;
 }
+.cart.cart-form .cypress-cart .cart-info .cart-item-title {
+  padding-bottom: 6px;
+}
 .cart.cart-form .cypress-cart .cart-info .cart-edit-quantity {
   font-weight: 600;
+  padding-bottom: 6px;
 }
 .cart.cart-form .cypress-cart .cart-info .field--name-price div {
   display: inline-block;
@@ -7998,22 +8007,27 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .cart.cart-form .cypress-cart .quantity-price .cart-total-price {
   display: inline-block;
   font-weight: 600;
+  padding-bottom: 6px;
 }
 .cart.cart-form .cypress-cart .quantity-price .cart-remove-button {
   display: inline-block;
   float: right;
   clear: both;
 }
+.cart.cart-form .cypress-cart .quantity-price .cart-remove-button .delete-order-item {
+  background: #5bc0de;
+  border-color: #5bc0de;
+}
+.cart.cart-form .cypress-cart .quantity-price .cart-remove-button .delete-order-item:hover,
+.cart.cart-form .cypress-cart .quantity-price .cart-remove-button .delete-order-item:focus {
+  background: #31b0d5;
+  border-color: #31b0d5;
+}
 .cart.cart-form #edit-actions.form-wrapper {
   background: #ffffff;
 }
 .cart.cart-form #edit-actions.form-wrapper .btn-info {
   margin: 20px 0;
-}
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-  .cart.cart-form .cart-info {
-    margin-top: 1em;
-  }
 }
 .order-total-line {
   padding: 5px;
@@ -8362,6 +8376,19 @@ footer .region-footer .footer-block .footer-menu .copyright {
     display: none !important;
   }
   /*end address book*/
+  /*cart page start*/
+  .cart.cart-form .cypress-cart {
+    border-bottom: 1px solid #a8a8a8;
+    padding: 20px 0;
+  }
+  .cart-product-image {
+    padding: 0;
+    padding-left: 7px;
+  }
+  .cart-product-image img {
+    width: 100%;
+  }
+  /*end cart page*/
 }
 @media only screen and (min-width: 320px) and (max-width: 360px) {
   .social-icons a {
