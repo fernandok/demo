@@ -158,22 +158,22 @@ class CypressPacker implements PackerInterface {
           }
         }
       }
+    }
 
-      $shipment_index = 1;
-      foreach ($vendors_package as $type => $pack) {
-        if (!empty($pack)) {
-          $proposed_shipments[] = new ProposedShipment([
-            'type' => $this->getShipmentType($order),
-            'order_id' => $order->id(),
-            'title' => t("Shipment #$shipment_index"),
-            'items' => $pack,
-            'shipping_profile' => $shipping_profile,
-            'custom_fields' => [
-              'field_vendor' => $type,
-            ]
-          ]);
-          $shipment_index++;
-        }
+    $shipment_index = 1;
+    foreach ($vendors_package as $type => $pack) {
+      if (!empty($pack)) {
+        $proposed_shipments[] = new ProposedShipment([
+          'type' => $this->getShipmentType($order),
+          'order_id' => $order->id(),
+          'title' => t("Shipment #$shipment_index"),
+          'items' => $pack,
+          'shipping_profile' => $shipping_profile,
+          'custom_fields' => [
+            'field_vendor' => $type,
+          ]
+        ]);
+        $shipment_index++;
       }
     }
 
