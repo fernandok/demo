@@ -5,7 +5,9 @@ dependencies:
   config:
     - commerce_product.commerce_product_type.part
     - field.field.commerce_product.part.body
+    - field.field.commerce_product.part.field_active
     - field.field.commerce_product.part.field_can_sample
+    - field.field.commerce_product.part.field_d7_node_id
     - field.field.commerce_product.part.field_development_kit
     - field.field.commerce_product.part.field_dqr_specnum_ref
     - field.field.commerce_product.part.field_eccn
@@ -13,9 +15,11 @@ dependencies:
     - field.field.commerce_product.part.field_estimated_lead_time_days
     - field.field.commerce_product.part.field_hts_code
     - field.field.commerce_product.part.field_inventory
+    - field.field.commerce_product.part.field_kit_cost
     - field.field.commerce_product.part.field_lead_ball_finish
     - field.field.commerce_product.part.field_minimum_order_quantity_moq
     - field.field.commerce_product.part.field_moisture_sensitivity_level
+    - field.field.commerce_product.part.field_mpn_cat_a_b
     - field.field.commerce_product.part.field_mpn_id
     - field.field.commerce_product.part.field_no_of_pins
     - field.field.commerce_product.part.field_order_close
@@ -41,6 +45,7 @@ dependencies:
     - field.field.commerce_product.part.field_related_persona
     - field.field.commerce_product.part.field_related_products
     - field.field.commerce_product.part.field_rohs_compliant
+    - field.field.commerce_product.part.field_samplemsrp
     - field.field.commerce_product.part.field_shipping_closed
     - field.field.commerce_product.part.field_show_price
     - field.field.commerce_product.part.field_standard_pack_quantity
@@ -64,6 +69,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     region: content
+  field_active:
+    weight: 55
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   field_can_sample:
     weight: 11
     label: above
@@ -72,6 +85,14 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_integer
+    region: content
+  field_d7_node_id:
+    weight: 56
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_development_kit:
     weight: 12
@@ -130,6 +151,14 @@ content:
     third_party_settings: {  }
     type: number_integer
     region: content
+  field_kit_cost:
+    weight: 53
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   field_lead_ball_finish:
     weight: 20
     label: above
@@ -148,6 +177,14 @@ content:
     region: content
   field_moisture_sensitivity_level:
     weight: 22
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_mpn_cat_a_b:
+    weight: 54
     label: above
     settings:
       link_to_entity: false
@@ -378,6 +415,14 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
+  field_samplemsrp:
+    weight: 52
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_shipping_closed:
     weight: 19

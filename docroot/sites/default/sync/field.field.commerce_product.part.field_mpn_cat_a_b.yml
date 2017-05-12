@@ -1,0 +1,19 @@
+uuid: 93dfaf5c-d6cb-4fe3-8653-e553951a99ec
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+    - field.storage.commerce_product.field_mpn_cat_a_b
+id: commerce_product.part.field_mpn_cat_a_b
+field_name: field_mpn_cat_a_b
+entity_type: commerce_product
+bundle: part
+label: Mpn_Cat_a_b
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

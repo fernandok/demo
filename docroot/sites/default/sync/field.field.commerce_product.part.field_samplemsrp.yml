@@ -1,0 +1,19 @@
+uuid: 29ea70ac-6057-4972-9537-fc00a7ef13b0
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+    - field.storage.commerce_product.field_samplemsrp
+id: commerce_product.part.field_samplemsrp
+field_name: field_samplemsrp
+entity_type: commerce_product
+bundle: part
+label: SampleMSRP
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string
