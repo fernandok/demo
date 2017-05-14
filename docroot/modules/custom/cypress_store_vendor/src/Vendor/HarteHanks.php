@@ -3,6 +3,7 @@
 namespace Drupal\cypress_store_vendor\Vendor;
 
 use Drupal\commerce_order\Entity\Order;
+use Drupal\commerce_order\Entity\OrderItem;
 use Drupal\commerce_product\Entity\Product;
 use Drupal\cypress_store_vendor\CypressStoreVendor;
 use SimpleSAML\Utils\XML;
@@ -51,9 +52,9 @@ class HarteHanks extends VendorBase {
     $this->orderInfoEndPoint = $this->config['dev2']['orderInfoEndPoint'];
   }
 
-  public function AddNewOrder($orderId = '244') {
-
-    $order = Order::load($orderId);
+  public function AddNewOrder($order, $shipment) {
+    $shipment_id = $shipment->get('shipment_id')->getValue()[0]['value'];
+//    $order = Order::load($orderId);
     $billingAddress = $this->getBillingAddress($order);
     $shippingAddress = $this->getShippingAddress($order);
     $createdTimeStamp = $order->get('created')->getValue();
@@ -85,12 +86,13 @@ class HarteHanks extends VendorBase {
     $sa_phone = $shippingAddress['contact'];
     $email = $order->getEmail();
 
-    $order_items = $order->getItems();
-
+//    $order_items = $order->getItems();
+    $shipment_items = $shipment->get('items')->getValue();
     $order_detail = '';
-    foreach ($order_items as $order_item) {
-      $product_quantity = (integer) $order_item->getQuantity();
-      $product_mpn_id = $this->getProductMpnId($order_item);
+    foreach ($shipment_items as $shipment_item) {
+      $product_quantity = (integer) $shipment_item['value']->getQuantity();
+      $orderItem = OrderItem::load($shipment_item['value']->getOrderItemId());
+      $product_mpn_id = $this->getProductMpnId($orderItem);
       // Construct order detail xml.
       $order_detail .= "
         <OfferOrdered>
@@ -120,7 +122,7 @@ class HarteHanks extends VendorBase {
       <AddOrder xmlns="http://sma-promail/">
          <order>
             <Header>
-               <ID>$orderId</ID>
+               <ID>$shipment_id</ID>
                <ReferenceNumber/>
                <Comments/>
             </Header>
@@ -180,6 +182,8 @@ class HarteHanks extends VendorBase {
 </soap:Envelope>
 
 XML;
+
+//    print'<pre>';print_r($parameter);print'</pre>';exit;
 
     try {
 
