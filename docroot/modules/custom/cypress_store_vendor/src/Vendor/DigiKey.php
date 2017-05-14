@@ -99,7 +99,7 @@ class DigiKey extends VendorBase {
   /**
    * Submit a new sample request for fulfillment.
    */
-  public function SubmitOrder($orderId = '146') {
+  public function submitOrder($orderId = '146', $shipment) {
 
     $shippingAdress = $this->getShippingAddress($orderId);
     $order = Order::load($orderId);

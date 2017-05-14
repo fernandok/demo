@@ -71,12 +71,12 @@ class Cml extends VendorBase {
    *
    * @param OrderInterface $order
    *   Commerce order.
-   * @param array $params
-   *   Additional parameters.
+   * @param array $shipment
+   *   Shipment details.
    *
    * @return mixed
    */
-  public function setOrder($order, $params) {
+  public function submitOrder($order, $shipment) {
     $order_id = $order->id();
     $order_date = $order->get('created')->getValue();
     $order_date = date('Y-m-d H:i:s', $order_date[0]['value']);

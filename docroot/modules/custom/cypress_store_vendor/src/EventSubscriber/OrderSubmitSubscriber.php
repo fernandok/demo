@@ -39,19 +39,14 @@ class OrderSubmitSubscriber implements EventSubscriberInterface {
    * @param GetResponseEvent $event
    */
   public function submitOrderToVendor(WorkflowTransitionEvent $event) {
-//    $orderId = $event->getEntity()->get('order_id')->getValue()[0]['value'];
     $order = $event->getEntity();
     $shipments = $event->getEntity()->get('shipments')->referencedEntities();
     if (!empty($shipments)) {
         foreach ($shipments as $shipment) {
-          if($shipment->get('field_vendor')->getValue()[0]['value'] == 'HH'){
-//            $shipping_item = $shipment->get('items')->getValue();
-            $vendor = new HarteHanks();
-            $orderSubmit = $vendor->AddNewOrder($order,$shipment);
-          }
+          $vendor = $shipment->get('field_vendor')->getValue()[0]['value'];
+          \Drupal::service('cypress_store_vendor.vendor')->submitOrder($vendor, $order, $shipment);
         }
     }
-
   }
 
 }

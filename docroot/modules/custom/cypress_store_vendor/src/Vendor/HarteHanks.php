@@ -52,7 +52,7 @@ class HarteHanks extends VendorBase {
     $this->orderInfoEndPoint = $this->config['dev2']['orderInfoEndPoint'];
   }
 
-  public function AddNewOrder($order, $shipment) {
+  public function submitOrder($order, $shipment) {
     $shipment_id = $shipment->get('shipment_id')->getValue()[0]['value'];
 //    $order = Order::load($orderId);
     $billingAddress = $this->getBillingAddress($order);

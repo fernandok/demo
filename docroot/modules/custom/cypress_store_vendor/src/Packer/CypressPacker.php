@@ -163,6 +163,7 @@ class CypressPacker implements PackerInterface {
     $shipment_index = 1;
     foreach ($vendors_package as $type => $pack) {
       if (!empty($pack)) {
+        $type = strtok($type, '_');
         $proposed_shipments[] = new ProposedShipment([
           'type' => $this->getShipmentType($order),
           'order_id' => $order->id(),
