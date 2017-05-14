@@ -1750,17 +1750,31 @@ details {
 /* Cart empty page end */
 /* Default Panel fieldset start */
 .panel-default {
-	border: 0;
 	border-radius: 0;
-	border-bottom: 1px dotted #aaa;
 	margin: 1em 0 1em 0;
 	box-shadow: none;
-
+	padding: 0.5em;
 	.panel-heading {
 		border-bottom: 2px solid rgba(0, 36, 49, 0.7);
 		background: none;
 	}
+	.panel-body .fieldset-wrapper {
+		padding-bottom: 0;
+	}
 }
 /* Default Panel fieldset end*/
+/* Fieldset start */
+fieldset {
+	legend {
+		margin: -10px -15px;
+		padding: 10px 15px;
+		border-bottom: 2px solid rgba(0, 36, 49, 0.7);
+		font-size: 16px;
+	}
+	.fieldset-wrapper {
+		padding: 15px;
+	}
+}
+/* Fieldset end */
 /* For all screens */
 

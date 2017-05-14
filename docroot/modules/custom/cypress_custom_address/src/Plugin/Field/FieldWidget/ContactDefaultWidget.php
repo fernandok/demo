@@ -42,9 +42,9 @@ class ContactDefaultWidget extends AddressDefaultWidget {
                     ':input[name="payment_information[billing_information][field_contact_address][0][address][country_code]"]' => ['value' => ''],
                 ],
             ],
-            // '#element_validate' => array(
-            //     array($this, 'contact_validate'),
-            // ),
+            '#element_validate' => array(
+                array($this, 'contact_validate'),
+            ),
         );
         return $widget;
     }
@@ -56,6 +56,11 @@ class ContactDefaultWidget extends AddressDefaultWidget {
     {
       $form_values = $form_state->getValues();
       $array_parents = $element['#parents'];
+      if (in_array('payment_information', $array_parents, TRUE)) {
+        if ($form_values['payment_information']['billing_information']['reuse_profile'] == 1) {
+          return;
+        }
+      }
       $element_name = implode('][', $array_parents);
       array_pop($array_parents);
       $telephone = NestedArray::getValue(
@@ -69,8 +74,8 @@ class ContactDefaultWidget extends AddressDefaultWidget {
       $phone_util = \libphonenumber\PhoneNumberUtil::getInstance();
       try {
         $phone_util_number = $phone_util->parse($telephone, $country_code);
-        $isValid = $phone_util->isValidNumber($phone_util_number);
-        if (!$isValid) {
+        $is_possible = $phone_util->isPossibleNumber($phone_util_number);
+        if (!$is_possible) {
           $form_state->setErrorByName($element_name, 'Please enter valid phone number.');
         }
       }

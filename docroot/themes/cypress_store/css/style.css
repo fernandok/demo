@@ -6970,13 +6970,8 @@ table .radio.form-no-label {
   color: #8a6d3b;
 }
 .form-required:after {
-  background-image: url(../images/required.svg);
-  background-size: 10px 7px;
-  content: "";
-  display: inline-block;
-  line-height: 1;
-  height: 7px;
-  width: 10px;
+  content: "*";
+  color: #E32726;
 }
 .form-actions .btn,
 .form-actions .btn-group {
@@ -8923,15 +8918,28 @@ details {
 /* Cart empty page end */
 /* Default Panel fieldset start */
 .panel-default {
-  border: 0;
   border-radius: 0;
-  border-bottom: 1px dotted #aaa;
   margin: 1em 0 1em 0;
   box-shadow: none;
+  padding: 0.5em;
 }
 .panel-default .panel-heading {
   border-bottom: 2px solid rgba(0, 36, 49, 0.7);
   background: none;
 }
+.panel-default .panel-body .fieldset-wrapper {
+  padding-bottom: 0;
+}
 /* Default Panel fieldset end*/
+/* Fieldset start */
+fieldset legend {
+  margin: -10px -15px;
+  padding: 10px 15px;
+  border-bottom: 2px solid rgba(0, 36, 49, 0.7);
+  font-size: 16px;
+}
+fieldset .fieldset-wrapper {
+  padding: 15px;
+}
+/* Fieldset end */
 /* For all screens */
