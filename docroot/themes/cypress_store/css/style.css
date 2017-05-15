@@ -7470,6 +7470,9 @@ section.main-content {
   .user-logged-in .primary-menu-list {
     padding-left: 30px !important;
   }
+  .region-header nav#block-mainmenu ul {
+    margin-left: 2em;
+  }
 }
 .region-header {
   /*search box*/
@@ -8170,6 +8173,16 @@ footer .region-footer .footer-block .footer-menu .copyright {
   border-color: #204d74;
   text-decoration: none;
 }
+.path-checkout-review .views-field-cart-product-image {
+  text-align: center;
+}
+.path-checkout-review .views-field-total-price__number {
+  text-align: center !important;
+}
+.path-checkout-review .view-footer {
+  clear: both;
+}
+/*end review page*/
 /*end address book*/
 /* start media queries for responsive*/
 /* start for mobiles*/
@@ -8872,6 +8885,12 @@ footer .region-footer .footer-block .footer-menu .copyright {
     .cart.cart-form .cypress-cart .cart-edit-quantity [class*="form-item-edit-quantity-"] input {
       width: 50%;
     }
+  }
+}
+/*style for mozilla desktop*/
+@-moz-document url-prefix() {
+  .float-labels-wrapper input.float-labels-item[type="number"] {
+    padding-bottom: 0 !important;
   }
 }
 /*Styles for IE*/

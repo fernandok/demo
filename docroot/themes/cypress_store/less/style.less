@@ -155,6 +155,9 @@ body{
 	   .user-logged-in .primary-menu-list{
 	   		padding-left: 30px !important;
 	   }  
+	   .region-header nav#block-mainmenu ul{
+	   	margin-left: 2em;
+	   }
 	}
 		
 	.region-header{
@@ -967,8 +970,19 @@ footer{
 	    border-color: #204d74;
 	    text-decoration: none;
 	}
+	.views-field-cart-product-image {
+	    text-align: center;
+	}
+	.views-field-total-price__number {
+	    text-align: center !important;
+	}
+
 	/*end Order summery page*/
+	.view-footer{
+		clear: both;
+	}
 }
+/*end review page*/
 
 /*end address book*/
 
@@ -1700,6 +1714,12 @@ footer{
 		.cart.cart-form .cypress-cart .cart-edit-quantity [class*="form-item-edit-quantity-"] input{
 			width: 50%;
 		}
+	}
+}
+/*style for mozilla desktop*/
+@-moz-document url-prefix() {
+	.float-labels-wrapper input.float-labels-item[type="number"]{
+		padding-bottom: 0 !important;
 	}
 }
 /*Styles for IE*/

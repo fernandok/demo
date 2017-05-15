@@ -165,5 +165,13 @@ $(function(){
 		// $('.path-addressbook .slick-slide').addClass('col-xs-12');
 		$('.path-addressbook .views-view-grid').addClass('col-sm-12 col-md-12 col-lg-12');
 		$('.path-addressbook .views-view-grid .views-row').addClass('col-sm-6 col-md-4 col-lg-3');
-	});
+		// review page
+		$('.path-checkout-review .table-responsive').addClass('col-md-12 col-sm-12');
+		$('.path-checkout-review .table-responsive tr > td:first-child').addClass('col-md-3 col-sm-3');
+		$('.path-checkout-review .table-responsive tr > td:nth-child(2)').addClass('col-md-1 col-sm-1');		
+		$('.path-checkout-review .table-responsive tr > td:nth-child(3)').addClass('col-md-5 col-sm-5');
+		$('.path-checkout-review .table-responsive tr > td:last-child').addClass('col-md-3 col-sm-3');
+		
+
+		});
 });
