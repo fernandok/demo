@@ -2,7 +2,9 @@
 
 namespace Drupal\cypress_store_vendor\EventSubscriber;
 
+use Drupal\cypress_store_vendor\Vendor\HarteHanks;
 use Drupal\cypress_store_vendor\Vendor\VendorBase;
+use Drupal\state_machine\Event\WorkflowTransitionEvent;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\EventDispatcher\Event;
 
@@ -36,11 +38,15 @@ class OrderSubmitSubscriber implements EventSubscriberInterface {
    *
    * @param GetResponseEvent $event
    */
-  public function submitOrderToVendor(Event $event) {
-    // $order = $event->getEntity();
-    // $vendor = VendorBase::AVNET;
-    // $avnet = new $vendor;
-    // $avnet->setOrder($order, []);
+  public function submitOrderToVendor(WorkflowTransitionEvent $event) {
+    $order = $event->getEntity();
+    $shipments = $event->getEntity()->get('shipments')->referencedEntities();
+    if (!empty($shipments)) {
+        foreach ($shipments as $shipment) {
+          $vendor = $shipment->get('field_vendor')->getValue()[0]['value'];
+          \Drupal::service('cypress_store_vendor.vendor')->submitOrder($vendor, $order, $shipment);
+        }
+    }
   }
 
 }
