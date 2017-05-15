@@ -4,6 +4,7 @@ namespace Drupal\cypress_store_vendor\Vendor;
 
 use Drupal\commerce_order\Entity\Order;
 use Drupal\commerce_order\Entity\OrderItem;
+use Drupal\commerce_product\Entity\Product;
 use Drupal\cypress_store_vendor\CypressStoreVendor;
 use Symfony\Component\Yaml\Yaml;
 
@@ -13,27 +14,27 @@ class VendorBase {
   /**
    * Vendor class for Avnet SH region.
    */
-  const AVNETSH  = '\Drupal\cypress_store_vendor\Vendor\AvnetSh';
+  const AVNETSH = '\Drupal\cypress_store_vendor\Vendor\AvnetSh';
 
   /**
    * Vendor class for Avnet SH region.
    */
-  const AVNETHK  = '\Drupal\cypress_store_vendor\Vendor\AvnetHk';
+  const AVNETHK = '\Drupal\cypress_store_vendor\Vendor\AvnetHk';
 
   /**
    * Vendor class for Digikey.
    */
-  const DIGIKEY  = '\Drupal\cypress_store_vendor\Vendor\Digikey';
+  const DIGIKEY = '\Drupal\cypress_store_vendor\Vendor\Digikey';
 
   /**
    * Vendor class for CML/OM.
    */
-  const CML  = '\Drupal\cypress_store_vendor\Vendor\Cml';
+  const CML = '\Drupal\cypress_store_vendor\Vendor\Cml';
 
   /**
    * Vendor class for CML/OM.
    */
-  const HH  = '\Drupal\cypress_store_vendor\Vendor\HarteHanks';
+  const HH = '\Drupal\cypress_store_vendor\Vendor\HarteHanks';
 
   /**
    * @var array
@@ -44,7 +45,7 @@ class VendorBase {
 
   public function __construct() {
     $config_name = strtolower(substr(strrchr(get_class($this), '\\'), 1));
-    $this->config = \Drupal::config('cypress_store_vendor.vendor_entity.' .$config_name)
+    $this->config = \Drupal::config('cypress_store_vendor.vendor_entity.' . $config_name)
       ->get('description');
     $this->config = Yaml::parse($this->config);
   }
@@ -95,7 +96,7 @@ class VendorBase {
       ->getValue();
     if ($oracle_fields_required) {
       $oracle_fields = ['oracle_customer_site_id', 'om_customer_site_use_id'];
-      foreach ($oracle_fields as $field ){
+      foreach ($oracle_fields as $field) {
         $field_value = $first_shipment->getShippingProfile()
           ->get("field_$field")
           ->getValue()[0]['value'];
@@ -133,11 +134,21 @@ class VendorBase {
    * @return string
    */
   public function getProductMpnId(OrderItem $order_item) {
+
     $product_variation = $order_item->getPurchasedEntity();
-    $mpn_id = '';
-    $product_type = $product_variation->get('type')->getValue()[0]['target_id'];
-    if ($product_type == 'part_store') {
-      $mpn_id = $product_variation->getTitle();
+    if (!empty($product_variation)) {
+      $product_id = $product_variation->get('product_id')
+        ->getValue()[0]['target_id'];
+      $product = Product::load($product_id);
+      $mpn_id = '';
+      $product_type = $product_variation->get('type')
+        ->getValue()[0]['target_id'];
+      if ($product_type == 'part_store') {
+        $mpn_id = $product_variation->getTitle();
+      }
+      elseif ($product_type == 'default') {
+        $mpn_id = $product->get('field_document_source')->getValue()[0]['value'];
+      }
     }
     return $mpn_id;
   }
@@ -147,7 +158,7 @@ class VendorBase {
    * @param $subject
    * @param $body
    */
-  public function emailVendorExceptionMessage($subject, $body){
+  public function emailVendorExceptionMessage($subject, $body) {
 
     $message = array('subject' => $subject, 'body' => $body);
     $dispatcher = \Drupal::service('event_dispatcher');

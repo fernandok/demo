@@ -1,0 +1,19 @@
+uuid: a9271c27-f677-4183-9719-985fc6b3f649
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+    - field.storage.commerce_product.field_kit_cost
+id: commerce_product.part.field_kit_cost
+field_name: field_kit_cost
+entity_type: commerce_product
+bundle: part
+label: 'Kit Cost'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

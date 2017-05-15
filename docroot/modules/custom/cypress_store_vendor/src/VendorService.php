@@ -39,14 +39,15 @@ class VendorService {
    *   Vendor name.
    * @param mixed $order
    *   Commerce order.
-   * @param array $params
-   *   Additional data.
+   * @param array $shipment
+   *   Shipment details.
    *
    * @return mixed
    */
-  public function setOrder($vendor, $order, $params = []) {
-    $vendor_handler = new $vendor();
-    return $vendor_handler->setOrder($order, $params);
+  public function submitOrder($vendor, $order, $shipment) {
+    $vendor_class_name = constant('Drupal\cypress_store_vendor\Vendor\VendorBase::' . $vendor);
+    $vendor_handler = new $vendor_class_name();
+    return $vendor_handler->submitOrder($order, $shipment);
   }
 
   /**
