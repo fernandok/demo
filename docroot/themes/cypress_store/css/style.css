@@ -8037,6 +8037,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   text-align: right;
   padding: 8px 5px;
 }
+.layout-region-checkout-secondary table td {
+  vertical-align: middle !important;
+}
 /*end checkout*/
 /*start address book*/
 .path-addressbook .view-content {
@@ -8129,6 +8132,43 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .path-addressbook .user-address-boxes-sec-3 {
   padding: 10px 0;
   margin: 5px;
+}
+/*review page*/
+.path-checkout-review {
+  /*start Order Summery page*/
+  /*end Order summery page*/
+}
+.path-checkout-review .layout-region-checkout-secondary {
+  float: none;
+  width: 100%;
+}
+.path-checkout-review .layout-region-checkout-main {
+  float: none;
+  width: 100%;
+}
+.path-checkout-review p.address {
+  text-transform: capitalize;
+  line-height: 23px;
+}
+.path-checkout-review .panel-title {
+  font-weight: bold;
+  text-transform: capitalize;
+}
+.path-checkout-review .layout-region-checkout-secondary h3 {
+  font-weight: 600;
+}
+.path-checkout-review .layout-region-checkout-footer a {
+  padding: 6px 12px 9px;
+  color: #fff;
+  background-color: #337ab7;
+  border-color: #2e6da4;
+  text-transform: capitalize;
+}
+.path-checkout-review .layout-region-checkout-footer a:hover,
+.path-checkout-review .layout-region-checkout-footer a:focus {
+  background-color: #286090;
+  border-color: #204d74;
+  text-decoration: none;
 }
 /*end address book*/
 /* start media queries for responsive*/
@@ -8846,11 +8886,25 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .not-logged-in .navbar-right {
     margin-right: 0 !important;
   }
+  .not-logged-in .user-menu ul.menu.nav li a {
+    margin-right: 0;
+    margin-left: 16px;
+  }
+  .not-logged-in .region-header .primary-menu .primary-menu-list {
+    margin-left: 2em;
+  }
   .user-logged-in .region-header .block-search-form-block {
-    left: 6.3em;
+    left: 8.5em;
   }
   .user-logged-in .region-header .primary-block {
-    padding-left: 0;
+    padding-left: 30px;
+  }
+  .not-logged-in .block-search-form-block {
+    left: 10.6em;
+  }
+  .block-search-form-block input[type='submit'] {
+    right: 24px;
+    bottom: 5px;
   }
   footer .region-footer .footer-block .footer-menu .social-icons a .social-icon {
     width: 60px;
@@ -8931,6 +8985,7 @@ details {
   padding-bottom: 0;
 }
 /* Default Panel fieldset end*/
+/*css only for safari*/
 /* Fieldset start */
 fieldset legend {
   margin: -10px -15px;
