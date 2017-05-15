@@ -45,6 +45,7 @@ class VendorBase {
 
   public function __construct() {
     $config_name = strtolower(substr(strrchr(get_class($this), '\\'), 1));
+    $config_name = preg_replace('/^(avnet)(hk|sh)$/','${1}', $config_name);
     $this->config = \Drupal::config('cypress_store_vendor.vendor_entity.' . $config_name)
       ->get('description');
     $this->config = Yaml::parse($this->config);

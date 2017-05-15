@@ -148,7 +148,7 @@ class CypressPacker implements PackerInterface {
             }
           }
           $vendor_index = $vendor . $vendor_suffix;
-          if ($inventory > 0) {
+          if ($inventory >= $order_item_quantity) {
             $vendors_package[$vendor_index][] = $shipment_item;
             break;
           }
