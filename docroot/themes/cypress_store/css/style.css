@@ -9012,6 +9012,9 @@ fieldset .fieldset-wrapper {
   text-align: center;
   margin-top: 1em;
 }
+.order-links div {
+  margin: 0 1em;
+}
 .order-links a {
   padding: 0.5em 3em;
 }
