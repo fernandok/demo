@@ -1,20 +1,27 @@
 <?php
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Drupal\commerce_order\Entity\OrderItem;
+use Drupal\commerce_product\Entity\Product;
+use Drupal\commerce_shipping\Entity\ShippingMethod;
+
+
 
 /**
  * Implements form_alter().
  */
-function cypress_custom_address_form_alter(&$form, $form_state, $form_id) {
+function cypress_custom_address_form_alter(&$form, $form_state, $form_id)
+{
   $order = \Drupal::service('commerce_cart.cart_provider')->getCartIds();
   $order_id = $order['0'];
-  if($form_id == 'views_form_commerce_cart_form_default_' . $order_id) {
+  if ($form_id == 'views_form_commerce_cart_form_default_' . $order_id) {
     array_unshift($form['actions']['checkout']['#submit'], 'anonymous_checkout_flow');
   }
 }
 
 // anonymous cart submit sunction
-function anonymous_checkout_flow() {
+function anonymous_checkout_flow()
+{
 
   if (\Drupal::currentUser()->isAnonymous()) {
     $response = new RedirectResponse('/saml_login');
@@ -22,3 +29,183 @@ function anonymous_checkout_flow() {
   }
 
 }
+
+/**
+ * Shipping Rules For Cypress Store.
+ * Implements hook_commerce_shipping_methods_alter().
+ */
+function cypress_custom_address_commerce_shipping_methods_alter(&$shipping_methods, $shipment) {
+
+  // Get Shipping Profile to get fetch the Address domestic and international.
+  $shipment_profile = $shipment->getShippingProfile();
+  $shipping_address = $shipment->getShippingProfile()
+    ->get('field_contact_address')
+    ->getValue();
+  $shipping_country_code = $shipping_address[0]['country_code'];
+
+  // Shipping methods.
+  foreach($shipping_methods as $shipping_method) {
+    $shipping_method_name = $shipping_method->getName();
+    $shipping_method_id = $shipping_method->id();
+    // Shipping method for Kits.
+    // Domestic.
+    if ($shipping_method_name == 'USA - FedEx Express Saver For Kit Domestic') {
+      $domestic_fedex_express_saver_kit = $shipping_method_id;
+    }
+    elseif ($shipping_method_name == 'USA - FedEx Overnight For Kits Domestic') {
+      $domestic_fedex_overnight_kit = $shipping_method_id;
+    }
+    // International.
+    elseif ($shipping_method_name == 'FedEx International Economy For Kits') {
+      $international_fedex_economy_kit = $shipping_method_id;
+    }
+    elseif ($shipping_method_name == 'FedEx International Priority For Kits') {
+      $international_fedex_priority_kit = $shipping_method_id;
+    }
+
+    // Shipping methods for CAT A Parts.
+    // Domestic.
+    elseif ($shipping_method_name == 'USA FedEx 2Day For Sample CAT_A') {
+      $domestic_fedex_2day_cat_a = $shipping_method_id;
+    }
+    elseif ($shipping_method_name == 'USA FedEx Standard Overnight For Sample CAT_A') {
+      $domestic_fedex_standard_overnight_cat_a = $shipping_method_id;
+    }
+    //International.
+    elseif ($shipping_method_name == 'FedEx International Economy For Sample CAT_A') {
+      $international_fedex_economy_cat_a = $shipping_method_id;
+    }
+    elseif ($shipping_method_name == 'FedEx International Priority For Sample CAT_A') {
+      $international_fedex_priority_cat_a = $shipping_method_id;
+    }
+
+    // Shipping methods for CAT B Parts.
+    // Domestic.
+    elseif ($shipping_method_name == 'USA FedEx 2Day For Sample CAT_B') {
+      $domestic_fedex_2day_cat_b = $shipping_method_id;
+    }
+    elseif ($shipping_method_name == 'USA FedEx Standard Overnight For Sample CAT_B') {
+      $domestic_fedex_standard_overnight_cat_b = $shipping_method_id;
+    }
+    // International.
+    elseif ($shipping_method_name == 'FedEx International Economy For Sample CAT_B') {
+      $international_fedex_economy_cat_b = $shipping_method_id;
+    }
+    elseif ($shipping_method_name == 'FedEx International Priority For Sample CAT_B') {
+      $international_fedex_priority_cat_b = $shipping_method_id;
+    }
+  }
+  // Get the product type from order item.
+  $shipment_order_item = $shipment->getItems();
+  $order_item_id = $shipment_order_item[0]->getOrderItemId();
+  $order_item = OrderItem::load($order_item_id);
+  $product_variation = $order_item->getPurchasedEntity();
+  if (!empty($product_variation)) {
+    $product_id = $product_variation->get('product_id')
+      ->getValue()[0]['target_id'];
+    if (!empty($product_id)) {
+      $product = Product::load($product_id);
+      $product_type = $product->get('type')->getValue()[0]['target_id'];
+    }
+    if ($product_type == 'default') {
+      if ($shipping_country_code == "US"){
+        unset(
+          $shipping_methods[$international_fedex_economy_kit],
+          $shipping_methods[$international_fedex_priority_kit],
+          $shipping_methods[$domestic_fedex_2day_cat_a],
+          $shipping_methods[$domestic_fedex_standard_overnight_cat_a],
+          $shipping_methods[$international_fedex_economy_cat_a],
+          $shipping_methods[$international_fedex_priority_cat_a],
+          $shipping_methods[$domestic_fedex_2day_cat_b],
+          $shipping_methods[$domestic_fedex_standard_overnight_cat_b],
+          $shipping_methods[$international_fedex_economy_cat_b],
+          $shipping_methods[$international_fedex_priority_cat_b]
+        );
+
+      }
+      else {
+        unset(
+          $shipping_methods[$domestic_fedex_express_saver_kit],
+          $shipping_methods[$domestic_fedex_overnight_kit],
+          $shipping_methods[$domestic_fedex_2day_cat_a],
+          $shipping_methods[$domestic_fedex_standard_overnight_cat_a],
+          $shipping_methods[$international_fedex_economy_cat_a],
+          $shipping_methods[$international_fedex_priority_cat_a],
+          $shipping_methods[$domestic_fedex_2day_cat_b],
+          $shipping_methods[$domestic_fedex_standard_overnight_cat_b],
+          $shipping_methods[$international_fedex_economy_cat_b],
+          $shipping_methods[$international_fedex_priority_cat_b]
+        );
+      }
+
+
+    } elseif ($product_type == 'part') {
+      $can_sample = $product->get('field_can_sample')
+        ->getValue()[0]['value'];
+      // CAT_A products.
+      if ($can_sample == 1) {
+        if ($shipping_country_code == 'US'){
+          unset(
+            $shipping_methods[$international_fedex_economy_cat_a],
+            $shipping_methods[$international_fedex_priority_cat_a],
+            $shipping_methods[$domestic_fedex_express_saver_kit],
+            $shipping_methods[$domestic_fedex_overnight_kit],
+            $shipping_methods[$international_fedex_economy_kit],
+            $shipping_methods[$international_fedex_priority_kit],
+            $shipping_methods[$domestic_fedex_2day_cat_b],
+            $shipping_methods[$domestic_fedex_standard_overnight_cat_b],
+            $shipping_methods[$international_fedex_economy_cat_b],
+            $shipping_methods[$international_fedex_priority_cat_b]
+          );
+        }
+        else {
+          unset(
+            $shipping_methods[$domestic_fedex_2day_cat_a],
+            $shipping_methods[$domestic_fedex_standard_overnight_cat_a],
+            $shipping_methods[$domestic_fedex_express_saver_kit],
+            $shipping_methods[$domestic_fedex_overnight_kit],
+            $shipping_methods[$international_fedex_economy_kit],
+            $shipping_methods[$international_fedex_priority_kit],
+            $shipping_methods[$domestic_fedex_2day_cat_b],
+            $shipping_methods[$domestic_fedex_standard_overnight_cat_b],
+            $shipping_methods[$international_fedex_economy_cat_b],
+            $shipping_methods[$international_fedex_priority_cat_b]
+          );
+
+        }
+
+      }
+      elseif ($can_sample == 2) {
+        if ($shipping_country_code == 'US'){
+          unset(
+            $shipping_methods[$domestic_fedex_express_saver_kit],
+            $shipping_methods[$domestic_fedex_overnight_kit],
+            $shipping_methods[$international_fedex_economy_kit],
+            $shipping_methods[$international_fedex_priority_kit],
+            $shipping_methods[$domestic_fedex_2day_cat_a],
+            $shipping_methods[$domestic_fedex_standard_overnight_cat_a],
+            $shipping_methods[$international_fedex_economy_cat_a],
+            $shipping_methods[$international_fedex_priority_cat_a],
+            $shipping_methods[$international_fedex_economy_cat_b],
+            $shipping_methods[$international_fedex_priority_cat_b]
+          );
+        }
+        else {
+          unset(
+            $shipping_methods[$domestic_fedex_express_saver_kit],
+            $shipping_methods[$domestic_fedex_overnight_kit],
+            $shipping_methods[$international_fedex_economy_kit],
+            $shipping_methods[$international_fedex_priority_kit],
+            $shipping_methods[$domestic_fedex_2day_cat_a],
+            $shipping_methods[$domestic_fedex_standard_overnight_cat_a],
+            $shipping_methods[$international_fedex_economy_cat_a],
+            $shipping_methods[$international_fedex_priority_cat_a],
+            $shipping_methods[$domestic_fedex_2day_cat_b],
+            $shipping_methods[$domestic_fedex_standard_overnight_cat_b]
+          );
+        }
+      }
+    }
+  }
+}
+
