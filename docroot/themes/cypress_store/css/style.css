@@ -8886,11 +8886,25 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .not-logged-in .navbar-right {
     margin-right: 0 !important;
   }
+  .not-logged-in .user-menu ul.menu.nav li a {
+    margin-right: 0;
+    margin-left: 16px;
+  }
+  .not-logged-in .region-header .primary-menu .primary-menu-list {
+    margin-left: 2em;
+  }
   .user-logged-in .region-header .block-search-form-block {
     left: 8.5em;
   }
   .user-logged-in .region-header .primary-block {
-    padding-left: 23px;
+    padding-left: 30px;
+  }
+  .not-logged-in .block-search-form-block {
+    left: 10.6em;
+  }
+  .block-search-form-block input[type='submit'] {
+    right: 24px;
+    bottom: 5px;
   }
   footer .region-footer .footer-block .footer-menu .social-icons a .social-icon {
     width: 60px;
