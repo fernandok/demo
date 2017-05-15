@@ -22,6 +22,9 @@ function cypress_custom_address_update_8201() {
             ],
           ],
         ],
+        'stores' => [
+          'target_id' => 1
+        ],
         'langcode' => 'en'
       ],
       'fc137f39-0c8f-4ab2-af67-1089a7ba5afb' => [
@@ -36,6 +39,9 @@ function cypress_custom_address_update_8201() {
               'currency_code' => 'USD',
             ],
           ],
+        ],
+        'stores' => [
+          'target_id' => 1
         ],
         'langcode' => 'en'
       ],
@@ -67,6 +73,9 @@ function cypress_custom_address_update_8201() {
             ],
           ],
         ],
+        'stores' => [
+          'target_id' => 1
+        ],
         'langcode' => 'en'
       ],
       'ceee9456-66bb-4aae-8aaa-0fe6bbbe1fb0' => [
@@ -97,6 +106,9 @@ function cypress_custom_address_update_8201() {
             ],
           ],
         ],
+        'stores' => [
+          'target_id' => 1
+        ],
         'langcode' => 'en'
       ],
       'c8e4077e-d5b8-4665-b3a7-b9f8db9bee9d' => [
@@ -111,6 +123,9 @@ function cypress_custom_address_update_8201() {
               'currency_code' => 'USD',
             ],
           ],
+        ],
+        'stores' => [
+          'target_id' => 1
         ],
         'langcode' => 'en'
       ],
@@ -127,6 +142,9 @@ function cypress_custom_address_update_8201() {
             ],
           ],
         ],
+        'stores' => [
+          'target_id' => 1
+        ],
         'langcode' => 'en'
       ],
       '9619c13a-d018-45ff-b948-251e6b205271' => [
@@ -141,6 +159,9 @@ function cypress_custom_address_update_8201() {
               'currency_code' => 'USD',
             ],
           ],
+        ],
+        'stores' => [
+          'target_id' => 1
         ],
         'langcode' => 'en'
       ],
@@ -172,6 +193,9 @@ function cypress_custom_address_update_8201() {
             ],
           ],
         ],
+        'stores' => [
+          'target_id' => 1
+        ],
         'langcode' => 'en'
       ],
       '42580285-4b1b-4863-a3ae-1a6291b9be9a' => [
@@ -186,6 +210,9 @@ function cypress_custom_address_update_8201() {
               'currency_code' => 'USD',
             ],
           ],
+        ],
+        'stores' => [
+          'target_id' => 1
         ],
         'langcode' => 'en'
       ],
