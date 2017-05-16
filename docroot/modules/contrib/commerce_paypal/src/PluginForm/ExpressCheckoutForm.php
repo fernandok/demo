@@ -2,7 +2,6 @@
 
 namespace Drupal\commerce_paypal\PluginForm;
 
-use Drupal\commerce_payment\Exception\PaymentGatewayException;
 use Drupal\commerce_payment\PluginForm\PaymentOffsiteForm as BasePaymentOffsiteForm;
 use Drupal\Core\Form\FormStateInterface;
 
@@ -38,8 +37,10 @@ class ExpressCheckoutForm extends BasePaymentOffsiteForm {
       $order->save();
     }
     else {
-      // If we didn't get a TOKEN from PayPal, then the $paypal_response['ACK'] == 'Failure' and we should exit the checkout process
-      throw new PaymentGatewayException('Payment request to PayPal failed. Response: ' . $paypal_response['L_SHORTMESSAGE0']);
+      return [
+        '#type' => 'inline_template',
+        '#template' => "<span>{{ 'There was an error bringing you to PayPal.'|t }}</span>",
+      ];
     }
 
     $redirect_url = $payment_gateway_plugin->getUrl();
