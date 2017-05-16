@@ -8934,6 +8934,10 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .address-boxes-sec-1 .address-icons .address-edit {
     vertical-align: top;
   }
+  #shipping-information-wrapper div.address-container-inline > .form-item {
+    margin-bottom: 15px !important;
+    vertical-align: top;
+  }
   footer .region-footer .footer-block .footer-menu .social-icons a .social-icon {
     width: 60px;
   }
