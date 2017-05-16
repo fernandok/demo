@@ -1862,11 +1862,13 @@ details {
 	_::-webkit-full-page-media, _:future, :root .region-header .primary-block{
 		padding-left: 30px;
 	}
-	_::-webkit-full-page-media, _:future, :root .region-header .block-search-form-block {
-		left: 10.6em;
-	}
-	_::-webkit-full-page-media, _:future, :root .not-logged-in .region-header .block-search-form-block {
-		left: 13em;
+	@media only screen and (min-width: 1024px){
+		_::-webkit-full-page-media, _:future, :root .region-header .block-search-form-block {
+			left: 10.6em;
+		}
+		_::-webkit-full-page-media, _:future, :root .not-logged-in .region-header .block-search-form-block {
+			left: 13em;
+		}
 	}
 	_::-webkit-full-page-media, _:future, :root .block-search-form-block input[type='submit']{
 	    right: 25px;
