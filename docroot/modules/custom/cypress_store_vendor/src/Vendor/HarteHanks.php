@@ -5,6 +5,7 @@ namespace Drupal\cypress_store_vendor\Vendor;
 use Drupal\commerce_order\Entity\Order;
 use Drupal\commerce_order\Entity\OrderItem;
 use Drupal\commerce_product\Entity\Product;
+use Drupal\commerce_shipping\Entity\Shipment;
 use Drupal\cypress_store_vendor\CypressStoreVendor;
 use SimpleSAML\Utils\XML;
 
@@ -221,11 +222,15 @@ XML;
       $content = htmlspecialchars_decode($content);
 
       $shipments = new \SimpleXMLElement($content);
-
-      return $shipments;
+      $shipmentsArray = json_decode(json_encode((array) $shipments), TRUE);
+      $shipment->setData('HH', $shipmentsArray);
+      $shipment->save();
+      $this->GetOrderInfo($shipmentsArray['OrderID']);
+//      return $shipments;
 
 
     } catch (\Exception $e) {
+
       $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : HarteHanks' . '<br/>' . 'Request Body :' . htmlentities($parameter) . '<br/>' . 'Response Body : ' . htmlentities($response);
 
       $this->emailVendorExceptionMessage('HarteHanks Get Order Info ', $body);
@@ -318,8 +323,9 @@ XML;
    * HarteHanks Get Order Info
    * @param string $HHOrderId
    */
-  public function GetOrderInfo($orderId = '123456') {
+  public function GetOrderInfo($orderId) {
 
+//    $orderId = '123456';
     $userName = $this->userName;
     $password = $this->password;
 
@@ -381,7 +387,24 @@ XML;
 
       $shipments = new \SimpleXMLElement($content);
 
-      return $shipments;
+      $status = '';
+      $trackingId = '';
+      foreach ((array) $shipments->OrdHead->Status as $key => $value) {
+        if ($value == 'true') {
+          $status = $key;
+        }
+      }
+
+      if (!empty($shipments->ShippingOrders)) {
+        $trackingId = $shipments->ShippingOrders->PickPackType->Packages->PackagesType->TrackingId;
+      }
+
+      $shipment = Shipment::load($orderId);
+
+      $shipment->setTrackingCode($trackingId);
+      $shipment->set('state', $status);
+
+      $shipment->save();
 
 
     } catch (\Exception $e) {

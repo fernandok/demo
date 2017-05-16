@@ -1,0 +1,50 @@
+{#
+/**
+ * @file
+ * Template for orders in the 'user' view mode.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the wrapper.
+ * - order: The rendered order fields.
+ *   Use 'order' to print them all, or print a subset such as
+ *   'order.order_number'. Use the following code to exclude the
+ *   printing of a given field:
+ *   @code
+ *   {{ order|without('order_number') }}
+ *   @endcode
+ * - order_entity: The order entity.
+ *
+ * @ingroup themeable
+ */
+#}
+<div{{ attributes }}>
+  <h2>Order Summary</h2>
+  <div class="customer-information order-summary col-xs-12">
+    {% if order.shipping_information %}
+      <div class="customer-information__shipping col-sm-6 col-xs-12">
+        <h4 class="field__label">{{ 'Shipping information'|t }}</h4>
+        {{ order.shipping_information }}
+      </div>
+    {% endif %}
+    {% if order.billing_information %}
+      <div class="customer-billing col-sm-6 col-xs-12">
+        <h4 class="field__label">{{ 'Billing information'|t }}</h4>
+        {{ order.billing_information }}
+      </div>
+    {% endif %}
+  </div>
+  <div class="order-information col-xs-12">
+    {{ order.completed }}
+    {{ order.placed }}
+    {{ order.order_items }}
+    {{ order.total_price }}
+  </div>
+  <div class="order-links col-xs-12">
+    <div class="col-sm-6 col-xs-12">
+      <a href="#" class="cancel-order-link btn-info">Cancel order</a>
+    </div>
+    <div class="col-sm-6 col-xs-12">
+    <a href="#" class="track-shipment-link btn-primary">Track Shipments</a>
+    </div>
+  </div>
+</div>

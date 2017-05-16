@@ -128,7 +128,6 @@ XML;
    * @return mixed
    */
   public function submitOrder($order, $shipment) {
-    $order_id = $order->id();
     $order_date = $order->get('created')->getValue();
     $order_date = date('m/d/Y H:i', $order_date[0]['value']);
     $order_type = 'P';
@@ -145,11 +144,13 @@ XML;
     $email = $order->getEmail();
     $phone = $shipping_address['contact'];
     $order_items = $order->getItems();
-    $order_items_count = 0;
     $order_detail = '';
-    foreach ($order_items as $order_item) {
-      $product_mpn_id = $this->getProductMpnId($order_item);
-      $product_quantity = $order_item->getQuantity();
+    $shipment_id = $shipment->id();
+    $shipment_items = $shipment->getItems();
+    $order_items_count = count($shipment_items);
+    foreach ($shipment_items as $shipment_item) {
+      $product_mpn_id = $shipment_item->getTitle();
+      $product_quantity = $shipment_item->getQuantity();
       // Construct order detail xml.
       $order_detail .= "&lt;detail&gt;
       &lt;partno&gt;$product_mpn_id&lt;/partno&gt;
@@ -159,7 +160,6 @@ XML;
       &lt;eccn&gt;&lt;/eccn&gt;
       &lt;eccnall&gt;&lt;/eccnall&gt;
       &lt;/detail&gt;";
-      $order_items_count++;
     }
     // TODO: Make it dynamic.
     $ship_via = 'FEDEX Express Economy 2nd Day Air';
@@ -174,7 +174,7 @@ XML;
       <gatewayRequest>
         <encodedXmlRequest>
           &lt;order&gt;
-            &lt;order_id&gt;$order_id&lt;/order_id&gt;
+            &lt;order_id&gt;$shipment_id&lt;/order_id&gt;
             &lt;order_date&gt;$order_date&lt;/order_date&gt;
             &lt;order_type&gt;$order_type&lt;/order_type&gt;
             &lt;first_name&gt;$first_name&lt;/first_name&gt;
@@ -213,7 +213,6 @@ XML;
 </soapenv:Envelope>
 XML;
 
-
     try {
       $request = $client->post(
         $this->endPoint,
@@ -239,6 +238,7 @@ XML;
     catch (\Exception $e) {
       // TODO: use custom logger.
       $error = $e->getMessage();
+      drupal_set_message($error, 'error');
     }
     return 0;
   }
