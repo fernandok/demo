@@ -155,6 +155,9 @@ body{
 	   .user-logged-in .primary-menu-list{
 	   		padding-left: 30px !important;
 	   }  
+	   .region-header nav#block-mainmenu ul{
+	   	margin-left: 2em;
+	   }
 	}
 		
 	.region-header{
@@ -967,8 +970,19 @@ footer{
 	    border-color: #204d74;
 	    text-decoration: none;
 	}
+	.views-field-cart-product-image {
+	    text-align: center;
+	}
+	.views-field-total-price__number {
+	    text-align: center !important;
+	}
+
 	/*end Order summery page*/
+	.view-footer{
+		clear: both;
+	}
 }
+/*end review page*/
 
 /*end address book*/
 
@@ -1702,6 +1716,12 @@ footer{
 		}
 	}
 }
+/*style for mozilla desktop*/
+@-moz-document url-prefix() {
+	.float-labels-wrapper input.float-labels-item[type="number"]{
+		padding-bottom: 0 !important;
+	}
+}
 /*Styles for IE*/
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
 	.region-header a.logo img{
@@ -1714,16 +1734,42 @@ footer{
 	.not-logged-in .navbar-right{
 		margin-right: 0 !important;
 	}
+	.not-logged-in .user-menu ul.menu.nav li a{
+		margin-right: 0;
+		margin-left: 16px;
+	}
+	.not-logged-in .region-header .primary-menu .primary-menu-list{
+		margin-left: 2em;
+	}
 	.user-logged-in .region-header .block-search-form-block{
 		left: 8.5em;
 	}
 	.user-logged-in .region-header .primary-block{
-		padding-left: 23px;
+		padding-left: 30px;
+	}
+	.not-logged-in .block-search-form-block {
+		left: 10.6em;
+	}
+	.block-search-form-block input[type='submit']{
+	    right: 24px;
+	    bottom: 5px;
+	}
+	.float-labels-wrapper input[type=number].float-labels-item{
+		padding: 1em 0.5em 0.25em !important;
+	}
+	.region-header .primary-menu li ul.language-menu li:last-child{
+		display: block;
+	}
+	.path-checkout .address-boxes-sec-1 .address-icons .address-edit{
+		vertical-align: top;
+	}
+	#shipping-information-wrapper div.address-container-inline > .form-item{
+		margin-bottom: 15px !important;
+		vertical-align: top;
 	}
 	footer .region-footer .footer-block .footer-menu .social-icons a .social-icon{
 		width: 60px;
 	}
-
 }
 /*End for IE*/
 /*end for desktops*/
@@ -1803,10 +1849,28 @@ details {
 }
 /* Default Panel fieldset end*/
 
-/*css only for safari*/
-@media screen and (-webkit-min-device-pixel-ratio:0){
+/*css only for safari */
+	_::-webkit-full-page-media, _:future, :root .float-labels-wrapper input[type=number].float-labels-item{
+		padding: 1.1em 0.5em 0.25em !important;
+	}
+	_::-webkit-full-page-media, _:future, :root .float-labels-wrapper.float-labels-focused .float-labels-label{
+		font-size: 12px;
+	}
+	.path-checkout .address-boxes-sec-1 .address-icons .address-edit{
+		vertical-align: top;
+	}
+	_::-webkit-full-page-media, _:future, :root .region-header .primary-block{
+		padding-left: 30px;
+	}
+	_::-webkit-full-page-media, _:future, :root .region-header .block-search-form-block {
+		left: 10.6em;
+	}
+	_::-webkit-full-page-media, _:future, :root .block-search-form-block input[type='submit']{
+	    right: 25px;
+	    bottom: 6px;
+	}
 
-}
+/*end for safari*/
 
 /* Fieldset start */
 fieldset {
@@ -1821,5 +1885,30 @@ fieldset {
 	}
 }
 /* Fieldset end */
+/* Order summary start */
+.customer-information.order-summary {
+	.panel-default, .field--name-shipping-method {
+		display: none;
+	}
+}
+.field--name-placed {
+	margin: 1em;
+}
+.order-information {
+	.views-element-container.form-group {
+		margin-bottom: 0;
+	}
+}
+.order-links {
+	text-align: center;
+	margin-top: 1em;
+	div {
+		margin: 1em 0;
+	}
+	a {
+		padding: 0.5em 3em;
+	}
+}
+/* Order summary end */
 /* For all screens */
 

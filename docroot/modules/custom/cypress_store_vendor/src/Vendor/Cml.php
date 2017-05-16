@@ -95,8 +95,8 @@ class Cml extends VendorBase {
     $country_code = $shipping_address['country_code'];
     $email = $order->getEmail();
     $phone = $shipping_address['contact'];
-    // TODO: Should be dynamic, get oracle customer site id.
-    $oracle_account_site_id = 0;
+    $oracle_account_site_id = $shipping_address['oracle_customer_site_id'];
+    $om_customer_site_use_id = $shipping_address['om_customer_site_use_id'];
     if ($country_code == 'US') {
       $operating_unit = 125;
       $responsibility_key = 'CSC_OM_SAMPLE_CLERK';
@@ -106,9 +106,13 @@ class Cml extends VendorBase {
       $responsibility_key = 'CSTI_OM_SAMPLE_CLERK';
     }
     $ship_control_code = 'Single';
-    $order_items = $order->getItems();
-    $order_items_count = 0;
+    // Process order shipment item.
+    $shipment_items = $shipment->getItems();
+    $shipment_items_count = count($shipment_items);
     $order_detail = '';
+    foreach ($shipment_items as $shipment_item) {
+      $mpn = $shipment_item->getTitle();
+    }
     $body = <<<XML
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
   <soap:Body xmlns:ns1="http://xmlns.oracle.com/pcbpel/adapter/db/APPS/XXOESAMPLEORDER/">
@@ -126,25 +130,25 @@ class Cml extends VendorBase {
         <ns1:BOOK_FLAG>T</ns1:BOOK_FLAG>
         <ns1:ADDRESS_REC>
           <ns1:CUSTOMER_SITE_ID>$oracle_account_site_id</ns1:CUSTOMER_SITE_ID>
-          <ns1:CUSTOMER_SITE_USE_ID>#Trim(oracleCustSiteUseId)#</ns1:CUSTOMER_SITE_USE_ID>
-          <ns1:CONTACT_FIRST_NAME>#xmlFormat(first_name)#</ns1:CONTACT_FIRST_NAME>
-          <ns1:CONTACT_LAST_NAME>#xmlFormat(last_name)#</ns1:CONTACT_LAST_NAME>
-          <ns1:COMPANY_NAME>#xmlFormat(company_name)#</ns1:COMPANY_NAME>
+          <ns1:CUSTOMER_SITE_USE_ID>$om_customer_site_use_id</ns1:CUSTOMER_SITE_USE_ID>
+          <ns1:CONTACT_FIRST_NAME>$first_name</ns1:CONTACT_FIRST_NAME>
+          <ns1:CONTACT_LAST_NAME>$last_name</ns1:CONTACT_LAST_NAME>
+          <ns1:COMPANY_NAME>$company_name</ns1:COMPANY_NAME>
           <ns1:ADDRESS_USE_CODE>SHIP_TO</ns1:ADDRESS_USE_CODE>
-          <ns1:ADDRESS1>#xmlFormat(address1)#</ns1:ADDRESS1>
-          <ns1:ADDRESS2>#xmlFormat(address2)#</ns1:ADDRESS2>
+          <ns1:ADDRESS1>$address1</ns1:ADDRESS1>
+          <ns1:ADDRESS2>$address2</ns1:ADDRESS2>
           <ns1:ADDRESS3></ns1:ADDRESS3>
           <ns1:ADDRESS4></ns1:ADDRESS4>
-          <ns1:CITY>#xmlFormat(city)#</ns1:CITY>
-          <ns1:STATE>#xmlFormat(state)#</ns1:STATE>
-          <ns1:POSTAL_CODE>#Trim(zipcode)#</ns1:POSTAL_CODE>
-          <ns1:PROVINCE>#xmlFormat(state)#</ns1:PROVINCE>
+          <ns1:CITY>$city</ns1:CITY>
+          <ns1:STATE>$state</ns1:STATE>
+          <ns1:POSTAL_CODE>$zipcode</ns1:POSTAL_CODE>
+          <ns1:PROVINCE>$state</ns1:PROVINCE>
           <ns1:COUNTY></ns1:COUNTY>
-          <ns1:COUNTRY>#xmlFormat(country)#</ns1:COUNTRY>
-          <ns1:EMAIL>#Trim(email)#</ns1:EMAIL>
+          <ns1:COUNTRY>$country_code</ns1:COUNTRY>
+          <ns1:EMAIL>$email</ns1:EMAIL>
           <ns1:PHONE_AREA_CODE></ns1:PHONE_AREA_CODE>
           <ns1:PHONE_COUNTRY_CODE></ns1:PHONE_COUNTRY_CODE>
-          <ns1:PHONE_NUMBER>#Trim(phone)#</ns1:PHONE_NUMBER>
+          <ns1:PHONE_NUMBER>$phone</ns1:PHONE_NUMBER>
           <ns1:PHONE_EXTENSION></ns1:PHONE_EXTENSION>
           <ns1:PHONE_LINE_TYPE></ns1:PHONE_LINE_TYPE>
           <ns1:FAX_AREA_CODE></ns1:FAX_AREA_CODE>
@@ -181,9 +185,8 @@ class Cml extends VendorBase {
           <ns1:INVOICE_TO_CONTACT_ID></ns1:INVOICE_TO_CONTACT_ID>
           <ns1:INVOICE_TO_ORG_ID></ns1:INVOICE_TO_ORG_ID>
           <ns1:INVOICING_RULE_ID></ns1:INVOICING_RULE_ID>
-          <ns1:ORDERED_DATE></ns1:ORDERED_DATE>
+          <ns1:ORDERED_DATE>$order_date</ns1:ORDERED_DATE>
 XML;
-
   }
 
   /**

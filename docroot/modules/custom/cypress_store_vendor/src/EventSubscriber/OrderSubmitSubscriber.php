@@ -44,6 +44,9 @@ class OrderSubmitSubscriber implements EventSubscriberInterface {
     if (!empty($shipments)) {
         foreach ($shipments as $shipment) {
           $vendor = $shipment->get('field_vendor')->getValue()[0]['value'];
+          if ($vendor == 'CML') {
+            continue;
+          }
           \Drupal::service('cypress_store_vendor.vendor')->submitOrder($vendor, $order, $shipment);
         }
     }
