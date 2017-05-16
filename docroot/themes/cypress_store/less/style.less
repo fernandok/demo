@@ -1754,10 +1754,22 @@ footer{
 	    right: 24px;
 	    bottom: 5px;
 	}
+	.float-labels-wrapper input[type=number].float-labels-item{
+		padding: 1em 0.5em 0.25em !important;
+	}
+	.region-header .primary-menu li ul.language-menu li:last-child{
+		display: block;
+	}
+	.path-checkout .address-boxes-sec-1 .address-icons .address-edit{
+		vertical-align: top;
+	}
+	#shipping-information-wrapper div.address-container-inline > .form-item{
+		margin-bottom: 15px !important;
+		vertical-align: top;
+	}
 	footer .region-footer .footer-block .footer-menu .social-icons a .social-icon{
 		width: 60px;
 	}
-
 }
 /*End for IE*/
 /*end for desktops*/
@@ -1837,10 +1849,36 @@ details {
 }
 /* Default Panel fieldset end*/
 
-/*css only for safari*/
-@media screen and (-webkit-min-device-pixel-ratio:0){
+/*css only for safari */
+	_::-webkit-full-page-media, _:future, :root .float-labels-wrapper input[type=number].float-labels-item{
+		padding: 1.1em 0.5em 0.25em !important;
+	}
+	_::-webkit-full-page-media, _:future, :root .float-labels-wrapper.float-labels-focused .float-labels-label{
+		font-size: 12px;
+	}
+	.path-checkout .address-boxes-sec-1 .address-icons .address-edit{
+		vertical-align: top;
+	}
+	_::-webkit-full-page-media, _:future, :root .region-header .primary-block{
+		padding-left: 30px;
+	}
+	@media only screen and (min-width: 1024px){
+		_::-webkit-full-page-media, _:future, :root .region-header .block-search-form-block {
+			left: 10.6em;
+		}
+		_::-webkit-full-page-media, _:future, :root .not-logged-in .region-header .block-search-form-block {
+			left: 13em;
+		}
+	}
+	_::-webkit-full-page-media, _:future, :root .block-search-form-block input[type='submit']{
+	    right: 25px;
+	    bottom: 6px;
+	}
+	_::-webkit-full-page-media, _:future, :root .region-header .primary-menu li ul.language-menu li:last-child{
+		display: block;
+	}
 
-}
+/*end for safari*/
 
 /* Fieldset start */
 fieldset {
