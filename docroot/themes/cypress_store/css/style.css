@@ -8931,7 +8931,7 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .region-header .primary-menu li ul.language-menu li:last-child {
     display: block;
   }
-  .address-boxes-sec-1 .address-icons .address-edit {
+  .path-checkout .address-boxes-sec-1 .address-icons .address-edit {
     vertical-align: top;
   }
   #shipping-information-wrapper div.address-container-inline > .form-item {
@@ -9018,23 +9018,6 @@ details {
 }
 /* Default Panel fieldset end*/
 /*css only for safari */
-/*@media screen and (-webkit-min-device-pixel-ratio:0){
-	.float-labels-wrapper input[type=number].float-labels-item{
-		padding: 1.1em 0.5em 0.25em !important;
-	}
-	.float-labels-wrapper.float-labels-focused .float-labels-label{
-		font-size: 12px;
-	}
-}*/
-/*@media not all and (min-resolution:.001dpcm) { @media {
-
-    .float-labels-wrapper input[type=number].float-labels-item{
-		padding: 1.1em 0.5em 0.25em !important;
-	}
-	.float-labels-wrapper.float-labels-focused .float-labels-label{
-		font-size: 12px;
-	}
-}}*/
 _::-webkit-full-page-media,
 _:future,
 :root .float-labels-wrapper input[type=number].float-labels-item {
@@ -9045,6 +9028,26 @@ _:future,
 :root .float-labels-wrapper.float-labels-focused .float-labels-label {
   font-size: 12px;
 }
+.path-checkout .address-boxes-sec-1 .address-icons .address-edit {
+  vertical-align: top;
+}
+_::-webkit-full-page-media,
+_:future,
+:root .region-header .primary-block {
+  padding-left: 30px;
+}
+_::-webkit-full-page-media,
+_:future,
+:root .region-header .block-search-form-block {
+  left: 10.6em;
+}
+_::-webkit-full-page-media,
+_:future,
+:root .block-search-form-block input[type='submit'] {
+  right: 25px;
+  bottom: 6px;
+}
+/*end for safari*/
 /* Fieldset start */
 fieldset legend {
   margin: -10px -15px;
