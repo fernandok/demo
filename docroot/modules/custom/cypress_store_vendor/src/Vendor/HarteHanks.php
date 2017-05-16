@@ -221,11 +221,14 @@ XML;
       $content = htmlspecialchars_decode($content);
 
       $shipments = new \SimpleXMLElement($content);
-
-      return $shipments;
+      $shipmentsArray   = json_decode(json_encode((array)$shipments), TRUE);
+      $shipment->setData('HH', $shipmentsArray);
+      $shipment->save();
+//      return $shipments;
 
 
     } catch (\Exception $e) {
+
       $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : HarteHanks' . '<br/>' . 'Request Body :' . htmlentities($parameter) . '<br/>' . 'Response Body : ' . htmlentities($response);
 
       $this->emailVendorExceptionMessage('HarteHanks Get Order Info ', $body);
