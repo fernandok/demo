@@ -71,7 +71,7 @@ class CypressReview extends CheckoutPaneBase implements CheckoutPaneInterface {
       '#title' => t('Part End Products'),
       '#markup' => '<b>' . 'Primary Application for Projects/Designs:' . '</b><br>' . ucwords($primary_application) . '<br>' .
         '<b>' . 'Name of your end Product/System:' . '</b><br>' . ucwords($name_of_product_system) . '<br>' .
-        '<b>' . 'Porpose of Order:' . '</b><br>' . ucwords($purpose_of_order) . '<br>' .
+        '<b>' . 'Purpose of Order:' . '</b><br>' . ucwords($purpose_of_order) . '<br>' .
         '<b>' . 'End Customer:' . '</b><br>' . ucwords($end_customer) . '<br>' ,
 
       '#suffix' => '</div>'
