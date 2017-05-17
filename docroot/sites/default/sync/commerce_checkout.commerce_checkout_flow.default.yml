@@ -20,15 +20,6 @@ configuration:
       allow_registration: false
       step: login
       weight: 0
-    coupon_redemption:
-      title: 'Coupon code'
-      description: 'Enter your coupon code to redeem a promotion.'
-      submit_title: Redeem
-      submit_message: 'Coupon applied'
-      remove_title: 'Remove coupon'
-      single_coupon_mode: true
-      step: order_information
-      weight: 3
     shipping_information:
       require_shipping_profile: true
       step: order_information
@@ -39,12 +30,21 @@ configuration:
       reuse_profile_default: true
       step: order_information
       weight: 2
+    coupon_redemption:
+      title: 'Coupon code'
+      description: 'Enter your coupon code to redeem a promotion.'
+      submit_title: Redeem
+      submit_message: 'Coupon applied'
+      remove_title: 'Remove coupon'
+      single_coupon_mode: true
+      step: order_information
+      weight: 3
     cypress_parts_products:
       step: order_information
       weight: 4
     review:
-      step: review
-      weight: 5
+      step: _disabled
+      weight: 9
     payment_process:
       capture: true
       step: payment
@@ -60,8 +60,11 @@ configuration:
     contact_information:
       double_entry: false
       step: _disabled
-      weight: 9
+      weight: 10
     coupon:
       step: _disabled
-      weight: 10
+      weight: 11
+    cypress_review:
+      step: review
+      weight: 5
   order_summary_view: commerce_checkout_order_summary
