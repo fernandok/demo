@@ -45,6 +45,7 @@ dependencies:
     - field.field.commerce_product.part.field_related_persona
     - field.field.commerce_product.part.field_related_products
     - field.field.commerce_product.part.field_rohs_compliant
+    - field.field.commerce_product.part.field_sample_category
     - field.field.commerce_product.part.field_samplemsrp
     - field.field.commerce_product.part.field_shipping_closed
     - field.field.commerce_product.part.field_show_price
@@ -415,6 +416,14 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
+  field_sample_category:
+    weight: 57
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_samplemsrp:
     weight: 52

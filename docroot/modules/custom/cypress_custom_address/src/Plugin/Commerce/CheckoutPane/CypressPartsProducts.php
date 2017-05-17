@@ -21,7 +21,7 @@ class CypressPartsProducts extends CheckoutPaneBase {
 
   /**
    * {@inheritdoc}
- */
+   */
   public function buildPaneForm(array $pane_form, FormStateInterface $form_state, array &$complete_form) {
     $order = $this->order;
     // Wrapper for Parts information pane.
@@ -72,13 +72,31 @@ class CypressPartsProducts extends CheckoutPaneBase {
         'robotics or automation' => 'Robotics / Automation',
         'university or educational use' => 'University / Educational Use'
       ];
+
       $values = $form_state->getValues();
-      $value_dropdown_first = isset($values['cypress_parts_products']['primary_application']) ? $values['cypress_parts_products']['primary_application'] : key($primary_applications_options);
+
+      if(!empty($order) && empty($values)) {
+        $primary_values = $order->get('field_primary_application')
+          ->getValue()[0]['value'];
+        $secondary_values = $order->get('field_name_product_system')
+          ->getValue()[0]['value'];
+        $purpose_of_order = $order->get('field_purpose_of_order')
+          ->getValue()[0]['value'];
+        $end_customer = $order->get('field_end_customer')->getValue()[0]['value'];
+      }
+      else {
+        $primary_values = $values['cypress_parts_products']['primary_application'];
+        $secondary_values = $values['cypress_parts_products']['dropdown_second'];
+        $purpose_of_order = $values['cypress_parts_products']['purpose_order'];
+        $end_customer = $values['cypress_parts_products']['end_customer'];
+      }
+
+      $value_dropdown_first = isset($primary_values) ? $primary_values : key($primary_applications_options);
 
       // Fields creation in pane.
       $pane_form['primary_application'] = [
         '#type' => 'select',
-        '#title' => t('Primary Application for Projects/Designs'),
+        '#title' => t('Primary Application for Projects/Designs?'),
         '#options' => $primary_applications_options,
         '#required' => TRUE,
         '#default_value' => $value_dropdown_first,
@@ -92,7 +110,7 @@ class CypressPartsProducts extends CheckoutPaneBase {
         '#title' => t('Name of your end Product/system?'),
         '#required' => TRUE,
         '#options' => $this->secondDropdownOptions($value_dropdown_first),
-        '#default_value' => isset($values['cypress_parts_products']['dropdown_second']) ? $values['cypress_parts_products']['dropdown_second'] : $name_product_system_order_value,
+        '#default_value' => isset($secondary_values) ? $secondary_values : $name_product_system_order_value,
       );
     }
     // Show only two fields
@@ -101,13 +119,13 @@ class CypressPartsProducts extends CheckoutPaneBase {
       '#title' => t('Purpose of order?'),
       '#required' => TRUE,
       '#options' => $purpose_of_order_options,
-      '#default_value' => isset($values['cypress_parts_products']['purpose_order']) ? $values['cypress_parts_products']['purpose_order'] : $purpose_order_value,
+      '#default_value' => isset($purpose_of_order) ? $purpose_of_order : $purpose_order_value,
     );
     $pane_form['end_customer'] = array(
       '#type' => 'textfield',
       '#title' => t('End Customer'),
       '#required' => TRUE,
-      '#default_value' => isset($values['cypress_parts_products']['end_customer']) ? $values['cypress_parts_products']['end_customer'] : $end_customer_order_value,
+      '#default_value' => isset($end_customer) ? $end_customer : $end_customer_order_value,
       '#maxlength' => 255,
     );
     return $pane_form;
