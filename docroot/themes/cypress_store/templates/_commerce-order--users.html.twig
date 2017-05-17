@@ -19,6 +19,7 @@
 #}
 <div{{ attributes }}>
   <h2>Order Summary</h2>
+    {{ dump(order_entity.get('field_primary_application').value) }}
   <div class="customer-information order-summary col-xs-12">
     {% if order.shipping_information %}
       <div class="customer-information__shipping col-sm-6 col-xs-12">
