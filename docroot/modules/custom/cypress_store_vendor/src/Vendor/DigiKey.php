@@ -11,39 +11,22 @@ use Drupal\cypress_store_vendor\Entity\VendorEntity;
 use Symfony\Component\Yaml\Yaml;
 
 class DigiKey extends VendorBase {
-  /**
-   * The Api End Point
-   * @var
-   */
-  protected $endPoint;
-  /**
-   * DigiKey Program Id
-   * @var
-   */
-  protected $program_id;
-  /**
-   * DigiKey Security Id
-   * @var
-   */
-  protected $security_id;
 
-
+  /**
+   * DigiKey constructor.
+   */
   public function __construct() {
     parent::__construct();
-    //Todo change dev2 to be dynamic based on envirnment
-    $this->endPoint = $this->config['dev2']['endPoint'];
-    $this->program_id = $this->config['dev2']['programId'];
-    $this->security_id = $this->config['dev2']['securityId'];
   }
 
   /**
    * Query for new shipment notifications.
    */
   public function QueryShipment() {
-    $endPoint = $this->endPoint;
+    $endPoint = $this->config['endPoint'];
     $parameters = array(
-      'program_id' => $this->program_id,
-      'security_id' => $this->security_id
+      'program_id' => $this->config['programId'],
+      'security_id' => $this->config['securityId']
     );
     try {
       $client = new \SoapClient($endPoint);
@@ -59,10 +42,10 @@ class DigiKey extends VendorBase {
    * @return mixed
    */
   public function GetShipment($shipment = []) {
-    $endPoint = $this->endPoint;
+    $endPoint = $this->config['endPoint'];
     $parameters = array(
-      'program_id' => $this->program_id,
-      'security_id' => $this->security_id,
+      'program_id' => $this->config['programId'],
+      'security_id' => $this->config['securityId'],
       'vid_number' => '',
       'order_id' => '',
       'shipment_id' => ''
@@ -81,10 +64,10 @@ class DigiKey extends VendorBase {
    * @return mixed
    */
   public function getInventory($partNumber) {
-    $endPoint = $this->endPoint;
+    $endPoint = $this->config['endPoint'];
     $parameters = array(
-      'program_id' => $this->program_id,
-      'security_id' => $this->security_id,
+      'program_id' => $this->config['programId'],
+      'security_id' => $this->config['securityId'],
       'part_number' => $partNumber
     );
     try {
@@ -106,8 +89,8 @@ class DigiKey extends VendorBase {
     $createdTimeStamp = $order->get('created')->getValue();
     $orderDate = date('Y-m-d H:i:s', $createdTimeStamp[0]['value']);
 
-    $programId = $this->program_id;
-    $security_id = $this->security_id;
+    $programId = $this->config['programId'];
+    $security_id = $this->config['securityId'];
     $vid_number = '661865';//$order->id();
     $order_date = '2017-04-11T10:41:23.000-05:00';//$orderDate;
     $order_type = 'Test';// This can be Test or Production depending on instance
@@ -153,7 +136,7 @@ class DigiKey extends VendorBase {
     $error_mode = 'SOAP';
 
 
-    $endPoint = $this->endPoint;
+    $endPoint = $this->config['endPoint'];
 
     $parameter = <<<XML
 <soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
@@ -234,7 +217,7 @@ XML;
       ); //SOAPAction: your op URL
 
       $url = 'https://test.samplecomponents.com/webservices/wssamples/service.asmx?op=SubmitOrder';
-//      $url = $this->endPoint;
+//      $url = $this->config['endPoint'];
 
       // PHP cURL  for https connection with auth
       $ch = curl_init();

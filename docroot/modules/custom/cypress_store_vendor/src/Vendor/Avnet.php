@@ -8,42 +8,10 @@ use Drupal\commerce_order\Entity\OrderInterface;
 class Avnet extends VendorBase {
 
   /**
-   * The Api region
-   * @var
-   */
-  protected $region;
-
-  /**
-   * The Api End Point
-   * @var
-   */
-  protected $endPoint;
-  /**
-   * Avnet UserName
-   * @var
-   */
-  protected $userName;
-  /**
-   * Avnet Password
-   * @var
-   */
-  protected $password;
-  /**
-   * Avnet Partner Id
-   * @var
-   */
-  protected $partnerId;
-
-  /**
    * Avnet constructor.
    */
   public function __construct() {
     parent::__construct();
-    //Todo change dev2 to be dynamic based on envirnment
-    $this->endPoint = $this->config['dev2']['endPoint'];
-    $this->userName = $this->config['dev2']['Username'];
-    $this->password = $this->config['dev2']['Password'];
-    $this->partnerId = $this->config['dev2']['partnerId'];
   }
 
   /**
@@ -60,7 +28,7 @@ class Avnet extends VendorBase {
   public function getInventory($mpn) {
     $inventory_details = \Drupal::configFactory()->getEditable('cypress_store_vendor.avnet_inventory_entity.details')->get('details');
     $inventory = unserialize($inventory_details);
-    if (isset($inventory[$this->region]) && isset($inventory[$region][$mpn])) {
+    if (isset($inventory[$this->region]) && isset($inventory[$this->region][$mpn])) {
       return ltrim($inventory[$this->region][$mpn]['quantity'], 0);
     }
     return 0;
@@ -90,9 +58,9 @@ class Avnet extends VendorBase {
 XML;
     try {
       $request = $client->post(
-        $this->endPoint,
+        $this->config['endPoint'],
         [
-          'auth' => [$this->userName, $this->password],
+          'auth' => [$this->config['Username'], $this->config['Password']],
           'body' => $body
         ]
       );
@@ -143,7 +111,6 @@ XML;
     $country_code = $shipping_address['country_code'];
     $email = $order->getEmail();
     $phone = $shipping_address['contact'];
-    $order_items = $order->getItems();
     $order_detail = '';
     $shipment_id = $shipment->id();
     $shipment_items = $shipment->getItems();
@@ -161,8 +128,8 @@ XML;
       &lt;eccnall&gt;&lt;/eccnall&gt;
       &lt;/detail&gt;";
     }
-    // TODO: Make it dynamic.
-    $ship_via = 'FEDEX Express Economy 2nd Day Air';
+
+    $ship_via = $this->getShipmentMethodRateLabel($shipment);
 
     $client = \Drupal::httpClient();
 
@@ -215,9 +182,9 @@ XML;
 
     try {
       $request = $client->post(
-        $this->endPoint,
+        $this->config['endPoint'],
         [
-          'auth' => [$this->userName, $this->password],
+          'auth' => [$this->config['Username'], $this->config['Password']],
           'body' => $body
         ]
       );
@@ -269,7 +236,7 @@ XML;
         <gatewayRequest>
           <encodedXmlRequest>
             &lt;shipment_request&gt;
-              &lt;partner_id&gt;$this->partnerId&lt;/partner_id&gt;
+              &lt;partner_id&gt;$this->config['partnerId']&lt;/partner_id&gt;
             &lt;/shipment_request&gt;
           </encodedXmlRequest>
         </gatewayRequest>
@@ -279,9 +246,9 @@ XML;
 XML;
     try {
       $request = $client->post(
-        $this->endPoint,
+        $this->config['endPoint'],
         [
-          'auth' => [$this->userName, $this->password],
+          'auth' => [$this->config['Username'], $this->config['Password']],
           'body' => $body
         ]
       );

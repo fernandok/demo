@@ -12,45 +12,10 @@ use SimpleSAML\Utils\XML;
 class HarteHanks extends VendorBase {
 
   /**
-   * The Api End Point
-   * @var
+   * Harte Hanks constructor.
    */
-  protected $endPoint;
-  /**
-   * HarteHanks UserName
-   * @var
-   */
-  protected $userName;
-  /**
-   * HarteHanks Password
-   * @var
-   */
-  protected $password;
-  /**
-   * HarteHanks Add New Order EndPoint
-   * @var
-   */
-  protected $addOrderEndPoint;
-  /**
-   * HarteHanks Get Product Availabilities EndPoint
-   * @var
-   */
-  protected $productAvailabilitiesEndPoint;
-  /**
-   * HarteHanks Get Order Info EndPoint
-   * @var
-   */
-  protected $orderInfoEndPoint;
-
   public function __construct() {
     parent::__construct();
-    //Todo change dev2 to be dynamic based on envirnment
-    $this->endPoint = $this->config['dev2']['endPoint'];
-    $this->userName = $this->config['dev2']['Username'];
-    $this->password = $this->config['dev2']['Password'];
-    $this->addOrderEndPoint = $this->config['dev2']['addOrderEndPoint'];
-    $this->productAvailabilitiesEndPoint = $this->config['dev2']['productAvailabilitiesEndPoint'];
-    $this->orderInfoEndPoint = $this->config['dev2']['orderInfoEndPoint'];
   }
 
   public function submitOrder($order, $shipment) {
@@ -61,8 +26,8 @@ class HarteHanks extends VendorBase {
     $createdTimeStamp = $order->get('created')->getValue();
     $orderDate = date('Y-m-d H:i:s', $createdTimeStamp[0]['value']);
 
-    $userName = $this->userName;
-    $password = $this->password;
+    $userName = $this->config['Username'];
+    $password = $this->config['Password'];
     $shippingOption = 'UPS Ground';
     $ba_first_name = trim($billingAddress['given_name']);
     $ba_last_name = trim($billingAddress['family_name']);
@@ -198,7 +163,7 @@ XML;
       ); //SOAPAction: your op URL
 
 //      $url = 'https://oms.harte-hanks.com/pmomsws/order.asmx?op=AddOrder';
-      $url = $this->addOrderEndPoint;
+      $url = $this->config['addOrderEndPoint'];
 
       // PHP cURL  for https connection with auth
       $ch = curl_init();
@@ -244,8 +209,8 @@ XML;
    */
   public function getInventory($mpn) {
     return 1;
-    $userName = $this->userName;
-    $password = $this->password;
+    $userName = $this->config['Username'];
+    $password = $this->config['Password'];
 
     $parameter = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
@@ -280,7 +245,7 @@ XML;
       ); //SOAPAction: your op URL
 
 //      $url = 'https://oms.harte-hanks.com/pmomsws/order.asmx?op=GetProductAvailabilities';
-      $url = $this->productAvailabilitiesEndPoint;
+      $url = $this->config['productAvailabilitiesEndPoint'];
 
       // PHP cURL  for https connection with auth
       $ch = curl_init();
@@ -326,8 +291,8 @@ XML;
   public function GetOrderInfo($orderId) {
 
 //    $orderId = '123456';
-    $userName = $this->userName;
-    $password = $this->password;
+    $userName = $this->config['Username'];
+    $password = $this->config['Password'];
 
 
     $parameter = <<<XML
@@ -362,7 +327,7 @@ XML;
       ); //SOAPAction: your op URL
 
 //      $url = 'https://oms.harte-hanks.com/pmomsws/order.asmx?op=GetOrderInfo';
-      $url = $this->orderInfoEndPoint;
+      $url = $this->config['orderInfoEndPoint'];
 
       // PHP cURL  for https connection with auth
       $ch = curl_init();

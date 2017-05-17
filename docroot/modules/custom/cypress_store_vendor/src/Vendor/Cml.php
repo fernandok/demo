@@ -8,24 +8,10 @@ use Drupal\commerce_product\Entity\Product;
 class Cml extends VendorBase {
 
   /**
-   * The Api End Point
-   * @var
-   */
-  protected $endPoint;
-  /**
-   * CML Oracle UserName
-   * @var
-   */
-  protected $userName;
-
-  /**
    * Avnet constructor.
    */
   public function __construct() {
     parent::__construct();
-    //Todo change dev2 to be dynamic based on envirnment
-    $this->endPoint = $this->config['dev2']['end_point'];
-    $this->userName = $this->config['dev2']['username'];
   }
 
   /**
@@ -80,9 +66,7 @@ class Cml extends VendorBase {
     $order_id = $order->id();
     $order_date = $order->get('created')->getValue();
     $order_date = date('Y-m-d H:i:s', $order_date[0]['value']);
-    $order_type = 'P';
-    // TODO: Make shipping method and address dynamic.
-    $ship_via = 'FEDEX Express Economy 2nd Day Air';
+    $ship_via = $this->getShipmentMethodRateLabel($shipment);
     $shipping_address = $this->getShippingAddress($order, TRUE);
     $first_name = trim($shipping_address['given_name']);
     $last_name = trim($shipping_address['family_name']);
@@ -105,10 +89,8 @@ class Cml extends VendorBase {
       $operating_unit = 429;
       $responsibility_key = 'CSTI_OM_SAMPLE_CLERK';
     }
-    $ship_control_code = 'Single';
     // Process order shipment item.
     $shipment_items = $shipment->getItems();
-    $shipment_items_count = count($shipment_items);
     $order_type_id = '';
     $order_line_items = '';
     foreach ($shipment_items as $shipment_item) {
@@ -193,7 +175,7 @@ class Cml extends VendorBase {
       <ns1:P_SESSION_INITIALIZE>T</ns1:P_SESSION_INITIALIZE>
       <ns1:P_ORDER_IN_REC>
         <ns1:P_ORG_ID>$operating_unit</ns1:P_ORG_ID>
-        <ns1:P_USER_NAME>$this->userName</ns1:P_USER_NAME>
+        <ns1:P_USER_NAME>$this->config['username']</ns1:P_USER_NAME>
         <ns1:P_RESP_KEY>$responsibility_key</ns1:P_RESP_KEY>
         <ns1:P_ORIG_REF_ID>$order_id</ns1:P_ORIG_REF_ID>
         <ns1:P_CREATED_BY_MODULE>CYSTORE</ns1:P_CREATED_BY_MODULE>
@@ -290,9 +272,8 @@ XML;
     $client = \Drupal::httpClient();
     try {
       $request = $client->post(
-        $this->endPoint,
+        $this->config['end_point'],
         [
-          'auth' => [$this->userName, $this->password],
           'body' => $body,
           'headers' => ['SOAPAction' => 'createOrder']
         ]

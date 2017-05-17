@@ -46,9 +46,11 @@ class VendorBase {
   public function __construct() {
     $config_name = strtolower(substr(strrchr(get_class($this), '\\'), 1));
     $config_name = preg_replace('/^(avnet)(hk|sh)$/','${1}', $config_name);
-    $this->config = \Drupal::config('cypress_store_vendor.vendor_entity.' . $config_name)
+    $config = \Drupal::config('cypress_store_vendor.vendor_entity.' . $config_name)
       ->get('description');
-    $this->config = Yaml::parse($this->config);
+    $config = Yaml::parse($config);
+    $environment = isset($_ENV['AH_SITE_ENVIRONMENT']) ? $_ENV['AH_SITE_ENVIRONMENT'] : 'dev2';
+    $this->config = $config[$environment];
   }
 
   /**
@@ -168,6 +170,21 @@ class VendorBase {
     // Dispatching the event through the ‘dispatch’  method,
     // Passing event name and event object ‘$event’ as parameters.
     $dispatcher->dispatch(CypressStoreVendor::ERROR, $event);
+  }
+
+  /**
+   * Method to get Shipment method identifier.
+   *
+   * @param object $shipment
+   *  Shipment object.
+   *
+   * @return mixed
+   */
+  public function getShipmentMethodRateLabel($shipment) {
+    $shipment_method = $shipment->getShippingMethod()
+      ->getPlugin()
+      ->getConfiguration();
+    return $shipment_method['rate_label'];
   }
 
 }
