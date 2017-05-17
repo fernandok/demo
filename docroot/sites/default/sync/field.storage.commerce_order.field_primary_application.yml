@@ -1,0 +1,21 @@
+uuid: 80ddf3f3-eb23-4de3-b4b1-6f82cd120461
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+id: commerce_order.field_primary_application
+field_name: field_primary_application
+entity_type: commerce_order
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
