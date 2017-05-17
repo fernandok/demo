@@ -1,0 +1,19 @@
+uuid: 60b971cf-875b-4312-8e2e-461134083bf8
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_order.commerce_order_type.default
+    - field.storage.commerce_order.field_primary_application
+id: commerce_order.default.field_primary_application
+field_name: field_primary_application
+entity_type: commerce_order
+bundle: default
+label: 'Primary Application for Projects/Designs?'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

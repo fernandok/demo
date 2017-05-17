@@ -5,6 +5,7 @@ namespace Drupal\cypress_custom_address\Plugin\Commerce\CheckoutPane;
 use Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane\CheckoutPaneBase;
 use Drupal\Component\Utility\NestedArray;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\commerce_product\Entity\Product;
 
 /**
  * Provides the completion message pane.
@@ -20,48 +21,119 @@ class CypressPartsProducts extends CheckoutPaneBase {
 
   /**
    * {@inheritdoc}
- */
+   */
   public function buildPaneForm(array $pane_form, FormStateInterface $form_state, array &$complete_form) {
+    $order = $this->order;
+    // Wrapper for Parts information pane.
     $pane_form['#wrapper_id'] = 'parts-information-wrapper';
     $pane_form['#prefix'] = '<div id="' . $pane_form['#wrapper_id'] . '">';
     $pane_form['#suffix'] = '</div>';
-    $primary_applications_options = [
-      'automotive' => 'Automotive',
-      'communications systems' => 'Communications Systems',
-      'computer systems or peripherals' => 'Computer Systems / Peripherals',
-      'consumer electronics' => 'Consumer Electronics (Audio/Video)',
-      'cypress internal usage' => 'Cypress Internal Usage',
-      'medical or healthcare' => 'Medical / Healthcare',
-      'military or aerospace' => 'Military / Aerospace',
-      'robotics or automation' => 'Robotics / Automation',
-      'university or educational use' => 'University / Educational Use'
+    $is_part_present = FALSE;
+    // Options for purpose of order field.
+    $purpose_of_order_options = [
+      'university' => 'University',
+      'training' => 'Training',
+      'cypress internal training' => 'Cypress Internal Training',
+      'one time use' => 'One Time Use',
+      'other' => 'Other'
     ];
+    // Get Value from the order object.
+    $purpose_order_value = $this->order->get('field_purpose_of_order')->getValue()[0]['value'];
+    $primary_application_order_value = $this->order->get('field_primary_application')->getValue()[0]['value'];
+    $name_product_system_order_value = $this->order->get('field_name_product_system')->getValue()[0]['value'];
+    $end_customer_order_value = $this->order->get('field_end_customer')->getValue()[0]['value'];
+    foreach ($order->getItems() as $order_item) {
+      $order_item->setAdjustments([]);
+      $product_variation = $order_item->getPurchasedEntity();
+      if (!empty($product_variation)) {
+        $product_id = $product_variation->get('product_id')
+          ->getValue()[0]['target_id'];
+        if (!empty($product_id)) {
+          $product = Product::load($product_id);
+        }
+        $product_type = $product->get('type')->getValue()[0]['target_id'];
+        if ($product_type == 'part') {
+          $is_part_present = TRUE;
+          break;
+        }
+      }
+    }
+    // Show all fields if order has parts.
+    if($is_part_present == TRUE) {
+      // Options for primary applications field.
+      $primary_applications_options = [
+        'automotive' => 'Automotive',
+        'communications systems' => 'Communications Systems',
+        'computer systems or peripherals' => 'Computer Systems / Peripherals',
+        'consumer electronics' => 'Consumer Electronics (Audio/Video)',
+        'cypress internal usage' => 'Cypress Internal Usage',
+        'medical or healthcare' => 'Medical / Healthcare',
+        'military or aerospace' => 'Military / Aerospace',
+        'robotics or automation' => 'Robotics / Automation',
+        'university or educational use' => 'University / Educational Use'
+      ];
 
-    $values = $form_state->getValues();
-    $value_dropdown_first = isset($values['cypress_parts_products']['primary_application']) ? $values['cypress_parts_products']['primary_application'] : key($primary_applications_options);
+      $values = $form_state->getValues();
 
-    $pane_form['primary_application'] = [
+      if(!empty($order) && empty($values)) {
+        $primary_values = $order->get('field_primary_application')
+          ->getValue()[0]['value'];
+        $secondary_values = $order->get('field_name_product_system')
+          ->getValue()[0]['value'];
+        $purpose_of_order = $order->get('field_purpose_of_order')
+          ->getValue()[0]['value'];
+        $end_customer = $order->get('field_end_customer')->getValue()[0]['value'];
+      }
+      else {
+        $primary_values = $values['cypress_parts_products']['primary_application'];
+        $secondary_values = $values['cypress_parts_products']['dropdown_second'];
+        $purpose_of_order = $values['cypress_parts_products']['purpose_order'];
+        $end_customer = $values['cypress_parts_products']['end_customer'];
+      }
+
+      $value_dropdown_first = isset($primary_values) ? $primary_values : key($primary_applications_options);
+
+      // Fields creation in pane.
+      $pane_form['primary_application'] = [
+        '#type' => 'select',
+        '#title' => t('Primary Application for Projects/Designs?'),
+        '#options' => $primary_applications_options,
+        '#required' => TRUE,
+        '#default_value' => $value_dropdown_first,
+        '#ajax' => [
+          'callback' => [get_class($this), 'cypressCustomAddressAjaxCallback'],
+          'wrapper' => $pane_form['#wrapper_id'],
+        ],
+      ];
+      $pane_form['dropdown_second'] = array(
+        '#type' => 'select',
+        '#title' => t('Name of your end Product/system?'),
+        '#required' => TRUE,
+        '#options' => $this->secondDropdownOptions($value_dropdown_first),
+        '#default_value' => isset($secondary_values) ? $secondary_values : $name_product_system_order_value,
+      );
+    }
+    // Show only two fields
+    $pane_form['purpose_order'] = array(
       '#type' => 'select',
-      '#title' => t('Primary Application for Projects/Designs'),
-      '#options' => $primary_applications_options,
+      '#title' => t('Purpose of order?'),
       '#required' => TRUE,
-      '#default_value' => $value_dropdown_first,
-      '#ajax' => [
-        'callback' => [get_class($this), 'cypressCustomAddressAjaxCallback'],
-        'wrapper' => $pane_form['#wrapper_id'],
-      ],
-    ];
-
-    $pane_form['dropdown_second'] = array(
-      '#type' => 'select',
-      '#title' => 'Second Dropdown',
-      '#options' => $this->secondDropdownOptions($value_dropdown_first),
-      '#default_value' => isset($values['cypress_parts_products']['dropdown_second']) ? $values['cypress_parts_products']['dropdown_second'] : '',
+      '#options' => $purpose_of_order_options,
+      '#default_value' => isset($purpose_of_order) ? $purpose_of_order : $purpose_order_value,
     );
-
+    $pane_form['end_customer'] = array(
+      '#type' => 'textfield',
+      '#title' => t('End Customer'),
+      '#required' => TRUE,
+      '#default_value' => isset($end_customer) ? $end_customer : $end_customer_order_value,
+      '#maxlength' => 255,
+    );
     return $pane_form;
   }
 
+  /*
+   * Helper function for options for Name of your end product/system field.
+   */
   public function secondDropdownOptions($key = ''){
     $options = [
       'automotive' => [
@@ -328,7 +400,6 @@ class CypressPartsProducts extends CheckoutPaneBase {
         'commercial/government product design' => 'Commercial/Government Product Design'
       ]
     ];
-
     if (isset($options[$key])) {
       return $options[$key];
     }
@@ -337,17 +408,33 @@ class CypressPartsProducts extends CheckoutPaneBase {
     }
   }
 
+  /*
+   * Ajax callback.
+   */
   public function cypressCustomAddressAjaxCallback(&$form, FormStateInterface $form_state) {
     $triggering_element = $form_state->getTriggeringElement();
     $parents = array_slice($triggering_element['#parents'], 0, -1);
     return NestedArray::getValue($form, $parents);
   }
+
   /**
    * {@inheritdoc}
    */
   public function submitPaneForm(array &$pane_form, FormStateInterface $form_state, array &$complete_form) {
+    $values = $form_state->getValue($pane_form['#parents']);
+    if (!empty($values['primary_application'])){
+      $this->order->get('field_primary_application')->value = $values['primary_application'];
+    }
+    if (!empty($values['dropdown_second'])){
+      $this->order->get('field_name_product_system')->value = $values['dropdown_second'];
 
+    }
+    if(!empty(($values['purpose_order']))){
+      $this->order->get('field_purpose_of_order')->value = $values['purpose_order'];
+    }
+    if (!empty($values['end_customer'])){
+      $this->order->get('field_end_customer')->value = $values['end_customer'];
+    }
   }
-
-
 }
+

@@ -32,6 +32,21 @@
         {{ order.billing_information }}
       </div>
     {% endif %}
+      <div class="customer-parts-info col-sm-6 col-xs-12">
+        <h4 class="field__label">{{ 'Part End Products'|t }}</h4>
+        {% if order_entity.get('field_primary_application').value %}
+          <div class="primary-application"><b>Primary Application for Projects/Designs:</b> {{ order_entity.get('field_primary_application').value }}</div>
+        {% endif %}
+        {% if order_entity.get('field_name_product_system').value %}
+          <div class="name-product-system"><b>Name of your end Product/system:</b> {{ order_entity.get('field_name_product_system').value }}</div>
+        {% endif %}
+        {% if order_entity.get('field_purpose_of_order').value %}
+          <div class="purpose-of-order"><b>Purpose of order:</b> {{ order_entity.get('field_purpose_of_order').value }}</div>
+        {% endif %}
+        {% if order_entity.get('field_end_customer').value %}
+          <div class="end-customer"><b>End Customer:</b> {{ order_entity.get('field_end_customer').value }}</div>
+        {% endif %}
+        </div>
   </div>
   <div class="order-information col-xs-12">
     {{ order.completed }}
@@ -39,11 +54,11 @@
     {{ order.order_items }}
     {{ order.total_price }}
   </div>
-  <div class="order-links col-md-6 col-sm-12 col-xs-12 pull-right">
-    <div class="col-md-6 col-sm-6 col-xs-12">
+  <div class="order-links col-xs-12">
+    <div class="col-sm-6 col-xs-12">
       <a href="#" class="cancel-order-link btn-info">Cancel order</a>
     </div>
-    <div class="col-md-6 col-sm-6 col-xs-12">
+    <div class="col-sm-6 col-xs-12">
     <a href="/shipment/{{ order_entity.getOrderNumber }}" class="track-shipment-link btn-primary">Track Shipments</a>
     </div>
   </div>

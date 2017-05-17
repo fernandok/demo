@@ -109,9 +109,79 @@ class Cml extends VendorBase {
     // Process order shipment item.
     $shipment_items = $shipment->getItems();
     $shipment_items_count = count($shipment_items);
-    $order_detail = '';
+    $order_type_id = '';
+    $order_line_items = '';
     foreach ($shipment_items as $shipment_item) {
       $mpn = $shipment_item->getTitle();
+      $quantity = $shipment_item->getQuantity();
+      $production_status_results = \Drupal::database()->query('SELECT fsr.field_status_raw_value
+        FROM `commerce_product__field_status_raw` fsr
+        join commerce_product_field_data fd
+        on fsr.entity_id = fd.product_id
+        where fd.title = :mpn', [':mpn' => $mpn]);
+      foreach ($production_status_results as $production_status_result) {
+        $status = $production_status_result->field_status_raw_value;
+        if ($responsibility_key == 'CSC_OM_SAMPLE_CLERK') {
+          if ($status == 'production') {
+            $order_type_id .= '<ns1:ORDER_TYPE_ID>1050</ns1:ORDER_TYPE_ID>';
+          }
+          else {
+            $order_type_id .= '<ns1:ORDER_TYPE_ID>1060</ns1:ORDER_TYPE_ID>';
+          }
+        }
+        else if ($responsibility_key == 'CSTI_OM_SAMPLE_CLERK') {
+          if ($status == 'production') {
+            $order_type_id .= '<ns1:ORDER_TYPE_ID>1361</ns1:ORDER_TYPE_ID>';
+          }
+          else {
+            $order_type_id .= '<ns1:ORDER_TYPE_ID>1359</ns1:ORDER_TYPE_ID>';
+          }
+        }
+        $order_line_items .= "<ns1:ORDER_LINE_TBL>
+          <ns1:ORDER_LINE_TBL_ITEM>
+            <ns1:LINE_ID></ns1:LINE_ID>
+            <ns1:LINE_NUMBER></ns1:LINE_NUMBER>
+            <ns1:HEADER_ID></ns1:HEADER_ID>
+            <ns1:INVENTORY_ITEM_ID></ns1:INVENTORY_ITEM_ID>
+            <ns1:ORDERED_ITEM>$mpn</ns1:ORDERED_ITEM>
+            <ns1:MARKETING_PART_NUM></ns1:MARKETING_PART_NUM>
+            <ns1:CUSTOMER_PART_NUM></ns1:CUSTOMER_PART_NUM>
+            <ns1:ATTRIBUTE1></ns1:ATTRIBUTE1>
+            <ns1:ATTRIBUTE10></ns1:ATTRIBUTE10>
+            <ns1:ATTRIBUTE11></ns1:ATTRIBUTE11>
+            <ns1:ATTRIBUTE12></ns1:ATTRIBUTE12>
+            <ns1:ATTRIBUTE13></ns1:ATTRIBUTE13>
+            <ns1:ATTRIBUTE14></ns1:ATTRIBUTE14>
+            <ns1:ATTRIBUTE15></ns1:ATTRIBUTE15>
+            <ns1:ATTRIBUTE16></ns1:ATTRIBUTE16>
+            <ns1:ATTRIBUTE17></ns1:ATTRIBUTE17>
+            <ns1:ATTRIBUTE18></ns1:ATTRIBUTE18>
+            <ns1:ATTRIBUTE19></ns1:ATTRIBUTE19>
+            <ns1:ATTRIBUTE2></ns1:ATTRIBUTE2>
+            <ns1:ATTRIBUTE20></ns1:ATTRIBUTE20>
+            <ns1:ATTRIBUTE3></ns1:ATTRIBUTE3>
+            <ns1:ATTRIBUTE4></ns1:ATTRIBUTE4>
+            <ns1:ATTRIBUTE5></ns1:ATTRIBUTE5>
+            <ns1:ATTRIBUTE6></ns1:ATTRIBUTE6>
+            <ns1:ATTRIBUTE7></ns1:ATTRIBUTE7>
+            <ns1:ATTRIBUTE8></ns1:ATTRIBUTE8>
+            <ns1:ATTRIBUTE9></ns1:ATTRIBUTE9>
+            <ns1:BOOKED_FLAG></ns1:BOOKED_FLAG>
+            <ns1:CANCELLED_FLAG></ns1:CANCELLED_FLAG>
+            <ns1:CUST_MODEL_SERIAL_NUMBER></ns1:CUST_MODEL_SERIAL_NUMBER>
+            <ns1:CUST_PO_NUMBER></ns1:CUST_PO_NUMBER>
+            <ns1:ORDERED_QUANTITY>$quantity</ns1:ORDERED_QUANTITY>
+            <ns1:ORDERED_QUANTITY2></ns1:ORDERED_QUANTITY2>
+            <ns1:REQUEST_DATE></ns1:REQUEST_DATE>
+            <ns1:SHIP_TO_ORG_ID></ns1:SHIP_TO_ORG_ID>
+            <ns1:SOLD_TO_ORG_ID></ns1:SOLD_TO_ORG_ID>
+            <ns1:SOLD_FROM_ORG_ID></ns1:SOLD_FROM_ORG_ID>
+            <ns1:ORDERED_ITEM_ID></ns1:ORDERED_ITEM_ID>
+            <ns1:SHIP_TO_CUSTOMER_ID></ns1:SHIP_TO_CUSTOMER_ID>
+            <ns1:UNIT_COST></ns1:UNIT_COST>
+          </ns1:ORDER_LINE_TBL_ITEM>
+        </ns1:ORDER_LINE_TBL>";
+      }
     }
     $body = <<<XML
 <soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
@@ -186,7 +256,53 @@ class Cml extends VendorBase {
           <ns1:INVOICE_TO_ORG_ID></ns1:INVOICE_TO_ORG_ID>
           <ns1:INVOICING_RULE_ID></ns1:INVOICING_RULE_ID>
           <ns1:ORDERED_DATE>$order_date</ns1:ORDERED_DATE>
+          $order_type_id
+          <ns1:ORIG_SYS_DOCUMENT_REF></ns1:ORIG_SYS_DOCUMENT_REF>
+          <ns1:PRICING_DATE></ns1:PRICING_DATE>
+          <ns1:SHIPPING_METHOD_CODE>$ship_via</ns1:SHIPPING_METHOD_CODE>
+          <ns1:SHIP_FROM_ORG_ID></ns1:SHIP_FROM_ORG_ID>
+          <ns1:SHIP_TO_CONTACT_ID></ns1:SHIP_TO_CONTACT_ID>
+          <ns1:SHIP_TO_CUSTOMER_ID>20892</ns1:SHIP_TO_CUSTOMER_ID>
+          <ns1:SHIP_TO_ORG_ID></ns1:SHIP_TO_ORG_ID>
+          <ns1:BILL_TO_ACCOUNT_NUMBER></ns1:BILL_TO_ACCOUNT_NUMBER>
+          <ns1:SOLD_FROM_ORG_ID></ns1:SOLD_FROM_ORG_ID>
+          <ns1:SOLD_TO_CONTACT_ID></ns1:SOLD_TO_CONTACT_ID>
+          <ns1:SOLD_TO_ORG_ID>20890</ns1:SOLD_TO_ORG_ID>
+          <ns1:CHANGE_REASON></ns1:CHANGE_REASON>
+          <ns1:CHANGE_COMMENTS></ns1:CHANGE_COMMENTS>
+          <ns1:CHANGE_SEQUENCE></ns1:CHANGE_SEQUENCE>
+          <ns1:SHIPPING_INSTRUCTIONS>Attn: $first_name 
+          $last_name</ns1:SHIPPING_INSTRUCTIONS>
+          <ns1:PACKING_INSTRUCTIONS></ns1:PACKING_INSTRUCTIONS>
+          <ns1:FLOW_STATUS_CODE>ENTERED</ns1:FLOW_STATUS_CODE>
+          <ns1:SOLD_TO_SITE_USE_ID></ns1:SOLD_TO_SITE_USE_ID>
+          <ns1:SHIP_TO_CUSTOMER_PARTY_ID></ns1:SHIP_TO_CUSTOMER_PARTY_ID>
+          <ns1:DELIVER_TO_CUSTOMER_PARTY_ID></ns1:DELIVER_TO_CUSTOMER_PARTY_ID>
+          <ns1:INVOICE_TO_CUSTOMER_PARTY_ID></ns1:INVOICE_TO_CUSTOMER_PARTY_ID>
+          <ns1:FOB_POINT_CODE>DDP DOCK</ns1:FOB_POINT_CODE>
+        </ns1:ORDER_HEADER_REC>
+        $order_line_items
+        </ns1:P_ORDER_IN_REC>
+      </ns1:SampleOrderInput>
+  </soap:Body>
+</soap:Envelope>        
 XML;
+    $client = \Drupal::httpClient();
+    try {
+      $request = $client->post(
+        $this->endPoint,
+        [
+          'auth' => [$this->userName, $this->password],
+          'body' => $body,
+          'headers' => ['SOAPAction' => 'createOrder']
+        ]
+      );
+
+      $response = $request->getBody();
+    }
+    catch (\Exception $e) {
+
+    }
   }
 
   /**

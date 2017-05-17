@@ -1,0 +1,21 @@
+uuid: c1b754bb-1407-489c-8ab2-d40053819a36
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_order
+id: commerce_order.field_end_customer
+field_name: field_end_customer
+entity_type: commerce_order
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
