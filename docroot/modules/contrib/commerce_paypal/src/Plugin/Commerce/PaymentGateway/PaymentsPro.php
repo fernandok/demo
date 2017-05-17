@@ -411,7 +411,7 @@ class PaymentsPro extends OnsitePaymentGatewayBase implements PaymentsProInterfa
    */
   public function createPaymentMethod(PaymentMethodInterface $payment_method, array $payment_details) {
     try {
-      $address = $payment_method->getBillingProfile()->address->first();
+      $address = $payment_method->getBillingProfile()->field_contact_address->first();
       $owner = $payment_method->getOwner();
 
       // Prepare an array of parameters to sent to the vault endpoint.

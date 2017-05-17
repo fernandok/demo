@@ -9097,6 +9097,7 @@ fieldset .fieldset-wrapper {
 }
 .order-links a {
   padding: 0.5em 3em;
+  text-decoration: none;
 }
 /* Order summary end */
 /* For all screens */
