@@ -134,15 +134,15 @@ class PartRestResource extends ResourceBase {
     $last_ship_date = explode (' ' ,$data['last_time_ship_date']);
     $last_date = $last_ship_date[0];
 
-  // For Order Close.
+    // For Order Close.
     $order_close = explode (' ' ,$data['order_close_date']);
     $o_close = $order_close[0];
 
-  // For Product obscelence date.
+    // For Product obscelence date.
     $product_notice_date = explode (' ' ,$data['product_obs_notice_date']);
     $p_notice_date = $product_notice_date[0];
 
-  // For Related Persona
+    // For Related Persona
     $related_persona = $data['part_related_persona'];
     if($related_persona != '') {
       foreach($related_persona as $persona) {
@@ -192,7 +192,6 @@ class PartRestResource extends ResourceBase {
       $related_content_keywords_id = '';
     }
 
-    // Adding multiple variants of price.
     if($data['price_five'] == '') {
       $data['price_five'] = 0;
     }
@@ -200,36 +199,91 @@ class PartRestResource extends ResourceBase {
       $data['price_six'] = 0;
     }
 
-    $price = [
-      [
-        'part_value' => $data['price_one'],
-        'weight' => 9,
-      ],
-      [
-        'part_value' => $data['price_two'],
-        'weight' => 24,
-      ],
-      [
-        'part_value' => $data['price_three'],
-        'weight' => 99,
-      ],
-      [
-        'part_value' => $data['price_four'],
-        'weight' => 249,
-      ],
-      [
-        'part_value' => $data['price_five'],
-        'weight' => 999,
-      ],
-      [
-        'part_value' => $data['price_six'],
-        'weight' => 1000,
-      ]
-    ];
-    $part = Product::load($data['node_id']);
-    $product_variation = [];
-    if($part == '' && !isset($data['operations'])) {
-      foreach($price as $key => $pri) {
+    // array for samplemsrp price.
+//    if(!empty($data['samplemsrp'])) {
+//      $samplemsrp = [
+//        [
+//          'part' => $data['samplemsrp'],
+//          'weight' => 1,
+//        ],
+//        [
+//          'part' => $data['price_one'],
+//          'weight' => 9,
+//        ],
+//        [
+//          'part' => $data['price_two'],
+//          'weight' => 24,
+//        ],
+//        [
+//          'part' => $data['price_three'],
+//          'weight' => 99,
+//        ],
+//        [
+//          'part' => $data['price_four'],
+//          'weight' => 249,
+//        ],
+//        [
+//          'part' => $data['price_five'],
+//          'weight' => 999,
+//        ],
+//        [
+//          'part' => $data['price_six'],
+//          'weight' => 1000,
+//        ]
+//      ];
+//    }
+
+    // for price coming from d7.
+   // else {
+      $price = [
+        [
+          'part_value' => $data['price_one'],
+          'weight' => 9,
+        ],
+        [
+          'part_value' => $data['price_two'],
+          'weight' => 24,
+        ],
+        [
+          'part_value' => $data['price_three'],
+          'weight' => 99,
+        ],
+        [
+          'part_value' => $data['price_four'],
+          'weight' => 249,
+        ],
+        [
+          'part_value' => $data['price_five'],
+          'weight' => 999,
+        ],
+        [
+          'part_value' => $data['price_six'],
+          'weight' => 1000,
+        ]
+      ];
+   // }
+
+    $query = \Drupal::database()
+      ->select('commerce_product__field_mpn_id', 'cpmpnid');
+    $query->fields('cpmpnid', ['entity_id']);
+    $query->condition('cpmpnid.field_mpn_id_value', $data['mpn_id']);
+    $results = $query->execute()->fetchAll();
+    foreach ($results as $result) {
+      $get_mpnid = $result->entity_id;
+    }
+
+    $query = \Drupal::database()
+      ->select('commerce_product__field_d7_node_id', 'cpnid');
+    $query->fields('cpnid', ['entity_id']);
+    $query->condition('cpnid.	field_d7_node_id_value', $data['node_id']);
+    $results = $query->execute()->fetchAll();
+    foreach ($results as $result) {
+      $get_nid = $result->entity_id;
+    }
+
+    if(empty($get_mpnid) && (!empty($get_mpnid) || empty($get_nid))) {
+      $product_variation = [];
+      foreach ($price as $key => $pri) {
         $product_variation[] = ProductVariation::create(
           array(
             'type' => 'part_store',
@@ -238,16 +292,42 @@ class PartRestResource extends ResourceBase {
           )
         );
       }
+      if ($data['can_sample'] == '2' && !empty($data['samplemsrp']) && $data['samplecategory'] != 'Kits') {
+//        foreach ($samplemsrp as $msrp) {
+//          $product_variation[] = ProductVariation::create(
+//            array(
+//              'type' => 'part_store',
+//              'price' => new Price($msrp['part'], 'USD'),
+//              'weight' => new Weight($msrp['weight'], 'kg'),
+//            )
+//          );
+//        }
+        $product_variation[] = ProductVariation::create(
+          array(
+            'type' => 'part_store',
+            'price' => new Price($data['samplemsrp'], 'USD'),
+          )
+        );
+      }
+      elseif ($data['can_sample'] == '2' && !empty($data['kit_cost']) && $data['samplecategory'] == 'Kits') {
+        $product_variation[] = ProductVariation::create(
+          array(
+            'type' => 'part_store',
+            'price' => new Price($data['kit_cost'], 'USD'),
+          )
+        );
+      }
+
       $part = Product::create(
         array(
           'type' => 'part',
-          'product_id' => $data['node_id'],
           'title' => $data['title'],
           'body' => [
             'value' => $data['body']['value'],
             'format' => 'full_html',
           ],
           'stores' => 1,
+          'field_d7_node_id' => $data['node_id'],
           'field_can_sample' => $data['can_sample'],
           'field_development_kit' => $data['development_kit'],
           'field_eccn' => $data['eccn'],
@@ -262,7 +342,7 @@ class PartRestResource extends ResourceBase {
           'field_mpn_id' => $data['mpn_id'],
           'field_no_of_pins' => $data['no_of_pins'],
           'field_order_close' => $o_close,
-          'field_order_entry_closed_date' => date('Y-m-d\TH:i:s' ,$data['order_entry_closed_date']),
+          'field_order_entry_closed_date' => date('Y-m-d\TH:i:s', $data['order_entry_closed_date']),
           'field_order_increment' => $data['order_increment'],
           'field_package' => $data['package'],
           'field_package_type' => $data['package_type'],
@@ -289,20 +369,54 @@ class PartRestResource extends ResourceBase {
           'field_part_family' => $data['part_family'],
           'field_pqr_specnum_ref' => $package_spec_ref_id,
           'field_dqr_specnum_ref' => $device_spec_ref_id,
+          'field_active' => $data['active'],
+          'field_samplemsrp' => $data['samplemsrp'],
+          'field_kit_cost' => $data['kit_cost'],
+          'field_mpn_cat_a_b' => $data['cat_a_b'],
+          'field_sample_category' => $data['samplecategory'],
           'variations' => $product_variation
         )
       );
       $part->save();
     }
-    elseif ($part != '' && !isset($data['operations'])) {
-      // Save Part Variation.
-      $part_variations = $part->getVariations();
-      foreach ($part_variations as $key => $part_variation) {
-        $variation_id = $part_variation->id();
-        $cy_part_variation = ProductVariation::load($variation_id);
-        $cy_part_variation->type = 'part_store';
-        $cy_part_variation->price = new Price($price[$key]['part_value'], 'USD');
-        $cy_part_variation->save();
+    elseif (!empty($get_mpnid || !empty($get_nid))) {
+      if(!empty($get_mpnid)) {
+        $part = Product::load($get_mpnid);
+      }
+      else {
+        $part = Product::load($get_nid);
+      }
+      if($data['can_sample'] == '2' && !empty($data['samplemsrp']) && $data['samplecategory'] != 'Kits') {
+//        $part_variations = $part->getVariations();
+//        foreach ($part_variations as $key => $part_variation) {
+//          $variation_id = $part_variation->id();
+//          $cy_part_variation = ProductVariation::load($variation_id);
+//          $cy_part_variation->type = 'part_store';
+//          $cy_part_variation->price = new Price($samplemsrp[$key]['part'], 'USD');
+//          $cy_part_variation->save();
+//        }
+        $product_variation = $part->getVariations()[0]->id();
+        $product_variation = ProductVariation::load($product_variation);
+        $product_variation->type = 'part_store';
+        $product_variation->price = new Price($data['samplemsrp'], 'USD');
+        $product_variation->save();
+      }
+      elseif ($data['can_sample'] == '2' && !empty($data['kit_cost']) && $data['samplecategory'] == 'Kits') {
+        $product_variation = $part->getVariations()[0]->id();
+        $product_variation = ProductVariation::load($product_variation);
+        $product_variation->type = 'part_store';
+        $product_variation->price = new Price($data['kit_cost'], 'USD');
+        $product_variation->save();
+      }
+      else {
+        $part_variations = $part->getVariations();
+        foreach ($part_variations as $key => $part_variation) {
+          $variation_id = $part_variation->id();
+          $cy_part_variation = ProductVariation::load($variation_id);
+          $cy_part_variation->type = 'part_store';
+          $cy_part_variation->price = new Price($price[$key]['part_value'], 'USD');
+          $cy_part_variation->save();
+        }
       }
 
       // Save Part Product.
@@ -323,7 +437,7 @@ class PartRestResource extends ResourceBase {
       $part->field_mpn_id = $data['mpn_id'];
       $part->field_no_of_pins = $data['no_of_pins'];
       $part->field_order_close = $o_close;
-      $part->field_order_entry_closed_date = date('Y-m-d\TH:i:s' ,$data['order_entry_closed_date']);
+      $part->field_order_entry_closed_date = date('Y-m-d\TH:i:s', $data['order_entry_closed_date']);
       $part->field_order_increment = $data['order_increment'];
       $part->field_package = $data['package'];
       $part->field_package_type = $data['package_type'];
@@ -350,9 +464,22 @@ class PartRestResource extends ResourceBase {
       $part->field_part_family = $data['part_family'];
       $part->field_pqr_specnum_ref = $package_spec_ref_id;
       $part->field_dqr_specnum_ref = $device_spec_ref_id;
+      $part->field_active = $data['active'];
+      $part->field_samplemsrp = $data['samplemsrp'];
+      $part->field_kit_cost = $data['kit_cost'];
+      $part->field_mpn_cat_a_b = $data['cat_a_b'];
+      $part->field_sample_category = $data['samplecategory'];
       $part->save();
     }
-    elseif($data['operations'] == 'delete') {
+    
+    elseif ($data['operations'] == 'delete') {
+      if(!empty($get_mpnid)) {
+        $id = $get_mpnid;
+      }
+      else {
+        $id = $get_nid;
+      }
+      $part = Product::load($id);
       $part->type = 'part';
       $part->delete();
     }
