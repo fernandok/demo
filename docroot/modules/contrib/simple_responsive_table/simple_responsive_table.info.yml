@@ -1,0 +1,11 @@
+name: Simple Responsive Table
+type: module
+description: Simple module to make table responsive.
+# core: 8.x
+package: Other
+
+# Information added by Drupal.org packaging script on 2016-12-16
+version: '8.x-1.0'
+core: '8.x'
+project: 'simple_responsive_table'
+datestamp: 1481898485
