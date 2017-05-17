@@ -157,7 +157,9 @@ class ShippingRateWidget extends WidgetBase implements ContainerFactoryPluginInt
       $shipping_method_storage = $this->entityTypeManager->getStorage('commerce_shipping_method');
       /** @var \Drupal\commerce_shipping\Entity\ShippingMethodInterface $shipping_method */
       $shipping_method = $shipping_method_storage->load($shipping_method_id);
+      if(!empty($shipping_method)) {
       $shipping_method->getPlugin()->selectRate($shipment, $shipping_rate);
+      }
 
       // Put delta mapping in $form_state, so that flagErrors() can use it.
       $field_state = static::getWidgetState($form['#parents'], $field_name, $form_state);

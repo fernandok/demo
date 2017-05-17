@@ -117,6 +117,7 @@ class PaymentInformation extends BillingInformationPaneBase {
     $profile_select_options = $this->getProfileSelectOptions();
     $selected_option = $pane_form['payment_method'][$default_option];
     $payment_gateway = $payment_gateways[$selected_option['#payment_gateway']];
+    if (!empty($payment_gateway)) {
     if ($payment_gateway->getPlugin() instanceof SupportsStoredPaymentMethodsInterface) {
       if (!empty($selected_option['#payment_method_type'])) {
         /** @var \Drupal\commerce_payment\PaymentMethodStorageInterface $payment_method_storage */
@@ -135,6 +136,7 @@ class PaymentInformation extends BillingInformationPaneBase {
         ];
       }
     }
+  }
     else {
       $store = $this->order->getStore();
       $billing_profile = $this->order->getBillingProfile();
