@@ -177,5 +177,10 @@ $(function(){
 		$('.path-checkout-review .view-footer .order-total-line-label').addClass('col-lg-3 col-lg-offset-7 col-md-3 col-md-offset-7 col-sm-3 col-sm-offset-7 col-xs-9');
 		$('.path-checkout-review .view-footer .order-total-line-value').addClass('col-lg-1 col-md-1 col-sm-1 col-xs-3');
 
+		// orders page(cancel & track page)
+		$('.order-information .order-total-line').parent().addClass('container-fluid');
+		$('.order-information .order-total-line').addClass('col-lg-12 col-md-12 col-sm-12 col-xs-12');
+		$('.order-information .order-total-line-label').addClass('col-lg-3 col-lg-offset-7 col-md-3 col-md-offset-7 col-sm-3 col-sm-offset-7 col-xs-9');
+		$('.order-information .order-total-line-value').addClass('col-lg-1 col-md-1 col-sm-1 col-xs-3');
 		});
 });
