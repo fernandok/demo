@@ -7883,6 +7883,12 @@ footer .region-footer .footer-block .footer-menu .copyright {
   background: none;
   box-shadow: none;
 }
+.slide-main-wrp .address-boxes-sec-1 {
+  min-height: 70px;
+}
+.slide-main-wrp .address-boxes-sec-1 .address-name {
+  width: 65%;
+}
 .block-cypress-custom-address {
   /*display: inline-block;
     float: right;
@@ -8030,12 +8036,12 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .order-total-line {
   padding: 5px;
 }
-.order-total-line-label {
-  width: 70%;
+/*.order-total-line-label {
+    width: 70%;
 }
 .order-total-line-value {
-  width: 30%;
-}
+    width: 30%;
+}*/
 .layout-region-checkout-secondary td.views-field-total-price__number {
   text-align: right;
   padding: 8px 5px;
@@ -8968,7 +8974,7 @@ details {
   border-bottom: 1px solid #DDDDDD;
 }
 .float-labels-wrapper input[type=number].float-labels-item {
-  padding: 1.5em 0.5em 0.25em;
+  padding: 1.2em 0.5em 0.25em;
 }
 .float-labels-wrapper:not(.float-labels-focused) select.float-labels-item {
   line-height: 0;

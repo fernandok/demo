@@ -4,6 +4,10 @@ status: true
 dependencies:
   config:
     - commerce_order.commerce_order_type.default
+    - field.field.commerce_order.default.field_end_customer
+    - field.field.commerce_order.default.field_name_product_system
+    - field.field.commerce_order.default.field_primary_application
+    - field.field.commerce_order.default.field_purpose_of_order
     - field.field.commerce_order.default.order_items
     - field.field.commerce_order.default.shipments
   module:
@@ -36,6 +40,38 @@ content:
       custom_date_format: ''
       timezone: ''
     third_party_settings: {  }
+    region: content
+  field_end_customer:
+    weight: 12
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_name_product_system:
+    weight: 10
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_primary_application:
+    weight: 9
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_purpose_of_order:
+    weight: 11
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   ip_address:
     label: inline
