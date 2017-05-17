@@ -996,6 +996,33 @@ footer{
 /*end review page*/
 
 /*end address book*/
+/* start orders page(cancel & tracking) */
+.order-links div:first-child {
+    text-align: right;
+}
+.order-links div:last-child {
+    text-align: left;
+}
+.order-links a{
+	text-transform: uppercase;
+    font-weight: bold;
+}
+.order-links a.cancel-order-link{
+	padding: 0.5em 3.9em;
+}
+.customer-information__shipping h4 {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.customer-billing h4 {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+/* end orders page(cancel & tracking) */
+
+
+
 
 /* start media queries for responsive*/
 /* start for mobiles*/
@@ -1099,12 +1126,7 @@ footer{
 			}
 		}
 	}
-	/*.region-header nav#block-mainmenu ul{
-		float: left !important;
-	}
-	.main-menu .menu.nav li:first-child ul li:last-child ul {
-	    float: none !important;
-	}*/
+	
 	.main-menu .menu.nav li ul li ul {
 	    float: none !important;
 	}
@@ -1165,12 +1187,7 @@ footer{
 		left: 2em;
 		top: 0.7em;
 	}
-	/*.not-logged-in .region-header .block-search-form-block{
-		top: 6em;
-	}
-	.not-logged-in.path-user.has-glyphicons .region-header .block-search-form-block{
-		top: 5.35em;
-	}*/
+	
 	.user-logged-in .region-header .block-search-form-block{
 		top: 0em;
 	}
@@ -1269,8 +1286,12 @@ footer{
 		    width: 100%;
 		}
 	}
-
 	/*end cart page*/
+	/*start orders (cancel & track)*/
+	.order-links div {
+	    text-align: center !important;
+	}
+	/*end orders(cancel & track)*/
 }
 @media only screen and (min-width: 320px) and (max-width: 360px){
 	.social-icons a {
@@ -1322,48 +1343,7 @@ footer{
 		margin-left: 0 !important;
 	}
 }
-/*addressbook responsive*/
-/*@media only screen and (min-width: 320px) and (max-width: 599px){
-	.path-addressbook .views-view-grid .views-row{
-		width: 100%;
-		margin-left: 0;
-	}
-}*/
-/*@media only screen and (min-width: 600px) and (max-width: 767px){
-	.path-addressbook .views-view-grid .views-row{
-		margin-left: 1.4vw;
-	}
-}
-@media only screen and (min-width: 600px) and (max-width: 1023px){
-	.path-addressbook .views-view-grid .views-row{
-		width: 47%;
-	}
-}
-@media only screen and (min-width: 1024px) and (max-width: 1439px){
-	.path-addressbook .views-view-grid .views-row{
-		width: 31%;
-	}
-}
-@media only screen and (min-width: 1440px) and (max-width: 1699px){
-	.path-addressbook .views-view-grid .views-row{
-		width: 23%;
-	}
-}
-@media only screen and (min-width: 1700px) {
-	.path-addressbook .views-view-grid .views-row{
-		width: 18%;
-	}
-	.path-addressbook .views-view-grid .views-row{
-		margin-left: 1.2vw;
-	}
-}*/
 
-/*end address book responsive*/
-/*@media (width: 414px){
-	a.user-icon{
-		left: 12%;
-	}
-}*/
 /*start for tablets*/
 @media only screen and (min-width: 768px) and (max-width: 1023px){
 	.region-header .block-search-form-block{
@@ -1644,7 +1624,14 @@ footer{
 
 }
 /*end for tablets*/
-
+@media only screen and (min-width: 992px) and (max-width: 1199px){
+	.order-links a{
+		padding: 0.5em 2em !important;
+	}
+	.order-links a.cancel-order-link {
+	    padding: 0.5em 2.9em !important;
+	}
+}
 /*start for desktops*/
 @media only screen and (min-width: 1024px){
 	.menu-drop{
