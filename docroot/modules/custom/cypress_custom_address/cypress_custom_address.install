@@ -15,7 +15,7 @@ function cypress_custom_address_update_8201() {
         'plugin' => [
           'target_plugin_id' => 'flat_rate',
           'target_plugin_configuration' => [
-            'rate_label' => 'USA - FedEx Express Saver',
+            'rate_label' => 'FedEx - Express Saver',
             'rate_amount' => [
               'number' => '12',
               'currency_code' => 'USD',
@@ -33,7 +33,7 @@ function cypress_custom_address_update_8201() {
         'plugin' => [
           'target_plugin_id' => 'flat_rate',
           'target_plugin_configuration' => [
-            'rate_label' => 'USA - FedEx Overnight',
+            'rate_label' => 'FedEx - Overnight',
             'rate_amount' => [
               'number' => '25',
               'currency_code' => 'USD',
@@ -51,7 +51,7 @@ function cypress_custom_address_update_8201() {
         'plugin' => [
           'target_plugin_id' => 'flat_rate',
           'target_plugin_configuration' => [
-            'rate_label' => 'International - FedEx International Economy',
+            'rate_label' => 'FedEx International Economy',
             'rate_amount' => [
               'number' => '25',
               'currency_code' => 'USD',
@@ -69,7 +69,7 @@ function cypress_custom_address_update_8201() {
         'plugin' => [
           'target_plugin_id' => 'flat_rate',
           'target_plugin_configuration' => [
-            'rate_label' => 'International - FedEx International Priority',
+            'rate_label' => 'FedEx International Priority',
             'rate_amount' => [
               'number' => '35',
               'currency_code' => 'USD',
@@ -87,7 +87,7 @@ function cypress_custom_address_update_8201() {
         'plugin' => [
           'target_plugin_id' => 'flat_rate',
           'target_plugin_configuration' => [
-            'rate_label' => 'USA - FedEx 2Day',
+            'rate_label' => 'FEDEX Express Economy 2nd Day Air',
             'rate_amount' => [
               'number' => '0',
               'currency_code' => 'USD',
@@ -105,7 +105,7 @@ function cypress_custom_address_update_8201() {
         'plugin' => [
           'target_plugin_id' => 'flat_rate',
           'target_plugin_configuration' => [
-            'rate_label' => 'USA - FedEx Standard Overnight',
+            'rate_label' => 'Fedex Standard Overnight',
             'rate_amount' => [
               'number' => '0',
               'currency_code' => 'USD',
@@ -123,7 +123,7 @@ function cypress_custom_address_update_8201() {
         'plugin' => [
           'target_plugin_id' => 'flat_rate',
           'target_plugin_configuration' => [
-            'rate_label' => 'International - FedEx International Economy',
+            'rate_label' => 'FedEx International Economy',
             'rate_amount' => [
               'number' => '0',
               'currency_code' => 'USD',
@@ -141,7 +141,7 @@ function cypress_custom_address_update_8201() {
         'plugin' => [
           'target_plugin_id' => 'flat_rate',
           'target_plugin_configuration' => [
-            'rate_label' => 'International - FedEx International Priority',
+            'rate_label' => 'FedEx International Priority',
             'rate_amount' => [
               'number' => '0',
               'currency_code' => 'USD',
@@ -159,7 +159,7 @@ function cypress_custom_address_update_8201() {
         'plugin' => [
           'target_plugin_id' => 'flat_rate',
           'target_plugin_configuration' => [
-            'rate_label' => 'USA - FedEx 2Day',
+            'rate_label' => 'FEDEX Express Economy 2nd Day Air',
             'rate_amount' => [
               'number' => '0',
               'currency_code' => 'USD',
@@ -177,7 +177,7 @@ function cypress_custom_address_update_8201() {
         'plugin' => [
           'target_plugin_id' => 'flat_rate',
           'target_plugin_configuration' => [
-            'rate_label' => 'USA - FedEx Standard Overnight',
+            'rate_label' => 'Fedex Standard Overnight',
             'rate_amount' => [
               'number' => '25',
               'currency_code' => 'USD',
@@ -195,7 +195,7 @@ function cypress_custom_address_update_8201() {
         'plugin' => [
           'target_plugin_id' => 'flat_rate',
           'target_plugin_configuration' => [
-            'rate_label' => 'International - FedEx International Economy',
+            'rate_label' => 'FedEx International Economy',
             'rate_amount' => [
               'number' => '0',
               'currency_code' => 'USD',
@@ -213,7 +213,7 @@ function cypress_custom_address_update_8201() {
         'plugin' => [
           'target_plugin_id' => 'flat_rate',
           'target_plugin_configuration' => [
-            'rate_label' => 'International - FedEx International Priority',
+            'rate_label' => 'FedEx International Priority',
             'rate_amount' => [
               'number' => '35',
               'currency_code' => 'USD',
