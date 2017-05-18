@@ -59,7 +59,7 @@ function cypress_custom_address_commerce_shipping_methods_alter(&$shipping_metho
         foreach ($shipping_methods as $key => $shipping_method) {
           $shipping_method_name = $shipping_method->getName();
           $shipping_method_id = $shipping_method->id();
-          if (!($shipping_method_name == 'USA - FedEx Express Saver For Kit Domestic') && !($shipping_method_name == 'USA FedEx Standard Overnight For Sample CAT_A')){
+          if (!($shipping_method_name == 'USA - FedEx Express Saver For Kit Domestic') && !($shipping_method_name == 'USA - FedEx Overnight For Kits Domestic')){
             unset($shipping_methods[$key]);
           }
         }
@@ -122,3 +122,22 @@ function cypress_custom_address_commerce_shipping_methods_alter(&$shipping_metho
   }
 }
 
+/**
+ * Implements hook_theme_registry_alter().
+ */
+function cypress_custom_address_theme_registry_alter(&$theme_registry)
+
+{
+  $theme_registry['commerce_order__default'] = [
+    'variables' => array(
+      'order'    => NULL,
+      'order_entity' => NULL,
+    ),
+    'preprocess functions' => array(
+      0         => 'template_preprocess_commerce_order',
+    ),
+    'template' => 'commerce-order--default',
+    'theme_path' => drupal_get_path('module', 'cypress_custom_address'),
+    'path' => drupal_get_path('module', 'cypress_custom_address').'/templates/',
+  ];
+}
