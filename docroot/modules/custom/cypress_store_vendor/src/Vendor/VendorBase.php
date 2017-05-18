@@ -24,7 +24,7 @@ class VendorBase {
   /**
    * Vendor class for Digikey.
    */
-  const DIGIKEY = '\Drupal\cypress_store_vendor\Vendor\Digikey';
+  const DIGIKEY = '\Drupal\cypress_store_vendor\Vendor\DigiKey';
 
   /**
    * Vendor class for CML/OM.
