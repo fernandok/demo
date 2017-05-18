@@ -8182,9 +8182,6 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .path-checkout-review .views-field-cart-product-image {
   text-align: center;
 }
-.path-checkout-review .views-field-total-price__number {
-  text-align: center !important;
-}
 .path-checkout-review .view-footer {
   clear: both;
 }
@@ -8212,7 +8209,14 @@ footer .region-footer .footer-block .footer-menu .copyright {
   font-weight: bold;
   text-transform: uppercase;
 }
+.customer-parts-info h4 {
+  font-weight: bold;
+}
 /* end orders page(cancel & tracking) */
+/*checkout payment*/
+#edit-completion-message a {
+  font-weight: 600;
+}
 /* start media queries for responsive*/
 /* start for mobiles*/
 @media only screen and (min-width: 320px) and (max-width: 767px) {
@@ -8508,6 +8512,12 @@ footer .region-footer .footer-block .footer-menu .copyright {
 @media only screen and (min-width: 365px) and (max-width: 400px) {
   .icons li {
     margin-left: 0 !important;
+  }
+}
+@media only screen and (min-width: 801px) {
+  /*order summary price */
+  .views-field-total-price__number {
+    text-align: center !important;
   }
 }
 /*start for tablets*/

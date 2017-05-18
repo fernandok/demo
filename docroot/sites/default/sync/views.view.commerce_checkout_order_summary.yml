@@ -92,7 +92,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: ''
+          label: Image
           exclude: false
           alter:
             alter_text: false
@@ -141,7 +141,7 @@ display:
           relationship: order_items
           group_type: group
           admin_label: ''
-          label: ''
+          label: Quantity
           exclude: false
           alter:
             alter_text: true
@@ -209,7 +209,7 @@ display:
           relationship: order_items
           group_type: group
           admin_label: ''
-          label: ''
+          label: Name
           exclude: false
           alter:
             alter_text: false
@@ -274,7 +274,7 @@ display:
           relationship: order_items
           group_type: group
           admin_label: ''
-          label: ''
+          label: Price
           exclude: false
           alter:
             alter_text: false

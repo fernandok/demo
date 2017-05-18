@@ -1,4 +1,4 @@
-max_width: 800
-enable_admin_page: false
+max_width: '800'
+enable_admin_page: true
 _core:
   default_config_hash: smFV2kS2useFqWQbp6i2duTDphI-Quk5I9IPUZRLHh4

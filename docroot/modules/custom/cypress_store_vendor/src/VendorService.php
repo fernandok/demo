@@ -47,7 +47,11 @@ class VendorService {
   public function submitOrder($vendor, $order, $shipment) {
     $vendor_class_name = constant('Drupal\cypress_store_vendor\Vendor\VendorBase::' . $vendor);
     $vendor_handler = new $vendor_class_name();
-    return $vendor_handler->submitOrder($order, $shipment);
+    $is_order_shipment_placed = $vendor_handler->submitOrder($order, $shipment);
+    if ($is_order_shipment_placed) {
+      $shipment->set('state', 'In progress')
+        ->save();
+    }
   }
 
   /**

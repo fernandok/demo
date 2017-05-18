@@ -172,6 +172,7 @@ class CypressPacker implements PackerInterface {
           'shipping_profile' => $shipping_profile,
           'custom_fields' => [
             'field_vendor' => $type,
+            'state' => 'New',
           ]
         ]);
         $shipment_index++;

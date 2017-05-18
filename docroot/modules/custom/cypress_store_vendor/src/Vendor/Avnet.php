@@ -200,7 +200,7 @@ XML;
       }
 
       $order_ack = (array) new \SimpleXMLElement($content);
-      return $order_ack['order_id'];
+      return (bool) $order_ack['order_id'];
     }
     catch (\Exception $e) {
       // TODO: use custom logger.
