@@ -54,12 +54,12 @@
     {{ order.order_items }}
     {{ order.total_price }}
   </div>
-  <div class="order-links col-xs-12">
-    <div class="col-sm-6 col-xs-12">
+  <div class="order-links col-md-6 col-sm-12 col-xs-12 pull-right">
+    <div class="col-md-6 col-sm-6 col-xs-12">
       <a href="#" class="cancel-order-link btn-info">Cancel order</a>
     </div>
-    <div class="col-sm-6 col-xs-12">
-    <a href="/shipment/{{ order_entity.getOrderNumber }}" class="track-shipment-link btn-primary">Track Shipments</a>
+    <div class="col-md-6 col-sm-6 col-xs-12">
+      <a href="/shipment/{{ order_entity.getOrderNumber }}" class="track-shipment-link btn-primary">Track Shipments</a>
     </div>
   </div>
 </div>
