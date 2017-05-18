@@ -10,8 +10,20 @@ use Drupal\commerce_shipping\Entity\ShippingMethod;
 /**
  * Implements form_alter().
  */
-function cypress_custom_address_form_alter(&$form, $form_state, $form_id)
-{
+function cypress_custom_address_form_alter(&$form, $form_state, $form_id) {
+  // Changes in the order detail form.
+  if ($form_id == 'commerce_order_default_edit_form') {
+    $form[meta][state]['#value'] = '';
+    $mail_markup = strip_tags($form['customer']['mail']['#markup']);
+    $mail_id = explode(' ', $mail_markup);
+    $user = user_load_by_mail($mail_id[2]);
+    $uid = $user->uid->value;
+    $username = $user->field_first_name->value . ' ' . $user->field_last_name->value;
+    if (isset($username) && !empty($username)) {
+      $user_uid = "/user/" . $uid;
+      $form['customer']['uid']['#markup'] = '<h4 class="label inline">Customer</h4> <a href= ' . $user_uid . ' hreflang="en">' . $username . '</a>';
+    }
+  }
   $order = \Drupal::service('commerce_cart.cart_provider')->getCartIds();
   $order_id = $order['0'];
   if ($form_id == 'views_form_commerce_cart_form_default_' . $order_id) {
@@ -19,9 +31,8 @@ function cypress_custom_address_form_alter(&$form, $form_state, $form_id)
   }
 }
 
-// anonymous cart submit sunction
-function anonymous_checkout_flow()
-{
+// anonymous cart submit function.
+function anonymous_checkout_flow() {
 
   if (\Drupal::currentUser()->isAnonymous()) {
     $response = new RedirectResponse('/saml_login');

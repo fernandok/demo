@@ -28,7 +28,7 @@ content:
     region: content
   billing_profile:
     type: commerce_billing_profile
-    weight: 0
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     region: content
@@ -73,7 +73,7 @@ content:
     region: content
   order_items:
     type: inline_entity_form_complex
-    weight: 1
+    weight: 0
     settings:
       override_labels: true
       label_singular: 'order item'
