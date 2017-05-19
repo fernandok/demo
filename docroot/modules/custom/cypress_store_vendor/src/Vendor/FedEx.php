@@ -9,41 +9,10 @@ require_once(__DIR__ . "/../../fedex_wsdl/fedex-common.php5");
 class FedEx extends VendorBase{
 
   /**
-   * The Api End Point
-   * @var
+   * FedEx constructor.
    */
-  protected $key;
-  /**
-   * Fedex Password
-   * @var
-   */
-  protected $password;
-  /**
-   * Fedex AccountNumber
-   * @var
-   */
-  protected $accountNumber;
-  /**
-   * Fedex MeterNumber
-   * @var
-   */
-  protected $meterNumber;
-
-  /**
-   * Fedex URL
-   * @var
-   */
-  protected $url;
-
-
   public function __construct() {
     parent::__construct();
-    //Todo change dev2 to be dynamic based on envirnment
-    $this->key = $this->config['dev2']['authenticationKey'];
-    $this->password = $this->config['dev2']['password'];
-    $this->accountNumber = $this->config['dev2']['accountNumber'];
-    $this->meterNumber = $this->config['dev2']['meterNumber'];
-    $this->url = $this->config['dev2']['url'];
 
   }
 
@@ -70,14 +39,14 @@ class FedEx extends VendorBase{
         'Password' => getProperty('parentpassword')
       ),
       'UserCredential' => array(
-        'Key' => $this->key,
-        'Password' => $this->password
+        'Key' => $this->config['authenticationKey'],
+        'Password' => $this->config['password']
       )
     );
 
     $request['ClientDetail'] = array(
-      'AccountNumber' => $this->accountNumber,
-      'MeterNumber' => $this->meterNumber
+      'AccountNumber' => $this->config['accountNumber'],
+      'MeterNumber' => $this->config['meterNumber']
     );
     $request['TransactionDetail'] = array('CustomerTransactionId' => 'Track Request');
     $request['Version'] = array(
@@ -99,7 +68,7 @@ class FedEx extends VendorBase{
         $newLocation = $client->__setLocation(setEndpoint('endpoint'));
       }
 
-      $client->__setLocation($this->url . '/track'); //here we are changing the address location url which is in wsdl file and making it dynamic for productiona and Testing instance
+      $client->__setLocation($this->config['url'] . '/track'); //here we are changing the address location url which is in wsdl file and making it dynamic for productiona and Testing instance
 
       $response = $client->track($request);
 
