@@ -12,11 +12,11 @@ definitions:
     expanded: false
     weight: 0
   user__logout:
-    weight: -49
+    weight: -48
     menu_name: account
     parent: user.page
-    expanded: false
     enabled: true
+    expanded: false
   user__page:
     menu_name: account
     parent: ''
