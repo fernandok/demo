@@ -51,6 +51,13 @@ function cypress_custom_address_field_views_data() {
       ],
     ];
 
+    $data['views']['tracking_shipping_details'] = [
+      'title' => t('Tracking Shipment Details for corresponding shipment ids'),
+      'help' => t('List of order shipment detail'),
+      'field' => [
+        'id' => 'field_tracking_shipping_details',
+      ],
+    ];
     // Fields.
     $data['profile']['contact_address_given_name'] = [
         'title' => t('Contact First Name'),

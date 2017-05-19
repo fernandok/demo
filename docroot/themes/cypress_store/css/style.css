@@ -9104,6 +9104,14 @@ body.path-myorders .view-id-commerce_user_orders .order-list {
 }
 body.path-myorders .view-id-commerce_user_orders .order-list .order-details .order-number {
   font-weight: 600;
+  display: inline-block;
+}
+body.path-myorders .view-id-commerce_user_orders .order-list .order-details .order_value {
+  display: inline-block;
+  margin-left: 10px;
+}
+body.path-myorders .view-id-commerce_user_orders .order-list .order-details .order_value a {
+  color: #0000EE;
 }
 body.path-myorders .view-id-commerce_user_orders .order-list .order-details .order-ship-to {
   display: inline-block;
@@ -9111,19 +9119,28 @@ body.path-myorders .view-id-commerce_user_orders .order-list .order-details .ord
 }
 body.path-myorders .view-id-commerce_user_orders .order-list .order-details .ship-to-name {
   display: inline-block;
-  margin-left: 6px;
+  margin-left: 10px;
+}
+body.path-myorders .view-id-commerce_user_orders .order-list .order-details .ship-to-name a {
+  color: #0000EE;
 }
 body.path-myorders .view-id-commerce_user_orders .order-list .order-details .order-list-title {
   font-weight: 600;
 }
 body.path-myorders .view-id-commerce_user_orders .order-list .order-details .order-list-products ul.order-product-title {
   padding-left: 0;
+  margin-left: 10px;
 }
 body.path-myorders .view-id-commerce_user_orders .order-list .order-details .order-list-products ul.order-product-title li {
   list-style-type: none;
 }
 body.path-myorders .view-id-commerce_user_orders .order-list .order-details .order-placed {
   font-weight: 600;
+  display: inline-block;
+}
+body.path-myorders .view-id-commerce_user_orders .order-list .order-details .placed {
+  display: inline-block;
+  margin-left: 10px;
 }
 body.path-myorders .view-id-commerce_user_orders .order-list .order-complete-flow .order-more-details {
   margin-bottom: 22px;
