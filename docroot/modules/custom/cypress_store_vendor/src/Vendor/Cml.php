@@ -66,7 +66,7 @@ class Cml extends VendorBase {
     $order_id = $order->id();
     $order_date = $order->get('created')->getValue();
     $order_date = date('Y-m-d H:i:s', $order_date[0]['value']);
-    $ship_via = $this->getShipmentMethodRateLabel($shipment);
+    $ship_via = $this->getShipmentMethodName($shipment);
     $shipping_address = $this->getShippingAddress($order, TRUE);
     $first_name = trim($shipping_address['given_name']);
     $last_name = trim($shipping_address['family_name']);
@@ -175,7 +175,7 @@ class Cml extends VendorBase {
       <ns1:P_SESSION_INITIALIZE>T</ns1:P_SESSION_INITIALIZE>
       <ns1:P_ORDER_IN_REC>
         <ns1:P_ORG_ID>$operating_unit</ns1:P_ORG_ID>
-        <ns1:P_USER_NAME>$this->config['username']</ns1:P_USER_NAME>
+        <ns1:P_USER_NAME>{$this->config['username']}</ns1:P_USER_NAME>
         <ns1:P_RESP_KEY>$responsibility_key</ns1:P_RESP_KEY>
         <ns1:P_ORIG_REF_ID>$order_id</ns1:P_ORIG_REF_ID>
         <ns1:P_CREATED_BY_MODULE>CYSTORE</ns1:P_CREATED_BY_MODULE>
@@ -267,7 +267,7 @@ class Cml extends VendorBase {
         </ns1:P_ORDER_IN_REC>
       </ns1:SampleOrderInput>
   </soap:Body>
-</soap:Envelope>        
+</soap:Envelope>
 XML;
     $client = \Drupal::httpClient();
     try {

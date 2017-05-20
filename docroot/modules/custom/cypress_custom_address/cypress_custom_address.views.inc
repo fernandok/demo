@@ -35,6 +35,29 @@ function cypress_custom_address_field_views_data() {
       ],
     ];
 
+    $data['views']['list_order_items'] = [
+      'title' => t('List Order Items'),
+      'help' => t('List of Order items in one order'),
+      'field' => [
+        'id' => 'field_list_order_items',
+      ],
+    ];
+
+    $data['views']['order_shipment_detail'] = [
+      'title' => t('Order Shipment Detail'),
+      'help' => t('List of order shipment detail'),
+      'field' => [
+        'id' => 'field_order_shipment_detail',
+      ],
+    ];
+
+    $data['views']['tracking_shipping_details'] = [
+      'title' => t('Tracking Shipment Details for corresponding shipment ids'),
+      'help' => t('List of order shipment detail'),
+      'field' => [
+        'id' => 'field_tracking_shipping_details',
+      ],
+    ];
     // Fields.
     $data['profile']['contact_address_given_name'] = [
         'title' => t('Contact First Name'),

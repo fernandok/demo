@@ -1930,3 +1930,125 @@ fieldset {
 /* Order summary end */
 /* For all screens */
 
+/* MyOrders Page */
+
+body.path-myorders {
+	.view-id-commerce_user_orders {
+		.order-list {
+			line-height: 1.7em;
+			border: 2px solid #ddd;
+			background-color: #f8f8f8;
+			padding: 1em;
+			margin: 0 0 1em;
+			.order-details {
+				.order-number {
+					font-weight: 600;
+					display: inline-block;
+				}
+				.order_value {
+					display: inline-block;
+					margin-left: 10px;
+					a {
+						color: #0000EE;
+					}
+				}
+				.order-ship-to {
+					display: inline-block;
+					font-weight: 600;
+				}
+				.ship-to-name {
+					display: inline-block;
+					margin-left: 10px;
+					a {
+						color: #0000EE;
+					}
+				}
+				.order-list-title {
+					font-weight: 600;
+					//font-size: 19px;
+				}
+				.order-list-products ul.order-product-title {
+					padding-left: 0;
+					margin-left: 10px;
+					li {
+						list-style-type: none;
+					}
+				}
+				.order-placed {
+					font-weight: 600;
+					display: inline-block;
+				}
+				.placed {
+					display: inline-block;
+					margin-left: 10px;
+				}
+			}
+			.order-complete-flow {
+				.order-more-details {
+					margin-bottom: 22px;
+					text-align: center;
+					a {
+						color: #fff;
+						background-color: #5bc0de;
+						border-color: #46b8da;
+						/* width: 62%; */
+						padding: 6px 50px;
+						font-weight: bold;
+					}
+				}
+				.order-tracking-shipment {
+					margin-bottom: 22px;
+					text-align: center;
+					a {
+						background-color: #337ab7;
+						border-color: #2e6da4;
+						color: #fff;
+						/* background-color: #5bc0de; */
+						border-color: #46b8da;
+						/* width: 62%; */
+						/* padding: 9px 46px 0px 0px; */
+						font-weight: bold;
+						padding: 6px 36px;
+					}
+				}
+				.cancel-order {
+					text-align: center;
+					a {
+						color: #fff;
+						background-color: #E32726;
+						/* border-color: #46b8da; */
+						/* width: 62%; */
+						/* padding: 9px 46px 0px 0px; */
+						font-weight: bold;
+						padding: 6px 49px;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+	body.path-myorders {
+		.view-id-commerce_user_orders {
+			.order-list {
+				.order-complete-flow {
+					.order-more-details {
+						margin-top: 20px;
+						a {
+							float: none !important;
+						}
+					}
+					.order-tracking-shipment {
+						a {
+							float: none !important;
+						}
+					}
+					.cancel-order a {
+						float: none !important;
+					}
+				}
+			}
+		}
+	}
+}

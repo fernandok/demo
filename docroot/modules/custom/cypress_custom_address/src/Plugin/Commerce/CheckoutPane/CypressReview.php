@@ -23,7 +23,8 @@ class CypressReview extends CheckoutPaneBase implements CheckoutPaneInterface {
   /**
    * {@inheritdoc}
    */
-  public function buildPaneForm(array $pane_form, FormStateInterface $form_state, array &$complete_form) {
+  public function buildPaneForm(array $pane_form, FormStateInterface $form_state, array &$complete_form)
+  {
     /** @var \Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane\CheckoutPaneInterface[] $enabled_panes */
     $enabled_panes = array_filter($this->checkoutFlow->getPanes(), function ($pane) {
       return !in_array($pane->getStepId(), ['_sidebar', '_disabled']);
@@ -55,29 +56,39 @@ class CypressReview extends CheckoutPaneBase implements CheckoutPaneInterface {
 
     // To show the Part end products on Review page.
     $order = $this->order;
-    if(!empty($order)) {
+    if (!empty($order)) {
       $primary_application = $order->get('field_primary_application')
         ->getValue()[0]['value'];
+      // Defining markups for each field.
+      $primary_application_markup = '';
+      $name_of_product_system_markup = '';
+      $purpose_of_order_markup = '';
+      $end_customer_markup = '';
+      if ($primary_application) {
+        $primary_application_markup .= '<b>' . 'Primary Application for Projects/Designs:' . '</b><br>' . ucwords($primary_application) . '<br>';
+      }
       $name_of_product_system = $order->get('field_name_product_system')
         ->getValue()[0]['value'];
+      if ($name_of_product_system) {
+        $name_of_product_system_markup .= '<b>' . 'Name of your end Product/System:' . '</b><br>' . ucwords($name_of_product_system) . '<br>';
+      }
       $purpose_of_order = $order->get('field_purpose_of_order')
         ->getValue()[0]['value'];
+      if ($purpose_of_order) {
+        $purpose_of_order_markup .= '<b>' . 'Purpose of Order:' . '</b><br>' . ucwords($purpose_of_order) . '<br>';
+      }
       $end_customer = $order->get('field_end_customer')->getValue()[0]['value'];
+      if ($end_customer) {
+        $end_customer_markup .= '<b>' . 'End Customer:' . '</b><br>' . ucwords($end_customer) . '<br>';
+      }
     }
-
     $pane_form['part_end_products'] = [
       '#type' => 'fieldset',
       '#prefix' => '<div class = "part-end-products">',
       '#title' => t('Part End Products'),
-      '#markup' => '<b>' . 'Primary Application for Projects/Designs:' . '</b><br>' . ucwords($primary_application) . '<br>' .
-        '<b>' . 'Name of your end Product/System:' . '</b><br>' . ucwords($name_of_product_system) . '<br>' .
-        '<b>' . 'Purpose of Order:' . '</b><br>' . ucwords($purpose_of_order) . '<br>' .
-        '<b>' . 'End Customer:' . '</b><br>' . ucwords($end_customer) . '<br>' ,
-
+      '#markup' => $primary_application_markup . $name_of_product_system_markup . $purpose_of_order_markup . $end_customer_markup,
       '#suffix' => '</div>'
     ];
-
     return $pane_form;
   }
-
 }

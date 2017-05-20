@@ -136,19 +136,17 @@ function cypress_custom_address_commerce_shipping_methods_alter(&$shipping_metho
 /**
  * Implements hook_theme_registry_alter().
  */
-function cypress_custom_address_theme_registry_alter(&$theme_registry)
-
-{
+function cypress_custom_address_theme_registry_alter(&$theme_registry) {
   $theme_registry['commerce_order__default'] = [
-    'variables' => array(
-      'order'    => NULL,
+    'variables' => [
+      'order' => NULL,
       'order_entity' => NULL,
-    ),
-    'preprocess functions' => array(
-      0         => 'template_preprocess_commerce_order',
-    ),
+    ],
+    'preprocess functions' => $theme_registry['commerce_order']['preprocess functions'],
     'template' => 'commerce-order--default',
     'theme_path' => drupal_get_path('module', 'cypress_custom_address'),
-    'path' => drupal_get_path('module', 'cypress_custom_address').'/templates/',
+    'path' => drupal_get_path('module', 'cypress_custom_address') . '/templates/',
   ];
 }
+
+
