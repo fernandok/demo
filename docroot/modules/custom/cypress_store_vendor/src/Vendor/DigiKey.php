@@ -9,7 +9,6 @@ use Drupal\commerce_shipping\Entity\ShippingMethod;
 use Drupal\commerce_shipping\Plugin\Commerce\CheckoutPane\ShippingInformation;
 use Drupal\Core\Entity\Entity;
 use Drupal\cypress_store_vendor\Entity\VendorEntity;
-use Symfony\Component\Validator\Constraints\True;
 use Symfony\Component\Yaml\Yaml;
 
 class DigiKey extends VendorBase {
@@ -75,9 +74,23 @@ class DigiKey extends VendorBase {
     try {
       $client = new \SoapClient($endPoint);
       $response = $client->QueryAvailability($parameters);
-      return $response;
+      if ($response->QueryAvailabilityResult->item_count > 0) {
+        return $response->QueryAvailabilityResult->items->item->quantity_available;
+
+      }
+      else {
+        $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : DigiKey' . '<br/>' . 'Request Body :' . htmlentities($parameters) . '<br/>' . 'Response Body : ' . htmlentities($response);
+
+        $this->emailVendorExceptionMessage('DigiKey Submit Order ', $body);
+
+        return $response->QueryAvailabilityResult->item_count;
+      }
     } catch (\Exception $e) {
-      return $e->getMessage();
+      $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : DigiKey' . '<br/>' . 'Request Body :' . htmlentities($parameters) . '<br/>' . 'Response Body : ' . htmlentities($response);
+
+      $this->emailVendorExceptionMessage('DigiKey Submit Order ', $body);
+
+      return 0;
     }
   }
 
@@ -94,7 +107,7 @@ class DigiKey extends VendorBase {
 
     $programId = $this->config['programId'];
     $security_id = $this->config['securityId'];
-    $vid_number = '661897';
+    $vid_number = '661901';
 //    $vid_number = $shipment_id;
     $order_date = '2017-04-11T10:41:23.000-05:00';//$orderDate;
     $order_type = 'Test';// This can be Test or Production depending on instance
@@ -140,8 +153,6 @@ class DigiKey extends VendorBase {
 
       $itemCount++;
     }
-
-//    var_dump($order_detail);exit;
 
     $application = $primary_application;
     $end_equipment = $name_product_system;
