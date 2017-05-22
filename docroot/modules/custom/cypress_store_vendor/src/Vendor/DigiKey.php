@@ -76,18 +76,15 @@ class DigiKey extends VendorBase {
       $response = $client->QueryAvailability($parameters);
       if ($response->QueryAvailabilityResult->item_count > 0) {
         return $response->QueryAvailabilityResult->items->item->quantity_available;
-
       }
       else {
         $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : DigiKey' . '<br/>' . 'Request Body :' . htmlentities($parameters) . '<br/>' . 'Response Body : ' . htmlentities($response);
-
         $this->emailVendorExceptionMessage('DigiKey Submit Order ', $body);
 
         return $response->QueryAvailabilityResult->item_count;
       }
     } catch (\Exception $e) {
       $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : DigiKey' . '<br/>' . 'Request Body :' . htmlentities($parameters) . '<br/>' . 'Response Body : ' . htmlentities($response);
-
       $this->emailVendorExceptionMessage('DigiKey Submit Order ', $body);
 
       return 0;
@@ -98,7 +95,8 @@ class DigiKey extends VendorBase {
    * Submit a new sample request for fulfillment.
    */
   public function submitOrder($order, $shipment) {
-
+    //Const vid for placing order in digikey
+    $const_vid = '661901';
     $shipment_id = $shipment->get('shipment_id')->getValue()[0]['value'];
     $shippingAdress = $this->getShippingAddress($order);
 //    $order = Order::load($orderId);
@@ -107,7 +105,7 @@ class DigiKey extends VendorBase {
 
     $programId = $this->config['programId'];
     $security_id = $this->config['securityId'];
-    $vid_number = '661901';
+    $vid_number = $const_vid + $shipment_id;
 //    $vid_number = $shipment_id;
     $order_date = '2017-04-11T10:41:23.000-05:00';//$orderDate;
     $order_type = 'Test';// This can be Test or Production depending on instance
@@ -231,8 +229,6 @@ XML;
     try {
 
       $headers = array(
-//        "POST /webservices/wssamples/service.asmx HTTP/1.1",
-//        "Host: test.samplecomponents.com",
         "Accept: text/xml",
         "Cache-Control: no-cache",
         "Pragma: no-cache",
@@ -241,8 +237,8 @@ XML;
         "SOAPAction: \"http://www.samplecomponents.com/webservices/SubmitOrder\""
       ); //SOAPAction: your op URL
 
-      $url = 'https://test.samplecomponents.com/webservices/wssamples/service.asmx?op=SubmitOrder';
-//      $url = $this->config['endPoint'];
+//      $url = 'https://test.samplecomponents.com/webservices/wssamples/service.asmx?op=SubmitOrder';
+      $url = $this->config['submitOrderEndPoint'];
 
       // PHP cURL  for https connection with auth
       $ch = curl_init();
