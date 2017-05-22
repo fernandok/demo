@@ -1,0 +1,13 @@
+diff --git a/docroot/modules/contrib/commerce_paypal/src/Plugin/Commerce/PaymentGateway/Payflow.php b/docroot/modules/contrib/commerce_paypal/src/Plugin/Commerce/PaymentGateway/Payflow.php
+index aec9b73..3288bce 100644
+--- a/docroot/modules/contrib/commerce_paypal/src/Plugin/Commerce/PaymentGateway/Payflow.php
++++ b/docroot/modules/contrib/commerce_paypal/src/Plugin/Commerce/PaymentGateway/Payflow.php
+@@ -486,7 +486,7 @@ public function refundPayment(PaymentInterface $payment, Price $amount = NULL) {
+   public function createPaymentMethod(PaymentMethodInterface $payment_method, array $payment_details) {
+     try {
+       /** @var \Drupal\address\Plugin\Field\FieldType\AddressItem $address */
+-      $address = $payment_method->getBillingProfile()->get('address')->first();
++      $address = $payment_method->getBillingProfile()->get('field_contact_address')->first();
+ 
+       $data = $this->executeTransaction([
+         'trxtype' => 'A',
