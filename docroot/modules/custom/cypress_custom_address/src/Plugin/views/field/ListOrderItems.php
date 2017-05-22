@@ -60,25 +60,18 @@ class ListOrderItems extends FieldPluginBase {
     if(!empty($order_id)) {
       $order_obj = Order::load($order_id);
       $items = $order_obj->getItems();
-      $pro_title = [];
-      $order_items = array_slice($items, 0, 3);
-        foreach ($order_items as $order_item) {
-          $prod_var_id = $order_item->get('purchased_entity')->target_id;
-          $product_var = ProductVariation::load($prod_var_id);
-          if(!empty($product_var)) {
-            $pro_title[] = $product_var->getTitle();
-          }
+      $pro_title = '<details>';
+      $pro_title .= '<summary><b>Products:</b></summary><ol>';
+      foreach ($items as $order_item) {
+        $prod_var_id = $order_item->get('purchased_entity')->target_id;
+        $product_var = ProductVariation::load($prod_var_id);
+        if(!empty($product_var)) {
+          $pro_title .= '<li>' . $product_var->getTitle() . '</li>';
+        }
       }
-      $product_title = [
-        '#theme' => 'item_list',
-        '#list_type' => 'ul',
-        '#items' => $pro_title,
-        '#attributes' => ['class' => 'order-product-title'],
-        //,'#wrapper_attributes' => ['class' => 'container']
-      ];
+      $pro_title .= '</ol></details>';
     }
-    return $product_title;
-
+    return check_markup($pro_title, 'full_html');
   }
 
 }
