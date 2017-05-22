@@ -11,7 +11,7 @@
 #}
 <p>
   <h2>Order Confrimation</h2>
-  <p>{{ 'Congratulation MR.@username'|t({'@username': username})}}{{'Your order has been place.' }}</p>
+  <p>{{ 'Congratulation Mr/Mrs.@username'|t({'@username': username})}}{{'Your order has been place.' }}</p>
   <p>Thank you for your purchase<p>
     {{ 'Your order number is @number.'|t({'@number': order_entity.getOrderNumber}) }} <br>
     {{ 'You will rececive a email shortly at @mail.'|t({'@mail': order_entity.get('mail').value}) }}<br>
