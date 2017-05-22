@@ -166,13 +166,19 @@ $(function(){
 		$('.path-addressbook .views-view-grid').addClass('col-sm-12 col-md-12 col-lg-12');
 		$('.path-addressbook .views-view-grid .views-row').addClass('col-sm-6 col-md-4 col-lg-3');
 		// review page
-		if ($(window).width() > maxWidth) {
-			$('.path-checkout-review .table-responsive').addClass('col-md-12 col-sm-12');
-			$('.path-checkout-review .table-responsive tr > td:first-child').addClass('col-md-3 col-sm-3');
-			$('.path-checkout-review .table-responsive tr > td:nth-child(2)').addClass('col-md-1 col-sm-1');		
-			$('.path-checkout-review .table-responsive tr > td:nth-child(3)').addClass('col-md-5 col-sm-5');
-			$('.path-checkout-review .table-responsive tr > td:last-child').addClass('col-md-3 col-sm-3');
-		}
+		// if ($(window).width() > maxWidth) {
+		// 	$('.path-checkout-review .table-responsive').addClass('col-md-12 col-sm-12');
+		// 	$('.path-checkout-review .table-responsive tr > td:first-child').addClass('col-md-3 col-sm-3');
+		// 	$('.path-checkout-review .table-responsive tr > td:nth-child(2)').addClass('col-md-1 col-sm-1');		
+		// 	$('.path-checkout-review .table-responsive tr > td:nth-child(3)').addClass('col-md-5 col-sm-5');
+		// 	$('.path-checkout-review .table-responsive tr > td:last-child').addClass('col-md-3 col-sm-3');
+		// }
+		$('.path-checkout-review .layout-region-checkout-secondary .views-field-cart-product-image .field-content').removeClass('col-md-4 col-sm-4').addClass('col-md-3 col-sm-3');
+		$('.path-checkout-review .layout-region-checkout-secondary .views-field-quantity  .field-content').removeClass('col-md-2 col-sm-2').addClass('col-md-1 col-sm-1');
+		$('.path-checkout-review .layout-region-checkout-secondary .views-field-purchased-entity .field-content').removeClass('col-md-4 col-sm-4').addClass('col-md-5 col-sm-5');
+		$('.path-checkout-review .layout-region-checkout-secondary .views-field-total-price__number  .field-content').removeClass('col-md-2 col-sm-2').addClass('col-md-3 col-sm-3');
+
+		
 		// review page footer
 		$('.path-checkout-review .view-footer > div').addClass('container-fluid');
 		$('.path-checkout-review .view-footer .order-total-line').addClass('col-lg-12 col-md-12 col-sm-12 col-xs-12');
