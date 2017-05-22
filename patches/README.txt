@@ -18,4 +18,8 @@ File: billing_address_same_as_shipping_address.patch
 Desc: Adding feature for user to choose same address from shipping profile to billing profile.
 Applies to: commerce version 8.x-2.x-dev.
 
+File: cypress_payflow.patch
+Desc: Adding the billing address to be fetched from custom address field instead of address field.
+Applies to: commerce-paypal version 8.x-2.x-dev.
+
 

@@ -1,0 +1,18 @@
+uuid: 7429ca92-1e45-400d-b3e9-f217ae2225be
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_paypal
+id: cypress_paypal_payflow
+label: 'Cypress Paypal Payflow'
+weight: -10
+plugin: paypal_payflow
+configuration:
+  partner: PayPal
+  vendor: chiragshah92
+  user: chiragshah92
+  password: 123chirag
+  mode: test
+  payment_method_types:
+    - credit_card

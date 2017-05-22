@@ -8,7 +8,6 @@ use Drupal\commerce_product\Entity\Product;
 use Drupal\cypress_store_vendor\CypressStoreVendor;
 use Symfony\Component\Yaml\Yaml;
 
-
 class VendorBase {
 
   /**

@@ -486,7 +486,7 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
   public function createPaymentMethod(PaymentMethodInterface $payment_method, array $payment_details) {
     try {
       /** @var \Drupal\address\Plugin\Field\FieldType\AddressItem $address */
-      $address = $payment_method->getBillingProfile()->get('address')->first();
+      $address = $payment_method->getBillingProfile()->get('field_contact_address')->first();
 
       $data = $this->executeTransaction([
         'trxtype' => 'A',

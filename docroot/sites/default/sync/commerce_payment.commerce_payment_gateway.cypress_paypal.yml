@@ -1,12 +1,12 @@
 uuid: 99ce2d70-9ff4-493b-a064-9ccd4a0c9896
 langcode: en
-status: true
+status: false
 dependencies:
   module:
     - commerce_paypal
 id: cypress_paypal
 label: 'Cypress Paypal'
-weight: null
+weight: -9
 plugin: paypal_express_checkout
 configuration:
   api_username: padma.priya_api1.valuebound.com
