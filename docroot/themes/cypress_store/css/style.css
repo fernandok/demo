@@ -7888,6 +7888,7 @@ footer .region-footer .footer-block .footer-menu .copyright {
 }
 .slide-main-wrp .address-boxes-sec-1 .address-name {
   width: 65%;
+  text-transform: capitalize;
 }
 .block-cypress-custom-address {
   /*display: inline-block;
@@ -8104,6 +8105,7 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .path-addressbook .address-boxes-sec-1 .address-name {
   word-break: break-word;
   max-width: 70%;
+  text-transform: capitalize;
 }
 .path-addressbook .user-adressbook .icons {
   float: right;
@@ -8203,11 +8205,11 @@ footer .region-footer .footer-block .footer-menu .copyright {
 }
 .customer-information__shipping h4 {
   font-weight: bold;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .customer-billing h4 {
   font-weight: bold;
-  text-transform: uppercase;
+  text-transform: capitalize;
 }
 .customer-parts-info h4 {
   font-weight: bold;
@@ -8217,6 +8219,25 @@ footer .region-footer .footer-block .footer-menu .copyright {
 #edit-completion-message a {
   font-weight: 600;
 }
+/*start my orders*/
+.path-myorders .order-list .order-complete-flow .order-more-details a:hover {
+  background-color: #269abc !important;
+  border-color: #1b6d85 !important;
+  text-decoration: none;
+}
+.path-myorders .order-list .order-complete-flow .order-tracking-shipment a:hover {
+  background-color: #204d74 !important;
+  border-color: #122b40 !important;
+  text-decoration: none;
+}
+.path-myorders .order-list .order-complete-flow .cancel-order a {
+  background-color: #d9534f !important;
+}
+.path-myorders .order-list .order-complete-flow .cancel-order a:hover {
+  background-color: #c9302c !important;
+  text-decoration: none;
+}
+/*end my orders*/
 /* start media queries for responsive*/
 /* start for mobiles*/
 @media only screen and (min-width: 320px) and (max-width: 767px) {
