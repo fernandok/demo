@@ -59,3 +59,20 @@ function cypress_custom_address_preprocess_views_view_grid(&$variables) {
     $variables['cypress_address'] = $view->header;
   }
 }
+
+/**
+ * @param $variables
+ */
+function cypress_store_preprocess_commerce_checkout_completion_message(&$variables){
+  //To get username in checkout order completion message
+  $variables['user_data'] = \Drupal::currentUser()->getDisplayName();
+  $user_data =user_load_by_name($variables['user_data']);
+  kint($user_data->name->value);
+  $username = $user_data->field_first_name->value . ' ' . $user_data->field_last_name->value;
+  if(isset($username) && !empty($username)){
+    $variables['username'] = $username.'! ';
+  }
+  else{
+    $variables['username']= $user_data->name->value .'! ';
+  }
+}
