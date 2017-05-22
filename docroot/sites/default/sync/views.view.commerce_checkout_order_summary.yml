@@ -55,28 +55,11 @@ display:
         options:
           offset: 0
       style:
-        type: table
+        type: default
         options:
           grouping: {  }
-          row_class: ''
+          row_class: 'col-md-12 col-sm-12 order-summary-row'
           default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            order_number: order_number
-          info:
-            order_number:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: '-1'
-          empty_table: false
       row:
         type: fields
         options:
@@ -92,7 +75,7 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Image
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -121,8 +104,8 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: ''
-          element_class: ''
+          element_type: div
+          element_class: 'col-md-4 col-sm-4'
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
@@ -141,7 +124,7 @@ display:
           relationship: order_items
           group_type: group
           admin_label: ''
-          label: Quantity
+          label: ''
           exclude: false
           alter:
             alter_text: true
@@ -170,8 +153,8 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: ''
-          element_class: ''
+          element_type: div
+          element_class: 'col-md-2 col-sm-2'
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
@@ -209,7 +192,7 @@ display:
           relationship: order_items
           group_type: group
           admin_label: ''
-          label: Name
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -238,8 +221,8 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: ''
-          element_class: ''
+          element_type: div
+          element_class: 'col-md-4 col-sm-4'
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
@@ -274,7 +257,7 @@ display:
           relationship: order_items
           group_type: group
           admin_label: ''
-          label: Price
+          label: ''
           exclude: false
           alter:
             alter_text: false
@@ -303,8 +286,8 @@ display:
             trim: false
             preserve_tags: ''
             html: false
-          element_type: ''
-          element_class: ''
+          element_type: div
+          element_class: 'col-md-2 col-sm-2'
           element_label_type: ''
           element_label_class: ''
           element_label_colon: false
@@ -411,7 +394,7 @@ display:
           plugin_id: numeric
       display_extenders: {  }
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'

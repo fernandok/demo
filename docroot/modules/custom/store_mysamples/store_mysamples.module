@@ -172,7 +172,20 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
   $discount_amount = 0;
   $promocode = '';
   $msrp = 0;
+
+  // To get the mpnid pf part product.
+  $query = \Drupal::database()->select('commerce_product__field_mpn_id', 'cpm');
+  $query->fields('cpm', ['field_mpn_id_value']);
+  $query->join('commerce_product_field_data','cp','cp.product_id = cpm.entity_id');
+  $query->condition('cp.title', $form_values['part_number']);
+  $query->condition('cp.type','part');
+  $results = $query->execute()->fetchAll();
+  foreach($results as $result) {
+    $get_mpnid = $result->field_mpn_id_value;
+  }
+
   if ($cat == 'cat_a') {
+    // todo verified catA approvers.
     // Query to get approver mail for CAT A.
     $query = \Drupal::database()->query('SELECT
         DISTINCT
@@ -195,59 +208,49 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
     foreach ($results as $result) {
       $approvers[] = $result->approver;
     }
+
     // Query to get mpn details for CAT A.
-    $query = \Drupal::database()->query('select
-      mpnid.field_mpnid_value as mpnid,
-      mpn.field_mpn_value as mpn,
-      msrp.field_samplemsrp_value as sampleMSRP,
-      p1.field_priceone_value as priceone,
-      p2.field_pricetwo_value as pricetwo,
-      p3.field_pricethree_value as pricethree,
-      p4.field_pricefour_value as pricefour,
-      p5.field_pricefive__value	 as pricefive,
-      p6.field_pricesix_value as pricesix
-      from node n
-      join node__field_mpn mpn
-      on n.nid = mpn.entity_id and n.vid = mpn.revision_id
-      join node__field_mpnid mpnid
-      on n.nid = mpnid.entity_id and n.vid = mpnid.revision_id
-      join node__field_samplemsrp msrp
-      on n.nid = msrp.entity_id and n.vid = msrp.revision_id
-      left join node__field_priceone p1
-      on n.nid = p1.entity_id and n.vid = p1.revision_id
-      left join node__field_pricetwo p2
-      on n.nid = p2.entity_id and n.vid = p2.revision_id
-      left join node__field_pricethree p3
-      on n.nid = p3.entity_id and n.vid = p3.revision_id
-      left join node__field_pricefour p4
-      on n.nid = p4.entity_id and n.vid = p4.revision_id
-      left join node__field_pricefive_ p5
-      on n.nid = p5.entity_id and n.vid = p5.revision_id
-      left join node__field_pricesix p6
-      on n.nid = p6.entity_id and n.vid = p6.revision_id
-      where mpn.field_mpn_value = :mpn', [':mpn' => $form_values['part_number']]);
-    $results = $query->fetchAll();
+    // todo mpnid should be from part produt view(reminder).
+
+    $query = \Drupal::database()->select('commerce_product','cp');
+    $query->fields('cp',['product_id']);
+    $query->join('commerce_product__field_price_one','p1','p1.entity_id = cp.product_id');
+    $query->fields('p1',['field_price_one_value']);
+    $query->join('commerce_product__field_price_two','p2','p2.entity_id = cp.product_id');
+    $query->fields('p2',['field_price_two_value']);
+    $query->join('commerce_product__field_price_three','p3','p3.entity_id = cp.product_id');
+    $query->fields('p3',['field_price_three_value']);
+    $query->join('commerce_product__field_price_four','p4','p4.entity_id = cp.product_id');
+    $query->fields('p4',['field_price_four_value']);
+    $query->join('commerce_product__field_price_five','p5','p5.entity_id = cp.product_id');
+    $query->fields('p5',['field_price_five_value']);
+    $query->join('commerce_product__field_price_six','p6','p6.entity_id = cp.product_id');
+    $query->fields('p6',['field_price_six_value']);
+    $query->join('commerce_product__field_mpn_id','cpmpnid','cpmpnid.entity_id = cp.product_id');
+    $query->condition('cpmpnid.field_mpn_id_value',$get_mpnid);
+    $results = $query->execute()->fetchAll();
+
     foreach ($results as $result) {
       $mpn_details = $result;
     }
     // Calculate discount based on quantity.
     if ($form_values['quantity'] <= 9) {
-      $discount_price_per_unit = round($mpn_details->priceone, 2);
+      $discount_price_per_unit = round($mpn_details->field_price_one_value, 2);
     }
     elseif ($form_values['quantity'] >= 10 and $form_values['quantity'] <= 24) {
-      $discount_price_per_unit = round($mpn_details->pricetwo, 2);
+      $discount_price_per_unit = round($mpn_details->field_price_two_value, 2);
     }
     elseif ($form_values['quantity'] >= 25 and $form_values['quantity'] <= 99) {
-      $discount_price_per_unit = round($mpn_details->pricethree, 2);
+      $discount_price_per_unit = round($mpn_details->field_price_three_value, 2);
     }
     elseif ($form_values['quantity'] >= 100 and $form_values['quantity'] <= 249) {
-      $discount_price_per_unit = round($mpn_details->pricefour, 2);
+      $discount_price_per_unit = round($mpn_details->field_price_four_value, 2);
     }
     elseif ($form_values['quantity'] >= 250 and $form_values['quantity'] <= 999) {
-      $discount_price_per_unit = round($mpn_details->pricefive, 2);
+      $discount_price_per_unit = round($mpn_details->field_price_five_value, 2);
     }
     else {
-      $discount_price_per_unit = round($mpn_details->pricesix, 2);
+      $discount_price_per_unit = round($mpn_details->field_price_six_value, 2);
     }
     $msrp = $discount_price_per_unit;
   }
@@ -274,6 +277,7 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
     foreach ($results as $result) {
       $mpn_details = $result;
     }
+    // todo verified CATB Approvers.
     // Calculate kit amount for CAT B kit.
     if (!empty($form_values['organization'])) {
       $query = \Drupal::database()->query('select
@@ -314,7 +318,7 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
         LEFT JOIN shope_code_approvers__e894aeed15 sa
         on pa.entity_id = sa.entity_id and pa.revision_id = sa.revision_id
         JOIN shope_code_approvers__field_cat_a_b cat
-        on pa.entity_id = cat.entity_id and pa.revision_id = cat.revision_id and cat.field_cat_a_b_value = \'CAT B\'
+        on pa.entity_id = cat.entity_id and pa.revision_id = cat.revision_id and cat.field_cat_a_b_value = \'B\'
         JOIN shope_code_approvers__field_mpnid mpnid
         on pa.entity_id = mpnid.entity_id and pa.revision_id = mpnid.revision_id
         WHERE mpnid.field_mpnid_value = :mpnid', [':mpnid' => $mpnid]);
@@ -355,31 +359,20 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
   $discount_amount = $msrp * $form_values['quantity'];
   $current_user = User::load(\Drupal::currentUser()->id());
   $user_name = $current_user->getEmail();
+
   // Query to get approver divison code.
-  $query = \Drupal::database()->query('select nd.title as division_code
-    from node__field_legacy_user_id nluid
-    join node_field_data nud
-    on nud.nid = nluid.entity_id and nud.vid = nluid.revision_id and nluid.field_legacy_user_id_value = :legacy_uid
-    join node__field_legacy_division_id nldid
-    on nud.title = nldid.field_legacy_division_id_value
-    join node_field_data nd
-    on nd.nid = nldid.entity_id and nd.vid = nldid.revision_id', [':legacy_uid' => $approvers[0]]);
-  $results = $query->fetchAll();
+  $query = \Drupal::database()->select('user__field_division_code','ud');
+  $query->fields('ud',['field_division_code_value']);
+  $query->join('user__field_legacy_uid','luid','luid.entity_id = ud.entity_id');
+  $query->condition('luid.field_legacy_uid_value', $approvers[0]);
+  $results = $query->execute()->fetchAll();
   $user_division_code = '';
   foreach ($results as $result) {
-    $user_division_code = $result->division_code;
+    $user_division_code = $result->field_division_code_value;
   }
   // Set the date in email description.
   $expire_date = date('m-d-y', strtotime("+10 days"));
-  // Query to get the Sample status.
-  $cat = $form_values['type'];
-  if ($cat == 'cat_b' || $cat == 'cat_b_kit') {
-    $cat = 'B';
-  }
-  else {
-    $cat = 'A';
-  }
-  $mpnid = \Drupal::request()->query->get('mpnid');
+
   // Generate promocode.
   if (!isset($form_values['promo_code']) || empty($form_values['promo_code'])) {
     $promocode = $user_division_code . date('y') . date('W') . date('N') . mt_rand(001, 99999);
@@ -400,36 +393,25 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
   $results = $query->execute()->fetchAll();
   $product_id = $results[0]->product_id;
 
-  //$product = Drupal\commerce_product\Entity\Product::load($product_id);
   switch ($form_values['promocode_status']) {
     case 'Approved':
+
       // Create custom Promotion for each promocode.
       $promotion_with_coupon = Promotion::create([
-        'name' => $form_values['part_number'] .'  - '.  $form_values['promo_code'],
+        'name' => $form_values['part_number'],
         'order_types' => 'default',
         'stores' => 1,
         'status' => TRUE,
         'offer' => [
-          'target_plugin_id' => 'commerce_promotion_product_percentage_off',
+          'target_plugin_id' => 'commerce_promotion_product_fixed_off',
           'target_plugin_configuration' => [
             'product_id' => $product_id,
-            'amount' => '0.10',
+            'amount' => $discount_amount,
           ],
         ],
-//        'conditions' => [
-//          [
-//            'target_plugin_id' => 'commerce_promotion_order_total_price',
-//            'target_plugin_configuration' => [
-//              'amount' => [
-//                'number' => '20.00',
-//                'currency_code' => 'USD',
-//              ],
-//            ],
-//          ],
-//        ],
       ]);
       $promotion_with_coupon->save();
-
+      // Coupon Creation.
       $coupon = Coupon::create([
         'code' => $form_values['promo_code'],
         'status' => TRUE,
@@ -438,32 +420,16 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
       $promotion_with_coupon->get('coupons')->appendItem($coupon);
       $promotion_with_coupon->save();
 
-//      $custom_coupon = Coupon::create([
-//        'promotion_id' => 6,
-//        'code' => $form_values['promo_code'],
-//        'status' => TRUE,
-//      ]);
-//      $custom_coupon->save();
-//      $coupons = $promotion->get('coupons')->getValue();
-//      // Append coupon to promotion.
-//      $next_index = count($coupons);
-//      $promotion->coupons[] = $custom_coupon->id();
-//      $promotion->save();
-      
       $approved_second_sentence = 'Please note that this promo code is set to expire on ' . $expire_date . ' so please make sure to enter your order before then.';
-      $query = \Drupal::database()->select('node__field_sample_status', 'fssv');
-      $query->fields('fssv', ['field_sample_status_value']);
-      $query->join('node__field_mpn_cat_a_b', 'fmpncatab', 'fmpncatab.entity_id = fssv.entity_id');
-      $query->join('node__field_mpnid', 'fmpnid', 'fmpnid.entity_id = fmpncatab.entity_id');
-//    $query->condition(db_or()
-//    ->condition('fmpncatab.field_mpn_cat_a_b_value', $cat)
-      $query->condition('fmpncatab.field_mpn_cat_a_b_value', $cat);
-      $query->condition('fmpnid.field_mpnid_value', $form_values['mpn_id']);
+      // Query to get the can sample status.
+      $query = \Drupal::database()->select('commerce_product__field_can_sample','cpcs');
+      $query->fields('cpcs',['field_can_sample_value']);
+      $query->join('commerce_product_field_data','cpfd','cpfd.product_id = cpcs.entity_id');
+      $query->condition('cpfd.product_id',$product_id);
       $results = $query->execute()->fetchAll();
       foreach($results as $result) {
-        $sample_status = $result->field_sample_status_value;
+        $sample_status = $result->field_can_sample_value;
         if ($sample_status == 2) {
-          // $add_to_cart_link = '<a href="http://www.cypress.com/?app=cart&amp;action=add&amp;itemID=' . $mpn_id . '&type=2"><img src="/sites/default/files/button_addcart3.jpg" /></a>';
           $add_to_cart_link = 'width: 32%; display: inline-block; text-align: center;';
           break;
         }
@@ -529,26 +495,6 @@ function store_mysamples_send_approval_mail($form, FormStateInterface $form_stat
 }
 
 /**
- * Method to post promocode details to legacy system.
- *
- * @param array $form_values
- *   Form values.
- */
- //function _cypress_post_promocode_to_legacy($promocode) {
-//   $query = \Drupal::database()->select('yamlform_submission_data', 'ys');
-//   $query->fields('ys', ['sid']);
-//   $and = db_and();
-//   $and->condition('name', 'promo_code' , '=');
-//   $and->condition('value', $promocode , '=');
-//   $query->condition($and);
-//   $results = $query->execute()->fetchAll();
-//   $submission_id = $results[0]->sid;
-
-
-
- //}
-
-/**
  * To map the first_name, last_name and roles for simplesamlphp.
  */
 function get_saml_user_attributes($account) {
@@ -574,10 +520,6 @@ function get_saml_user_attributes($account) {
         $user_object->addRole($user_roles[$saml_role_id]);
       }
     }
-//    if ($saml_mail == 'prof@cypress.com' || $saml_mail == 'manoj.k@valuebound.com') {
-//      $user_object->addRole('publisher');
-//      $user_object->addRole('administrator');
-//    }
   }
   elseif (!empty($user_get_roles)) {
     foreach ($user_get_roles as $user_get_role) {
@@ -594,10 +536,6 @@ function get_saml_user_attributes($account) {
         $user_object->addRole($user_roles[$saml_role_id]);
       }
     }
-//    if ($saml_mail == 'prof@cypress.com' || $saml_mail == 'manoj.k@valuebound.com') {
-//      $user_object->addRole('publisher');
-//      $user_object->addRole('administrator');
-//    }
   }
   $sso_legacy_id = $saml_attribute['username'][0];
   $uid = explode('_', $sso_legacy_id);

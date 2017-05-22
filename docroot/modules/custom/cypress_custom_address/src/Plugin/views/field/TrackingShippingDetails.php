@@ -56,11 +56,17 @@ class TrackingShippingDetails extends FieldPluginBase {
    */
   public function render(ResultRow $values) {
     $shipment_id = $values->_entity->id();
+    $ship_items = "";
     if(!empty($shipment_id)) {
       $ship_obj = Shipment::load($shipment_id);
-      $ship_items = $ship_obj->getItems()[0]->getTitle();
+      $ship_items = '<details>';
+      $ship_items .= '<summary>Items</summary><ol>';
+      foreach ($ship_obj->getItems() as $item) {
+        $ship_items .= '<li>' . $item->getTitle() . '</li>';
+      }
+      $ship_items .= '</ol></details>';
     }
-    return $ship_items;
+    return check_markup($ship_items, 'full_html');
   }
 
 }

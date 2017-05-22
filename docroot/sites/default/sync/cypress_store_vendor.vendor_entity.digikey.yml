@@ -4,4 +4,4 @@ status: true
 dependencies: {  }
 id: digikey
 label: DigiKey
-description: "dev2:\r\n  endPoint : 'http://test.samplecomponents.com/webservices/wssamples/service.asmx?wsdl'\r\n  programId : 'cypress'\r\n  securityId : 'v0651sfp'"
+description: "dev2:\r\n  endPoint : 'http://test.samplecomponents.com/webservices/wssamples/service.asmx?wsdl'\r\n  programId : 'cypress'\r\n  securityId : 'v0651sfp'\r\n  submitOrderEndPoint : 'https://test.samplecomponents.com/webservices/wssamples/service.asmx?op=SubmitOrder'"

@@ -2,3 +2,8 @@ cypress_cart_rules:
   label: Cart Rules Adjustment
   has_ui: true
   weight: 0
+
+cypress_promocode:
+  label: Cypress Promocode
+  has_ui: true
+  weight: 0
