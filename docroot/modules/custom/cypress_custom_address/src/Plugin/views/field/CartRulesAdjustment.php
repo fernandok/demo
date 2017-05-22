@@ -65,7 +65,6 @@ class CartRulesAdjustment extends FieldPluginBase {
         ->getValue()[0]['target_id'];
       $product = Product::load($product_id);
       $product_type = $product->get('type')->getValue()[0]['target_id'];
-      $product_sample = $product->get('field_can_sample')->getValue()[0]['value'];
       $cart_rules_adjustment = '';
       $promocode_adjustment = '';
       if ($product_type == 'part') {
