@@ -66,6 +66,7 @@ class CartRulesAdjustment extends FieldPluginBase {
       $product = Product::load($product_id);
       $product_type = $product->get('type')->getValue()[0]['target_id'];
       $cart_rules_adjustment = '';
+      $promocode_adjustment = '';
       if ($product_type == 'part') {
         foreach ($adjustments as $adjustment) {
           $adjustment_type = $adjustment->getType();
@@ -81,10 +82,24 @@ class CartRulesAdjustment extends FieldPluginBase {
             $adjustment_currency = Currency::load($adjustment_currency_code);
             $currency_symbol = $adjustment_currency->getSymbol();
             $cart_rules_adjustment .= '<div class="adjustment-amount"><span class = "adjustment-label">Discount Total: </span><span class = "adjustment-price">' . $currency_symbol . ' ' . $discount_price . '</span></div>';
+            $output = check_markup($cart_rules_adjustment, 'full_html');
+          }
+          if ($adjustment_type == 'cypress_promocode') {
+            $adjustment_label = $adjustment->getLabel();
+            $adjustment_amount = $adjustment->getAmount();
+            $adjustment_price = $adjustment_amount->getNumber();
+            $adjustment_price = trim($adjustment_price, "-");
+            $quantity = $order_item->getQuantity();
+            $adjustment_price = number_format($adjustment_price * $quantity, '2');
+            $discount_price = $total_price - $adjustment_price;
+            $adjustment_currency_code = $adjustment_amount->getCurrencyCode();
+            $adjustment_currency = Currency::load($adjustment_currency_code);
+            $currency_symbol = $adjustment_currency->getSymbol();
+            $promocode_adjustment .= '<div class="adjustment-amount"><span class = "adjustment-label"> Promocode Discount Total: </span><span class ="adjustment-price">' . $currency_symbol . ' ' . $discount_price . '</span></div>';
+            $output = check_markup($promocode_adjustment, 'full_html');
           }
         }
       }
-      $output = check_markup($cart_rules_adjustment, 'full_html');
       return $output;
     }
   }
