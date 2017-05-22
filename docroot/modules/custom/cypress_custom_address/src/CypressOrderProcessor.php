@@ -104,9 +104,9 @@ class CypressOrderProcessor implements OrderProcessorInterface {
         }
 
         // Custom Promocode application.
-        $can_sample = $product->get('field_can_sample')
-          ->getValue()[0]['value'];
-        if ($product_type == 'part' && ($can_sample == '2' || $can_sample == '1')) {
+//        $can_sample = $product->get('field_can_sample')
+//          ->getValue()[0]['value'];
+        if ($product_type == 'part') {
           $product_var = ProductVariation::load($default_product_variation_id);
           $pro_title = $product_var->getTitle();
           $promotion_id = get_promotion_id($pro_title);

@@ -85,7 +85,7 @@ class CartRulesAdjustment extends FieldPluginBase {
             $cart_rules_adjustment .= '<div class="adjustment-amount"><span class = "adjustment-label">Discount Total: </span><span class = "adjustment-price">' . $currency_symbol . ' ' . $discount_price . '</span></div>';
             $output = check_markup($cart_rules_adjustment, 'full_html');
           }
-          if ($adjustment_type == 'cypress_promocode' && ($product_sample == '2' || $product_sample == '1')) {
+          if ($adjustment_type == 'cypress_promocode') {
             $adjustment_label = $adjustment->getLabel();
             $adjustment_amount = $adjustment->getAmount();
             $adjustment_price = $adjustment_amount->getNumber();
