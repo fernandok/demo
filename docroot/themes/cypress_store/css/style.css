@@ -9003,6 +9003,9 @@ details {
   width: 20%;
   vertical-align: top;
 }
+.credit-card-form__expiration select.float-labels-item {
+  width: 4.5em;
+}
 @media screen and (max-width: 767px) {
   .form-item-field-contact-address-0-address-administrative-area {
     width: 100%;
