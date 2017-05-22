@@ -47,14 +47,14 @@ function cypress_store_preprocess_commerce_order_receipt(&$variables) {
 /**
  * Implements hook_preprocess_views_view_grid().
  */
-function cypress_custom_address_preprocess_views_view_grid(&$variables) {
+function cypress_store_preprocess_views_view_grid(&$variables) {
   $view = $variables['view'];
   $view_title = $view->storage->id();
   if ($view_title == 'delivery_address') {
-    $a = $view->getUser();
-    $b = $a->id();
+    $user = $view->getUser();
+    $uid = $user->id();
     // $view->element['#markup'] = 'hello';
-    $view->header = $b;
+    $view->header = $uid;
 
     $variables['cypress_address'] = $view->header;
   }

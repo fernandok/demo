@@ -129,7 +129,7 @@ XML;
       &lt;/detail&gt;";
     }
 
-    $ship_via = $this->getShipmentMethodRateLabel($shipment);
+    $ship_via = $this->getShipmentMethodName($shipment);
 
     $client = \Drupal::httpClient();
 
@@ -236,7 +236,7 @@ XML;
         <gatewayRequest>
           <encodedXmlRequest>
             &lt;shipment_request&gt;
-              &lt;partner_id&gt;$this->config['partnerId']&lt;/partner_id&gt;
+              &lt;partner_id&gt;{$this->config['partnerId']}&lt;/partner_id&gt;
             &lt;/shipment_request&gt;
           </encodedXmlRequest>
         </gatewayRequest>
@@ -345,4 +345,5 @@ XML;
 
     return trim($content);
   }
+
 }

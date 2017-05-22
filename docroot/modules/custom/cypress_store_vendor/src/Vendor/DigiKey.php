@@ -3,11 +3,13 @@
 namespace Drupal\cypress_store_vendor\Vendor;
 
 use Drupal\commerce_order\Entity\Order;
+use Drupal\commerce_order\Entity\OrderItem;
 use Drupal\commerce_shipping\Entity\Shipment;
 use Drupal\commerce_shipping\Entity\ShippingMethod;
 use Drupal\commerce_shipping\Plugin\Commerce\CheckoutPane\ShippingInformation;
 use Drupal\Core\Entity\Entity;
 use Drupal\cypress_store_vendor\Entity\VendorEntity;
+use Symfony\Component\Validator\Constraints\True;
 use Symfony\Component\Yaml\Yaml;
 
 class DigiKey extends VendorBase {
@@ -82,16 +84,18 @@ class DigiKey extends VendorBase {
   /**
    * Submit a new sample request for fulfillment.
    */
-  public function submitOrder($orderId = '146', $shipment) {
+  public function submitOrder($order, $shipment) {
 
-    $shippingAdress = $this->getShippingAddress($orderId);
-    $order = Order::load($orderId);
+    $shipment_id = $shipment->get('shipment_id')->getValue()[0]['value'];
+    $shippingAdress = $this->getShippingAddress($order);
+//    $order = Order::load($orderId);
     $createdTimeStamp = $order->get('created')->getValue();
     $orderDate = date('Y-m-d H:i:s', $createdTimeStamp[0]['value']);
 
     $programId = $this->config['programId'];
     $security_id = $this->config['securityId'];
-    $vid_number = '661865';//$order->id();
+    $vid_number = '661897';
+//    $vid_number = $shipment_id;
     $order_date = '2017-04-11T10:41:23.000-05:00';//$orderDate;
     $order_type = 'Test';// This can be Test or Production depending on instance
     $first_name = trim($shippingAdress['given_name']);
@@ -106,13 +110,25 @@ class DigiKey extends VendorBase {
     $email = $order->getEmail();
     $phone = $shippingAdress['contact'];
     $itemCount = 0;
-    $order_items = $order->getItems();
+//    $order_items = $order->getItems();
+    $shipment_items = $shipment->get('items')->getValue();
     $compliant = 'Yes';
     $backorders = 'Allow';
     $order_detail = '';
-    foreach ($order_items as $order_item) {
-      $product_mpn_id = $this->getProductMpnId($order_item);
-      $product_quantity = (integer) $order_item->getQuantity();
+    // Parts fields for Parts.
+    $primary_application = $order->get('field_primary_application')
+      ->getValue()[0]['value'];
+    $name_product_system = $order->get('field_name_product_system')
+      ->getValue()[0]['value'];
+    // Parts fields for parts and kit.
+    $purpose_of_order = $order->get('field_purpose_of_order')
+      ->getValue()[0]['value'];
+    $end_customer = $order->get('field_end_customer')->getValue()[0]['value'];
+
+    foreach ($shipment_items as $shipment_item) {
+      $orderItem = OrderItem::load($shipment_item['value']->getOrderItemId());
+      $product_mpn_id = $this->getProductMpnId($orderItem);
+      $product_quantity = (integer) $shipment_item['value']->getQuantity();
       // Construct order detail xml.
       $order_detail .= "<detail>
       <manufacturer_part_number xsi:type=\"xsd:string\">$product_mpn_id</manufacturer_part_number>
@@ -121,14 +137,14 @@ class DigiKey extends VendorBase {
       <compliant xsi:type=\"xsd:bytes\">$compliant</compliant>
       <backorders xsi:type=\"xsd:bytes\">$backorders</backorders>
       </detail>";
-      
+
       $itemCount++;
     }
 
 //    var_dump($order_detail);exit;
 
-    $application = 'Consumer Electronics (Audio/Video)';
-    $end_equipment = 'Home Entertainment';
+    $application = $primary_application;
+    $end_equipment = $name_product_system;
     $ship_via = 'FEDEX Express Economy 2nd Day Air';
     $ship_control_code = 'Single';
     $export_compliance_done = 'Y';
@@ -200,9 +216,7 @@ class DigiKey extends VendorBase {
    </soap:Body>
 </soap:Envelope>
 XML;
-//    print"<pre>";
-//    print_r($parameter);
-//    print"</pre>";exit;
+
     try {
 
       $headers = array(
@@ -234,32 +248,53 @@ XML;
       $response = curl_exec($ch);
       curl_close($ch);
 
-      print"<pre>";
-      print_r($response);
-      print"</pre>";exit;
+      $content = substr($response, strpos($response, '<SubmitOrderResult'));
+      $content = str_ireplace('<![CDATA[', '', $content);
+      $content = $this->cleanTrailingXml($content);
+      $content = str_ireplace(']]>', '', $content);
+      $content = htmlspecialchars_decode($content);
 
+      $shipments = new \SimpleXMLElement($content);
+
+      $shipmentsArray = json_decode(json_encode((array) $shipments), TRUE);
+
+      $shipment->setData('DigiKey', $shipmentsArray);
+      $shipment->save();
+
+      return TRUE;
 
 
     } catch (\Exception $e) {
-      print"<pre>";
-      print_r($e->getMessage());
-      "</pre>";
-      exit;
+      $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : DigiKey' . '<br/>' . 'Request Body :' . htmlentities($parameter) . '<br/>' . 'Response Body : ' . htmlentities($response);
+
+      $this->emailVendorExceptionMessage('DigiKey Submit Order ', $body);
+
+      return FALSE;
     }
 
+  }
 
-    /* // creating object of SimpleXMLElement
-      $xml_stuent_info = new \SimpleXMLElement("<?xml version=\"1.0\"?><student_info></student_info>");
+  /**
+   * @param $content
+   *
+   * @return mixed
+   */
+  protected function cleanTrailingXml($content) {
+    $trailing_xml_tags = [
+      '</soap:Envelope>',
+      '</soap:Body>',
+      '</SubmitOrderResponse>',
+    ];
 
-  // function call to convert array to xml
-      $this->array_to_xml($parameter, $xml_stuent_info);
-          var_dump($xml_stuent_info);exit;
+    return $this->replaceTrailingXmlTags($trailing_xml_tags, $content);
+  }
 
-      $client = new \SoapClient($endPoint);
-      $response = $client->SubmitOrder($xml_stuent_info);
-  //    $response = $client->SubmitOrder($xml_stuent_info);
-      var_dump($response);
-      exit;*/
 
+  protected function replaceTrailingXmlTags($trailing_xml_tags, $content) {
+    foreach ($trailing_xml_tags as $xml_tag) {
+      $content = str_ireplace($xml_tag, '', $content);
+    }
+
+    return trim($content);
   }
 }

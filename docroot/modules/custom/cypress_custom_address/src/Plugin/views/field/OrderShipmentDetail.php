@@ -62,6 +62,7 @@ class OrderShipmentDetail extends FieldPluginBase {
       if(!empty($shipments)) {
         $first_shipment = reset($shipments);
         if(!empty($first_shipment->getShippingProfile())) {
+          $profile_id = $first_shipment->getShippingProfile()->get('profile_id')->getValue()[0]['value'];
           $first_name = $first_shipment->getShippingProfile()
             ->get('field_contact_address')
             ->getValue()[0]['given_name'];
@@ -69,10 +70,12 @@ class OrderShipmentDetail extends FieldPluginBase {
             ->get('field_contact_address')
             ->getValue()[0]['family_name'];
           $full_name = $first_name .' ' . $last_name;
+          $ship_link = '<a href = "/profile/' . $profile_id . '/edit">' . $full_name . '</a>';
+          $user_profile_link = check_markup($ship_link, 'full_html');
         }
       }
     }
-    return $full_name;
+    return $user_profile_link;
   }
 
 }

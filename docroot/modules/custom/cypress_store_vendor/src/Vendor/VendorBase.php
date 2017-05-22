@@ -8,7 +8,6 @@ use Drupal\commerce_product\Entity\Product;
 use Drupal\cypress_store_vendor\CypressStoreVendor;
 use Symfony\Component\Yaml\Yaml;
 
-
 class VendorBase {
 
   /**
@@ -37,6 +36,27 @@ class VendorBase {
   const HH = '\Drupal\cypress_store_vendor\Vendor\HarteHanks';
 
   /**
+   * Vendor shipment method mapping.
+   */
+  const VENDORSHIPMENTMAP = [
+    'avnet' => [
+
+    ],
+    'cml' => [
+
+    ],
+    'digikey' => [
+
+    ],
+    'hartehanks' => [
+      'FedEx - Express Saver',
+      'FedEx - Overnight',
+      'FedEx International Economy',
+      'FedEx International Priority',
+    ],
+  ];
+
+  /**
    * @var array
    *
    * Configuration for vendor.
@@ -44,9 +64,10 @@ class VendorBase {
   protected $config;
 
   public function __construct() {
-    $config_name = strtolower(substr(strrchr(get_class($this), '\\'), 1));
-    $config_name = preg_replace('/^(avnet)(hk|sh)$/','${1}', $config_name);
-    $config = \Drupal::config('cypress_store_vendor.vendor_entity.' . $config_name)
+    $vendor = strtolower(substr(strrchr(get_class($this), '\\'), 1));
+    $vendor = preg_replace('/^(avnet)(hk|sh)$/','${1}', $vendor);
+    $this->vendor = $vendor;
+    $config = \Drupal::config('cypress_store_vendor.vendor_entity.' . $vendor)
       ->get('description');
     $config = Yaml::parse($config);
     $environment = isset($_ENV['AH_SITE_ENVIRONMENT']) ? $_ENV['AH_SITE_ENVIRONMENT'] : 'dev2';
@@ -180,11 +201,13 @@ class VendorBase {
    *
    * @return mixed
    */
-  public function getShipmentMethodRateLabel($shipment) {
+  public function getShipmentMethodName($shipment) {
     $shipment_method = $shipment->getShippingMethod()
       ->getPlugin()
       ->getConfiguration();
-    return $shipment_method['rate_label'];
+    $shipment_rate_label = $shipment_method['rate_label'];
+    // TODO: Need to map based on vendor $this->vendor.
+    return $shipment_rate_label;
   }
 
 }
