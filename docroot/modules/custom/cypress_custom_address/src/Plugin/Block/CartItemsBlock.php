@@ -2,18 +2,13 @@
 
 namespace Drupal\cypress_custom_address\Plugin\Block;
 
-use Drupal\commerce_cart\CartProvider;
 use Drupal\Core\Block\BlockBase;
 use Drupal\commerce_cart\CartProviderInterface;
 use Drupal\Core\Cache\Cache;
 use Drupal\Core\Cache\CacheableMetadata;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
-use Drupal\Core\Form\FormStateInterface;
 use Drupal\Core\Plugin\ContainerFactoryPluginInterface;
-use Drupal\Core\Url;
 use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\commerce_order\Entity\Order;
-use Drupal\commerce_order\Entity\OrderItem;
 
 /**
  * Provides a 'CartItemsBlock' block.
@@ -101,11 +96,10 @@ class CartItemsBlock extends BlockBase implements ContainerFactoryPluginInterfac
         $total_price = $order_obj->getTotalPrice()->getNumber();
         $price = number_format((float) $total_price, 2, '.', '');
         $build['cart_items_block']['#markup'] = '<div class = "cart-items">
-                                             <div class ="total-items-label"><div class = "total-items">Total Items</div><div class ="items">' . $total_items . '</div></div>
-                                             <div class ="sub-total-value"><div class = "total-price">Sub Total</div><div class ="sub-total-price">$ ' . $price . '</div></div>
-                                             <div id ="continue-shopping"><a href="http://www.cypress.com/cypress-store">Continue Shopping</a></div>
-                                             <div id ="checkout-dummy"><a href="">Checkout</a></div>
-                                             </div>';
+          <div class ="total-items-label"><div class = "total-items">Total Items</div><div class ="items">' . $total_items . '</div></div>
+          <div class ="sub-total-value"><div class = "total-price">Sub Total</div><div class ="sub-total-price">$ ' . $price . '</div></div>
+          <div id ="continue-shopping"><a href="http://www.cypress.com/cypress-store">Continue Shopping</a></div>
+          <div id ="checkout-dummy"><a href="">Checkout</a></div></div>';
         $build['cart_items_block']['#attached'] = [
           'library' => array('cypress_custom_address/custom-cart-checkout'),
         ];

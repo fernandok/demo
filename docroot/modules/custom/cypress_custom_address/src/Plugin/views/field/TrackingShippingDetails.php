@@ -5,9 +5,6 @@ namespace Drupal\cypress_custom_address\Plugin\views\field;
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\views\Plugin\views\field\FieldPluginBase;
 use Drupal\views\ResultRow;
-use Drupal\commerce_order\Entity\Order;
-use Drupal\commerce_product\Entity\ProductVariation;
-use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_shipping;
 use Drupal\commerce_shipping\Entity\Shipment;
 
