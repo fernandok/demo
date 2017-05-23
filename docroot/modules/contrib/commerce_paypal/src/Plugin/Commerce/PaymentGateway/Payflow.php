@@ -317,7 +317,7 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
 
   protected function populateBillingProfileParameters(array $parameters, ProfileInterface $profile) {
     /** @var \Drupal\address\Plugin\Field\FieldType\AddressItem $address */
-    $address = $profile->get('address')->first();
+    $address = $profile->get('field_contact_address')->first();
 
     $default_parameters = [
       'firstname' => $address->getGivenName(),
@@ -342,7 +342,7 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
 
   protected function populateShippingProfileParameters(array $parameters, ProfileInterface $profile) {
     /** @var \Drupal\address\Plugin\Field\FieldType\AddressItem $address */
-    $address = $profile->get('address')->first();
+    $address = $profile->get('field_contact_address')->first();
 
     $default_parameters = [
       'firstname' => $address->getGivenName(),
