@@ -2,6 +2,7 @@
 
 namespace Drupal\commerce_paypal\Plugin\Commerce\PaymentGateway;
 
+use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\commerce_payment\CreditCard;
 use Drupal\commerce_payment\Entity\PaymentInterface;
 use Drupal\commerce_payment\Entity\PaymentMethodInterface;
@@ -15,10 +16,12 @@ use Drupal\commerce_price\Price;
 use Drupal\commerce_price\RounderInterface;
 use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\profile\Entity\ProfileInterface;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;
 use InvalidArgumentException;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Provides the PayPal Payflow payment gateway.
@@ -60,12 +63,20 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
   protected $rounder;
 
   /**
+   * Commerce Payflow Logger Channel.
+   *
+   * @var \Psr\Log\LoggerInterface
+   */
+  protected $logger;
+
+  /**
    * {@inheritdoc}
    */
-  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, PaymentTypeManager $payment_type_manager, PaymentMethodTypeManager $payment_method_type_manager, ClientInterface $client, RounderInterface $rounder) {
+  public function __construct(array $configuration, $plugin_id, $plugin_definition, EntityTypeManagerInterface $entity_type_manager, PaymentTypeManager $payment_type_manager, PaymentMethodTypeManager $payment_method_type_manager, ClientInterface $client, RounderInterface $rounder, LoggerInterface $logger) {
     parent::__construct($configuration, $plugin_id, $plugin_definition, $entity_type_manager, $payment_type_manager, $payment_method_type_manager);
     $this->httpClient = $client;
     $this->rounder = $rounder;
+    $this->logger = $logger;
   }
 
   /**
@@ -80,7 +91,8 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
       $container->get('plugin.manager.commerce_payment_type'),
       $container->get('plugin.manager.commerce_payment_method_type'),
       $container->get('http_client'),
-      $container->get('commerce_price.rounder')
+      $container->get('commerce_price.rounder'),
+      $container->get('commerce_paypal.logger')
     );
   }
 
@@ -89,6 +101,8 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
    */
   public function defaultConfiguration() {
     $config = [
+      'log' => [],
+      'response_verbosity' => 'MEDIUM',
       'partner' => '',
       'vendor' => '',
       'user' => '',
@@ -103,6 +117,28 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
    */
   public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
     $form = parent::buildConfigurationForm($form, $form_state);
+
+    $form['log'] = [
+      '#type' => 'checkboxes',
+      '#title' => $this->t('Log the following messages for debugging'),
+      '#options' => [
+        'request' => $this->t('API request messages'),
+        'response' => $this->t('API response messages'),
+      ],
+      '#default_value' => $this->configuration['log'],
+    ];
+
+    $form['response_verbosity'] = [
+      '#type' => 'select',
+      '#title' => $this->t('Response verbosity'),
+      '#description' => $this->t('The level of detail that will be returned from the Payflow API.'),
+      '#options' => [
+        'HIGH' => 'High',
+        'MEDIUM' => 'Medium',
+        'LOW' => 'Low',
+      ],
+      '#default_value' => $this->configuration['response_verbosity'],
+    ];
 
     $form['partner'] = [
       '#type' => 'textfield',
@@ -144,6 +180,8 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
     if (!$form_state->getErrors()) {
       $values = $form_state->getValue($form['#parents']);
 
+      $this->configuration['log'] = $values['log'];
+      $this->configuration['response_verbosity'] = $values['response_verbosity'];
       $this->configuration['partner'] = $values['partner'];
       $this->configuration['vendor'] = $values['vendor'];
       $this->configuration['user'] = $values['user'];
@@ -166,6 +204,28 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
    */
   protected function getPartner() {
     return $this->configuration['partner'] ?: '';
+  }
+
+  protected function getResponseVerbosity($minimum_verbosity = NULL) {
+    $verbosities = [
+      'LOW',
+      'MEDIUM',
+      'HIGH'
+    ];
+
+    $response_verbosity = $this->configuration['response_verbosity'] ?: 'MEDIUM';
+    $index = array_search($response_verbosity, $verbosities);
+
+    // Optionally enforce a minimum, required for certain request types.
+    if (!is_null($minimum_verbosity)) {
+      $minimum_verbosity = strtoupper($minimum_verbosity);
+      $minimum_index = array_search($minimum_verbosity, $verbosities);
+      if ($minimum_index !== FALSE && ($minimum_index > $index)) {
+        $response_verbosity = $minimum_verbosity;
+      }
+    }
+
+    return $response_verbosity;
   }
 
   /**
@@ -199,7 +259,9 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
    *   The expiration date string.
    */
   protected function getExpirationDate(array $payment_details) {
-    return $payment_details['expiration']['month'] . $payment_details['expiration']['year'];
+    $date_string = $payment_details['expiration']['month'] . '-' . $payment_details['expiration']['year'];
+    $date = \DateTime::createFromFormat('m-Y', $date_string);
+    return $date->format('my');
   }
 
   /**
@@ -207,20 +269,99 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
    *
    * @param array $parameters
    *   The parameters for the transaction.
+   * @param string $minimum_verbosity
+   *   The minimum verbosity this request requires, such as "MEDIUM".
    *
    * @return array
    *   The new parameters.
    */
-  protected function getParameters(array $parameters = []) {
-    $defaultParameters = [
+  protected function getParameters(array $parameters = [], $minimum_verbosity = NULL) {
+    $default_parameters = [
       'tender' => 'C',
+      'trxtype' => 'S',
       'partner' => $this->getPartner(),
       'vendor' => $this->getVendor(),
       'user' => $this->getUser(),
       'pwd' => $this->getPassword(),
+      'verbosity' => $this->getResponseVerbosity($minimum_verbosity),
+          ];
+
+        return $parameters + $default_parameters;
+  }
+
+  protected function populateOrderParameters(array $parameters, OrderInterface $order) {
+    $default_parameters = [
+      'invnum' => $order->getOrderNumber(),
+      'email' => $order->getEmail(),
+      'billtoemail' => $order->getEmail(),
     ];
 
-    return $parameters + $defaultParameters;
+    $customer_id = $order->getCustomerId();
+    if (!empty($customer_id)) {
+      $default_parameters['custcode'] = $order->getCustomerId();
+    }
+
+    $parameters += $default_parameters;
+
+    if ($order->hasField('shipping_profile') && !$order->get('shipping_profile')->isEmpty()) {
+      $shipping_profile = $order->get('shipping_profile')->entity;
+      if ($shipping_profile instanceof ProfileInterface) {
+        $parameters = $this->populateShippingProfileParameters($parameters, $shipping_profile);
+      }
+    }
+
+    $parameters = $this->populateBillingProfileParameters($parameters, $order->getBillingProfile());
+
+    return $parameters;
+  }
+
+  protected function populateBillingProfileParameters(array $parameters, ProfileInterface $profile) {
+    /** @var \Drupal\address\Plugin\Field\FieldType\AddressItem $address */
+    $address = $profile->get('address')->first();
+
+    $default_parameters = [
+      'firstname' => $address->getGivenName(),
+      'lastname' => $address->getFamilyName(),
+      'street' => $address->getAddressLine1(),
+      'city' => $address->getLocality(),
+      'state' => $address->getAdministrativeArea(),
+      'zip' => $address->getPostalCode(),
+      'email' => $profile->getOwner()->getEmail(),
+      'billtofirstname' => $address->getGivenName(),
+      'billtolastname' => $address->getFamilyName(),
+      'billtostreet' => $address->getAddressLine1(),
+      'billtocity' => $address->getLocality(),
+      'billtostate' => $address->getAdministrativeArea(),
+      'billtozip' => $address->getPostalCode(),
+      'billtocountry' => $address->getCountryCode(),
+      'billtoemail' => $profile->getOwner()->getEmail(),
+    ];
+
+    return $parameters + $default_parameters;
+  }
+
+  protected function populateShippingProfileParameters(array $parameters, ProfileInterface $profile) {
+    /** @var \Drupal\address\Plugin\Field\FieldType\AddressItem $address */
+    $address = $profile->get('address')->first();
+
+    $default_parameters = [
+      'firstname' => $address->getGivenName(),
+      'lastname' => $address->getFamilyName(),
+      'street' => $address->getAddressLine1(),
+      'city' => $address->getLocality(),
+      'state' => $address->getAdministrativeArea(),
+      'zip' => $address->getPostalCode(),
+      'email' => $profile->getOwner()->getEmail(),
+      'shiptofirstname' => $address->getGivenName(),
+      'shiptolastname' => $address->getFamilyName(),
+      'shiptostreet' => $address->getAddressLine1(),
+      'shiptocity' => $address->getLocality(),
+      'shiptostate' => $address->getAdministrativeArea(),
+      'shiptozip' => $address->getPostalCode(),
+      'shiptocountry' => $address->getCountryCode(),
+    ];
+
+    return $parameters + $default_parameters;
   }
 
   /**
@@ -253,10 +394,10 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
    *   An array of the result values.
    */
   protected function prepareResult($body) {
-    $responseParts = explode('&', $body);
+    $response_parts = explode('&', $body);
 
     $result = [];
-    foreach ($responseParts as $bodyPart) {
+    foreach ($response_parts as $bodyPart) {
       list($key, $value) = explode('=', $bodyPart, 2);
       $result[strtolower($key)] = $value;
     }
@@ -274,8 +415,13 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
    *   The response body data in array format.
    */
   protected function executeTransaction(array $parameters) {
-    $body = $this->prepareBody($parameters);
+    if (in_array('request', $this->configuration['log'])) {
+      $this->logger->debug($this->t('Sending API request to PayFlow: @request', [
+        '@request' => print_r($parameters, TRUE)
+      ]));
+    }
 
+    $body = $this->prepareBody($parameters);
     $response = $this->httpClient->post($this->getApiUrl(), [
       'headers' => [
         'Content-Type' => 'text/namevalue',
@@ -284,7 +430,15 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
       'body' => $body,
       'timeout' => 0,
     ]);
-    return $this->prepareResult($response->getBody()->getContents());
+    $result = $this->prepareResult($response->getBody()->getContents());
+
+    if (in_array('response', $this->configuration['log'])) {
+      $this->logger->debug($this->t('Received API response from PayFlow: @response', [
+        '@response' => print_r($result, TRUE),
+      ]));
+    }
+
+    return $result;
   }
 
   /**
@@ -332,15 +486,18 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
   public function createPayment(PaymentInterface $payment, $capture = TRUE) {
     $this->validatePayment($payment, 'new');
 
+    $order = $payment->getOrder();
+
     try {
-      $data = $this->executeTransaction([
+      $parameters = [
         'trxtype' => $capture ? 'S' : 'A',
         'amt' => $this->rounder->round($payment->getAmount())->getNumber(),
         'currencycode' => $payment->getAmount()->getCurrencyCode(),
         'origid' => $payment->getPaymentMethod()->getRemoteId(),
-        'verbosity' => 'HIGH',
-        // 'orderid' => $payment->getOrderId(),
-      ]);
+      ];
+
+      $parameters = $this->populateOrderParameters($parameters, $order);
+      $data = $this->executeTransaction($parameters);
 
       if ($data['result'] !== '0') {
         throw new HardDeclineException('Could not charge the payment method. Response: ' . $data['respmsg'], $data['result']);
@@ -405,9 +562,9 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
   public function voidPayment(PaymentInterface $payment) {
     $this->validatePayment($payment, 'authorization');
 
-    $remoteId = $payment->getRemoteId();
+    $remote_id = $payment->getRemoteId();
 
-    if (empty($remoteId)) {
+    if (empty($remote_id)) {
       throw new PaymentGatewayException('Remote authorization ID could not be determined.');
     }
 
@@ -415,7 +572,6 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
       $data = $this->executeTransaction([
         'trxtype' => 'V',
         'origid' => $payment->getRemoteId(),
-        'verbosity' => 'HIGH',
       ]);
 
       if ($data['result'] !== '0') {
@@ -485,26 +641,16 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
    */
   public function createPaymentMethod(PaymentMethodInterface $payment_method, array $payment_details) {
     try {
-      /** @var \Drupal\address\Plugin\Field\FieldType\AddressItem $address */
-      $address = $payment_method->getBillingProfile()->get('field_contact_address')->first();
-
-      $data = $this->executeTransaction([
+      $parameters = [
         'trxtype' => 'A',
         'amt' => 0,
-        'verbosity' => 'HIGH',
         'acct' => $payment_details['number'],
         'expdate' => $this->getExpirationDate($payment_details),
         'cvv2' => $payment_details['security_code'],
-        'billtoemail' => $payment_method->getOwner()->getEmail(),
-        'billtofirstname' => $address->getGivenName(),
-        'billtolastname' => $address->getFamilyName(),
-        'billtostreet' => $address->getAddressLine1(),
-        'billtocity' => $address->getLocality(),
-        'billtostate' => $address->getAdministrativeArea(),
-        'billtozip' => $address->getPostalCode(),
-        'billtocountry' => $address->getCountryCode(),
-      ]);
-
+        'verbosity' => $this->getResponseVerbosity('HIGH'),
+      ];
+      $parameters = $this->populateBillingProfileParameters($parameters, $payment_method->getBillingProfile());
+      $data = $this->executeTransaction($parameters);
       if ($data['result'] !== '0') {
         throw new HardDeclineException("Unable to verify the credit card: " . $data['respmsg'], $data['result']);
       }
@@ -533,5 +679,4 @@ class Payflow extends OnsitePaymentGatewayBase implements PayflowInterface {
   public function deletePaymentMethod(PaymentMethodInterface $payment_method) {
     $payment_method->delete();
   }
-
 }

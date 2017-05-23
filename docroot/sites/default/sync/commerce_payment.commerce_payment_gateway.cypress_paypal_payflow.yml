@@ -9,6 +9,10 @@ label: 'Cypress Paypal Payflow'
 weight: -10
 plugin: paypal_payflow
 configuration:
+  log:
+    request: request
+    response: response
+  response_verbosity: MEDIUM
   partner: PayPal
   vendor: chiragshah92
   user: chiragshah92
