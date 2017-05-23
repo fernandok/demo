@@ -8274,6 +8274,38 @@ footer .region-footer .footer-block .footer-menu .copyright {
   text-decoration: none;
 }
 /*end my orders*/
+/*start order complete page*/
+.order-complete {
+  line-height: 26px;
+}
+.order-complete .order-detail-msg {
+  margin: 15px 0;
+  margin-bottom: 25px;
+}
+.order-complete .continue-shopping {
+  text-align: right;
+}
+.order-complete .continue-shopping a {
+  padding: 10px 20px;
+  background: #5bc0de;
+  color: #ffffff;
+  font-weight: bold !important;
+}
+.order-complete .continue-shopping a:hover {
+  text-decoration: none;
+  background: #269abc;
+}
+.order-complete .go-orders-page a {
+  background: #337ab7;
+  padding: 10px 24px;
+  color: #ffffff;
+  font-weight: bold;
+}
+.order-complete .go-orders-page a:hover {
+  text-decoration: none;
+  background: #204d74;
+}
+/*end order complete page*/
 /* start media queries for responsive*/
 /* start for mobiles*/
 @media only screen and (min-width: 320px) and (max-width: 767px) {
@@ -8535,6 +8567,14 @@ footer .region-footer .footer-block .footer-menu .copyright {
     text-align: center !important;
   }
   /*end orders(cancel & track)*/
+  /*start checkout complete*/
+  .order-complete .continue-shopping {
+    text-align: center;
+    margin-bottom: 25px;
+  }
+  .order-complete .go-orders-page {
+    text-align: center;
+  }
 }
 @media only screen and (min-width: 320px) and (max-width: 360px) {
   .social-icons a {
