@@ -9,22 +9,23 @@
  * @ingroup themeable
  */
 #}
-<p>
+<div class="order-complete">
   <h2>Order Confrimation</h2>
   <p>{{ 'Congratulations '}}<b>{{ 'Mr/Mrs @username'|t({'@username': username})}}</b>{{'Your order has been placed' }}</p>
-  <p>Thank you for your purchase.<p>
-  <b> {{ 'Your order number is @number'|t({'@number': order_entity.getOrderNumber}) }}</b> <br>
-  <b> {{ 'You will rececive an email shortly at @mail'|t({'@mail': order_entity.get('mail').value}) }}</b> <br>
-  <b> {{ 'Your order will delivered to you soon'|t }}</b>
-  <br>
-  <a href="#">
-  <button>
-       {{ 'CONTINUE SHOPPING'|t }}
-  </button>
-  </a>
-  <a href="#">
-    <button>
-        {{ 'GO TO HOME PAGE'|t }}
-    </button>
-  </a>
-</p>
+  <p>Thank you for your purchase.</p>
+  <div class="order-detail-msg">
+    <b> {{ 'Your order number is @number'|t({'@number': order_entity.getOrderNumber}) }}</b> <br>
+    <b> {{ 'You will rececive an email shortly at @mail'|t({'@mail': order_entity.get('mail').value}) }}</b> <br>
+    <b> {{ 'Your order will delivered to you soon'|t }}</b> <br>
+  </div>
+  <div class="continue-shopping">
+    <a href="http://www.cypress.com/cypress-store">
+      {{ 'CONTINUE SHOPPING'|t }}
+    </a>
+  </div>
+  <div class="go-home-page">
+    <a href="/myorders">
+      {{ 'GO TO ORDERS PAGE'|t }}
+    </a>
+  </div>
+</div>
