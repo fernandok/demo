@@ -2,7 +2,11 @@ uuid: 939f2f66-158b-4b53-802a-a2fc87516926
 langcode: en
 status: true
 dependencies:
+  config:
+    - field.storage.commerce_shipment.field_vendor
+    - views.view.shipping_status_oder_details
   module:
+    - commerce_order
     - commerce_shipping
     - cypress_custom_address
     - options
@@ -64,52 +68,11 @@ display:
             previous: ‹‹
             next: ››
       style:
-        type: table
+        type: default
         options:
           grouping: {  }
           row_class: ''
           default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            title: title
-            tracking_code: tracking_code
-            state: state
-            order_id: order_id
-          info:
-            title:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            tracking_code:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            state:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            order_id:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: '-1'
-          empty_table: false
       row:
         type: fields
       fields:
@@ -121,7 +84,7 @@ display:
           group_type: group
           admin_label: ''
           label: Order
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -186,7 +149,7 @@ display:
           group_type: group
           admin_label: ''
           label: Status
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -242,55 +205,6 @@ display:
           entity_type: commerce_shipment
           entity_field: state
           plugin_id: field
-        tracking_shipping_details:
-          id: tracking_shipping_details
-          table: views
-          field: tracking_shipping_details
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: ''
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: false
-          plugin_id: field_tracking_shipping_details
         tracking_code:
           id: tracking_code
           table: commerce_shipment
@@ -299,7 +213,7 @@ display:
           group_type: group
           admin_label: ''
           label: 'Tracking Code'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -364,7 +278,7 @@ display:
           group_type: group
           admin_label: ''
           label: 'Shipping Id'
-          exclude: false
+          exclude: true
           alter:
             alter_text: false
             text: ''
@@ -422,13 +336,260 @@ display:
           entity_type: commerce_shipment
           entity_field: shipment_id
           plugin_id: field
+        tracking_shipping_details:
+          id: tracking_shipping_details
+          table: views
+          field: tracking_shipping_details
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: field_tracking_shipping_details
+        uid:
+          id: uid
+          table: commerce_order
+          field: uid
+          relationship: order_id
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: entity_reference_entity_id
+          settings: {  }
+          group_column: target_id
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: commerce_order
+          entity_field: uid
+          plugin_id: field
+        field_vendor:
+          id: field_vendor
+          table: commerce_shipment__field_vendor
+          field: field_vendor
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        nothing:
+          id: nothing
+          table: views
+          field: nothing
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: false
+          alter:
+            alter_text: true
+            text: "<div class = \"col-xs-12 order-list\">\n  <div class = \"order-details col-sm-4 col-md-3 col-xs-12\">\n    <div class = \"order-number\">Shipment ID: </div><div class = \"order_value\">{{ shipment_id }}</div>\n  </div>\n  <div class = \"order-details col-sm-4 col-md-3 col-xs-12\">\n    <div class = \"order-placed\">Status: </div><div class = \"placed\">{{ state }} </div>\n  </div>\n    <div class = \"order-details col-sm-4 col-md-6 col-xs-12\">\n       <div class = \"order-placed\">Vendor: </div><div class = \"placed\">{{ field_vendor }}</div>\n      <div class = \"order-list-title\"></div><div class=\"order-list-products\">{{ tracking_shipping_details }} </div>\n    </div>\n</div>"
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: false
+          plugin_id: custom
       filters: {  }
       sorts: {  }
       title: 'Shipping Status'
       header: {  }
-      footer: {  }
+      footer:
+        view:
+          id: view
+          table: views
+          field: view
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          view_to_insert: 'shiping_status:default'
+          inherit_arguments: false
+          plugin_id: view
       empty: {  }
-      relationships: {  }
+      relationships:
+        order_id:
+          id: order_id
+          table: commerce_shipment
+          field: order_id
+          relationship: none
+          group_type: group
+          admin_label: Order
+          required: true
+          entity_type: commerce_shipment
+          entity_field: order_id
+          plugin_id: standard
       arguments:
         order_id:
           id: order_id
@@ -468,13 +629,14 @@ display:
           plugin_id: numeric
       display_extenders: {  }
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
-      tags: {  }
+      tags:
+        - 'config:field.storage.commerce_shipment.field_vendor'
   page_1:
     display_plugin: page
     id: page_1
@@ -484,11 +646,26 @@ display:
       display_extenders: {  }
       path: shipment/%
       display_description: ''
+      footer:
+        view:
+          id: view
+          table: views
+          field: view
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: false
+          view_to_insert: 'shipping_status_oder_details:block_1'
+          inherit_arguments: true
+          plugin_id: view
+      defaults:
+        footer: false
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url
         - url.query_args
-      tags: {  }
+      tags:
+        - 'config:field.storage.commerce_shipment.field_vendor'
