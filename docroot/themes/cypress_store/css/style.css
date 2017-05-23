@@ -9017,6 +9017,12 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .float-labels-wrapper input.float-labels-item[type="number"] {
     padding-bottom: 0 !important;
   }
+  .layout-region-checkout-main .float-labels-wrapper .float-labels-item {
+    padding-bottom: 0;
+  }
+  #parts-information-wrapper .select-wrapper label {
+    transform: none;
+  }
 }
 /*Styles for IE*/
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
