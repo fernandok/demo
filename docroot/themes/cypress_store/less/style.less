@@ -622,6 +622,10 @@ footer{
 				    padding: 6px 10px;
 				    font-weight: bold;
 				    text-decoration: none;
+
+				    &:hover{
+				    	background: #269abc;
+				    }
 				}
 			}
 		}
@@ -1350,6 +1354,24 @@ footer{
 		}
 	}
 	/*end cart page*/
+
+	/*start checkout order summary*/
+	.order-summary-row {
+	    min-height: 230px;
+	}
+	.layout-region-checkout-secondary {
+		.views-field-quantity .field-content{
+			text-align: right;
+		}
+		.views-field-purchased-entity .field-content{
+			padding: 20px 5px;
+		}
+		.views-field-total-price__number .field-content{
+			padding: 20px 5px;
+			text-align: right;
+		}
+	}
+	/*end order summary*/
 	/*start orders (cancel & track)*/
 	.order-links div {
 	    text-align: center !important;

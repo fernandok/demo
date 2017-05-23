@@ -7857,6 +7857,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   font-weight: bold;
   text-decoration: none;
 }
+.block-views-blockdelivery-address-block-1 .delivery-address-slide #sm-w .address-deliver-here a:hover {
+  background: #269abc;
+}
 .block-views-blockdelivery-address-block-1 .delivery-address-slide .slick-slide:focus {
   outline: 0;
 }
@@ -8512,6 +8515,21 @@ footer .region-footer .footer-block .footer-menu .copyright {
     width: 100%;
   }
   /*end cart page*/
+  /*start checkout order summary*/
+  .order-summary-row {
+    min-height: 230px;
+  }
+  .layout-region-checkout-secondary .views-field-quantity .field-content {
+    text-align: right;
+  }
+  .layout-region-checkout-secondary .views-field-purchased-entity .field-content {
+    padding: 20px 5px;
+  }
+  .layout-region-checkout-secondary .views-field-total-price__number .field-content {
+    padding: 20px 5px;
+    text-align: right;
+  }
+  /*end order summary*/
   /*start orders (cancel & track)*/
   .order-links div {
     text-align: center !important;
