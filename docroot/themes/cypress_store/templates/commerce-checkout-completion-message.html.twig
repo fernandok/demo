@@ -10,7 +10,7 @@
  */
 #}
 <div class="order-complete">
-  <h2>Order Confrimation</h2>
+  <h2>Order Confirmation</h2>
   <p>{{ 'Congratulations '}}<b>{{ 'Mr/Mrs @username'|t({'@username': username})}}</b>{{'Your order has been placed' }}</p>
   <p>Thank you for your purchase.</p>
   <div class="order-detail-msg">
@@ -18,14 +18,16 @@
     <b> {{ 'You will rececive an email shortly at @mail'|t({'@mail': order_entity.get('mail').value}) }}</b> <br>
     <b> {{ 'Your order will delivered to you soon'|t }}</b> <br>
   </div>
-  <div class="continue-shopping">
-    <a href="http://www.cypress.com/cypress-store">
-      {{ 'CONTINUE SHOPPING'|t }}
-    </a>
-  </div>
-  <div class="go-home-page">
-    <a href="/myorders">
-      {{ 'GO TO ORDERS PAGE'|t }}
-    </a>
+  <div class="col-md-12 col-sm-12">
+    <div class="continue-shopping col-md-6 col-sm-6 col-xs-12">
+      <a href="http://www.cypress.com/cypress-store">
+        {{ 'CONTINUE SHOPPING'|t }}
+      </a>
+    </div>
+    <div class="go-orders-page col-md-6 col-sm-6 col-xs-12">
+      <a href="/myorders">
+        {{ 'GO TO ORDERS PAGE'|t }}
+      </a>
+    </div>
   </div>
 </div>
