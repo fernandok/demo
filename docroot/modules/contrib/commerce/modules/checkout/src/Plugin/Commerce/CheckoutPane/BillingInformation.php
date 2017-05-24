@@ -14,7 +14,7 @@ use Drupal\Core\Form\FormStateInterface;
  *   wrapper_element = "fieldset",
  * )
  */
-class BillingInformation extends BillingInformationPaneBase {
+class BillingInformation extends CheckoutPaneBase implements CheckoutPaneInterface {
 
   /**
    * {@inheritdoc}
@@ -47,7 +47,7 @@ class BillingInformation extends BillingInformationPaneBase {
       '#default_value' => $billing_profile,
       '#default_country' => $store->getAddress()->getCountryCode(),
       '#available_countries' => $store->getBillingCountries(),
-      ] + $this->getProfileSelectOptions();
+    ];
 
     return $pane_form;
   }

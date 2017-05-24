@@ -13,7 +13,6 @@ use Drupal\Core\Link;
 use Drupal\user\UserAuthInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
-use Drupal\simplesamlphp_auth\Controller;
 
 /**
  * Provides the login pane.
@@ -192,54 +191,54 @@ class Login extends CheckoutPaneBase implements CheckoutPaneInterface, Container
         ],
       ],
     ];
-//    $pane_form['returning_customer']['name'] = [
-//      '#type' => 'textfield',
-//      '#title' => $this->t('Username'),
-//      '#size' => 60,
-//      '#maxlength' => USERNAME_MAX_LENGTH,
-//      '#attributes' => [
-//        'autocorrect' => 'none',
-//        'autocapitalize' => 'none',
-//        'spellcheck' => 'false',
-//        'autofocus' => 'autofocus',
-//      ],
-//    ];
-//    $pane_form['returning_customer']['password'] = [
-//      '#type' => 'password',
-//      '#title' => $this->t('Password'),
-//      '#size' => 60,
-//    ];
+    $pane_form['returning_customer']['name'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Username'),
+      '#size' => 60,
+      '#maxlength' => USERNAME_MAX_LENGTH,
+      '#attributes' => [
+        'autocorrect' => 'none',
+        'autocapitalize' => 'none',
+        'spellcheck' => 'false',
+        'autofocus' => 'autofocus',
+      ],
+    ];
+    $pane_form['returning_customer']['password'] = [
+      '#type' => 'password',
+      '#title' => $this->t('Password'),
+      '#size' => 60,
+    ];
     $pane_form['returning_customer']['submit'] = [
       '#type' => 'submit',
-      '#value' => Link::createFromRoute($this->t('Log In'), 'simplesamlphp_auth.saml_login')->toString(),
-//      '#op' => 'login',
+      '#value' => $this->t('Log in'),
+      '#op' => 'login',
     ];
-//    $pane_form['returning_customer']['forgot_password'] = [
-//      '#type' => 'markup',
-//      '#markup' => Link::createFromRoute($this->t('Forgot password?'), 'user.pass')->toString(),
-//    ];
-//
-//    $pane_form['guest'] = [
-//      '#type' => 'fieldset',
-//      '#title' => $this->t('Guest Checkout'),
-//      '#access' => $this->configuration['allow_guest_checkout'],
-//      '#attributes' => [
-//        'class' => [
-//          'form-wrapper__login-option',
-//          'form-wrapper__guest-checkout',
-//        ],
-//      ],
-//    ];
-//    $pane_form['guest']['text'] = [
-//      '#prefix' => '<p>',
-//      '#suffix' => '</p>',
-//      '#markup' => $this->t('Proceed to checkout. You can optionally create an account at the end.'),
-//    ];
-//    $pane_form['guest']['continue'] = [
-//      '#type' => 'submit',
-//      '#value' => $this->t('Continue as Guest'),
-//      '#op' => 'continue',
-//    ];
+    $pane_form['returning_customer']['forgot_password'] = [
+      '#type' => 'markup',
+      '#markup' => Link::createFromRoute($this->t('Forgot password?'), 'user.pass')->toString(),
+    ];
+
+    $pane_form['guest'] = [
+      '#type' => 'fieldset',
+      '#title' => $this->t('Guest Checkout'),
+      '#access' => $this->configuration['allow_guest_checkout'],
+      '#attributes' => [
+        'class' => [
+          'form-wrapper__login-option',
+          'form-wrapper__guest-checkout',
+        ],
+      ],
+    ];
+    $pane_form['guest']['text'] = [
+      '#prefix' => '<p>',
+      '#suffix' => '</p>',
+      '#markup' => $this->t('Proceed to checkout. You can optionally create an account at the end.'),
+    ];
+    $pane_form['guest']['continue'] = [
+      '#type' => 'submit',
+      '#value' => $this->t('Continue as Guest'),
+      '#op' => 'continue',
+    ];
 
     $pane_form['register'] = [
       '#type' => 'fieldset',
