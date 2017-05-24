@@ -19,7 +19,7 @@ index 6b32b2b..77cf504 100644
 
  namespace Drupal\commerce_combine_carts;
 
-+use Drupal\commerce_cart\CartManager;
++use Drupal\commerce_cart\CartManagerInterface;
  use Drupal\commerce_cart\CartProviderInterface;
  use Drupal\commerce_order\Entity\OrderInterface;
  use Drupal\user\UserInterface;
@@ -28,7 +28,7 @@ index 6b32b2b..77cf504 100644
     *   The cart provider.
     */
 -  public function __construct(CartProviderInterface $cart_provider) {
-+  public function __construct(CartProviderInterface $cart_provider, CartManager $cart_manager) {
++  public function __construct(CartProviderInterface $cart_provider, CartManagerInterface $cart_manager) {
      $this->cartProvider = $cart_provider;
 +    $this->cartManager = $cart_manager;
    }
