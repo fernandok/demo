@@ -2,6 +2,7 @@
 
 namespace Drupal\commerce_combine_carts;
 
+use Drupal\commerce_cart\CartManager;
 use Drupal\commerce_cart\CartProviderInterface;
 use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\user\UserInterface;
@@ -16,8 +17,9 @@ class CartUnifier {
    * @param \Drupal\commerce_cart\CartProviderInterface $cart_provider
    *   The cart provider.
    */
-  public function __construct(CartProviderInterface $cart_provider) {
+  public function __construct(CartProviderInterface $cart_provider, CartManager $cart_manager) {
     $this->cartProvider = $cart_provider;
+    $this->cartManager = $cart_manager;
   }
 
   /**
@@ -78,7 +80,7 @@ class CartUnifier {
       foreach ($other_cart->getItems() as $item) {
         $other_cart->removeItem($item);
         $item->get('order_id')->entity = $main_cart;
-        $main_cart->addItem($item);
+        $this->cartManager->addOrderItem($main_cart, $item);
       }
       $main_cart->save();
 
