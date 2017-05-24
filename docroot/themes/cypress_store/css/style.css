@@ -8081,7 +8081,7 @@ footer .region-footer .footer-block .footer-menu .copyright {
   clear: both;
 }
 .credit-card-form__divider {
-  margin: 0.5em 0.5em 0 0.5em;
+  margin: 0.5em 0.5em 0 0.5em !important;
   font-size: 1.5em;
 }
 /*end checkout*/
@@ -8567,6 +8567,10 @@ footer .region-footer .footer-block .footer-menu .copyright {
     text-align: right;
   }
   /*end order summary*/
+  /*review page*/
+  .path-checkout-review .views-field-cart-product-image {
+    text-align: left;
+  }
   /*start orders (cancel & track)*/
   .order-links div {
     text-align: center !important;
@@ -9002,6 +9006,13 @@ footer .region-footer .footer-block .footer-menu .copyright {
     }
   }
 }
+@-moz-document url-prefix() {
+  @media only screen and (min-width: 320px) and (max-width: 332px) {
+    .path-checkout-review .layout-region-checkout-footer a {
+      padding: 6px 5px 9px;
+    }
+  }
+}
 @media only screen and (min-width: 768px) and (max-width: 1400px) {
   @-moz-document url-prefix() {
     .cart.cart-form .cypress-cart .cart-edit-quantity [class*="form-item-edit-quantity-"] {
@@ -9020,8 +9031,11 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .layout-region-checkout-main .float-labels-wrapper .float-labels-item {
     padding-bottom: 0;
   }
-  #parts-information-wrapper .select-wrapper label {
-    transform: none;
+  /*#parts-information-wrapper .select-wrapper label{
+		transform: none;
+	}*/
+  .path-checkout .select-wrapper {
+    line-height: 0;
   }
 }
 /*Styles for IE*/
@@ -9071,6 +9085,12 @@ footer .region-footer .footer-block .footer-menu .copyright {
   }
   footer .region-footer .footer-block .footer-menu .social-icons a .social-icon {
     width: 60px;
+  }
+  div.address-container-inline > .form-item {
+    margin-bottom: 15px !important;
+  }
+  .path-checkout .select-wrapper {
+    line-height: 0;
   }
 }
 /*End for IE*/
@@ -9192,6 +9212,22 @@ _::-webkit-full-page-media,
 _:future,
 :root .region-header .primary-menu li ul.language-menu li:last-child {
   display: block;
+}
+_::-webkit-full-page-media .view-id-commerce_user_orders .order-list .order-complete-flow .order-tracking-shipment a,
+_:future .view-id-commerce_user_orders .order-list .order-complete-flow .order-tracking-shipment a,
+:root .view-id-commerce_user_orders .order-list .order-complete-flow .order-tracking-shipment a,
+_::-webkit-full-page-media .view-shiping-status .order-list .order-complete-flow .order-tracking-shipment a,
+_:future .view-shiping-status .order-list .order-complete-flow .order-tracking-shipment a,
+:root .view-shiping-status .order-list .order-complete-flow .order-tracking-shipment a {
+  padding: 6px 38px;
+}
+_::-webkit-full-page-media .view-id-commerce_user_orders .order-list .order-complete-flow .order-more-details a,
+_:future .view-id-commerce_user_orders .order-list .order-complete-flow .order-more-details a,
+:root .view-id-commerce_user_orders .order-list .order-complete-flow .order-more-details a,
+_::-webkit-full-page-media .view-shiping-status .order-list .order-complete-flow .order-more-details a,
+_:future .view-shiping-status .order-list .order-complete-flow .order-more-details a,
+:root .view-shiping-status .order-list .order-complete-flow .order-more-details a {
+  padding: 6px 51px;
 }
 /*end for safari*/
 /* Fieldset start */
