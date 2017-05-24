@@ -206,7 +206,7 @@ class VendorBase {
       ->getPlugin()
       ->getConfiguration();
     $shipment_rate_label = $shipment_method['rate_label'];
-    // TODO: Need to map based on vendor $this->vendor.
+    // TODO: Need to map based on vendor ($this->vendor).
     return $shipment_rate_label;
   }
 
