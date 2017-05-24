@@ -1,0 +1,24 @@
+diff --git a/modules/payment/src/Plugin/Commerce/CheckoutPane/PaymentInformation.php b/modules/payment/src/Plugin/Commerce/CheckoutPane/PaymentInformation.php
+index e0121a3..52f16c5 100644
+--- a/modules/payment/src/Plugin/Commerce/CheckoutPane/PaymentInformation.php
++++ b/modules/payment/src/Plugin/Commerce/CheckoutPane/PaymentInformation.php
+@@ -312,6 +312,19 @@ class PaymentInformation extends CheckoutPaneBase {
+       $form_state->setError($complete_form, $this->noPaymentGatewayErrorMessage());
+     }
+   }
++  /**
++   * {@inheritdoc}
++   */
++  public function isVisible() {
++    $order_total = $this->order->getTotalPrice()->getNumber();
++    $order_is_zero = ($order_total != 0);
++    if ($order_is_zero) {
++      return TRUE;
++    }
++    else {
++      return FALSE;
++    }
++  }
+ 
+   /**
+    * {@inheritdoc}

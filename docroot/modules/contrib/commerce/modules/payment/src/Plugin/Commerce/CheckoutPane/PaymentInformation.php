@@ -362,4 +362,18 @@ class PaymentInformation extends BillingInformationPaneBase {
     return $this->t('No payment gateways are defined, create one first.');
   }
 
+  /**
+   * {@inheritdoc}
+   */
+  public function isVisible() {
+    $order_total = $this->order->getTotalPrice()->getNumber();
+    $order_is_zero = ($order_total != 0);
+    if ($order_is_zero) {
+      return TRUE;
+    }
+    else {
+      return FALSE;
+    }
+  }
+
 }
