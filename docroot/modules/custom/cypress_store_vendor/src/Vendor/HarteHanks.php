@@ -190,15 +190,16 @@ XML;
       $shipmentsArray = json_decode(json_encode((array) $shipments), TRUE);
       $shipment->setData('HH', $shipmentsArray);
       $shipment->save();
-      $this->GetOrderInfo($shipmentsArray['OrderID']);
-//      return $shipments;
-
+//      $this->GetOrderInfo($shipmentsArray['OrderID']);
+      return True;
 
     } catch (\Exception $e) {
 
       $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : HarteHanks' . '<br/>' . 'Request Body :' . htmlentities($parameter) . '<br/>' . 'Response Body : ' . htmlentities($response);
 
       $this->emailVendorExceptionMessage('HarteHanks Get Order Info ', $body);
+
+      return False;
     }
 
   }
@@ -207,7 +208,7 @@ XML;
    * @param string $mpn
    *   marketing part number
    */
-  public function getInventory($mpn) {
+  public function getInventory($mpn ) {
     return 1;
     $userName = $this->config['Username'];
     $password = $this->config['Password'];
@@ -270,12 +271,17 @@ XML;
 
       $shipments = new \SimpleXMLElement($content);
 
+      if(isset($shipments) && $shipments->Available > 0){
+        return $shipments->Available;
+      }else{
+        $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : HarteHanks' . '<br/>' . 'Request Body :' . htmlentities($parameter) . '<br/>' . 'Response Body : ' . htmlentities($response);
+        $this->emailVendorExceptionMessage('HarteHanks Get Product Availability ', $body);
+        return 0 ;
+      }
       return $shipments;
 
     } catch (\Exception $e) {
-
       $body = 'Environment : ' . $_ENV['AH_SITE_ENVIRONMENT'] . '<br/>' . 'Vendor : HarteHanks' . '<br/>' . 'Request Body :' . htmlentities($parameter) . '<br/>' . 'Response Body : ' . htmlentities($response);
-
       $this->emailVendorExceptionMessage('HarteHanks Get Product Availability ', $body);
 
 
