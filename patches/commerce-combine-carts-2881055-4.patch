@@ -1,0 +1,44 @@
+diff --git a/commerce_combine_carts.services.yml b/commerce_combine_carts.services.yml
+index 578ea91..66694ee 100644
+--- a/commerce_combine_carts.services.yml
++++ b/commerce_combine_carts.services.yml
+@@ -1,7 +1,7 @@
+ services:
+   commerce_combine_carts.cart_unifier:
+     class: Drupal\commerce_combine_carts\CartUnifier
+-    arguments: ['@commerce_cart.cart_provider']
++    arguments: ['@commerce_cart.cart_provider', '@commerce_cart.cart_manager']
+
+   commerce_customizations.cart_event_subscriber:
+     class: '\Drupal\commerce_combine_carts\EventSubscriber\CartEventSubscriber'
+diff --git a/src/CartUnifier.php b/src/CartUnifier.php
+index 6b32b2b..77cf504 100644
+--- a/src/CartUnifier.php
++++ b/src/CartUnifier.php
+@@ -2,6 +2,7 @@
+
+ namespace Drupal\commerce_combine_carts;
+
++use Drupal\commerce_cart\CartManager;
+ use Drupal\commerce_cart\CartProviderInterface;
+ use Drupal\commerce_order\Entity\OrderInterface;
+ use Drupal\user\UserInterface;
+@@ -16,8 +17,9 @@ class CartUnifier {
+    * @param \Drupal\commerce_cart\CartProviderInterface $cart_provider
+    *   The cart provider.
+    */
+-  public function __construct(CartProviderInterface $cart_provider) {
++  public function __construct(CartProviderInterface $cart_provider, CartManager $cart_manager) {
+     $this->cartProvider = $cart_provider;
++    $this->cartManager = $cart_manager;
+   }
+
+   /**
+@@ -78,7 +80,7 @@ class CartUnifier {
+       foreach ($other_cart->getItems() as $item) {
+         $other_cart->removeItem($item);
+         $item->get('order_id')->entity = $main_cart;
+-        $main_cart->addItem($item);
++        $this->cartManager->addOrderItem($main_cart, $item);
+       }
+       $main_cart->save();

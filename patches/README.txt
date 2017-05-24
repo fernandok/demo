@@ -22,4 +22,7 @@ File: cypress_payflow.patch
 Desc: Adding the billing address to be fetched from custom address field instead of address field.
 Applies to: commerce-paypal version 8.x-2.x-dev.
 
+File: free_orders-2856583-2.patch
+Desc: No payment method for free orders
+Applies to: commerce version 8.x-2.x-dev.
 
