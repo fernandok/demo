@@ -9035,6 +9035,11 @@ footer .region-footer .footer-block .footer-menu .copyright {
       padding: 6px 5px 9px;
     }
   }
+  @media only screen and (max-width: 767px) {
+    .region-header nav#block-mainmenu ul {
+      margin-left: 0;
+    }
+  }
 }
 @media only screen and (min-width: 768px) and (max-width: 1400px) {
   @-moz-document url-prefix() {
@@ -9059,6 +9064,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   }
   .path-checkout .select-wrapper {
     line-height: 0;
+  }
+  .layout-region-checkout-secondary .views-field-purchased-entity .field-content {
+    word-wrap: break-word;
   }
 }
 /*Styles for IE*/
