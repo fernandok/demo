@@ -8257,7 +8257,8 @@ footer .region-footer .footer-block .footer-menu .copyright {
   font-weight: 600;
 }
 /*start my orders*/
-.path-myorders .order-list .order-complete-flow .order-more-details a:hover {
+.path-myorders .order-list .order-complete-flow .order-more-details a:hover,
+.path-shipment .order-list .order-complete-flow .order-more-details a:hover {
   background-color: #269abc !important;
   border-color: #1b6d85 !important;
   text-decoration: none;
@@ -8267,10 +8268,12 @@ footer .region-footer .footer-block .footer-menu .copyright {
   border-color: #122b40 !important;
   text-decoration: none;
 }
-.path-myorders .order-list .order-complete-flow .cancel-order a {
+.path-myorders .order-list .order-complete-flow .cancel-order a,
+.path-shipment .order-list .order-complete-flow .cancel-order a {
   background-color: #d9534f !important;
 }
-.path-myorders .order-list .order-complete-flow .cancel-order a:hover {
+.path-myorders .order-list .order-complete-flow .cancel-order a:hover,
+.path-shipment .order-list .order-complete-flow .cancel-order a:hover {
   background-color: #c9302c !important;
   text-decoration: none;
 }
@@ -8307,6 +8310,14 @@ footer .region-footer .footer-block .footer-menu .copyright {
   background: #204d74;
 }
 /*end order complete page*/
+/*start path-shipment page*/
+.path-shipment summary {
+  font-weight: 600;
+}
+.path-shipment summary:after {
+  content: ":";
+}
+/*end path-shipment page*/
 /* start media queries for responsive*/
 /* start for mobiles*/
 @media only screen and (min-width: 320px) and (max-width: 767px) {
@@ -9031,9 +9042,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .layout-region-checkout-main .float-labels-wrapper .float-labels-item {
     padding-bottom: 0;
   }
-  /*#parts-information-wrapper .select-wrapper label{
-		transform: none;
-	}*/
+  .profile-customer-edit-form .float-labels-wrapper.float-labels-focused .float-labels-item {
+    padding-bottom: 0;
+  }
   .path-checkout .select-wrapper {
     line-height: 0;
   }
@@ -9230,6 +9241,11 @@ _:future .view-shiping-status .order-list .order-complete-flow .order-more-detai
   padding: 6px 51px;
 }
 /*end for safari*/
+/*start for safari sierra 10.1+*/
+/*@media not all and (min-resolution:.001dpcm) { @media
+{
+    
+}}*/
 /* Fieldset start */
 fieldset legend {
   margin: -10px -15px;
