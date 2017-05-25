@@ -4,6 +4,7 @@ namespace Drupal\cypress_custom_address;
 
 use Drupal\commerce_order\Entity\OrderInterface;
 use Drupal\commerce_order\Entity\OrderItem;
+use Drupal\commerce_promotion\Entity\Coupon;
 use Drupal\commerce_promotion\Entity\Promotion;
 use Drupal\commerce_order\OrderProcessorInterface;
 use Drupal\commerce_price\Price;
@@ -104,52 +105,69 @@ class CypressOrderProcessor implements OrderProcessorInterface {
         }
 
         // Custom Promocode application.
-//        $can_sample = $product->get('field_can_sample')
-//          ->getValue()[0]['value'];
         if ($product_type == 'part') {
           $product_var = ProductVariation::load($default_product_variation_id);
           $pro_title = $product_var->getTitle();
           $promotion_id = get_promotion_id($pro_title);
           $promotion = Promotion::load($promotion_id);
+          // Get the Coupon Code.
           if (!empty($promotion)) {
-            $offer = $promotion->get('offer')
-              ->getValue()[0]['target_plugin_id'];
-            $promocode_amount = $promotion->get('offer')
-              ->getValue()[0]['target_plugin_configuration']['amount'];
-            $product_id = $promotion->get('offer')
-              ->getValue()[0]['target_plugin_configuration']['product_id'];
-
-            if ($offer == 'commerce_promotion_product_percentage_off') {
-              if ($product_variation->getProductId() == $product_id) {
-                $adjustment_amount = $order_item->getUnitPrice()
-                  ->multiply($promocode_amount);
-                $promocode_adjustment_amount = $adjustment_amount->getNumber();
-                // $adjustments = $item->getAdjustments();
-                $promocode_adjustment[] = new Adjustment([
-                  'type' => 'cypress_promocode',
-                  'label' => 'Promocode Discount',
-                  'amount' => new Price('-' . $promocode_adjustment_amount, 'USD'),
-                ]);
-                $order_item->setAdjustments($promocode_adjustment);
-                $order_item->save();
-              }
+            $coupons = $promotion->getCouponIds();
+            foreach ($coupons as $coupon) {
+              $coupon_id = $coupon;
+              $coupon_obj = Coupon::load($coupon_id);
+              $promocode = $coupon_obj->getCode();
             }
-            elseif ($offer == 'commerce_promotion_product_fixed_off') {
-              if ($product_variation->getProductId() == $product_id) {
-                $unit_price = $order_item->getUnitPrice()->getNumber();
-                if ($unit_price < $promocode_amount) {
-                  continue;
+            $query = \Drupal::database()
+              ->select('cypress_store_coupons', 'csc');
+            $query->fields('csc', ['coupon_code']);
+            $query->condition('csc.promotion_id', $promotion_id);
+            $results = $query->execute()->fetchAll();
+            $coupon_code = $results[0]->coupon_code;
+
+            if ($promocode != $coupon_code) {
+              if (!empty($promotion)) {
+                // if ($promotion->getUsageLimit() == 1) {
+                $offer = $promotion->get('offer')
+                  ->getValue()[0]['target_plugin_id'];
+                $promocode_amount = $promotion->get('offer')
+                  ->getValue()[0]['target_plugin_configuration']['amount'];
+                $product_id = $promotion->get('offer')
+                  ->getValue()[0]['target_plugin_configuration']['product_id'];
+
+                if ($offer == 'commerce_promotion_product_percentage_off') {
+                  if ($product_variation->getProductId() == $product_id) {
+                    $adjustment_amount = $order_item->getUnitPrice()
+                      ->multiply($promocode_amount);
+                    $promocode_adjustment_amount = $adjustment_amount->getNumber();
+                    // $adjustments = $item->getAdjustments();
+                    $promocode_adjustment[] = new Adjustment([
+                      'type' => 'cypress_promocode',
+                      'label' => 'Promocode Discount',
+                      'amount' => new Price('-' . $promocode_adjustment_amount, 'USD'),
+                    ]);
+                    $order_item->setAdjustments($promocode_adjustment);
+                    $order_item->save();
+                  }
                 }
-                else {
-                  $discount_price = $promocode_amount;
+                elseif ($offer == 'commerce_promotion_product_fixed_off') {
+                  if ($product_variation->getProductId() == $product_id) {
+                    $unit_price = $order_item->getUnitPrice()->getNumber();
+                    if ($unit_price < $promocode_amount) {
+                      continue;
+                    }
+                    else {
+                      $discount_price = $promocode_amount;
+                    }
+                    $promocode_adjustment[] = new Adjustment([
+                      'type' => 'cypress_promocode',
+                      'label' => 'Promocode Discount',
+                      'amount' => new Price('-' . $discount_price, 'USD'),
+                    ]);
+                    $order_item->setAdjustments($promocode_adjustment);
+                    $order_item->save();
+                  }
                 }
-                $promocode_adjustment[] = new Adjustment([
-                  'type' => 'cypress_promocode',
-                  'label' => 'Promocode Discount',
-                  'amount' => new Price('-' . $discount_price, 'USD'),
-                ]);
-                $order_item->setAdjustments($promocode_adjustment);
-                $order_item->save();
               }
             }
           }
@@ -158,18 +176,18 @@ class CypressOrderProcessor implements OrderProcessorInterface {
     }
   }
 }
- // Get the Promotion id based on product title
- function get_promotion_id($title) {
-    $query = \Drupal::database()->select('commerce_promotion_field_data', 'cp');
-    $query->fields('cp', ['promotion_id']);
-    $query->condition('cp.name', $title);
-    $results = $query->execute()->fetchAll();
-    foreach ($results as $result) {
-      $promotion_id = $result->promotion_id;
-    }
-
-    return $promotion_id;
-  }
+// Get the Promotion id based on product title
+// function get_promotion_id($title) {
+//    $query = \Drupal::database()->select('commerce_promotion_field_data', 'cp');
+//    $query->fields('cp', ['promotion_id']);
+//    $query->condition('cp.name', $title);
+//    $results = $query->execute()->fetchAll();
+//    foreach ($results as $result) {
+//      $promotion_id = $result->promotion_id;
+//    }
+//
+//    return $promotion_id;
+//  }
 
 
 

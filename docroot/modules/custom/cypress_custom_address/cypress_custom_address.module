@@ -149,4 +149,15 @@ function cypress_custom_address_theme_registry_alter(&$theme_registry) {
   ];
 }
 
+// Get the Promotion id based on product title
+function get_promotion_id($title) {
+  $query = \Drupal::database()->select('commerce_promotion_field_data', 'cp');
+  $query->fields('cp', ['promotion_id']);
+  $query->condition('cp.name', $title);
+  $results = $query->execute()->fetchAll();
+  foreach ($results as $result) {
+    $promotion_id = $result->promotion_id;
+  }
 
+  return $promotion_id;
+}
