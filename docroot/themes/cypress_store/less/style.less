@@ -839,6 +839,10 @@ footer{
 }
 .order-total-line {
     padding: 5px;
+
+    span.order-total-line-value {
+	   padding: 0;
+	}
 }
 /*.order-total-line-label {
     width: 70%;
@@ -869,12 +873,17 @@ footer{
 	}
 	.views-field-cart-product-image .field-content {
 	    padding: 8px;
+
+	    .no-image-placeholder img {
+		    width: 100%;
+		}
 	}
 	.views-field-quantity .field-content {
 	    padding: 47px 5px;
 	}
 	.views-field-purchased-entity .field-content {
 	    padding: 45px 5px;
+	    word-break: break-word;
 	}
 	.views-field-total-price__number .field-content {
 	    padding: 47px 5px;
@@ -1026,8 +1035,6 @@ footer{
 	.views-field-total-price__number {
 	    text-align: center !important;
 	}
-
-	
 
 	/*end Order summary page*/
 	.view-footer{
@@ -1785,7 +1792,11 @@ footer{
 	    padding-right: 4px;
 	    padding-left: 3px;
 	}
-
+}
+@media only screen and (min-width: 992px){
+	.path-checkout-review span.order-total-line-value {
+	    padding: 0px 20px;
+	}
 }
 /*end for tablets*/
 @media only screen and (min-width: 992px) and (max-width: 1199px){

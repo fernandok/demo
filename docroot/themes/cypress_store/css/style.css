@@ -8040,6 +8040,9 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .order-total-line {
   padding: 5px;
 }
+.order-total-line span.order-total-line-value {
+  padding: 0;
+}
 /*.order-total-line-label {
     width: 70%;
 }
@@ -8068,11 +8071,15 @@ footer .region-footer .footer-block .footer-menu .copyright {
 .layout-region-checkout-secondary .views-field-cart-product-image .field-content {
   padding: 8px;
 }
+.layout-region-checkout-secondary .views-field-cart-product-image .field-content .no-image-placeholder img {
+  width: 100%;
+}
 .layout-region-checkout-secondary .views-field-quantity .field-content {
   padding: 47px 5px;
 }
 .layout-region-checkout-secondary .views-field-purchased-entity .field-content {
   padding: 45px 5px;
+  word-break: break-word;
 }
 .layout-region-checkout-secondary .views-field-total-price__number .field-content {
   padding: 47px 5px;
@@ -8935,6 +8942,11 @@ footer .region-footer .footer-block .footer-menu .copyright {
   .region-header .primary-menu li a {
     padding-right: 4px;
     padding-left: 3px;
+  }
+}
+@media only screen and (min-width: 992px) {
+  .path-checkout-review span.order-total-line-value {
+    padding: 0px 20px;
   }
 }
 /*end for tablets*/
