@@ -192,18 +192,18 @@ class Login extends CheckoutPaneBase implements CheckoutPaneInterface, Container
         ],
       ],
     ];
-//    $pane_form['returning_customer']['name'] = [
-//      '#type' => 'textfield',
-//      '#title' => $this->t('Username'),
-//      '#size' => 60,
-//      '#maxlength' => USERNAME_MAX_LENGTH,
-//      '#attributes' => [
-//        'autocorrect' => 'none',
-//        'autocapitalize' => 'none',
-//        'spellcheck' => 'false',
-//        'autofocus' => 'autofocus',
-//      ],
-//    ];
+    $pane_form['returning_customer']['name'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Username'),
+      '#size' => 60,
+      '#maxlength' => USERNAME_MAX_LENGTH,
+      '#attributes' => [
+        'autocorrect' => 'none',
+        'autocapitalize' => 'none',
+        'spellcheck' => 'false',
+        'autofocus' => 'autofocus',
+      ],
+    ];
 //    $pane_form['returning_customer']['password'] = [
 //      '#type' => 'password',
 //      '#title' => $this->t('Password'),
@@ -212,13 +212,15 @@ class Login extends CheckoutPaneBase implements CheckoutPaneInterface, Container
     $pane_form['returning_customer']['submit'] = [
       '#type' => 'submit',
       '#value' => Link::createFromRoute($this->t('Log In'), 'simplesamlphp_auth.saml_login')->toString(),
+//      '#type' => 'submit',
+//      '#value' => $this->t('Log in'),
 //      '#op' => 'login',
-    ];
+//    ];
 //    $pane_form['returning_customer']['forgot_password'] = [
 //      '#type' => 'markup',
 //      '#markup' => Link::createFromRoute($this->t('Forgot password?'), 'user.pass')->toString(),
-//    ];
-//
+    ];
+
 //    $pane_form['guest'] = [
 //      '#type' => 'fieldset',
 //      '#title' => $this->t('Guest Checkout'),

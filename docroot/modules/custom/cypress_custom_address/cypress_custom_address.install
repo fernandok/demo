@@ -4,238 +4,238 @@
  * Install, update and uninstall functions for the cypress custom address module.
  */
 
-function cypress_custom_address_update_8202() {
-  $default_content = [
-    // Keyed by entity type.
-    'commerce_shipping_method' => [
-      // Then by UUID.
-      'e787375f-6f80-4d05-8fa3-bdb5a0aae824' => [
-        'label' => 'USA - FedEx Express Saver',
-        'name' => 'USA - FedEx Express Saver For Kit Domestic',
-        'plugin' => [
-          'target_plugin_id' => 'flat_rate',
-          'target_plugin_configuration' => [
-            'rate_label' => 'FedEx - Express Saver',
-            'rate_amount' => [
-              'number' => '12',
-              'currency_code' => 'USD',
-            ],
-          ],
-        ],
-        'stores' => [
-          'target_id' => 1
-        ],
-        'langcode' => 'en'
-      ],
-      'fc137f39-0c8f-4ab2-af67-1089a7ba5afb' => [
-        'label' => 'USA - FedEx Overnight',
-        'name' => 'USA - FedEx Overnight For Kits Domestic',
-        'plugin' => [
-          'target_plugin_id' => 'flat_rate',
-          'target_plugin_configuration' => [
-            'rate_label' => 'FedEx - Overnight',
-            'rate_amount' => [
-              'number' => '25',
-              'currency_code' => 'USD',
-            ],
-          ],
-        ],
-        'stores' => [
-          'target_id' => 1
-        ],
-        'langcode' => 'en'
-      ],
-      '68d0c8d3-2560-465b-80bb-64c47b1ad6d4' => [
-        'label' => 'International - FedEx International Economy',
-        'name' => 'FedEx International Economy For Kits',
-        'plugin' => [
-          'target_plugin_id' => 'flat_rate',
-          'target_plugin_configuration' => [
-            'rate_label' => 'FedEx International Economy',
-            'rate_amount' => [
-              'number' => '25',
-              'currency_code' => 'USD',
-            ],
-          ],
-        ],
-        'stores' => [
-          'target_id' => 1
-        ],
-        'langcode' => 'en'
-      ],
-      '901d37af-75c4-435c-bdbb-bb0be1df4c8d' => [
-        'label' => 'International - FedEx International Priority',
-        'name' => 'FedEx International Priority For Kits',
-        'plugin' => [
-          'target_plugin_id' => 'flat_rate',
-          'target_plugin_configuration' => [
-            'rate_label' => 'FedEx International Priority',
-            'rate_amount' => [
-              'number' => '35',
-              'currency_code' => 'USD',
-            ],
-          ],
-        ],
-        'stores' => [
-          'target_id' => 1
-        ],
-        'langcode' => 'en'
-      ],
-      'ceee9456-66bb-4aae-8aaa-0fe6bbbe1fb0' => [
-        'label' => 'USA - FedEx 2Day',
-        'name' => 'USA FedEx 2Day For Sample CAT_A',
-        'plugin' => [
-          'target_plugin_id' => 'flat_rate',
-          'target_plugin_configuration' => [
-            'rate_label' => 'FEDEX Express Economy 2nd Day Air',
-            'rate_amount' => [
-              'number' => '0',
-              'currency_code' => 'USD',
-            ],
-          ],
-        ],
-        'stores' => [
-          'target_id' => 1
-        ],
-        'langcode' => 'en'
-      ],
-      'a3d670ad-1452-4ec6-8587-065d8512ea38' => [
-        'label' => 'USA - FedEx Standard Overnight',
-        'name' => 'USA FedEx Standard Overnight For Sample CAT_A',
-        'plugin' => [
-          'target_plugin_id' => 'flat_rate',
-          'target_plugin_configuration' => [
-            'rate_label' => 'Fedex Standard Overnight',
-            'rate_amount' => [
-              'number' => '0',
-              'currency_code' => 'USD',
-            ],
-          ],
-        ],
-        'stores' => [
-          'target_id' => 1
-        ],
-        'langcode' => 'en'
-      ],
-      'c8e4077e-d5b8-4665-b3a7-b9f8db9bee9d' => [
-        'label' => 'International - FedEx International Economy',
-        'name' => 'FedEx International Economy For Sample CAT_A',
-        'plugin' => [
-          'target_plugin_id' => 'flat_rate',
-          'target_plugin_configuration' => [
-            'rate_label' => 'FedEx International Economy',
-            'rate_amount' => [
-              'number' => '0',
-              'currency_code' => 'USD',
-            ],
-          ],
-        ],
-        'stores' => [
-          'target_id' => 1
-        ],
-        'langcode' => 'en'
-      ],
-      'f33b817c-5373-406e-903e-97c5c56b6329' => [
-        'label' => 'International - FedEx International Priority',
-        'name' => 'FedEx International Priority For Sample CAT_A',
-        'plugin' => [
-          'target_plugin_id' => 'flat_rate',
-          'target_plugin_configuration' => [
-            'rate_label' => 'FedEx International Priority',
-            'rate_amount' => [
-              'number' => '0',
-              'currency_code' => 'USD',
-            ],
-          ],
-        ],
-        'stores' => [
-          'target_id' => 1
-        ],
-        'langcode' => 'en'
-      ],
-      '9619c13a-d018-45ff-b948-251e6b205271' => [
-        'label' => 'USA - FedEx 2Day',
-        'name' => 'USA FedEx 2Day For Sample CAT_B',
-        'plugin' => [
-          'target_plugin_id' => 'flat_rate',
-          'target_plugin_configuration' => [
-            'rate_label' => 'FEDEX Express Economy 2nd Day Air',
-            'rate_amount' => [
-              'number' => '0',
-              'currency_code' => 'USD',
-            ],
-          ],
-        ],
-        'stores' => [
-          'target_id' => 1
-        ],
-        'langcode' => 'en'
-      ],
-      '212ec0c4-838e-4015-b273-2936d0b14cd8' => [
-        'label' => 'USA - FedEx Standard Overnight',
-        'name' => 'USA FedEx Standard Overnight For Sample CAT_B',
-        'plugin' => [
-          'target_plugin_id' => 'flat_rate',
-          'target_plugin_configuration' => [
-            'rate_label' => 'Fedex Standard Overnight',
-            'rate_amount' => [
-              'number' => '25',
-              'currency_code' => 'USD',
-            ],
-          ],
-        ],
-        'stores' => [
-          'target_id' => 1
-        ],
-        'langcode' => 'en'
-      ],
-      '4eb38865-6e1d-43de-8f22-9eed9ca9bd03' => [
-        'label' => 'International - FedEx International Economy',
-        'name' => 'FedEx International Economy For Sample CAT_B',
-        'plugin' => [
-          'target_plugin_id' => 'flat_rate',
-          'target_plugin_configuration' => [
-            'rate_label' => 'FedEx International Economy',
-            'rate_amount' => [
-              'number' => '0',
-              'currency_code' => 'USD',
-            ],
-          ],
-        ],
-        'stores' => [
-          'target_id' => 1
-        ],
-        'langcode' => 'en'
-      ],
-      '42580285-4b1b-4863-a3ae-1a6291b9be9a' => [
-        'label' => 'International - FedEx International Priority',
-        'name' => 'FedEx International Priority For Sample CAT_B',
-        'plugin' => [
-          'target_plugin_id' => 'flat_rate',
-          'target_plugin_configuration' => [
-            'rate_label' => 'FedEx International Priority',
-            'rate_amount' => [
-              'number' => '35',
-              'currency_code' => 'USD',
-            ],
-          ],
-        ],
-        'stores' => [
-          'target_id' => 1
-        ],
-        'langcode' => 'en'
-      ],
-
-    ],
-  ];
-
-  foreach ($default_content as $entity_type_id => $items) {
-    $storage = \Drupal::entityTypeManager()->getStorage($entity_type_id);
-    foreach ($items as $uuid => $item) {
-      $entity = $storage->create($item + ['uuid' => $uuid]);
-      $entity->save();
-    }
-  }
-}
+//function cypress_custom_address_update_8202() {
+//  $default_content = [
+//    // Keyed by entity type.
+//    'commerce_shipping_method' => [
+//      // Then by UUID.
+//      'e787375f-6f80-4d05-8fa3-bdb5a0aae824' => [
+//        'label' => 'USA - FedEx Express Saver',
+//        'name' => 'USA - FedEx Express Saver For Kit Domestic',
+//        'plugin' => [
+//          'target_plugin_id' => 'flat_rate',
+//          'target_plugin_configuration' => [
+//            'rate_label' => 'FedEx - Express Saver',
+//            'rate_amount' => [
+//              'number' => '12',
+//              'currency_code' => 'USD',
+//            ],
+//          ],
+//        ],
+//        'stores' => [
+//          'target_id' => 1
+//        ],
+//        'langcode' => 'en'
+//      ],
+//      'fc137f39-0c8f-4ab2-af67-1089a7ba5afb' => [
+//        'label' => 'USA - FedEx Overnight',
+//        'name' => 'USA - FedEx Overnight For Kits Domestic',
+//        'plugin' => [
+//          'target_plugin_id' => 'flat_rate',
+//          'target_plugin_configuration' => [
+//            'rate_label' => 'FedEx - Overnight',
+//            'rate_amount' => [
+//              'number' => '25',
+//              'currency_code' => 'USD',
+//            ],
+//          ],
+//        ],
+//        'stores' => [
+//          'target_id' => 1
+//        ],
+//        'langcode' => 'en'
+//      ],
+//      '68d0c8d3-2560-465b-80bb-64c47b1ad6d4' => [
+//        'label' => 'International - FedEx International Economy',
+//        'name' => 'FedEx International Economy For Kits',
+//        'plugin' => [
+//          'target_plugin_id' => 'flat_rate',
+//          'target_plugin_configuration' => [
+//            'rate_label' => 'FedEx International Economy',
+//            'rate_amount' => [
+//              'number' => '25',
+//              'currency_code' => 'USD',
+//            ],
+//          ],
+//        ],
+//        'stores' => [
+//          'target_id' => 1
+//        ],
+//        'langcode' => 'en'
+//      ],
+//      '901d37af-75c4-435c-bdbb-bb0be1df4c8d' => [
+//        'label' => 'International - FedEx International Priority',
+//        'name' => 'FedEx International Priority For Kits',
+//        'plugin' => [
+//          'target_plugin_id' => 'flat_rate',
+//          'target_plugin_configuration' => [
+//            'rate_label' => 'FedEx International Priority',
+//            'rate_amount' => [
+//              'number' => '35',
+//              'currency_code' => 'USD',
+//            ],
+//          ],
+//        ],
+//        'stores' => [
+//          'target_id' => 1
+//        ],
+//        'langcode' => 'en'
+//      ],
+//      'ceee9456-66bb-4aae-8aaa-0fe6bbbe1fb0' => [
+//        'label' => 'USA - FedEx 2Day',
+//        'name' => 'USA FedEx 2Day For Sample CAT_A',
+//        'plugin' => [
+//          'target_plugin_id' => 'flat_rate',
+//          'target_plugin_configuration' => [
+//            'rate_label' => 'FEDEX Express Economy 2nd Day Air',
+//            'rate_amount' => [
+//              'number' => '0',
+//              'currency_code' => 'USD',
+//            ],
+//          ],
+//        ],
+//        'stores' => [
+//          'target_id' => 1
+//        ],
+//        'langcode' => 'en'
+//      ],
+//      'a3d670ad-1452-4ec6-8587-065d8512ea38' => [
+//        'label' => 'USA - FedEx Standard Overnight',
+//        'name' => 'USA FedEx Standard Overnight For Sample CAT_A',
+//        'plugin' => [
+//          'target_plugin_id' => 'flat_rate',
+//          'target_plugin_configuration' => [
+//            'rate_label' => 'Fedex Standard Overnight',
+//            'rate_amount' => [
+//              'number' => '0',
+//              'currency_code' => 'USD',
+//            ],
+//          ],
+//        ],
+//        'stores' => [
+//          'target_id' => 1
+//        ],
+//        'langcode' => 'en'
+//      ],
+//      'c8e4077e-d5b8-4665-b3a7-b9f8db9bee9d' => [
+//        'label' => 'International - FedEx International Economy',
+//        'name' => 'FedEx International Economy For Sample CAT_A',
+//        'plugin' => [
+//          'target_plugin_id' => 'flat_rate',
+//          'target_plugin_configuration' => [
+//            'rate_label' => 'FedEx International Economy',
+//            'rate_amount' => [
+//              'number' => '0',
+//              'currency_code' => 'USD',
+//            ],
+//          ],
+//        ],
+//        'stores' => [
+//          'target_id' => 1
+//        ],
+//        'langcode' => 'en'
+//      ],
+//      'f33b817c-5373-406e-903e-97c5c56b6329' => [
+//        'label' => 'International - FedEx International Priority',
+//        'name' => 'FedEx International Priority For Sample CAT_A',
+//        'plugin' => [
+//          'target_plugin_id' => 'flat_rate',
+//          'target_plugin_configuration' => [
+//            'rate_label' => 'FedEx International Priority',
+//            'rate_amount' => [
+//              'number' => '0',
+//              'currency_code' => 'USD',
+//            ],
+//          ],
+//        ],
+//        'stores' => [
+//          'target_id' => 1
+//        ],
+//        'langcode' => 'en'
+//      ],
+//      '9619c13a-d018-45ff-b948-251e6b205271' => [
+//        'label' => 'USA - FedEx 2Day',
+//        'name' => 'USA FedEx 2Day For Sample CAT_B',
+//        'plugin' => [
+//          'target_plugin_id' => 'flat_rate',
+//          'target_plugin_configuration' => [
+//            'rate_label' => 'FEDEX Express Economy 2nd Day Air',
+//            'rate_amount' => [
+//              'number' => '0',
+//              'currency_code' => 'USD',
+//            ],
+//          ],
+//        ],
+//        'stores' => [
+//          'target_id' => 1
+//        ],
+//        'langcode' => 'en'
+//      ],
+//      '212ec0c4-838e-4015-b273-2936d0b14cd8' => [
+//        'label' => 'USA - FedEx Standard Overnight',
+//        'name' => 'USA FedEx Standard Overnight For Sample CAT_B',
+//        'plugin' => [
+//          'target_plugin_id' => 'flat_rate',
+//          'target_plugin_configuration' => [
+//            'rate_label' => 'Fedex Standard Overnight',
+//            'rate_amount' => [
+//              'number' => '25',
+//              'currency_code' => 'USD',
+//            ],
+//          ],
+//        ],
+//        'stores' => [
+//          'target_id' => 1
+//        ],
+//        'langcode' => 'en'
+//      ],
+//      '4eb38865-6e1d-43de-8f22-9eed9ca9bd03' => [
+//        'label' => 'International - FedEx International Economy',
+//        'name' => 'FedEx International Economy For Sample CAT_B',
+//        'plugin' => [
+//          'target_plugin_id' => 'flat_rate',
+//          'target_plugin_configuration' => [
+//            'rate_label' => 'FedEx International Economy',
+//            'rate_amount' => [
+//              'number' => '0',
+//              'currency_code' => 'USD',
+//            ],
+//          ],
+//        ],
+//        'stores' => [
+//          'target_id' => 1
+//        ],
+//        'langcode' => 'en'
+//      ],
+//      '42580285-4b1b-4863-a3ae-1a6291b9be9a' => [
+//        'label' => 'International - FedEx International Priority',
+//        'name' => 'FedEx International Priority For Sample CAT_B',
+//        'plugin' => [
+//          'target_plugin_id' => 'flat_rate',
+//          'target_plugin_configuration' => [
+//            'rate_label' => 'FedEx International Priority',
+//            'rate_amount' => [
+//              'number' => '35',
+//              'currency_code' => 'USD',
+//            ],
+//          ],
+//        ],
+//        'stores' => [
+//          'target_id' => 1
+//        ],
+//        'langcode' => 'en'
+//      ],
+//
+//    ],
+//  ];
+//
+//  foreach ($default_content as $entity_type_id => $items) {
+//    $storage = \Drupal::entityTypeManager()->getStorage($entity_type_id);
+//    foreach ($items as $uuid => $item) {
+//      $entity = $storage->create($item + ['uuid' => $uuid]);
+//      $entity->save();
+//    }
+//  }
+//}
 
 

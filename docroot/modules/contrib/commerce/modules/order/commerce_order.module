@@ -182,7 +182,6 @@ function commerce_order_mail($key, &$message, $params) {
   $message['body'][] = $params['body'];
 }
 
-
 /**
  * Determine the current shipping profile for reuse as the billing profile.
  *
@@ -197,14 +196,14 @@ function commerce_order_mail($key, &$message, $params) {
  *   The shipping profile, or NULL if none can be found.
  */
 function commerce_order_get_shipping_profile(array $element, FormStateInterface $form_state, array $complete_form) {
-    $profile = NULL;
-  
-    $storage = $form_state->getStorage();
-    if (isset($storage['pane_shipping_information[shipping_profile]']['profile'])) {
-        $profile = $storage['pane_shipping_information[shipping_profile]']['profile'];
-      } elseif (isset($complete_form['shipping_information']['shipping_profile']['#profile'])) {
-        $profile = $complete_form['shipping_information']['shipping_profile']['#profile'];
-      }
+  $profile = NULL;
+
+  $storage = $form_state->getStorage();
+  if (isset($storage['pane_shipping_information[shipping_profile]']['profile'])) {
+    $profile = $storage['pane_shipping_information[shipping_profile]']['profile'];
+  } elseif (isset($complete_form['shipping_information']['shipping_profile']['#profile'])) {
+    $profile = $complete_form['shipping_information']['shipping_profile']['#profile'];
+  }
 
   return $profile;
 }

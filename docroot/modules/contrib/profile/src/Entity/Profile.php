@@ -8,6 +8,7 @@ use Drupal\Core\Entity\EntityStorageInterface;
 use Drupal\Core\Entity\EntityTypeInterface;
 use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\Core\Entity\ContentEntityBase;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 use Drupal\profile\Event\ProfileEvents;
 use Drupal\profile\Event\ProfileLabelEvent;
 use Drupal\user\UserInterface;
@@ -34,7 +35,7 @@ use Drupal\user\UserInterface;
  *       "delete" = "Drupal\profile\Form\ProfileDeleteForm",
  *     },
  *     "route_provider" = {
- *       "html" = "Drupal\profile\ProfileHtmlRouteProvider",
+ *       "html" = "Drupal\Core\Entity\Routing\DefaultHtmlRouteProvider",
  *     },
  *   },
  *   bundle_entity_type = "profile_type",
@@ -48,7 +49,6 @@ use Drupal\user\UserInterface;
  *     "id" = "profile_id",
  *     "revision" = "revision_id",
  *     "bundle" = "type",
- *     "langcode" = "langcode",
  *     "uuid" = "uuid"
  *   },
  *  links = {
@@ -64,13 +64,14 @@ use Drupal\user\UserInterface;
 class Profile extends ContentEntityBase implements ProfileInterface {
 
   use EntityChangedTrait;
+  use StringTranslationTrait;
 
   /**
    * {@inheritdoc}
    */
   public function label() {
     $profile_type = ProfileType::load($this->bundle());
-    $label = t('@type profile #@id', [
+    $label = $this->t('@type profile #@id', [
       '@type' => $profile_type->label(),
       '@id' => $this->id(),
     ]);
@@ -202,19 +203,51 @@ class Profile extends ContentEntityBase implements ProfileInterface {
   /**
    * {@inheritdoc}
    */
+  public function preSave(EntityStorageInterface $storage) {
+    /** @var \Drupal\profile\ProfileStorage $storage */
+    parent::preSave($storage);
+
+    // If this profile is active and the owner has no current default profile
+    // of this type, set this as the default.
+    if ($this->getOwner()) {
+      if ($this->isActive() && !$this->isDefault()) {
+        if (!$storage->loadDefaultByUser($this->getOwner(), $this->bundle())) {
+          $this->setDefault(TRUE);
+        }
+      }
+      // Only active profiles can be default.
+      elseif (!$this->isActive()) {
+        $this->setDefault(FALSE);
+      }
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function postSave(EntityStorageInterface $storage, $update = TRUE) {
     /** @var \Drupal\profile\ProfileStorage $storage */
     parent::postSave($storage, $update);
 
     // Check if this profile is, or became the default.
-    if ($this->isDefault()) {
-      /** @var \Drupal\profile\Entity\ProfileInterface[] $profiles */
-      $profiles = $storage->loadMultipleByUser($this->getOwner(), $this->bundle());
+    if ($this->getOwner()) {
+      if ($this->isDefault()) {
+        /** @var \Drupal\profile\Entity\ProfileInterface[] $profiles */
+        $profiles = $storage->loadMultipleByUser($this->getOwner(), $this->bundle());
 
-      // Ensure that all other profiles are set to not default.
-      foreach ($profiles as $profile) {
-        if ($profile->id() != $this->id() && $profile->isDefault()) {
-          $profile->setDefault(FALSE);
+        // Ensure that all other profiles are set to not default.
+        foreach ($profiles as $profile) {
+          if ($profile->id() != $this->id() && $profile->isDefault()) {
+            $profile->setDefault(FALSE);
+            $profile->save();
+          }
+        }
+      }
+      // If this isn't the default, try to set a new one.
+      elseif (!$storage->loadDefaultByUser($this->getOwner(), $this->bundle())) {
+        /** @var \Drupal\profile\Entity\ProfileInterface $profile */
+        if ($profile = $storage->loadByUser($this->getOwner(), $this->bundle())) {
+          $profile->setDefault(TRUE);
           $profile->save();
         }
       }

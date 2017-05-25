@@ -2,6 +2,7 @@
 
 namespace Drupal\commerce_payment\Plugin\Commerce\CheckoutPane;
 
+use Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane\CheckoutPaneBase;
 use Drupal\commerce_checkout\Plugin\Commerce\CheckoutPane\BillingInformationPaneBase;
 use Drupal\commerce_payment\Plugin\Commerce\PaymentGateway\SupportsStoredPaymentMethodsInterface;
 use Drupal\Component\Utility\Html;
@@ -150,7 +151,7 @@ class PaymentInformation extends BillingInformationPaneBase {
         '#default_value' => $billing_profile,
         '#default_country' => $store->getAddress()->getCountryCode(),
         '#available_countries' => $store->getBillingCountries(),
-        ] + $profile_select_options;
+      ] + $profile_select_options;
     }
 
     return $pane_form;
@@ -318,6 +319,20 @@ class PaymentInformation extends BillingInformationPaneBase {
   /**
    * {@inheritdoc}
    */
+  public function isVisible() {
+    $order_total = $this->order->getTotalPrice()->getNumber();
+    $order_is_zero = ($order_total != 0);
+    if ($order_is_zero) {
+      return TRUE;
+    }
+    else {
+      return FALSE;
+    }
+  }
+
+  /**
+   * {@inheritdoc}
+   */
   public function submitPaneForm(array &$pane_form, FormStateInterface $form_state, array &$complete_form) {
     $values = $form_state->getValue($pane_form['#parents']);
     $selected_option = $pane_form['payment_method'][$values['payment_method']];
@@ -360,20 +375,6 @@ class PaymentInformation extends BillingInformationPaneBase {
    */
   protected function noPaymentGatewayErrorMessage() {
     return $this->t('No payment gateways are defined, create one first.');
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function isVisible() {
-    $order_total = $this->order->getTotalPrice()->getNumber();
-    $order_is_zero = ($order_total != 0);
-    if ($order_is_zero) {
-      return TRUE;
-    }
-    else {
-      return FALSE;
-    }
   }
 
 }

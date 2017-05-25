@@ -47,7 +47,7 @@ class BillingInformation extends BillingInformationPaneBase {
       '#default_value' => $billing_profile,
       '#default_country' => $store->getAddress()->getCountryCode(),
       '#available_countries' => $store->getBillingCountries(),
-      ] + $this->getProfileSelectOptions();
+    ] + $this->getProfileSelectOptions();
 
     return $pane_form;
   }
