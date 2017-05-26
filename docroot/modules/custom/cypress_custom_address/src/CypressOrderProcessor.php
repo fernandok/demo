@@ -125,9 +125,9 @@ class CypressOrderProcessor implements OrderProcessorInterface {
             $results = $query->execute()->fetchAll();
             $coupon_code = $results[0]->coupon_code;
 
-            if ($promocode != $coupon_code) {
+            //if ($promocode != $coupon_code) {
               if (!empty($promotion)) {
-                // if ($promotion->getUsageLimit() == 1) {
+                 if ($promotion->getUsageLimit() == 1) {
                 $offer = $promotion->get('offer')
                   ->getValue()[0]['target_plugin_id'];
                 $promocode_amount = $promotion->get('offer')
@@ -176,18 +176,18 @@ class CypressOrderProcessor implements OrderProcessorInterface {
     }
   }
 }
-// Get the Promotion id based on product title
-// function get_promotion_id($title) {
-//    $query = \Drupal::database()->select('commerce_promotion_field_data', 'cp');
-//    $query->fields('cp', ['promotion_id']);
-//    $query->condition('cp.name', $title);
-//    $results = $query->execute()->fetchAll();
-//    foreach ($results as $result) {
-//      $promotion_id = $result->promotion_id;
-//    }
-//
-//    return $promotion_id;
-//  }
+ // Get the Promotion id based on product title
+ function get_promotion_id($title) {
+    $query = \Drupal::database()->select('commerce_promotion_field_data', 'cp');
+    $query->fields('cp', ['promotion_id']);
+    $query->condition('cp.name', $title);
+    $results = $query->execute()->fetchAll();
+    foreach ($results as $result) {
+      $promotion_id = $result->promotion_id;
+    }
+
+    return $promotion_id;
+  }
 
 
 

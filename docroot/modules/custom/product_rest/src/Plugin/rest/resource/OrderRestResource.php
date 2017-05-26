@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\Exception\AccessDeniedHttpException;
 use Psr\Log\LoggerInterface;
 use Drupal\commerce_order\Entity\Order;
+use Drupal\cypress_store_vendor\Vendor\Cml;
 
 /**
  * Provides a resource to get view modes by entity and bundle.
@@ -86,23 +87,9 @@ class OrderRestResource extends ResourceBase {
 
     // You must to implement the logic of your REST Resource here.
     // Use current user after pass authentication to validate access.
-
-    try {
-      $order_load = Order::load($data['order_id']);
-      if(empty($order_load)) {
-        throw new \Exception('There is no matching order for this order id');
-      }
-      $order_load->setData('shipment', $data);
-      $order_load->save();
-      $response = ['status' => 'SUCESS'];
-    }
-
-    catch (\Exception $e) {
-      $response = [
-       'status' => 'FAILURE',
-       'error' =>  $e->getMessage(),
-      ];
-    }
+    // Cml Object.
+    $cml = new CMl;
+    $response = $cml->updateShipment($data);
     
     return new ResourceResponse($response);
   }

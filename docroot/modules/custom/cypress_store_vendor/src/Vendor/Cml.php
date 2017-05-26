@@ -4,6 +4,7 @@ namespace Drupal\cypress_store_vendor\Vendor;
 
 
 use Drupal\commerce_product\Entity\Product;
+use Drupal\commerce_shipping\Entity\Shipment;
 
 class Cml extends VendorBase {
 
@@ -289,7 +290,20 @@ XML;
   /**
    * Method to get shipment details from CML/OM.
    */
-  public function updateShipment() {
+  public function updateShipment($data) {
 
+    // Get values from OrderRestResource.
+    $shipment_id = $data['order_id'];
+    if(!empty($shipment_id)) {
+      $shipment = Shipment::load($shipment_id);
+      $shipment->field_oracle_rs_date = $data['oracle_rs_date'];
+      $shipment->field_schedule_number = $data['schedule_number'];
+      $shipment->field_secondary_tracking_number = $data['secondary_tracking_number'];
+      $shipment->field_ship_date = $data['ship_date'];
+      $shipment->field_so_no = $data['so_no'];
+      $shipment->save();
+
+      return $shipment;
+    }
   }
 }

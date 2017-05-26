@@ -1,0 +1,21 @@
+uuid: 5db3f121-741f-4099-a6e3-c842c9321432
+langcode: en
+status: true
+dependencies:
+  module:
+    - commerce_shipping
+id: commerce_shipment.field_oracle_rs_date
+field_name: field_oracle_rs_date
+entity_type: commerce_shipment
+type: string
+settings:
+  max_length: 255
+  is_ascii: false
+  case_sensitive: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false
