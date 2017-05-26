@@ -839,6 +839,10 @@ footer{
 }
 .order-total-line {
     padding: 5px;
+
+    span.order-total-line-value {
+	   padding: 0;
+	}
 }
 /*.order-total-line-label {
     width: 70%;
@@ -869,12 +873,17 @@ footer{
 	}
 	.views-field-cart-product-image .field-content {
 	    padding: 8px;
+
+	    .no-image-placeholder img {
+		    width: 100%;
+		}
 	}
 	.views-field-quantity .field-content {
 	    padding: 47px 5px;
 	}
 	.views-field-purchased-entity .field-content {
 	    padding: 45px 5px;
+	    word-break: break-word;
 	}
 	.views-field-total-price__number .field-content {
 	    padding: 47px 5px;
@@ -1027,8 +1036,6 @@ footer{
 	    text-align: center !important;
 	}
 
-	
-
 	/*end Order summary page*/
 	.view-footer{
 		clear: both;
@@ -1069,7 +1076,8 @@ footer{
     font-weight: 600;
 }
 /*start my orders*/
-.path-myorders .order-list .order-complete-flow .order-more-details a:hover {
+.path-myorders .order-list .order-complete-flow .order-more-details a:hover,
+.path-shipment .order-list .order-complete-flow .order-more-details a:hover {
     background-color: #269abc !important;
     border-color: #1b6d85 !important;
     text-decoration: none;
@@ -1079,14 +1087,15 @@ footer{
     border-color: #122b40 !important;
     text-decoration: none;
 }
-.path-myorders .order-list .order-complete-flow .cancel-order a{
+.path-myorders .order-list .order-complete-flow .cancel-order a,
+.path-shipment .order-list .order-complete-flow .cancel-order a{
 	background-color: #d9534f !important; 
 }
-.path-myorders .order-list .order-complete-flow .cancel-order a:hover {
+.path-myorders .order-list .order-complete-flow .cancel-order a:hover,
+.path-shipment .order-list .order-complete-flow .cancel-order a:hover {
     background-color: #c9302c !important;
     text-decoration: none;
 }
-
 /*end my orders*/
 /*start order complete page*/
 .order-complete {
@@ -1126,7 +1135,14 @@ footer{
 	}	    
 }
 /*end order complete page*/
-
+/*start path-shipment page*/
+.path-shipment summary {
+    font-weight: 600;
+}
+.path-shipment summary:after {
+    content: ":";
+}
+/*end path-shipment page*/
 
 
 /* start media queries for responsive*/
@@ -1776,7 +1792,11 @@ footer{
 	    padding-right: 4px;
 	    padding-left: 3px;
 	}
-
+}
+@media only screen and (min-width: 992px){
+	.path-checkout-review span.order-total-line-value {
+	    padding: 0px 20px;
+	}
 }
 /*end for tablets*/
 @media only screen and (min-width: 992px) and (max-width: 1199px){
@@ -1864,6 +1884,11 @@ footer{
 			padding: 6px 5px 9px;
 		}
 	}
+	@media only screen and (max-width: 767px){
+		.region-header nav#block-mainmenu ul{
+			margin-left: 0;
+		}
+	}
 }
 
 @media only screen and (min-width: 768px) and (max-width: 1400px){
@@ -1884,11 +1909,14 @@ footer{
 	.layout-region-checkout-main .float-labels-wrapper .float-labels-item{
 		padding-bottom: 0;
 	}
-	/*#parts-information-wrapper .select-wrapper label{
-		transform: none;
-	}*/
+	.profile-customer-edit-form .float-labels-wrapper.float-labels-focused .float-labels-item{
+		padding-bottom: 0;
+	}
 	.path-checkout .select-wrapper{
 		line-height: 0;
+	}
+	.layout-region-checkout-secondary .views-field-purchased-entity .field-content{
+		word-wrap: break-word;
 	}
 }
 /*Styles for IE*/
@@ -2037,15 +2065,15 @@ details {
 	.path-checkout .address-boxes-sec-1 .address-icons .address-edit{
 		vertical-align: top;
 	}
-	_::-webkit-full-page-media, _:future, :root .region-header .primary-block{
+	/*_::-webkit-full-page-media, _:future, :root .region-header .primary-block{
 		padding-left: 30px;
-	}
+	}*/
 	@media only screen and (min-width: 1024px){
-		_::-webkit-full-page-media, _:future, :root .region-header .block-search-form-block {
+		/*_::-webkit-full-page-media, _:future, :root .region-header .block-search-form-block {
 			left: 10.6em;
-		}
+		}*/
 		_::-webkit-full-page-media, _:future, :root .not-logged-in .region-header .block-search-form-block {
-			left: 13em;
+			left: 10em;
 		}
 	}
 	_::-webkit-full-page-media, _:future, :root .block-search-form-block input[type='submit']{
@@ -2067,6 +2095,11 @@ details {
 	}
 
 /*end for safari*/
+/*start for safari sierra 10.1+*/
+/*@media not all and (min-resolution:.001dpcm) { @media
+{
+    
+}}*/
 
 /* Fieldset start */
 fieldset {
