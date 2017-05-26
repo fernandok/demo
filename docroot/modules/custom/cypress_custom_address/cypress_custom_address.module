@@ -161,3 +161,12 @@ function get_promotion_id($title) {
 
   return $promotion_id;
 }
+
+/**
+ * Implements hook_mail_alter().
+ */
+function cypress_custom_address_mail_alter(&$message) {
+  if (!empty($message['id']) && $message['id'] == 'commerce_order_receipt') {
+    $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+  }
+}
