@@ -154,7 +154,7 @@ class DigiKey extends VendorBase {
 
     $application = $primary_application;
     $end_equipment = $name_product_system;
-    $ship_via = 'FEDEX Express Economy 2nd Day Air';
+    $ship_via = $this->getShipmentMethodName($shipment);
     $ship_control_code = 'Single';
     $export_compliance_done = 'Y';
     $shipping_payment_option = 'Consignee';
