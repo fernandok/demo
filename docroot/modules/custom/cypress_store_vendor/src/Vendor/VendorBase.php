@@ -40,28 +40,39 @@ class VendorBase {
    */
   const VENDORSHIPMENTMAP = [
     'avnet' => [
-
+      'FEDEX Express Economy 2nd Day Air' => 'FEDEX Express Economy 2nd Day Air',
+      'Fedex Standard Overnight' => 'FEDEX Overnight PM Delivery',
+      'FedEx International Economy' => 'FEDEX International Economy',
+      'FedEx International Priority' => 'FEDEX International Priority',
     ],
     'cml' => [
-
+      'FEDEX Express Economy 2nd Day Air' => '000002_FEDEX 2DAY_A_2DA',
+      'Fedex Standard Overnight' => 'FEDEX STD OVERNIGHT',
+      'FedEx International Economy' => '000001_FEDEX INT_A_ECONOMY',
+      'FedEx International Priority' => '000001_FEDEX IP_A_PRIORITY',
     ],
     'digikey' => [
-
+      'FEDEX Express Economy 2nd Day Air' => 'FEDEX Express Economy 2nd Day Air',
+      'Fedex Standard Overnight' => 'FEDEX Overnight PM Delivery',
+      'FedEx International Economy' => 'FEDEX International Economy',
+      'FedEx International Priority' => 'FEDEX International Priority',
     ],
     'hartehanks' => [
-      'FedEx - Express Saver',
-      'FedEx - Overnight',
-      'FedEx International Economy',
-      'FedEx International Priority',
-    ],
+      'FedEx - Express Saver' => 'FedEx - Express Saver',
+      'FedEx - Overnight' => 'FedEx - Overnight',
+      'FedEx International Economy' => 'FedEx International Economy',
+      'FedEx International Priority' => 'FedEx International Priority', ],
   ];
 
   /**
-   * @var array
-   *
    * Configuration for vendor.
    */
   protected $config;
+
+  /**
+   * Vendor name.
+   */
+  protected $vendor;
 
   public function __construct() {
     $vendor = strtolower(substr(strrchr(get_class($this), '\\'), 1));
@@ -206,8 +217,8 @@ class VendorBase {
       ->getPlugin()
       ->getConfiguration();
     $shipment_rate_label = $shipment_method['rate_label'];
-    // TODO: Need to map based on vendor ($this->vendor).
-    return $shipment_rate_label;
+    $shipment_method_names = self::VENDORSHIPMENTMAP[$this->vendor];
+    return $shipment_method_names[$shipment_rate_label];
   }
 
 }

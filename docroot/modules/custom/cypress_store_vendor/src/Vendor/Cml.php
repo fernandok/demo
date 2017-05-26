@@ -254,7 +254,7 @@ class Cml extends VendorBase {
           <ns1:CHANGE_REASON></ns1:CHANGE_REASON>
           <ns1:CHANGE_COMMENTS></ns1:CHANGE_COMMENTS>
           <ns1:CHANGE_SEQUENCE></ns1:CHANGE_SEQUENCE>
-          <ns1:SHIPPING_INSTRUCTIONS>Attn: $first_name 
+          <ns1:SHIPPING_INSTRUCTIONS>Attn: $first_name
           $last_name</ns1:SHIPPING_INSTRUCTIONS>
           <ns1:PACKING_INSTRUCTIONS></ns1:PACKING_INSTRUCTIONS>
           <ns1:FLOW_STATUS_CODE>ENTERED</ns1:FLOW_STATUS_CODE>
