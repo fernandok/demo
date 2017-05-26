@@ -296,6 +296,7 @@ XML;
     $shipment_id = $data['order_id'];
     if(!empty($shipment_id)) {
       $shipment = Shipment::load($shipment_id);
+      $shipment->tracking_code = $data['tracking_number'];
       $shipment->field_oracle_rs_date = $data['oracle_rs_date'];
       $shipment->field_schedule_number = $data['schedule_number'];
       $shipment->field_secondary_tracking_number = $data['secondary_tracking_number'];

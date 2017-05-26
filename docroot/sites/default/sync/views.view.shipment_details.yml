@@ -11,6 +11,7 @@ dependencies:
     - field.storage.commerce_shipment.field_so_no
   module:
     - commerce
+    - commerce_order
     - commerce_shipping
     - user
 id: shipment_details
@@ -697,11 +698,22 @@ display:
       footer: {  }
       empty: {  }
       relationships:
+        order_id:
+          id: order_id
+          table: commerce_shipment
+          field: order_id
+          relationship: none
+          group_type: group
+          admin_label: Order
+          required: true
+          entity_type: commerce_shipment
+          entity_field: order_id
+          plugin_id: standard
         uid:
           id: uid
           table: commerce_order
           field: uid
-          relationship: none
+          relationship: order_id
           group_type: group
           admin_label: User
           required: true
@@ -711,9 +723,9 @@ display:
       arguments:
         uid:
           id: uid
-          table: users_field_data
+          table: commerce_order
           field: uid
-          relationship: uid
+          relationship: order_id
           group_type: group
           admin_label: ''
           default_action: default
@@ -742,9 +754,9 @@ display:
           validate_options: {  }
           break_phrase: false
           not: false
-          entity_type: user
+          entity_type: commerce_order
           entity_field: uid
-          plugin_id: user_uid
+          plugin_id: numeric
       display_extenders: {  }
     cache_metadata:
       max-age: 0
