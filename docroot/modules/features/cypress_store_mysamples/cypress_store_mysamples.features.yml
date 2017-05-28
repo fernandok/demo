@@ -1,0 +1,4 @@
+bundle: cypress_store
+excluded:
+  - block.block.views_block__delivery_address_block_1
+required: true

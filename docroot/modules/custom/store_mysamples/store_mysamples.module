@@ -104,19 +104,22 @@ function store_mysamples_form_yamlform_submission_promocode_form_alter(&$form, $
 
     $form['actions']['submit']['#submit'][] = 'store_mysamples_send_approval_mail';
   }
+  //fern: create a promocode
   else {
     $elements_to_hide[] = 'promocode_status';
     $mpn = \Drupal::request()->query->get('mpn');
     $cat = \Drupal::request()->query->get('cat');
     $sample_status = \Drupal::request()->query->get('sstatus');
-    $mpnid = 0;
+    $mpnid = \Drupal::request()->query->get('mpnid');
+
     // If CAT B check kit or silicon.
     if ($cat == 'cat_b' && preg_match('/kit/i', $mpn)) {
       $cat .= '_kit';
     }
-    if ($cat == 'cat_a' && $sample_status == 'Open Sampling') {
+    if ($cat == 'cat_a' && $sample_status != 2 ) {
       $cat = 'cat_a';
     }
+    $form['elements']['mpn_id']['#value'] = $mpnid;
     $form['elements']['type']['#value'] = $cat;
   }
   array_unshift($form['actions']['submit']['#submit'], 'store_mysamples_promocode_submit_form');
@@ -173,16 +176,7 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
   $promocode = '';
   $msrp = 0;
 
-  // To get the mpnid of part product.
-  $query = \Drupal::database()->select('commerce_product__field_mpn_id', 'cpm');
-  $query->fields('cpm', ['field_mpn_id_value']);
-  $query->join('commerce_product_field_data','cp','cp.product_id = cpm.entity_id');
-  $query->condition('cp.title', $form_values['part_number']);
-  $query->condition('cp.type','part');
-  $results = $query->execute()->fetchAll();
-  foreach($results as $result) {
-    $get_mpnid = $result->field_mpn_id_value;
-  }
+  $get_mpnid = $form_values['mpn_id'];
 
   if ($cat == 'cat_a') {
     // todo verified catA approvers.
@@ -256,27 +250,24 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
   }
   else {
     // Query to get mpn details for CAT B.
-    $query = \Drupal::database()->query('select
-      mpnid.field_mpnid_value as mpnid,
-      mpn.field_mpn_value as mpn,
-      msrp.field_samplemsrp_value as sampleMSRP,
-      kc.field_kit_cost_value as kit_cost
-      from node n
-      join node__field_mpn mpn
-      on n.nid = mpn.entity_id and n.vid = mpn.revision_id
-      join node__field_mpnid mpnid
-      on n.nid = mpnid.entity_id and n.vid = mpnid.revision_id
-      join node__field_samplemsrp msrp
-      on n.nid = msrp.entity_id and n.vid = msrp.revision_id
-      left join  node__field_kit_cost kc
-      on n.nid = kc.entity_id and n.vid = kc.revision_id
-      left join node__field_active a
-      on n.nid = a.entity_id and n.vid = a.revision_id
-      where mpn.field_mpn_value = :mpn and a.field_active_value = 1', [':mpn' => $form_values['part_number']]);
-    $results = $query->fetchAll();
+    $query = \Drupal::database()->select('commerce_product', 'cp');
+    $query->fields('cp', ['product_id']);
+    $query->join('commerce_product__field_mpn_id', 'mpn', 'cp.product_id = mpn.entity_id');
+    $query->fields('mpn', ['field_mpn_id_value']);
+    $query->join('commerce_product__field_samplemsrp', 'msrp', 'cp.product_id = msrp.entity_id');
+    $query->fields('msrp', ['field_samplemsrp_value']);
+    $query->leftJoin('commerce_product__field_kit_cost', 'kc', 'cp.product_id = kc.entity_id');
+    $query->fields('kc', ['field_kit_cost_value']);
+    $query->leftJoin('commerce_product__field_active', 'ac', 'cp.product_id = ac.entity_id');
+    $query->fields('ac', ['field_active_value']);
+    $query->condition('mpn.field_mpn_id_value', $get_mpnid, '=');
+    $query->condition('ac.field_active_value', 1);
+    $results = $query->execute()->fetchAll();
+
     foreach ($results as $result) {
       $mpn_details = $result;
     }
+
     // todo verified CATB Approvers.
     // Calculate kit amount for CAT B kit.
     if (!empty($form_values['organization'])) {
@@ -301,9 +292,9 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
       }
       $msrp = $mpn_details->kit_cost;
     }
+    
     // Calculate discount amount for CAT B silicon.
     else {
-      $mpnid = _get_mpnid($form_values['part_number']);
       $query = \Drupal::database()->query('SELECT
         case
         when palt.field_primaryapproverleaveto_value >= NOW() and palf.field_primaryapproverleavefrom_value <= NOW()
@@ -321,7 +312,7 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
         on pa.entity_id = cat.entity_id and pa.revision_id = cat.revision_id and cat.field_cat_a_b_value = \'B\'
         JOIN shope_code_approvers__field_mpnid mpnid
         on pa.entity_id = mpnid.entity_id and pa.revision_id = mpnid.revision_id
-        WHERE mpnid.field_mpnid_value = :mpnid', [':mpnid' => $mpnid]);
+        WHERE mpnid.field_mpnid_value = :mpnid', [':mpnid' => $get_mpnid]);
       $results = $query->fetchAll();
       foreach ($results as $result) {
         $approvers[] = $result->approver;
