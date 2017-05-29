@@ -20,3 +20,7 @@ services:
     tags:
       - { name: commerce_shipping.packer, priority: 0 }
 
+  cypress_store_vendor.shipping_confirmation_email:
+      class: Drupal\cypress_store_vendor\ShippingConfirmationEmail
+      arguments: []
+
