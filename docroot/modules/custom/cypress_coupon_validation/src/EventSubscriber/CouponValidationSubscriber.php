@@ -52,11 +52,13 @@ class CouponValidationSubscriber implements EventSubscriberInterface {
       $pro_title = $product_variation->getTitle();
       $promotion_id = get_promotion_id($pro_title);
       $promotion = Promotion::load($promotion_id);
-      $coupons = $promotion->getCouponIds();
-      foreach ($coupons as $coupon) {
-        $coupon_id = $coupon;
-        $coupon_obj = Coupon::load($coupon_id);
-        $promocode = $coupon_obj->getCode();
+      if ($promotion) {
+        $coupons = $promotion->getCouponIds();
+        foreach ($coupons as $coupon) {
+          $coupon_id = $coupon;
+          $coupon_obj = Coupon::load($coupon_id);
+          $promocode = $coupon_obj->getCode();
+        }
       }
     }
 //    if($order_create->get('coupons')) {
@@ -80,4 +82,3 @@ class CouponValidationSubscriber implements EventSubscriberInterface {
   }
 
 }
-
