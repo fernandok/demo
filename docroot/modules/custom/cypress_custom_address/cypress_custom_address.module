@@ -4,40 +4,48 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\commerce_order\Entity\OrderItem;
 use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_shipping\Entity\ShippingMethod;
-
+use Drupal\Core\Render\Markup;
+use Drupal\Core\Url;
+use Drupal\Core\Mail\MailManagerInterface;
+use Drupal\Component\Utility\SafeMarkup;
+use Drupal\Component\Utility\Html;
 
 
 /**
  * Implements form_alter().
  */
-function cypress_custom_address_form_alter(&$form, $form_state, $form_id) {
-  // Changes in the order detail form.
-  if ($form_id == 'commerce_order_default_edit_form') {
-    $form[meta][state]['#value'] = '';
-    $mail_markup = strip_tags($form['customer']['mail']['#markup']);
-    $mail_id = explode(' ', $mail_markup);
-    $user = user_load_by_mail($mail_id[2]);
-    $uid = $user->uid->value;
-    $username = $user->field_first_name->value . ' ' . $user->field_last_name->value;
-    if (isset($username) && !empty($username)) {
-      $user_uid = "/user/" . $uid;
-      $form['customer']['uid']['#markup'] = '<h4 class="label inline">Customer</h4> <a href= ' . $user_uid . ' hreflang="en">' . $username . '</a>';
+function cypress_custom_address_form_alter(&$form, $form_state, $form_id)
+{
+    // Changes in the order detail form.
+    if ($form_id == 'commerce_order_default_edit_form') {
+        $form[meta][state]['#value'] = '';
+        $mail_markup = strip_tags($form['customer']['mail']['#markup']);
+        $mail_id = explode(' ', $mail_markup);
+        $user = user_load_by_mail($mail_id[2]);
+        $uid = $user->uid->value;
+        $username = $user->field_first_name->value . ' ' . $user->field_last_name->value;
+        if (isset($username) && !empty($username)) {
+            $user_uid = "/user/" . $uid;
+            $form['customer']['uid']['#markup'] = '<h4 class="label inline">Customer</h4> <a href= ' . $user_uid . ' hreflang="en">' . $username . '</a>';
+        }
     }
-  }
-  $order = \Drupal::service('commerce_cart.cart_provider')->getCartIds();
-  $order_id = $order['0'];
-  if ($form_id == 'views_form_commerce_cart_form_default_' . $order_id) {
-    array_unshift($form['actions']['checkout']['#submit'], 'anonymous_checkout_flow');
-  }
+    $order = \Drupal::service('commerce_cart.cart_provider')->getCartIds();
+    $order_id = $order['0'];
+    if ($form_id == 'views_form_commerce_cart_form_default_' . $order_id) {
+        array_unshift($form['actions']['checkout']['#submit'], 'anonymous_checkout_flow');
+    }
 }
 
-// anonymous cart submit function.
-function anonymous_checkout_flow() {
+/**
+ * anonymous cart submit function.
+ */
+function anonymous_checkout_flow()
+{
 
-  if (\Drupal::currentUser()->isAnonymous()) {
-    $response = new RedirectResponse('/saml_login');
-    return $response->send();
-  }
+    if (\Drupal::currentUser()->isAnonymous()) {
+        $response = new RedirectResponse('/saml_login');
+        return $response->send();
+    }
 
 }
 
@@ -45,128 +53,145 @@ function anonymous_checkout_flow() {
  * Shipping Rules For Cypress Store.
  * Implements hook_commerce_shipping_methods_alter().
  */
-function cypress_custom_address_commerce_shipping_methods_alter(&$shipping_methods, $shipment) {
+function cypress_custom_address_commerce_shipping_methods_alter(&$shipping_methods, $shipment)
+{
 
-  // Get Shipping Profile to get fetch the Address domestic and international.
-  $shipment_profile = $shipment->getShippingProfile();
-  $shipping_address = $shipment->getShippingProfile()
-    ->get('field_contact_address')
-    ->getValue();
-  $shipping_country_code = $shipping_address[0]['country_code'];
-  // Get the product type from order item.
-  $shipment_order_item = $shipment->getItems();
-  $order_item_id = $shipment_order_item[0]->getOrderItemId();
-  $order_item = OrderItem::load($order_item_id);
-  $product_variation = $order_item->getPurchasedEntity();
-  if (!empty($product_variation)) {
-    $product_id = $product_variation->get('product_id')
-      ->getValue()[0]['target_id'];
-    if (!empty($product_id)) {
-      $product = Product::load($product_id);
-      $product_type = $product->get('type')->getValue()[0]['target_id'];
+    // Get Shipping Profile to get fetch the Address domestic and international.
+    $shipment_profile = $shipment->getShippingProfile();
+    $shipping_address = $shipment->getShippingProfile()
+        ->get('field_contact_address')
+        ->getValue();
+    $shipping_country_code = $shipping_address[0]['country_code'];
+    // Get the product type from order item.
+    $shipment_order_item = $shipment->getItems();
+    $order_item_id = $shipment_order_item[0]->getOrderItemId();
+    $order_item = OrderItem::load($order_item_id);
+    $product_variation = $order_item->getPurchasedEntity();
+    if (!empty($product_variation)) {
+        $product_id = $product_variation->get('product_id')->getValue()[0]['target_id'];
+        if (!empty($product_id)) {
+            $product = Product::load($product_id);
+            $product_type = $product->get('type')->getValue()[0]['target_id'];
+        }
+        if ($product_type == 'default') {
+            if ($shipping_country_code == "US") {
+                foreach ($shipping_methods as $key => $shipping_method) {
+                    $shipping_method_name = $shipping_method->getName();
+                    $shipping_method_id = $shipping_method->id();
+                    if (!($shipping_method_name == 'USA - FedEx Express Saver For Kit Domestic') && !($shipping_method_name == 'USA - FedEx Overnight For Kits Domestic')) {
+                        unset($shipping_methods[$key]);
+                    }
+                }
+            } else {
+                foreach ($shipping_methods as $key => $shipping_method) {
+                    $shipping_method_name = $shipping_method->getName();
+                    $shipping_method_id = $shipping_method->id();
+                    if (!($shipping_method_name == 'FedEx International Economy For Kits') && !($shipping_method_name == 'FedEx International Priority For Kits')) {
+                        unset($shipping_methods[$key]);
+                    }
+                }
+            }
+        } elseif ($product_type == 'part') {
+            $can_sample = $product->get('field_can_sample')->getValue()[0]['value'];
+            // CAT_A products.
+            if ($can_sample == 1) {
+                if ($shipping_country_code == 'US') {
+                    foreach ($shipping_methods as $key => $shipping_method) {
+                        $shipping_method_name = $shipping_method->getName();
+                        $shipping_method_id = $shipping_method->id();
+                        if (!($shipping_method_name == 'USA FedEx 2Day For Sample CAT_A') && !($shipping_method_name == 'USA FedEx Standard Overnight For Sample CAT_A')) {
+                            unset($shipping_methods[$key]);
+                        }
+                    }
+                } else {
+                    foreach ($shipping_methods as $key => $shipping_method) {
+                        $shipping_method_name = $shipping_method->getName();
+                        $shipping_method_id = $shipping_method->id();
+                        if (!($shipping_method_name == 'FedEx International Economy For Sample CAT_A') && !($shipping_method_name == 'FedEx International Priority For Sample CAT_A')) {
+                            unset($shipping_methods[$key]);
+                        }
+                    }
+                }
+            } elseif ($can_sample == 2) {
+                if ($shipping_country_code == 'US') {
+                    foreach ($shipping_methods as $key => $shipping_method) {
+                        $shipping_method_name = $shipping_method->getName();
+                        $shipping_method_id = $shipping_method->id();
+                        if (!($shipping_method_name == 'USA FedEx 2Day For Sample CAT_B') && !($shipping_method_name == 'USA FedEx Standard Overnight For Sample CAT_B')) {
+                              unset($shipping_methods[$key]);
+                        }
+                    }
+                } else {
+                    foreach ($shipping_methods as $key => $shipping_method) {
+                        $shipping_method_name = $shipping_method->getName();
+                        $shipping_method_id = $shipping_method->id();
+                        if (!($shipping_method_name == 'FedEx International Economy For Sample CAT_B') && !($shipping_method_name == 'FedEx International Priority For Sample CAT_B')) {
+                              unset($shipping_methods[$key]);
+                        }
+                    }
+                }
+            }
+        }
     }
-    if ($product_type == 'default') {
-      if ($shipping_country_code == "US") {
-        foreach ($shipping_methods as $key => $shipping_method) {
-          $shipping_method_name = $shipping_method->getName();
-          $shipping_method_id = $shipping_method->id();
-          if (!($shipping_method_name == 'USA - FedEx Express Saver For Kit Domestic') && !($shipping_method_name == 'USA - FedEx Overnight For Kits Domestic')){
-            unset($shipping_methods[$key]);
-          }
-        }
-      }
-      else {
-        foreach ($shipping_methods as $key => $shipping_method) {
-          $shipping_method_name = $shipping_method->getName();
-          $shipping_method_id = $shipping_method->id();
-          if (!($shipping_method_name == 'FedEx International Economy For Kits') && !($shipping_method_name == 'FedEx International Priority For Kits')){
-            unset($shipping_methods[$key]);
-          }
-        }
-      }
-    }
-    elseif ($product_type == 'part') {
-      $can_sample = $product->get('field_can_sample')
-        ->getValue()[0]['value'];
-      // CAT_A products.
-      if ($can_sample == 1) {
-        if ($shipping_country_code == 'US'){
-          foreach ($shipping_methods as $key => $shipping_method) {
-            $shipping_method_name = $shipping_method->getName();
-            $shipping_method_id = $shipping_method->id();
-            if (!($shipping_method_name == 'USA FedEx 2Day For Sample CAT_A') && !($shipping_method_name == 'USA FedEx Standard Overnight For Sample CAT_A')){
-              unset($shipping_methods[$key]);
-            }
-          }
-        }
-        else {
-          foreach ($shipping_methods as $key => $shipping_method) {
-            $shipping_method_name = $shipping_method->getName();
-            $shipping_method_id = $shipping_method->id();
-            if (!($shipping_method_name == 'FedEx International Economy For Sample CAT_A') && !($shipping_method_name == 'FedEx International Priority For Sample CAT_A')){
-              unset($shipping_methods[$key]);
-            }
-          }
-        }
-      }
-      elseif ($can_sample == 2) {
-        if ($shipping_country_code == 'US'){
-          foreach ($shipping_methods as $key => $shipping_method) {
-            $shipping_method_name = $shipping_method->getName();
-            $shipping_method_id = $shipping_method->id();
-            if (!($shipping_method_name == 'USA FedEx 2Day For Sample CAT_B') && !($shipping_method_name == 'USA FedEx Standard Overnight For Sample CAT_B')){
-              unset($shipping_methods[$key]);
-            }
-          }
-        }
-        else {
-          foreach ($shipping_methods as $key => $shipping_method) {
-            $shipping_method_name = $shipping_method->getName();
-            $shipping_method_id = $shipping_method->id();
-            if (!($shipping_method_name == 'FedEx International Economy For Sample CAT_B') && !($shipping_method_name == 'FedEx International Priority For Sample CAT_B')){
-              unset($shipping_methods[$key]);
-            }
-          }
-        }
-      }
-    }
-  }
 }
 
 /**
  * Implements hook_theme_registry_alter().
  */
-function cypress_custom_address_theme_registry_alter(&$theme_registry) {
-  $theme_registry['commerce_order__default'] = [
-    'variables' => [
-      'order' => NULL,
-      'order_entity' => NULL,
-    ],
-    'preprocess functions' => $theme_registry['commerce_order']['preprocess functions'],
-    'template' => 'commerce-order--default',
-    'theme_path' => drupal_get_path('module', 'cypress_custom_address'),
-    'path' => drupal_get_path('module', 'cypress_custom_address') . '/templates/',
-  ];
+function cypress_custom_address_theme_registry_alter(&$theme_registry)
+{
+    $theme_registry['commerce_order__default'] = [
+      'variables' => [
+        'order' => null,
+        'order_entity' => null,
+      ],
+      'preprocess functions' => $theme_registry['commerce_order']['preprocess functions'],
+      'template' => 'commerce-order--default',
+      'theme_path' => drupal_get_path('module', 'cypress_custom_address'),
+      'path' => drupal_get_path('module', 'cypress_custom_address') . '/templates/',
+    ];
 }
 
-// Get the Promotion id based on product title
-function get_promotion_id($title) {
-  $query = \Drupal::database()->select('commerce_promotion_field_data', 'cp');
-  $query->fields('cp', ['promotion_id']);
-  $query->condition('cp.name', $title);
-  $results = $query->execute()->fetchAll();
-  foreach ($results as $result) {
-    $promotion_id = $result->promotion_id;
-  }
-
-  return $promotion_id;
-}
-
-/**
- * Implements hook_mail_alter().
+/*
+ * Implements hook mail alter().
  */
 function cypress_custom_address_mail_alter(&$message) {
-  if (!empty($message['id']) && $message['id'] == 'commerce_order_receipt') {
-    $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';
+  if (!empty($message['id']) && $message['id'] =='commerce_order_receipt') {
+    $mailManager = \Drupal::service('plugin.manager.mail');
+    $module = 'cypress_custom_address';
+    $key = 'send_checkout_mail';
+    $to = \Drupal::currentUser()->getEmail();
+    $params['message'] = $message['body'][0];
+    $langcode = \Drupal::currentUser()->getPreferredLangcode();
+    $send = true;
+    $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send); 
   }
 }
+
+
+/**
+ * Implements hook_mail
+ */
+function cypress_custom_address_mail($key, &$message, $params)
+{
+  $options  = array('langcode' => $message['langcode']);
+  switch($key) {
+    case 'send_checkout_mail':
+      $message['from'] = \Drupal::config('system.site')->get('mail');
+      $message['subject'] = t('Mail Order');
+      $message['body'][] = SafeMarkup::checkPlain($params['message']);
+      break;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
