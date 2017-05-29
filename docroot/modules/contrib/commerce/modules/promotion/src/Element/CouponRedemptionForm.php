@@ -140,20 +140,20 @@ class CouponRedemptionForm extends FormElement {
       '#submit' => [
         [get_called_class(), 'applyCoupon'],
       ],
-      '#ajax' => [
-        'callback' => [get_called_class(), 'ajaxRefresh'],
-        'wrapper' => $element['#wrapper_id'],
-      ],
+//      '#ajax' => [
+//        'callback' => [get_called_class(), 'ajaxRefresh'],
+//        'wrapper' => $element['#wrapper_id'],
+//      ],
       '#access' => $display_actions,
     ];
     $element['remove'] = [
       '#type' => 'submit',
       '#value' => $element['#remove_title'],
       '#name' => 'remove_coupon',
-      '#ajax' => [
-        'callback' => [get_called_class(), 'ajaxRefresh'],
-          'wrapper' => $element['#wrapper_id'],
-        ],
+//      '#ajax' => [
+//        'callback' => [get_called_class(), 'ajaxRefresh'],
+//          'wrapper' => $element['#wrapper_id'],
+//        ],
       '#weight' => 50,
       '#limit_validation_errors' => [
         $element['#parents'],
@@ -170,20 +170,20 @@ class CouponRedemptionForm extends FormElement {
   /**
    * Ajax callback.
    */
-  public static function ajaxRefresh(array $form, FormStateInterface $form_state) {
-    $parents = $form_state->getTriggeringElement()['#parents'];
-    array_pop($parents);
-    $coupon_element = NestedArray::getValue($form, $parents);
-    $summary_element = $form['sidebar']['order_summary'];
-
-    $response = new AjaxResponse();
-    // To refresh the coupon
-    $response->addCommand(new InsertCommand(NULL, $coupon_element));
-    // To refresh the order summary
-    $response->addCommand(new InsertCommand('[data-drupal-selector="edit-sidebar-order-summary"]', $summary_element));
-
-    return $response;
-  }
+//  public static function ajaxRefresh(array $form, FormStateInterface $form_state) {
+//    $parents = $form_state->getTriggeringElement()['#parents'];
+//    array_pop($parents);
+//    $coupon_element = NestedArray::getValue($form, $parents);
+//    $summary_element = $form['sidebar']['order_summary'];
+//
+//    $response = new AjaxResponse();
+//    // To refresh the coupon
+//    $response->addCommand(new InsertCommand(NULL, $coupon_element));
+//    // To refresh the order summary
+//    $response->addCommand(new InsertCommand('[data-drupal-selector="edit-sidebar-order-summary"]', $summary_element));
+//
+//    return $response;
+//  }
 
   /**
    * Apply coupon submit callback.

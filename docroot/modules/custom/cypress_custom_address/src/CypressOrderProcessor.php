@@ -116,18 +116,9 @@ class CypressOrderProcessor implements OrderProcessorInterface {
             foreach ($coupons as $coupon) {
               $coupon_id = $coupon;
               $coupon_obj = Coupon::load($coupon_id);
-              $promocode = $coupon_obj->getCode();
             }
-            $query = \Drupal::database()
-              ->select('cypress_store_coupons', 'csc');
-            $query->fields('csc', ['coupon_code']);
-            $query->condition('csc.promotion_id', $promotion_id);
-            $results = $query->execute()->fetchAll();
-            $coupon_code = $results[0]->coupon_code;
-
-            //if ($promocode != $coupon_code) {
-              if (!empty($promotion)) {
-                 if ($promotion->getUsageLimit() == 1) {
+            $usage_count = count_coupon_code($promotion_id);
+            if ($coupon_obj->getUsageLimit() > $usage_count) {
                 $offer = $promotion->get('offer')
                   ->getValue()[0]['target_plugin_id'];
                 $promocode_amount = $promotion->get('offer')
@@ -168,7 +159,7 @@ class CypressOrderProcessor implements OrderProcessorInterface {
                     $order_item->save();
                   }
                 }
-              }
+             // }
             }
           }
         }
@@ -178,6 +169,7 @@ class CypressOrderProcessor implements OrderProcessorInterface {
 }
  // Get the Promotion id based on product title
  function get_promotion_id($title) {
+
     $query = \Drupal::database()->select('commerce_promotion_field_data', 'cp');
     $query->fields('cp', ['promotion_id']);
     $query->condition('cp.name', $title);
@@ -189,5 +181,15 @@ class CypressOrderProcessor implements OrderProcessorInterface {
     return $promotion_id;
   }
 
+ // Get the count of promocode.
+function count_coupon_code($promotion_id) {
 
+  $query = \Drupal::database()->select('cypress_store_coupons', 'csc');
+  $query->fields('csc', ['coupon_code']);
+  $query->condition('csc.promotion_id', $promotion_id);
+  $results = $query->execute()->fetchAll();
+  $coupon_code = $results;
+  $usage_count = count($coupon_code);
 
+  return $usage_count;
+}

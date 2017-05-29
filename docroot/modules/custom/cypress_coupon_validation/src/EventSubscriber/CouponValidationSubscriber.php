@@ -52,11 +52,13 @@ class CouponValidationSubscriber implements EventSubscriberInterface {
       $pro_title = $product_variation->getTitle();
       $promotion_id = get_promotion_id($pro_title);
       $promotion = Promotion::load($promotion_id);
-      $coupons = $promotion->getCouponIds();
-      foreach ($coupons as $coupon) {
-        $coupon_id = $coupon;
-        $coupon_obj = Coupon::load($coupon_id);
-        $promocode = $coupon_obj->getCode();
+      if (!empty($promotion)) {
+        $coupons = $promotion->getCouponIds();
+        foreach ($coupons as $coupon) {
+          $coupon_id = $coupon;
+          $coupon_obj = Coupon::load($coupon_id);
+          $promocode = $coupon_obj->getCode();
+        }
       }
     }
 //    if($order_create->get('coupons')) {
@@ -66,18 +68,20 @@ class CouponValidationSubscriber implements EventSubscriberInterface {
 //        $coupon_code = $coupon->getCode();
 //      }
 //    }
+      $usage_limit = $coupon_obj->getUsageLimit();
+      for ($count = 0; $count < $usage_limit; $count++) {
+        // Insert into custom table after order complete.
+        $query = \Drupal::database()->insert('cypress_store_coupons')
+          ->fields(array(
+            'order_id' => $order_id,
+            'user_id' => $user_id,
+            'promotion_id' => $promotion_id,
+            'coupon_code' => $promocode,
+          ))->execute();
 
-    // Insert into custom table after order complete.
-    $query =  \Drupal::database()->insert('cypress_store_coupons')
-      ->fields(array(
-        'order_id' => $order_id,
-        'user_id' => $user_id,
-        'promotion_id' => $promotion_id,
-        'coupon_code' => $promocode,
-      ))->execute();
-
-    return $query;
-  }
+        return $query;
+      }
+    }
 
 }
 

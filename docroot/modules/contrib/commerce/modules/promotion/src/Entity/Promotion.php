@@ -348,11 +348,11 @@ class Promotion extends ContentEntityBase implements PromotionInterface {
       return FALSE;
     }
     $time = \Drupal::time()->getRequestTime();
-    if ($this->getStartDate()->format('U') > $time) {
+    if ($this->getStartDate()->format('U') < $time) {
       return FALSE;
     }
     $end_date = $this->getEndDate();
-    if ($end_date && $end_date->format('U') <= $time) {
+    if ($end_date && $end_date->format('U') >= $time) {
       return FALSE;
     }
     if ($usage_limit = $this->getUsageLimit()) {

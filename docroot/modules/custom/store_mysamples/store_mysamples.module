@@ -173,7 +173,7 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
   $promocode = '';
   $msrp = 0;
 
-  // To get the mpnid pf part product.
+  // To get the mpnid of part product.
   $query = \Drupal::database()->select('commerce_product__field_mpn_id', 'cpm');
   $query->fields('cpm', ['field_mpn_id_value']);
   $query->join('commerce_product_field_data','cp','cp.product_id = cpm.entity_id');
@@ -414,6 +414,7 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
       // Coupon Creation.
       $coupon = Coupon::create([
         'code' => $form_values['promo_code'],
+        'usage_limit' => 1,
         'status' => TRUE,
       ]);
       $coupon->save();
