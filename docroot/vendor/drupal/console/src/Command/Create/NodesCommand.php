@@ -12,6 +12,7 @@ use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Command\Command;
+use Drupal\Console\Annotations\DrupalCommand;
 use Drupal\Console\Core\Command\Shared\CommandTrait;
 use Drupal\Console\Command\Shared\CreateTrait;
 use Drupal\Console\Utils\Create\NodeData;
@@ -23,6 +24,11 @@ use Drupal\Core\Language\LanguageInterface;
  * Class NodesCommand
  *
  * @package Drupal\Console\Command\Generate
+ *
+ * @DrupalCommand(
+ *     extension = "node",
+ *     extensionType = "module"
+ * )
  */
 class NodesCommand extends Command
 {
@@ -211,6 +217,8 @@ class NodesCommand extends Command
             $timeRange,
             $language
         );
+        
+        $nodes = is_array($nodes) ? $nodes : [$nodes];
 
         $tableHeader = [
           $this->trans('commands.create.nodes.messages.node-id'),

@@ -52,7 +52,7 @@ class CouponValidationSubscriber implements EventSubscriberInterface {
       $pro_title = $product_variation->getTitle();
       $promotion_id = get_promotion_id($pro_title);
       $promotion = Promotion::load($promotion_id);
-      if (!empty($promotion)) {
+      if ($promotion) {
         $coupons = $promotion->getCouponIds();
         foreach ($coupons as $coupon) {
           $coupon_id = $coupon;
@@ -68,6 +68,7 @@ class CouponValidationSubscriber implements EventSubscriberInterface {
 //        $coupon_code = $coupon->getCode();
 //      }
 //    }
+    if (!empty($coupon_obj)) {
       $usage_limit = $coupon_obj->getUsageLimit();
       for ($count = 0; $count < $usage_limit; $count++) {
         // Insert into custom table after order complete.
@@ -82,6 +83,6 @@ class CouponValidationSubscriber implements EventSubscriberInterface {
         return $query;
       }
     }
+  }
 
 }
-
