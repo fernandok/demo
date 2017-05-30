@@ -32,7 +32,7 @@ class PhpMail implements MailInterface {
     $message['body'] = implode("\n\n", $message['body']);
 
     // Convert any HTML to plain-text.
-    $message['body'] = MailFormatHelper::htmlToText($message['body']);
+//    $message['body'] = MailFormatHelper::htmlToText($message['body']);
     // Wrap the mail body for sending.
     $message['body'] = MailFormatHelper::wrapMail($message['body']);
 
