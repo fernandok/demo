@@ -86,7 +86,7 @@ class ShippingConfirmationEmail {
     $shipment_items = $shipment->getItems();
     $output .= '<div class = "shipping-confirmation"><h3>Shipping Confirmation</h3>';
     $output .= '<div class = "thankyou-message"><h4>Hi ' . $order_username . '</h4><p>This is a friendly notification that the below item from your Cypress Store order has been shipped</p>';
-    $output .= '<div class = "order-number-mesage">Your Order number is ' . $order_id . ', placed on ' . $order_placed_date . ' And your shipping id is ' . $shipment_id . '</div></div>';
+    $output .= '<div class = "order-number-message">Your Order number is ' . $order_id . ', placed on ' . $order_placed_date . ' And your shipping id is ' . $shipment_id . '</div></div>';
     $number_of_items = count($shipment_items);
     $output .= '<div class ="num-items">Number of items: ' . $number_of_items . '</div>';
     foreach ($shipment_items as $shipment_item) {
@@ -124,7 +124,7 @@ class ShippingConfirmationEmail {
         }
       }
     }
-    $output .= '<div class = "deliery-address"> Delivery Address <p>' . $first_name . ' ' . $last_name . '</p>
+    $output .= '<div class = "delivery-address"> Delivery Address <p>' . $first_name . ' ' . $last_name . '</p>
                 <p>' . $address_line1 . '</p>'
       . $address_line2 .
       $dependent_locality .
