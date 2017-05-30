@@ -17,14 +17,6 @@ targetEntityType: commerce_shipment
 bundle: default
 mode: default
 content:
-  field_secondary_tracking_number:
-    weight: 3
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   shipping_method:
     type: commerce_shipping_rate
     weight: 2
@@ -48,6 +40,7 @@ content:
 hidden:
   field_oracle_rs_date: true
   field_schedule_number: true
+  field_secondary_tracking_number: true
   field_ship_date: true
   field_so_no: true
   field_vendor: true
