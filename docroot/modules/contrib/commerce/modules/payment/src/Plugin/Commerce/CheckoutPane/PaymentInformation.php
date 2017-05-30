@@ -321,7 +321,8 @@ class PaymentInformation extends BillingInformationPaneBase {
    */
   public function isVisible() {
     $order_total = $this->order->getTotalPrice()->getNumber();
-    $order_is_zero = ($order_total != 0);
+    $order_total_int = (int)$order_total;
+    $order_is_zero = ($order_total_int != 0);
     if ($order_is_zero) {
       return TRUE;
     }
