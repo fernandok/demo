@@ -14,25 +14,19 @@ use Drupal\Core\Locale\CountryManager;
  *
  * @package Drupal\cypress_store_vendor
  */
-class ShippingConfirmationEmail
-{
+class ShippingConfirmationEmail {
+
   /**
    * Constructor.
    */
-  public function __construct()
-  {
-
+  public function __construct() {
   }
 
   /**
    * Method to send shipping confirmation email for each shipment.
    *
-   * @param mixed $order
-   *   Commerce order.
-   * @param array $shipment
+   * @param object $shipment
    *   Shipment details.
-   *
-   * @return mixed
    */
   public function shippingEmail($shipment) {
     $shipment_id = $shipment->get('shipment_id')->getValue()[0]['value'];
@@ -114,11 +108,13 @@ class ShippingConfirmationEmail
             if (!empty($product_image)) {
               $img_src = explode(':', $product_image);
               $cart_image = $img_src[1];
-            } else {
+            }
+            else {
               $cart_image = '/themes/cypress_store/No_image_available.svg';
               $product_image_class = 'no-image-placeholder';
             }
-          } elseif ($product_type == 'part') {
+          }
+          elseif ($product_type == 'part') {
             $cart_image = '/themes/cypress_store/No_image_available.svg';
             $product_image_class = 'no-image-placeholder';
           }
@@ -158,14 +154,15 @@ class ShippingConfirmationEmail
     $params['message'] = $output;
     $params['title'] = t('Cypress - Shipping confirmed');
     $langcode = \Drupal::currentUser()->getPreferredLangcode();
-    $send = true;
+    $send = TRUE;
     $result = $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send);
-    if ($result['result'] !== true) {
+    if ($result['result'] !== TRUE) {
       drupal_set_message(t('There was a problem sending your message and it was not sent.'), 'error');
     }
     else {
       drupal_set_message(t('Your message has been sent.'));
     }
-  }
-}
 
+  }
+
+}
