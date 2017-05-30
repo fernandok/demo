@@ -4,11 +4,16 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Drupal\commerce_order\Entity\OrderItem;
 use Drupal\commerce_product\Entity\Product;
 use Drupal\commerce_shipping\Entity\ShippingMethod;
+
 use Drupal\Core\Render\Markup;
 use Drupal\Core\Url;
 use Drupal\Core\Mail\MailManagerInterface;
 use Drupal\Component\Utility\SafeMarkup;
 use Drupal\Component\Utility\Html;
+use Drupal\Component\Render\MarkupInterface;
+use Drupal\Core\Mail;
+
+
 
 
 /**
@@ -155,32 +160,10 @@ function cypress_custom_address_theme_registry_alter(&$theme_registry)
 /*
  * Implements hook mail alter().
  */
+
 function cypress_custom_address_mail_alter(&$message) {
-  if (!empty($message['id']) && $message['id'] =='commerce_order_receipt') {
-    $mailManager = \Drupal::service('plugin.manager.mail');
-    $module = 'cypress_custom_address';
-    $key = 'send_checkout_mail';
-    $to = \Drupal::currentUser()->getEmail();
-    $params['message'] = $message['body'][0];
-    $langcode = \Drupal::currentUser()->getPreferredLangcode();
-    $send = true;
-    $mailManager->mail($module, $key, $to, $langcode, $params, NULL, $send); 
-  }
-}
-
-
-/**
- * Implements hook_mail
- */
-function cypress_custom_address_mail($key, &$message, $params)
-{
-  $options  = array('langcode' => $message['langcode']);
-  switch($key) {
-    case 'send_checkout_mail':
-      $message['from'] = \Drupal::config('system.site')->get('mail');
-      $message['subject'] = t('Mail Order');
-      $message['body'][] = SafeMarkup::checkPlain($params['message']);
-      break;
+  if (!empty($message['id']) && $message['id'] =='commerce_order_receipt') {      
+    $message['headers']['Content-Type'] = 'text/html; charset=UTF-8; format=flowed; delsp=yes';   
   }
 }
 
