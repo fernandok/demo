@@ -20,8 +20,8 @@ class OrderFixedOff extends FixedOffBase {
   public function execute() {
     /** @var \Drupal\commerce_order\Entity\OrderInterface $order */
     $order = $this->getOrder();
-    $order_total_price = $order->getTotalPrice();
-    $currency_code = $order_total_price->getCurrencyCode();
+    $order_total_price = $order->getTotalPrice()->getNumber();
+    $currency_code = $order->getTotalPrice()->getCurrencyCode();
     // If fixed discount price is greater than order total price,
     // make discount price same to order total price.
     // So final total won't be negative.

@@ -1,0 +1,50 @@
+diff --git a/docroot/modules/contrib/commerce/modules/promotion/src/Entity/Promotion.php b/docroot/modules/contrib/commerce/modules/promotion/src/Entity/Promotion.php
+index a86cfc1..14d9376 100644
+--- a/docroot/modules/contrib/commerce/modules/promotion/src/Entity/Promotion.php
++++ b/docroot/modules/contrib/commerce/modules/promotion/src/Entity/Promotion.php
+@@ -3,6 +3,9 @@
+ namespace Drupal\commerce_promotion\Entity;
+ 
+ use Drupal\commerce_order\Entity\OrderInterface;
++use Drupal\commerce_product\Entity\Product;
++use Drupal\commerce_product\Plugin\Commerce\PromotionOffer\ProductFixedOff;
++use Drupal\commerce_product\Plugin\Commerce\PromotionOffer\ProductPercentageOff;
+ use Drupal\Core\Datetime\DrupalDateTime;
+ use Drupal\Core\Entity\ContentEntityBase;
+ use Drupal\Core\Entity\EntityStorageInterface;
+@@ -386,6 +389,35 @@ public function applies(OrderInterface $order) {
+         break;
+     }
+ 
++    // Start coupon patch.
++    // To Validate promotion offer against product.
++    // For ProductPercentageOff & ProductFixed Off.
++    $offer = $this->offer->first()->getTargetInstance();
++    if ($offer instanceof ProductFixedOff
++      || $offer instanceof ProductPercentageOff) {
++      $offer_config = $offer->getConfiguration();
++      if ($offer_config) {
++        $promotion_applies = FALSE;
++        $offer_product_id = $offer_config['product_id'];
++        $order_items = $order->getItems();
++        foreach ($order_items as $order_item ) {
++          $purchased_entities = $order_item->getPurchasedEntity()
++            ->referencedEntities();
++          foreach ($purchased_entities as $purchased_entity) {
++            if ($purchased_entity instanceof Product) {
++              if ($purchased_entity->id() == $offer_product_id) {
++                $promotion_applies = TRUE;
++              }
++            }
++          }
++        }
++        if (!$promotion_applies) {
++          return FALSE;
++        }
++      }
++    }
++    // End coupon patch.
++
+     // If there are no conditions, the promotion applies automatically.
+     if ($this->get('conditions')->isEmpty()) {
+       return TRUE;
