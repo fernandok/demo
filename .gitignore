@@ -3,7 +3,8 @@ docroot/files
 docroot/sites/*/files
 docroot/sites/*/private
 docroot/sites/default/settings.*.php
-
+docroot/.idea/*
+.idea/*
 # Ignore simplesaml local config
 docroot/vendor/simplesamlphp/simplesamlphp/config/config.php
 simplesamlphp-1.14.8/config/config.php
