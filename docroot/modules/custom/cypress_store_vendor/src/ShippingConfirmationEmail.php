@@ -41,6 +41,7 @@ class ShippingConfirmationEmail
     $order_id = $shipment->getOrderId();
     $order = Order::load($order_id);
     $order_placed_date = $order->getCreatedTime();
+    $order_mail = $order->getEmail();
     $user_id = $order->getCustomerId();
     $user_object = User::load($user_id);
     $username = $user_object->field_first_name->value . ' ' . $user_object->field_last_name->value;
@@ -153,7 +154,7 @@ class ShippingConfirmationEmail
     $mailManager = \Drupal::service('plugin.manager.mail');
     $module = 'cypress_store_vendor';
     $key = 'shipping_confirmation_mail';
-    $to = \Drupal::config('system.site')->get('mail');
+    $to = $order_mail;
     $params['message'] = $output;
     $params['title'] = t('Cypress - Shipping confirmed');
     $langcode = \Drupal::currentUser()->getPreferredLangcode();
