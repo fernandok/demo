@@ -367,7 +367,15 @@ function store_mysamples_promocode_submit_form($form, FormStateInterface $form_s
   // Generate promocode.
   if (!isset($form_values['promo_code']) || empty($form_values['promo_code'])) {
     $promocode = $user_division_code . date('y') . date('W') . date('N') . mt_rand(001, 99999);
-    $form_state->setValue('promo_code', $promocode);
+
+    // Prepend 'KIT' to promo code, if the item is kits.
+    if (!empty($form_values['organization'])) {
+      $promocode = 'KIT' . $promocode;
+      $form_state->setValue('promo_code', $promocode);
+    }
+    else {
+      $form_state->setValue('promo_code', $promocode);
+    }
   }
   $approver_subject = 'Request to Approve Promo Code';
   $requester_subject = 'Request For Promo Code Successfully Sent';
