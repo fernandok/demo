@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+    - field.storage.commerce_product.field_pqr_specnum_ref
+    - taxonomy.vocabulary.spec_numbers
+id: commerce_product.part.field_pqr_specnum_ref
+field_name: field_pqr_specnum_ref
+entity_type: commerce_product
+bundle: part
+label: 'Package Qualification Report'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      spec_numbers: spec_numbers
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

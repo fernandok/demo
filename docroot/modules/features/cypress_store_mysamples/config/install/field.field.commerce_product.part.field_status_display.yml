@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+    - field.storage.commerce_product.field_status_display
+id: commerce_product.part.field_status_display
+field_name: field_status_display
+entity_type: commerce_product
+bundle: part
+label: 'Status Display'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

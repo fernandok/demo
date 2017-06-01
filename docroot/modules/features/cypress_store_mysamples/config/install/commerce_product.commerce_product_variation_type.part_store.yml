@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: part_store
+label: 'Part Store'
+orderItemType: default
+generateTitle: true
+traits:
+  - purchasable_entity_shippable

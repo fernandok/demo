@@ -6,11 +6,17 @@ dependencies:
     - field.storage.commerce_product.field_can_sample
     - field.storage.commerce_product.field_mpn_cat_a_b
     - field.storage.commerce_product.field_mpn_id
-    - field.storage.commerce_product.field_samplemsrp
+    - field.storage.commerce_product.field_price_one
+    - field.storage.commerce_product.field_product_family
     - field.storage.commerce_product.field_status_raw
+    - user.role.administrator
+    - user.role.all_distributors
+    - user.role.cypress_employees
+    - user.role.sales_rep
   module:
     - commerce
     - commerce_product
+    - user
 id: mysamples
 label: 'My Samples'
 module: views
@@ -27,8 +33,13 @@ display:
     position: 0
     display_options:
       access:
-        type: none
-        options: {  }
+        type: role
+        options:
+          role:
+            administrator: administrator
+            sales_rep: sales_rep
+            all_distributors: all_distributors
+            cypress_employees: cypress_employees
       cache:
         type: tag
         options: {  }
@@ -41,7 +52,7 @@ display:
           query_comment: ''
           query_tags: {  }
       exposed_form:
-        type: basic
+        type: input_required
         options:
           submit_button: Search
           reset_button: false
@@ -50,10 +61,12 @@ display:
           expose_sort_order: true
           sort_asc_label: Asc
           sort_desc_label: Desc
+          text_input_required: "If you are not finding the samples you are looking for? Click here\n"
+          text_input_required_format: basic_html
       pager:
         type: full
         options:
-          items_per_page: 50
+          items_per_page: 10
           offset: 0
           id: 0
           total_pages: null
@@ -270,6 +283,69 @@ display:
           entity_type: commerce_product
           entity_field: title
           plugin_id: field
+        field_product_family:
+          id: field_product_family
+          table: commerce_product__field_product_family
+          field: field_product_family
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Product Family'
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
         field_mpn_cat_a_b:
           id: field_mpn_cat_a_b
           table: commerce_product__field_mpn_cat_a_b
@@ -422,8 +498,8 @@ display:
             suffix: ''
             target: ''
             nl2br: false
-            max_length: 0
-            word_boundary: true
+            max_length: 25
+            word_boundary: false
             ellipsis: true
             more_link: false
             more_link_text: ''
@@ -461,18 +537,18 @@ display:
           entity_type: null
           entity_field: title
           plugin_id: field
-        field_samplemsrp:
-          id: field_samplemsrp
-          table: commerce_product__field_samplemsrp
-          field: field_samplemsrp
+        field_price_one:
+          id: field_price_one
+          table: commerce_product__field_price_one
+          field: field_price_one
           relationship: none
           group_type: group
           admin_label: ''
           label: MSRP
           exclude: false
           alter:
-            alter_text: false
-            text: ''
+            alter_text: true
+            text: '${{ field_price_one }}'
             make_link: false
             path: ''
             absolute: false
@@ -510,9 +586,12 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
+          type: number_decimal
           settings:
-            link_to_entity: false
+            thousand_separator: ','
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -711,7 +790,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "{% if field_mpn_cat_a_b == 'A' or field_mpn_cat_a_b == 'a' %}\n  {% set cat = 'cat_a' %}\n{% else %}\n  {% set cat = 'cat_b' %}\n{% endif %}\n<a href=\"/form/promocode?mpn={{ title_2 }}&msrp={{ field_samplemsrp }}&cat={{ cat }}&mpnid={{ field_mpn_id }}&sstatus={{ field_can_sample }}\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-play\"></span> Create Promo Code</a>"
+            text: "{% if field_can_sample == '2' %}\n  {% set catb = field_product_family|upper %}\n  {% if 'KIT' in catb or 'POD' in catb %}\n    {% set cat = 'cat-b-kit' %}\n  {% else %}\n    {% set cat = 'cat-b' %}\n  {% endif %}  \n{% else %}\n  {% set cat = 'cat-a' %}  \n{% endif %}\n\n{% set msrp = field_price_one|replace({\"$\" : \"\"}) %}\n\n<a href=\"/form/promocode?mpn={{ title_2 }}&msrp={{ msrp }}&cat={{ cat }}&mpnid={{ field_mpn_id }}&sstatus={{ field_can_sample }}\" class=\"btn btn-primary\"><span class=\"glyphicon glyphicon-play\"></span> Create Promo Code</a>"
             make_link: false
             path: ''
             absolute: false
@@ -838,14 +917,67 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: string
+        field_can_sample_value:
+          id: field_can_sample_value
+          table: commerce_product__field_can_sample
+          field: field_can_sample_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '!='
+          value:
+            min: ''
+            max: ''
+            value: '0'
+          group: 1
+          exposed: false
+          expose:
+            operator_id: ''
+            label: ''
+            description: ''
+            use_operator: false
+            operator: ''
+            identifier: ''
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: numeric
       sorts: {  }
       title: 'My Samples'
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'Enter the Part number you wish to sample.'
+            format: basic_html
+          plugin_id: text
       footer: {  }
       empty: {  }
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
+      use_ajax: true
     cache_metadata:
       max-age: 0
       contexts:
@@ -853,20 +985,23 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.roles
       tags:
         - 'config:field.storage.commerce_product.field_can_sample'
         - 'config:field.storage.commerce_product.field_mpn_cat_a_b'
         - 'config:field.storage.commerce_product.field_mpn_id'
-        - 'config:field.storage.commerce_product.field_samplemsrp'
+        - 'config:field.storage.commerce_product.field_price_one'
+        - 'config:field.storage.commerce_product.field_product_family'
         - 'config:field.storage.commerce_product.field_status_raw'
-  page_1:
+  mysamples_page:
     display_plugin: page
-    id: page_1
-    display_title: Page
+    id: mysamples_page
+    display_title: 'My Samples page'
     position: 1
     display_options:
       display_extenders: {  }
       path: mysamples
+      display_description: ''
     cache_metadata:
       max-age: 0
       contexts:
@@ -874,9 +1009,11 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - user.roles
       tags:
         - 'config:field.storage.commerce_product.field_can_sample'
         - 'config:field.storage.commerce_product.field_mpn_cat_a_b'
         - 'config:field.storage.commerce_product.field_mpn_id'
-        - 'config:field.storage.commerce_product.field_samplemsrp'
+        - 'config:field.storage.commerce_product.field_price_one'
+        - 'config:field.storage.commerce_product.field_product_family'
         - 'config:field.storage.commerce_product.field_status_raw'

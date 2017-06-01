@@ -7,9 +7,15 @@ dependencies:
   - block_class
   - commerce
   - commerce_product
+  - cypress_store_cypresscommerce
+  - datetime
   - field
+  - inline_entity_form
+  - path
   - system
+  - taxonomy
   - text
+  - user
   - views
 version: 8.x-1.0
 package: 'Cypress Store'

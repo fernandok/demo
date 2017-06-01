@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - commerce_product.commerce_product_type.part
+    - field.storage.commerce_product.field_pb_free
+id: commerce_product.part.field_pb_free
+field_name: field_pb_free
+entity_type: commerce_product
+bundle: part
+label: 'PB Free'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: '1'
+  off_label: '0'
+field_type: boolean

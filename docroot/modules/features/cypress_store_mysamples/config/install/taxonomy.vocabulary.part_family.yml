@@ -1,0 +1,8 @@
+langcode: en
+status: true
+dependencies: {  }
+name: 'Part Family'
+vid: part_family
+description: ''
+hierarchy: 0
+weight: 0
