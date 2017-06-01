@@ -3,7 +3,7 @@
 namespace Drupal\store_mysamples\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
-use  Drupal\yamlform\Entity\YamlFormSubmission;
+use Drupal\webform\Entity\WebformSubmission;
 
 /**
  * Class PromocodeStatus.
@@ -33,14 +33,14 @@ class PromocodeStatus extends ControllerBase {
       t('Changed')
     ];
 
-    $query =  \Drupal::database()->select('yamlform_submission', 'ys');
-    $query->fields('ys', ['sid']);
-    $query->condition('yamlform_id' , 'promocode', '=');
+    $query =  \Drupal::database()->select('webform_submission', 'ws');
+    $query->fields('ws', ['sid']);
+    $query->condition('webform_id' , 'promocode', '=');
     $results = $query->execute()->fetchAll();
 
     $options = [];
     foreach($results as $result) {
-      $submission = YamlFormSubmission::load($result->sid);
+      $submission = WebformSubmission::load($result->sid);
       // To get the promocode created time.
       $created_date = $submission->getCreatedTime();
       $promocode_created_date = date('Y-m-d H:i:s', $created_date);
